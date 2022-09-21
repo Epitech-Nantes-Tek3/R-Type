@@ -6,9 +6,7 @@ The rules to contribute to the R-Type project are write down below.
 
 First, the commits. They should always look like the following description:
 
-Action Verb (Add, Delete, Fix ...) + Title +
-
-Description of what you have done + Related Issue Number
+Action Verb (Add, Delete, Fix ...) + Title + Description of what you have done + Related Issue Number
 
 This should look like this:
 
