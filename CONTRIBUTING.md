@@ -2,7 +2,7 @@
 
 The rules to contribute to the R-Type project are write down below.
 
-## Committing Rules
+### Committing Rules
 
 First, the commits. They should always look like the following description:
 
@@ -19,3 +19,51 @@ This should look like this:
 You should always commit frequently and based on the given exemple.
 
 If possible, please certify your commits (-S).
+
+### Branch Rules
+
+The branch name should consider the issue title and the issue number in its name
+
+Example:
+
+```bash
+    git checkout -b 2-Documentation-Create-The-Contributing.md
+```
+
+You must make one branch per issue.
+
+Try to push as regularly as possible so everyone can see where you are at.
+When first committing on a branch, open a draft, so it will be easier for your mates to see where you are at.
+
+
+### Pull Request Rules
+
+When your work is done on a branch, you must make a pull request.
+
+The name is the same for the branch.
+However, you must write a description as a reminder of what you have done.
+It may be all about the issue, but often you have unexpected fixes.
+
+For the reviewers, prioritize the people who can really help you with your work.
+
+You must have at least 2 reviewers who approve your pull request.
+
+Try not to exceed 24 hours before reading your PRs.
+
+It is obviously forbidden to approve a merge until all the reviewers have accepted the PR as well as the success of the workflows.
+
+### Issue Rules
+
+When creating an issue, you must follow the given format :
+
+* The name of the issue must correspond to the part of the code concerned
+
+```bash
+    Name : Documentation - Create the Contributing.md
+```
+
+* Describing the issue is mandatory. Try to be concise with the features who will be added on the project.
+
+* Add a label to clarify the issue. If there is no label existing or corresponding to your issue, create one and describe it.
+
+* Take a moment to put the issue in the project, if it hasn't been done automatically.
