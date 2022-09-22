@@ -10,8 +10,6 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 include(DetectCompiler)
 
-# find_package(sfml REQUIRED)
-
 add_subdirectory(Server)
 add_subdirectory(Client)
 
@@ -22,4 +20,3 @@ set_target_properties(r-type_client r-type_server
     PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/
 )
-
