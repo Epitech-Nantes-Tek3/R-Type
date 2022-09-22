@@ -8,6 +8,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 # Add ./cmake to the module path
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
+include(conanbuildinfo.cmake)
+conan_basic_setup()
+
 find_package(SFML 2.5.1 COMPONENTS system window graphics audio REQUIRED)
 
 include(DetectCompiler)
