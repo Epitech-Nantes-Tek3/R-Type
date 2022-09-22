@@ -9,6 +9,8 @@ on:
 env:
   BUILD_TYPE: Release
 
+  workflow_dispatch:
+
 jobs:
   build-linux:
     runs-on: ubuntu-22.04
