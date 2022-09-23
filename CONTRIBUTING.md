@@ -1,6 +1,6 @@
 ## Development Rules
 
-The rules to contribute to the R-Type project are descriptred down below.
+The rules to contribute to the R-Type project are described below.
 
 
 ### Issue Rules
@@ -13,7 +13,7 @@ When creating an issue, you must follow the given format :
     Name : Documentation - Create the Contributing.md
 ```
 
-* Describing the issue is mandatory. Try to be concise with the features who will be added on the project.
+* Describing the issue is mandatory. Try to be concise with the features which will be added on the project.
 
 * Add a label to clarify the issue. If there is no label existing or corresponding to your issue, create one and describe it.
 
@@ -33,7 +33,7 @@ Example:
 You must make one branch per issue.
 
 Try to push as regularly as possible so everyone can see where you are at.
-When first committing on a branch, it is recommended to open a draft, so it will be easier for your mates to see where you are at.
+When first committing on a branch, it is recommended to open a PR draft, so it will be easier for your mates to see where you are at.
 
 
 ### Coding Style
