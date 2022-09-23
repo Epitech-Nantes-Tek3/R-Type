@@ -1,0 +1,8 @@
+/home/Bunny/Documents/Epitech/Teck3/R-Type/R-Type/build/CMakeFiles/r-type_client.dir
+/home/Bunny/Documents/Epitech/Teck3/R-Type/R-Type/build/CMakeFiles/r-type_server.dir
+/home/Bunny/Documents/Epitech/Teck3/R-Type/R-Type/build/CMakeFiles/edit_cache.dir
+/home/Bunny/Documents/Epitech/Teck3/R-Type/R-Type/build/CMakeFiles/rebuild_cache.dir
+/home/Bunny/Documents/Epitech/Teck3/R-Type/R-Type/build/Server/CMakeFiles/edit_cache.dir
+/home/Bunny/Documents/Epitech/Teck3/R-Type/R-Type/build/Server/CMakeFiles/rebuild_cache.dir
+/home/Bunny/Documents/Epitech/Teck3/R-Type/R-Type/build/Client/CMakeFiles/edit_cache.dir
+/home/Bunny/Documents/Epitech/Teck3/R-Type/R-Type/build/Client/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,1 @@
+/usr/bin/c++ -O3 -DNDEBUG CMakeFiles/r-type_client.dir/Client/main.cpp.o -o r-type_client 

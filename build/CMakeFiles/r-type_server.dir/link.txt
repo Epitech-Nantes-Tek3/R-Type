@@ -1,0 +1,1 @@
+/usr/bin/c++ -O3 -DNDEBUG CMakeFiles/r-type_server.dir/Server/main.cpp.o -o r-type_server 
