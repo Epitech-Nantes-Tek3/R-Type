@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16.0)
 
-project(R-Type LANGUAGES CXX)
+project(R-Type LANGUAGES C CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
@@ -11,6 +11,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 
 add_subdirectory(Server)
 add_subdirectory(Client)
+add_subdirectory(libs)
 
 add_executable(r-type_client ${SRC_CLIENT})
 add_executable(r-type_server ${SRC_SERVER})
+
+target_link_libraries(r-type_client PUBLIC ecs)
+target_link_libraries(r-type_client PUBLIC ecs)
