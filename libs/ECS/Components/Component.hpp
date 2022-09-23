@@ -14,6 +14,7 @@ namespace ecs
     class Component
     {
     public:
+    
         /// @brief This is the constructor of Component Class
         Component();
 
