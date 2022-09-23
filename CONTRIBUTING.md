@@ -10,7 +10,7 @@ When creating an issue, you must follow the given format :
 * The name of the issue must have an action verb and a title
 
 ```bash
-    Name : Documentation - Create the Contributing.md
+    Name : Create the Contributing.md
 ```
 
 * Describing the issue is mandatory. Try to be concise with the features which will be added on the project.
@@ -27,7 +27,7 @@ The branch name should consider the issue title and the issue number in its name
 Example:
 
 ```bash
-    git checkout -b 2-Documentation-Create-The-Contributing.md
+    git checkout -b 2-Create-The-Contributing.md
 ```
 
 You must make one branch per issue.
