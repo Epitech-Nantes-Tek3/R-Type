@@ -31,7 +31,7 @@ conan_cmake_install(PATH_OR_REFERENCE .
                     REMOTE conancenter
                     SETTINGS ${settings})
 
-find_package(SFML 2.5.1 COMPONENTS system window graphics audio REQUIRED)
+find_package(SFML 2.5.1 REQUIRED)
 
 include(DetectCompiler)
 
