@@ -17,11 +17,11 @@ namespace ecs
 
         /// @brief This is the destructor of Component Class
         virtual ~Component() = default;
-  
+
         /// @brief this function give the name of the component (itself)
         /// @return the name of itself
         const std::string getName() const { return this->_name; };
-  
+
     protected:
 
         /// @brief This is the constructor of Component Class
