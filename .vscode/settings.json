@@ -1,0 +1,15 @@
+{
+    "files.associations": {
+        "memory": "cpp",
+        "typeindex": "cpp",
+        "cstddef": "cpp",
+        "unordered_map": "cpp",
+        "concepts": "cpp",
+        "array": "cpp",
+        "deque": "cpp",
+        "string": "cpp",
+        "vector": "cpp",
+        "string_view": "cpp",
+        "initializer_list": "cpp"
+    }
+}
