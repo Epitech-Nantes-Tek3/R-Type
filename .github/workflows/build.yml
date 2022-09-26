@@ -23,6 +23,7 @@ jobs:
     #     sudo apt-get install -y libx11-dev libxrandr-dev libxi-dev libudev-dev libgl1-mesa-dev
     #     sudo apt-get install -y autoconf libtool
 
+    - uses: lukka/get-cmake@latest
     - name: Checkout repository
       uses: actions/checkout@v2
       with:
@@ -30,10 +31,11 @@ jobs:
     - name: Run vcpkg
       uses: lukka/run-vcpkg@v10
       with:
-        vcpkgArguments: 'SFML'
         vcpkgDirectory: '${{ github.workspace }}/vcpkg'
-    - name: Build project
-      run: cmake -B build -DCMAKE_TOOLCHAIN_FILE=./vcpkg/scripts/buildsystems/vcpkg.cmake && cmake --build build
+    - name: Run CMake consuming CMakePreset.json and vcpkg.json by mean of vcpkg.
+      uses: lukka/run-cmake@v10
+    # - name: Build project
+    #   run: cmake -B build -DCMAKE_TOOLCHAIN_FILE=./vcpkg/scripts/buildsystems/vcpkg.cmake && cmake --build build
 
     # - name: Launch build script
     #   run: ./setup.sh
