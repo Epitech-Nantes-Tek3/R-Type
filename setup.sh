@@ -1,5 +1,6 @@
 #/usr/bin/bash
 
+whoami
 git submodule init
 git submodule update
 
