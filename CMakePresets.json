@@ -1,0 +1,10 @@
+{
+    "version": 1,
+    "configurePresets": [
+        {
+            "name": "build",
+            "binaryDir": "build",
+            "generator": "Unix Makefiles"
+        }
+    ]
+  }
