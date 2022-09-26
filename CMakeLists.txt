@@ -14,7 +14,9 @@ include(DetectCompiler)
 
 add_subdirectory(Server)
 add_subdirectory(Client)
+set(SFML_DIR ${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/packages/sfml_x64-linux/share/sfml)
 include(./vcpkg/scripts/buildsystems/vcpkg.cmake)
+
 find_package(SFML COMPONENTS system window graphics CONFIG REQUIRED)
 
 add_executable(r-type_client ${SRC_CLIENT})
