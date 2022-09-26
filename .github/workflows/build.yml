@@ -25,7 +25,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Launch build script
-      uses: ./setup.sh
+      run: ./setup.sh
 
   build-windows:
     runs-on: windows-latest
@@ -35,4 +35,4 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Launch build script
-      uses: ./setup.bat
+      run: ./setup.bat
