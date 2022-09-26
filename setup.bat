@@ -1,7 +1,7 @@
 git submodule init
 git submodule update
 
-./vcpkg/bootstrap-vcpkg.bat
+./vcpkg/bootstrap-vcpkg.bat -disableMetrics
 
 ./vcpkg/vcpkg install SFML
 
