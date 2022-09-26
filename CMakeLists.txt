@@ -29,5 +29,12 @@ endif()
 add_subdirectory(Server)
 add_subdirectory(Client)
 
+## Create the needed executables ##
 add_executable(r-type_client ${SRC_CLIENT})
 add_executable(r-type_server ${SRC_SERVER})
+
+## Put the executable to the project's root ##
+set_target_properties(r-type_client r-type_server
+    PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/
+)
