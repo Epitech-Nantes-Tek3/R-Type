@@ -13,7 +13,7 @@ include(DetectCompiler)
 
 add_subdirectory(Server)
 add_subdirectory(Client)
-
+include(./vcpkg/scripts/buildsystems/vcpkg.cmake)
 find_package(SFML COMPONENTS system window graphics CONFIG REQUIRED)
 
 add_executable(r-type_client ${SRC_CLIENT})
