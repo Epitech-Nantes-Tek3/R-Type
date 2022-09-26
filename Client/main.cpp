@@ -2,12 +2,19 @@
 ** EPITECH PROJECT, 2022
 ** R-Type
 ** File description:
-** main for the client
+** Project Main
 */
 
-// #include <SFML/Graphics.hpp>
+#include <iostream>
 
-int main()
+/// @brief Main Function
+/// @param ac The number of arguments
+/// @param av The arguments
+/// @return 0 if sucess, an error code otherwise
+int main(int ac, char **av)
 {
-    return (0);
+    (void)ac;
+    (void)av;
+    std::cout << "Client : 42" << std::endl;
+    return 0;
 }

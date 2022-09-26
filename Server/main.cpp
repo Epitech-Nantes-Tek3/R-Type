@@ -2,10 +2,19 @@
 ** EPITECH PROJECT, 2022
 ** R-Type
 ** File description:
-** main for the server
+** Project Main
 */
 
-int main()
+#include <iostream>
+
+/// @brief Main Function
+/// @param ac The number of arguments
+/// @param av The arguments
+/// @return 0 if sucess, an error code otherwise
+int main(int ac, char **av)
 {
-    return (0);
+    (void)ac;
+    (void)av;
+    std::cout << "Server : 42" << std::endl;
+    return 0;
 }
