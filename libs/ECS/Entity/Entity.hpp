@@ -34,7 +34,7 @@ namespace ecs
         auto operator<=>(Entity const &other) const { return this->_id <=> other._id; }
 
         template <std::derived_from<Component> C, typename... Args>
-        Entity &addComponent(C component, Args &&...args)
+        Entity &addComponent(Args &&...args)
         {
             // if already contains once -> throw ERROR
 
@@ -68,6 +68,8 @@ namespace ecs
             return contains(component);
         }
 
+        inline constexpr bool contains() { return true;}
+
         ~Entity();
 
     private:
@@ -76,7 +78,5 @@ namespace ecs
         ComponentsList _componentList;
 
         inline constexpr Entity(Index id) : _id(id) {}
-
-        inline constexpr bool contains() { return true;}
     };
 }

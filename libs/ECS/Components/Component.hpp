@@ -9,6 +9,8 @@
 
 #include <string>
 
+/// @file libs/ECS/Entity/Entity.hpp
+
 namespace ecs
 {
     class Component
