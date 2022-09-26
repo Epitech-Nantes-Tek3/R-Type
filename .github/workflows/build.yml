@@ -16,25 +16,32 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Install Dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y cmake
-        sudo apt-get install -y libx11-dev libxrandr-dev libxi-dev libudev-dev libgl1-mesa-dev
-        sudo apt-get install -y autoconf libtool
+    # - name: Install Dependencies
+    #   run: |
+    #     sudo apt-get update
+    #     sudo apt-get install -y cmake
+    #     sudo apt-get install -y libx11-dev libxrandr-dev libxi-dev libudev-dev libgl1-mesa-dev
+    #     sudo apt-get install -y autoconf libtool
 
     - name: Checkout repository
       uses: actions/checkout@v2
+      with:
+        submodules: 'recursive'
+    - name: Run vcpkg
+      uses: lukka/run-vcpkg@v4
+      with:
+        vcpkgArguments: 'SFML'
+        vcpkgDirectory: '${{ github.workspace }}/vcpkg'
 
-    - name: Launch build script
-      run: ./setup.sh
+    # - name: Launch build script
+    #   run: ./setup.sh
 
-  build-windows:
-    runs-on: windows-latest
+  # build-windows:
+  #   runs-on: windows-latest
 
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+  #   steps:
+  #   - name: Checkout repository
+  #     uses: actions/checkout@v2
 
-    - name: Launch build script
-      run: ./setup.bat
+  #   - name: Launch build script
+  #     run: ./setup.bat
