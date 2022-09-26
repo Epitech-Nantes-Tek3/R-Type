@@ -13,7 +13,8 @@
 #include <typeindex>
 #include <unordered_map>
 
-#include "../Components/Component.hpp"
+#include "Components/Component.hpp"
+#include "Entity/Entity.hpp"
 
 /// @file libs/ECS/Entity/Entity.hpp
 
@@ -38,8 +39,8 @@ namespace ecs
         {
             // if already contains once -> throw ERROR
 
-            this->_componentList[std::type_index(typeid(C))] = std::make_unique<C, Args...>(std::forward<Args>(args...));
-            return this;
+            this->_componentList[std::type_index(typeid(C))] = std::make_unique<C>(std::forward<Args>(args)...);
+            return *this;
         }
 
         template <std::derived_from<Component> C>
@@ -48,7 +49,7 @@ namespace ecs
             ComponentsList::iterator it = _componentList.find(std::type_index(typeid(C)));
             if (it == _componentList.end())
                 throw std::logic_error("attempted to get a non-existent component");
-            return it->second;
+            return *(it->second.get());
         }
 
         template <std::derived_from<Component> C>
@@ -63,12 +64,12 @@ namespace ecs
         template <std::derived_from<Component>... C>
         bool contains(C... component) const
         {
-            if (_componentList.find(std::type_index(typeid(component...))) == _componentList.end())
+            if (_componentList.find(std::type_index(typeid(component)...)) == _componentList.end())
                 return false;
-            return contains(component);
+            return contains(component...);
         }
 
-        inline constexpr bool contains() { return true;}
+        inline constexpr bool contains() {return true;}
 
         ~Entity();
 
@@ -77,6 +78,6 @@ namespace ecs
 
         ComponentsList _componentList;
 
-        inline constexpr Entity(Index id) : _id(id) {}
+        inline constexpr Entity(Index id) : _id(id) {_componentList[std::type_index(typeid(Component))] = std::make_unique<Component>("Component");}
     };
 }
