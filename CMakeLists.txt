@@ -14,10 +14,11 @@ include(DetectCompiler)
 add_subdirectory(Server)
 add_subdirectory(Client)
 
+find_package(SFML COMPONENTS system window graphics CONFIG REQUIRED)
+
 add_executable(r-type_client ${SRC_CLIENT})
 add_executable(r-type_server ${SRC_SERVER})
 
-find_package(SFML COMPONENTS system window graphics CONFIG REQUIRED)
 target_link_libraries(r-type_client PRIVATE sfml-system sfml-network sfml-graphics sfml-window)
 
 set_target_properties(r-type_client r-type_server
