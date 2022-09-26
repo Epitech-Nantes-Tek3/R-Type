@@ -21,6 +21,7 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y cmake
         sudo apt-get install -y libx11-dev libxrandr-dev libxi-dev libudev-dev libgl1-mesa-dev
+        sudo apt install -y autoconf libtool
 
     - name: Checkout repository
       uses: actions/checkout@v2
