@@ -8,14 +8,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 # Add ./cmake to the module path
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 list(APPEND CMAKE_PREFIX_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
-list(APPEND CMAKE_PREFIX_PATH ${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems)
 
 include(DetectCompiler)
 
 add_subdirectory(Server)
 add_subdirectory(Client)
-set(SFML_DIR ${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/packages/sfml_x64-linux/share/sfml)
-include(./vcpkg/scripts/buildsystems/vcpkg.cmake)
 
 find_package(SFML COMPONENTS system window graphics CONFIG REQUIRED)
 
