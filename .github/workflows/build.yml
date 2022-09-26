@@ -32,6 +32,8 @@ jobs:
       with:
         vcpkgArguments: 'SFML'
         vcpkgDirectory: '${{ github.workspace }}/vcpkg'
+    - name: Build project
+      run: cmake -B build -DCMAKE_TOOLCHAIN_FILE=./vcpkg/scripts/buildsystems/vcpkg.cmake && cmake --build build
 
     # - name: Launch build script
     #   run: ./setup.sh
