@@ -31,9 +31,6 @@ namespace ecs
         /// @returns The index of this entity.
         constexpr Index getId() const noexcept { return this->_id; }
 
-        /// Entity index comparison.
-        auto operator<=>(Entity const &other) const { return this->_id <=> other._id; }
-
         template <std::derived_from<Component> C, typename... Args>
         Entity &addComponent(Args &&...args)
         {
@@ -80,4 +77,10 @@ namespace ecs
 
         ComponentsList _componentList;
     };
+
+    /// Entity index comparison.
+    inline auto operator==(Entity const &entity, Entity const &other) { return entity.getId() == other.getId(); }
+
+    inline auto operator!=(Entity const &entity, Entity const &other) { return entity.getId() != other.getId(); }
+
 }
