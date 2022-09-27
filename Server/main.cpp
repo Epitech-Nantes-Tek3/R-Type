@@ -2,10 +2,13 @@
 ** EPITECH PROJECT, 2022
 ** R-Type
 ** File description:
-** main for the server
+** Project Main
 */
 
-int main()
+#include <iostream>
+
+int main(__attribute__((unused)) int ac, __attribute__((unused)) char **av)
 {
-    return (0);
+    std::cout << "Server : 42" << std::endl;
+    return 0;
 }
