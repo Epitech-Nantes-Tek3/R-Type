@@ -19,7 +19,8 @@ jobs:
     - name: Dependencies
       run: |
         sudo apt update
-        sudo apt-get install -y conan
+        sudo apt-get install -y python3
+        sudo pip install conan
     - name: Checkout repository
       uses: actions/checkout@v2
     - name: Build
