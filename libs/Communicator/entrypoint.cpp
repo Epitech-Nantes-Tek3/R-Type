@@ -8,7 +8,7 @@
 #include "entrypoint.hpp"
 #include <iostream>
 
-/// \file libs/Communicator/entrypoint.cpp
+/// @file libs/Communicator/entrypoint.cpp
 
 void communicator_lib::entrypoint(void)
 {

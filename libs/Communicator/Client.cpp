@@ -5,7 +5,7 @@
 ** Client
 */
 
-/// \file libs/Communicator/Client.cpp
+/// @file libs/Communicator/Client.cpp
 
 #include "Client.hpp"
 #include <iostream>
@@ -14,32 +14,32 @@ using namespace communicator_lib;
 
 Client::Client(std::string address, long port)
 {
-    this->address = address;
-    this->port = port;
-    std::cerr << "Creating a client : (" << address << " : " << port << ")." << std::endl;
+    this->_address = address;
+    this->_port = port;
+    std::cerr << "Creating a client : (" << _address << " : " << _port << ")." << std::endl;
 }
 
 std::string Client::getAddress(void) const
 {
-    return address;
+    return _address;
 }
 
 long Client::getPort(void) const
 {
-    return port;
+    return _port;
 }
 
 void Client::setAddress(std::string address)
 {
-    this->address = address;
+    this->_address = address;
 }
 
 void Client::setPort(long port)
 {
-    this->port = port;
+    this->_port = port;
 }
 
 Client::~Client()
 {
-    std::cerr << "Deleting a client : (" << address << " : " << port << ")." << std::endl;
+    std::cerr << "Deleting a client : (" << _address << " : " << _port << ")." << std::endl;
 }

@@ -5,7 +5,7 @@
 ** Communicator
 */
 
-/// \file libs/Communicator/Communicator.cpp
+/// @file libs/Communicator/Communicator.cpp
 
 #include "Communicator.hpp"
 #include <iostream>
@@ -15,34 +15,38 @@ using namespace communicator_lib;
 
 Communicator::Communicator()
 {
-    client_list = {};
+    _clientList = {};
 }
 
-std::vector<Client> Communicator::getClientList(void) const {
-    return client_list;
+std::vector<Client> Communicator::getClientList(void) const
+{
+    return _clientList;
 }
 
-void Communicator::addClientToList(Client &client) {
-    if (std::find(client_list.begin(), client_list.end(), client) != client_list.end()) {
+void Communicator::addClientToList(Client &client)
+{
+    if (std::find(_clientList.begin(), _clientList.end(), client) != _clientList.end())
+    {
         std::cerr << "Client already registered in the communicator." << std::endl;
         return;
     }
-    client_list.push_back(client);
+    _clientList.push_back(client);
 }
 
-void Communicator::removeClientFromList(Client &client) {
-    auto founded = std::find(client_list.begin(), client_list.end(), client);
+void Communicator::removeClientFromList(Client &client)
+{
+    auto founded = std::find(_clientList.begin(), _clientList.end(), client);
 
-    if (founded != client_list.end())
-        client_list.erase(founded);
+    if (founded != _clientList.end())
+        _clientList.erase(founded);
 }
 
 Client &Communicator::getClientFromList(std::string address, long port)
 {
     Client temp = Client(address, port);
-    auto founded = std::find(client_list.begin(), client_list.end(), temp);
+    auto founded = std::find(_clientList.begin(), _clientList.end(), temp);
 
-    if (founded != client_list.end())
+    if (founded != _clientList.end())
         return *founded;
     /// THROW AN ERROR (REFACTO WHEN ERROR GESTION IS IMPLEMENTED)
     throw std::invalid_argument("Client not in the list.");
