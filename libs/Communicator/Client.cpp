@@ -19,12 +19,12 @@ Client::Client(std::string address, long port)
     std::cerr << "Creating a client : (" << address << " : " << port << ")." << std::endl;
 }
 
-std::string &Client::getAddress(void)
+std::string Client::getAddress(void) const
 {
     return address;
 }
 
-long Client::getPort(void)
+long Client::getPort(void) const
 {
     return port;
 }

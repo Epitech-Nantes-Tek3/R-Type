@@ -24,12 +24,12 @@ namespace communicator_lib {
             ~Client();
 
             /// \brief Get the Address value
-            /// \return std::string& A reference to the address value
-            std::string &getAddress(void);
+            /// \return std::string A reference to the address value
+            std::string getAddress(void) const;
 
             /// \brief Get the Port value
             /// \return long The value of the port
-            long getPort(void);
+            long getPort(void) const;
 
             /// \brief Set the Address value
             /// \param address The newly address
@@ -47,6 +47,15 @@ namespace communicator_lib {
             /// \brief The port of the client (0 by default)
             long port;
     };
+
+    /// \brief Overload of the == operator to compare to client
+    /// \param left The left param of the comparison
+    /// \param right The right param of the comparison
+    /// \return true If the two client are the same
+    /// \return false If the two client are different
+    inline bool operator==(const Client& left, const Client& right) {
+        return ((left.getPort() == right.getPort()) && (left.getAddress() == right.getAddress()));
+    }
 };
 
 #endif /* !CLIENT_HPP_ */
