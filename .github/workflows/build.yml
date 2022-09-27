@@ -2,7 +2,7 @@ name: Build
 
 on:
   push:
-  #   branches: [ master ]
+    branches: [ master ]
   pull_request:
     branches: [ master ]
 
@@ -30,12 +30,6 @@ jobs:
       run: |
         conan config init
         mkdir -p build; cd build && conan install .. --build=missing  -s compiler.libcxx=libstdc++11 -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True && cmake -DCMAKE_BUILD_TYPE=Debug .. && cmake --build  . -- -j 3
-
-    # - name: Build project
-    #   run: cmake -B build -DCMAKE_TOOLCHAIN_FILE=./vcpkg/scripts/buildsystems/vcpkg.cmake && cmake --build build
-
-    # - name: Launch build script
-    #   run: ./setup.sh
 
   # build-windows:
   #   runs-on: windows-latest
