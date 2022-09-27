@@ -1,5 +1,6 @@
 [requires]
 sfml/2.5.1
+xorg/system
 
 [options]
 sfml:graphics=True
