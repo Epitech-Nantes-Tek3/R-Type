@@ -15,11 +15,28 @@
 namespace communicator_lib {
     class Client {
         public:
+            /// \brief Construct a new Client object
+            /// \param address The address of the client
+            /// \param port The port of the client
             Client(std::string address = "127.0.0.1", long port = 0);
+
+            /// \brief Destroy the Client object
             ~Client();
-            std::string getAddress(void);
+
+            /// \brief Get the Address value
+            /// \return std::string& A reference to the address value
+            std::string &getAddress(void);
+
+            /// \brief Get the Port value
+            /// \return long The value of the port
             long getPort(void);
+
+            /// \brief Set the Address value
+            /// \param address The newly address
             void setAddress(std::string address);
+
+            /// \brief Set the Port value
+            /// \param port The new port number
             void setPort(long port);
 
         protected:
