@@ -16,31 +16,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Install dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y ninja
-    # - name: Install Dependencies
-    #   run: |
-    #     sudo apt-get update
-    #     sudo apt-get install -y cmake
-    #     sudo apt-get install -y libx11-dev libxrandr-dev libxi-dev libudev-dev libgl1-mesa-dev
-    #     sudo apt-get install -y autoconf libtool
-
-    - uses: lukka/get-cmake@latest
     - name: Checkout repository
       uses: actions/checkout@v2
-      with:
-        submodules: 'recursive'
-    - name: Run vcpkg
-      uses: lukka/run-vcpkg@v10
-      with:
-        vcpkgDirectory: '${{ github.workspace }}/vcpkg'
-    - name: Run CMake consuming CMakePreset.json and vcpkg.json by mean of vcpkg.
-      uses: lukka/run-cmake@v10
-      with:
-        configurePreset: 'ninja-multi-vcpkg'
-        buildPreset: 'ninja-multi-vcpkg'
+    - name: Build
+      run: mkdir -p build; cd build && conan install .. --build=missing  -s compiler.libcxx=libstdc++11 && cmake -DCMAKE_BUILD_TYPE=Debug .. && cmake --build  . -- -j 3
+
     # - name: Build project
     #   run: cmake -B build -DCMAKE_TOOLCHAIN_FILE=./vcpkg/scripts/buildsystems/vcpkg.cmake && cmake --build build
 

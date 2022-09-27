@@ -1,0 +1,14 @@
+[requires]
+sfml/2.5.1
+
+[options]
+sfml:graphics=True
+sfml:window=True
+sfml:audio=True
+sfml:network=True
+#sfml:shared=True
+
+[generators]
+cmake
+
+[imports]
