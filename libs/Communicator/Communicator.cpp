@@ -16,6 +16,7 @@ using namespace communicator_lib;
 Communicator::Communicator()
 {
     _clientList = {};
+    _senderModule = Sender();
 }
 
 std::vector<Client> Communicator::getClientList(void) const
