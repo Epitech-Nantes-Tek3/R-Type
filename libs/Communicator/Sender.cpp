@@ -28,15 +28,15 @@ void Sender::sendDataToAClient(Client &client, void *data)
     boost::system::error_code error;
 
     socket.open(udp::v4());
-    auto sent = socket.send_to(boost::asio::buffer(data, 100000), socket_endpoint, 0, error);
+    auto sent = socket.send_to(boost::asio::buffer(data, sizeof(data) - 1), socket_endpoint, 0, error);
     socket.close();
     std::cerr << "Message send. " << sent << "bytes transfered." << std::endl;
 }
 
 void Sender::sendDataToMultipleClients(std::vector<Client> clients, void *data)
 {
-    (void) clients;
-    (void) data;
+    (void)clients;
+    (void)data;
 }
 
 Sender::~Sender()
