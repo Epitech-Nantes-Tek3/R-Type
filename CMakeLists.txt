@@ -28,6 +28,7 @@ endif()
 ## Looking for others CmakeLists.txt ##
 add_subdirectory(Server)
 add_subdirectory(Client)
+add_subdirectory(libs)
 
 ## Create the needed executables ##
 add_executable(r-type_client ${SRC_CLIENT})
