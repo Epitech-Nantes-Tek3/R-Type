@@ -71,13 +71,13 @@ namespace ecs
 
         inline constexpr bool contains() {return true;}
 
-        ~Entity();
+        ~Entity() = default;
+
+        inline Entity(Index id) : _id(id), _componentList() {}
 
     private:
         Index _id;
 
         ComponentsList _componentList;
-
-        inline Entity(Index id) : _id(id), _componentList() {}
     };
 }
