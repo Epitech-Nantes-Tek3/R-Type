@@ -78,6 +78,6 @@ namespace ecs
 
         ComponentsList _componentList;
 
-        inline constexpr Entity(Index id) : _id(id) {_componentList[std::type_index(typeid(Component))] = std::make_unique<Component>("Component");}
+        inline Entity(Index id) : _id(id), _componentList() {}
     };
 }
