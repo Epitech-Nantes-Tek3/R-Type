@@ -31,16 +31,19 @@ namespace communicator_lib
 
         /// @brief Add a client inside the list of client
         /// @param client The client to add
+        /// If the client is already inside the list, nothing will be done (Logging in std::cerr)
         void addClientToList(Client &client);
 
         /// @brief Remove a given client from the list
         /// @param client The matching client to delete
+        /// If the client are not found, nothing will be done
         void removeClientFromList(Client &client);
 
         /// @brief Search and return a client from the list by his information
         /// @param address The address of the client
         /// @param port The port of the client
         /// @return Client& The founded client
+        /// @throw Throw an error when no matching client are found (to update when error class have been setup)
         Client &getClientFromList(std::string address, long port);
 
     private:

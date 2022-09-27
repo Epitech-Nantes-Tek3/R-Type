@@ -49,11 +49,11 @@ namespace communicator_lib
         long _port;
     };
 
-    /// @brief Overload of the == operator to compare to client
+    /// @brief Overload of the == operator to compare two clients
     /// @param left The left param of the comparison
     /// @param right The right param of the comparison
-    /// @return true If the two client are the same
-    /// @return false If the two client are different
+    /// @return true If the two clients are the same
+    /// @return false If the two clients are different
     inline bool operator==(const Client &left, const Client &right)
     {
         return ((left.getPort() == right.getPort()) && (left.getAddress() == right.getAddress()));
