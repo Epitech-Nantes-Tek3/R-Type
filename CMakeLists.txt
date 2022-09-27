@@ -21,6 +21,7 @@ add_subdirectory(Client)
 # find_package(SFML 2.5.1 COMPONENTS system window graphics REQUIRED)
 
 add_executable(r-type_client ${SRC_CLIENT})
+set_property(TARGET r-type_client PROPERTY MSVC_RUNTIME_LIBRARY "")
 add_executable(r-type_server ${SRC_SERVER})
 
 # target_link_libraries(r-type_client PRIVATE sfml-system sfml-network sfml-graphics sfml-window)
