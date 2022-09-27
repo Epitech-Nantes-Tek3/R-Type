@@ -8,7 +8,7 @@
 
 # R-Type
 
-The goal of the Epitech R-Type project is to implement a multithreaded server and a graphical client for a game called R-Type, using an engine of your own design.
+The goal of the Epitech R-Type project is to implement a multithreaded server and a graphical client for a game called R-Type, using an engine of our own design.
 
 Composed of two parts, namely the server and the client both in C++ with the graphic library SFML.
 
