@@ -14,19 +14,23 @@ Composed of two parts, namely the server and the client both in C++ with the gra
 
 ## Prerequisites
 
-To test our R-Type project, you will need CMake 3.17.0 Compiler.
+To build our R-Type project, you will need CMake 3.17.0 Compiler.
 
 ## Build the program
 
-You will build the program with the following command :
-
 On Linux :
+
+You may use the build.sh or the following commands :
+
 ```bash
     cmake -B ./build -DCMAKE_BUILD_TYPE=Release
     cmake --build ./build
 ```
 
 On Windows :
+
+* You may use the build.bat or the following commands :
+
 ```bash
     mkdir build
     cd build
@@ -67,4 +71,4 @@ Do not hesitate to contact any member for any questions or remarks.
 
 ## Authors
 
-* **Tom Duval-Mahe, Quentin Camilleri, Thomas Prudhomme, Nathan Rousseau, Lucas Tesnier**
+* **Tom Duval-Mahe, Quentin Camilleri, Thomas Prud'homme, Nathan Rousseau, Lucas Tesnier**
