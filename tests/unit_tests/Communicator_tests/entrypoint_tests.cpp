@@ -6,7 +6,7 @@
 */
 
 #include <criterion/criterion.h>
-#include "entrypoint.hpp"
+#include "Communicator/entrypoint.hpp"
 
 Test(entry_point_testing, template)
 {

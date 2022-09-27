@@ -1,4 +1,4 @@
-set (INC_ROOT ${PROJECT_SOURCE_DIR}/libs/Communicator/include)
+set (INC_ROOT ${PROJECT_SOURCE_DIR}/libs)
 set (SRC_ROOT ${PROJECT_SOURCE_DIR}/libs/Communicator)
 
 set (TARGET ${PROJECT_NAME}_communicator)
@@ -6,7 +6,7 @@ set (TARGET ${PROJECT_NAME}_communicator)
 set (SRC
     ${SRC_ROOT}/entrypoint.cpp
 
-    ${INC_ROOT}/entrypoint.hpp)
+    ${SRC_ROOT}/entrypoint.hpp)
 
 add_library(${TARGET} ${SRC})
 
