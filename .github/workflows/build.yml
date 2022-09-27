@@ -27,7 +27,9 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
     - name: Build
-      run: mkdir -p build; cd build && sudo conan install .. --build=missing  -s compiler.libcxx=libstdc++11 -c tools.system.package_manager:mode=install && cmake -DCMAKE_BUILD_TYPE=Debug .. && cmake --build  . -- -j 3
+      run: |
+        conan config init
+        mkdir -p build; cd build && conan install .. --build=missing  -s compiler.libcxx=libstdc++20 -c tools.system.package_manager:mode=install && cmake -DCMAKE_BUILD_TYPE=Debug .. && cmake --build  . -- -j 3
 
     # - name: Build project
     #   run: cmake -B build -DCMAKE_TOOLCHAIN_FILE=./vcpkg/scripts/buildsystems/vcpkg.cmake && cmake --build build
