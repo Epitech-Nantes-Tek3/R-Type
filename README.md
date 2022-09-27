@@ -28,7 +28,14 @@ On Linux :
 
 On Windows :
 ```bash
-    Coming soon...
+    mkdir build
+    cd build
+    conan install .. --build=missing  -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True
+    cd ..
+    cmake -B ./build -DCMAKE_BUILD_TYPE=Release
+    cmake --build ./build
+    "copy .\Debug\r-type_client.exe ."
+    "copy .\Debug\r-type_server.exe ."
 ```
 
 ## Testing program
