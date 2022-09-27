@@ -29,7 +29,7 @@ jobs:
     - name: Build
       run: |
         conan config init
-        mkdir -p build; cd build && conan install .. --build=missing  -s compiler.libcxx=libstdc++11 -c tools.system.package_manager:mode=enabled -c tools.system.package_manager:sudo && cmake -DCMAKE_BUILD_TYPE=Debug .. && cmake --build  . -- -j 3
+        mkdir -p build; cd build && conan install .. --build=missing  -s compiler.libcxx=libstdc++11 -c tools.system.package_manager:mode=check -c tools.system.package_manager:sudo=True && cmake -DCMAKE_BUILD_TYPE=Debug .. && cmake --build  . -- -j 3
 
     # - name: Build project
     #   run: cmake -B build -DCMAKE_TOOLCHAIN_FILE=./vcpkg/scripts/buildsystems/vcpkg.cmake && cmake --build build
