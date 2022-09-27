@@ -5,7 +5,7 @@
 ** entrypoint
 */
 
-/// \file libs/Communicator/include/entrypoint.hpp
+/// \file libs/Communicator/entrypoint.hpp
 
 #ifndef ENTRYPOINT_HPP_
     #define ENTRYPOINT_HPP_
