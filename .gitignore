@@ -39,4 +39,4 @@ build
 #Testing
 tests/Testing
 Makefile
-.vscode
+.vscode/
