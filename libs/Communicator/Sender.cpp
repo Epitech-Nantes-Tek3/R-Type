@@ -35,8 +35,10 @@ void Sender::sendDataToAClient(Client &client, void *data)
 
 void Sender::sendDataToMultipleClients(std::vector<Client> clients, void *data)
 {
-    (void)clients;
-    (void)data;
+    for (auto i : clients)
+    {
+        sendDataToAClient(i, data);
+    }
 }
 
 Sender::~Sender()

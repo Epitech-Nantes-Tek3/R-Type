@@ -18,5 +18,6 @@ int main(int ac, char **av)
         return -1;
     client = Client(av[1], std::atoi(av[2]));
     send.sendDataToAClient(client, av[3]);
+    send.sendDataToMultipleClients(std::vector<Client>{client}, av[3]);
     return 0;
 }
