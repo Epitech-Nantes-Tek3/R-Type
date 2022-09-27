@@ -13,6 +13,7 @@
     #include <string>
 
 namespace communicator_lib {
+    /// \brief A representation of a client (Address + Port)
     class Client {
         public:
             /// \brief Construct a new Client object
