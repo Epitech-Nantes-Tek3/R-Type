@@ -15,13 +15,10 @@ set (SRC
     ${SRC_ROOT}/Sender.hpp
 )
 
-add_library(${TARGET} ${SRC})
+add_library(${TARGET} SHARED ${SRC})
 
 target_include_directories(${TARGET}
     PUBLIC ${INC_ROOT}
     PUBLIC ${CONAN_INCLUDE_DIRS_BOOST}
     PRIVATE ${SRC_ROOT}
 )
-
-include(${PROJECT_SOURCE_DIR}/build/conanbuildinfo.cmake)
-conan_basic_setup(TARGETS)

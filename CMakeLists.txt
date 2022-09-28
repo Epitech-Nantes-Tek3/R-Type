@@ -37,7 +37,7 @@ target_link_libraries(r-type_client
 )
 
 target_link_libraries(r-type_server
-    CONAN_PKG::boost
+    PUBLIC CONAN_PKG::boost
 )
 
 # Target include directories from libraries
