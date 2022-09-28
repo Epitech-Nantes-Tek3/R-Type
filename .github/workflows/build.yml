@@ -33,12 +33,15 @@ jobs:
 
   # The following part will be fix and add in another issue
 
-  # build-windows:
-  #   runs-on: windows-latest
+  build-windows:
+    runs-on: windows-latest
 
-  #   steps:
-  #   - name: Checkout repository
-  #     uses: actions/checkout@v2
+    steps:
+    - name: Install Conan
+      id: conan
+      uses: turtlebrowser/get-conan@main
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-  #   - name: Launch build script
-  #     run: ./setup.bat
+    - name: Launch build script
+      run: ./build.bat
