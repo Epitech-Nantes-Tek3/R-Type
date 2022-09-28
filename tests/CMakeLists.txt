@@ -26,3 +26,4 @@ endfunction()
 
 ## Looking for others CmakeLists.txt ##
 add_subdirectory(unit_tests)
+add_subdirectory(functionnal)
