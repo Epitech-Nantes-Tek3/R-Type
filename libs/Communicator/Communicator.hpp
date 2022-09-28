@@ -12,6 +12,7 @@
 
 #include <vector>
 #include "Client.hpp"
+#include "Sender.hpp"
 
 namespace communicator_lib
 {
@@ -49,6 +50,8 @@ namespace communicator_lib
     private:
         /// @brief List of all the current client
         std::vector<Client> _clientList;
+        /// @brief Instance of the sender module
+        Sender _senderModule;
     };
 }
 

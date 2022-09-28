@@ -40,4 +40,6 @@ Debug
 #Testing
 tests/Testing
 Makefile
-.vscode
+.vscode/
+tests/R-type_sender_tests
+
