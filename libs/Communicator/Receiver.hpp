@@ -46,6 +46,14 @@ namespace communicator_lib
         /// @param newMessageList The new message vector
         void setMessageList(std::vector<Message> newMessageList);
 
+        /// @brief Get the network data value
+        /// @return The network data value
+        Client getNetworkData(void) const;
+
+        /// @brief Set the network data value
+        /// @param newNetworkData The new network data value
+        void setNetworkData(Client newNetworkData);
+
         /// @brief Pop the first message of the list (oldest)
         /// @return The older message
         /// @throw Throw an error when no message are found (to update when error class have been setup)

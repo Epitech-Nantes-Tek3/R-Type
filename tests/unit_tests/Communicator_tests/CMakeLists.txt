@@ -18,3 +18,9 @@ create_test(
     TEST_SRC ${SRC_ROOT}/Communicator_tests.cpp
     TEST_DEPS ${PROJECT_NAME}_communicator
 )
+
+create_test(
+    TEST_NAME receiver_tests
+    TEST_SRC ${SRC_ROOT}/Receiver_tests.cpp
+    TEST_DEPS ${PROJECT_NAME}_communicator
+)

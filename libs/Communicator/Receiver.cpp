@@ -38,6 +38,16 @@ void Receiver::setMessageList(std::vector<Message> newMessageList)
     _messageList = newMessageList;
 }
 
+Client Receiver::getNetworkData(void) const
+{
+    return _networkData;
+}
+
+void Receiver::setNetworkData(Client newNetworkData)
+{
+    _networkData = newNetworkData;
+}
+
 Message &Receiver::getLastMessage(void)
 {
     return _messageList[0]; /// TO UPDATE
