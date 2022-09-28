@@ -12,12 +12,14 @@
 
 /// @file tests/unit_tests/libs_tests/ECS_tests/Entity_tests
 
-struct Position : public ecs::Component
+class Position : public ecs::Component
 {
-    int x;
-    int y;
+    public:
+        int x;
+        int y;
 
-    Position(const int X, const int Y) : x(X), y(Y){};
+        Position(const int X, const int Y) : x(X), y(Y){};
+        Position(Position &old) : x(old.x), y(old.y){};
 };
 
 struct Name : public ecs::Component
@@ -47,4 +49,17 @@ Test(Entity, compare_two_non_identical_entities)
 
     delete entity1;
     delete entity2;
+}
+
+/// @brief Create an Entity and link a component on it
+Test(Entity, add_and_get_component)
+{
+    ecs::Entity *entity = new ecs::Entity(1);
+
+    entity->addComponent<Position>(10, 95);
+    class Position &pos = entity->getComponent<Position>();
+    cr_assert_eq(pos.x, 10);
+    cr_assert_eq(pos.y, 95);
+
+    delete entity;
 }

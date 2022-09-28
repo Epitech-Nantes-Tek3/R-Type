@@ -41,18 +41,17 @@ namespace ecs
         }
 
         template <std::derived_from<Component> C>
-        Component &getComponent() const
+        C &getComponent() const
         {
-            ComponentsList::iterator it = _componentList.find(std::type_index(typeid(C)));
-            if (it == _componentList.end())
+            if (_componentList.count(typeid(C)) == 0)
                 throw std::logic_error("attempted to get a non-existent component");
-            return *(it->second.get());
+            return static_cast<C&>(*(_componentList.at(typeid(C)).get()));
         }
 
         template <std::derived_from<Component> C>
         void removeComponent()
         {
-            ComponentsList::iterator it = _componentList.find(std::type_index(typeid(C)));
+            ComponentsList::iterator it = _componentList.find(typeid(C));
             if (it == _componentList.end())
                 throw std::logic_error("attempted to remove a non-existent component");
             _componentList.erase(it);
@@ -61,7 +60,7 @@ namespace ecs
         template <std::derived_from<Component>... C>
         bool contains(C... component) const
         {
-            if (_componentList.find(std::type_index(typeid(component)...)) == _componentList.end())
+            if (_componentList.count(typeid(component)...) == 0)
                 return false;
             return contains(component...);
         }
