@@ -9,6 +9,7 @@
 
 #include <concepts>
 #include <cstddef>
+#include <iostream>
 #include <memory>
 #include <typeindex>
 #include <unordered_map>
@@ -45,7 +46,7 @@ namespace ecs
         {
             if (_componentList.count(typeid(C)) == 0)
                 throw std::logic_error("attempted to get a non-existent component");
-            return static_cast<C&>(*(_componentList.at(typeid(C)).get()));
+            return static_cast<C &>(*(_componentList.at(typeid(C)).get()));
         }
 
         template <std::derived_from<Component> C>
@@ -57,15 +58,13 @@ namespace ecs
             _componentList.erase(it);
         }
 
-        template <std::derived_from<Component>... C>
-        bool contains(C... component) const
+        template <std::derived_from<Component> C1, std::derived_from<Component>... C2>
+        bool contains() const
         {
-            if (_componentList.count(typeid(component)...) == 0)
+            if (_componentList.count(typeid(C1)) == 0)
                 return false;
-            return contains(component...);
+            return contains<C2...>();
         }
-
-        inline constexpr bool contains() {return true;}
 
         ~Entity() = default;
 
@@ -75,6 +74,13 @@ namespace ecs
         Index _id;
 
         ComponentsList _componentList;
+
+
+        template <std::derived_from<Component>... C>
+        requires(sizeof...(C) == 0) bool contains() const
+        {
+            return true;
+        }
     };
 
     /// Entity index comparison.

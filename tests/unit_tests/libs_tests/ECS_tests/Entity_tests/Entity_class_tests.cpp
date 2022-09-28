@@ -8,6 +8,7 @@
 #include "Components/Component.hpp"
 #include "Entity/Entity.hpp"
 #include <criterion/criterion.h>
+#include <iostream>
 
 /// @file tests/unit_tests/libs_tests/ECS_tests/Entity_tests
 
@@ -21,8 +22,9 @@ public:
     Position(Position &old) : x(old.x), y(old.y){};
 };
 
-struct Name : public ecs::Component
+class Name : public ecs::Component
 {
+public:
     const std::string name;
 
     Name(const std::string _name) : name(_name){};
@@ -116,4 +118,43 @@ Test(Entity, remove_a_non_existant_component)
         return;
     }
     cr_assert_eq(0, 1);
+}
+
+/// @brief Check if an Entity have one given Component
+Test(Entity, contains_one_good_component)
+{
+    ecs::Entity *entity = new ecs::Entity(1);
+    entity->addComponent<Position>(10, 95);
+
+    cr_assert_eq(true, entity->contains<Position>());
+}
+
+/// @brief Check if an Entity have one given Component
+Test(Entity, contains_one_wrong_component)
+{
+    ecs::Entity *entity = new ecs::Entity(1);
+    entity->addComponent<Position>(10, 95);
+
+    cr_assert_eq(false, entity->contains<Name>());
+}
+
+/// @brief Check if an Entity have one given Component
+Test(Entity, contains_many_good_components)
+{
+    ecs::Entity *entity = new ecs::Entity(1);
+    entity->addComponent<Position>(10, 95);
+    entity->addComponent<Name>("Casos");
+
+    auto a = entity->contains<Name, Position>();
+    cr_assert_eq(true, a);
+}
+
+/// @brief Check if an Entity have one given Component
+Test(Entity, contains_many_wrong_components)
+{
+    ecs::Entity *entity = new ecs::Entity(1);
+    entity->addComponent<Position>(10, 95);
+
+    auto a = entity->contains<Name, Position>();
+    cr_assert_eq(false, a);
 }
