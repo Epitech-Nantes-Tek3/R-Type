@@ -8,18 +8,17 @@
 #include "Components/Component.hpp"
 #include "Entity/Entity.hpp"
 #include <criterion/criterion.h>
-#include <iostream>
 
 /// @file tests/unit_tests/libs_tests/ECS_tests/Entity_tests
 
 class Position : public ecs::Component
 {
-    public:
-        int x;
-        int y;
+public:
+    int x;
+    int y;
 
-        Position(const int X, const int Y) : x(X), y(Y){};
-        Position(Position &old) : x(old.x), y(old.y){};
+    Position(const int X, const int Y) : x(X), y(Y){};
+    Position(Position &old) : x(old.x), y(old.y){};
 };
 
 struct Name : public ecs::Component
@@ -62,4 +61,59 @@ Test(Entity, add_and_get_component)
     cr_assert_eq(pos.y, 95);
 
     delete entity;
+}
+
+/// @brief Create an Entity and get a non-existing component
+Test(Entity, get_non_existant_component)
+{
+    ecs::Entity *entity = new ecs::Entity(1);
+
+    try
+    {
+        class Position &pos = entity->getComponent<Position>();
+        (void)pos;
+    }
+    catch (std::logic_error &err)
+    {
+        cr_assert_str_eq(err.what(), "attempted to get a non-existent component");
+        return;
+    }
+    cr_assert_eq(0, 1);
+}
+
+/// @brief Try to remove a component from an Entity
+Test(Entity, remove_a_component)
+{
+    ecs::Entity *entity = new ecs::Entity(1);
+    entity->addComponent<Position>(10, 95);
+    entity->removeComponent<Position>();
+
+    try
+    {
+        class Position &pos = entity->getComponent<Position>();
+        (void)pos;
+    }
+    catch (std::logic_error &err)
+    {
+        cr_assert_str_eq(err.what(), "attempted to get a non-existent component");
+        return;
+    }
+    cr_assert_eq(0, 1);
+}
+
+/// @brief Try to remove a non-existing component from an Entity
+Test(Entity, remove_a_non_existant_component)
+{
+    ecs::Entity *entity = new ecs::Entity(1);
+
+    try
+    {
+        entity->removeComponent<Position>();
+    }
+    catch (std::logic_error &err)
+    {
+        cr_assert_str_eq(err.what(), "attempted to remove a non-existent component");
+        return;
+    }
+    cr_assert_eq(0, 1);
 }
