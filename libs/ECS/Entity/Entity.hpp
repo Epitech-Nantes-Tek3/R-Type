@@ -17,18 +17,23 @@
 #include "Components/Component.hpp"
 #include "Entity/Entity.hpp"
 
-/// @file libs/ECS/Entity/Entity.hpp
-
 namespace ecs
 {
+    /// @brief This is the Entity Class for ECS
+    /// Encapsulates a index to an entity that may or may not exist.
+    ///
+    /// This class is trivially copiable because the components are not stored in this class.
+    /// It store in the Component Class
     class Entity
     {
     public:
-        /// The id type
+        /// @brief The id type
         using Index = std::size_t;
 
+        /// @brief This is the tab of Components of the Entity
         using ComponentsList = std::unordered_map<std::type_index, std::unique_ptr<Component>>;
 
+        
         /// @returns The index of this entity.
         constexpr Index getId() const noexcept { return this->_id; }
 
