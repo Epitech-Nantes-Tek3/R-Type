@@ -16,7 +16,7 @@ Composed of two parts, namely the server and the client both in C++ with the gra
 
 ## Prerequisites
 
-To build our R-Type project, you will need CMake 3.17.0 Compiler and C++ 20.
+To build our R-Type project, you will need CMake 3.17.0 Compiler, C++ 20 and Conan.
 
 ## Build the program
 
