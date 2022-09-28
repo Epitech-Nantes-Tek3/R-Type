@@ -2,13 +2,13 @@
 ** EPITECH PROJECT, 2022
 ** R-Type
 ** File description:
-** Project Main
+** main for the client
 */
 
-#include <iostream>
+#include <SFML/Graphics.hpp>
 
-int main(__attribute__((unused)) int ac, __attribute__((unused)) char **av)
+int main()
 {
-    std::cout << "Client : 42" << std::endl;
-    return 0;
+    sf::RenderWindow window(sf::VideoMode(1920, 1080, 32), "client");
+    return (0);
 }

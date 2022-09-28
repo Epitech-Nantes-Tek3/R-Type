@@ -58,6 +58,6 @@ namespace communicator_lib
     {
         return ((left.getPort() == right.getPort()) && (left.getAddress() == right.getAddress()));
     }
-};
+}
 
 #endif /* !CLIENT_HPP_ */
