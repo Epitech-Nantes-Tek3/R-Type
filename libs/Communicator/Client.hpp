@@ -15,9 +15,8 @@
 namespace communicator_lib
 {
     /// @brief A representation of a client (Address + Port)
-    class Client
-    {
-    public:
+    class Client {
+      public:
         /// @brief Construct a new Client object
         /// @param address The address of the client
         /// @param port The port of the client
@@ -42,7 +41,7 @@ namespace communicator_lib
         /// @param port The new port number
         void setPort(long port);
 
-    private:
+      private:
         /// @brief The ip address of the client (127.0.0.1 by default)
         std::string _address;
         /// @brief The port of the client (0 by default)
@@ -58,6 +57,6 @@ namespace communicator_lib
     {
         return ((left.getPort() == right.getPort()) && (left.getAddress() == right.getAddress()));
     }
-}
+} // namespace communicator_lib
 
 #endif /* !CLIENT_HPP_ */

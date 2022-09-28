@@ -85,15 +85,17 @@ void Receiver::startListening(void)
 
 void Receiver::handleReceive(const boost::system::error_code &error, size_t bytesTransferred)
 {
+    unsigned short temporaryPort = 0;
+
     if (error) {
         std::cerr << "Receive failed: " << error.message() << std::endl;
         wait();
         return;
     }
     std::cerr << "Receiving data. " << bytesTransferred << "bytes used." << std::endl;
-    std::cerr << _tempRemoteEndpoint.port() << std::endl;
-    addMessage({Client(_tempRemoteEndpoint.address().to_string(), _tempRemoteEndpoint.port()), _tempData.data(),
-        bytesTransferred});
+    std::memcpy(&temporaryPort, _tempData.data(), 2);
+    addMessage({Client(_tempRemoteEndpoint.address().to_string(), temporaryPort),
+        (void *)((char *)_tempData.data() + sizeof(unsigned short)), bytesTransferred});
     wait();
 }
 

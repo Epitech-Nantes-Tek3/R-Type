@@ -21,6 +21,10 @@ namespace communicator_lib
         /// @brief The sender object constructor
         Sender();
 
+        /// @brief The sender object constructor
+        /// @param receiverPort The receiver port value
+        Sender(unsigned short receiverPort);
+
         /// @brief Destroy the Sender object
         ~Sender();
 
@@ -35,6 +39,10 @@ namespace communicator_lib
         /// @param data The given data to transfer
         /// @param size Size of the data to transfer (sizeof(data) * quantity)
         void sendDataToMultipleClients(std::vector<Client> clients, void *data, size_t size);
+
+      private:
+        /// @brief Port of the associated receiver module
+        unsigned short _receiverPort;
     };
 } // namespace communicator_lib
 

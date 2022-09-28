@@ -17,9 +17,8 @@
 namespace communicator_lib
 {
     /// @brief Network gestionner
-    class Communicator
-    {
-    public:
+    class Communicator {
+      public:
         /// @brief Construct a new Communicator object
         Communicator();
 
@@ -47,12 +46,12 @@ namespace communicator_lib
         /// @throw Throw an error when no matching client are found (to update when error class have been setup)
         Client &getClientFromList(std::string address, long port);
 
-    private:
+      private:
         /// @brief List of all the current client
         std::vector<Client> _clientList;
         /// @brief Instance of the sender module
         Sender _senderModule;
     };
-}
+} // namespace communicator_lib
 
 #endif /* !COMMUNICATOR_HPP_ */

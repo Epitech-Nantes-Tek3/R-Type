@@ -1,9 +1,9 @@
-set (INC_ROOT ${PROJECT_SOURCE_DIR}/libs)
-set (SRC_ROOT ${PROJECT_SOURCE_DIR}/libs/Communicator)
+set(INC_ROOT ${PROJECT_SOURCE_DIR}/libs)
+set(SRC_ROOT ${PROJECT_SOURCE_DIR}/libs/Communicator)
 
-set (TARGET ${PROJECT_NAME}_communicator)
+set(TARGET ${PROJECT_NAME}_communicator)
 
-set (SRC
+set(SRC
     ${SRC_ROOT}/entrypoint.cpp
     ${SRC_ROOT}/Client.cpp
     ${SRC_ROOT}/Communicator.cpp

@@ -10,9 +10,9 @@
 #ifndef RECEIVER_HPP_
 #define RECEIVER_HPP_
 
-#include <vector>
-#include <boost/asio.hpp>
 #include <boost/array.hpp>
+#include <boost/asio.hpp>
+#include <vector>
 #include "Client.hpp"
 
 namespace communicator_lib

@@ -8,8 +8,8 @@
 /// @file libs/Communicator/Communicator.cpp
 
 #include "Communicator.hpp"
-#include <iostream>
 #include <algorithm>
+#include <iostream>
 
 using namespace communicator_lib;
 
@@ -19,15 +19,11 @@ Communicator::Communicator()
     _senderModule = Sender();
 }
 
-std::vector<Client> Communicator::getClientList(void) const
-{
-    return _clientList;
-}
+std::vector<Client> Communicator::getClientList(void) const { return _clientList; }
 
 void Communicator::addClientToList(Client &client)
 {
-    if (std::find(_clientList.begin(), _clientList.end(), client) != _clientList.end())
-    {
+    if (std::find(_clientList.begin(), _clientList.end(), client) != _clientList.end()) {
         std::cerr << "Client already registered in the communicator." << std::endl;
         return;
     }
@@ -53,6 +49,4 @@ Client &Communicator::getClientFromList(std::string address, long port)
     throw std::invalid_argument("Client not in the list.");
 }
 
-Communicator::~Communicator()
-{
-}
+Communicator::~Communicator() {}
