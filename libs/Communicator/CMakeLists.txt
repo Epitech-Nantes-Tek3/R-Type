@@ -15,10 +15,9 @@ set (SRC
     ${SRC_ROOT}/Sender.hpp
 )
 
-add_library(${TARGET} SHARED ${SRC} ${CONAN_INCLUDE_DIRS_BOOST})
+add_library(${TARGET} ${SRC})
 
 target_include_directories(${TARGET}
     PUBLIC ${INC_ROOT}
-    PUBLIC ${CONAN_INCLUDE_DIRS_BOOST}
     PRIVATE ${SRC_ROOT}
 )
