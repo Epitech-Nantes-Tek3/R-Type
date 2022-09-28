@@ -40,3 +40,4 @@ build
 tests/Testing
 Makefile
 .vscode
+Debug
