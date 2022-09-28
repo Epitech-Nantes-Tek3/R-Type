@@ -18,6 +18,6 @@ set (SRC
 add_library(${TARGET} ${SRC})
 
 target_include_directories(${TARGET}
-    PUBLIC ${INC_ROOT}
+    PUBLIC ${INC_ROOT} ${CONAN_INCLUDE_DIRS_BOOST}
     PRIVATE ${SRC_ROOT}
 )
