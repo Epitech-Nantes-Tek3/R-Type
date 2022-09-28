@@ -35,3 +35,4 @@ r-type_server
 
 # CMake
 build
+Makefile
