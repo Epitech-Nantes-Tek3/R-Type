@@ -24,9 +24,8 @@ namespace ecs
     ///
     /// This class is trivially copiable because the components are not stored in this class.
     /// It store in the Component Class
-    class Entity
-    {
-    public:
+    class Entity {
+      public:
         /// @brief The id type
         using Index = std::size_t;
 
@@ -42,8 +41,7 @@ namespace ecs
         /// @tparam ...Args This allows to send multiple arguments (args)
         /// @param ...args All arguments which are used to construct the Component
         /// @return itself
-        template <std::derived_from<Component> C, typename... Args>
-        Entity &addComponent(Args &&...args)
+        template <std::derived_from<Component> C, typename... Args> Entity &addComponent(Args &&...args)
         {
             // if already contains once -> throw ERROR
 
@@ -52,10 +50,9 @@ namespace ecs
         }
 
         /// @brief This function can get a Component in the Entity
-        /// @tparam C Search Component 
+        /// @tparam C Search Component
         /// @return The composent choosen
-        template <std::derived_from<Component> C>
-        C &getComponent() const
+        template <std::derived_from<Component> C> C &getComponent() const
         {
             if (_componentList.count(typeid(C)) == 0)
                 throw std::logic_error("attempted to get a non-existent component");
@@ -64,8 +61,7 @@ namespace ecs
 
         /// @brief Remove a Component of the Entity
         /// @tparam C The choosen Component to remove
-        template <std::derived_from<Component> C>
-        void removeComponent()
+        template <std::derived_from<Component> C> void removeComponent()
         {
             ComponentsList::iterator it = _componentList.find(typeid(C));
             if (it == _componentList.end())
@@ -77,8 +73,7 @@ namespace ecs
         /// @tparam C1 First Component type to check
         /// @tparam ...C2 OPTIONAL Next Component type to check
         /// @return True if the group of Component types is contained in Entity. False if it's not
-        template <std::derived_from<Component> C1, std::derived_from<Component>... C2>
-        bool contains() const
+        template <std::derived_from<Component> C1, std::derived_from<Component>... C2> bool contains() const
         {
             if (_componentList.count(typeid(C1)) == 0)
                 return false;
@@ -92,7 +87,7 @@ namespace ecs
         /// @param id The id of the Entity
         inline Entity(Index id) : _id(id), _componentList() {}
 
-    private:
+      private:
         /// @brief Id of the Entity Class
         Index _id;
 
@@ -103,10 +98,7 @@ namespace ecs
         /// @tparam ...C The last research Component
         /// @return True
         template <std::derived_from<Component>... C>
-        requires(sizeof...(C) == 0) bool contains() const
-        {
-            return true;
-        }
+        requires(sizeof...(C) == 0) bool contains() const { return true; }
     };
 
     /// @brief Can check if First Entity is equal to Second Entity. Overide of == operator
@@ -121,4 +113,4 @@ namespace ecs
     /// @return True if both Entity are different
     inline auto operator!=(Entity const &entity, Entity const &other) { return entity.getId() != other.getId(); }
 
-}
+} // namespace ecs
