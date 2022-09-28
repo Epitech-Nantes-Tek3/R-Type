@@ -33,10 +33,15 @@ namespace ecs
         /// @brief This is the tab of Components of the Entity
         using ComponentsList = std::unordered_map<std::type_index, std::unique_ptr<Component>>;
 
-        
+        /// @brief This function can return the Id of itself
         /// @returns The index of this entity.
         constexpr Index getId() const noexcept { return this->_id; }
 
+        /// @brief This function can add a Component to the Entity
+        /// @tparam C Type of the component
+        /// @tparam ...Args This allows to send multiple arguments (args)
+        /// @param ...args All arguments which are used to construct the Component
+        /// @return itself
         template <std::derived_from<Component> C, typename... Args>
         Entity &addComponent(Args &&...args)
         {
@@ -46,6 +51,9 @@ namespace ecs
             return *this;
         }
 
+        /// @brief This function can get a Component in the Entity
+        /// @tparam C Search Component 
+        /// @return The composent choosen
         template <std::derived_from<Component> C>
         C &getComponent() const
         {
@@ -54,6 +62,8 @@ namespace ecs
             return static_cast<C &>(*(_componentList.at(typeid(C)).get()));
         }
 
+        /// @brief Remove a Component of the Entity
+        /// @tparam C The choosen Component to remove
         template <std::derived_from<Component> C>
         void removeComponent()
         {
@@ -63,6 +73,10 @@ namespace ecs
             _componentList.erase(it);
         }
 
+        /// @brief This function can check if a group of Component types (at least one Component type) is in an Entity
+        /// @tparam C1 First Component type to check
+        /// @tparam ...C2 OPTIONAL Next Component type to check
+        /// @return True if the group of Component types is contained in Entity. False if it's not
         template <std::derived_from<Component> C1, std::derived_from<Component>... C2>
         bool contains() const
         {
@@ -71,16 +85,23 @@ namespace ecs
             return contains<C2...>();
         }
 
+        /// @brief This is the destructor of the Entity Class
         ~Entity() = default;
 
+        /// @brief This is the constructor of the Entity Class
+        /// @param id The id of the Entity
         inline Entity(Index id) : _id(id), _componentList() {}
 
     private:
+        /// @brief Id of the Entity Class
         Index _id;
 
+        /// @brief List of Components of the Entity Class
         ComponentsList _componentList;
 
-
+        /// @brief This is the function which is called when none Component types left
+        /// @tparam ...C The last research Component
+        /// @return True
         template <std::derived_from<Component>... C>
         requires(sizeof...(C) == 0) bool contains() const
         {
@@ -88,9 +109,16 @@ namespace ecs
         }
     };
 
-    /// Entity index comparison.
+    /// @brief Can check if First Entity is equal to Second Entity. Overide of == operator
+    /// @param entity First entity
+    /// @param other Second entity
+    /// @return True if both Entity are same
     inline auto operator==(Entity const &entity, Entity const &other) { return entity.getId() == other.getId(); }
 
+    /// @brief Can check if First Entity is different to Second Entity. Overide of != operator
+    /// @param entity First entity
+    /// @param other Second entity
+    /// @return True if both Entity are different
     inline auto operator!=(Entity const &entity, Entity const &other) { return entity.getId() != other.getId(); }
 
 }
