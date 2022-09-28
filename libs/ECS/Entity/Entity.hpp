@@ -15,13 +15,14 @@
 #include <unordered_map>
 
 #include "Components/Component.hpp"
-#include "Entity/Entity.hpp"
 
 /// @file libs/ECS/Entity/Entity.hpp
 
 namespace ecs
 {
-    class Entity
+    class World;
+
+    class Entity final
     {
     public:
         /// The id type
@@ -81,6 +82,8 @@ namespace ecs
         {
             return true;
         }
+
+        friend World;
     };
 
     /// Entity index comparison.
