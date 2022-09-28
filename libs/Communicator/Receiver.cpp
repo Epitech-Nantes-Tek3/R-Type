@@ -9,8 +9,6 @@
 
 #include "Receiver.hpp"
 #include <boost/asio.hpp>
-#include <boost/array.hpp>
-#include <boost/bind/bind.hpp>
 #include <iostream>
 
 using namespace communicator_lib;
@@ -48,25 +46,49 @@ void Receiver::setNetworkData(Client newNetworkData)
     _networkData = newNetworkData;
 }
 
-Message &Receiver::getLastMessage(void)
+void Receiver::addMessage(Message message)
 {
-    return _messageList[0]; /// TO UPDATE
+    _messageList.push_back(message);
 }
 
-Message &Receiver::getLastMessageFromClient(Client client)
+int Receiver::getMessageListSize(void) const
 {
-    (void) client;
-    return _messageList[0]; /// TO UPDATE
+    return _messageList.size();
 }
 
-void Receiver::removeAClientMessage(Client client)
+Message Receiver::getLastMessage(void)
 {
-    (void) client; /// TO UPDATE
+    if (_messageList.size() < 1)
+        throw std::invalid_argument("No message waiting."); /// TO REFACTO WHEN ERROR CLASS IS IMPLEMENTED
+    auto first = _messageList.begin();
+    auto temp = *first;
+    _messageList.erase(first);
+    return temp;
+}
+
+Message Receiver::getLastMessageFromClient(Client client)
+{
+    int pos = 0;
+
+    for (auto i : _messageList) {
+        if (i.client_info == client) {
+            Message temp = _messageList[pos];
+            _messageList.erase(_messageList.begin() + pos);
+            return temp;
+        }
+        pos++;
+    }
+    throw std::invalid_argument("No message waiting for this client."); /// TO REFACTO WHEN ERROR CLASS IS IMPLEMENTED
 }
 
 void Receiver::removeAllClientMessage(Client client)
 {
-    (void) client; /// TO UPDATE
+    try {
+        getLastMessageFromClient(client);
+        removeAllClientMessage(client);
+    } catch (std::invalid_argument &e) {
+        return;
+    }
 }
 
 Receiver::~Receiver()

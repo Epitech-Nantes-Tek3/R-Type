@@ -54,23 +54,28 @@ namespace communicator_lib
         /// @param newNetworkData The new network data value
         void setNetworkData(Client newNetworkData);
 
+        /// @brief Add a new message inside the list
+        /// @param message The message to add
+        void addMessage(Message message);
+
+        /// @brief Get the size of the message list
+        /// @return The message list size
+        int getMessageListSize(void) const;
+
         /// @brief Pop the first message of the list (oldest)
         /// @return The older message
         /// @throw Throw an error when no message are found (to update when error class have been setup)
-        Message &getLastMessage(void);
+        Message getLastMessage(void);
 
         /// @brief Pop the oldest message of a client inside the list
         /// @param client The wanted client
         /// @return The client message
         /// @throw Throw an error when no message are found (to update when error class have been setup)
-        Message &getLastMessageFromClient(Client client);
-
-        /// @brief Remove the oldest message of a client
-        /// @param client The wanted client
-        void removeAClientMessage(Client client);
+        Message getLastMessageFromClient(Client client);
 
         /// @brief Remove all the messages of a client
         /// @param client The wanted client
+        /// If no matching message is found, nothing happen.
         void removeAllClientMessage(Client client);
 
       protected:

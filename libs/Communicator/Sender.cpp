@@ -9,8 +9,6 @@
 
 #include "Sender.hpp"
 #include <boost/asio.hpp>
-#include <boost/array.hpp>
-#include <boost/bind/bind.hpp>
 #include <iostream>
 
 using namespace communicator_lib;
