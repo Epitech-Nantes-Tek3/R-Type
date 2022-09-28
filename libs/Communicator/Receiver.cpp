@@ -8,8 +8,8 @@
 /// @file libs/Communicator/Receiver.cpp
 
 #include "Receiver.hpp"
-#include <iostream>
 #include <boost/bind/bind.hpp>
+#include <iostream>
 
 using namespace communicator_lib;
 using namespace boost::asio::ip;
@@ -77,7 +77,8 @@ void Receiver::removeAllClientMessage(Client client)
 void Receiver::startListening(void)
 {
     _socket.open(boost::asio::ip::udp::v4());
-    _socket.bind(boost::asio::ip::udp::endpoint(boost::asio::ip::address::from_string(_networkData.getAddress()), _networkData.getPort()));
+    _socket.bind(boost::asio::ip::udp::endpoint(
+        boost::asio::ip::address::from_string(_networkData.getAddress()), _networkData.getPort()));
     wait();
     _ioService.poll();
 }
@@ -89,9 +90,10 @@ void Receiver::handleReceive(const boost::system::error_code &error, size_t byte
         wait();
         return;
     }
-    /// DO SOME THINGS WITH THE DATA AND REMOTE ENDPOINT
-    std::cerr << "Receiving data : " << bytesTransferred << std::endl;
-    void *tmp = _tempData.data();
+    std::cerr << "Receiving data. " << bytesTransferred << "bytes used." << std::endl;
+    std::cerr << _tempRemoteEndpoint.port() << std::endl;
+    addMessage({Client(_tempRemoteEndpoint.address().to_string(), _tempRemoteEndpoint.port()), _tempData.data(),
+        bytesTransferred});
     wait();
 }
 

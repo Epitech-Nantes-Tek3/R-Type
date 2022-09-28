@@ -46,7 +46,7 @@ namespace communicator_lib
         /// @brief The ip address of the client (127.0.0.1 by default)
         std::string _address;
         /// @brief The port of the client (0 by default)
-        long _port;
+        unsigned short _port;
     };
 
     /// @brief Overload of the == operator to compare two clients

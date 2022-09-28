@@ -24,7 +24,7 @@ namespace communicator_lib
         /// @brief The message content
         void *data;
         /// @brief Size of the message
-        long size;
+        size_t size;
     };
 
     /// @brief Get and store all the network message
