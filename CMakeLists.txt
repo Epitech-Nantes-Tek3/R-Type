@@ -45,6 +45,7 @@ target_link_libraries(r-type_server
 # Target include directories from libraries
 target_include_directories(r-type_client PUBLIC
 	${CONAN_INCLUDE_DIRS_SFML}
+    ${CONAN_INCLUDE_DIRS_BOOST}
 )
 
 # Setup and include conan to build dependencies
