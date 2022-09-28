@@ -18,6 +18,7 @@ include(DetectCompiler)
 # Add subdirectory to find there CMakeLists.txt
 add_subdirectory(Server)
 add_subdirectory(Client)
+add_subdirectory(libs)
 
 # Create executables and set there sources
 add_executable(r-type_client ${SRC_CLIENT})
