@@ -4,6 +4,8 @@
 [![Coding style](https://github.com/osvegn/R-Type/actions/workflows/lints.yml/badge.svg)](https://github.com/osvegn/R-Type/actions/workflows/lints.yml)
 
 [![Mirroring](https://github.com/osvegn/R-Type/actions/workflows/mirroring.yml/badge.svg)](https://github.com/osvegn/R-Type/actions/workflows/mirroring.yml)
+
+[![forthebadge](https://forthebadge.com/images/badges/made-with-c-plus-plus.svg)](https://forthebadge.com)
 ***
 
 # R-Type
