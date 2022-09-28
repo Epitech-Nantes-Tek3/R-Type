@@ -10,15 +10,14 @@
 #ifndef SENDER_HPP_
 #define SENDER_HPP_
 
-#include "Client.hpp"
 #include <vector>
+#include "Client.hpp"
 
 namespace communicator_lib
 {
     /// @brief Sending data module
-    class Sender
-    {
-    public:
+    class Sender {
+      public:
         /// @brief The sender object constructor
         Sender();
 
@@ -35,6 +34,6 @@ namespace communicator_lib
         /// @param data The given data to transfer
         void sendDataToMultipleClients(std::vector<Client> clients, void *data);
     };
-}
+} // namespace communicator_lib
 
 #endif /* !SENDER_HPP_ */

@@ -8,11 +8,13 @@ set (SRC
     ${SRC_ROOT}/Client.cpp
     ${SRC_ROOT}/Communicator.cpp
     ${SRC_ROOT}/Sender.cpp
+    ${SRC_ROOT}/Receiver.cpp
 
     ${SRC_ROOT}/entrypoint.hpp
     ${SRC_ROOT}/Client.hpp
     ${SRC_ROOT}/Communicator.hpp
     ${SRC_ROOT}/Sender.hpp
+    ${SRC_ROOT}/Receiver.hpp
 )
 
 add_library(${TARGET} ${SRC})
