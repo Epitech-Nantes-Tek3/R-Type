@@ -2,7 +2,7 @@ name: Build
 
 on:
   workflow_run:
-    workflows: ["Coding style"]
+    workflows: ["lint-format"]
     types: [completed]
     branches:
       - '**'
