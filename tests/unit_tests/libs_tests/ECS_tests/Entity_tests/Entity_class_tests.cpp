@@ -158,3 +158,14 @@ Test(Entity, contains_many_wrong_components)
     auto a = entity->contains<Name, Position>();
     cr_assert_eq(false, a);
 }
+
+/// @brief Check if an Entity have one given Component
+Test(Entity, search_only_one_components)
+{
+    ecs::Entity *entity = new ecs::Entity(1);
+    entity->addComponent<Position>(10, 95);
+    entity->addComponent<Name>("Casos");
+
+    auto a = entity->contains<Name>();
+    cr_assert_eq(true, a);
+}

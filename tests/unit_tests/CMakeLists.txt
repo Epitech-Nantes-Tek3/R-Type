@@ -18,3 +18,5 @@ create_test(
     ## Last, the depenancies (necessary libraries) ##
     ## In this case none, otherwise add TEST_DEPS ${DEPENDANCY_NAME}
 )
+
+add_subdirectory(Communicator_tests)
