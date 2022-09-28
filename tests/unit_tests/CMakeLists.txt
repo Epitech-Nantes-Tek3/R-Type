@@ -18,8 +18,5 @@ create_test(
     ## Last, the depenancies (necessary libraries) ##
     ## In this case none, otherwise add TEST_DEPS ${DEPENDANCY_NAME}
 )
-<<<<<<< HEAD
-=======
 
 add_subdirectory(Communicator_tests)
->>>>>>> master
