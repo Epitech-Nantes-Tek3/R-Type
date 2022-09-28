@@ -36,6 +36,10 @@ target_link_libraries(r-type_client
 	CONAN_PKG::sfml
 )
 
+target_link_libraries(r-type_server
+    CONAN_PKG::boost
+)
+
 # Target include directories from libraries
 target_include_directories(r-type_client PUBLIC
 	${CONAN_INCLUDE_DIRS_SFML}
