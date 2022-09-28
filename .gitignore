@@ -35,3 +35,8 @@ r-type_server
 
 # CMake
 build
+
+#Testing
+tests/Testing
+Makefile
+.vscode
