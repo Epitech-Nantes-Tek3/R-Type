@@ -4,6 +4,8 @@ on:
   workflow_run:
     workflows: ["Coding style"]
     types: [completed]
+    branches:
+      - '**'
   # push:
   #   branches: [ master ]
   # pull_request:
