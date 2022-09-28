@@ -18,7 +18,7 @@ Sender::Sender()
 {
 }
 
-void Sender::sendDataToAClient(Client &client, void *data)
+void Sender::sendDataToAClient(Client &client, void *data, size_t size)
 {
     boost::asio::io_service io_service;
     udp::socket socket(io_service);
@@ -26,16 +26,16 @@ void Sender::sendDataToAClient(Client &client, void *data)
     boost::system::error_code error;
 
     socket.open(udp::v4());
-    auto sent = socket.send_to(boost::asio::buffer(data, sizeof(data) - 1), socket_endpoint, 0, error);
+    auto sent = socket.send_to(boost::asio::buffer(data, size), socket_endpoint, 0, error);
     socket.close();
     std::cerr << "Message send. " << sent << "bytes transfered." << std::endl;
 }
 
-void Sender::sendDataToMultipleClients(std::vector<Client> clients, void *data)
+void Sender::sendDataToMultipleClients(std::vector<Client> clients, void *data, size_t size)
 {
     for (auto i : clients)
     {
-        sendDataToAClient(i, data);
+        sendDataToAClient(i, data, size);
     }
 }
 

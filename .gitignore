@@ -42,3 +42,4 @@ tests/Testing
 Makefile
 .vscode/
 tests/R-Type_sender_tests
+tests/R-Type_receiver_tests

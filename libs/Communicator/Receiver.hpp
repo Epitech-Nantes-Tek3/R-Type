@@ -11,6 +11,8 @@
 #define RECEIVER_HPP_
 
 #include <vector>
+#include <boost/asio.hpp>
+#include <boost/array.hpp>
 #include "Client.hpp"
 
 namespace communicator_lib
@@ -78,12 +80,36 @@ namespace communicator_lib
         /// If no matching message is found, nothing happen.
         void removeAllClientMessage(Client client);
 
+        /// @brief Start the listening process
+        void startListening(void);
+
       protected:
       private:
+        /// @brief Private function called when a data arrived
+        /// @param error A possible error code from the network
+        /// @param bytes_transferred Size of the transfered data
+        void handleReceive(const boost::system::error_code &error, size_t bytesTransferred);
+
+        /// @brief Private async function holding the network search process
+        void wait(void);
+
         /// @brief List of all the untraited message
         std::vector<Message> _messageList;
+
         /// @brief Network information of the receiver
         Client _networkData;
+
+        /// @brief Context for boost
+        boost::asio::io_service _ioService;
+
+        /// @brief The socket for transferring data
+        boost::asio::ip::udp::socket _socket{_ioService};
+
+        /// @brief A temporary data using in the listening functionnality
+        boost::array<void *, 100000> _tempData;
+
+        /// @brief A temporary data using in the listening functionnality
+        boost::asio::ip::udp::endpoint _tempRemoteEndpoint;
     };
 } // namespace communicator_lib
 
