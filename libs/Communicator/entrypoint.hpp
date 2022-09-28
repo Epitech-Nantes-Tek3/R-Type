@@ -14,6 +14,6 @@ namespace communicator_lib
 {
     /// @brief The first function of the library, will be erased in futur
     void entrypoint(void);
-};
+}
 
 #endif /* !ENTRYPOINT_HPP_ */
