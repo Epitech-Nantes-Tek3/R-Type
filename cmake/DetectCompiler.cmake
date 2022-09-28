@@ -7,6 +7,19 @@
 
 if (CMAKE_COMPILER_IS_GNUCXX)
   set(COMPILER_TYPE "gcc")
+  ## Add the flags for the compilation ##
+  add_compile_options(
+    "-Wall" "-Wextra" "-Werror" "-pedantic" "-Wpointer-arith" "-fpic"
+  )
+
+  ## TESTING ##
+  option(TESTING OFF)
+  if (TESTING)
+    enable_testing()
+    add_compile_options("--coverage" "-fprofile-arcs" "-ftest-coverage")
+    add_link_options("--coverage" "-fprofile-arcs" "-ftest-coverage")
+    add_subdirectory(tests)
+  endif()
 elseif (MSVC)
   set(COMPILER_TYPE "msvc")
   add_definitions(-D_ITERATOR_DEBUG_LEVEL=0)

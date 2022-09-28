@@ -35,9 +35,9 @@ r-type_server
 
 # CMake
 build
+Debug
 
 #Testing
 tests/Testing
 Makefile
 .vscode
-Debug
