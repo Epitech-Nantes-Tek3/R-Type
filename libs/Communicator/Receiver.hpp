@@ -14,6 +14,7 @@
 #include <boost/asio.hpp>
 #include <vector>
 #include "Client.hpp"
+#include "Error/Error.hpp"
 
 namespace communicator_lib
 {

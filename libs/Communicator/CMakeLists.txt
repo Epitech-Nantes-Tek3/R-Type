@@ -22,11 +22,13 @@ add_library(${TARGET} ${SRC})
 target_include_directories(${TARGET}
     PUBLIC ${INC_ROOT}
     PUBLIC ${CONAN_INCLUDE_DIRS_BOOST}
+    PUBLIC ${PROJECT_NAME}_error
     PRIVATE ${SRC_ROOT}
 )
 
 target_link_libraries(${TARGET}
 	CONAN_PKG::boost
+    ${PROJECT_NAME}_error
 )
 
 include(${PROJECT_SOURCE_DIR}/build/conanbuildinfo.cmake)

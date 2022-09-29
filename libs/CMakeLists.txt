@@ -2,3 +2,4 @@
 # It must be fix by the creator of this library after when build action on github will be available.
 
 add_subdirectory(Communicator)
+add_subdirectory(Error)
