@@ -29,10 +29,8 @@ std::vector<Client> Communicator::getClientList(void) const { return _clientList
 
 void Communicator::addClientToList(Client &client)
 {
-    if (std::find(_clientList.begin(), _clientList.end(), client) != _clientList.end()) {
-        throw std::invalid_argument("Client already registered in the communicator.");
-        return;
-    }
+    if (std::find(_clientList.begin(), _clientList.end(), client) != _clientList.end())
+        throw std::invalid_argument("Client already registered in the communicator."); /// WILL BE REFACTOR WHEN ERROR GESTION IS IMPLEMENTED
     _clientList.push_back(client);
 }
 
