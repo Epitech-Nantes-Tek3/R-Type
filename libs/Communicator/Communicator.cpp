@@ -101,9 +101,6 @@ void Communicator::kickAClient(Client client, Client newEndpoint)
     }
 }
 
-void Communicator::startReceiverListening(void)
-{
-    _receiverModule.startListening();
-}
+void Communicator::startReceiverListening(void) { _receiverModule.startListening(); }
 
 Communicator::~Communicator() {}

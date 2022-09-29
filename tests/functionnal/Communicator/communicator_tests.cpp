@@ -20,12 +20,15 @@ int main(int ac, char **av)
         try {
             CommunicatorMessage temp = communicator.getLastMessage();
             if (temp.newClient) {
-                std::cerr << "Receive a message from a new client ( " << temp.message.clientInfo.getAddress() << " : " << temp.message.clientInfo.getPort() << " ) -> ";
+                std::cerr << "Receive a message from a new client ( " << temp.message.clientInfo.getAddress() << " : "
+                          << temp.message.clientInfo.getPort() << " ) -> ";
             } else {
-                std::cerr << "Receive a message from a current client ( " << temp.message.clientInfo.getAddress() << " : " << temp.message.clientInfo.getPort() << " ) -> ";
+                std::cerr << "Receive a message from a current client ( " << temp.message.clientInfo.getAddress()
+                          << " : " << temp.message.clientInfo.getPort() << " ) -> ";
             }
             std::cerr << (char *)temp.message.data << std::endl;
-        } catch (std::invalid_argument &error) {}
+        } catch (std::invalid_argument &error) {
+        }
     }
     return 0;
 }

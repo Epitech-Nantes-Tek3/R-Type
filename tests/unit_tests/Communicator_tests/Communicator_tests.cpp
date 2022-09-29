@@ -71,13 +71,10 @@ Test(communicator_testing, get_client)
     communicator.addClientToList(client_two);
     cr_assert_eq(communicator.getClientFromList("190.1.1.1", 10) == client_two, true);
     cr_assert_eq(communicator.getClientFromList("127.0.0.1", 0) == client, true);
-    try
-    {
+    try {
         communicator.getClientFromList("99999", 0);
         cr_assert_eq(1, 2);
-    }
-    catch (std::invalid_argument &e)
-    {
+    } catch (std::invalid_argument &e) {
         cr_assert_eq(1, 1);
     }
 }

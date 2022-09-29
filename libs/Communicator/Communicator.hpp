@@ -12,8 +12,8 @@
 
 #include <vector>
 #include "Client.hpp"
-#include "Sender.hpp"
 #include "Receiver.hpp"
+#include "Sender.hpp"
 
 namespace communicator_lib
 {
@@ -72,7 +72,8 @@ namespace communicator_lib
 
         /// @brief Tell to the client the communication is over. Remove the client from database
         /// @param client The wanted client
-        /// @param newEndpoint A potential new endpoint for the client (if newEndpoint == Client() no endpoint will be transfered)
+        /// @param newEndpoint A potential new endpoint for the client (if newEndpoint == Client() no endpoint will be
+        /// transfered)
         void kickAClient(Client client, Client newEndpoint);
 
         /// @brief Ask the receiver to start the listening process

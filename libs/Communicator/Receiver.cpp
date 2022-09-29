@@ -78,8 +78,8 @@ void Receiver::startListening(void)
 {
     _socket.open(boost::asio::ip::udp::v4());
     try {
-    _socket.bind(boost::asio::ip::udp::endpoint(
-        boost::asio::ip::address::from_string(_networkData.getAddress()), _networkData.getPort()));
+        _socket.bind(boost::asio::ip::udp::endpoint(
+            boost::asio::ip::address::from_string(_networkData.getAddress()), _networkData.getPort()));
     } catch (boost::system::system_error &error) {
         std::cerr << "Bind failed. " << error.what() << std::endl;
         throw std::invalid_argument("Invalid port and ip address. Please restart the executable.");
