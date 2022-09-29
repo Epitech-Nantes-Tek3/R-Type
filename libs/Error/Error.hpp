@@ -8,15 +8,39 @@
 #ifndef ERROR_HPP_
 #define ERROR_HPP_
 
+#include <exception>
+#include <string>
+
 namespace error_lib
 {
-    class Error {
+    /// @brief Custom error class for rtype project
+    class RTypeError : public std::exception {
       public:
-        Error();
-        ~Error();
+        /// @brief Error basic constructor. Default value for component -> Unknow
+        /// @param message The error message (Some description and information about the error)
+        /// @param component Provenance of the error (File, function, line...)
+        inline RTypeError(std::string const &message, std::string const &component = "Unknow") : _component(component), _message(message) {};
+
+        /// @brief Get the error information
+        /// @return Error information in string format
+        inline const char *what(void) const noexcept override {return _message.data();};
+
+        /// @brief Get the error provenance
+        /// @return Error provenance in string format
+        inline const std::string &getComponent(void) const noexcept {return _component;};
 
       protected:
       private:
+        /// @brief Error information
+        std::string const _component;
+
+        /// @brief Error provenance
+        std::string const _message;
+    };
+
+    class NetworkError : public RTypeError {
+      public:
+        inline NetworkError(std::string const &message, std::string const &component = "Network") : RTypeError(message, component) {};
     };
 } // namespace error_lib
 

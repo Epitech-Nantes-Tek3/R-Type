@@ -22,7 +22,7 @@ add_library(${TARGET} ${SRC})
 target_include_directories(${TARGET}
     PUBLIC ${INC_ROOT}
     PUBLIC ${CONAN_INCLUDE_DIRS_BOOST}
-    PUBLIC ${PROJECT_NAME}_error
+    INTERFACE ${PROJECT_NAME}_error
     PRIVATE ${SRC_ROOT}
 )
 
