@@ -13,10 +13,16 @@
 
 using namespace communicator_lib;
 
-Communicator::Communicator()
+Communicator::Communicator() : _receiverModule(Receiver())
 {
     _clientList = {};
     _senderModule = Sender();
+}
+
+Communicator::Communicator(Client networkBind) : _receiverModule(Receiver(networkBind))
+{
+    _clientList = {};
+    _senderModule = Sender(networkBind.getPort());
 }
 
 std::vector<Client> Communicator::getClientList(void) const { return _clientList; }

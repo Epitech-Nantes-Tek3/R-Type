@@ -14,7 +14,7 @@
 using namespace communicator_lib;
 using namespace boost::asio::ip;
 
-Sender::Sender() { _receiverPort = 0; }
+Sender::Sender() { _receiverPort = Client().getPort(); }
 
 Sender::Sender(unsigned short receiverPort) { _receiverPort = receiverPort; }
 

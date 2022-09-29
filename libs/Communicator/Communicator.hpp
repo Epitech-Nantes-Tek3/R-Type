@@ -13,6 +13,7 @@
 #include <vector>
 #include "Client.hpp"
 #include "Sender.hpp"
+#include "Receiver.hpp"
 
 namespace communicator_lib
 {
@@ -21,6 +22,10 @@ namespace communicator_lib
       public:
         /// @brief Construct a new Communicator object
         Communicator();
+
+        /// @brief Construct a new Communicator object
+        /// @param networkBind Network information for the socket bind
+        Communicator(Client networkBind);
 
         /// @brief Destroy the Communicator object
         ~Communicator();
@@ -49,8 +54,12 @@ namespace communicator_lib
       private:
         /// @brief List of all the current client
         std::vector<Client> _clientList;
+
         /// @brief Instance of the sender module
         Sender _senderModule;
+
+        /// @brief Instance of the receiver module
+        Receiver _receiverModule;
     };
 } // namespace communicator_lib
 

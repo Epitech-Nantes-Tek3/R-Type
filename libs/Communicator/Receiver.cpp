@@ -112,5 +112,3 @@ void Receiver::wait(void)
 }
 
 Receiver::~Receiver() {}
-
-/// ADD BIND PROTECTIONl
