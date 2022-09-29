@@ -26,7 +26,7 @@ namespace communicator_lib
         ~Client();
 
         /// @brief Get the Address value
-        /// @return std::string A reference to the address value
+        /// @return std::string A copy of the address value
         inline std::string getAddress(void) const { return _address; };
 
         /// @brief Get the Port value
