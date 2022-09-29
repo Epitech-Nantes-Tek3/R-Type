@@ -21,5 +21,13 @@ add_library(${TARGET} ${SRC})
 
 target_include_directories(${TARGET}
     PUBLIC ${INC_ROOT}
+    PUBLIC ${CONAN_INCLUDE_DIRS_BOOST}
     PRIVATE ${SRC_ROOT}
 )
+
+target_link_libraries(${TARGET}
+	CONAN_PKG::boost
+)
+
+include(${PROJECT_SOURCE_DIR}/build/conanbuildinfo.cmake)
+conan_basic_setup(TARGETS)

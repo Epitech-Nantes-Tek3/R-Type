@@ -36,6 +36,9 @@ r-type_server
 # CMake
 build
 Debug
+build_graph.sh
+graph
+graph.png
 
 #Testing
 tests/Testing
