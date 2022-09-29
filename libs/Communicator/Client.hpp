@@ -27,19 +27,19 @@ namespace communicator_lib
 
         /// @brief Get the Address value
         /// @return std::string A reference to the address value
-        std::string getAddress(void) const;
+        inline std::string getAddress(void) const { return _address; };
 
         /// @brief Get the Port value
         /// @return long The value of the port
-        long getPort(void) const;
+        inline long getPort(void) const { return _port; };
 
         /// @brief Set the Address value
         /// @param address The newly address
-        void setAddress(std::string address);
+        inline void setAddress(std::string address) { _address = address; };
 
         /// @brief Set the Port value
         /// @param port The new port number
-        void setPort(long port);
+        inline void setPort(long port) { _port = port; };
 
       private:
         /// @brief The ip address of the client (127.0.0.1 by default)

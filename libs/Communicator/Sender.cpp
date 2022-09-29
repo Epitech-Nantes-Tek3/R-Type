@@ -14,9 +14,15 @@
 using namespace communicator_lib;
 using namespace boost::asio::ip;
 
-Sender::Sender() { _receiverPort = Client().getPort(); }
+Sender::Sender()
+{
+    _receiverPort = Client().getPort();
+}
 
-Sender::Sender(unsigned short receiverPort) { _receiverPort = receiverPort; }
+Sender::Sender(unsigned short receiverPort)
+{
+    _receiverPort = receiverPort;
+}
 
 void Sender::sendDataToAClient(Client &client, void *data, size_t size)
 {

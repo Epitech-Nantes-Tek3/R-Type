@@ -26,18 +26,6 @@ Receiver::Receiver(Client networkData)
     _networkData = networkData;
 }
 
-std::vector<Message> Receiver::getMessageList(void) const { return _messageList; }
-
-void Receiver::setMessageList(std::vector<Message> newMessageList) { _messageList = newMessageList; }
-
-Client Receiver::getNetworkData(void) const { return _networkData; }
-
-void Receiver::setNetworkData(Client newNetworkData) { _networkData = newNetworkData; }
-
-void Receiver::addMessage(Message message) { _messageList.push_back(message); }
-
-int Receiver::getMessageListSize(void) const { return _messageList.size(); }
-
 Message Receiver::getLastMessage(void)
 {
     _ioService.poll();

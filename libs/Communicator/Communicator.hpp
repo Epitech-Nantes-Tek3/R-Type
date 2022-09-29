@@ -40,7 +40,7 @@ namespace communicator_lib
 
         /// @brief Get the Client List vector
         /// @return std::vector<Client> The client list vector
-        std::vector<Client> getClientList(void) const;
+        inline std::vector<Client> getClientList(void) const { return _clientList; };
 
         /// @brief Add a client inside the list of client
         /// @param client The client to add
@@ -77,7 +77,7 @@ namespace communicator_lib
         void kickAClient(Client client, Client newEndpoint);
 
         /// @brief Ask the receiver to start the listening process
-        void startReceiverListening(void);
+        inline void startReceiverListening(void) { _receiverModule.startListening(); };
 
       private:
         /// @brief List of all the current client

@@ -25,8 +25,6 @@ Communicator::Communicator(Client networkBind) : _receiverModule(Receiver(networ
     _senderModule = Sender(networkBind.getPort());
 }
 
-std::vector<Client> Communicator::getClientList(void) const { return _clientList; }
-
 void Communicator::addClientToList(Client &client)
 {
     if (std::find(_clientList.begin(), _clientList.end(), client) != _clientList.end())
@@ -98,7 +96,5 @@ void Communicator::kickAClient(Client client, Client newEndpoint)
         _senderModule.sendDataToAClient(client, &temp, 2); /// TO REFACTO WHEN UDP PROTOCOL IS IMPLEMENTED
     }
 }
-
-void Communicator::startReceiverListening(void) { _receiverModule.startListening(); }
 
 Communicator::~Communicator() {}

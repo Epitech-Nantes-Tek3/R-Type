@@ -42,27 +42,27 @@ namespace communicator_lib
 
         /// @brief Get the message list vector
         /// @return The message list vector
-        std::vector<Message> getMessageList(void) const;
+        inline std::vector<Message> getMessageList(void) const { return _messageList; };
 
         /// @brief Set the message list vector
         /// @param newMessageList The new message vector
-        void setMessageList(std::vector<Message> newMessageList);
+        inline void setMessageList(std::vector<Message> newMessageList) { _messageList = newMessageList; };
 
         /// @brief Get the network data value
         /// @return The network data value
-        Client getNetworkData(void) const;
+        inline Client getNetworkData(void) const { return _networkData; };
 
         /// @brief Set the network data value
         /// @param newNetworkData The new network data value
-        void setNetworkData(Client newNetworkData);
+        inline void setNetworkData(Client newNetworkData) { _networkData = newNetworkData; };
 
         /// @brief Add a new message inside the list
         /// @param message The message to add
-        void addMessage(Message message);
+        inline void addMessage(Message message) { _messageList.push_back(message); };
 
         /// @brief Get the size of the message list
         /// @return The message list size
-        int getMessageListSize(void) const;
+        inline int getMessageListSize(void) const { return _messageList.size(); };
 
         /// @brief Pop the first message of the list (oldest)
         /// @return The older message
