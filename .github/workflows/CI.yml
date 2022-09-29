@@ -54,7 +54,7 @@ jobs:
       run: ./build.bat
 
   mirroring:
-    if: github.event.action == 'push'
+    if: github.event.action == push
     needs: [build-linux, build-windows]
     runs-on: ubuntu-latest
     steps:
