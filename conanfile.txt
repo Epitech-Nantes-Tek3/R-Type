@@ -1,6 +1,6 @@
 [requires]
 sfml/2.5.1
-boost/1.76.0
+boost/1.80.0
 
 [options]
 boost:shared=True
