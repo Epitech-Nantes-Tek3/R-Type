@@ -8,29 +8,27 @@
 /// @file libs/Communicator/Communicator.cpp
 
 #include "Communicator.hpp"
-#include <iostream>
 #include <algorithm>
+#include <iostream>
 
 using namespace communicator_lib;
 
-Communicator::Communicator()
+Communicator::Communicator() : _receiverModule(Receiver())
 {
     _clientList = {};
     _senderModule = Sender();
 }
 
-std::vector<Client> Communicator::getClientList(void) const
+Communicator::Communicator(Client networkBind) : _receiverModule(Receiver(networkBind))
 {
-    return _clientList;
+    _clientList = {};
+    _senderModule = Sender(networkBind.getPort());
 }
 
 void Communicator::addClientToList(Client &client)
 {
     if (std::find(_clientList.begin(), _clientList.end(), client) != _clientList.end())
-    {
-        std::cerr << "Client already registered in the communicator." << std::endl;
-        return;
-    }
+        throw std::invalid_argument("Client already registered in the communicator."); /// WILL BE REFACTOR WHEN ERROR GESTION IS IMPLEMENTED
     _clientList.push_back(client);
 }
 
@@ -53,6 +51,50 @@ Client &Communicator::getClientFromList(std::string address, long port)
     throw std::invalid_argument("Client not in the list.");
 }
 
-Communicator::~Communicator()
+CommunicatorMessage Communicator::getLastMessage(void)
 {
+    try {
+        Message temp = _receiverModule.getLastMessage();
+        try {
+            addClientToList(temp.clientInfo);
+            return CommunicatorMessage{temp, true};
+        } catch (std::invalid_argument &error) {
+            return CommunicatorMessage{temp, false};
+        }
+    } catch (std::invalid_argument &error) {
+        throw std::invalid_argument("No message waiting."); /// TO REFACTO WHEN ERROR CLASS IS IMPLEMENTED
+    }
 }
+
+CommunicatorMessage Communicator::getLastMessageFromClient(Client client)
+{
+    try {
+        Message temp = _receiverModule.getLastMessageFromClient(client);
+        try {
+            addClientToList(temp.clientInfo);
+            return CommunicatorMessage{temp, true};
+        } catch (std::invalid_argument &error) {
+            return CommunicatorMessage{temp, false};
+        }
+    } catch (std::invalid_argument &error) {
+        throw std::invalid_argument("No message waiting."); /// TO REFACTO WHEN ERROR CLASS IS IMPLEMENTED
+    }
+}
+
+void Communicator::kickAClient(Client client, Client newEndpoint)
+{
+    try {
+        addClientToList(client);
+        removeClientFromList(client);
+        return;
+    } catch (std::invalid_argument &error) {
+    }
+    if (newEndpoint == Client())
+        _senderModule.sendDataToAClient(client, (void *)"kick", 5); /// TO REFACTO WHEN UDP PROTOCOL IS IMPLEMENTED
+    else {
+        unsigned short temp = newEndpoint.getPort();
+        _senderModule.sendDataToAClient(client, &temp, 2); /// TO REFACTO WHEN UDP PROTOCOL IS IMPLEMENTED
+    }
+}
+
+Communicator::~Communicator() {}
