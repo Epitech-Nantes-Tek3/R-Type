@@ -17,6 +17,14 @@
 
 namespace communicator_lib
 {
+    /// @brief Bridge between communicator and server for message
+    struct CommunicatorMessage {
+        /// @brief The network message
+        Message message;
+        /// @brief First communication of this client ?
+        bool newClient;
+    };
+
     /// @brief Network gestionner
     class Communicator {
       public:
@@ -36,7 +44,7 @@ namespace communicator_lib
 
         /// @brief Add a client inside the list of client
         /// @param client The client to add
-        /// If the client is already inside the list, nothing will be done (Logging in std::cerr)
+        /// @throw Throw an error if the client is already on the database (to update when error class have been setup)
         void addClientToList(Client &client);
 
         /// @brief Remove a given client from the list
@@ -50,6 +58,25 @@ namespace communicator_lib
         /// @return Client& The founded client
         /// @throw Throw an error when no matching client are found (to update when error class have been setup)
         Client &getClientFromList(std::string address, long port);
+
+        /// @brief Ask the receiver module to get the last message
+        /// @return The last message
+        /// @throw Throw an error when no message are found (to update when error class have been setup)
+        CommunicatorMessage getLastMessage(void);
+
+        /// @brief Ask the receiver module to get the last message of a client
+        /// @param client THe wanted client
+        /// @return The client message
+        /// @throw Throw an error when no message are found (to update when error class have been setup)
+        CommunicatorMessage getLastMessageFromClient(Client client);
+
+        /// @brief Tell to the client the communication is over. Remove the client from database
+        /// @param client The wanted client
+        /// @param newEndpoint A potential new endpoint for the client (if newEndpoint == Client() no endpoint will be transfered)
+        void kickAClient(Client client, Client newEndpoint);
+
+        /// @brief Ask the receiver to start the listening process
+        void startReceiverListening(void);
 
       private:
         /// @brief List of all the current client

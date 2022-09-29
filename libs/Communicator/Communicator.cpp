@@ -30,7 +30,7 @@ std::vector<Client> Communicator::getClientList(void) const { return _clientList
 void Communicator::addClientToList(Client &client)
 {
     if (std::find(_clientList.begin(), _clientList.end(), client) != _clientList.end()) {
-        std::cerr << "Client already registered in the communicator." << std::endl;
+        throw std::invalid_argument("Client already registered in the communicator.");
         return;
     }
     _clientList.push_back(client);
@@ -53,6 +53,57 @@ Client &Communicator::getClientFromList(std::string address, long port)
         return *founded;
     /// THROW AN ERROR (REFACTO WHEN ERROR GESTION IS IMPLEMENTED)
     throw std::invalid_argument("Client not in the list.");
+}
+
+CommunicatorMessage Communicator::getLastMessage(void)
+{
+    try {
+        Message temp = _receiverModule.getLastMessage();
+        try {
+            addClientToList(temp.clientInfo);
+            return CommunicatorMessage{temp, true};
+        } catch (std::invalid_argument &error) {
+            return CommunicatorMessage{temp, false};
+        }
+    } catch (std::invalid_argument &error) {
+        throw std::invalid_argument("No message waiting."); /// TO REFACTO WHEN ERROR CLASS IS IMPLEMENTED
+    }
+}
+
+CommunicatorMessage Communicator::getLastMessageFromClient(Client client)
+{
+    try {
+        Message temp = _receiverModule.getLastMessageFromClient(client);
+        try {
+            addClientToList(temp.clientInfo);
+            return CommunicatorMessage{temp, true};
+        } catch (std::invalid_argument &error) {
+            return CommunicatorMessage{temp, false};
+        }
+    } catch (std::invalid_argument &error) {
+        throw std::invalid_argument("No message waiting."); /// TO REFACTO WHEN ERROR CLASS IS IMPLEMENTED
+    }
+}
+
+void Communicator::kickAClient(Client client, Client newEndpoint)
+{
+    try {
+        addClientToList(client);
+        removeClientFromList(client);
+        return;
+    } catch (std::invalid_argument &error) {
+    }
+    if (newEndpoint == Client())
+        _senderModule.sendDataToAClient(client, (void *)"kick", 5); /// TO REFACTO WHEN UDP PROTOCOL IS IMPLEMENTED
+    else {
+        unsigned short temp = newEndpoint.getPort();
+        _senderModule.sendDataToAClient(client, &temp, 2); /// TO REFACTO WHEN UDP PROTOCOL IS IMPLEMENTED
+    }
+}
+
+void Communicator::startReceiverListening(void)
+{
+    _receiverModule.startListening();
 }
 
 Communicator::~Communicator() {}

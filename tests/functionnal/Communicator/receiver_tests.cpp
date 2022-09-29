@@ -22,7 +22,7 @@ int main(int ac, char **av)
     while (1) {
         try {
             Message temp = receiver.getLastMessage();
-            std::cerr << "Message from " << temp.client_info.getAddress() << " -> " << temp.client_info.getPort()
+            std::cerr << "Message from " << temp.clientInfo.getAddress() << " -> " << temp.clientInfo.getPort()
                       << " of size : " << temp.size << std::endl;
             std::cerr << "Remaining message : " << receiver.getMessageListSize() << std::endl;
         } catch (std::invalid_argument &error) {

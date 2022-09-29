@@ -54,7 +54,7 @@ Message Receiver::getLastMessageFromClient(Client client)
     int pos = 0;
 
     for (auto i : _messageList) {
-        if (i.client_info == client) {
+        if (i.clientInfo == client) {
             Message temp = _messageList[pos];
             _messageList.erase(_messageList.begin() + pos);
             return temp;

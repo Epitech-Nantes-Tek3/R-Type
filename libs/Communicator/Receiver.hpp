@@ -20,7 +20,7 @@ namespace communicator_lib
     /// @brief A network data
     struct Message {
         /// @brief Sender information
-        Client client_info;
+        Client clientInfo;
         /// @brief The message content
         void *data;
         /// @brief Size of the message

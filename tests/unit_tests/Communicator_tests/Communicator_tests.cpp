@@ -34,7 +34,12 @@ Test(communicator_testing, add_client_multiple)
 
     communicator.addClientToList(client);
     cr_assert_eq(communicator.getClientList().size(), 1);
-    communicator.addClientToList(client);
+    try {
+        communicator.addClientToList(client);
+        cr_assert_eq(41, 42);
+    } catch (std::invalid_argument &e) {
+        cr_assert_eq(42, 42);
+    }
     cr_assert_eq(communicator.getClientList().size(), 1);
     communicator.addClientToList(client_two);
     cr_assert_eq(communicator.getClientList().size(), 2);
