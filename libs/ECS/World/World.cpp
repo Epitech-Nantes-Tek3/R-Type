@@ -10,10 +10,25 @@
 
 using namespace ecs;
 
-World::World()
+Entity &World::addEntity()
 {
+    _entitiesList[_nextEntityId] = std::make_unique<Entity>(_nextEntityId);
+    _nextEntityId++;
+    return *(_entitiesList[_nextEntityId - 1].get());
 }
 
-World::~World()
+Entity &World::getEntity(Index id) const
 {
+    EntitiesList::const_iterator it = _entitiesList.find(id);
+    if (it == _entitiesList.end())
+        throw std::logic_error("attempted to get a non-existent entity");
+    return *(it->second.get());
+}
+
+void World::removeEntity(Index id)
+{
+    EntitiesList::const_iterator it = _entitiesList.find(id);
+    if (it == _entitiesList.end())
+        throw std::logic_error("attempted to remove a non-existent entity");
+    _entitiesList.erase(it);
 }
