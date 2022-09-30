@@ -5,16 +5,14 @@
 ** Basic Test
 */
 
+#include <criterion/criterion.h>
 #include "Components/Component.hpp"
 #include "Entity/Entity.hpp"
-#include <criterion/criterion.h>
-#include <iostream>
 
 /// @file tests/unit_tests/libs_tests/ECS_tests/Entity_tests
 
-class Position : public ecs::Component
-{
-public:
+class Position : public ecs::Component {
+  public:
     int x;
     int y;
 
@@ -22,9 +20,8 @@ public:
     Position(Position &old) : x(old.x), y(old.y){};
 };
 
-class Name : public ecs::Component
-{
-public:
+class Name : public ecs::Component {
+  public:
     const std::string name;
 
     Name(const std::string _name) : name(_name){};
@@ -70,13 +67,10 @@ Test(Entity, get_non_existant_component)
 {
     ecs::Entity *entity = new ecs::Entity(1);
 
-    try
-    {
+    try {
         class Position &pos = entity->getComponent<Position>();
         (void)pos;
-    }
-    catch (std::logic_error &err)
-    {
+    } catch (std::logic_error &err) {
         cr_assert_str_eq(err.what(), "attempted to get a non-existent component");
         return;
     }
@@ -90,13 +84,10 @@ Test(Entity, remove_a_component)
     entity->addComponent<Position>(10, 95);
     entity->removeComponent<Position>();
 
-    try
-    {
+    try {
         class Position &pos = entity->getComponent<Position>();
         (void)pos;
-    }
-    catch (std::logic_error &err)
-    {
+    } catch (std::logic_error &err) {
         cr_assert_str_eq(err.what(), "attempted to get a non-existent component");
         return;
     }
@@ -108,12 +99,9 @@ Test(Entity, remove_a_non_existant_component)
 {
     ecs::Entity *entity = new ecs::Entity(1);
 
-    try
-    {
+    try {
         entity->removeComponent<Position>();
-    }
-    catch (std::logic_error &err)
-    {
+    } catch (std::logic_error &err) {
         cr_assert_str_eq(err.what(), "attempted to remove a non-existent component");
         return;
     }

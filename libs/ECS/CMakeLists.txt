@@ -16,5 +16,3 @@ target_include_directories(${TARGET}
     PRIVATE ${INCLUDE_ECS_LIB}/Entity
     PRIVATE ${INCLUDE_ECS_LIB}/Components
 )
-
-#set_target_properties(ECS PROPERTIES LINKER_LANGUAGE CXX)

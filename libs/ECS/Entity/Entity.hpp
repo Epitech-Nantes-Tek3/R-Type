@@ -20,7 +20,6 @@
 namespace ecs
 {
     /// @brief This is the Entity Class for ECS
-    /// Encapsulates a index to an entity that may or may not exist.
     ///
     /// This class is trivially copiable because the components are not stored in this class.
     /// It stores in the Component Class
@@ -34,24 +33,26 @@ namespace ecs
 
         /// @brief This function can return the Id of itself
         /// @returns The index of this entity.
-        constexpr Index getId() const noexcept { return this->_id; }
+        inline constexpr Index getId() const noexcept { return this->_id; }
 
         /// @brief This function can add a Component to the Entity
         /// @tparam C Type of the component
         /// @tparam ...Args This allows to send multiple arguments (args)
         /// @param ...args All arguments which are used to construct the Component
+        /// @throw std::logic_error Throw an error if the component already exists
         /// @return itself
         template <std::derived_from<Component> C, typename... Args> Entity &addComponent(Args &&...args)
         {
-            // if already contains once -> throw ERROR
-
+            if (contains<C>())
+                throw std::logic_error("attempted to add component that already exists")
             this->_componentList[std::type_index(typeid(C))] = std::make_unique<C>(std::forward<Args>(args)...);
             return *this;
         }
 
         /// @brief This function can get a Component in the Entity
         /// @tparam C Search Component
-        /// @return The choosen composent
+        /// @throw std::logic_error Throw an error if the component does not exists
+        /// @return The composent choosen
         template <std::derived_from<Component> C> C &getComponent() const
         {
             if (_componentList.count(typeid(C)) == 0)
@@ -61,6 +62,7 @@ namespace ecs
 
         /// @brief Remove a Component of the Entity
         /// @tparam C The choosen Component to remove
+        /// @throw std::logic_error Throw an error if the component does not exists
         template <std::derived_from<Component> C> void removeComponent()
         {
             ComponentsList::iterator it = _componentList.find(typeid(C));
