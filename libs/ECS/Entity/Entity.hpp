@@ -29,7 +29,7 @@ namespace ecs
         /// @brief The id type
         using Index = std::size_t;
 
-        /// @brief This is the tab of Components of the Entity
+        /// @brief This is the map of Components of the Entity
         using ComponentsList = std::unordered_map<std::type_index, std::unique_ptr<Component>>;
 
         /// @brief This function can return the Id of itself
@@ -102,9 +102,6 @@ namespace ecs
         /// @return True
         template <std::derived_from<Component>... C>
         requires(sizeof...(C) == 0) bool contains() const { return true; }
-
-        /// Only the World class can construct an Entity
-        friend World;
     };
 
     /// @brief Will check if First Entity is equal to Second Entity. Overide of == operator
