@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2022
-** Project
+** R-Type
 ** File description:
 ** Communicator
 */
@@ -8,29 +8,29 @@
 /// @file libs/Communicator/Communicator.cpp
 
 #include "Communicator.hpp"
-#include <iostream>
 #include <algorithm>
+#include <iostream>
+#include "Error/Error.hpp"
 
 using namespace communicator_lib;
+using namespace error_lib;
 
-Communicator::Communicator()
+Communicator::Communicator() : _receiverModule(Receiver())
 {
     _clientList = {};
     _senderModule = Sender();
 }
 
-std::vector<Client> Communicator::getClientList(void) const
+Communicator::Communicator(Client networkBind) : _receiverModule(Receiver(networkBind))
 {
-    return _clientList;
+    _clientList = {};
+    _senderModule = Sender(networkBind.getPort());
 }
 
 void Communicator::addClientToList(Client &client)
 {
     if (std::find(_clientList.begin(), _clientList.end(), client) != _clientList.end())
-    {
-        std::cerr << "Client already registered in the communicator." << std::endl;
-        return;
-    }
+        throw NetworkError("Client already registered in the communicator.", "Communicator.cpp -> addClientToList");
     _clientList.push_back(client);
 }
 
@@ -49,10 +49,54 @@ Client &Communicator::getClientFromList(std::string address, long port)
 
     if (founded != _clientList.end())
         return *founded;
-    /// THROW AN ERROR (REFACTO WHEN ERROR GESTION IS IMPLEMENTED)
-    throw std::invalid_argument("Client not in the list.");
+    throw NetworkError("The wanted client are not in the list.", "Communicator.cpp -> getClientFromList");
 }
 
-Communicator::~Communicator()
+CommunicatorMessage Communicator::getLastMessage(void)
 {
+    try {
+        Message temp = _receiverModule.getLastMessage();
+        try {
+            addClientToList(temp.clientInfo);
+            return CommunicatorMessage{temp, true};
+        } catch (NetworkError &error) {
+            return CommunicatorMessage{temp, false};
+        }
+    } catch (NetworkError &error) {
+        throw NetworkError("No message waiting for traitment.", "Communicator.cpp -> getLastMessage");
+    }
 }
+
+CommunicatorMessage Communicator::getLastMessageFromClient(Client client)
+{
+    try {
+        Message temp = _receiverModule.getLastMessageFromClient(client);
+        try {
+            addClientToList(temp.clientInfo);
+            return CommunicatorMessage{temp, true};
+        } catch (NetworkError &error) {
+            return CommunicatorMessage{temp, false};
+        }
+    } catch (NetworkError &error) {
+        throw NetworkError(
+            "This client has no message waiting for traitment.", "Communicator.cpp -> getLastMessageFromClient");
+    }
+}
+
+void Communicator::kickAClient(Client client, Client newEndpoint)
+{
+    try {
+        addClientToList(client);
+        removeClientFromList(client);
+        return;
+    } catch (NetworkError &error) {
+    }
+    if (newEndpoint == Client())
+        _senderModule.sendDataToAClient(client, (void *)"kick", 5); /// TO REFACTO WHEN UDP PROTOCOL IS IMPLEMENTED
+    else {
+        unsigned short temp = newEndpoint.getPort();
+        _senderModule.sendDataToAClient(client, &temp, 2); /// TO REFACTO WHEN UDP PROTOCOL IS IMPLEMENTED
+    }
+}
+
+Communicator::~Communicator() {}

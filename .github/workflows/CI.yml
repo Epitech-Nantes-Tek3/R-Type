@@ -1,20 +1,29 @@
-name: Build
+name: CI
 
 on:
   push:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+  workflow_dispatch:
 
 env:
   BUILD_TYPE: Release
 
-  workflow_dispatch:
 
 jobs:
-  build-linux:
+  lint-format:
     runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: DoozyX/clang-format-lint-action@v0.13
+      with:
+        source: 'Client Server'
+        clangFormatVersion: 12
 
+  build-linux:
+    needs: lint-format
+    runs-on: ubuntu-latest
     steps:
     - name: Dependencies
       run: |
@@ -31,14 +40,30 @@ jobs:
         conan config init
         mkdir -p build; cd build && conan install .. --build=missing  -s compiler.libcxx=libstdc++11 -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True && cmake -DCMAKE_BUILD_TYPE=Debug .. && cmake --build  . -- -j 3
 
-  # The following part will be fix and add in another issue
+  build-windows:
+    needs: lint-format
+    runs-on: windows-latest
+    steps:
+    - name: Install Conan
+      id: conan
+      uses: turtlebrowser/get-conan@main
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-  # build-windows:
-  #   runs-on: windows-latest
+    - name: Launch build script
+      run: ./build.bat
 
-  #   steps:
-  #   - name: Checkout repository
-  #     uses: actions/checkout@v2
-
-  #   - name: Launch build script
-  #     run: ./setup.bat
+  mirroring:
+    if: github.event_name == 'push'
+    needs: [build-linux, build-windows]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: pixta-dev/repository-mirroring-action@v1
+        with:
+          target_repo_url:
+            ${{ secrets.EPI_REPO_URL }}
+          ssh_private_key:
+            ${{ secrets.EPI_MIRRORING_KEY }}

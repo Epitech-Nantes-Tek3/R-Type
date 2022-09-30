@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2022
-** Project
+** R-Type
 ** File description:
 ** Communicator
 */
@@ -12,27 +12,39 @@
 
 #include <vector>
 #include "Client.hpp"
+#include "Receiver.hpp"
 #include "Sender.hpp"
 
 namespace communicator_lib
 {
+    /// @brief Bridge between communicator and server for message
+    struct CommunicatorMessage {
+        /// @brief The network message
+        Message message;
+        /// @brief First communication of this client ?
+        bool newClient;
+    };
+
     /// @brief Network gestionner
-    class Communicator
-    {
-    public:
+    class Communicator {
+      public:
         /// @brief Construct a new Communicator object
         Communicator();
+
+        /// @brief Construct a new Communicator object
+        /// @param networkBind Network information for the socket bind
+        Communicator(Client networkBind);
 
         /// @brief Destroy the Communicator object
         ~Communicator();
 
         /// @brief Get the Client List vector
         /// @return std::vector<Client> The client list vector
-        std::vector<Client> getClientList(void) const;
+        inline std::vector<Client> getClientList(void) const { return _clientList; };
 
         /// @brief Add a client inside the list of client
         /// @param client The client to add
-        /// If the client is already inside the list, nothing will be done (Logging in std::cerr)
+        /// @throw Throw an error if the client is already on the database (NetworkError)
         void addClientToList(Client &client);
 
         /// @brief Remove a given client from the list
@@ -44,15 +56,39 @@ namespace communicator_lib
         /// @param address The address of the client
         /// @param port The port of the client
         /// @return Client& The founded client
-        /// @throw Throw an error when no matching client are found (to update when error class have been setup)
+        /// @throw Throw an error when no matching client are found (NetworkError)
         Client &getClientFromList(std::string address, long port);
 
-    private:
+        /// @brief Ask the receiver module to get the last message
+        /// @return The last message
+        /// @throw Throw an error when no message are found (NetworkError)
+        CommunicatorMessage getLastMessage(void);
+
+        /// @brief Ask the receiver module to get the last message of a client
+        /// @param client THe wanted client
+        /// @return The client message
+        /// @throw Throw an error when no message are found (NetworkError)
+        CommunicatorMessage getLastMessageFromClient(Client client);
+
+        /// @brief Tell to the client the communication is over. Remove the client from database
+        /// @param client The wanted client
+        /// @param newEndpoint A potential new endpoint for the client (if newEndpoint == Client() no endpoint will be
+        /// transfered)
+        void kickAClient(Client client, Client newEndpoint);
+
+        /// @brief Ask the receiver to start the listening process
+        inline void startReceiverListening(void) { _receiverModule.startListening(); };
+
+      private:
         /// @brief List of all the current client
         std::vector<Client> _clientList;
+
         /// @brief Instance of the sender module
         Sender _senderModule;
+
+        /// @brief Instance of the receiver module
+        Receiver _receiverModule;
     };
-}
+} // namespace communicator_lib
 
 #endif /* !COMMUNICATOR_HPP_ */

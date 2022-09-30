@@ -7,8 +7,6 @@ set(TEST_SRC_ROOT
     ${SRC_ROOT}/very_basic_test.cpp
 )
 
-add_subdirectory(libs_tests)
-
 ## Documented Example ##
 create_test(
     ## First, the name of the test ##
@@ -20,3 +18,4 @@ create_test(
 )
 
 add_subdirectory(Communicator_tests)
+add_subdirectory(libs_tests)

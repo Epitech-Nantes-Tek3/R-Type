@@ -3,7 +3,7 @@ add_subdirectory(Entity)
 add_subdirectory(World)
 add_subdirectory(System)
 
-set (TARGET ${PROJECT_NAME}_ecs)
+set(TARGET ${PROJECT_NAME}_ecs)
 
 add_library(${TARGET}
     ${SRC_COMPONENT}
@@ -23,4 +23,4 @@ target_include_directories(${TARGET}
     PRIVATE ${INCLUDE_ECS_LIB}/System
 )
 
-#set_target_properties(ECS PROPERTIES LINKER_LANGUAGE CXX)
+set_target_properties(${TARGET} PROPERTIES LINKER_LANGUAGE CXX)

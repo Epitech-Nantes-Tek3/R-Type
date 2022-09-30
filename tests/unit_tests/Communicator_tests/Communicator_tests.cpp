@@ -1,14 +1,16 @@
 /*
 ** EPITECH PROJECT, 2022
-** Project
+** R-Type
 ** File description:
 ** Communicator_tests
 */
 
 #include <criterion/criterion.h>
 #include "Communicator/Communicator.hpp"
+#include "Error/Error.hpp"
 
 using namespace communicator_lib;
+using namespace error_lib;
 
 Test(communicator_testing, basic_init)
 {
@@ -34,7 +36,12 @@ Test(communicator_testing, add_client_multiple)
 
     communicator.addClientToList(client);
     cr_assert_eq(communicator.getClientList().size(), 1);
-    communicator.addClientToList(client);
+    try {
+        communicator.addClientToList(client);
+        cr_assert_eq(41, 42);
+    } catch (NetworkError &e) {
+        cr_assert_eq(42, 42);
+    }
     cr_assert_eq(communicator.getClientList().size(), 1);
     communicator.addClientToList(client_two);
     cr_assert_eq(communicator.getClientList().size(), 2);
@@ -66,13 +73,10 @@ Test(communicator_testing, get_client)
     communicator.addClientToList(client_two);
     cr_assert_eq(communicator.getClientFromList("190.1.1.1", 10) == client_two, true);
     cr_assert_eq(communicator.getClientFromList("127.0.0.1", 0) == client, true);
-    try
-    {
+    try {
         communicator.getClientFromList("99999", 0);
         cr_assert_eq(1, 2);
-    }
-    catch (std::invalid_argument &e)
-    {
+    } catch (NetworkError &e) {
         cr_assert_eq(1, 1);
     }
 }
