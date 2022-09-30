@@ -20,11 +20,11 @@ class Texture : public ecs::Resource {
     std::filesystem::path _path;
 }
 
-Test(Resource, add_resource_in_the_World)
+Test(Resource, add_and_get_resource_in_the_World)
 {
     ecs::World *world = new ecs::World();
-    world->addResource<Timer>(1);
 
+    world->addResource<Timer>(1);
     class Timer &timer = resource->getComponent<Timer>();
     cr_assert_eq(timer._timer, 1);
 
@@ -41,6 +41,23 @@ Test(Resource, get_non_existant_resource_in_the_World)
         (void)pos;
     } catch (std::logic_error &err) {
         cr_assert_str_eq(err.what(), "attempted to get a non-existent Resource");
+        return;
+    }
+    cr_assert_eq(0, 1);
+}
+
+/// @brief Try to remove a Resource from the World
+Test(Resource, remove_a_resource)
+{
+    ecs::World *world = new ecs::World();
+    world->addResource<Timer>(1);
+    world->removeResource<Timer>();
+
+    try {
+        class Timer &timer = world->getResource<Timer>();
+        (void)timer;
+    } catch (std::logic_error &err) {
+        cr_assert_str_eq(err.what(), "attempted to get a non-existent component");
         return;
     }
     cr_assert_eq(0, 1);
