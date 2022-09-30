@@ -53,9 +53,32 @@ jobs:
     - name: Launch build script
       run: ./build.bat
 
+  coverage:
+    needs: [build-linux, build-windows]
+    runs-on: ubuntu-latest
+    container:
+      image: epitechcontent/epitest-docker
+    steps:
+      - name: Install Conan
+        id: conan
+        uses: turtlebrowser/get-conan@main
+      - uses: actions/checkout@v2
+
+      - name: Build tests
+        run: ./build_tests.sh
+
+      - name: Build report
+        run: gcovr --xml report.xml --exclude tests
+
+      - name: Codecov
+        uses: codecov/codecov-action@v2.1.0
+        with:
+          token: ${{ secrets.CODECOV_ACCESS_TOKEN }}
+          fail_ci_if_error: false
+
   mirroring:
     if: github.event_name == 'push'
-    needs: [build-linux, build-windows]
+    needs: coverage
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
