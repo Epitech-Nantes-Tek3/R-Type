@@ -10,6 +10,7 @@ add_library(${TARGET}
     ${SRC_ENTITY}
     ${SRC_WORLD}
     ${SRC_SYSTEM}
+    ${SRC_RESOURCE}
 )
 
 set(INCLUDE_ECS_LIB
@@ -21,6 +22,7 @@ target_include_directories(${TARGET}
     PRIVATE ${INCLUDE_ECS_LIB}/Component
     PRIVATE ${INCLUDE_ECS_LIB}/World
     PRIVATE ${INCLUDE_ECS_LIB}/System
+    PRIVATE ${INCLUDE_ECS_LIB}/Resource
 )
 
 set_target_properties(${TARGET} PROPERTIES LINKER_LANGUAGE CXX)
