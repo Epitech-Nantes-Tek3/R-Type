@@ -27,7 +27,7 @@ class Texture : public ecs::Resource {
 /// @brief Create a World and add and get resource in the World
 Test(Resource, add_and_get_resource_in_the_World)
 {
-    ecs::World *world = new ecs::World();
+    ecs::World *world = new ecs::World(1);
 
     world->addResource<Timer>(1);
     class Timer &timer = world->getResource<Timer>();
@@ -39,7 +39,7 @@ Test(Resource, add_and_get_resource_in_the_World)
 /// @brief Create an World and get a non-existing Resource
 Test(Resource, get_non_existant_resource_in_the_World)
 {
-    ecs::World *world = new ecs::World();
+    ecs::World *world = new ecs::World(1);
 
     try {
         class Timer &pos = world->getResource<Timer>();
@@ -49,12 +49,13 @@ Test(Resource, get_non_existant_resource_in_the_World)
         return;
     }
     cr_assert_eq(0, 1);
+    delete world;
 }
 
 /// @brief Try to remove a Resource from the World
 Test(Resource, remove_a_resource)
 {
-    ecs::World *world = new ecs::World();
+    ecs::World *world = new ecs::World(1);
     world->addResource<Timer>(1);
     world->removeResource<Timer>();
 
@@ -66,12 +67,13 @@ Test(Resource, remove_a_resource)
         return;
     }
     cr_assert_eq(0, 1);
+    delete world;
 }
 
 /// @brief Try to remove a non-existing Resource from an World
 Test(Resource, remove_a_non_existant_Resource)
 {
-    ecs::World *world = new ecs::World();
+    ecs::World *world = new ecs::World(1);
 
     try {
         world->removeResource<Timer>();
@@ -80,54 +82,60 @@ Test(Resource, remove_a_non_existant_Resource)
         return;
     }
     cr_assert_eq(0, 1);
+    delete world;
 }
 
 /// @brief Check if the World have one good given Resource
 Test(Resource, contains_one_good_resource)
 {
-    ecs::World *world = new ecs::World();
+    ecs::World *world = new ecs::World(1);
     world->addResource<Timer>(1);
 
     cr_assert_eq(true, world->contains<Timer>());
+    delete world;
 }
 
 /// @brief Check if the World have one wrong given Resource
 Test(Resource, contains_one_wrong_resource)
 {
-    ecs::World *world = new ecs::World();
+    ecs::World *world = new ecs::World(1);
     world->addResource<Timer>(1);
 
     cr_assert_eq(false, world->contains<Texture>());
+    delete world;
 }
 
 /// @brief Check if the World have many given Resources
 Test(Resource, contains_many_good_resources)
 {
-    ecs::World *world = new ecs::World();
+    ecs::World *world = new ecs::World(1);
     world->addResource<Timer>(1);
     world->addResource<Texture>("Lego");
 
     auto a = world->contains<Texture, Timer>();
     cr_assert_eq(true, a);
+    delete world;
 }
 
 /// @brief Check if the World have many wrong given Resource
 Test(Resource, contains_many_wrong_resources)
 {
-    ecs::World *world = new ecs::World();
+    ecs::World *world = new ecs::World(1);
     world->addResource<Timer>(1);
 
     auto a = world->contains<Texture, Timer>();
     cr_assert_eq(false, a);
+    delete world;
 }
 
 /// @brief Check if the World have search only one Resource
 Test(Resource, search_only_one_resources)
 {
-    ecs::World *world = new ecs::World();
+    ecs::World *world = new ecs::World(1);
     world->addResource<Timer>(1);
     world->addResource<Texture>("Lego");
 
     auto a = world->contains<Texture>();
     cr_assert_eq(true, a);
+    delete world;
 }

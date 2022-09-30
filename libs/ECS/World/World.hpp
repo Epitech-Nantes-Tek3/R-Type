@@ -103,9 +103,6 @@ namespace ecs
         ///@brief Destroy the World object
         ~World() = default;
 
-        ///@brief Construct the World object
-        World() = default;
-
       protected:
       private:
         /// @brief This is the function which is called when none Resources types left
