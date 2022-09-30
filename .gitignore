@@ -41,4 +41,3 @@ Debug
 tests/Testing
 Makefile
 .vscode/
-tests/R-type_sender_tests

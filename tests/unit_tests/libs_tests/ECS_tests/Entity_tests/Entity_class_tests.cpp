@@ -5,7 +5,7 @@
 ** Basic Test
 */
 
-#include "Components/Component.hpp"
+#include "Component/Component.hpp"
 #include "Entity/Entity.hpp"
 #include <criterion/criterion.h>
 #include <iostream>

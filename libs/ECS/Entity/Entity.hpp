@@ -14,7 +14,7 @@
 #include <typeindex>
 #include <unordered_map>
 
-#include "Components/Component.hpp"
+#include "Component/Component.hpp"
 
 namespace ecs
 {
