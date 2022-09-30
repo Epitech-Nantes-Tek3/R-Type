@@ -38,9 +38,22 @@ namespace error_lib
         std::string const _message;
     };
 
+    /// @brief Error class for the network part
     class NetworkError : public RTypeError {
       public:
+        /// @brief Constructor of the Network Error
+        /// @param message Error message (Some description and information about the error)
+        /// @param component Provenance of the error (File, function, line...)
         inline NetworkError(std::string const &message, std::string const &component = "Network") : RTypeError(message, component) {};
+    };
+
+    /// @brief Error class for the ecs part
+    class EcsError : public RTypeError {
+      public:
+        /// @brief Constructor of the Ecs Error
+        /// @param message Error message (Some description and information about the error)
+        /// @param component Provenance of the error (File, function, line...)
+        inline EcsError(std::string const &message, std::string const &component = "Ecs") : RTypeError(message, component) {};
     };
 } // namespace error_lib
 
