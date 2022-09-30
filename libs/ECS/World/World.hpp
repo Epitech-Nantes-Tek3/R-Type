@@ -55,10 +55,10 @@ namespace ecs
             _resourceList.erase(it);
         }
 
-        /// @brief This function will check if a group of Resources types (at least one Resource type) is in an Entity
+        /// @brief This function will check if a group of Resources types (at least one Resource type) is in an World
         /// @tparam C1 First Resource type to check
         /// @tparam ...C2 OPTIONAL Next Resource type to check
-        /// @return True if the group of Resource types is contained in Entity. Otherwise False
+        /// @return True if the group of Resource types is contained in the World. Otherwise False
         template <std::derived_from<Resource> C1, std::derived_from<Resource>... C2> bool contains() const
         {
             if (_resourceList.count(typeid(C1)) == 0)
