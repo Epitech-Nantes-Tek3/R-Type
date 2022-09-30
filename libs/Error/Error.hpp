@@ -19,15 +19,16 @@ namespace error_lib
         /// @brief Error basic constructor. Default value for component -> Unknow
         /// @param message The error message (Some description and information about the error)
         /// @param component Provenance of the error (File, function, line...)
-        inline RTypeError(std::string const &message, std::string const &component = "Unknow") : _component(component), _message(message) {};
+        inline RTypeError(std::string const &message, std::string const &component = "Unknow")
+            : _component(component), _message(message){};
 
         /// @brief Get the error information
         /// @return Error information in string format
-        inline const char *what(void) const noexcept override {return _message.data();};
+        inline const char *what(void) const noexcept override { return _message.data(); };
 
         /// @brief Get the error provenance
         /// @return Error provenance in string format
-        inline const std::string &getComponent(void) const noexcept {return _component;};
+        inline const std::string &getComponent(void) const noexcept { return _component; };
 
       protected:
       private:
@@ -44,7 +45,8 @@ namespace error_lib
         /// @brief Constructor of the Network Error
         /// @param message Error message (Some description and information about the error)
         /// @param component Provenance of the error (File, function, line...)
-        inline NetworkError(std::string const &message, std::string const &component = "Network") : RTypeError(message, component) {};
+        inline NetworkError(std::string const &message, std::string const &component = "Network")
+            : RTypeError(message, component){};
     };
 
     /// @brief Error class for the ecs part
@@ -53,7 +55,8 @@ namespace error_lib
         /// @brief Constructor of the Ecs Error
         /// @param message Error message (Some description and information about the error)
         /// @param component Provenance of the error (File, function, line...)
-        inline EcsError(std::string const &message, std::string const &component = "Ecs") : RTypeError(message, component) {};
+        inline EcsError(std::string const &message, std::string const &component = "Ecs")
+            : RTypeError(message, component){};
     };
 } // namespace error_lib
 

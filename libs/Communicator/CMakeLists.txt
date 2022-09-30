@@ -4,13 +4,11 @@ set(SRC_ROOT ${PROJECT_SOURCE_DIR}/libs/Communicator)
 set(TARGET ${PROJECT_NAME}_communicator)
 
 set(SRC
-    ${SRC_ROOT}/entrypoint.cpp
     ${SRC_ROOT}/Client.cpp
     ${SRC_ROOT}/Communicator.cpp
     ${SRC_ROOT}/Sender.cpp
     ${SRC_ROOT}/Receiver.cpp
 
-    ${SRC_ROOT}/entrypoint.hpp
     ${SRC_ROOT}/Client.hpp
     ${SRC_ROOT}/Communicator.hpp
     ${SRC_ROOT}/Sender.hpp
