@@ -15,9 +15,8 @@
 namespace communicator_lib
 {
     /// @brief A representation of a client (Address + Port)
-    class Client
-    {
-    public:
+    class Client {
+      public:
         /// @brief Construct a new Client object
         /// @param address The address of the client
         /// @param port The port of the client
@@ -27,26 +26,26 @@ namespace communicator_lib
         ~Client();
 
         /// @brief Get the Address value
-        /// @return std::string A reference to the address value
-        std::string getAddress(void) const;
+        /// @return std::string A copy of the address value
+        inline std::string getAddress(void) const { return _address; };
 
         /// @brief Get the Port value
         /// @return long The value of the port
-        long getPort(void) const;
+        inline long getPort(void) const { return _port; };
 
         /// @brief Set the Address value
         /// @param address The newly address
-        void setAddress(std::string address);
+        inline void setAddress(std::string address) { _address = address; };
 
         /// @brief Set the Port value
         /// @param port The new port number
-        void setPort(long port);
+        inline void setPort(long port) { _port = port; };
 
-    private:
+      private:
         /// @brief The ip address of the client (127.0.0.1 by default)
         std::string _address;
         /// @brief The port of the client (0 by default)
-        long _port;
+        unsigned short _port;
     };
 
     /// @brief Overload of the == operator to compare two clients
@@ -58,6 +57,6 @@ namespace communicator_lib
     {
         return ((left.getPort() == right.getPort()) && (left.getAddress() == right.getAddress()));
     }
-}
+} // namespace communicator_lib
 
 #endif /* !CLIENT_HPP_ */
