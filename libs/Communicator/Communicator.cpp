@@ -10,8 +10,10 @@
 #include "Communicator.hpp"
 #include <algorithm>
 #include <iostream>
+#include "Error/Error.hpp"
 
 using namespace communicator_lib;
+using namespace error_lib;
 
 Communicator::Communicator() : _receiverModule(Receiver())
 {
@@ -28,7 +30,7 @@ Communicator::Communicator(Client networkBind) : _receiverModule(Receiver(networ
 void Communicator::addClientToList(Client &client)
 {
     if (std::find(_clientList.begin(), _clientList.end(), client) != _clientList.end())
-        throw std::invalid_argument("Client already registered in the communicator."); /// WILL BE REFACTOR WHEN ERROR GESTION IS IMPLEMENTED
+        throw NetworkError("Client already registered in the communicator.", "Communicator.cpp:32 -> addClientToList");
     _clientList.push_back(client);
 }
 
@@ -47,8 +49,7 @@ Client &Communicator::getClientFromList(std::string address, long port)
 
     if (founded != _clientList.end())
         return *founded;
-    /// THROW AN ERROR (REFACTO WHEN ERROR GESTION IS IMPLEMENTED)
-    throw std::invalid_argument("Client not in the list.");
+    throw NetworkError("The wanted client are not in the list.", "Communicator.cpp:52 -> getClientFromList");
 }
 
 CommunicatorMessage Communicator::getLastMessage(void)
@@ -58,11 +59,11 @@ CommunicatorMessage Communicator::getLastMessage(void)
         try {
             addClientToList(temp.clientInfo);
             return CommunicatorMessage{temp, true};
-        } catch (std::invalid_argument &error) {
+        } catch (NetworkError &error) {
             return CommunicatorMessage{temp, false};
         }
-    } catch (std::invalid_argument &error) {
-        throw std::invalid_argument("No message waiting."); /// TO REFACTO WHEN ERROR CLASS IS IMPLEMENTED
+    } catch (NetworkError &error) {
+        throw NetworkError("No message waiting for traitment.", "Communicator.cpp:65 -> getLastMessage");
     }
 }
 
@@ -73,11 +74,12 @@ CommunicatorMessage Communicator::getLastMessageFromClient(Client client)
         try {
             addClientToList(temp.clientInfo);
             return CommunicatorMessage{temp, true};
-        } catch (std::invalid_argument &error) {
+        } catch (NetworkError &error) {
             return CommunicatorMessage{temp, false};
         }
-    } catch (std::invalid_argument &error) {
-        throw std::invalid_argument("No message waiting."); /// TO REFACTO WHEN ERROR CLASS IS IMPLEMENTED
+    } catch (NetworkError &error) {
+        throw NetworkError(
+            "This client has no message waiting for traitment.", "Communicator.cpp:80 -> getLastMessageFromClient");
     }
 }
 
@@ -87,7 +89,7 @@ void Communicator::kickAClient(Client client, Client newEndpoint)
         addClientToList(client);
         removeClientFromList(client);
         return;
-    } catch (std::invalid_argument &error) {
+    } catch (NetworkError &error) {
     }
     if (newEndpoint == Client())
         _senderModule.sendDataToAClient(client, (void *)"kick", 5); /// TO REFACTO WHEN UDP PROTOCOL IS IMPLEMENTED

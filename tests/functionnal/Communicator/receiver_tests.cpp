@@ -7,8 +7,10 @@
 
 #include <iostream>
 #include "Communicator/Receiver.hpp"
+#include "Error/Error.hpp"
 
 using namespace communicator_lib;
+using namespace error_lib;
 
 int main(int ac, char **av)
 {
@@ -25,7 +27,7 @@ int main(int ac, char **av)
             std::cerr << "Message from " << temp.clientInfo.getAddress() << " -> " << temp.clientInfo.getPort()
                       << " of size : " << temp.size << std::endl;
             std::cerr << "Remaining message : " << receiver.getMessageListSize() << std::endl;
-        } catch (std::invalid_argument &error) {
+        } catch (NetworkError &error) {
         }
     }
     return 0;
