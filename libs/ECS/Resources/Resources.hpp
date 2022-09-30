@@ -5,7 +5,7 @@
 ** Resources
 */
 
-#pragma once RESOUCES_HPP
+#pragma once
 
 
 namespace ecs
