@@ -59,6 +59,9 @@ jobs:
     container:
       image: epitechcontent/epitest-docker
     steps:
+      - name: Install Conan
+        id: conan
+        uses: turtlebrowser/get-conan@main
       - uses: actions/checkout@v2
 
       - name: Build tests
