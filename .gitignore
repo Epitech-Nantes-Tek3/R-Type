@@ -32,7 +32,6 @@
 *.app
 r-type_client
 r-type_server
-tests/R-Type_sender_tests
 
 # CMake
 build
@@ -42,4 +41,3 @@ Debug
 tests/Testing
 Makefile
 .vscode/
-tests/R-type_sender_tests
