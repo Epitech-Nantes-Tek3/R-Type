@@ -67,9 +67,7 @@ namespace ecs
         }
 
       protected:
-
       private:
-
         /// @brief This is the function which is called when none Resources types left
         /// @tparam ...C The last research Resource
         /// @return True
