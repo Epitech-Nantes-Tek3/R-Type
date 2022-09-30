@@ -55,9 +55,26 @@ namespace ecs
             _resourceList.erase(it);
         }
 
+        /// @brief This function will check if a group of Resources types (at least one Resource type) is in an Entity
+        /// @tparam C1 First Resource type to check
+        /// @tparam ...C2 OPTIONAL Next Resource type to check
+        /// @return True if the group of Resource types is contained in Entity. Otherwise False
+        template <std::derived_from<Resource> C1, std::derived_from<Resource>... C2> bool contains() const
+        {
+            if (_resourceList.count(typeid(C1)) == 0)
+                return false;
+            return contains<C2...>();
+        }
+
       protected:
 
       private:
+
+        /// @brief This is the function which is called when none Resources types left
+        /// @tparam ...C The last research Resource
+        /// @return True
+        template <std::derived_from<Resource>... C>
+        requires(sizeof...(C) == 0) bool contains() const { return true; }
 
         /// @brief List of Resources of the World Class
         ResourcesList _resourceList;
