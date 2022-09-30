@@ -16,8 +16,9 @@ namespace ecs
         /// @brief This is the tab of Resource of the World
         using ResourcesList = std::unordered_map<std::type_index, std::unique_ptr<Resource>>;
 
-        World();
-        ~World();
+        World() = default;
+        
+        ~World() = default;
 
         /// @brief This function can add a Resource to the World
         /// @tparam C Type of the Resource
