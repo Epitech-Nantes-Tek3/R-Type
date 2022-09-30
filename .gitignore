@@ -33,6 +33,7 @@
 r-type_client
 r-type_server
 
+
 # CMake
 build
 Debug
@@ -41,3 +42,4 @@ Debug
 tests/Testing
 Makefile
 .vscode/
+tests/R-Type_sender_tests
