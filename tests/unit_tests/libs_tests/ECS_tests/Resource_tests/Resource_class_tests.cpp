@@ -57,7 +57,21 @@ Test(Resource, remove_a_resource)
         class Timer &timer = world->getResource<Timer>();
         (void)timer;
     } catch (std::logic_error &err) {
-        cr_assert_str_eq(err.what(), "attempted to get a non-existent component");
+        cr_assert_str_eq(err.what(), "attempted to get a non-existent Resource");
+        return;
+    }
+    cr_assert_eq(0, 1);
+}
+
+/// @brief Try to remove a non-existing Resource from an World
+Test(Resource, remove_a_non_existant_Resource)
+{
+    ecs::World *world = new ecs::World(1);
+
+    try {
+        world->removeResource<Timer>();
+    } catch (std::logic_error &err) {
+        cr_assert_str_eq(err.what(), "attempted to remove a non-existent Resource");
         return;
     }
     cr_assert_eq(0, 1);
