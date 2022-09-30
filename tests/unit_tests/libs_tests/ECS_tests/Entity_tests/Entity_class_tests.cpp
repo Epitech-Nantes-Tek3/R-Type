@@ -5,11 +5,11 @@
 ** Basic Test
 */
 
+/// @file tests/unit_tests/libs_tests/ECS_tests/Entity_tests
+
 #include <criterion/criterion.h>
 #include "Components/Component.hpp"
 #include "Entity/Entity.hpp"
-
-/// @file tests/unit_tests/libs_tests/ECS_tests/Entity_tests
 
 class Position : public ecs::Component {
   public:

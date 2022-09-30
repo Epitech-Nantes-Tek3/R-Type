@@ -33,7 +33,6 @@
 r-type_client
 r-type_server
 
-
 # CMake
 build
 Debug
@@ -45,6 +44,5 @@ graph.png
 tests/Testing
 Makefile
 .vscode/
-tests/R-Type_sender_tests
 tests/R-Type_receiver_tests
 tests/R-Type_communicator_tests
