@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2022
-** Project
+** R-Type
 ** File description:
 ** Receiver
 */
@@ -10,8 +10,10 @@
 #include "Receiver.hpp"
 #include <boost/bind/bind.hpp>
 #include <iostream>
+#include "Error/Error.hpp"
 
 using namespace communicator_lib;
+using namespace error_lib;
 using namespace boost::asio::ip;
 
 Receiver::Receiver()
@@ -30,7 +32,7 @@ Message Receiver::getLastMessage(void)
 {
     _ioService.poll();
     if (_messageList.size() < 1)
-        throw std::invalid_argument("No message waiting."); /// TO REFACTO WHEN ERROR CLASS IS IMPLEMENTED
+        throw NetworkError("No message waiting for traitment.", "Receiver.cpp -> getLastMessage");
     auto first = _messageList.begin();
     auto temp = *first;
     _messageList.erase(first);
@@ -49,7 +51,8 @@ Message Receiver::getLastMessageFromClient(Client client)
         }
         pos++;
     }
-    throw std::invalid_argument("No message waiting for this client."); /// TO REFACTO WHEN ERROR CLASS IS IMPLEMENTED
+    throw NetworkError(
+        "This client has no message waiting for traitment.", "Receiver.cpp -> getLastMessageFromClient");
 }
 
 void Receiver::removeAllClientMessage(Client client)
@@ -57,8 +60,7 @@ void Receiver::removeAllClientMessage(Client client)
     try {
         getLastMessageFromClient(client);
         removeAllClientMessage(client);
-    } catch (std::invalid_argument &e) {
-        return;
+    } catch (NetworkError &e) {
     }
 }
 
@@ -70,7 +72,8 @@ void Receiver::startListening(void)
             boost::asio::ip::address::from_string(_networkData.getAddress()), _networkData.getPort()));
     } catch (boost::system::system_error &error) {
         std::cerr << "Bind failed. " << error.what() << std::endl;
-        throw std::invalid_argument("Invalid port and ip address. Please restart the executable.");
+        throw NetworkError(
+            "Invalid port and ip address. Please restart the executable.", "Receiver.cpp -> startListening");
     }
     wait();
     _ioService.poll();

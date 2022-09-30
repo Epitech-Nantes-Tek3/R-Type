@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2022
-** Project
+** R-Type
 ** File description:
 ** Communicator
 */
@@ -44,7 +44,7 @@ namespace communicator_lib
 
         /// @brief Add a client inside the list of client
         /// @param client The client to add
-        /// @throw Throw an error if the client is already on the database (to update when error class have been setup)
+        /// @throw Throw an error if the client is already on the database (NetworkError)
         void addClientToList(Client &client);
 
         /// @brief Remove a given client from the list
@@ -56,18 +56,18 @@ namespace communicator_lib
         /// @param address The address of the client
         /// @param port The port of the client
         /// @return Client& The founded client
-        /// @throw Throw an error when no matching client are found (to update when error class have been setup)
+        /// @throw Throw an error when no matching client are found (NetworkError)
         Client &getClientFromList(std::string address, long port);
 
         /// @brief Ask the receiver module to get the last message
         /// @return The last message
-        /// @throw Throw an error when no message are found (to update when error class have been setup)
+        /// @throw Throw an error when no message are found (NetworkError)
         CommunicatorMessage getLastMessage(void);
 
         /// @brief Ask the receiver module to get the last message of a client
         /// @param client THe wanted client
         /// @return The client message
-        /// @throw Throw an error when no message are found (to update when error class have been setup)
+        /// @throw Throw an error when no message are found (NetworkError)
         CommunicatorMessage getLastMessageFromClient(Client client);
 
         /// @brief Tell to the client the communication is over. Remove the client from database
