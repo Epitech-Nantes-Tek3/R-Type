@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2022
-** Project
+** R-Type
 ** File description:
 ** Communicator
 */
@@ -30,7 +30,7 @@ Communicator::Communicator(Client networkBind) : _receiverModule(Receiver(networ
 void Communicator::addClientToList(Client &client)
 {
     if (std::find(_clientList.begin(), _clientList.end(), client) != _clientList.end())
-        throw NetworkError("Client already registered in the communicator.", "Communicator.cpp:32 -> addClientToList");
+        throw NetworkError("Client already registered in the communicator.", "Communicator.cpp -> addClientToList");
     _clientList.push_back(client);
 }
 
@@ -49,7 +49,7 @@ Client &Communicator::getClientFromList(std::string address, long port)
 
     if (founded != _clientList.end())
         return *founded;
-    throw NetworkError("The wanted client are not in the list.", "Communicator.cpp:52 -> getClientFromList");
+    throw NetworkError("The wanted client are not in the list.", "Communicator.cpp -> getClientFromList");
 }
 
 CommunicatorMessage Communicator::getLastMessage(void)
@@ -63,7 +63,7 @@ CommunicatorMessage Communicator::getLastMessage(void)
             return CommunicatorMessage{temp, false};
         }
     } catch (NetworkError &error) {
-        throw NetworkError("No message waiting for traitment.", "Communicator.cpp:65 -> getLastMessage");
+        throw NetworkError("No message waiting for traitment.", "Communicator.cpp -> getLastMessage");
     }
 }
 
@@ -79,7 +79,7 @@ CommunicatorMessage Communicator::getLastMessageFromClient(Client client)
         }
     } catch (NetworkError &error) {
         throw NetworkError(
-            "This client has no message waiting for traitment.", "Communicator.cpp:80 -> getLastMessageFromClient");
+            "This client has no message waiting for traitment.", "Communicator.cpp -> getLastMessageFromClient");
     }
 }
 

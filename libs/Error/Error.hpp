@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2022
-** Project
+** R-Type
 ** File description:
 ** Error
 */
@@ -18,7 +18,7 @@ namespace error_lib
       public:
         /// @brief Error basic constructor. Default value for component -> Unknow
         /// @param message The error message (Some description and information about the error)
-        /// @param component Provenance of the error (File, function, line...)
+        /// @param component Provenance of the error (File, function...)
         inline RTypeError(std::string const &message, std::string const &component = "Unknow")
             : _component(component), _message(message){};
 
@@ -44,7 +44,7 @@ namespace error_lib
       public:
         /// @brief Constructor of the Network Error
         /// @param message Error message (Some description and information about the error)
-        /// @param component Provenance of the error (File, function, line...)
+        /// @param component Provenance of the error (File, function...)
         inline NetworkError(std::string const &message, std::string const &component = "Network")
             : RTypeError(message, component){};
     };
@@ -54,7 +54,7 @@ namespace error_lib
       public:
         /// @brief Constructor of the Ecs Error
         /// @param message Error message (Some description and information about the error)
-        /// @param component Provenance of the error (File, function, line...)
+        /// @param component Provenance of the error (File, function...)
         inline EcsError(std::string const &message, std::string const &component = "Ecs")
             : RTypeError(message, component){};
     };

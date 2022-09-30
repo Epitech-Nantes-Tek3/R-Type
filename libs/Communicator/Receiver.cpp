@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2022
-** Project
+** R-Type
 ** File description:
 ** Receiver
 */
@@ -32,7 +32,7 @@ Message Receiver::getLastMessage(void)
 {
     _ioService.poll();
     if (_messageList.size() < 1)
-        throw NetworkError("No message waiting for traitment.", "Receiver.cpp:33 -> getLastMessage");
+        throw NetworkError("No message waiting for traitment.", "Receiver.cpp -> getLastMessage");
     auto first = _messageList.begin();
     auto temp = *first;
     _messageList.erase(first);
@@ -52,7 +52,7 @@ Message Receiver::getLastMessageFromClient(Client client)
         pos++;
     }
     throw NetworkError(
-        "This client has no message waiting for traitment.", "Receiver.cpp:53 -> getLastMessageFromClient");
+        "This client has no message waiting for traitment.", "Receiver.cpp -> getLastMessageFromClient");
 }
 
 void Receiver::removeAllClientMessage(Client client)
@@ -73,7 +73,7 @@ void Receiver::startListening(void)
     } catch (boost::system::system_error &error) {
         std::cerr << "Bind failed. " << error.what() << std::endl;
         throw NetworkError(
-            "Invalid port and ip address. Please restart the executable.", "Receiver.cpp:74 -> startListening");
+            "Invalid port and ip address. Please restart the executable.", "Receiver.cpp -> startListening");
     }
     wait();
     _ioService.poll();
