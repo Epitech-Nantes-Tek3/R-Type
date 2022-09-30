@@ -19,6 +19,17 @@ namespace ecs
         World();
         ~World();
 
+        /// @brief Remove a Resource of the world
+        /// @tparam C The choosen Resource to remove
+        /// @throw std::logic_error Throw an error if the Resource does not exists
+        template <std::derived_from<Resource> C> void removeResource()
+        {
+            ResourcesList::iterator it = _resourceList.find(typeid(C));
+            if (it == _resourceList.end())
+                throw std::logic_error("attempted to remove a non-existent Resource");
+            _resourceList.erase(it);
+        }
+
       protected:
 
       private:
