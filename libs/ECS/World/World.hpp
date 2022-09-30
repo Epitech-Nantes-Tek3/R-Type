@@ -19,6 +19,20 @@ namespace ecs
         World();
         ~World();
 
+        /// @brief This function can add a Resource to the World
+        /// @tparam C Type of the Resource
+        /// @tparam ...Args This allows to send multiple arguments (args)
+        /// @param ...args All arguments which are used to construct the Resource
+        /// @throw std::logic_error Throw an error if the Resource already exists
+        /// @return itself
+        template <std::derived_from<Resource> C, typename... Args> World &addResource(Args &&...args)
+        {
+            if (contains<C>())
+                throw std::logic_error("attempted to add Resource that already exists");
+            this->_resourceList[std::type_index(typeid(C))] = std::make_unique<C>(std::forward<Args>(args)...);
+            return *this;
+        }
+
         /// @brief This function can get a Resource in the World
         /// @tparam C Search Resource
         /// @throw std::logic_error Throw an error if the Resource does not exists
