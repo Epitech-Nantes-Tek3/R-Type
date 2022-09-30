@@ -1,9 +1,18 @@
 add_subdirectory(Components)
+add_subdirectory(Entity)
 
-add_library(ecs SHARED
+set (TARGET ${PROJECT_NAME}_ecs)
+
+add_library(${TARGET}
     ${SRC_COMPONENT}
-    )
+    ${SRC_ENTITY}
+)
 
-target_include_directories(ecs PUBLIC ${SRC_COMPONENT})
+set(INCLUDE_ECS_LIB
+    ${PROJECT_SOURCE_DIR}/libs/ECS)
 
-set_target_properties(ecs PROPERTIES LINKER_LANGUAGE CXX)
+target_include_directories(${TARGET}
+    PUBLIC ${INCLUDE_ECS_LIB}
+    PRIVATE ${INCLUDE_ECS_LIB}/Entity
+    PRIVATE ${INCLUDE_ECS_LIB}/Components
+)

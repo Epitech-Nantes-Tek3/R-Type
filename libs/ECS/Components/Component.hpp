@@ -11,26 +11,16 @@
 
 namespace ecs
 {
-    class Component
-    {
-    public:
-
+    /// @brief This is the Component Class for ECS
+    /// The base component type, all components must inherit from Component.
+    class Component {
+      public:
         /// @brief This is the destructor of Component Class
         virtual ~Component() = default;
-  
-        /// @brief this function give the name of the component (itself)
-        /// @return the name of itself
-        const std::string getName() const { return this->_name; };
-  
-    protected:
 
+      protected:
         /// @brief This is the constructor of Component Class
-        Component(const std::string name) : _name(name) {};
-
-        /// @brief This is the constructor of Component Class
-        Component(const std::string &name) : _name(name) {};
-
-    private:
-        const std::string _name;
+        /// Because it can be use only by things that eritate by it
+        Component() = default;
     };
-}
+} // namespace ecs
