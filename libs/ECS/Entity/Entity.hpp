@@ -23,7 +23,7 @@ namespace ecs
     /// Encapsulates a index to an entity that may or may not exist.
     ///
     /// This class is trivially copiable because the components are not stored in this class.
-    /// It store in the Component Class
+    /// It stores in the Component Class
     class Entity {
       public:
         /// @brief The id type
@@ -51,7 +51,7 @@ namespace ecs
 
         /// @brief This function can get a Component in the Entity
         /// @tparam C Search Component
-        /// @return The composent choosen
+        /// @return The choosen composent
         template <std::derived_from<Component> C> C &getComponent() const
         {
             if (_componentList.count(typeid(C)) == 0)
@@ -69,10 +69,10 @@ namespace ecs
             _componentList.erase(it);
         }
 
-        /// @brief This function can check if a group of Component types (at least one Component type) is in an Entity
+        /// @brief This function will check if a group of Component types (at least one Component type) is in an Entity
         /// @tparam C1 First Component type to check
         /// @tparam ...C2 OPTIONAL Next Component type to check
-        /// @return True if the group of Component types is contained in Entity. False if it's not
+        /// @return True if the group of Component types is contained in Entity. Otherwise False
         template <std::derived_from<Component> C1, std::derived_from<Component>... C2> bool contains() const
         {
             if (_componentList.count(typeid(C1)) == 0)
@@ -80,7 +80,7 @@ namespace ecs
             return contains<C2...>();
         }
 
-        /// @brief This is the destructor of the Entity Class
+        /// @brief Default constructor. This is the destructor of the Entity Class
         ~Entity() = default;
 
         /// @brief This is the constructor of the Entity Class
@@ -101,13 +101,13 @@ namespace ecs
         requires(sizeof...(C) == 0) bool contains() const { return true; }
     };
 
-    /// @brief Can check if First Entity is equal to Second Entity. Overide of == operator
+    /// @brief Will check if First Entity is equal to Second Entity. Overide of == operator
     /// @param entity First entity
     /// @param other Second entity
     /// @return True if both Entity are same
     inline auto operator==(Entity const &entity, Entity const &other) { return entity.getId() == other.getId(); }
 
-    /// @brief Can check if First Entity is different to Second Entity. Overide of != operator
+    /// @brief Will check if First Entity is different to Second Entity. Overide of != operator
     /// @param entity First entity
     /// @param other Second entity
     /// @return True if both Entity are different
