@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2022
-** Project
+** R-Type
 ** File description:
 ** Receiver
 */
@@ -66,13 +66,13 @@ namespace communicator_lib
 
         /// @brief Pop the first message of the list (oldest)
         /// @return The older message
-        /// @throw Throw an error when no message are found (to update when error class have been setup)
+        /// @throw Throw an error when no message are found (NetworkError)
         Message getLastMessage(void);
 
         /// @brief Pop the oldest message of a client inside the list
         /// @param client The wanted client
         /// @return The client message
-        /// @throw Throw an error when no message are found (to update when error class have been setup)
+        /// @throw Throw an error when no message are found (NetworkError)
         Message getLastMessageFromClient(Client client);
 
         /// @brief Remove all the messages of a client
@@ -81,6 +81,7 @@ namespace communicator_lib
         void removeAllClientMessage(Client client);
 
         /// @brief Start the listening process
+        /// @throw Throw and error when bind failed (NetworkError)
         void startListening(void);
 
       protected:

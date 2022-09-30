@@ -5,11 +5,11 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+  workflow_dispatch:
 
 env:
   BUILD_TYPE: Release
 
-  workflow_dispatch:
 
 jobs:
   lint-format:

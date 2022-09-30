@@ -1,14 +1,16 @@
 /*
 ** EPITECH PROJECT, 2022
-** Project
+** R-Type
 ** File description:
 ** communicator_tests
 */
 
 #include <iostream>
 #include "Communicator/Communicator.hpp"
+#include "Error/Error.hpp"
 
 using namespace communicator_lib;
+using namespace error_lib;
 
 int main(int ac, char **av)
 {
@@ -27,7 +29,7 @@ int main(int ac, char **av)
                           << " : " << temp.message.clientInfo.getPort() << " ) -> ";
             }
             std::cerr << (char *)temp.message.data << std::endl;
-        } catch (std::invalid_argument &error) {
+        } catch (NetworkError &error) {
         }
     }
     return 0;
