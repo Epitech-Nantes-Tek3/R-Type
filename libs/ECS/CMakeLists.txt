@@ -2,6 +2,7 @@ add_subdirectory(Component)
 add_subdirectory(Entity)
 add_subdirectory(World)
 add_subdirectory(System)
+add_subdirectory(Resource)
 
 set(TARGET ${PROJECT_NAME}_ecs)
 

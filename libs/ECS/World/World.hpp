@@ -7,7 +7,14 @@
 
 #pragma once
 
-#include "Resources/Resources.hpp"
+#include <concepts>
+#include <cstddef>
+#include <iostream>
+#include <memory>
+#include <typeindex>
+#include <unordered_map>
+
+#include "Resource/Resource.hpp"
 
 namespace ecs
 {
@@ -17,7 +24,7 @@ namespace ecs
         using ResourcesList = std::unordered_map<std::type_index, std::unique_ptr<Resource>>;
 
         World() = default;
-        
+
         ~World() = default;
 
         /// @brief This function can add a Resource to the World
