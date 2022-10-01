@@ -12,7 +12,7 @@ using namespace ecs;
 
 Entity &World::addEntity()
 {
-    _entitiesList[_nextEntityId] = std::make_unique<Entity>(_nextEntityId);
+    _entitiesList[_nextEntityId] = std::make_shared<Entity>(_nextEntityId);
     _nextEntityId++;
     return *(_entitiesList[_nextEntityId - 1].get());
 }

@@ -10,13 +10,14 @@
 #include <concepts>
 #include <cstddef>
 #include <iostream>
+#include <map>
 #include <memory>
 #include <typeindex>
-#include <unordered_map>
-#include <map>
+#include <vector>
 #include "Entity/Entity.hpp"
 #include "Resource/Resource.hpp"
 #include "System/System.hpp"
+#include <unordered_map>
 
 namespace ecs
 {
@@ -26,21 +27,21 @@ namespace ecs
         using Index = std::size_t;
 
         /// @brief This is the map of Entities in the World
-        using EntitiesList = std::map<Index, std::unique_ptr<Entity>>;
+        using EntitiesList = std::map<Index, std::shared_ptr<Entity>>;
 
         /// @brief This is the map of Resource of the World
-        using ResourcesList = std::unordered_map<std::type_index, std::unique_ptr<Resource>>;
+        using ResourcesList = std::unordered_map<std::type_index, std::shared_ptr<Resource>>;
 
         /// @brief This is the map of the Systems in the World
         using SystemsList = std::unordered_map<std::type_index, std::unique_ptr<System>>;
 
         ///@brief Construct a new World object
         ///@param id Id of the searched Entity
-        inline World(Index id) : _id(id), _nextEntityId(0) {};
+        inline World(Index id) : _id(id), _nextEntityId(1){};
 
         ///@brief Get the Id object
         ///@return Index
-        inline Index getId() const {return _id;};
+        inline Index getId() const { return _id; };
 
         ///@brief This function create an Entity in the world
         ///@return Entity& reference to the created Entity
@@ -51,6 +52,22 @@ namespace ecs
         ///@return Entity& reference to the searched Entity
         ///@throw std::logic_error Throw an error if the entity does not exists
         Entity &getEntity(Index id) const;
+
+        ///@brief It's a function which is used to join entities with the same components.
+        ///@tparam C Component types
+        ///@param world The world to search in
+        ///@return JoinedEntities A vector of all entities which have the given components
+        template <std::derived_from<Component>... C> std::vector<std::shared_ptr<Entity>> joinEntities() const
+        {
+            std::vector<std::shared_ptr<Entity>> joinedEntities;
+
+            for (auto &it : _entitiesList) {
+                std::shared_ptr<Entity> entity = it.second;
+                if (entity.get()->contains<C ...>())
+                    joinedEntities.push_back(entity);
+            }
+            return joinedEntities;
+        }
 
         ///@brief Remove the Entity object with the given id
         ///@param id Id of the searched Entity
@@ -67,7 +84,7 @@ namespace ecs
         {
             if (contains<R>())
                 throw std::logic_error("attempted to add a Resource that already exists");
-            this->_resourcesList[std::type_index(typeid(R))] = std::make_unique<R>(std::forward<Args>(args)...);
+            this->_resourcesList[std::type_index(typeid(R))] = std::make_shared<R>(std::forward<Args>(args)...);
             return *this;
         }
 
