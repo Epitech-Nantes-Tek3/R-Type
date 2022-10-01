@@ -55,14 +55,13 @@ Client &Communicator::getClientFromList(std::string address, long port)
 CommunicatorMessage Communicator::getLastMessage(void)
 {
     try {
-        Message temp = _receiverModule.getLastMessage();
-        if (temp.type == 21)
-            throw NetworkError("No message waiting for traitment.", "Communicator.cpp -> getLastMessage");
+        Message lastMessage = _receiverModule.getLastMessage();
+        receiveProtocol2X(lastMessage);
         try {
-            addClientToList(temp.clientInfo);
-            return CommunicatorMessage{temp, true};
+            addClientToList(lastMessage.clientInfo);
+            return CommunicatorMessage{lastMessage, true};
         } catch (NetworkError &error) {
-            return CommunicatorMessage{temp, false};
+            return CommunicatorMessage{lastMessage, false};
         }
     } catch (NetworkError &error) {
         throw NetworkError("No message waiting for traitment.", "Communicator.cpp -> getLastMessage");
@@ -111,6 +110,24 @@ void Communicator::sendProtocol20(Client client, Client newEndpoint)
     std::memcpy((void *)((char *)dataContent + sizeof(unsigned short)), newEndpoint.getAddress().data(),
         newEndpoint.getAddress().size());
     _senderModule.sendDataToAClient(client, dataContent, sizeof(unsigned short) + newEndpoint.getAddress().size(), 20);
+}
+
+void Communicator::receiveProtocol2X(Message lastMessage)
+{
+    if (lastMessage.type == 21) {
+        addClientToList(lastMessage.clientInfo);
+        throw NetworkError("No message waiting for traitment.", "Communicator.cpp -> getLastMessage");
+    }
+    if (lastMessage.type == 20) {
+        replaceClientByAnother(_receiverModule.getLastMessage().clientInfo, lastMessage.clientInfo);
+        _senderModule.sendDataToAClient(lastMessage.clientInfo, nullptr, 0, 21);
+    }
+}
+
+void Communicator::replaceClientByAnother(Client oldClient, Client newClient)
+{
+    removeClientFromList(oldClient);
+    addClientToList(newClient);
 }
 
 Communicator::~Communicator() {}

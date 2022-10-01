@@ -123,7 +123,17 @@ void Receiver::dataTraitmentType10(Message dataContent)
 
 void Receiver::dataTraitmentType20(Message dataContent)
 {
-    (void)dataContent;
+    unsigned short endpointPort = 0;
+    char *endpointAddress = nullptr;
+    Client newEndpoint = Client();
+    void *data = (void *)((char *)dataContent.data + NETWORK_HEADER_SIZE);
+
+    std::memcpy(&endpointPort, data, sizeof(unsigned short));
+    endpointAddress = (char *)data + sizeof(unsigned short);
+    newEndpoint.setAddress(std::string(endpointAddress));
+    newEndpoint.setPort(endpointPort);
+    addMessage({newEndpoint, nullptr, 0, 20});
+    addMessage({dataContent.clientInfo, nullptr, 0, 20});
 }
 
 void Receiver::dataTraitmentType21(Message dataContent)

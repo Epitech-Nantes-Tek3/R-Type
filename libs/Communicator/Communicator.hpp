@@ -85,6 +85,15 @@ namespace communicator_lib
         /// @param newEndpoint The new endpoint to transfer
         void sendProtocol20(Client client, Client newEndpoint);
 
+        /// @brief If the message is a type 2X -> trait it
+        /// @param lastMessage The message to trait
+        void receiveProtocol2X(Message lastMessage);
+
+        /// @brief Replace a client in the memory by another
+        /// @param oldClient The oldest client to replace
+        /// @param newClient to replace with
+        void replaceClientByAnother(Client oldClient, Client newClient);
+
         /// @brief List of all the current client
         std::vector<Client> _clientList;
 
