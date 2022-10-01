@@ -92,9 +92,9 @@ void Receiver::handleReceive(const boost::system::error_code &error, size_t byte
     }
     std::cerr << "Receiving data. " << bytesTransferred << "bytes used." << std::endl;
     dataHeader = getDataHeader(_tempData.data());
-    std::cerr << "Transfer type : " << dataHeader[1] << std::endl;
-    addMessage({Client(_tempRemoteEndpoint.address().to_string(), dataHeader[0]),
-        (void *)((char *)_tempData.data() + NETWORK_HEADER_SIZE), bytesTransferred});
+    if (_dataTraitment.find(dataHeader[1]) == _dataTraitment.end())
+        return;
+    _dataTraitment[dataHeader[1]]({Client(_tempRemoteEndpoint.address().to_string(), dataHeader[1]), _tempData.data(), bytesTransferred});
     wait();
 }
 
@@ -117,7 +117,8 @@ std::vector<unsigned short> Receiver::getDataHeader(void *data)
 
 void Receiver::dataTraitmentType10(Message dataContent)
 {
-    (void) dataContent;
+    addMessage({dataContent.clientInfo,
+        (void *)((char *)dataContent.data + NETWORK_HEADER_SIZE), dataContent.size - NETWORK_HEADER_SIZE});
 }
 
 void Receiver::dataTraitmentType20(Message dataContent)
@@ -132,7 +133,8 @@ void Receiver::dataTraitmentType21(Message dataContent)
 
 void Receiver::dataTraitmentType30(Message dataContent)
 {
-    (void) dataContent;
+    addMessage({dataContent.clientInfo,
+        (void *)((char *)dataContent.data + NETWORK_HEADER_SIZE), dataContent.size - NETWORK_HEADER_SIZE});
 }
 
 void Receiver::bindDataTraitmentFunction(void)
