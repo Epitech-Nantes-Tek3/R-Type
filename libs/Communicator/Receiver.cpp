@@ -89,9 +89,9 @@ void Receiver::handleReceive(const boost::system::error_code &error, size_t byte
         return;
     }
     std::cerr << "Receiving data. " << bytesTransferred << "bytes used." << std::endl;
-    std::memcpy(&temporaryPort, _tempData.data(), 2);
+    std::memcpy(&temporaryPort, _tempData.data(), NETWORK_HEADER_SIZE);
     addMessage({Client(_tempRemoteEndpoint.address().to_string(), temporaryPort),
-        (void *)((char *)_tempData.data() + sizeof(unsigned short)), bytesTransferred});
+        (void *)((char *)_tempData.data() + NETWORK_HEADER_SIZE), bytesTransferred});
     wait();
 }
 

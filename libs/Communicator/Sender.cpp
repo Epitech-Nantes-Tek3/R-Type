@@ -31,12 +31,12 @@ void Sender::sendDataToAClient(Client &client, void *data, size_t size)
     udp::endpoint socket_endpoint =
         udp::endpoint(boost::asio::ip::address::from_string(client.getAddress()), client.getPort());
     boost::system::error_code error;
-    void *newData = malloc(sizeof(void *) * (size + 2));
+    void *newData = malloc(sizeof(void *) * (size + NETWORK_HEADER_SIZE));
 
     socket.open(udp::v4());
-    std::memcpy(newData, &_receiverPort, 2);
-    std::memcpy((void *)((char *)newData + sizeof(unsigned short)), data, size);
-    auto sent = socket.send_to(boost::asio::buffer(newData, size + 2), socket_endpoint, 0, error);
+    std::memcpy(newData, &_receiverPort, NETWORK_HEADER_SIZE);
+    std::memcpy((void *)((char *)newData + NETWORK_HEADER_SIZE), data, size);
+    auto sent = socket.send_to(boost::asio::buffer(newData, size + NETWORK_HEADER_SIZE), socket_endpoint, 0, error);
     std::free(newData);
     socket.close();
     std::cerr << "Message send. " << sent << "bytes transfered." << std::endl;
