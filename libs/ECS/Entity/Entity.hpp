@@ -18,10 +18,7 @@
 
 namespace ecs
 {
-    class World;
-
     /// @brief This is the Entity Class for ECS
-    ///
     /// This class is trivially copiable because the components are not stored in this class.
     /// It store in the Component Class
     class Entity final {
