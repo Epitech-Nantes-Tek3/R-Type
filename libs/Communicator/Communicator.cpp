@@ -56,6 +56,8 @@ CommunicatorMessage Communicator::getLastMessage(void)
 {
     try {
         Message temp = _receiverModule.getLastMessage();
+        if (temp.type == 21)
+            throw NetworkError("No message waiting for traitment.", "Communicator.cpp -> getLastMessage");
         try {
             addClientToList(temp.clientInfo);
             return CommunicatorMessage{temp, true};

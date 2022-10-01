@@ -94,7 +94,7 @@ void Receiver::handleReceive(const boost::system::error_code &error, size_t byte
     if (_dataTraitment.find(dataHeader[1]) == _dataTraitment.end())
         return;
     _dataTraitment[dataHeader[1]](
-        {Client(_tempRemoteEndpoint.address().to_string(), dataHeader[1]), _tempData.data(), bytesTransferred, 0});
+        {Client(_tempRemoteEndpoint.address().to_string(), dataHeader[0]), _tempData.data(), bytesTransferred, 0});
     wait();
 }
 
@@ -128,7 +128,7 @@ void Receiver::dataTraitmentType20(Message dataContent)
 
 void Receiver::dataTraitmentType21(Message dataContent)
 {
-    (void)dataContent;
+    addMessage({dataContent.clientInfo, nullptr, 0, 21});
 }
 
 void Receiver::dataTraitmentType30(Message dataContent)
