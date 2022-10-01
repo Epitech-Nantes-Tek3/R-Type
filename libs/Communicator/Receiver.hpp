@@ -94,6 +94,11 @@ namespace communicator_lib
         /// @brief Private async function holding the network search process
         void wait(void);
 
+        /// @brief Extract the communication header from the transfered data
+        /// @param data The transfered data
+        /// @return A vector of two unsigned short which represent the data header
+        std::vector<unsigned short> getDataHeader(void *data);
+
         /// @brief List of all the untraited message
         std::vector<Message> _messageList;
 

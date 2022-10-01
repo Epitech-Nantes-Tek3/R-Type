@@ -31,13 +31,15 @@ void Sender::sendDataToAClient(Client &client, void *data, size_t size)
     udp::endpoint socket_endpoint =
         udp::endpoint(boost::asio::ip::address::from_string(client.getAddress()), client.getPort());
     boost::system::error_code error;
-    void *newData = malloc(sizeof(void *) * (size + NETWORK_HEADER_SIZE));
+    void *newData = std::malloc(sizeof(void *) * (size + NETWORK_HEADER_SIZE));
+    void *dataHeader = generateDataHeader(30);
 
     socket.open(udp::v4());
-    std::memcpy(newData, &_receiverPort, NETWORK_HEADER_SIZE);
+    std::memcpy(newData, dataHeader, NETWORK_HEADER_SIZE);
     std::memcpy((void *)((char *)newData + NETWORK_HEADER_SIZE), data, size);
     auto sent = socket.send_to(boost::asio::buffer(newData, size + NETWORK_HEADER_SIZE), socket_endpoint, 0, error);
     std::free(newData);
+    std::free(dataHeader);
     socket.close();
     std::cerr << "Message send. " << sent << "bytes transfered." << std::endl;
 }
@@ -47,6 +49,15 @@ void Sender::sendDataToMultipleClients(std::vector<Client> clients, void *data, 
     for (auto i : clients) {
         sendDataToAClient(i, data, size);
     }
+}
+
+void *Sender::generateDataHeader(unsigned short communicationType)
+{
+    void *dataHeader = std::malloc(sizeof(void *) * (NETWORK_HEADER_SIZE));
+
+    std::memcpy(dataHeader, &_receiverPort, NETWORK_HEADER_SIZE / 2);
+    std::memcpy((void *)((char *)dataHeader + NETWORK_HEADER_SIZE / 2), &communicationType, NETWORK_HEADER_SIZE / 2);
+    return dataHeader;
 }
 
 Sender::~Sender() {}

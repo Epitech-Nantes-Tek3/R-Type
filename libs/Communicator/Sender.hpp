@@ -41,6 +41,11 @@ namespace communicator_lib
         void sendDataToMultipleClients(std::vector<Client> clients, void *data, size_t size);
 
       private:
+        /// @brief Create a communication header which contain Receiver Port | Communication Type
+        /// @param communicationType The communication type
+        /// @return Created communication header
+        void *generateDataHeader(unsigned short communicationType);
+
         /// @brief Port of the associated receiver module
         unsigned short _receiverPort;
     };

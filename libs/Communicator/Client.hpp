@@ -9,7 +9,7 @@
 
 #ifndef CLIENT_HPP_
 #define CLIENT_HPP_
-#define NETWORK_HEADER_SIZE (sizeof(unsigned short) * 1)
+#define NETWORK_HEADER_SIZE (sizeof(unsigned short) * 2)
 
 #include <string>
 

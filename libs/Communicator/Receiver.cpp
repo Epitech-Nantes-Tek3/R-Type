@@ -81,7 +81,7 @@ void Receiver::startListening(void)
 
 void Receiver::handleReceive(const boost::system::error_code &error, size_t bytesTransferred)
 {
-    unsigned short temporaryPort = 0;
+    std::vector<unsigned short> dataHeader;
 
     if (error) {
         std::cerr << "Receive failed: " << error.message() << std::endl;
@@ -89,8 +89,9 @@ void Receiver::handleReceive(const boost::system::error_code &error, size_t byte
         return;
     }
     std::cerr << "Receiving data. " << bytesTransferred << "bytes used." << std::endl;
-    std::memcpy(&temporaryPort, _tempData.data(), NETWORK_HEADER_SIZE);
-    addMessage({Client(_tempRemoteEndpoint.address().to_string(), temporaryPort),
+    dataHeader = getDataHeader(_tempData.data());
+    std::cerr << "Transfer type : " << dataHeader[1] << std::endl;
+    addMessage({Client(_tempRemoteEndpoint.address().to_string(), dataHeader[0]),
         (void *)((char *)_tempData.data() + NETWORK_HEADER_SIZE), bytesTransferred});
     wait();
 }
@@ -100,6 +101,16 @@ void Receiver::wait(void)
     _socket.async_receive_from(boost::asio::buffer(_tempData), _tempRemoteEndpoint,
         boost::bind(&Receiver::handleReceive, this, boost::asio::placeholders::error,
             boost::asio::placeholders::bytes_transferred));
+}
+
+std::vector<unsigned short> Receiver::getDataHeader(void *data)
+{
+    unsigned short receiverPort = 0;
+    unsigned short communicationType = 0;
+
+    std::memcpy(&receiverPort, data, NETWORK_HEADER_SIZE / 2);
+    std::memcpy(&communicationType, (void *)((char *)data + NETWORK_HEADER_SIZE / 2), NETWORK_HEADER_SIZE / 2);
+    return std::vector<unsigned short>{receiverPort, communicationType};
 }
 
 Receiver::~Receiver() {}
