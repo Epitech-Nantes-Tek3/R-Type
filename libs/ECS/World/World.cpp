@@ -36,5 +36,5 @@ void World::removeEntity(Index id)
 void World::runSystems()
 {
     for (auto &it : _systemsList)
-        it.second.get()->run();
+        it.second.get()->run(*this);
 }

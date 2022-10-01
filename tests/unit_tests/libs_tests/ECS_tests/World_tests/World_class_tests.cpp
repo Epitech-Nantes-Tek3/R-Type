@@ -9,23 +9,51 @@
 
 #include <criterion/criterion.h>
 #include <World/World.hpp>
+#include <algorithm>
+#include <iostream>
 
 class Position : public ecs::Component {
   public:
-    int x;
-    int y;
+    double x;
+    double y;
 
-    Position(const int X, const int Y) : x(X), y(Y){};
+    Position(const double X, const double Y) : x(X), y(Y){};
     Position(Position &old) : x(old.x), y(old.y){};
 };
 
 class Velocity : public ecs::Component {
   public:
-    float x;
-    float y;
+    double x;
+    double y;
 
-    Velocity(const float X, const float Y) : x(X), y(Y){};
+    Velocity(const double X, const double Y) : x(X), y(Y){};
     Velocity(Velocity &old) : x(old.x), y(old.y){};
+};
+
+class Hitbox : public ecs::Component {
+  public:
+    int hight;
+    int length;
+
+    Hitbox(const int H, const int L) : hight(H), length(L){};
+    Hitbox(Hitbox &old) : hight(old.hight), length(old.length){};
+};
+
+struct Move : public ecs::System
+{
+    void run(ecs::World &world) override final {
+        std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Position, Velocity>();
+
+        auto move = [](std::shared_ptr<ecs::Entity> entityPtr) {
+            Position &pos = entityPtr.get()->getComponent<Position>();
+            Velocity &vel = entityPtr.get()->getComponent<Velocity>();
+
+            pos.x += vel.x;
+            pos.y += vel.y;
+        };
+
+        std::for_each(joined.begin(), joined.end(), move);
+    }
 };
 
 Test(World, creation_and_getId)
@@ -107,4 +135,53 @@ Test(World, join_entities)
     cr_assert_eq(1, entity3.get()->getId());
     cr_assert_eq(pos3.x, 5);
     cr_assert_eq(pos3.y, 10);
+}
+
+Test(World, test_system) {
+    ecs::World world(1);
+
+    world.addEntity().addComponent<Position>(5, 10);
+    world.addEntity().addComponent<Position>(57, 35).addComponent<Velocity>(0.5, 2.9);
+    world.addEntity().addComponent<Velocity>(0.1, -0.1);
+    world.addEntity().addComponent<Velocity>(-9, 1.4).addComponent<Position>(26, 62);
+    world.addEntity().addComponent<Hitbox>(9, 4).addComponent<Position>(26, 62);
+    world.addEntity().addComponent<Hitbox>(57, 35).addComponent<Velocity>(562, 785);
+
+    world.addSystem<Move>();
+
+    std::vector<std::shared_ptr<ecs::Entity>> joinedEntities1 = world.joinEntities<Position, Velocity>();
+    cr_assert_eq(2, joinedEntities1.size());
+
+    std::shared_ptr<ecs::Entity> entity1 = joinedEntities1.back();
+    Position &pos1 = entity1.get()->getComponent<Position>();
+    cr_assert_eq(4, entity1.get()->getId());
+    cr_assert_eq(pos1.x, 26);
+    cr_assert_eq(pos1.y, 62);
+
+    joinedEntities1.pop_back();
+
+    std::shared_ptr<ecs::Entity> entity12 = joinedEntities1.back();
+    Position &pos12 = entity12.get()->getComponent<Position>();
+    cr_assert_eq(2, entity12.get()->getId());
+    cr_assert_eq(pos12.x, 57);
+    cr_assert_eq(pos12.y, 35);
+
+    world.runSystems();
+
+    std::vector<std::shared_ptr<ecs::Entity>> joinedEntities2 = world.joinEntities<Position, Velocity>();
+    cr_assert_eq(2, joinedEntities2.size());
+
+    std::shared_ptr<ecs::Entity> entity2 = joinedEntities2.back();
+    Position &pos2 = entity2.get()->getComponent<Position>();
+    cr_assert_eq(4, entity2.get()->getId());
+    cr_assert_eq(pos2.x, 17);
+    cr_assert_eq(pos2.y, 63.4);
+
+    joinedEntities2.pop_back();
+
+    std::shared_ptr<ecs::Entity> entity22 = joinedEntities2.back();
+    Position &pos22 = entity22.get()->getComponent<Position>();
+    cr_assert_eq(2, entity22.get()->getId());
+    cr_assert_eq(pos22.x, 57.5);
+    cr_assert_eq(pos22.y, 37.9);
 }

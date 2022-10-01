@@ -91,7 +91,7 @@ Test(Resource, contains_one_good_resource)
     ecs::World *world = new ecs::World(1);
     world->addResource<Timer>(1);
 
-    cr_assert_eq(true, world->contains<Timer>());
+    cr_assert_eq(true, world->containsResource<Timer>());
     delete world;
 }
 
@@ -101,7 +101,7 @@ Test(Resource, contains_one_wrong_resource)
     ecs::World *world = new ecs::World(1);
     world->addResource<Timer>(1);
 
-    cr_assert_eq(false, world->contains<Texture>());
+    cr_assert_eq(false, world->containsResource<Texture>());
     delete world;
 }
 
@@ -112,7 +112,7 @@ Test(Resource, contains_many_good_resources)
     world->addResource<Timer>(1);
     world->addResource<Texture>("Lego");
 
-    auto a = world->contains<Texture, Timer>();
+    auto a = world->containsResource<Texture, Timer>();
     cr_assert_eq(true, a);
     delete world;
 }
@@ -123,7 +123,7 @@ Test(Resource, contains_many_wrong_resources)
     ecs::World *world = new ecs::World(1);
     world->addResource<Timer>(1);
 
-    auto a = world->contains<Texture, Timer>();
+    auto a = world->containsResource<Texture, Timer>();
     cr_assert_eq(false, a);
     delete world;
 }
@@ -135,7 +135,7 @@ Test(Resource, search_only_one_resources)
     world->addResource<Timer>(1);
     world->addResource<Texture>("Lego");
 
-    auto a = world->contains<Texture>();
+    auto a = world->containsResource<Texture>();
     cr_assert_eq(true, a);
     delete world;
 }

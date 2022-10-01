@@ -11,12 +11,15 @@
 
 namespace ecs
 {
+    /// The World that contains the system.
+    class World;
+
     /// The base system type, all systems must inherit from System.
     class System {
       public:
         virtual ~System() = default;
 
         /// Run the system.
-        virtual void run() = 0;
+        virtual void run(World &world) = 0;
     };
 } // namespace ecs

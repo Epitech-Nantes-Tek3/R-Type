@@ -82,7 +82,7 @@ namespace ecs
         /// @return itself
         template <std::derived_from<Resource> R, typename... Args> World &addResource(Args &&...args)
         {
-            if (contains<R>())
+            if (containsResource<R>())
                 throw std::logic_error("attempted to add a Resource that already exists");
             this->_resourcesList[std::type_index(typeid(R))] = std::make_shared<R>(std::forward<Args>(args)...);
             return *this;
@@ -114,11 +114,22 @@ namespace ecs
         /// @tparam R1 First Resource type to check
         /// @tparam ...R2 OPTIONAL Next Resource type to check
         /// @return True if the group of Resource types is contained in the World. Otherwise False
-        template <std::derived_from<Resource> R1, std::derived_from<Resource>... R2> bool contains() const
+        template <std::derived_from<Resource> R1, std::derived_from<Resource>... R2> bool containsResource() const
         {
             if (_resourcesList.count(typeid(R1)) == 0)
                 return false;
-            return contains<R2...>();
+            return containsResource<R2...>();
+        }
+
+        /// @brief This function will check if a group of Systems types (at least one System type) is in an World
+        /// @tparam S1 First System type to check
+        /// @tparam ...S2 OPTIONAL Next System type to check
+        /// @return True if the group of System types is contained in the World. Otherwise False
+        template <std::derived_from<System> S1, std::derived_from<System>... S2> bool containsSystem() const
+        {
+            if (_resourcesList.count(typeid(S1)) == 0)
+                return false;
+            return containsSystem<S2...>();
         }
 
         /// @brief This function can add a System to the World
@@ -127,7 +138,7 @@ namespace ecs
         /// @return itself
         template <std::derived_from<System> S> World &addSystem()
         {
-            if (contains<S>())
+            if (containsSystem<S>())
                 throw std::logic_error("attempted to add a System that already exists");
             this->_systemsList[std::type_index(typeid(S))] = std::make_unique<S>();
             return *this;
@@ -160,6 +171,12 @@ namespace ecs
         /// @tparam ...R The last research Resource
         /// @return True
         template <std::derived_from<Resource>... R>
-        requires(sizeof...(R) == 0) bool contains() const { return true; }
+        requires(sizeof...(R) == 0) bool containsResource() const { return true; }
+
+        /// @brief This is the function which is called when none Systems types left
+        /// @tparam ...S The last research System
+        /// @return True
+        template <std::derived_from<System>... S>
+        requires(sizeof...(S) == 0) bool containsSystem() const { return true; }
     };
 } // namespace ecs
