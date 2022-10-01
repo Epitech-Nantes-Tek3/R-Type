@@ -53,8 +53,7 @@ Message Receiver::getLastMessageFromClient(Client client)
         }
         pos++;
     }
-    throw NetworkError(
-        "This client has no message waiting for traitment.", "Receiver.cpp -> getLastMessageFromClient");
+    throw NetworkError("This client has no message waiting for traitment.", "Receiver.cpp -> getLastMessageFromClient");
 }
 
 void Receiver::removeAllClientMessage(Client client)
@@ -94,7 +93,8 @@ void Receiver::handleReceive(const boost::system::error_code &error, size_t byte
     dataHeader = getDataHeader(_tempData.data());
     if (_dataTraitment.find(dataHeader[1]) == _dataTraitment.end())
         return;
-    _dataTraitment[dataHeader[1]]({Client(_tempRemoteEndpoint.address().to_string(), dataHeader[1]), _tempData.data(), bytesTransferred});
+    _dataTraitment[dataHeader[1]](
+        {Client(_tempRemoteEndpoint.address().to_string(), dataHeader[1]), _tempData.data(), bytesTransferred, 0});
     wait();
 }
 
@@ -117,24 +117,18 @@ std::vector<unsigned short> Receiver::getDataHeader(void *data)
 
 void Receiver::dataTraitmentType10(Message dataContent)
 {
-    addMessage({dataContent.clientInfo,
-        (void *)((char *)dataContent.data + NETWORK_HEADER_SIZE), dataContent.size - NETWORK_HEADER_SIZE});
+    addMessage({dataContent.clientInfo, (void *)((char *)dataContent.data + NETWORK_HEADER_SIZE),
+        dataContent.size - NETWORK_HEADER_SIZE, 10});
 }
 
-void Receiver::dataTraitmentType20(Message dataContent)
-{
-    (void) dataContent;
-}
+void Receiver::dataTraitmentType20(Message dataContent) { (void)dataContent; }
 
-void Receiver::dataTraitmentType21(Message dataContent)
-{
-    (void) dataContent;
-}
+void Receiver::dataTraitmentType21(Message dataContent) { (void)dataContent; }
 
 void Receiver::dataTraitmentType30(Message dataContent)
 {
-    addMessage({dataContent.clientInfo,
-        (void *)((char *)dataContent.data + NETWORK_HEADER_SIZE), dataContent.size - NETWORK_HEADER_SIZE});
+    addMessage({dataContent.clientInfo, (void *)((char *)dataContent.data + NETWORK_HEADER_SIZE),
+        dataContent.size - NETWORK_HEADER_SIZE, 30});
 }
 
 void Receiver::bindDataTraitmentFunction(void)

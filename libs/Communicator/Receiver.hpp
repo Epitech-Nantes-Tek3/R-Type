@@ -26,6 +26,8 @@ namespace communicator_lib
         void *data;
         /// @brief Size of the message
         size_t size;
+        /// @brief Data type (Refer to the RFC)
+        unsigned short type;
     };
 
     /// @brief Get and store all the network message
