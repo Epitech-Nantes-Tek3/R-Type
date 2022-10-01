@@ -92,10 +92,10 @@ void Communicator::kickAClient(Client client, Client newEndpoint)
     } catch (NetworkError &error) {
     }
     if (newEndpoint == Client())
-        _senderModule.sendDataToAClient(client, (void *)"kick", 5); /// TO REFACTO WHEN UDP PROTOCOL IS IMPLEMENTED
+        _senderModule.sendDataToAClient(client, (void *)"kick", 5, 30); /// TO REFACTO WHEN UDP PROTOCOL IS IMPLEMENTED
     else {
         unsigned short temp = newEndpoint.getPort();
-        _senderModule.sendDataToAClient(client, &temp, 2); /// TO REFACTO WHEN UDP PROTOCOL IS IMPLEMENTED
+        _senderModule.sendDataToAClient(client, &temp, 2, 30); /// TO REFACTO WHEN UDP PROTOCOL IS IMPLEMENTED
     }
 }
 

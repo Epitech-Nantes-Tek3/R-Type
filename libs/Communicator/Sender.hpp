@@ -32,13 +32,15 @@ namespace communicator_lib
         /// @param client The client informations
         /// @param data The given data to transfer
         /// @param size Size of the data to transfer (sizeof(data) * quantity)
-        void sendDataToAClient(Client &client, void *data, size_t size);
+        /// @param type Data type (Refer to RFC)
+        void sendDataToAClient(Client &client, void *data, size_t size, unsigned short type);
 
         /// @brief Send data to a given vector of clients
         /// @param clients The clients informations vector
         /// @param data The given data to transfer
         /// @param size Size of the data to transfer (sizeof(data) * quantity)
-        void sendDataToMultipleClients(std::vector<Client> clients, void *data, size_t size);
+        /// @param type Data type (Refer to RFC)
+        void sendDataToMultipleClients(std::vector<Client> clients, void *data, size_t size, unsigned short type);
 
       private:
         /// @brief Create a communication header which contain Receiver Port | Communication Type
