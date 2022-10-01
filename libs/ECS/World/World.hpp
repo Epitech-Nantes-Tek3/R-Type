@@ -15,8 +15,8 @@
 #include <unordered_map>
 #include <map>
 #include "Entity/Entity.hpp"
-
 #include "Resource/Resource.hpp"
+#include "System/System.hpp"
 
 namespace ecs
 {
@@ -31,9 +31,12 @@ namespace ecs
         /// @brief This is the map of Resource of the World
         using ResourcesList = std::unordered_map<std::type_index, std::unique_ptr<Resource>>;
 
+        /// @brief This is the map of the Systems in the World
+        using SystemsList = std::unordered_map<std::type_index, std::unique_ptr<System>>;
+
         ///@brief Construct a new World object
         ///@param id Id of the searched Entity
-        inline World(Index id) : _id(id), _entitiesList(), _nextEntityId(0){};
+        inline World(Index id) : _id(id), _nextEntityId(0) {};
 
         ///@brief Get the Id object
         ///@return Index
@@ -109,14 +112,17 @@ namespace ecs
         ///@brief World's id
         Index _id;
 
-        ///@brief Map of entities
-        EntitiesList _entitiesList;
-
         ///@brief index of the next entity which will be created by the function addEntity()
         Index _nextEntityId;
 
+        ///@brief Map of entities
+        EntitiesList _entitiesList;
+
         /// @brief List of Resources of the World Class
         ResourcesList _resourcesList;
+
+        ///@brief Map of systems
+        SystemsList _systemsList;
 
         /// @brief This is the function which is called when none Resources types left
         /// @tparam ...C The last research Resource
