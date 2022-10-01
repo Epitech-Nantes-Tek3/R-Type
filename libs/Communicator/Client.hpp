@@ -31,8 +31,8 @@ namespace communicator_lib
         inline std::string getAddress(void) const { return _address; };
 
         /// @brief Get the Port value
-        /// @return long The value of the port
-        inline long getPort(void) const { return _port; };
+        /// @return unsigned short The value of the port
+        inline unsigned short getPort(void) const { return _port; };
 
         /// @brief Set the Address value
         /// @param address The newly address
@@ -40,7 +40,7 @@ namespace communicator_lib
 
         /// @brief Set the Port value
         /// @param port The new port number
-        inline void setPort(long port) { _port = port; };
+        inline void setPort(unsigned short port) { _port = port; };
 
       private:
         /// @brief The ip address of the client (127.0.0.1 by default)

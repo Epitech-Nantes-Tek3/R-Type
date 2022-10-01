@@ -121,9 +121,15 @@ void Receiver::dataTraitmentType10(Message dataContent)
         dataContent.size - NETWORK_HEADER_SIZE, 10});
 }
 
-void Receiver::dataTraitmentType20(Message dataContent) { (void)dataContent; }
+void Receiver::dataTraitmentType20(Message dataContent)
+{
+    (void)dataContent;
+}
 
-void Receiver::dataTraitmentType21(Message dataContent) { (void)dataContent; }
+void Receiver::dataTraitmentType21(Message dataContent)
+{
+    (void)dataContent;
+}
 
 void Receiver::dataTraitmentType30(Message dataContent)
 {

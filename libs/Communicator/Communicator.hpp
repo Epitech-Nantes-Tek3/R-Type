@@ -80,6 +80,11 @@ namespace communicator_lib
         inline void startReceiverListening(void) { _receiverModule.startListening(); };
 
       private:
+        /// @brief Send a protocol 20 to a client
+        /// @param client The destination
+        /// @param newEndpoint The new endpoint to transfer
+        void sendProtocol20(Client client, Client newEndpoint);
+
         /// @brief List of all the current client
         std::vector<Client> _clientList;
 
