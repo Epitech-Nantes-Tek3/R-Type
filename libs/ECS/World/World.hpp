@@ -40,7 +40,7 @@ namespace ecs
 
         ///@brief Get the Id object
         ///@return Index
-        inline Index getId() {return _id;};
+        inline Index getId() {return _id;} const;
 
         ///@brief This function create an Entity in the world
         ///@return Entity& reference to the created Entity
@@ -58,50 +58,68 @@ namespace ecs
         void removeEntity(Index id);
 
         /// @brief This function can add a Resource to the World
-        /// @tparam C Type of the Resource
+        /// @tparam R Type of the Resource
         /// @tparam ...Args This allows to send multiple arguments (args)
         /// @param ...args All arguments which are used to construct the Resource
         /// @throw std::logic_error Throw an error if the Resource already exists
         /// @return itself
-        template <std::derived_from<Resource> C, typename... Args> World &addResource(Args &&...args)
+        template <std::derived_from<Resource> R, typename... Args> World &addResource(Args &&...args)
         {
-            if (contains<C>())
-                throw std::logic_error("attempted to add Resource that already exists");
-            this->_resourcesList[std::type_index(typeid(C))] = std::make_unique<C>(std::forward<Args>(args)...);
+            if (contains<R>())
+                throw std::logic_error("attempted to add a Resource that already exists");
+            this->_resourcesList[std::type_index(typeid(R))] = std::make_unique<R>(std::forward<Args>(args)...);
             return *this;
         }
 
         /// @brief This function can get a Resource in the World
-        /// @tparam C Search Resource
+        /// @tparam R Search Resource
         /// @throw std::logic_error Throw an error if the Resource does not exists
         /// @return The Resource choosen
-        template <std::derived_from<Resource> C> C &getResource() const
+        template <std::derived_from<Resource> R> R &getResource() const
         {
-            if (_resourcesList.count(typeid(C)) == 0)
+            if (_resourcesList.count(typeid(R)) == 0)
                 throw std::logic_error("attempted to get a non-existent Resource");
-            return static_cast<C &>(*(_resourcesList.at(typeid(C)).get()));
+            return static_cast<R &>(*(_resourcesList.at(typeid(R)).get()));
         }
 
         /// @brief Remove a Resource of the world
-        /// @tparam C The choosen Resource to remove
+        /// @tparam R The choosen Resource to remove
         /// @throw std::logic_error Throw an error if the Resource does not exists
-        template <std::derived_from<Resource> C> void removeResource()
+        template <std::derived_from<Resource> R> void removeResource()
         {
-            ResourcesList::iterator it = _resourcesList.find(typeid(C));
+            ResourcesList::iterator it = _resourcesList.find(typeid(R));
             if (it == _resourcesList.end())
                 throw std::logic_error("attempted to remove a non-existent Resource");
             _resourcesList.erase(it);
         }
 
         /// @brief This function will check if a group of Resources types (at least one Resource type) is in an World
-        /// @tparam C1 First Resource type to check
-        /// @tparam ...C2 OPTIONAL Next Resource type to check
+        /// @tparam R1 First Resource type to check
+        /// @tparam ...R2 OPTIONAL Next Resource type to check
         /// @return True if the group of Resource types is contained in the World. Otherwise False
-        template <std::derived_from<Resource> C1, std::derived_from<Resource>... C2> bool contains() const
+        template <std::derived_from<Resource> R1, std::derived_from<Resource>... R2> bool contains() const
         {
-            if (_resourcesList.count(typeid(C1)) == 0)
+            if (_resourcesList.count(typeid(R1)) == 0)
                 return false;
-            return contains<C2...>();
+            return contains<R2...>();
+        }
+
+        /// @brief This function can add a System to the World
+        /// @tparam S Type of the System
+        /// @throw std::logic_error Throw an error if the System already exists
+        /// @return itself
+        template <std::derived_from<System> S> World &addSystem()
+        {
+            if (contains<S>())
+                throw std::logic_error("attempted to add a System that already exists");
+            this->_systemsList[std::type_index(typeid(S))] = std::make_unique<S>();
+            return *this;
+        }
+
+        void runSystems()
+        {
+            for (auto& it: _systemsList)
+                it.second.get()->run();
         }
 
         ///@brief Destroy the World object
@@ -125,9 +143,9 @@ namespace ecs
         SystemsList _systemsList;
 
         /// @brief This is the function which is called when none Resources types left
-        /// @tparam ...C The last research Resource
+        /// @tparam ...R The last research Resource
         /// @return True
-        template <std::derived_from<Resource>... C>
-        requires(sizeof...(C) == 0) bool contains() const { return true; }
+        template <std::derived_from<Resource>... R>
+        requires(sizeof...(R) == 0) bool contains() const { return true; }
     };
 } // namespace ecs
