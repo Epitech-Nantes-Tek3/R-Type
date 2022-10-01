@@ -63,7 +63,7 @@ namespace ecs
 
             for (auto &it : _entitiesList) {
                 std::shared_ptr<Entity> entity = it.second;
-                if (entity.get()->contains<C ...>())
+                if (entity.get()->contains<C...>())
                     joinedEntities.push_back(entity);
             }
             return joinedEntities;

@@ -7,10 +7,10 @@
 
 /// @file tests/unit_tests/libs_tests/ECS_tests/World_tests
 
-#include <criterion/criterion.h>
 #include <World/World.hpp>
 #include <algorithm>
 #include <iostream>
+#include <criterion/criterion.h>
 
 class Position : public ecs::Component {
   public:
@@ -39,9 +39,9 @@ class Hitbox : public ecs::Component {
     Hitbox(Hitbox &old) : hight(old.hight), length(old.length){};
 };
 
-struct Move : public ecs::System
-{
-    void run(ecs::World &world) override final {
+struct Move : public ecs::System {
+    void run(ecs::World &world) override final
+    {
         std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Position, Velocity>();
 
         auto move = [](std::shared_ptr<ecs::Entity> entityPtr) {
@@ -137,7 +137,8 @@ Test(World, join_entities)
     cr_assert_eq(pos3.y, 10);
 }
 
-Test(World, test_system) {
+Test(World, test_system)
+{
     ecs::World world(1);
 
     world.addEntity().addComponent<Position>(5, 10);
