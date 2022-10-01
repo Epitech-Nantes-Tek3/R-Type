@@ -40,7 +40,7 @@ namespace ecs
 
         ///@brief Get the Id object
         ///@return Index
-        inline Index getId() {return _id;} const;
+        inline Index getId() const {return _id;};
 
         ///@brief This function create an Entity in the world
         ///@return Entity& reference to the created Entity
