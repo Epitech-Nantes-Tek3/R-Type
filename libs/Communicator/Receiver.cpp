@@ -20,12 +20,14 @@ Receiver::Receiver()
 {
     _messageList = {};
     _networkData = Client();
+    bindDataTraitmentFunction();
 }
 
 Receiver::Receiver(Client networkData)
 {
     _messageList = {};
     _networkData = networkData;
+    bindDataTraitmentFunction();
 }
 
 Message Receiver::getLastMessage(void)
@@ -111,6 +113,34 @@ std::vector<unsigned short> Receiver::getDataHeader(void *data)
     std::memcpy(&receiverPort, data, NETWORK_HEADER_SIZE / 2);
     std::memcpy(&communicationType, (void *)((char *)data + NETWORK_HEADER_SIZE / 2), NETWORK_HEADER_SIZE / 2);
     return std::vector<unsigned short>{receiverPort, communicationType};
+}
+
+void Receiver::dataTraitmentType10(Message dataContent)
+{
+    (void) dataContent;
+}
+
+void Receiver::dataTraitmentType20(Message dataContent)
+{
+    (void) dataContent;
+}
+
+void Receiver::dataTraitmentType21(Message dataContent)
+{
+    (void) dataContent;
+}
+
+void Receiver::dataTraitmentType30(Message dataContent)
+{
+    (void) dataContent;
+}
+
+void Receiver::bindDataTraitmentFunction(void)
+{
+    _dataTraitment[10] = std::bind(&Receiver::dataTraitmentType10, this, std::placeholders::_1);
+    _dataTraitment[20] = std::bind(&Receiver::dataTraitmentType20, this, std::placeholders::_1);
+    _dataTraitment[21] = std::bind(&Receiver::dataTraitmentType21, this, std::placeholders::_1);
+    _dataTraitment[30] = std::bind(&Receiver::dataTraitmentType30, this, std::placeholders::_1);
 }
 
 Receiver::~Receiver() {}

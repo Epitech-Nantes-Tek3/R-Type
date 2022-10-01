@@ -13,6 +13,7 @@
 #include <boost/array.hpp>
 #include <boost/asio.hpp>
 #include <vector>
+#include <map>
 #include "Client.hpp"
 
 namespace communicator_lib
@@ -99,6 +100,25 @@ namespace communicator_lib
         /// @return A vector of two unsigned short which represent the data header
         std::vector<unsigned short> getDataHeader(void *data);
 
+        /// @brief Trait the data for the dataType 10
+        /// @param dataContent The transfered data (Client + Data)
+        void dataTraitmentType10(Message dataContent);
+
+        /// @brief Trait the data for the dataType 20
+        /// @param dataContent The transfered data (Client + Data)
+        void dataTraitmentType20(Message dataContent);
+
+        /// @brief Trait the data for the dataType 21
+        /// @param dataContent The transfered data (Client + Data)
+        void dataTraitmentType21(Message dataContent);
+
+        /// @brief Trait the data for the dataType 30
+        /// @param dataContent The transfered data (Client + Data)
+        void dataTraitmentType30(Message dataContent);
+
+        /// @brief Bind all data traitment function (Use only in constructor)
+        void bindDataTraitmentFunction(void);
+
         /// @brief List of all the untraited message
         std::vector<Message> _messageList;
 
@@ -116,6 +136,9 @@ namespace communicator_lib
 
         /// @brief A temporary data using in the listening functionnality
         boost::asio::ip::udp::endpoint _tempRemoteEndpoint;
+
+        /// @brief Map of all the data traitment function. (Type + function)
+        std::map<unsigned short, std::function<void(Message)>> _dataTraitment;
     };
 } // namespace communicator_lib
 
