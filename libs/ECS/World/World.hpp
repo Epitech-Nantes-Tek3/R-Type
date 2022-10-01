@@ -116,11 +116,8 @@ namespace ecs
             return *this;
         }
 
-        void runSystems()
-        {
-            for (auto& it: _systemsList)
-                it.second.get()->run();
-        }
+        ///@brief It runs all the systems in the world
+        void runSystems();
 
         ///@brief Destroy the World object
         ~World() = default;

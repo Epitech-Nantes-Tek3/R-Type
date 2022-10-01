@@ -32,3 +32,9 @@ void World::removeEntity(Index id)
         throw std::logic_error("attempted to remove a non-existent entity");
     _entitiesList.erase(it);
 }
+
+void World::runSystems()
+{
+    for (auto &it : _systemsList)
+        it.second.get()->run();
+}
