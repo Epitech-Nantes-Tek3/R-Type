@@ -110,7 +110,8 @@ void Communicator::sendProtocol20(Client client, Client newEndpoint)
     std::memcpy(dataContent, &endpointPort, sizeof(unsigned short));
     std::memcpy((void *)((char *)dataContent + sizeof(unsigned short)), newEndpoint.getAddress().data(),
         newEndpoint.getAddress().size());
-    _senderModule.sendDataToAClient(client, dataContent, sizeof(unsigned short) + newEndpoint.getAddress().size() * sizeof(char), 20);
+    _senderModule.sendDataToAClient(
+        client, dataContent, sizeof(unsigned short) + newEndpoint.getAddress().size() * sizeof(char), 20);
 }
 
 void Communicator::receiveProtocol2X(Message lastMessage)

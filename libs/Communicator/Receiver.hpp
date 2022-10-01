@@ -12,8 +12,8 @@
 
 #include <boost/array.hpp>
 #include <boost/asio.hpp>
-#include <vector>
 #include <map>
+#include <vector>
 #include "Client.hpp"
 
 namespace communicator_lib

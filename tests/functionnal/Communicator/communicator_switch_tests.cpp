@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2022
-** Project
+** R-Type
 ** File description:
 ** communicator_switch
 */
@@ -25,26 +25,25 @@ int main(int ac, char **av)
     communicator_one.startReceiverListening();
     communicator_two.startReceiverListening();
     communicator_three.startReceiverListening();
-    communicator_three.sendDataToAClient(sendingClient, sendingSentence, std::strlen(sendingSentence) * sizeof(char), 10);
+    communicator_three.sendDataToAClient(
+        sendingClient, sendingSentence, std::strlen(sendingSentence) * sizeof(char), 10);
     while (1) {
         try {
             CommunicatorMessage temp = communicator_one.getLastMessage();
             std::cerr << "Receive a message from a new client ( " << temp.message.clientInfo.getAddress() << " : "
-                          << temp.message.clientInfo.getPort() << " ) -> ";
+                      << temp.message.clientInfo.getPort() << " ) -> ";
             std::cerr << "Receive a message -> " << (char *)temp.message.data << std::endl;
-            communicator_one.kickAClient(Client(av[1], std::atoi(av[2]) + 2000), Client(av[1], std::atoi(av[2]) + 1000));
+            communicator_one.kickAClient(
+                Client(av[1], std::atoi(av[2]) + 2000), Client(av[1], std::atoi(av[2]) + 1000));
         } catch (NetworkError &error) {
-
         }
         try {
             CommunicatorMessage temp = communicator_two.getLastMessage();
         } catch (NetworkError &error) {
-
         }
         try {
             CommunicatorMessage temp = communicator_three.getLastMessage();
         } catch (NetworkError &error) {
-
         }
     }
 }

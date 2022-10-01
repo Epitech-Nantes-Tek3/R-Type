@@ -20,4 +20,5 @@ Client::Client(std::string address, long port)
 
 Client::~Client()
 {
+    
 }
