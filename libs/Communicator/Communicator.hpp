@@ -79,6 +79,16 @@ namespace communicator_lib
         /// @brief Ask the receiver to start the listening process
         inline void startReceiverListening(void) { _receiverModule.startListening(); };
 
+        /// @brief Ask the sender to send data to a given client
+        /// @param client The client informations
+        /// @param data The given data to transfer
+        /// @param size Size of the data to transfer (sizeof(data) * quantity)
+        /// @param type Data type (Refer to RFC)
+        inline void sendDataToAClient(Client &client, void *data, size_t size, unsigned short type)
+        {
+            _senderModule.sendDataToAClient(client, data, size, type);
+        }
+
       private:
         /// @brief Send a protocol 20 to a client
         /// @param client The destination
