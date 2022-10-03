@@ -26,7 +26,7 @@ add_executable(r-type_client ${SRC_CLIENT})
 add_executable(r-type_server ${SRC_SERVER})
 
 # Add properties to executables
-set_property(TARGET r-type_client PROPERTY MSVC_RUNTIME_LIBRARY "" CXX_STANDARD 10)
+set_property(TARGET r-type_client PROPERTY MSVC_RUNTIME_LIBRARY "")
 set_target_properties(r-type_client r-type_server
     PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/
