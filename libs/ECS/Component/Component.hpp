@@ -7,8 +7,6 @@
 
 #pragma once
 
-#include <string>
-
 namespace ecs
 {
     /// @brief This is the Component Class for ECS

@@ -14,21 +14,19 @@
 #include <typeindex>
 #include <unordered_map>
 
-#include "Components/Component.hpp"
-#include "Entity/Entity.hpp"
+#include "Component/Component.hpp"
 
 namespace ecs
 {
     /// @brief This is the Entity Class for ECS
-    ///
     /// This class is trivially copiable because the components are not stored in this class.
-    /// It stores in the Component Class
-    class Entity {
+    /// It store in the Component Class
+    class Entity final {
       public:
         /// @brief The id type
         using Index = std::size_t;
 
-        /// @brief This is the tab of Components of the Entity
+        /// @brief This is the map of Components of the Entity
         using ComponentsList = std::unordered_map<std::type_index, std::unique_ptr<Component>>;
 
         /// @brief This function can return the Id of itself
