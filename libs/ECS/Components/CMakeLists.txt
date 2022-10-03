@@ -5,5 +5,7 @@ set(SRC_COMPONENT
     ${SRC_ROOT}/SizeComponent.hpp
     ${SRC_ROOT}/PositionComponent.hpp
     ${SRC_ROOT}/ButtonComponent.hpp
+    ${SRC_ROOT}/VelocityComponent.hpp
+    ${SRC_ROOT}/MovementComponent.hpp
     PARENT_SCOPE
 )
