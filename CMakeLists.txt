@@ -7,7 +7,7 @@ project(R-Type LANGUAGES CXX)
 # Set the c++ version and set this version required
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
-set(CMAKE_CXX_COMPILER_VERSION VERSION_LESS 10)
+set( VERSION_LESS 10)
 
 # Add ./cmake to the module and prefix path
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
@@ -26,7 +26,7 @@ add_executable(r-type_client ${SRC_CLIENT})
 add_executable(r-type_server ${SRC_SERVER})
 
 # Add properties to executables
-set_property(TARGET r-type_client PROPERTY MSVC_RUNTIME_LIBRARY "")
+set_property(TARGET r-type_client PROPERTY MSVC_RUNTIME_LIBRARY "" CXX_STANDARD 10)
 set_target_properties(r-type_client r-type_server
     PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/
