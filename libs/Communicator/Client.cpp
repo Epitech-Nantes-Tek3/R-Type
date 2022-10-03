@@ -16,10 +16,5 @@ Client::Client(std::string address, long port)
 {
     this->_address = address;
     this->_port = port;
-    std::cerr << "Creating a client : (" << _address << " : " << _port << ")." << std::endl;
 }
 
-Client::~Client()
-{
-    std::cerr << "Deleting a client : (" << _address << " : " << _port << ")." << std::endl;
-}

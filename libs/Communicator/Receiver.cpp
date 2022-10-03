@@ -20,12 +20,14 @@ Receiver::Receiver()
 {
     _messageList = {};
     _networkData = Client();
+    bindDataTraitmentFunction();
 }
 
 Receiver::Receiver(Client networkData)
 {
     _messageList = {};
     _networkData = networkData;
+    bindDataTraitmentFunction();
 }
 
 Message Receiver::getLastMessage(void)
@@ -51,8 +53,7 @@ Message Receiver::getLastMessageFromClient(Client client)
         }
         pos++;
     }
-    throw NetworkError(
-        "This client has no message waiting for traitment.", "Receiver.cpp -> getLastMessageFromClient");
+    throw NetworkError("This client has no message waiting for traitment.", "Receiver.cpp -> getLastMessageFromClient");
 }
 
 void Receiver::removeAllClientMessage(Client client)
@@ -81,7 +82,7 @@ void Receiver::startListening(void)
 
 void Receiver::handleReceive(const boost::system::error_code &error, size_t bytesTransferred)
 {
-    unsigned short temporaryPort = 0;
+    std::vector<unsigned short> dataHeader;
 
     if (error) {
         std::cerr << "Receive failed: " << error.message() << std::endl;
@@ -89,9 +90,11 @@ void Receiver::handleReceive(const boost::system::error_code &error, size_t byte
         return;
     }
     std::cerr << "Receiving data. " << bytesTransferred << "bytes used." << std::endl;
-    std::memcpy(&temporaryPort, _tempData.data(), 2);
-    addMessage({Client(_tempRemoteEndpoint.address().to_string(), temporaryPort),
-        (void *)((char *)_tempData.data() + sizeof(unsigned short)), bytesTransferred});
+    dataHeader = getDataHeader(_tempData.data());
+    if (_dataTraitment.find(dataHeader[1]) == _dataTraitment.end())
+        return;
+    _dataTraitment[dataHeader[1]](
+        {Client(_tempRemoteEndpoint.address().to_string(), dataHeader[0]), _tempData.data(), bytesTransferred, 0});
     wait();
 }
 
@@ -100,6 +103,56 @@ void Receiver::wait(void)
     _socket.async_receive_from(boost::asio::buffer(_tempData), _tempRemoteEndpoint,
         boost::bind(&Receiver::handleReceive, this, boost::asio::placeholders::error,
             boost::asio::placeholders::bytes_transferred));
+}
+
+std::vector<unsigned short> Receiver::getDataHeader(void *data)
+{
+    unsigned short receiverPort = 0;
+    unsigned short communicationType = 0;
+
+    std::memcpy(&receiverPort, data, NETWORK_HEADER_SIZE / 2);
+    std::memcpy(&communicationType, (void *)((char *)data + NETWORK_HEADER_SIZE / 2), NETWORK_HEADER_SIZE / 2);
+    return std::vector<unsigned short>{receiverPort, communicationType};
+}
+
+void Receiver::dataTraitmentType10(Message dataContent)
+{
+    addMessage({dataContent.clientInfo, (void *)((char *)dataContent.data + NETWORK_HEADER_SIZE),
+        dataContent.size - NETWORK_HEADER_SIZE, 10});
+}
+
+void Receiver::dataTraitmentType20(Message dataContent)
+{
+    unsigned short endpointPort = 0;
+    char *endpointAddress = nullptr;
+    Client newEndpoint = Client();
+    void *data = (void *)((char *)dataContent.data + NETWORK_HEADER_SIZE);
+
+    std::memcpy(&endpointPort, data, sizeof(unsigned short));
+    endpointAddress = (char *)data + sizeof(unsigned short);
+    newEndpoint.setAddress(std::string(endpointAddress));
+    newEndpoint.setPort(endpointPort);
+    addMessage({newEndpoint, nullptr, 0, 20});
+    addMessage({dataContent.clientInfo, nullptr, 0, 20});
+}
+
+void Receiver::dataTraitmentType21(Message dataContent)
+{
+    addMessage({dataContent.clientInfo, nullptr, 0, 21});
+}
+
+void Receiver::dataTraitmentType30(Message dataContent)
+{
+    addMessage({dataContent.clientInfo, (void *)((char *)dataContent.data + NETWORK_HEADER_SIZE),
+        dataContent.size - NETWORK_HEADER_SIZE, 30});
+}
+
+void Receiver::bindDataTraitmentFunction(void)
+{
+    _dataTraitment[10] = std::bind(&Receiver::dataTraitmentType10, this, std::placeholders::_1);
+    _dataTraitment[20] = std::bind(&Receiver::dataTraitmentType20, this, std::placeholders::_1);
+    _dataTraitment[21] = std::bind(&Receiver::dataTraitmentType21, this, std::placeholders::_1);
+    _dataTraitment[30] = std::bind(&Receiver::dataTraitmentType30, this, std::placeholders::_1);
 }
 
 Receiver::~Receiver() {}

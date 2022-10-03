@@ -55,12 +55,13 @@ Client &Communicator::getClientFromList(std::string address, long port)
 CommunicatorMessage Communicator::getLastMessage(void)
 {
     try {
-        Message temp = _receiverModule.getLastMessage();
+        Message lastMessage = _receiverModule.getLastMessage();
+        receiveProtocol2X(lastMessage);
         try {
-            addClientToList(temp.clientInfo);
-            return CommunicatorMessage{temp, true};
+            addClientToList(lastMessage.clientInfo);
+            return CommunicatorMessage{lastMessage, true};
         } catch (NetworkError &error) {
-            return CommunicatorMessage{temp, false};
+            return CommunicatorMessage{lastMessage, false};
         }
     } catch (NetworkError &error) {
         throw NetworkError("No message waiting for traitment.", "Communicator.cpp -> getLastMessage");
@@ -91,12 +92,49 @@ void Communicator::kickAClient(Client client, Client newEndpoint)
         return;
     } catch (NetworkError &error) {
     }
-    if (newEndpoint == Client())
-        _senderModule.sendDataToAClient(client, (void *)"kick", 5); /// TO REFACTO WHEN UDP PROTOCOL IS IMPLEMENTED
-    else {
-        unsigned short temp = newEndpoint.getPort();
-        _senderModule.sendDataToAClient(client, &temp, 2); /// TO REFACTO WHEN UDP PROTOCOL IS IMPLEMENTED
+    if (newEndpoint == Client()) {
+        _senderModule.sendDataToAClient(client, (void *)"kick", 5, 30); /// TO REFACTO WHEN UDP PROTOCOL IS IMPLEMENTED
+        return;
     }
+    sendProtocol20(client, newEndpoint);
+    removeClientFromList(client);
+    _receiverModule.removeAllClientMessage(client);
+    std::cerr << "You have asked a client to switch to a new communicator." << std::endl;
+}
+
+void Communicator::sendProtocol20(Client client, Client newEndpoint)
+{
+    void *dataContent = std::malloc(sizeof(void *) * (sizeof(unsigned short) + newEndpoint.getAddress().size()));
+    unsigned short endpointPort = newEndpoint.getPort();
+
+    if (dataContent == nullptr)
+        throw std::system_error();
+    std::memcpy(dataContent, &endpointPort, sizeof(unsigned short));
+    std::memcpy((void *)((char *)dataContent + sizeof(unsigned short)), newEndpoint.getAddress().data(),
+        newEndpoint.getAddress().size());
+    _senderModule.sendDataToAClient(
+        client, dataContent, sizeof(unsigned short) + newEndpoint.getAddress().size() * sizeof(char), 20);
+}
+
+void Communicator::receiveProtocol2X(Message lastMessage)
+{
+    if (lastMessage.type == 21) {
+        addClientToList(lastMessage.clientInfo);
+        std::cerr << "A new client has been transfered to your communicator." << std::endl;
+        throw NetworkError("No message waiting for traitment.", "Communicator.cpp -> getLastMessage");
+    }
+    if (lastMessage.type == 20) {
+        replaceClientByAnother(_receiverModule.getLastMessage().clientInfo, lastMessage.clientInfo);
+        std::cerr << "You have been asked to switch to a new communicator." << std::endl;
+        _senderModule.sendDataToAClient(lastMessage.clientInfo, nullptr, 0, 21);
+    }
+}
+
+void Communicator::replaceClientByAnother(Client oldClient, Client newClient)
+{
+    removeClientFromList(oldClient);
+    addClientToList(newClient);
+    _receiverModule.removeAllClientMessage(oldClient);
 }
 
 Communicator::~Communicator() {}
