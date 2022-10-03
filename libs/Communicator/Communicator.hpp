@@ -80,7 +80,7 @@ namespace communicator_lib
         inline void startReceiverListening(void) { _receiverModule.startListening(); };
 
         /// @brief Ask the sender to send data to a given client
-        /// @param client The client informations
+        /// @param client The client's informations
         /// @param data The given data to transfer
         /// @param size Size of the data to transfer (sizeof(data) * quantity)
         /// @param type Data type (Refer to RFC)
@@ -95,7 +95,7 @@ namespace communicator_lib
         /// @param newEndpoint The new endpoint to transfer
         void sendProtocol20(Client client, Client newEndpoint);
 
-        /// @brief If the message is a type 2X -> trait it
+        /// @brief If the data type is 2X, the function will process the data following the 2X protocol
         /// @param lastMessage The message to trait
         void receiveProtocol2X(Message lastMessage);
 

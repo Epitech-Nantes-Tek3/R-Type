@@ -102,19 +102,19 @@ namespace communicator_lib
         /// @return A vector of two unsigned short which represent the data header
         std::vector<unsigned short> getDataHeader(void *data);
 
-        /// @brief Trait the data for the dataType 10
+        /// @brief The function will process the data according to the protocol 10
         /// @param dataContent The transfered data (Client + Data)
         void dataTraitmentType10(Message dataContent);
 
-        /// @brief Trait the data for the dataType 20
+        /// @brief The function will process the data according to the protocol 20
         /// @param dataContent The transfered data (Client + Data)
         void dataTraitmentType20(Message dataContent);
 
-        /// @brief Trait the data for the dataType 21
+        /// @brief The function will process the data according to the protocol 21
         /// @param dataContent The transfered data (Client + Data)
         void dataTraitmentType21(Message dataContent);
 
-        /// @brief Trait the data for the dataType 30
+        /// @brief The function will process the data according to the protocol 30
         /// @param dataContent The transfered data (Client + Data)
         void dataTraitmentType30(Message dataContent);
 

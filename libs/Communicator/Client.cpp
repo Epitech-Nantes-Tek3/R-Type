@@ -18,7 +18,3 @@ Client::Client(std::string address, long port)
     this->_port = port;
 }
 
-Client::~Client()
-{
-    
-}

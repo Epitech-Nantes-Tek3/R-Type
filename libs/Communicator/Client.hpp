@@ -24,7 +24,7 @@ namespace communicator_lib
         Client(std::string address = "127.0.0.1", long port = 0);
 
         /// @brief Destroy the Client object
-        ~Client();
+        ~Client() = default;
 
         /// @brief Get the Address value
         /// @return std::string A copy of the address value
