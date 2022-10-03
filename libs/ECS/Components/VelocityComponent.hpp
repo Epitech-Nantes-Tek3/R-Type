@@ -15,7 +15,7 @@ namespace ecs
     /// @brief The velocity class, multiplying the movement of the entity
     class Velocity : public Component{
       public:
-        /// @brief The multiplier of the movement
+        /// @brief The multiplier of the movement (between 0.1 and 10)
         double multiplier;
 
         /// @brief Constructor of the Velocity Component

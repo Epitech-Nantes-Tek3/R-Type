@@ -7,5 +7,6 @@ set(SRC_COMPONENT
     ${SRC_ROOT}/ButtonComponent.hpp
     ${SRC_ROOT}/VelocityComponent.hpp
     ${SRC_ROOT}/MovementComponent.hpp
+    ${SRC_ROOT}/ShootingFrequencyComponent.hpp
     PARENT_SCOPE
 )
