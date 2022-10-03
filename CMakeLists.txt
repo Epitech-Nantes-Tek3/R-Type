@@ -7,7 +7,6 @@ project(R-Type LANGUAGES CXX)
 # Set the c++ version and set this version required
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
-set( VERSION_LESS 10)
 
 # Add ./cmake to the module and prefix path
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
