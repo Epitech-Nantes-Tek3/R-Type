@@ -6,7 +6,7 @@ set(SRC_COMPONENT
     ${SRC_ROOT}/PositionComponent.hpp
     ${SRC_ROOT}/ButtonComponent.hpp
     ${SRC_ROOT}/VelocityComponent.hpp
-    ${SRC_ROOT}/MovementComponent.hpp
+    ${SRC_ROOT}/DirectionComponent.hpp
     ${SRC_ROOT}/ShootingFrequencyComponent.hpp
     ${SRC_ROOT}/ControlableComponent.hpp
     ${SRC_ROOT}/LifeComponent.hpp
@@ -15,7 +15,6 @@ set(SRC_COMPONENT
     ${SRC_ROOT}/EquipableComponent.hpp
     ${SRC_ROOT}/WeaknessComponent.hpp
     ${SRC_ROOT}/CollidableComponent.hpp
-    ${SRC_ROOT}/HitboxSizeComponent.hpp
     ${SRC_ROOT}/BreakthroughtComponent.hpp
     ${SRC_ROOT}/BouncingComponent.hpp
     ${SRC_ROOT}/DamageRadiusComponent.hpp
