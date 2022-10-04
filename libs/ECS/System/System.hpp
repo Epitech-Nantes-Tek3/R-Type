@@ -14,7 +14,9 @@ namespace ecs
     /// The World which contains the system. World Class is in World.hpp
     class World;
 
-    /// The base system type, all systems must inherit from System.
+    /// All systems must inherit from System. 
+    /// You do create a system
+    /// A system is used to do any modification you want on all components you want
     class System {
       public:
         virtual ~System() = default;
