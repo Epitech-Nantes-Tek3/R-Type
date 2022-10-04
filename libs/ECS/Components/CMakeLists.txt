@@ -23,5 +23,6 @@ set(SRC_COMPONENT
     ${SRC_ROOT}/InvisibleComponent.hpp
     ${SRC_ROOT}/InvinsibleComponent.hpp
     ${SRC_ROOT}/DeathDamageComponent.hpp
+    ${SRC_ROOT}/PatternComponent.hpp
     PARENT_SCOPE
 )
