@@ -24,5 +24,6 @@ set(SRC_COMPONENT
     ${SRC_ROOT}/InvinsibleComponent.hpp
     ${SRC_ROOT}/DeathDamageComponent.hpp
     ${SRC_ROOT}/PatternComponent.hpp
+    ${SRC_ROOT}/ChargedAttackComponent.hpp
     PARENT_SCOPE
 )
