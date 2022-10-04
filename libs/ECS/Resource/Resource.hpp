@@ -20,7 +20,7 @@ namespace ecs
       protected:
         /// @brief This is the constructor of Resource Class
         /// Because it can be used only by things that heritate from it
-        virtual Resource() = default;
+        Resource() = default;
     };
 } // namespace ecs
 
