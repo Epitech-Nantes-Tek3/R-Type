@@ -50,6 +50,12 @@ jobs:
     needs: lint-format
     runs-on: windows-latest
     steps:
+    - name: Cache Conan packages
+      uses: actions/cache@v3
+      with:
+        path: ~/.conan
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('conanfile.txt') }}
+
     - name: Install Conan
       id: conan
       uses: turtlebrowser/get-conan@main
@@ -65,6 +71,11 @@ jobs:
     container:
       image: epitechcontent/epitest-docker
     steps:
+      - name: Cache Conan packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.conan
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('conanfile.txt') }}
       - name: Install Conan
         id: conan
         uses: turtlebrowser/get-conan@main
