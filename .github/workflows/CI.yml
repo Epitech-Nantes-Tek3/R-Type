@@ -25,13 +25,6 @@ jobs:
     needs: lint-format
     runs-on: ubuntu-latest
     steps:
-    - name: Cache Conan packages
-      id: cache_linux
-      uses: actions/cache@v3
-      with:
-        path: ~/.conan
-        key: ${{ runner.os }}-build-${{ hashFiles('conanfile.txt') }}
-
     - name: Dependencies
       run: |
         sudo apt update
