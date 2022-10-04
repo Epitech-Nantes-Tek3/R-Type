@@ -11,5 +11,6 @@ set(SRC_COMPONENT
     ${SRC_ROOT}/ControlableComponent.hpp
     ${SRC_ROOT}/LifeComponent.hpp
     ${SRC_ROOT}/DamageComponent.hpp
+    ${SRC_ROOT}/LifetimeComponent.hpp
     PARENT_SCOPE
 )
