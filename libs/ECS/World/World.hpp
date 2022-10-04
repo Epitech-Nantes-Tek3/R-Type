@@ -76,10 +76,10 @@ namespace ecs
 
         /// @brief This function can add a Resource to the World
         /// @tparam R Type of the Resource
-        /// @tparam ...Args This allows to send multiple arguments (args)
+        /// @tparam ...Args This allow to send multiple arguments (args)
         /// @param ...args All arguments which are used to construct the Resource
         /// @throw std::logic_error Throw an error if the Resource already exists
-        /// @return itself
+        /// @return It return itself
         template <std::derived_from<Resource> R, typename... Args> World &addResource(Args &&...args)
         {
             if (containsResource<R>())
@@ -89,7 +89,7 @@ namespace ecs
         }
 
         /// @brief This function can get a Resource in the World
-        /// @tparam R Search Resource
+        /// @tparam R Searched Resource
         /// @throw std::logic_error Throw an error if the Resource does not exists
         /// @return The Resource choosen
         template <std::derived_from<Resource> R> R &getResource() const
@@ -101,7 +101,7 @@ namespace ecs
 
         /// @brief Remove a Resource of the world
         /// @tparam R The choosen Resource to remove
-        /// @throw std::logic_error Throw an error if the Resource does not exists
+        /// @throw std::logic_error Throw an error if the Resource does not exist
         template <std::derived_from<Resource> R> void removeResource()
         {
             ResourcesList::iterator it = _resourcesList.find(typeid(R));
@@ -110,7 +110,7 @@ namespace ecs
             _resourcesList.erase(it);
         }
 
-        /// @brief This function will check if a group of Resources types (at least one Resource type) is in an World
+        /// @brief This function will check if a group of Resources types (at least one Resource type) is in a World
         /// @tparam R1 First Resource type to check
         /// @tparam ...R2 OPTIONAL Next Resource type to check
         /// @return True if the group of Resource types is contained in the World. Otherwise False
@@ -144,7 +144,7 @@ namespace ecs
             return *this;
         }
 
-        ///@brief It runs all the systems in the world
+        ///@brief It runs all systems in the world
         void runSystems();
 
         ///@brief Destroy the World object
