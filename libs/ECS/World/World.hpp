@@ -50,10 +50,10 @@ namespace ecs
         ///@brief Get the Entity object with the given id
         ///@param id Id of the searched Entity
         ///@return Entity& reference to the searched Entity
-        ///@throw std::logic_error Throw an error if the entity does not exists
+        ///@throw std::logic_error Throw an error if the entity does not exist
         Entity &getEntity(Index id) const;
 
-        ///@brief It's a function which is used to join entities with the same components.
+        ///@brief This function is used to join entities with the same component
         ///@tparam C Component types
         ///@param world The world to search in
         ///@return JoinedEntities A vector of all entities which have the given components
@@ -71,10 +71,10 @@ namespace ecs
 
         ///@brief Remove the Entity object with the given id
         ///@param id Id of the searched Entity
-        ///@throw std::logic_error Throw an error if the entity does not exists
+        ///@throw std::logic_error Throw an error if the entity does not exist
         void removeEntity(Index id);
 
-        /// @brief This function can add a Resource to the World
+        /// @brief This function can add a Resource in the World
         /// @tparam R Type of the Resource
         /// @tparam ...Args This allow to send multiple arguments (args)
         /// @param ...args All arguments which are used to construct the Resource
