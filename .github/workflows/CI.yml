@@ -73,7 +73,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.conan
-          key: ${{ runner.os }}-build-${{ hashFiles('conanfile.txt') }}
+          key: ${{ runner.os }}-coverage-${{ hashFiles('conanfile.txt') }}
       - name: Install Conan
         id: conan
         uses: turtlebrowser/get-conan@main
