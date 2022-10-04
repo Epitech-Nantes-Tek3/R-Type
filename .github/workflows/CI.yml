@@ -30,7 +30,7 @@ jobs:
       uses: actions/cache@v3
       with:
         path: ~/.conan
-        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('conanfile.txt') }}
+        key: ${{ runner.os }}-build-${{ hashFiles('conanfile.txt') }}
 
     - name: Dependencies
       run: |
@@ -39,24 +39,16 @@ jobs:
         sudo apt-get install -y libudev-dev libgl-dev libx11-xcb-dev libfontenc-dev libxaw7-dev libxcomposite-dev libxcursor-dev libxdamage-dev libxfixes-dev libxi-dev libxinerama-dev libxmu-dev libxmuu-dev libxpm-dev libxrandr-dev libxres-dev libxss-dev libxtst-dev libxv-dev libxvmc-dev libxxf86vm-dev libxcb-render-util0-dev libxcb-xkb-dev libxcb-icccm4-dev libxcb-image0-dev libxcb-keysyms1-dev libxcb-randr0-dev libxcb-shape0-dev libxcb-sync-dev libxcb-xfixes0-dev libxcb-xinerama0-dev libxcb-dri3-dev
 
     - name: Install Conan
-      if: job.steps.cache_linux.status == failure()
       id: conan
       uses: turtlebrowser/get-conan@main
 
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Build with conan
-      if: job.steps.cache_linux.status == failure()
+    - name: Build
       run: |
         conan config init
         mkdir -p build; cd build && conan install .. --build=missing  -s compiler.libcxx=libstdc++11 -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True && cmake -DCMAKE_BUILD_TYPE=Debug .. && cmake --build  . -- -j 3
-
-    - name: Build without conan
-      if: job.steps.cache_linux.status == success()
-      run: |
-        conan config init
-        mkdir -p build; cd build && cmake -DCMAKE_BUILD_TYPE=Debug .. && cmake --build  . -- -j 3
 
   build-windows:
     needs: lint-format
@@ -67,23 +59,16 @@ jobs:
       uses: actions/cache@v3
       with:
         path: ~/.conan
-        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('conanfile.txt') }}
+        key: ${{ runner.os }}-build-${{ hashFiles('conanfile.txt') }}
 
     - name: Install Conan
-      if: job.steps.cache_windows.status == failure()
       id: conan
       uses: turtlebrowser/get-conan@main
     - name: Checkout repository
       uses: actions/checkout@v2
 
     - name: Launch build script
-      if: job.steps.cache_windows.status == failure()
       run: ./build.bat
-
-    - name: Build manually
-      if: job.steps.cache_windows.status == success()
-      run: mkdir -p build; cd build && cmake -DCMAKE_BUILD_TYPE=Debug .. && cmake --build  . -- -j 3
-
 
   coverage:
     needs: [build-linux, build-windows]
@@ -95,7 +80,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.conan
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('conanfile.txt') }}
+          key: ${{ runner.os }}-build-${{ hashFiles('conanfile.txt') }}
       - name: Install Conan
         id: conan
         uses: turtlebrowser/get-conan@main
