@@ -18,25 +18,30 @@ using namespace communicator_lib;
 
 namespace transisthor_lib
 {
+    /// @brief Bridge between Communicator data and ECS data
     class Transisthor {
       public:
         /// @brief Construct a new Transisthor object
         /// @param communicator A reference to a working communicator
         /// @param ecsWorld A reference to a working ecs
-        inline Transisthor(Communicator &communicator, World &ecsWorld) : _communicator(communicator), _ecsWorld(ecsWorld) {};
+        Transisthor(Communicator &communicator, World &ecsWorld);
 
         /// @brief Destroy a Transisthor object (Default value)
         ~Transisthor() = default;
 
-        /// @brief Function called by the Communicator. The transfered data will be converted to an ECS object and send to the ecs.
+        /// @brief Function called by the Communicator. The transfered data will be converted to an ECS object and send
+        /// to the ecs.
         /// @param networkData Content of the network data (Refer to communicator lib document for more details)
+        /// @return Return value will be removed when transitor have been finished.
         void *transitNetworkDataToEcsData(Message networkData);
 
-        /// @brief Function called by the ECS. The transfered data will be converted to a Network object and send to the communicator.
+        /// @brief Function called by the ECS. The transfered data will be converted to a Network object and send to the
+        /// communicator.
         /// @tparam C Type of the component
         /// @param id Id of the transfered component
         /// @param type Type id of the component
         /// @param component The transfered component
+        /// @return Return value will be removed when transitor have been finished.
         template <std::derived_from<Component> C>
         void *transitEcsDataToNetworkData(unsigned short id, unsigned short type, C component)
         {
@@ -51,7 +56,8 @@ namespace transisthor_lib
             return networkObject;
         }
 
-        /// @brief Function called by the ECS. The transfered data will be converted to a Network object and send to the communicator.
+        /// @brief Function called by the ECS. The transfered data will be converted to a Network object and send to the
+        /// communicator.
         /// @tparam C Type of the resource
         /// @param id Id of the transfered resource
         /// @param type Type id of the resource
@@ -59,22 +65,23 @@ namespace transisthor_lib
         template <std::derived_from<Resource> C>
         void transitEcsDataToNetworkData(unsigned short id, unsigned short type, C component)
         {
-            (void) id;
-            (void) component;
-            (void) type;
+            (void)id;
+            (void)component;
+            (void)type;
         }
 
-        /// @brief Function called by the ECS. The transfered data will be converted to a Network object and send to the communicator.
+        /// @brief Function called by the ECS. The transfered data will be converted to a Network object and send to the
+        /// communicator.
         /// @tparam ...Args This allow to send multiple Component (Used for an entity)
         /// @tparam C Type of the component
         /// @param id Id of the transfered entity
         /// @param type Type id of the transfered entity
         /// @param ...args All components used inside the wanted entity.
-        template<std::derived_from<Component>... C>
+        template <std::derived_from<Component>... C>
         void transitEcsDataToNetworkData(unsigned short id, unsigned short type, C &&...args)
         {
-            (void) id;
-            (void) type;
+            (void)id;
+            (void)type;
         }
 
       private:
@@ -84,6 +91,14 @@ namespace transisthor_lib
         /// @brief A reference to a Ecs World
         World &_ecsWorld;
 
+        /// @brief Convert a byteCode data into a Position component and send it to the ECS
+        /// @param id Entity ID attached to the component
+        /// @param byteCode byte value of the Position component
+        void componentConvertPositionType(unsigned short id, void *byteCode);
+
+        /// @brief List of all the Convert function for Component. Ordered by the component type value (Refer to RFC for
+        /// more informations)
+        std::map<unsigned short, std::function<void(unsigned short, void *)>> _componentConvertFunctionList;
     };
 } // namespace transisthor_lib
 

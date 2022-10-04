@@ -6,6 +6,7 @@
 */
 
 #pragma once
+#include <cstring>
 
 namespace ecs
 {
@@ -20,6 +21,28 @@ namespace ecs
         /// @brief This is the constructor of Component Class
         /// Because it can be use only by things that heritate by it
         Component() = default;
-
     };
+
+    /// @brief Create a component from his byte form
+    /// \tparam C Type of the component
+    /// @param byteCode Byte value of the component
+    /// @return C The newly created comoponent
+    template <std::derived_from<Component> C> C buildComponentFromByteCode(void *byteCode)
+    {
+        C convertedComponent;
+
+        std::memcpy(&convertedComponent, byteCode, sizeof(C));
+        return convertedComponent;
+    }
+
+    /// @brief Temporary component to demonstrate how it will work
+    class Position : public Component {
+      public:
+        int x;
+        int y;
+
+        Position(const int X, const int Y) : x(X), y(Y){};
+        Position() : x(0), y(0){};
+    };
+
 } // namespace ecs
