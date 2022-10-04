@@ -17,5 +17,6 @@ set(SRC_COMPONENT
     ${SRC_ROOT}/CollidableComponent.hpp
     ${SRC_ROOT}/HitboxSizeComponent.hpp
     ${SRC_ROOT}/BreakthroughtComponent.hpp
+    ${SRC_ROOT}/BouncingComponent.hpp
     PARENT_SCOPE
 )
