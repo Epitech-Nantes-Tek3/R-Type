@@ -9,5 +9,6 @@ set(SRC_COMPONENT
     ${SRC_ROOT}/MovementComponent.hpp
     ${SRC_ROOT}/ShootingFrequencyComponent.hpp
     ${SRC_ROOT}/ControlableComponent.hpp
+    ${SRC_ROOT}/LifeComponent.hpp
     PARENT_SCOPE
 )
