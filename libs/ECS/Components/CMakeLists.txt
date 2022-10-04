@@ -21,5 +21,6 @@ set(SRC_COMPONENT
     ${SRC_ROOT}/DamageRadiusComponent.hpp
     ${SRC_ROOT}/WeightComponent.hpp
     ${SRC_ROOT}/InvisibleComponent.hpp
+    ${SRC_ROOT}/InvinsibleComponent.hpp
     PARENT_SCOPE
 )
