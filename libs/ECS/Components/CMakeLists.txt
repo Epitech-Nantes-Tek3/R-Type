@@ -19,5 +19,6 @@ set(SRC_COMPONENT
     ${SRC_ROOT}/BreakthroughtComponent.hpp
     ${SRC_ROOT}/BouncingComponent.hpp
     ${SRC_ROOT}/DamageRadiusComponent.hpp
+    ${SRC_ROOT}/WeightComponent.hpp
     PARENT_SCOPE
 )
