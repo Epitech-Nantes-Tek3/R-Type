@@ -13,7 +13,15 @@
 using namespace transisthor_lib;
 using namespace error_lib;
 
-void Transisthor::transitNetworkDataToEcsData(Message networkData)
+void *Transisthor::transitNetworkDataToEcsData(Message networkData)
 {
-    (void) networkData;
+    unsigned short id = 0;
+    unsigned short type = 0;
+    void *object = nullptr;
+
+    std::memcpy(&id, networkData.data, sizeof(unsigned short));
+    std::memcpy(&type, (void *)((char *)networkData.data + sizeof(unsigned short)), sizeof(unsigned short));
+    object = (void *)((char *)networkData.data + sizeof(unsigned short) * 2);
+    std::cerr << "Id : " << id << " Type : " << type << std::endl;
+    return object;
 }

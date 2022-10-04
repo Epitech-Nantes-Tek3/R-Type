@@ -30,7 +30,7 @@ namespace transisthor_lib
 
         /// @brief Function called by the Communicator. The transfered data will be converted to an ECS object and send to the ecs.
         /// @param networkData Content of the network data (Refer to communicator lib document for more details)
-        void transitNetworkDataToEcsData(Message networkData);
+        void *transitNetworkDataToEcsData(Message networkData);
 
         /// @brief Function called by the ECS. The transfered data will be converted to a Network object and send to the communicator.
         /// @tparam C Type of the component
@@ -38,11 +38,17 @@ namespace transisthor_lib
         /// @param type Type id of the component
         /// @param component The transfered component
         template <std::derived_from<Component> C>
-        void transitEcsDataToNetworkData(unsigned short id, unsigned short type, C component)
+        void *transitEcsDataToNetworkData(unsigned short id, unsigned short type, C component)
         {
-            (void) id;
-            (void) type;
-            (void) component;
+            void *networkObject = std::malloc(sizeof(void *) * ((sizeof(C)) + sizeof(unsigned short) * 2));
+
+            if (networkObject == nullptr)
+                throw std::system_error();
+            std::memcpy(networkObject, &id, sizeof(unsigned short));
+            std::memcpy((void *)((char *)networkObject + sizeof(unsigned short)), &type, sizeof(unsigned short));
+            std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2), &component, sizeof(C));
+            /// CALL NETWORK FUNCTION FOR SENDING
+            return networkObject;
         }
 
         /// @brief Function called by the ECS. The transfered data will be converted to a Network object and send to the communicator.
