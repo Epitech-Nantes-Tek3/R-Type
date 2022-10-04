@@ -19,6 +19,6 @@ namespace ecs
       protected:
         /// @brief This is the constructor of Component Class
         /// Because it can be use only by things that eritate by it
-        Component() = default;
+        virtual Component() = default;
     };
 } // namespace ecs
