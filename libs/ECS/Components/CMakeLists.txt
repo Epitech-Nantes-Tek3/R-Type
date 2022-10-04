@@ -16,5 +16,6 @@ set(SRC_COMPONENT
     ${SRC_ROOT}/WeaknessComponent.hpp
     ${SRC_ROOT}/CollidableComponent.hpp
     ${SRC_ROOT}/HitboxSizeComponent.hpp
+    ${SRC_ROOT}/BreakthroughtComponent.hpp
     PARENT_SCOPE
 )
