@@ -11,7 +11,7 @@
 
 namespace ecs
 {
-    /// The World that contains the system.
+    /// The World which contains the system. World Class is in World.hpp
     class World;
 
     /// The base system type, all systems must inherit from System.

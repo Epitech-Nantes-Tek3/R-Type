@@ -20,7 +20,7 @@ namespace ecs
 {
     /// @brief This is the Entity Class for ECS
     /// This class is trivially copiable because the components are not stored in this class.
-    /// It store in the Component Class
+    /// It stores in the Component Class
     class Entity final {
       public:
         /// @brief The id type
