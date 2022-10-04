@@ -16,11 +16,11 @@ namespace ecs
     class Damage : public Component{
       public:
         /// @brief The number of damage, to be substract to the Life Point
-        unsigned int damagePoint;
+        unsigned short damagePoint;
 
         /// @brief Constructor of the Damage Component
         /// @param newDamage the number of damage
-        Damage(unsigned int newDamage) : damagePoint(newDamage) {};
+        Damage(unsigned short newDamage) : damagePoint(newDamage) {};
         /// @brief Copy Constructor of the Damage Component
         /// @param old the copy of the Damage component
         Damage(const Damage &old) : damagePoint(old.damagePoint) {};
