@@ -64,8 +64,8 @@ namespace transisthor_lib
         /// @param id Id of the transfered entity
         /// @param type Type id of the transfered entity
         /// @param ...args All components used inside the wanted entity.
-        template<std::derived_from<Component> C, typename... Args>
-        void transitEcsDataToNetworkData(unsigned short id, unsigned short type, Args &&...args)
+        template<std::derived_from<Component>... C>
+        void transitEcsDataToNetworkData(unsigned short id, unsigned short type, C &&...args)
         {
             (void) id;
             (void) type;
