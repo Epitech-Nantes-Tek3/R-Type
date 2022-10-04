@@ -13,3 +13,7 @@
 using namespace transisthor_lib;
 using namespace error_lib;
 
+void Transisthor::transitNetworkDataToEcsData(Message networkData)
+{
+    (void) networkData;
+}
