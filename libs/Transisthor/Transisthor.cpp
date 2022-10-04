@@ -11,14 +11,5 @@
 #include "Error/Error.hpp"
 
 using namespace transisthor_lib;
-using namespace ecs;
-using namespace communicator_lib;
 using namespace error_lib;
 
-Transisthor::Transisthor()
-{
-}
-
-Transisthor::~Transisthor()
-{
-}
