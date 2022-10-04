@@ -20,5 +20,6 @@ set(SRC_COMPONENT
     ${SRC_ROOT}/BouncingComponent.hpp
     ${SRC_ROOT}/DamageRadiusComponent.hpp
     ${SRC_ROOT}/WeightComponent.hpp
+    ${SRC_ROOT}/InvisibleComponent.hpp
     PARENT_SCOPE
 )
