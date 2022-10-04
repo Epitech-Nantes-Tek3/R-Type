@@ -14,7 +14,7 @@ namespace ecs
     /// The base Resource type, all Resources must inherit from Resource.
     class Resource {
       public:
-        /// @brief This is the destructor of Resource Class
+        /// @brief This is the default destructor of Resource Class
         virtual ~Resource() = default;
 
       protected:
@@ -23,5 +23,3 @@ namespace ecs
         Resource() = default;
     };
 } // namespace ecs
-
-

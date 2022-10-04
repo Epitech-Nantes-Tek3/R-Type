@@ -17,7 +17,7 @@ Entity &World::addEntity()
     return *(_entitiesList[_nextEntityId - 1].get());
 }
 
-Entity &World::getEntity(Index id) const
+Entity &World::getEntity(ID id) const
 {
     EntitiesList::const_iterator it = _entitiesList.find(id);
     if (it == _entitiesList.end())
@@ -25,7 +25,7 @@ Entity &World::getEntity(Index id) const
     return *(it->second.get());
 }
 
-void World::removeEntity(Index id)
+void World::removeEntity(ID id)
 {
     EntitiesList::const_iterator it = _entitiesList.find(id);
     if (it == _entitiesList.end())

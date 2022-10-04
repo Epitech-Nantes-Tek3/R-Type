@@ -23,11 +23,11 @@ namespace ecs
 {
     class World final {
       public:
-        /// @brief The id type
-        using Index = std::size_t;
+        /// @brief The ID type
+        using ID = std::size_t;
 
         /// @brief This is the map of Entities in the World
-        using EntitiesList = std::map<Index, std::shared_ptr<Entity>>;
+        using EntitiesList = std::map<ID, std::shared_ptr<Entity>>;
 
         /// @brief This is the map of Resources of the World
         using ResourcesList = std::unordered_map<std::type_index, std::shared_ptr<Resource>>;
@@ -36,12 +36,12 @@ namespace ecs
         using SystemsList = std::unordered_map<std::type_index, std::unique_ptr<System>>;
 
         ///@brief Construct a new World object
-        ///@param id Id of the searched Entity. It used to know what World is (exempple in a video game you can have a World(1) for pause menu and another World(2) for your in game)
-        inline World(Index id) : _id(id), _nextEntityId(1){};
+        ///@param id It's used to know what World is (example in a video game you can have a World(1) for pause menu and another World(2) for your game)
+        inline World(ID id) : _id(id), _nextEntityId(1){};
 
-        ///@brief Get the Id object
-        ///@return Index
-        inline Index getId() const { return _id; };
+        ///@brief Get the object's ID
+        ///@return ID of the World object
+        inline ID getId() const { return _id; };
 
         ///@brief This function creates an Entity in the world
         ///@return Entity& reference to the created Entity
@@ -51,10 +51,10 @@ namespace ecs
         ///@param id Id of the searched Entity
         ///@return Entity& reference to the searched Entity
         ///@throw std::logic_error Throw an error if the entity does not exist
-        Entity &getEntity(Index id) const;
+        Entity &getEntity(ID id) const;
 
-        ///@brief This function is used to join entities with the same component
-        ///@tparam C Component types
+        ///@brief This function is used to join entities with the same components
+        ///@tparam C Component types to search
         ///@param world The world to search in
         ///@return JoinedEntities A vector of all entities which have the given components
         template <std::derived_from<Component>... C> std::vector<std::shared_ptr<Entity>> joinEntities() const
@@ -72,14 +72,14 @@ namespace ecs
         ///@brief Remove the Entity object with the given id
         ///@param id Id of the searched Entity
         ///@throw std::logic_error Throw an error if the entity does not exist
-        void removeEntity(Index id);
+        void removeEntity(ID id);
 
-        /// @brief This function can add a Resource in the World
+        /// @brief This function can add a Resource to the World
         /// @tparam R Type of the Resource
-        /// @tparam ...Args This allow to send multiple arguments (args)
+        /// @tparam ...Args It allows to send multiple arguments (args)
         /// @param ...args All arguments which are used to construct the Resource
-        /// @throw std::logic_error Throw an error if the Resource already exists
-        /// @return It return itself
+        /// @throw std::logic_error Throw an error if the Resource already exist
+        /// @return &World A reference to itself
         template <std::derived_from<Resource> R, typename... Args> World &addResource(Args &&...args)
         {
             if (containsResource<R>())
@@ -91,7 +91,7 @@ namespace ecs
         /// @brief This function can get a Resource in the World
         /// @tparam R Searched Resource
         /// @throw std::logic_error Throw an error if the Resource does not exists
-        /// @return The Resource choosen
+        /// @return The choosen Resource
         template <std::derived_from<Resource> R> R &getResource() const
         {
             if (_resourcesList.count(typeid(R)) == 0)
@@ -110,7 +110,7 @@ namespace ecs
             _resourcesList.erase(it);
         }
 
-        /// @brief This function will check if a group of Resources types (at least one Resource type) is in a World
+        /// @brief This function will check if a group of Resource types (at least one Resource type) is in a World
         /// @tparam R1 First Resource type to check
         /// @tparam ...R2 OPTIONAL Next Resource type to check
         /// @return True if the group of Resource types is contained in the World. Otherwise False
@@ -121,7 +121,7 @@ namespace ecs
             return containsResource<R2...>();
         }
 
-        /// @brief This function will check if a group of Systems types (at least one System type) is in an World
+        /// @brief This function will check if a group of System types (at least one System type) is in an World
         /// @tparam S1 First System type to check
         /// @tparam ...S2 OPTIONAL Next System type to check
         /// @return True if the group of System types is contained in the World. Otherwise False
@@ -153,22 +153,22 @@ namespace ecs
       protected:
       private:
         ///@brief World's id
-        Index _id;
+        ID _id;
 
-        ///@brief index of the next entity which will be created by the function addEntity()
-        Index _nextEntityId;
+        ///@brief ID of the next entity which will be created by the function addEntity()
+        ID _nextEntityId;
 
         ///@brief Map of entities
         EntitiesList _entitiesList;
 
-        /// @brief List of Resources of the World Class
+        /// @brief Map of Resources of the World Class
         ResourcesList _resourcesList;
 
         ///@brief Map of systems
         SystemsList _systemsList;
 
         /// @brief This is the function which is called when none Resources types left
-        /// @tparam ...R The last research Resource
+        /// @tparam ...R The last researched Resource
         /// @return True
         template <std::derived_from<Resource>... R>
         requires(sizeof...(R) == 0) bool containsResource() const { return true; }

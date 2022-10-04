@@ -14,14 +14,13 @@ namespace ecs
     /// The World which contains the system. World Class is in World.hpp
     class World;
 
-    /// All systems must inherit from System. 
-    /// You do create a system
-    /// A system is used to do any modification you want on all components you want
+    /// All systems must inherit from System.
+    /// A system is used to do any interactions you want on all components you want
     class System {
       public:
         virtual ~System() = default;
 
-        /// Run the system.
+        /// The main function which implements the desired logic.
         virtual void run(World &world) = 0;
     };
 } // namespace ecs

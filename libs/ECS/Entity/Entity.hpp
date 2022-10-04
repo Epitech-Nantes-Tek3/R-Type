@@ -18,27 +18,26 @@
 
 namespace ecs
 {
-    /// @brief This is the Entity Class for ECS
-    /// This class is trivially copiable because the components are not stored in this class.
-    /// It stores in the Component Class
+    /// @brief This is the Entity Class for E.C.S.
+    /// It stores the related Components
     class Entity final {
       public:
         /// @brief The id type
-        using Index = std::size_t;
+        using ID = std::size_t;
 
         /// @brief This is the map of Components of the Entity
         using ComponentsList = std::unordered_map<std::type_index, std::unique_ptr<Component>>;
 
         /// @brief This function can return the Id of itself
         /// @returns The index of this entity.
-        inline constexpr Index getId() const noexcept { return this->_id; }
+        inline constexpr ID getId() const noexcept { return this->_id; }
 
         /// @brief This function can add a Component to the Entity
         /// @tparam C Type of the component
         /// @tparam ...Args This allows to send multiple arguments (args)
         /// @param ...args All arguments which are used to construct the Component
         /// @throw std::logic_error Throw an error if the component already exists
-        /// @return itself
+        /// @return Entity& a reference to itself
         template <std::derived_from<Component> C, typename... Args> Entity &addComponent(Args &&...args)
         {
             if (contains<C>())
@@ -48,9 +47,9 @@ namespace ecs
         }
 
         /// @brief This function can get a Component in the Entity
-        /// @tparam C Search Component
+        /// @tparam C Searched component type
         /// @throw std::logic_error Throw an error if the component does not exists
-        /// @return The composent choosen
+        /// @return The choosen composent
         template <std::derived_from<Component> C> C &getComponent() const
         {
             if (_componentList.count(typeid(C)) == 0)
@@ -59,8 +58,8 @@ namespace ecs
         }
 
         /// @brief Remove a Component of the Entity
-        /// @tparam C The choosen Component to remove
-        /// @throw std::logic_error Throw an error if the component does not exists
+        /// @tparam C The choosen component type to remove
+        /// @throw std::logic_error Throw an error if the component does not exist
         template <std::derived_from<Component> C> void removeComponent()
         {
             ComponentsList::iterator it = _componentList.find(typeid(C));
@@ -80,16 +79,16 @@ namespace ecs
             return contains<C2...>();
         }
 
-        /// @brief Default constructor. This is the destructor of the Entity Class
+        /// @brief Default destructor. This is the destructor of the Entity Class
         ~Entity() = default;
 
         /// @brief This is the constructor of the Entity Class
         /// @param id The id of the Entity
-        inline Entity(Index id) : _id(id), _componentList() {}
+        inline Entity(ID id) : _id(id), _componentList() {}
 
       private:
         /// @brief Id of the Entity Class
-        Index _id;
+        ID _id;
 
         /// @brief List of Components of the Entity Class
         ComponentsList _componentList;
@@ -101,15 +100,15 @@ namespace ecs
         requires(sizeof...(C) == 0) bool contains() const { return true; }
     };
 
-    /// @brief Will check if First Entity is equal to Second Entity. Overide of == operator
-    /// @param entity First entity
-    /// @param other Second entity
+    /// @brief Will check if First Entity ID is equal to Second Entity ID. Overide of == operator
+    /// @param entity First Entity
+    /// @param other Second Entity
     /// @return True if both Entity are same
     inline auto operator==(Entity const &entity, Entity const &other) { return entity.getId() == other.getId(); }
 
-    /// @brief Will check if First Entity is different to Second Entity. Overide of != operator
-    /// @param entity First entity
-    /// @param other Second entity
+    /// @brief Will check if First Entity ID is different to Second Entity ID. Overide of != operator
+    /// @param entity First Entity
+    /// @param other Second Entity
     /// @return True if both Entity are different
     inline auto operator!=(Entity const &entity, Entity const &other) { return entity.getId() != other.getId(); }
 
