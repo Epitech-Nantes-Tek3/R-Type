@@ -18,8 +18,6 @@ namespace ecs
     /// @brief The Lifetime class, telling how long an entity is going to live
     class Lifetime : public Component{
       public:
-        /// @brief Store the current time, will be usefull in the corresponding system
-        system_clock::time_point now = system_clock::now();
         /// @brief the life time of the entity
         duration<double> timeLeft;
 

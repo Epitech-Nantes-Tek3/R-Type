@@ -20,8 +20,6 @@ namespace ecs
       public:
         /// @brief The delay between two shoots
         duration<double> frequency;
-        /// @brief Store the current time, will be usefull in the corresponding system
-        system_clock::time_point now = system_clock::now();
 
         /// @brief Constructor of the ShootingFrequency Component
         /// @param newfrequency the shooting's delay
