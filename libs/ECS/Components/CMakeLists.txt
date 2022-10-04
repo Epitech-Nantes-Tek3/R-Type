@@ -18,5 +18,6 @@ set(SRC_COMPONENT
     ${SRC_ROOT}/HitboxSizeComponent.hpp
     ${SRC_ROOT}/BreakthroughtComponent.hpp
     ${SRC_ROOT}/BouncingComponent.hpp
+    ${SRC_ROOT}/DamageRadiusComponent.hpp
     PARENT_SCOPE
 )
