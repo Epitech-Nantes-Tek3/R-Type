@@ -29,21 +29,21 @@ namespace ecs
         /// @brief This is the map of Entities in the World
         using EntitiesList = std::map<Index, std::shared_ptr<Entity>>;
 
-        /// @brief This is the map of Resource of the World
+        /// @brief This is the map of Resources of the World
         using ResourcesList = std::unordered_map<std::type_index, std::shared_ptr<Resource>>;
 
-        /// @brief This is the map of the Systems in the World
+        /// @brief This is the map of Systems in the World
         using SystemsList = std::unordered_map<std::type_index, std::unique_ptr<System>>;
 
         ///@brief Construct a new World object
-        ///@param id Id of the searched Entity
+        ///@param id Id of the searched Entity. It used to know what World is (exempple in a video game you can have a World(1) for pause menu and another World(2) for your in game)
         inline World(Index id) : _id(id), _nextEntityId(1){};
 
         ///@brief Get the Id object
         ///@return Index
         inline Index getId() const { return _id; };
 
-        ///@brief This function create an Entity in the world
+        ///@brief This function creates an Entity in the world
         ///@return Entity& reference to the created Entity
         Entity &addEntity();
 
