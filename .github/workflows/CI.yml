@@ -64,7 +64,7 @@ jobs:
       run: ./build.bat
 
   coverage:
-    if: github.event_name == ['push', 'workflow_dispatch']
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     needs: [build-linux, build-windows]
     runs-on: ubuntu-latest
     container:
