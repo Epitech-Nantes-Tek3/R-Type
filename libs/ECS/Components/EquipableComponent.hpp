@@ -15,15 +15,15 @@ namespace ecs
     /// @brief The Equipment class, giving bonuses to entities
     class Equipment : public Component{
       public:
-        /// @brief The equipment id
-        unsigned short id;
+        /// @brief The equipment type
+        unsigned short typeId;
 
         /// @brief Constructor of the Equipment
         /// @param EquipId the id of the equipment (defined in the corresponding system)
-        Equipment(unsigned short EquipId) : id(EquipId) {};
+        Equipment(unsigned short EquipId) : typeId(EquipId) {};
         /// @brief Copy constructor of the Equipment
         /// @param old copy of the Equipment
-        Equipment(const Equipment &old) : id(old.id) {};
+        Equipment(const Equipment &old) : typeId(old.typeId) {};
         /// @brief Default Constructor
         ~Equipment() = default;
     };
