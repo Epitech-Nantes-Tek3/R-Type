@@ -8,7 +8,7 @@
 /// @file tests/unit_tests/libs_tests/ECS_tests/Entity_tests
 
 #include <criterion/criterion.h>
-#include "Components/Component.hpp"
+#include "Component/Component.hpp"
 #include "Entity/Entity.hpp"
 
 class Position : public ecs::Component {
@@ -55,7 +55,7 @@ Test(Entity, add_and_get_component)
     ecs::Entity *entity = new ecs::Entity(1);
 
     entity->addComponent<Position>(10, 95);
-    class Position &pos = entity->getComponent<Position>();
+    Position &pos = entity->getComponent<Position>();
     cr_assert_eq(pos.x, 10);
     cr_assert_eq(pos.y, 95);
 
