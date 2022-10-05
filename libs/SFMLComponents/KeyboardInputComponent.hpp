@@ -14,13 +14,23 @@
 
 namespace ecs
 {
+    /// @brief Definition of the enum action_e.
     enum action_e;
+
+    /// @brief This component class stores an unsorted map of action pair.
+    /// This class is created in order to find an action depending on a key pressed or release.
+    /// It inherits from Component.
     class KeyboardInputComponent : public Component {
         public:
+            /// @brief This unordered_map links SFML key input to an action pair enum.
             std::unordered_map<sf::Keyboard::Key, std::pair<ecs::action_e, ecs::action_e>> keyboardMapActions;
+
+            /// @brief Constructor of the class.
             KeyboardInputComponent();
+
+            /// @brief Default destructor of the class.
             ~KeyboardInputComponent() = default;
     };
-}
+} // namespace ecs
 
 #endif /* !KEYBOARDINPUTCOMPONENT_HPP_ */
