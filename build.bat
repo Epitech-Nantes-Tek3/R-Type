@@ -7,7 +7,7 @@ echo "Build Folder created"
 conan install .. --build=missing  -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True
 cd ..
 cmake -B ./build -DCMAKE_BUILD_TYPE=Release
-cmake --build ./build
+cmake --build ./build -j
 
 echo "Compilation Done"
 @pause
