@@ -12,7 +12,7 @@
 
 namespace ecs
 {
-    /// @brief The Invisible component, to make an entity live without drawing it
+    /// @brief The Invisible component, to make an entity lives without drawing it
     class Invisible : public Component {};
 } // namespace ecs
 

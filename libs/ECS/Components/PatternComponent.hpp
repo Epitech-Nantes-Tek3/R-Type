@@ -20,7 +20,7 @@ namespace ecs
     /// @brief The Movement component, used for mobiles entities
     class Pattern : public Component {
       public:
-        /// @brief List of movements to execute
+        /// @brief Vector of movements to execute
         std::vector<std::tuple<int, int>> pattern;
         /// @brief The changing movement frequency, iterate in the vector to have a new movement
         duration<double> changeFrequency;
