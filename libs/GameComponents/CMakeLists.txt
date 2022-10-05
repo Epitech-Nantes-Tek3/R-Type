@@ -7,7 +7,7 @@ set(SRC
     ${SRC_ROOT}/PositionComponent.hpp
     ${SRC_ROOT}/ButtonComponent.hpp
     ${SRC_ROOT}/VelocityComponent.hpp
-    ${SRC_ROOT}/DirectionComponent.hpp
+    ${SRC_ROOT}/DestinationComponent.hpp
     ${SRC_ROOT}/ShootingFrequencyComponent.hpp
     ${SRC_ROOT}/ControlableComponent.hpp
     ${SRC_ROOT}/LifeComponent.hpp
