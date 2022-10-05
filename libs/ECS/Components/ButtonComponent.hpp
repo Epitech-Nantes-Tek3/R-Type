@@ -15,9 +15,9 @@ namespace ecs
     /// @brief The Button Component, used to make the difference between the component
     class Button : public Component {
       public:
-        /// @brief If the component is hovered, the value will be to true
+        /// @brief If the component is hovered, the value will be set to true
         bool IsHovered;
-        /// @brief If the component is clicked, the value will equal to true
+        /// @brief If the component is clicked, the value will be set to true
         bool IsClicked;
 
         /// @brief Constructor of the Button Component
