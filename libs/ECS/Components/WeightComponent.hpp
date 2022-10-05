@@ -16,11 +16,11 @@ namespace ecs
     class Weight : public Component{
       public:
         /// @brief weight of the entity
-        unsigned short weight;
+        short weight;
 
         /// @brief Constructor of the Weight Component
         /// @param newWeight the weight
-        Weight(unsigned short newWeight) : weight(newWeight) {};
+        Weight(short newWeight) : weight(newWeight) {};
         /// @brief Copy Constructor of the Weight Component
         /// @param old the copy of the Weight component
         Weight(const Weight &old) : weight(old.weight) {};

@@ -15,9 +15,9 @@ namespace ecs
     /// @brief The Size component, almost used for everything
     class Size : public Component {
       public:
-        /// @brief The length of the size
+        /// @brief The size's length
         int x;
-        /// @brief The lenght of the size
+        /// @brief The size's lenght
         int y;
 
         /// @brief Constructor of the Size component
