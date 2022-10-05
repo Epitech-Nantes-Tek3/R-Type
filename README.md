@@ -1,9 +1,7 @@
 ***
-[![Build](https://github.com/osvegn/R-Type/actions/workflows/build.yml/badge.svg)](https://github.com/osvegn/R-Type/actions/workflows/build.yml)
+[![CI](https://github.com/osvegn/R-Type/actions/workflows/CI.yml/badge.svg)](https://github.com/osvegn/R-Type/actions/workflows/CI.yml)
 
-[![Coding style](https://github.com/osvegn/R-Type/actions/workflows/lints.yml/badge.svg)](https://github.com/osvegn/R-Type/actions/workflows/lints.yml)
-
-[![Mirroring](https://github.com/osvegn/R-Type/actions/workflows/mirroring.yml/badge.svg)](https://github.com/osvegn/R-Type/actions/workflows/mirroring.yml)
+[![codecov](https://codecov.io/gh/osvegn/R-Type/branch/master/graph/badge.svg?token=iUiqejopI0)](https://codecov.io/gh/osvegn/R-Type)
 
 [![forthebadge](https://forthebadge.com/images/badges/made-with-c-plus-plus.svg)](https://forthebadge.com)
 ***

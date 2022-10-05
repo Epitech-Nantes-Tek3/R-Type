@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2022
-** Project
+** R-Type
 ** File description:
 ** Receiver
 */
@@ -12,6 +12,7 @@
 
 #include <boost/array.hpp>
 #include <boost/asio.hpp>
+#include <map>
 #include <vector>
 #include "Client.hpp"
 
@@ -25,6 +26,8 @@ namespace communicator_lib
         void *data;
         /// @brief Size of the message
         size_t size;
+        /// @brief Data type (Refer to the RFC)
+        unsigned short type;
     };
 
     /// @brief Get and store all the network message
@@ -66,13 +69,13 @@ namespace communicator_lib
 
         /// @brief Pop the first message of the list (oldest)
         /// @return The older message
-        /// @throw Throw an error when no message are found (to update when error class have been setup)
+        /// @throw Throw an error when no message are found (NetworkError)
         Message getLastMessage(void);
 
         /// @brief Pop the oldest message of a client inside the list
         /// @param client The wanted client
         /// @return The client message
-        /// @throw Throw an error when no message are found (to update when error class have been setup)
+        /// @throw Throw an error when no message are found (NetworkError)
         Message getLastMessageFromClient(Client client);
 
         /// @brief Remove all the messages of a client
@@ -81,6 +84,7 @@ namespace communicator_lib
         void removeAllClientMessage(Client client);
 
         /// @brief Start the listening process
+        /// @throw Throw and error when bind failed (NetworkError)
         void startListening(void);
 
       protected:
@@ -92,6 +96,30 @@ namespace communicator_lib
 
         /// @brief Private async function holding the network search process
         void wait(void);
+
+        /// @brief Extract the communication header from the transfered data
+        /// @param data The transfered data
+        /// @return A vector of two unsigned short which represent the data header
+        std::vector<unsigned short> getDataHeader(void *data);
+
+        /// @brief The function will process the data according to the protocol 10
+        /// @param dataContent The transfered data (Client + Data)
+        void dataTraitmentType10(Message dataContent);
+
+        /// @brief The function will process the data according to the protocol 20
+        /// @param dataContent The transfered data (Client + Data)
+        void dataTraitmentType20(Message dataContent);
+
+        /// @brief The function will process the data according to the protocol 21
+        /// @param dataContent The transfered data (Client + Data)
+        void dataTraitmentType21(Message dataContent);
+
+        /// @brief The function will process the data according to the protocol 30
+        /// @param dataContent The transfered data (Client + Data)
+        void dataTraitmentType30(Message dataContent);
+
+        /// @brief Bind all data traitment function (Use only in constructor)
+        void bindDataTraitmentFunction(void);
 
         /// @brief List of all the untraited message
         std::vector<Message> _messageList;
@@ -110,6 +138,9 @@ namespace communicator_lib
 
         /// @brief A temporary data using in the listening functionnality
         boost::asio::ip::udp::endpoint _tempRemoteEndpoint;
+
+        /// @brief Map of all the data traitment function. (Type + function)
+        std::map<unsigned short, std::function<void(Message)>> _dataTraitment;
     };
 } // namespace communicator_lib
 

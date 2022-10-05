@@ -1,14 +1,16 @@
 /*
 ** EPITECH PROJECT, 2022
-** Project
+** R-Type
 ** File description:
 ** Receiver_tests
 */
 
 #include <criterion/criterion.h>
 #include "Communicator/Receiver.hpp"
+#include "Error/Error.hpp"
 
 using namespace communicator_lib;
+using namespace error_lib;
 
 Test(receiver_testing, basic_init)
 {
@@ -30,7 +32,7 @@ Test(receiver_testing, set_init)
 Test(receiver_testing, add_message)
 {
     Receiver receiver = Receiver();
-    Message message = {Client(), nullptr, 0};
+    Message message = {Client(), nullptr, 0, 0};
 
     receiver.addMessage(message);
     cr_assert_eq(receiver.getMessageListSize(), 1);
@@ -39,20 +41,20 @@ Test(receiver_testing, add_message)
 Test(receiver_testing, get_last_message)
 {
     Receiver receiver = Receiver();
-    Message message = {Client(), nullptr, 0};
-    Message message_two = {Client(), nullptr, 1};
+    Message message = {Client(), nullptr, 0, 0};
+    Message message_two = {Client(), nullptr, 1, 0};
 
     try {
         receiver.getLastMessage();
         cr_assert_eq(42, 41);
-    } catch (std::invalid_argument &e) {
+    } catch (NetworkError &e) {
         cr_assert_eq(42, 42);
     }
     receiver.addMessage(message);
     try {
         auto temp = receiver.getLastMessage();
         cr_assert_eq(temp.size, 0);
-    } catch (std::invalid_argument &e) {
+    } catch (NetworkError &e) {
         cr_assert_eq(41, 42);
     }
     cr_assert_eq(receiver.getMessageListSize(), 0);
@@ -66,7 +68,7 @@ Test(receiver_testing, get_last_message)
         temp = receiver.getLastMessage();
         cr_assert_eq(temp.size, 1);
         cr_assert_eq(receiver.getMessageListSize(), 0);
-    } catch (std::invalid_argument &e) {
+    } catch (NetworkError &e) {
         cr_assert_eq(41, 42);
     }
 }
@@ -74,9 +76,9 @@ Test(receiver_testing, get_last_message)
 Test(receiver_testing, get_last_message_from_client)
 {
     Receiver receiver = Receiver();
-    Message message = {Client(), nullptr, 0};
-    Message message_two = {Client(), nullptr, 1};
-    Message message_three = {Client("100.1.1.1", 10), nullptr, 2};
+    Message message = {Client(), nullptr, 0, 0};
+    Message message_two = {Client(), nullptr, 1, 0};
+    Message message_three = {Client("100.1.1.1", 10), nullptr, 2, 0};
 
     receiver.addMessage(message);
     receiver.addMessage(message_three);
@@ -89,7 +91,7 @@ Test(receiver_testing, get_last_message_from_client)
         temp = receiver.getLastMessageFromClient(Client());
         cr_assert_eq(temp.size, 1);
         cr_assert_eq(receiver.getMessageListSize(), 1);
-    } catch (std::invalid_argument &e) {
+    } catch (NetworkError &e) {
         cr_assert_eq(41, 42);
     }
 }
@@ -97,9 +99,9 @@ Test(receiver_testing, get_last_message_from_client)
 Test(receiver_testing, remove_all_client_message)
 {
     Receiver receiver = Receiver();
-    Message message = {Client(), nullptr, 0};
-    Message message_two = {Client(), nullptr, 1};
-    Message message_three = {Client("100.1.1.1", 10), nullptr, 2};
+    Message message = {Client(), nullptr, 0, 0};
+    Message message_two = {Client(), nullptr, 1, 0};
+    Message message_three = {Client("100.1.1.1", 10), nullptr, 2, 0};
 
     receiver.addMessage(message);
     receiver.addMessage(message_three);

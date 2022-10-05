@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2022
 ** R-Type
 ** File description:
-** Project Main
+** R-Type Main
 */
 
 #include <iostream>
