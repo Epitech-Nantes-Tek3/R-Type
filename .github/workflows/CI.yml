@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: [ master ]
   workflow_dispatch:
+    inputs:
+      tests:
+        description: "Run tests"
+        required: true
+        type: boolean
 
 env:
   BUILD_TYPE: Release
@@ -64,7 +69,7 @@ jobs:
       run: ./build.bat
 
   coverage:
-    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    if: ${{ inputs.tests}} == true
     needs: [build-linux, build-windows]
     runs-on: ubuntu-latest
     container:
