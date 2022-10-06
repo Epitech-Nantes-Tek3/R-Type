@@ -68,6 +68,7 @@ namespace transisthor_lib
             (void)id;
             (void)component;
             (void)type;
+            /// WILL BE IMPLEMENTED WHEN RESSOURCE HAVE BEEN MERGED.
         }
 
         /// @brief Function called by the ECS. The transfered data will be converted to a Network object and send to the
@@ -82,6 +83,7 @@ namespace transisthor_lib
         {
             (void)id;
             (void)type;
+            /// WILL BE IMPLEMENTED WHEN ENTITY HAVE BEEN MERGED.
         }
 
       private:

@@ -7,7 +7,6 @@
 
 #include <criterion/criterion.h>
 #include "Error/Error.hpp"
-#include "Transisthor/Transisthor.hpp"
 #include "GameComponents/DestinationComponent.hpp"
 #include "GameComponents/EquipmentComponent.hpp"
 #include "GameComponents/InvinsibleComponent.hpp"
@@ -15,6 +14,7 @@
 #include "GameComponents/LifeComponent.hpp"
 #include "GameComponents/PositionComponent.hpp"
 #include "GameComponents/VelocityComponent.hpp"
+#include "Transisthor/Transisthor.hpp"
 
 using namespace transisthor_lib;
 using namespace communicator_lib;
