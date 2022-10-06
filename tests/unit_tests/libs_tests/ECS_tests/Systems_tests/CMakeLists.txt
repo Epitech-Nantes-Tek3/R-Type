@@ -4,7 +4,7 @@ set (INCLUDE_ROOT ${PROJECT_SOURCE_DIR}/tests/unit_tests/libs_tests/ECS_tests/Sy
 set (SRC_ROOT ${PROJECT_SOURCE_DIR}/tests/unit_tests/libs_tests/ECS_tests/Systems_tests)
 
 set(TEST_SRC_ROOT
-    ${SRC_ROOT}/Velocity_System_tests.cpp
+    ${SRC_ROOT}/Movement_System_tests.cpp
 )
 
 ## Documented Example ##
