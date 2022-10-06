@@ -30,6 +30,9 @@ namespace server_data
         /// @brief Destroy the Server object
         ~Server() = default;
 
+        /// @brief Create and add a new Room inside the room list
+        void createANewRoom(void);
+
       private:
         /// @brief List of all the active room.
         std::vector<Room> _activeRoomList;

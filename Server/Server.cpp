@@ -20,6 +20,11 @@ Server::Server(std::string address, unsigned short port)
     _networkInformations = Client(address, port);
 }
 
+void Server::createANewRoom(void)
+{
+    _activeRoomList.push_back(Room());
+}
+
 Server::Server()
 {
     _activeRoomList = {};
