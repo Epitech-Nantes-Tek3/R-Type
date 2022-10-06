@@ -18,6 +18,9 @@ target_include_directories(${TARGET}
 
 target_link_libraries(${TARGET}
     ${PROJECT_NAME}_ecs
+    CONAN_PKG::sfml
 )
 
 set_target_properties(${TARGET} PROPERTIES LINKER_LANGUAGE CXX)
+include(${PROJECT_SOURCE_DIR}/build/conanbuildinfo.cmake)
+conan_basic_setup(TARGETS)

@@ -5,12 +5,14 @@ set (SRC_ROOT ${PROJECT_SOURCE_DIR}/tests/unit_tests/libs_tests/SFML_tests)
 
 set(TEST_SRC_ROOT
     ${SRC_ROOT}/AllowControllerComponentTests.cpp
+    ${SRC_ROOT}/AllowMouseAndKeyboardComponentTests.cpp
+    ${SRC_ROOT}/ControllerInputComponentTests.cpp
 )
 
 ## Documented Example ##
 create_test(
     ## First, the name of the test ##
-    TEST_NAME AllowControllerComponent_class_tests
+    TEST_NAME SFML_tests
     ## Second, the sources for the test ##
     TEST_SRC ${TEST_SRC_ROOT}
     ## Last, the depenancies (necessary libraries) ##

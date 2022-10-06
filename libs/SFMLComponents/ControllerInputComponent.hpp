@@ -15,7 +15,10 @@
 namespace ecs
 {
     /// @brief Definition of the enum action_e.
-    enum action_e;
+    enum action_e
+    {
+        NONE
+    };
 
     /// @brief This component class stores an unsorted map of action/value pair.
     /// This class is created in order to find an action depending on a controller input pressed or released.
@@ -57,7 +60,7 @@ namespace ecs
             std::unordered_map<controllerInputE, std::pair<ecs::action_e, float>> controllerMapActions;
 
             /// @brief Constructor of the class.
-            ControllerInputComponent();
+            ControllerInputComponent() = default;
 
             /// @brief Default destructor of the class.
             ~ControllerInputComponent() = default;
