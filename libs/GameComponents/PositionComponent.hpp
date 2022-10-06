@@ -23,10 +23,7 @@ namespace ecs
         /// @brief Constructor of the Position component
         /// @param X the abscissa
         /// @param Y the ordinate
-        Position(const int &X, const int &Y) : x(X), y(Y){};
-        /// @brief Copy Constructor of the Position Component
-        /// @param old The copy of the Position Component
-        Position(const Position &old) : x(old.x), y(old.y) {};
+        Position(const int &X = 0, const int &Y = 0) : x(X), y(Y){};
         /// @brief Default Destructor
         ~Position() = default;
     };

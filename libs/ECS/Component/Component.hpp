@@ -34,15 +34,4 @@ namespace ecs
         std::memcpy(&convertedComponent, byteCode, sizeof(C));
         return convertedComponent;
     }
-
-    /// @brief Temporary component to demonstrate how it will work
-    class Position : public Component {
-      public:
-        int x;
-        int y;
-
-        Position(const int X, const int Y) : x(X), y(Y){};
-        Position() : x(0), y(0){};
-    };
-
 } // namespace ecs

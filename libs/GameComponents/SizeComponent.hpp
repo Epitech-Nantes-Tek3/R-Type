@@ -23,10 +23,7 @@ namespace ecs
         /// @brief Constructor of the Size component
         /// @param X the length
         /// @param Y the lenght
-        Size(const int &X, const int &Y) : x(X), y(Y){};
-        /// @brief Copy Constructor of the Size Component
-        /// @param old The copy of the Size Component
-        Size(const Size &old) : x(old.x), y(old.y) {};
+        Size(const int &X = 0, const int &Y = 0) : x(X), y(Y){};
         /// @brief Default Destructor
         ~Size() = default;
     };

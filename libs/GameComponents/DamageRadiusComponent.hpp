@@ -20,10 +20,7 @@ namespace ecs
 
         /// @brief Constructor of the DamageRadius Component
         /// @param newRadius the new radius
-        DamageRadius(unsigned short newRadius) : radius(newRadius) {};
-        /// @brief Copy Constructor of the DamageRadius Component
-        /// @param old the copy of the DamageRadius component
-        DamageRadius(const DamageRadius &old) : radius(old.radius) {};
+        DamageRadius(unsigned short newRadius = 0) : radius(newRadius) {};
         /// @brief Default Destructor
         ~DamageRadius() = default;
     };

@@ -20,10 +20,7 @@ namespace ecs
 
         /// @brief Constructor of the DeathDamage Component
         /// @param newDeathDamage the number of DeathDamage
-        DeathDamage(unsigned short newDeathDamage) : deathDamagePoint(newDeathDamage) {};
-        /// @brief Copy Constructor of the DeathDamage Component
-        /// @param old the copy of the DeathDamage component
-        DeathDamage(const DeathDamage &old) : deathDamagePoint(old.deathDamagePoint) {};
+        DeathDamage(unsigned short newDeathDamage = 0) : deathDamagePoint(newDeathDamage) {};
         /// @brief Default Destructor
         ~DeathDamage() = default;
     };

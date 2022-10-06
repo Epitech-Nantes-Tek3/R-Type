@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2022
 ** Project
 ** File description:
-** Breakthrought
+** BreakThrought
 */
 
 #ifndef BREAKTHROUGHT_HPP_

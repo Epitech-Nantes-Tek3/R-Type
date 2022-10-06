@@ -91,10 +91,40 @@ namespace transisthor_lib
         /// @brief A reference to a Ecs World
         World &_ecsWorld;
 
+        /// @brief Convert a byteCode data into a Destination component and send it to the ECS
+        /// @param id Entity ID attached to the component
+        /// @param byteCode byte value of the Destination component
+        void componentConvertDestinationType(unsigned short id, void *byteCode);
+
+        /// @brief Convert a byteCode data into a Equipment component and send it to the ECS
+        /// @param id Entity ID attached to the component
+        /// @param byteCode byte value of the Equipment component
+        void componentConvertEquipmentType(unsigned short id, void *byteCode);
+
+        /// @brief Convert a byteCode data into a Invinsible component and send it to the ECS
+        /// @param id Entity ID attached to the component
+        /// @param byteCode byte value of the Invinsible component
+        void componentConvertInvinsibleType(unsigned short id, void *byteCode);
+
+        /// @brief Convert a byteCode data into a Invisible component and send it to the ECS
+        /// @param id Entity ID attached to the component
+        /// @param byteCode byte value of the Invisible component
+        void componentConvertInvisibleType(unsigned short id, void *byteCode);
+
+        /// @brief Convert a byteCode data into a Life component and send it to the ECS
+        /// @param id Entity ID attached to the component
+        /// @param byteCode byte value of the Life component
+        void componentConvertLifeType(unsigned short id, void *byteCode);
+
         /// @brief Convert a byteCode data into a Position component and send it to the ECS
         /// @param id Entity ID attached to the component
         /// @param byteCode byte value of the Position component
         void componentConvertPositionType(unsigned short id, void *byteCode);
+
+        /// @brief Convert a byteCode data into a Velocity component and send it to the ECS
+        /// @param id Entity ID attached to the component
+        /// @param byteCode byte value of the Velocity component
+        void componentConvertVelocityType(unsigned short id, void *byteCode);
 
         /// @brief List of all the Convert function for Component. Ordered by the component type value (Refer to RFC for
         /// more informations)

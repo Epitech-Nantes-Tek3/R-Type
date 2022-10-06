@@ -28,10 +28,7 @@ namespace ecs
         /// @brief Constructor of Patterns component
         /// @param directions vector of directions
         /// @param movingFrequency frequency of the iteration in the vector
-        Pattern(const std::vector<std::tuple<int, int>> &directions, duration<double> movingFrequency) : pattern(directions), changeFrequency(movingFrequency) {};
-        /// @brief Copy Constructor of the Pattern Component
-        /// @param old The copy of the Pattern Component
-        Pattern(const Pattern &old) : pattern(old.pattern), changeFrequency(old.changeFrequency) {};
+        Pattern(const std::vector<std::tuple<int, int>> &directions = {}, duration<double> movingFrequency = duration<double>(0)) : pattern(directions), changeFrequency(movingFrequency) {};
         /// @brief Default Destructor
         ~Pattern() = default;
     };

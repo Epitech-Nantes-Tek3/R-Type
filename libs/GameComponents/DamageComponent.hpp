@@ -20,10 +20,7 @@ namespace ecs
 
         /// @brief Constructor of the Damage Component
         /// @param newDamage the number of damage
-        Damage(unsigned short newDamage) : damagePoint(newDamage) {};
-        /// @brief Copy Constructor of the Damage Component
-        /// @param old the copy of the Damage component
-        Damage(const Damage &old) : damagePoint(old.damagePoint) {};
+        Damage(unsigned short newDamage = 0) : damagePoint(newDamage) {};
         /// @brief Default Destructor
         ~Damage() = default;
     };

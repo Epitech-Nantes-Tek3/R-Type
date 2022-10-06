@@ -8,6 +8,13 @@
 #include <criterion/criterion.h>
 #include "Error/Error.hpp"
 #include "Transisthor/Transisthor.hpp"
+#include "GameComponents/DestinationComponent.hpp"
+#include "GameComponents/EquipmentComponent.hpp"
+#include "GameComponents/InvinsibleComponent.hpp"
+#include "GameComponents/InvisibleComponent.hpp"
+#include "GameComponents/LifeComponent.hpp"
+#include "GameComponents/PositionComponent.hpp"
+#include "GameComponents/VelocityComponent.hpp"
 
 using namespace transisthor_lib;
 using namespace communicator_lib;
@@ -30,7 +37,7 @@ Test(transisthor_testing, transit_data_testing)
     Transisthor transisthor = Transisthor(communicator, world);
     Position pos = Position(10, 95);
     Position newPos;
-    void *temp = transisthor.transitEcsDataToNetworkData<Position>(1, 3, pos);
+    void *temp = transisthor.transitEcsDataToNetworkData<Position>(1, 6, pos);
     void *networkAnswer = transisthor.transitNetworkDataToEcsData({Client(), temp, sizeof(Position), 30});
 
     cr_assert_eq(pos.x, 10);

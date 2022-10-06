@@ -23,10 +23,7 @@ namespace ecs
 
         /// @brief Constructor of the ShootingFrequency Component
         /// @param newfrequency the shooting's delay
-        ShootingFrequency(duration<double> newFrequency) : frequency(newFrequency) {};
-        /// @brief Copy Constructor of the ShootingFrequency Component
-        /// @param old the copy of the ShootingFrequency Component
-        ShootingFrequency(const ShootingFrequency &old) : frequency(old.frequency) {};
+        ShootingFrequency(duration<double> newFrequency = duration<double>(0)) : frequency(newFrequency) {};
         /// @brief Default Destructor
         ~ShootingFrequency() = default;
     };

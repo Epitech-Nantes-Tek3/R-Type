@@ -9,7 +9,7 @@
 #define WEAKNESSCOMPONENT_HPP_
 
 #include "Component/Component.hpp"
-#include <tuple>
+#include <array>
 
 namespace ecs
 {
@@ -17,17 +17,14 @@ namespace ecs
     class Weakness : public Component {
       public:
         /// @brief The center of the Weakness's circle (with abscissa and ordinate)
-        std::tuple<double, double> center;
+        std::array<double, 2> center;
         /// @brief The radius of the Weakness's circle
         unsigned short radius;
 
         /// @brief Constructor of the Weakness component
         /// @param newCenter the new center
         /// @param newRadius the new radius
-        Weakness(std::tuple<double, double> newCenter, unsigned short newRadius) : center(newCenter), radius(newRadius) {};
-        /// @brief Copy Constructor of the Weakness Component
-        /// @param old The copy of the Weakness Component
-        Weakness(const Weakness &old) : center(old.center), radius(old.radius) {};
+        Weakness(std::array<double, 2> newCenter = {0, 0}, unsigned short newRadius = 0) : center(newCenter), radius(newRadius) {};
         /// @brief Default Destructor
         ~Weakness() = default;
     };

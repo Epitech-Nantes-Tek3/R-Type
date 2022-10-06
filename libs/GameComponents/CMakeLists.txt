@@ -13,10 +13,10 @@ set(SRC
     ${INC_ROOT}/LifeComponent.hpp
     ${INC_ROOT}/DamageComponent.hpp
     ${INC_ROOT}/LifetimeComponent.hpp
-    ${INC_ROOT}/EquipableComponent.hpp
+    ${INC_ROOT}/EquipmentComponent.hpp
     ${INC_ROOT}/WeaknessComponent.hpp
     ${INC_ROOT}/CollidableComponent.hpp
-    ${INC_ROOT}/BreakthroughtComponent.hpp
+    ${INC_ROOT}/BreakThroughtComponent.hpp
     ${INC_ROOT}/BouncingComponent.hpp
     ${INC_ROOT}/DamageRadiusComponent.hpp
     ${INC_ROOT}/WeightComponent.hpp

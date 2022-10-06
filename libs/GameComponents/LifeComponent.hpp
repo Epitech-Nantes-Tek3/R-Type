@@ -20,10 +20,7 @@ namespace ecs
 
         /// @brief Constructor of the Life Component
         /// @param newLifePoint the life given to the entity
-        Life(unsigned short newLifePoint) : lifePoint(newLifePoint) {};
-        /// @brief Copy Constructor of the Life component
-        /// @param old The copy of the Life component
-        Life(const Life &old) : lifePoint(old.lifePoint) {};
+        Life(unsigned short newLifePoint = 0) : lifePoint(newLifePoint) {};
         /// @brief Default Destructor
         ~Life() = default;
     };

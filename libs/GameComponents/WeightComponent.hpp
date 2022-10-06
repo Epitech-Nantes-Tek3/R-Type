@@ -20,10 +20,7 @@ namespace ecs
 
         /// @brief Constructor of the Weight Component
         /// @param newWeight the weight
-        Weight(short newWeight) : weight(newWeight) {};
-        /// @brief Copy Constructor of the Weight Component
-        /// @param old the copy of the Weight component
-        Weight(const Weight &old) : weight(old.weight) {};
+        Weight(short newWeight = 0) : weight(newWeight) {};
         /// @brief Default Destructor
         ~Weight() = default;
     };

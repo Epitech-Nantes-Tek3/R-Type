@@ -23,10 +23,7 @@ namespace ecs
         /// @brief Constructor of the Velocity Component
         /// @param newMultiplierX the movement's multiplier of abscissa
         /// @param newMultiplierY the movement's multiplier of ordinate
-        Velocity(double newMultiplierX, double newMultiplierY) : multiplierAbscissa(newMultiplierX), multiplierOrdinate(newMultiplierY) {};
-        /// @brief Copy Constructor of the Velocity Component
-        /// @param old the copy of the Velocity Component
-        Velocity(const Velocity &old) : multiplierAbscissa(old.multiplierAbscissa), multiplierOrdinate(old.multiplierOrdinate) {};
+        Velocity(double newMultiplierX = 0, double newMultiplierY = 0) : multiplierAbscissa(newMultiplierX), multiplierOrdinate(newMultiplierY) {};
         /// @brief Default Destructor
         ~Velocity() = default;
     };
