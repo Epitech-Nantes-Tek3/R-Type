@@ -22,6 +22,8 @@ namespace server_data
     class Server {
       public:
         /// @brief Construct a new server object
+        /// @param address Ip address of the server
+        /// @param port Listening port for network process
         Server(std::string address, unsigned short port);
 
         /// @brief Construct a new server object with default value
