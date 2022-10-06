@@ -10,15 +10,32 @@
 #ifndef SERVER_HPP_
 #define SERVER_HPP_
 
+#include "Room.hpp"
+#include "Communicator/Client.hpp"
+#include <vector>
+
+using namespace communicator_lib;
+
 namespace server_data
 {
     /// @brief Main class of the server part. Hold room process.
     class Server {
       public:
         /// @brief Construct a new server object
+        Server(std::string address, unsigned short port);
+
+        /// @brief Construct a new server object with default value
         Server();
+
         /// @brief Destroy the Server object
         ~Server() = default;
+
+      private:
+        /// @brief List of all the active room.
+        std::vector<Room> _activeRoomList;
+
+        /// @brief Network information of the server. Setup at the construction
+        Client _networkInformations;
     };
 } // namespace server_data
 
