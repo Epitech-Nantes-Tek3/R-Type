@@ -11,8 +11,14 @@
 #define ROOM_HPP_
 
 #include "Communicator/Client.hpp"
+#include "Communicator/Communicator.hpp"
+#include "Transisthor/Transisthor.hpp"
+#include "World/World.hpp"
+#include <memory>
 
 using namespace communicator_lib;
+using namespace ecs;
+using namespace transisthor_lib;
 
 namespace server_data
 {
@@ -28,7 +34,7 @@ namespace server_data
         Room(unsigned short id, Client networkInformations);
 
         /// @brief Destroy the Room object
-        ~Room() = default;
+        ~Room();
 
         /// @brief Get the room id
         /// @return The room id
@@ -40,6 +46,15 @@ namespace server_data
 
         /// @brief Network informations of the Room.
         Client _networkInformations;
+
+        /// @brief Instance of the communicator library.
+        Communicator *_communicatorInstance;
+
+        /// @brief Instance of the transisthor library.
+        Transisthor *_transisthorInstance;
+
+        /// @brief Instance of the ECS library.
+        World *_worldInstance;
     };
 
     /// @brief Overload of the == operator to compare two rooms
