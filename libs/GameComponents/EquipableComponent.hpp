@@ -8,7 +8,7 @@
 #ifndef EQUIPABLECOMPONENT_HPP_
 #define EQUIPABLECOMPONENT_HPP_
 
-#include "Component.hpp"
+#include "Component/Component.hpp"
 
 namespace ecs
 {

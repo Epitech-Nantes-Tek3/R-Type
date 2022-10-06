@@ -8,7 +8,7 @@
 #ifndef DAMAGECOMPONENT_HPP_
 #define DAMAGECOMPONENT_HPP_
 
-#include "Component.hpp"
+#include "Component/Component.hpp"
 
 namespace ecs
 {

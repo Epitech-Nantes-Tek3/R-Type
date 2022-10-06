@@ -8,7 +8,7 @@
 #ifndef LIFECOMPONENT_HPP_
 #define LIFECOMPONENT_HPP_
 
-#include "Component.hpp"
+#include "Component/Component.hpp"
 
 namespace ecs
 {

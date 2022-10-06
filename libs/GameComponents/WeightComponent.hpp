@@ -8,7 +8,7 @@
 #ifndef WEIGHTCOMPONENT_HPP_
 #define WEIGHTCOMPONENT_HPP_
 
-#include "Component.hpp"
+#include "Component/Component.hpp"
 
 namespace ecs
 {

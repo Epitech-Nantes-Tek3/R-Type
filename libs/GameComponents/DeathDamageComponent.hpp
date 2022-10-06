@@ -8,7 +8,7 @@
 #ifndef DEATHDAMAGECOMPONENT_HPP_
 #define DEATHDAMAGECOMPONENT_HPP_
 
-#include "Component.hpp"
+#include "Component/Component.hpp"
 
 namespace ecs
 {

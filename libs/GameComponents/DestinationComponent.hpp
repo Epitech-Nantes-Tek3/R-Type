@@ -8,7 +8,7 @@
 #ifndef DESTINATIONCOMPONENT_HPP_
 #define DESTINATIONCOMPONENT_HPP_
 
-#include "Component.hpp"
+#include "Component/Component.hpp"
 
 namespace ecs
 {

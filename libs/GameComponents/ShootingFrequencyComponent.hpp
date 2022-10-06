@@ -8,7 +8,7 @@
 #ifndef SHOOTINGFREQUENCYCOMPONENT_HPP_
 #define SHOOTINGFREQUENCYCOMPONENT_HPP_
 
-#include "Component.hpp"
+#include "Component/Component.hpp"
 #include <chrono>
 
 using namespace std::chrono;

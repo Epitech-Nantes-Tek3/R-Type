@@ -8,7 +8,7 @@
 #ifndef CHARGEDATTACK_HPP_
 #define CHARGEDATTACK_HPP_
 
-#include "Component.hpp"
+#include "Component/Component.hpp"
 #include <chrono>
 
 using namespace std::chrono;

@@ -8,7 +8,7 @@
 #ifndef PATERNCOMPONENT_HPP_
 #define PATERNCOMPONENT_HPP_
 
-#include "Component.hpp"
+#include "Component/Component.hpp"
 #include <vector>
 #include <tuple>
 #include <chrono>

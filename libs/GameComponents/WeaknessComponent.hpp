@@ -8,7 +8,7 @@
 #ifndef WEAKNESSCOMPONENT_HPP_
 #define WEAKNESSCOMPONENT_HPP_
 
-#include "Component.hpp"
+#include "Component/Component.hpp"
 #include <tuple>
 
 namespace ecs

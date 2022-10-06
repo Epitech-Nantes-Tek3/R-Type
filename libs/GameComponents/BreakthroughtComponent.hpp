@@ -8,7 +8,7 @@
 #ifndef BREAKTHROUGHT_HPP_
 #define BREAKTHROUGHT_HPP_
 
-#include "Component.hpp"
+#include "Component/Component.hpp"
 
 namespace ecs
 {

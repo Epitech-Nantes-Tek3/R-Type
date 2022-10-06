@@ -8,7 +8,7 @@
 #ifndef LIFETIMECOMPONENT_HPP_
 #define LIFETIMECOMPONENT_HPP_
 
-#include "Component.hpp"
+#include "Component/Component.hpp"
 #include <chrono>
 
 using namespace std::chrono;

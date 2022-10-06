@@ -8,7 +8,7 @@
 #ifndef BUTTONCOMPONENT_HPP_
 #define BUTTONCOMPONENT_HPP_
 
-#include "Component.hpp"
+#include "Component/Component.hpp"
 
 namespace ecs
 {

@@ -8,7 +8,7 @@
 #ifndef INVINSIBLECOMPONENT_HPP_
 #define INVINSIBLECOMPONENT_HPP_
 
-#include "Component.hpp"
+#include "Component/Component.hpp"
 
 namespace ecs
 {

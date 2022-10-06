@@ -8,7 +8,7 @@
 #ifndef CONTROLABLECOMPONENT_HPP_
 #define CONTROLABLECOMPONENT_HPP_
 
-#include "Component.hpp"
+#include "Component/Component.hpp"
 
 namespace ecs
 {

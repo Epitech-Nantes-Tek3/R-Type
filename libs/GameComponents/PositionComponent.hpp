@@ -8,7 +8,7 @@
 #ifndef POSITIONCOMPONENT_HPP_
 #define POSITIONCOMPONENT_HPP_
 
-#include "Component.hpp"
+#include "Component/Component.hpp"
 
 namespace ecs
 {

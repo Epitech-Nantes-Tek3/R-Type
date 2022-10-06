@@ -8,7 +8,7 @@
 #ifndef SIZECOMPONENT_HPP_
 #define SIZECOMPONENT_HPP_
 
-#include "Component.hpp"
+#include "Component/Component.hpp"
 
 namespace ecs
 {

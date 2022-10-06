@@ -8,7 +8,7 @@
 #ifndef VELOCITYCOMPONENT_HPP_
 #define VELOCITYCOMPONENT_HPP_
 
-#include "Component.hpp"
+#include "Component/Component.hpp"
 
 namespace ecs
 {
