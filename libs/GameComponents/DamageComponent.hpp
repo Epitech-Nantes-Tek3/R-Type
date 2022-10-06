@@ -13,14 +13,14 @@
 namespace ecs
 {
     /// @brief The Damage class, reducing the entity's life
-    class Damage : public Component{
+    class Damage : public Component {
       public:
         /// @brief The number of damage, to be substract to the Life Point
         unsigned short damagePoint;
 
         /// @brief Constructor of the Damage Component
         /// @param newDamage the number of damage
-        Damage(unsigned short newDamage = 0) : damagePoint(newDamage) {};
+        Damage(unsigned short newDamage = 0) : damagePoint(newDamage){};
         /// @brief Default Destructor
         ~Damage() = default;
     };

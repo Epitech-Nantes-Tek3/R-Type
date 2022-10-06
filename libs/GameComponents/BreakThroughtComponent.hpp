@@ -16,5 +16,4 @@ namespace ecs
     class BreakThrought : public Component {};
 } // namespace ecs
 
-
 #endif /* !BREAKTHROUGHT_HPP_ */
