@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2022
-** Project
+** R-Type
 ** File description:
 ** BouncingComponent
 */
@@ -8,7 +8,7 @@
 #ifndef BOUNCINGCOMPONENT_HPP_
 #define BOUNCINGCOMPONENT_HPP_
 
-#include "Component.hpp"
+#include "Component/Component.hpp"
 
 namespace ecs
 {
