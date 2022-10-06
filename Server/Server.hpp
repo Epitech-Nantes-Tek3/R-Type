@@ -33,7 +33,12 @@ namespace server_data
         ~Server() = default;
 
         /// @brief Create and add a new Room inside the room list
-        void createANewRoom(void);
+        /// @brief Id of the newly created room
+        unsigned short createANewRoom(void);
+
+        /// @brief Remove and delete a room of the list
+        /// @param id of the room to be deleted
+        void deleteARoom(unsigned short id);
 
       private:
         /// @brief List of all the active room.

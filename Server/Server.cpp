@@ -20,9 +20,21 @@ Server::Server(std::string address, unsigned short port)
     _networkInformations = Client(address, port);
 }
 
-void Server::createANewRoom(void)
+unsigned short Server::createANewRoom(void)
 {
-    _activeRoomList.push_back(Room());
+    _activeRoomList.push_back(Room(_activeRoomList.size(), _networkInformations));
+    return _activeRoomList.size() - 1;
+}
+
+void Server::deleteARoom(unsigned short id)
+{
+    int pos = 0;
+
+    for (auto i : _activeRoomList) {
+        if (i.getRoomId() == id)
+            _activeRoomList.erase(_activeRoomList.begin() + pos);
+        pos++;
+    }
 }
 
 Server::Server()
