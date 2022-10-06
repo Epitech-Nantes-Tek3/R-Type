@@ -13,5 +13,6 @@ using namespace ecs;
 Test(AllowControllerComponent, test_class_constructor)
 {
     AllowControllerComponent a;
+    (void)a;
     cr_assert_eq(42, 42);
 }

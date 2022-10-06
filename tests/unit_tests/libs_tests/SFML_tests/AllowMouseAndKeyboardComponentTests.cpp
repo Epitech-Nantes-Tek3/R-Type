@@ -13,5 +13,6 @@ using namespace ecs;
 Test(AllowMouseAndKeyboardComponent, test_class_constructor)
 {
     AllowMouseAndKeyboardComponent a;
+    (void)a;
     cr_assert_eq(42, 42);
 }
