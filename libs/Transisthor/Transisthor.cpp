@@ -48,7 +48,6 @@ void *Transisthor::transitNetworkDataToEcsData(Message networkData)
     std::memcpy(&id, networkData.data, sizeof(unsigned short));
     std::memcpy(&type, (void *)((char *)networkData.data + sizeof(unsigned short)), sizeof(unsigned short));
     object = (void *)((char *)networkData.data + sizeof(unsigned short) * 2);
-    std::cerr << "Id : " << id << " Type : " << type << std::endl;
     if (_componentConvertFunctionList.find(type) == _componentConvertFunctionList.end())
         return object; /// THROW ERROR INVALID TYPE
     _componentConvertFunctionList[type](id, object);
