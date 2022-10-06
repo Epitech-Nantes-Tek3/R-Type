@@ -25,7 +25,6 @@ set(SRC
     ${INC_ROOT}/DeathDamageComponent.hpp
     ${INC_ROOT}/PatternComponent.hpp
     ${INC_ROOT}/ChargedAttackComponent.hpp
-    ${INC_ROOT}/test.cpp
 )
 
 add_library(${TARGET} ${SRC})
