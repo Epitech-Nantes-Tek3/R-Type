@@ -32,7 +32,7 @@ namespace server_data
 
         /// @brief Get the room id
         /// @return The room id
-        inline unsigned short getRoomId(void) { return _id; };
+        inline unsigned short getRoomId(void) const { return _id; };
 
       private:
         /// @brief Id of the room. (Used by the server)
@@ -41,6 +41,16 @@ namespace server_data
         /// @brief Network informations of the Room.
         Client _networkInformations;
     };
+
+    /// @brief Overload of the == operator to compare two rooms
+    /// @param left param of the comparison
+    /// @param right param of the comparison
+    /// @return true If the two rooms have the same id
+    /// @return false If the two rooms have different id
+    inline bool operator==(const Room &left, const Room &right)
+    {
+        return ((left.getRoomId() == right.getRoomId()));
+    }
 } // namespace server_data
 
 #endif /* !ROOM_HPP_ */
