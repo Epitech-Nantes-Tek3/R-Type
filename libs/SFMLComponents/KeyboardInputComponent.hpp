@@ -29,7 +29,7 @@ namespace ecs
             std::unordered_map<sf::Keyboard::Key, std::pair<ecs::action_e, float>> keyboardMapActions;
 
             /// @brief Constructor of the class.
-            KeyboardInputComponent();
+            KeyboardInputComponent() = default;
 
             /// @brief Default destructor of the class.
             ~KeyboardInputComponent() = default;
