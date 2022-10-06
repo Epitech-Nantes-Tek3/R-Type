@@ -15,7 +15,10 @@
 namespace ecs
 {
     /// @brief Definition of the enum action_e.
-    enum action_e;
+    enum action_e
+    {
+        NONE
+    };
 
     /// @brief This component class stores an unsorted map of action/value pair.
     /// This class is created in order to find an action depending on a key pressed or released.

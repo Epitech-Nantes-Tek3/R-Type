@@ -7,6 +7,7 @@ set(TEST_SRC_ROOT
     ${SRC_ROOT}/AllowControllerComponentTests.cpp
     ${SRC_ROOT}/AllowMouseAndKeyboardComponentTests.cpp
     ${SRC_ROOT}/ControllerInputComponentTests.cpp
+    ${SRC_ROOT}/MouseInputComponentTests.cpp
 )
 
 ## Documented Example ##

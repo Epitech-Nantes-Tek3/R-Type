@@ -15,7 +15,10 @@
 namespace ecs
 {
     /// @brief Definition of the enum action_e.
-    enum action_e;
+    enum action_e
+    {
+        NONE
+    };
 
     /// @brief This component class stores an unsorted map of action/value pair.
     /// This class is created in order to find an action depending on a mouse button pressed or released.
@@ -26,7 +29,7 @@ namespace ecs
             std::unordered_map<sf::Mouse::Button, std::pair<ecs::action_e, float>> MouseMapActions;
 
             /// @brief Constructor of the class.
-            MouseInputComponent();
+            MouseInputComponent() = default;
 
             /// @brief Default destructor of the class.
             ~MouseInputComponent() = default;
