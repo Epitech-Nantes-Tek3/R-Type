@@ -13,7 +13,7 @@ set(SRC
 add_library(${TARGET} ${SRC})
 
 target_include_directories(${TARGET}
-    PUBLIC ${INC_ROOT}
+    PUBLIC ${SFML_INPUT_INC_ROOT}
 )
 
 target_link_libraries(${TARGET}
