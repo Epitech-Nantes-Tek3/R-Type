@@ -12,7 +12,8 @@
 #include <SFML/Graphics.hpp>
 #include <unordered_map>
 
-namespace ecs {
+namespace ecs
+{
     /// @brief Definition of the enum action_e.
     enum action_e;
 
@@ -52,7 +53,7 @@ namespace ecs {
                 BACK_LEFT_2
             };
 
-            /// @brief This unordered_map links SFML
+            /// @brief This unordered_map links SFML controller input to an action/value pair enum.
             std::unordered_map<controllerInputE, std::pair<ecs::action_e, float>> controllerMapActions;
 
             /// @brief Constructor of the class.
@@ -61,6 +62,6 @@ namespace ecs {
             /// @brief Default destructor of the class.
             ~ControllerInputComponent() = default;
     };
-}
+} // namespace ecs
 
 #endif /* !CONTROLLERINPUTCOMPONENT_HPP_ */
