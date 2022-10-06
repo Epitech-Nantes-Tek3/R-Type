@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2022
-** Project
+** R-Type
 ** File description:
 ** DestinationComponent
 */
@@ -8,7 +8,7 @@
 #ifndef DESTINATIONCOMPONENT_HPP_
 #define DESTINATIONCOMPONENT_HPP_
 
-#include "Component.hpp"
+#include "Component/Component.hpp"
 
 namespace ecs
 {
@@ -23,10 +23,7 @@ namespace ecs
         /// @brief Constructor of the Destination component
         /// @param X the abscissa
         /// @param Y the ordinate
-        Destination(const int &X, const int &Y) : x(X), y(Y){};
-        /// @brief Copy Constructor of the Destination Component
-        /// @param old The copy of the Destination Component
-        Destination(const Destination &old) : x(old.x), y(old.y) {};
+        Destination(const int &X = 0, const int &Y = 0) : x(X), y(Y){};
         /// @brief Default Destructor
         ~Destination() = default;
     };

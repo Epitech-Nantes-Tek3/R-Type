@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2022
-** Project
+** R-Type
 ** File description:
 ** CollidableComponent
 */
@@ -8,7 +8,7 @@
 #ifndef COLLIDABLECOMPONENT_HPP_
 #define COLLIDABLECOMPONENT_HPP_
 
-#include "Component.hpp"
+#include "Component/Component.hpp"
 
 namespace ecs
 {

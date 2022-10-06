@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2022
-** Project
+** R-Type
 ** File description:
 ** ChargedAttack
 */
@@ -8,8 +8,8 @@
 #ifndef CHARGEDATTACK_HPP_
 #define CHARGEDATTACK_HPP_
 
-#include "Component.hpp"
 #include <chrono>
+#include "Component/Component.hpp"
 
 using namespace std::chrono;
 
@@ -23,13 +23,9 @@ namespace ecs
 
         /// @brief Constructor of the ChargedAttack Component
         /// @param newRechargingTime Time before making a charged attack
-        ChargedAttack(duration<double> newRechargingTime) : rechargingTime(newRechargingTime) {};
-        /// @brief Copy Constructor of ChargedAttack Component
-        /// @param old the copy of the ChargeAttack Component
-        ChargedAttack(const ChargedAttack &old) : rechargingTime(old.rechargingTime) {};
+        ChargedAttack(duration<double> newRechargingTime = duration<double>(0)) : rechargingTime(newRechargingTime){};
         /// @brief Default Destructor
         ~ChargedAttack() = default;
-
     };
 } // namespace ecs
 

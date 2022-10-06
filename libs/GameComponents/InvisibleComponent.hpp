@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2022
-** Project
+** R-Type
 ** File description:
 ** InvisibleComponent
 */
@@ -8,7 +8,7 @@
 #ifndef INVISIBLECOMPONENT_HPP_
 #define INVISIBLECOMPONENT_HPP_
 
-#include "Component.hpp"
+#include "Component/Component.hpp"
 
 namespace ecs
 {

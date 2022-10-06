@@ -18,4 +18,5 @@ create_test(
 )
 
 add_subdirectory(Communicator_tests)
+add_subdirectory(Transisthor_tests)
 add_subdirectory(libs_tests)

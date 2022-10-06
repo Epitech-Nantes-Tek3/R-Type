@@ -1,29 +1,26 @@
 /*
 ** EPITECH PROJECT, 2022
-** Project
+** R-Type
 ** File description:
-** EquipableComponent
+** EquipmentComponent
 */
 
 #ifndef EQUIPABLECOMPONENT_HPP_
 #define EQUIPABLECOMPONENT_HPP_
 
-#include "Component.hpp"
+#include "Component/Component.hpp"
 
 namespace ecs
 {
     /// @brief The Equipment class, giving bonuses to entities
-    class Equipment : public Component{
+    class Equipment : public Component {
       public:
         /// @brief The equipment type
         unsigned short typeId;
 
         /// @brief Constructor of the Equipment
         /// @param EquipId the id of the equipment (defined in the corresponding system)
-        Equipment(unsigned short EquipId) : typeId(EquipId) {};
-        /// @brief Copy constructor of the Equipment
-        /// @param old copy of the Equipment
-        Equipment(const Equipment &old) : typeId(old.typeId) {};
+        Equipment(unsigned short EquipId = 0) : typeId(EquipId){};
         /// @brief Default Constructor
         ~Equipment() = default;
     };
