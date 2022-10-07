@@ -26,6 +26,7 @@ unsigned short Server::createANewRoom(void)
         Client(_networkInformations.getAddress(),
             _networkInformations.getPort()
                 + 1000))); /// WILL BE REFACTO IN PART 2 TO AUTOMATIZE NEW FREE PORT DETECTION
+    _activeRoomList.back().startLobbyLoop();
     return _activeRoomList.size() - 1;
 }
 

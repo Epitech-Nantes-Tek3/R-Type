@@ -40,8 +40,17 @@ Room::Room(unsigned short id, Client networkInformations)
 
 void Room::startLobbyLoop(void)
 {
-    _communicatorInstance.get()->startReceiverListening();
-    while (_state != RoomState::ENDED && _state != RoomState::UNDEFINED) {
+    CommunicatorMessage connexionDemand;
 
+    _communicatorInstance.get()->startReceiverListening();
+    _state = RoomState::LOBBY;
+    while (_state != RoomState::ENDED && _state != RoomState::UNDEFINED) {
+        try {
+            connexionDemand = _communicatorInstance.get()->getLastMessage();
+            (void)connexionDemand;
+            std::cerr << "Room " << _id << " received a connexion protocol."
+                      << std::endl; /// WILL BE DELETED WITH CONNEXION PROTOCOL ISSUE
+        } catch (NetworkError &error) {
+        }
     }
 }
