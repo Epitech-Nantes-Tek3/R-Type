@@ -30,6 +30,7 @@ set(SRC
     ${INC_ROOT}/ProjectileComponent.hpp
     ${INC_ROOT}/PlayerComponent.hpp
     ${INC_ROOT}/EnemyComponent.hpp
+    ${INC_ROOT}/ObstacleComponent.hpp
 )
 
 add_library(${TARGET} ${SRC})
