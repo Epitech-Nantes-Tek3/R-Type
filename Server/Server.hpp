@@ -13,6 +13,7 @@
 #include <vector>
 #include "Communicator/Client.hpp"
 #include "Room.hpp"
+#include "Communicator/Communicator.hpp"
 
 using namespace communicator_lib;
 
@@ -46,6 +47,9 @@ namespace server_data
 
         /// @brief Network information of the server. Setup at the construction
         Client _networkInformations;
+
+        /// @brief Instance of the communicator library
+        Communicator _communicatorInstance;
     };
 } // namespace server_data
 

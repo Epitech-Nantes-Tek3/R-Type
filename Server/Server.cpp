@@ -14,7 +14,7 @@ using namespace server_data;
 using namespace error_lib;
 using namespace communicator_lib;
 
-Server::Server(std::string address, unsigned short port)
+Server::Server(std::string address, unsigned short port) : _communicatorInstance(Communicator(_networkInformations))
 {
     _activeRoomList = {};
     _networkInformations = Client(address, port);
@@ -22,7 +22,10 @@ Server::Server(std::string address, unsigned short port)
 
 unsigned short Server::createANewRoom(void)
 {
-    _activeRoomList.push_back(Room(_activeRoomList.size(), _networkInformations));
+    _activeRoomList.push_back(Room(_activeRoomList.size(),
+        Client(_networkInformations.getAddress(),
+            _networkInformations.getPort()
+                + 1000))); /// WILL BE REFACTO IN PART 2 TO AUTOMATIZE NEW FREE PORT DETECTION
     return _activeRoomList.size() - 1;
 }
 
