@@ -25,14 +25,8 @@ namespace server_data
     /// @brief Place where the game run (Like a lobby). Hold all libraries instance.
     class Room {
       public:
-
         /// @brief All the possible state of a room
-        enum RoomState {
-            UNDEFINED,
-            LOBBY,
-            IN_GAME,
-            ENDED
-        };
+        enum RoomState { UNDEFINED, LOBBY, IN_GAME, ENDED };
 
         /// @brief Construct a new Room object with default value
         Room();
