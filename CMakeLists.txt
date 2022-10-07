@@ -34,6 +34,7 @@ set_target_properties(r-type_client r-type_server
 # Link libraries to executables
 target_link_libraries(r-type_client
 	CONAN_PKG::sfml
+    ${PROJECT_NAME}_createEntitiesFunctions
 )
 
 # Target include directories from libraries
