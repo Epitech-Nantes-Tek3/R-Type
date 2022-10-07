@@ -19,12 +19,14 @@ Communicator::Communicator() : _receiverModule(Receiver())
 {
     _clientList = {};
     _senderModule = Sender();
+    _transisthorBridge = std::shared_ptr<Transisthor>(nullptr);
 }
 
 Communicator::Communicator(Client networkBind) : _receiverModule(Receiver(networkBind))
 {
     _clientList = {};
     _senderModule = Sender(networkBind.getPort());
+    _transisthorBridge = std::shared_ptr<Transisthor>(nullptr);
 }
 
 void Communicator::addClientToList(Client &client)

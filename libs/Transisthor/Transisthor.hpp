@@ -16,6 +16,11 @@
 using namespace ecs;
 using namespace communicator_lib;
 
+namespace communicator_lib
+{
+    class Communicator;
+}
+
 namespace transisthor_lib
 {
     /// @brief Bridge between Communicator data and ECS data
