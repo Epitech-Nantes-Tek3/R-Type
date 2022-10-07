@@ -25,14 +25,8 @@ namespace client_data
     /// @brief Place where the game run (Like a lobby). Hold all libraries instance,
     class ClientRoom {
       public:
-
         /// @brief All the possible state of a client
-        enum ClientState {
-            UNDEFINED,
-            LOBBY,
-            IN_GAME,
-            ENDED
-        };
+        enum ClientState { UNDEFINED, LOBBY, IN_GAME, ENDED };
 
         /// @brief Construct a new ClientRoom with default value
         ClientRoom();
