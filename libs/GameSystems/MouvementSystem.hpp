@@ -18,8 +18,8 @@ using namespace ecs;
 
 /// @brief This is the system Movement. This system can move any entities which contains a Position and a Velocity Components
 /// It's a system that will be called by the engine world with the function runSystem()
-struct Movement : public ecs::System {
-    void run(ecs::World &world) override final
+struct Movement : public System {
+    void run(World &world) override final
     {
         std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Position, Velocity>();
 
