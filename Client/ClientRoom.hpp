@@ -39,7 +39,7 @@ namespace client_data
 
         /// @brief Construct a new Client object
         /// @param networkInformations Network informations of the client
-        ClientRoom(Client networkInformations);
+        ClientRoom(std::string address, unsigned short port);
 
         /// @brief Destroy the Client object
         ~ClientRoom() = default;

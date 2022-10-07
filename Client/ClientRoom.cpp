@@ -25,9 +25,9 @@ ClientRoom::ClientRoom()
     _state = ClientState::UNDEFINED;
 }
 
-ClientRoom::ClientRoom(Client networkInformations)
+ClientRoom::ClientRoom(std::string address, unsigned short port)
 {
-    _networkInformations = networkInformations;
+    _networkInformations = Client(address, port);
     _communicatorInstance = std::make_shared<Communicator>(_networkInformations);
     _worldInstance = std::make_shared<World>(1);
     _transisthorInstance = std::make_shared<Transisthor>(*(_communicatorInstance.get()), *(_worldInstance.get()));
