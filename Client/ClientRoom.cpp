@@ -5,16 +5,16 @@
 ** Client
 */
 
-/// @file Client/Client.cpp
+/// @file Client/ClientRoom.cpp
 
-#include "Client.hpp"
+#include "ClientRoom.hpp"
 #include "Error/Error.hpp"
 
-using namespace client_data;
 using namespace error_lib;
 using namespace communicator_lib;
+using namespace client_data;
 
-Client::Client()
+ClientRoom::ClientRoom()
 {
     _networkInformations = Client();
     _communicatorInstance = std::make_shared<Communicator>(_networkInformations);
@@ -25,7 +25,7 @@ Client::Client()
     _state = ClientState::UNDEFINED;
 }
 
-Client::Client(Client networkInformations)
+ClientRoom::ClientRoom(Client networkInformations)
 {
     _networkInformations = networkInformations;
     _communicatorInstance = std::make_shared<Communicator>(_networkInformations);

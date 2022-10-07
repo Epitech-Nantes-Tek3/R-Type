@@ -5,6 +5,9 @@ set(INC_ROOT ${PROJECT_SOURCE_DIR}/Client)
 
 set(SRC
     ${SRC_ROOT}/main.cpp
+    ${SRC_ROOT}/ClientRoom.cpp
+
+    ${SRC_ROOT}/ClientRoom.hpp
 )
 
 add_executable(${TARGET} ${SRC})

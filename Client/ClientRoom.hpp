@@ -5,12 +5,13 @@
 ** Client
 */
 
-/// @file Client/Client.hpp
+/// @file Client/ClientRoom.hpp
 
-#ifndef CLIENT_HPP_
-#define CLIENT_HPP_
+#ifndef CLIENT_ROOM_HPP_
+#define CLIENT_ROOM_HPP_
 
 #include <memory>
+#include "Communicator/Client.hpp"
 #include "Communicator/Communicator.hpp"
 #include "Transisthor/Transisthor.hpp"
 #include "World/World.hpp"
@@ -22,7 +23,7 @@ using namespace transisthor_lib;
 namespace client_data
 {
     /// @brief Place where the game run (Like a lobby). Hold all libraries instance,
-    class Client {
+    class ClientRoom {
       public:
 
         /// @brief All the possible state of a client
@@ -34,14 +35,14 @@ namespace client_data
         };
 
         /// @brief Construct a new Client with default value
-        Client();
+        ClientRoom();
 
         /// @brief Construct a new Client object
         /// @param networkInformations Network informations of the client
-        Client(Client networkInformations);
+        ClientRoom(Client networkInformations);
 
         /// @brief Destroy the Client object
-        ~Client() = default;
+        ~ClientRoom() = default;
 
       private:
         /// @brief Network informations of the room.
