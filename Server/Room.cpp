@@ -52,5 +52,6 @@ void Room::startLobbyLoop(void)
                       << std::endl; /// WILL BE DELETED WITH CONNEXION PROTOCOL ISSUE
         } catch (NetworkError &error) {
         }
+        _worldInstance.get()->runSystems(); /// WILL BE IMPROVED IN PART TWO (THREAD + CLOCK)
     }
 }
