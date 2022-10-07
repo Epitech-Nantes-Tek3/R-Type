@@ -23,6 +23,7 @@ Room::Room()
     _transisthorInstance = std::make_shared<Transisthor>(*(_communicatorInstance.get()), *(_worldInstance.get()));
     _communicatorInstance.get()->updateTransisthorBridge(_transisthorInstance);
     _worldInstance.get()->updateTransisthorBridge(_communicatorInstance.get()->getTransisthorBridge());
+    _state = RoomState::UNDEFINED;
 }
 
 Room::Room(unsigned short id, Client networkInformations)
@@ -34,4 +35,13 @@ Room::Room(unsigned short id, Client networkInformations)
     _transisthorInstance = std::make_shared<Transisthor>(*(_communicatorInstance.get()), *(_worldInstance.get()));
     _communicatorInstance.get()->updateTransisthorBridge(_transisthorInstance);
     _worldInstance.get()->updateTransisthorBridge(_communicatorInstance.get()->getTransisthorBridge());
+    _state = RoomState::UNDEFINED;
+}
+
+void Room::startLobbyLoop(void)
+{
+    _communicatorInstance.get()->startReceiverListening();
+    while (_state != RoomState::ENDED && _state != RoomState::UNDEFINED) {
+
+    }
 }
