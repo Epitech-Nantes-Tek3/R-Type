@@ -21,6 +21,8 @@ Room::Room() : _communicatorInstance()
     _communicatorInstance = new Communicator(_networkInformations);
     _worldInstance = new World(1);
     _transisthorInstance = new Transisthor(*_communicatorInstance, *_worldInstance);
+    _communicatorInstance->updateTransisthorBridge(std::shared_ptr<Transisthor>(_transisthorInstance));
+    _worldInstance->updateTransisthorBridge(_communicatorInstance->getTransisthorBridge());
 }
 
 Room::Room(unsigned short id, Client networkInformations)
@@ -30,11 +32,12 @@ Room::Room(unsigned short id, Client networkInformations)
     _communicatorInstance = new Communicator(_networkInformations);
     _worldInstance = new World(1);
     _transisthorInstance = new Transisthor(*_communicatorInstance, *_worldInstance);
+    _communicatorInstance->updateTransisthorBridge(std::shared_ptr<Transisthor>(_transisthorInstance));
+    _worldInstance->updateTransisthorBridge(_communicatorInstance->getTransisthorBridge());
 }
 
 Room::~Room()
 {
     delete _worldInstance;
     delete _communicatorInstance;
-    delete _transisthorInstance;
 }

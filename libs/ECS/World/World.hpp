@@ -18,6 +18,13 @@
 #include "Resource/Resource.hpp"
 #include "System/System.hpp"
 #include <unordered_map>
+#include <Transisthor/Transisthor.hpp>
+
+namespace transisthor_lib {
+    class Transisthor;
+}
+
+using namespace transisthor_lib;
 
 namespace ecs
 {
@@ -37,7 +44,7 @@ namespace ecs
 
         ///@brief Construct a new World object
         ///@param id It's used to know what World is (example in a video game you can have a World(1) for pause menu and another World(2) for your game)
-        inline World(ID id) : _id(id), _nextEntityId(1){};
+        inline World(ID id) : _id(id), _nextEntityId(1) {_transisthorBridge = std::shared_ptr<Transisthor>(nullptr);};
 
         ///@brief Get the object's ID
         ///@return ID of the World object
@@ -144,6 +151,13 @@ namespace ecs
             return *this;
         }
 
+        /// @brief Change the bridge destination to a new transisthor
+        /// @param transisthorBridge New bridge destination
+        inline void updateTransisthorBridge(std::shared_ptr<Transisthor> transisthorBridge)
+        {
+            _transisthorBridge = transisthorBridge;
+        }
+
         ///@brief It runs all systems in the world
         void runSystems();
 
@@ -166,6 +180,9 @@ namespace ecs
 
         ///@brief Map of systems
         SystemsList _systemsList;
+
+        /// @brief Bridge to the transisthor instance
+        std::shared_ptr<Transisthor> _transisthorBridge;
 
         /// @brief This is the function which is called when none Resources types left
         /// @tparam ...R The last researched Resource
