@@ -18,26 +18,20 @@ Room::Room() : _communicatorInstance()
 {
     _id = 0;
     _networkInformations = Client();
-    _communicatorInstance = new Communicator(_networkInformations);
-    _worldInstance = new World(1);
-    _transisthorInstance = new Transisthor(*_communicatorInstance, *_worldInstance);
-    _communicatorInstance->updateTransisthorBridge(std::shared_ptr<Transisthor>(_transisthorInstance));
-    _worldInstance->updateTransisthorBridge(_communicatorInstance->getTransisthorBridge());
+    _communicatorInstance = std::make_shared<Communicator>(_networkInformations);
+    _worldInstance = std::make_shared<World>(1);
+    _transisthorInstance = std::make_shared<Transisthor>(*(_communicatorInstance.get()), *(_worldInstance.get()));
+    _communicatorInstance.get()->updateTransisthorBridge(_transisthorInstance);
+    _worldInstance.get()->updateTransisthorBridge(_communicatorInstance.get()->getTransisthorBridge());
 }
 
 Room::Room(unsigned short id, Client networkInformations)
 {
     _id = id;
     _networkInformations = networkInformations;
-    _communicatorInstance = new Communicator(_networkInformations);
-    _worldInstance = new World(1);
-    _transisthorInstance = new Transisthor(*_communicatorInstance, *_worldInstance);
-    _communicatorInstance->updateTransisthorBridge(std::shared_ptr<Transisthor>(_transisthorInstance));
-    _worldInstance->updateTransisthorBridge(_communicatorInstance->getTransisthorBridge());
-}
-
-Room::~Room()
-{
-    delete _worldInstance;
-    delete _communicatorInstance;
+    _communicatorInstance = std::make_shared<Communicator>(_networkInformations);
+    _worldInstance = std::make_shared<World>(1);
+    _transisthorInstance = std::make_shared<Transisthor>(*(_communicatorInstance.get()), *(_worldInstance.get()));
+    _communicatorInstance.get()->updateTransisthorBridge(_transisthorInstance);
+    _worldInstance.get()->updateTransisthorBridge(_communicatorInstance.get()->getTransisthorBridge());
 }

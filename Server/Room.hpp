@@ -34,7 +34,7 @@ namespace server_data
         Room(unsigned short id, Client networkInformations);
 
         /// @brief Destroy the Room object
-        ~Room();
+        ~Room() = default;
 
         /// @brief Get the room id
         /// @return The room id
@@ -48,13 +48,13 @@ namespace server_data
         Client _networkInformations;
 
         /// @brief Instance of the communicator library.
-        Communicator *_communicatorInstance;
+        std::shared_ptr<Communicator> _communicatorInstance;
 
         /// @brief Instance of the transisthor library.
-        Transisthor *_transisthorInstance;
+        std::shared_ptr<Transisthor> _transisthorInstance;
 
         /// @brief Instance of the ECS library.
-        World *_worldInstance;
+        std::shared_ptr<World> _worldInstance;
     };
 
     /// @brief Overload of the == operator to compare two rooms
