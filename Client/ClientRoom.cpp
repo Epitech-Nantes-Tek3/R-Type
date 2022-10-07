@@ -17,6 +17,7 @@ using namespace client_data;
 ClientRoom::ClientRoom()
 {
     _networkInformations = Client();
+    _serverEndpoint = Client();
     _communicatorInstance = std::make_shared<Communicator>(_networkInformations);
     _worldInstance = std::make_shared<World>(1);
     _transisthorInstance = std::make_shared<Transisthor>(*(_communicatorInstance.get()), *(_worldInstance.get()));
@@ -25,9 +26,10 @@ ClientRoom::ClientRoom()
     _state = ClientState::UNDEFINED;
 }
 
-ClientRoom::ClientRoom(std::string address, unsigned short port)
+ClientRoom::ClientRoom(std::string address, unsigned short port, std::string serverAddress, unsigned short serverPort)
 {
     _networkInformations = Client(address, port);
+    _serverEndpoint = Client(serverAddress, serverPort);
     _communicatorInstance = std::make_shared<Communicator>(_networkInformations);
     _worldInstance = std::make_shared<World>(1);
     _transisthorInstance = std::make_shared<Transisthor>(*(_communicatorInstance.get()), *(_worldInstance.get()));
@@ -41,6 +43,7 @@ void ClientRoom::startLobbyLoop(void)
     CommunicatorMessage connexionResponse;
 
     _communicatorInstance.get()->startReceiverListening();
+    _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, nullptr, 0, 10);
     _state = ClientState::LOBBY;
     while (_state != ClientState::ENDED && _state != ClientState::UNDEFINED) {
         try {

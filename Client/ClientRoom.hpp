@@ -34,14 +34,17 @@ namespace client_data
             ENDED
         };
 
-        /// @brief Construct a new Client with default value
+        /// @brief Construct a new ClientRoom with default value
         ClientRoom();
 
-        /// @brief Construct a new Client object
-        /// @param networkInformations Network informations of the client
-        ClientRoom(std::string address, unsigned short port);
+        /// @brief Construct a new ClientRoom
+        /// @param address The room address
+        /// @param port room port
+        /// @param serverAddress server address
+        /// @param serverPort room port
+        ClientRoom(std::string address, unsigned short port, std::string serverAddress, unsigned short serverPort);
 
-        /// @brief Destroy the Client object
+        /// @brief Destroy the ClientRoom object
         ~ClientRoom() = default;
 
         void startLobbyLoop(void);
@@ -49,6 +52,9 @@ namespace client_data
       private:
         /// @brief Network informations of the room.
         Client _networkInformations;
+
+        /// @brief Network informations of the server
+        Client _serverEndpoint;
 
         /// @brief Instance of the communicator library
         std::shared_ptr<Communicator> _communicatorInstance;
