@@ -44,6 +44,8 @@ namespace client_data
         /// @brief Destroy the Client object
         ~ClientRoom() = default;
 
+        void startLobbyLoop(void);
+
       private:
         /// @brief Network informations of the room.
         Client _networkInformations;

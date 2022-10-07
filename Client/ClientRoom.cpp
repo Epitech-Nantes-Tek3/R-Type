@@ -35,3 +35,21 @@ ClientRoom::ClientRoom(std::string address, unsigned short port)
     _worldInstance.get()->updateTransisthorBridge(_communicatorInstance.get()->getTransisthorBridge());
     _state = ClientState::UNDEFINED;
 }
+
+void ClientRoom::startLobbyLoop(void)
+{
+    CommunicatorMessage connexionResponse;
+
+    _communicatorInstance.get()->startReceiverListening();
+    _state = ClientState::LOBBY;
+    while (_state != ClientState::ENDED && _state != ClientState::UNDEFINED) {
+        try {
+            connexionResponse = _communicatorInstance.get()->getLastMessage();
+            (void)connexionResponse;
+            std::cerr << "ClientRoom received a connexion protocol answer."
+                      << std::endl; /// WILL BE DELETED WITH CONNEXION PROTOCOL ISSUE
+        } catch (NetworkError &error) {
+        }
+        _worldInstance.get()->runSystems(); /// WILL BE IMPROVED IN PART TWO (THREAD + CLOCK)
+    }
+}
