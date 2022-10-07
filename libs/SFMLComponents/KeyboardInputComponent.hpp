@@ -11,22 +11,18 @@
 #include "Component/Component.hpp"
 #include <SFML/Graphics.hpp>
 #include <unordered_map>
+#include "ECSActions.hpp"
+#include <functional>
 
 namespace ecs
 {
-    /// @brief Definition of the enum action_e.
-    enum action_e
-    {
-        NONE
-    };
-
     /// @brief This component class stores an unsorted map of action/value pair.
     /// This class is created in order to find an action depending on a key pressed or released.
     /// It inherits from Component.
     class KeyboardInputComponent : public Component {
         public:
             /// @brief This unordered_map links SFML key input to an action/value pair enum.
-            std::unordered_map<sf::Keyboard::Key, std::pair<ecs::action_e, float>> keyboardMapActions;
+            std::unordered_map<sf::Keyboard::Key, std::pair<std::function<void()>, float>> keyboardMapActions;
 
             /// @brief Constructor of the class.
             KeyboardInputComponent() = default;
