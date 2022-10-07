@@ -13,6 +13,6 @@
 namespace ecs
 {
     /// @brief This Component specifies if an entity is an Ally Projectile
-    class ProjectileAllyComponent {};
+    class ProjectileAlly {};
 } // namespace ecs
 #endif /* !PROJECTILEALLYCOMPONENT_HPP_ */

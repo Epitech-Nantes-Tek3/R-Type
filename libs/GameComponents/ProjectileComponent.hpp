@@ -13,7 +13,7 @@
 namespace ecs
 {
    /// @brief This Component specifies if an entity is a Projectile
-   class ProjectileComponent {
+   class Projectile {
 }; 
 } // namespace ecs
 
