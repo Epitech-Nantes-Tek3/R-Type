@@ -14,7 +14,7 @@ using namespace server_data;
 using namespace error_lib;
 using namespace communicator_lib;
 
-Room::Room() : _communicatorInstance()
+Room::Room()
 {
     _id = 0;
     _networkInformations = Client();

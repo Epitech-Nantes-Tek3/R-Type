@@ -10,14 +10,15 @@
 #ifndef COMMUNICATOR_HPP_
 #define COMMUNICATOR_HPP_
 
-#include <vector>
 #include <memory>
+#include <vector>
 #include "Client.hpp"
 #include "Receiver.hpp"
 #include "Sender.hpp"
 #include "Transisthor/Transisthor.hpp"
 
-namespace transisthor_lib {
+namespace transisthor_lib
+{
     class Transisthor;
 }
 
@@ -106,10 +107,7 @@ namespace communicator_lib
 
         /// @brief Get the transisthor bridge
         /// @return The transisthor bridge
-        inline std::shared_ptr<Transisthor> getTransisthorBridge(void)
-        {
-          return _transisthorBridge;
-        }
+        inline std::shared_ptr<Transisthor> getTransisthorBridge(void) { return _transisthorBridge; }
 
       private:
         /// @brief Send a protocol 20 to a client

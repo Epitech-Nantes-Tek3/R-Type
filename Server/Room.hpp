@@ -10,11 +10,11 @@
 #ifndef ROOM_HPP_
 #define ROOM_HPP_
 
+#include <memory>
 #include "Communicator/Client.hpp"
 #include "Communicator/Communicator.hpp"
 #include "Transisthor/Transisthor.hpp"
 #include "World/World.hpp"
-#include <memory>
 
 using namespace communicator_lib;
 using namespace ecs;
@@ -62,10 +62,7 @@ namespace server_data
     /// @param right param of the comparison
     /// @return true If the two rooms have the same id
     /// @return false If the two rooms have different id
-    inline bool operator==(const Room &left, const Room &right)
-    {
-        return ((left.getRoomId() == right.getRoomId()));
-    }
+    inline bool operator==(const Room &left, const Room &right) { return ((left.getRoomId() == right.getRoomId())); }
 } // namespace server_data
 
 #endif /* !ROOM_HPP_ */

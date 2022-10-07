@@ -10,9 +10,9 @@
 #ifndef SERVER_HPP_
 #define SERVER_HPP_
 
-#include "Room.hpp"
-#include "Communicator/Client.hpp"
 #include <vector>
+#include "Communicator/Client.hpp"
+#include "Room.hpp"
 
 using namespace communicator_lib;
 

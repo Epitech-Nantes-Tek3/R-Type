@@ -18,9 +18,10 @@
 #include "Resource/Resource.hpp"
 #include "System/System.hpp"
 #include <unordered_map>
-#include <Transisthor/Transisthor.hpp>
+#include "Transisthor/Transisthor.hpp"
 
-namespace transisthor_lib {
+namespace transisthor_lib
+{
     class Transisthor;
 }
 
@@ -43,8 +44,9 @@ namespace ecs
         using SystemsList = std::unordered_map<std::type_index, std::unique_ptr<System>>;
 
         ///@brief Construct a new World object
-        ///@param id It's used to know what World is (example in a video game you can have a World(1) for pause menu and another World(2) for your game)
-        inline World(ID id) : _id(id), _nextEntityId(1) {_transisthorBridge = std::shared_ptr<Transisthor>(nullptr);};
+        ///@param id It's used to know what World is (example in a video game you can have a World(1) for pause menu and
+        ///another World(2) for your game)
+        inline World(ID id) : _id(id), _nextEntityId(1) { _transisthorBridge = std::shared_ptr<Transisthor>(nullptr); };
 
         ///@brief Get the object's ID
         ///@return ID of the World object

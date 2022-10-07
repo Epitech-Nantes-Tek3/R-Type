@@ -16,7 +16,8 @@
 using namespace ecs;
 using namespace communicator_lib;
 
-namespace communicator_lib {
+namespace communicator_lib
+{
     class Communicator;
 }
 
