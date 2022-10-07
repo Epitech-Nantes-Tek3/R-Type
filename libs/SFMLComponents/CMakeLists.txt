@@ -5,9 +5,11 @@ set(TARGET ${PROJECT_NAME}_SFMLComponents)
 set(SRC
     ${SFML_INPUT_INC_ROOT}/AllowControllerComponent.hpp
     ${SFML_INPUT_INC_ROOT}/AllowMouseAndKeyboardComponent.hpp
-    ${SFML_INPUT_INC_ROOT}/ControllerInputComponent.hpp
+    ${SFML_INPUT_INC_ROOT}/ControllerButtonInputComponent.hpp
+    ${SFML_INPUT_INC_ROOT}/ControllerJoystickInputComponent.hpp
     ${SFML_INPUT_INC_ROOT}/KeyboardInputComponent.hpp
     ${SFML_INPUT_INC_ROOT}/MouseInputComponent.hpp
+    ${SFML_INPUT_INC_ROOT}/ECSActions.hpp
 )
 
 add_library(${TARGET} ${SRC})

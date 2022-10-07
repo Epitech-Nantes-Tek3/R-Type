@@ -6,15 +6,30 @@
 */
 
 #include <criterion/criterion.h>
-#include "ControllerInputComponent.hpp"
+#include <SFML/Graphics.hpp>
+#include "ControllerJoystickInputComponent.hpp"
+#include "ControllerButtonInputComponent.hpp"
 
 using namespace ecs;
 
-Test(ControllerInputComponent, test_create_class)
-{
-    ControllerInputComponent a;
+static void test_function() {}
 
-    a.controllerMapActions[a.BUTTON_1] = std::pair<action_e, float>(NONE, 1);
-    cr_assert_eq(a.controllerMapActions.at(a.BUTTON_1).first, NONE);
-    cr_assert_eq(a.controllerMapActions.at(a.BUTTON_1).second, 1);
+Test(ControllerJoystickInputComponent, test_create_class)
+{
+    ControllerJoystickInputComponent a;
+    auto b = std::bind(&test_function);
+
+    a.controllerJoystickMapActions[0] = std::pair<std::function<void()>, float>(b, 1);
+    a.controllerJoystickMapActions[0].first();
+    cr_assert_eq(a.controllerJoystickMapActions[0].second, 1);
+}
+
+Test(ControllerButtonInputComponent, test_create_class2)
+{
+    ControllerButtonInputComponent a;
+    auto b = std::bind(&test_function);
+
+    a.controllerButtonMapActions[0] = std::pair<std::function<void()>, float>(b, 1);
+    a.controllerButtonMapActions[0].first();
+    cr_assert_eq(a.controllerButtonMapActions[0].second, 1);
 }
