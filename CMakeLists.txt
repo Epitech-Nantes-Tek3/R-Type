@@ -20,26 +20,6 @@ add_subdirectory(Server)
 add_subdirectory(Client)
 add_subdirectory(libs)
 
-# Create executables and set there sources
-add_executable(r-type_client ${SRC_CLIENT})
-
-# Add properties to executables
-set_property(TARGET r-type_client PROPERTY MSVC_RUNTIME_LIBRARY "")
-set_target_properties(r-type_client
-    PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/
-)
-
-# Link libraries to executables
-target_link_libraries(r-type_client
-	CONAN_PKG::sfml
-)
-
-# Target include directories from libraries
-target_include_directories(r-type_client PUBLIC
-	${CONAN_INCLUDE_DIRS_SFML}
-)
-
 # Setup and include conan to build dependencies
 include(build/conanbuildinfo.cmake)
 conan_basic_setup(TARGETS)

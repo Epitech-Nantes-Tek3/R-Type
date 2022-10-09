@@ -48,3 +48,4 @@ tests/R-Type_sender_tests
 tests/R-Type_receiver_tests
 tests/R-Type_communicator_tests
 tests/R-Type_communicator_switch_tests
+tests/R-Type_communicator_send
