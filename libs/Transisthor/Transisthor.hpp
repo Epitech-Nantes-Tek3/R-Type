@@ -29,7 +29,8 @@ namespace transisthor_lib
     /// @param data Content of the message
     /// @param size of the message
     /// @param type of the message
-    void sendDataToAClientWithoutCommunicator(Communicator &communicator, Client &client, void *data, size_t size, unsigned short type);
+    void sendDataToAClientWithoutCommunicator(
+        Communicator &communicator, Client &client, void *data, size_t size, unsigned short type);
 
     /// @brief Bridge between Communicator data and ECS data
     class Transisthor {
@@ -57,7 +58,8 @@ namespace transisthor_lib
         /// @param destination of the message
         /// @return Return value his only used for testing (Unit and functional)
         template <std::derived_from<Component> C>
-        void *transitEcsDataToNetworkData(unsigned short id, unsigned short type, C component, std::vector<Client> destination)
+        void *transitEcsDataToNetworkData(
+            unsigned short id, unsigned short type, C component, std::vector<Client> destination)
         {
             void *networkObject = std::malloc(sizeof(void *) * ((sizeof(C)) + sizeof(unsigned short) * 2));
 
@@ -67,7 +69,8 @@ namespace transisthor_lib
             std::memcpy((void *)((char *)networkObject + sizeof(unsigned short)), &type, sizeof(unsigned short));
             std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2), &component, sizeof(C));
             for (auto it : destination)
-                transisthor_lib::sendDataToAClientWithoutCommunicator(_communicator, it, networkObject, sizeof(void *) * ((sizeof(C)) + sizeof(unsigned short) * 2), 30);
+                transisthor_lib::sendDataToAClientWithoutCommunicator(
+                    _communicator, it, networkObject, sizeof(void *) * ((sizeof(C)) + sizeof(unsigned short) * 2), 30);
             return networkObject;
         }
 
