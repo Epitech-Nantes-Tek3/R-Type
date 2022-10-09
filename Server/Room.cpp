@@ -50,10 +50,9 @@ void Room::startLobbyLoop(void)
     while (_state != RoomState::ENDED && _state != RoomState::UNDEFINED) {
         try {
             connexionDemand = _communicatorInstance.get()->getLastMessage();
-            (void)connexionDemand;
             std::cerr << "Room " << _id << " received a connexion protocol."
                       << std::endl; /// WILL BE DELETED WITH CONNEXION PROTOCOL ISSUE
-            _transisthorInstance.get()->transitEcsDataToNetworkData<Position>(1, 6, pos, {connexionDemand.message.clientInfo});
+            _transisthorInstance.get()->transitEcsDataToNetworkData<Position>(1, 6, pos, {connexionDemand.message.clientInfo}); /// USED FOR FUNCTIONNAL TESTING, WILL BE REMOVED LATER
         } catch (NetworkError &error) {
         }
         _worldInstance.get()->runSystems(); /// WILL BE IMPROVED IN PART TWO (THREAD + CLOCK)

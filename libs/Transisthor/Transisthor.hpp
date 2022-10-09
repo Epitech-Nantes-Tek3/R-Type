@@ -45,7 +45,7 @@ namespace transisthor_lib
         /// @brief Function called by the Communicator. The transfered data will be converted to an ECS object and send
         /// to the ecs.
         /// @param networkData Content of the network data (Refer to communicator lib document for more details)
-        /// @return Return value will be removed when transitor have been finished.
+        /// @return Return value his only used for testing (Unit and functional)
         void *transitNetworkDataToEcsData(Message networkData);
 
         /// @brief Function called by the ECS. The transfered data will be converted to a Network object and send to the
@@ -55,7 +55,7 @@ namespace transisthor_lib
         /// @param type Type id of the component
         /// @param component The transfered component
         /// @param destination of the message
-        /// @return Return value will be removed when transitor have been finished.
+        /// @return Return value his only used for testing (Unit and functional)
         template <std::derived_from<Component> C>
         void *transitEcsDataToNetworkData(unsigned short id, unsigned short type, C component, std::vector<Client> destination)
         {
