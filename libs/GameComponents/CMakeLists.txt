@@ -12,7 +12,7 @@ set(SRC
     ${INC_ROOT}/ControlableComponent.hpp
     ${INC_ROOT}/LifeComponent.hpp
     ${INC_ROOT}/DamageComponent.hpp
-    ${INC_ROOT}/LifetimeComponent.hpp
+    ${INC_ROOT}/LifeTimeComponent.hpp
     ${INC_ROOT}/EquipmentComponent.hpp
     ${INC_ROOT}/WeaknessComponent.hpp
     ${INC_ROOT}/CollidableComponent.hpp
