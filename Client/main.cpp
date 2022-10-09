@@ -6,9 +6,15 @@
 */
 
 #include <SFML/Graphics.hpp>
+#include "ClientRoom.hpp"
 
-int main()
+using namespace client_data;
+
+int main(int ac, char **av)
 {
-    sf::RenderWindow window(sf::VideoMode(1920, 1080, 32), "client");
+    if (ac != 5)
+        return 84; /// PARSE CLIENT ARGUMENT MORE PROPERLY (REBASE MONDAY)
+    ClientRoom client = ClientRoom(std::string(av[1]), std::atoi(av[2]), std::string(av[3]), std::atoi(av[4]));
+    client.startLobbyLoop();
     return (0);
 }

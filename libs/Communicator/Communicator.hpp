@@ -10,10 +10,19 @@
 #ifndef COMMUNICATOR_HPP_
 #define COMMUNICATOR_HPP_
 
+#include <memory>
 #include <vector>
 #include "Client.hpp"
 #include "Receiver.hpp"
 #include "Sender.hpp"
+#include "Transisthor/Transisthor.hpp"
+
+namespace transisthor_lib
+{
+    class Transisthor;
+}
+
+using namespace transisthor_lib;
 
 namespace communicator_lib
 {
@@ -89,6 +98,17 @@ namespace communicator_lib
             _senderModule.sendDataToAClient(client, data, size, type);
         }
 
+        /// @brief Change the bridge destination to a new transisthor
+        /// @param transisthorBridge New bridge destination
+        inline void updateTransisthorBridge(std::shared_ptr<Transisthor> transisthorBridge)
+        {
+            _transisthorBridge = transisthorBridge;
+        }
+
+        /// @brief Get the transisthor bridge
+        /// @return The transisthor bridge
+        inline std::shared_ptr<Transisthor> getTransisthorBridge(void) { return _transisthorBridge; }
+
       private:
         /// @brief Send a protocol 20 to a client
         /// @param client The destination
@@ -112,6 +132,9 @@ namespace communicator_lib
 
         /// @brief Instance of the receiver module
         Receiver _receiverModule;
+
+        /// @brief Bridge to the transisthor instance
+        std::shared_ptr<Transisthor> _transisthorBridge;
     };
 } // namespace communicator_lib
 

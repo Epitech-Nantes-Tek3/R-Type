@@ -24,7 +24,7 @@ namespace ecs
     };
 
     /// @brief Create a component from his byte form
-    /// \tparam C Type of the component
+    /// @tparam C Type of the component
     /// @param byteCode Byte value of the component
     /// @return C The newly created comoponent
     template <std::derived_from<Component> C> C buildComponentFromByteCode(void *byteCode)

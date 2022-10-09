@@ -1,7 +1,7 @@
 ***
 [![CI](https://github.com/osvegn/R-Type/actions/workflows/CI.yml/badge.svg)](https://github.com/osvegn/R-Type/actions/workflows/CI.yml)
 
-[![codecov](https://codecov.io/gh/osvegn/R-Type/branch/master/graph/badge.svg?token=iUiqejopI0)](https://codecov.io/gh/osvegn/R-Type)
+[![codecov](https://codecov.io/gh/R-Type-Epitech-Nantes/R-Type/branch/master/graph/badge.svg?token=iUiqejopI0)](https://codecov.io/gh/R-Type-Epitech-Nantes/R-Type)
 
 [![forthebadge](https://forthebadge.com/images/badges/made-with-c-plus-plus.svg)](https://forthebadge.com)
 ***

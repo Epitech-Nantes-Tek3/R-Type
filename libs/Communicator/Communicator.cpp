@@ -19,12 +19,14 @@ Communicator::Communicator() : _receiverModule(Receiver())
 {
     _clientList = {};
     _senderModule = Sender();
+    _transisthorBridge = std::shared_ptr<Transisthor>(nullptr);
 }
 
 Communicator::Communicator(Client networkBind) : _receiverModule(Receiver(networkBind))
 {
     _clientList = {};
     _senderModule = Sender(networkBind.getPort());
+    _transisthorBridge = std::shared_ptr<Transisthor>(nullptr);
 }
 
 void Communicator::addClientToList(Client &client)
@@ -108,7 +110,7 @@ void Communicator::sendProtocol20(Client client, Client newEndpoint)
     unsigned short endpointPort = newEndpoint.getPort();
 
     if (dataContent == nullptr)
-        throw std::system_error();
+        throw error_lib::MallocError("Malloc failed.");
     std::memcpy(dataContent, &endpointPort, sizeof(unsigned short));
     std::memcpy((void *)((char *)dataContent + sizeof(unsigned short)), newEndpoint.getAddress().data(),
         newEndpoint.getAddress().size());
