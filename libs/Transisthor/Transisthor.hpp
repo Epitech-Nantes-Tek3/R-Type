@@ -12,6 +12,7 @@
 
 #include "Communicator/Communicator.hpp"
 #include "World/World.hpp"
+#include "Error/Error.hpp"
 
 using namespace ecs;
 using namespace communicator_lib;
@@ -53,7 +54,7 @@ namespace transisthor_lib
             void *networkObject = std::malloc(sizeof(void *) * ((sizeof(C)) + sizeof(unsigned short) * 2));
 
             if (networkObject == nullptr)
-                throw std::system_error();
+                throw error_lib::MallocError("Malloc failed.");
             std::memcpy(networkObject, &id, sizeof(unsigned short));
             std::memcpy((void *)((char *)networkObject + sizeof(unsigned short)), &type, sizeof(unsigned short));
             std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2), &component, sizeof(C));

@@ -2,53 +2,54 @@
 ** EPITECH PROJECT, 2022
 ** Project
 ** File description:
-** Room
+** Client
 */
 
-/// @file Server/Room.cpp
+/// @file Client/ClientRoom.cpp
 
-#include "Room.hpp"
+#include "ClientRoom.hpp"
 #include "Error/Error.hpp"
 
-using namespace server_data;
 using namespace error_lib;
 using namespace communicator_lib;
+using namespace client_data;
 
-Room::Room()
+ClientRoom::ClientRoom()
 {
-    _id = 0;
     _networkInformations = Client();
+    _serverEndpoint = Client();
     _communicatorInstance = std::make_shared<Communicator>(_networkInformations);
     _worldInstance = std::make_shared<World>(1);
     _transisthorInstance = std::make_shared<Transisthor>(*(_communicatorInstance.get()), *(_worldInstance.get()));
     _communicatorInstance.get()->updateTransisthorBridge(_transisthorInstance);
     _worldInstance.get()->updateTransisthorBridge(_communicatorInstance.get()->getTransisthorBridge());
-    _state = RoomState::UNDEFINED;
+    _state = ClientState::UNDEFINED;
 }
 
-Room::Room(unsigned short id, Client networkInformations)
+ClientRoom::ClientRoom(std::string address, unsigned short port, std::string serverAddress, unsigned short serverPort)
 {
-    _id = id;
-    _networkInformations = networkInformations;
+    _networkInformations = Client(address, port);
+    _serverEndpoint = Client(serverAddress, serverPort);
     _communicatorInstance = std::make_shared<Communicator>(_networkInformations);
     _worldInstance = std::make_shared<World>(1);
     _transisthorInstance = std::make_shared<Transisthor>(*(_communicatorInstance.get()), *(_worldInstance.get()));
     _communicatorInstance.get()->updateTransisthorBridge(_transisthorInstance);
     _worldInstance.get()->updateTransisthorBridge(_communicatorInstance.get()->getTransisthorBridge());
-    _state = RoomState::UNDEFINED;
+    _state = ClientState::UNDEFINED;
 }
 
-void Room::startLobbyLoop(void)
+void ClientRoom::startLobbyLoop(void)
 {
-    CommunicatorMessage connexionDemand;
+    CommunicatorMessage connexionResponse;
 
     _communicatorInstance.get()->startReceiverListening();
-    _state = RoomState::LOBBY;
-    while (_state != RoomState::ENDED && _state != RoomState::UNDEFINED) {
+    _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, nullptr, 0, 10);
+    _state = ClientState::LOBBY;
+    while (_state != ClientState::ENDED && _state != ClientState::UNDEFINED) {
         try {
-            connexionDemand = _communicatorInstance.get()->getLastMessage();
-            (void)connexionDemand;
-            std::cerr << "Room " << _id << " received a connexion protocol."
+            connexionResponse = _communicatorInstance.get()->getLastMessage();
+            (void)connexionResponse;
+            std::cerr << "ClientRoom received a connexion protocol answer."
                       << std::endl; /// WILL BE DELETED WITH CONNEXION PROTOCOL ISSUE
         } catch (NetworkError &error) {
         }
