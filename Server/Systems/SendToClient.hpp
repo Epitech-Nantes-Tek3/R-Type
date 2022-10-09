@@ -11,8 +11,8 @@
 #include <concepts>
 #include <map>
 #include <typeindex>
-#include "Server/Components/Client.hpp"
-#include "Server/Components/Networkable.hpp"
+#include "../Components/NetworkClient.hpp"
+#include "../Components/Networkable.hpp"
 #include "World/World.hpp"
 
 #include "GameComponents/DestinationComponent.hpp"
@@ -28,29 +28,34 @@ static const std::map<std::type_index, std::size_t> componentRFCId = {{typeid(ec
     {typeid(ecs::Position), 6}, {typeid(ecs::Velocity), 7}};
 
 struct SendToClient : public ecs::System {
+    template <std::derived_from<ecs::Component>... C>
+    requires(sizeof...(C) == 0) void sendToClients(const std::size_t &networkId, ecs::Entity *entity, const std::vector<std::size_t> &clientIdList) const {
+        (void) networkId;
+        (void) entity;
+        (void) clientIdList;
+        return; }
+
     template <std::derived_from<ecs::Component> C1, std::derived_from<ecs::Component>... C2>
-    void sendToClients(std::size_t networkId, ecs::Entity *entity, std::vector<std::size_t> clientIdList) const
+    void sendToClients(const std::size_t &networkId, ecs::Entity *entity, const std::vector<std::size_t> &clientIdList) const
     {
         if (componentRFCId.find(typeid(C1)) != componentRFCId.end()) {
             if (entity->contains<C1>()) {
+                (void) networkId;
+                (void) clientIdList;
                 // TRANSISTOR_FUNCTION(networkId, componentRFCId.at(typeid(C1)), entity->getComponent<C1>(),
                 // clientIdList);
             }
         }
-        return sendToClients<C2...>(networkId, entity, clientIdList);
     }
-
-    template <std::derived_from<ecs::Component>... C>
-    requires(sizeof...(C) == 0) void sendToClients() const { return; }
 
     void run(ecs::World &world) override final
     {
-        std::vector<std::shared_ptr<ecs::Entity>> clients = world.joinEntities<ecs::Client>();
+        std::vector<std::shared_ptr<ecs::Entity>> clients = world.joinEntities<ecs::NetworkClient>();
         std::vector<std::shared_ptr<ecs::Entity>> joinedNetworkable = world.joinEntities<ecs::Networkable>();
         std::vector<std::size_t> clientIdList;
 
-        auto addToClientList = [clientIdList](std::shared_ptr<ecs::Entity> entityPtr) {
-            clientIdList.emplace_back(entityPtr.get()->getComponent<ecs::Client>().id);
+        auto addToClientList = [&clientIdList](std::shared_ptr<ecs::Entity> entityPtr) {
+            clientIdList.emplace_back(entityPtr.get()->getComponent<ecs::NetworkClient>().id);
         };
 
         auto update = [this, clientIdList](std::shared_ptr<ecs::Entity> entityPtr) {

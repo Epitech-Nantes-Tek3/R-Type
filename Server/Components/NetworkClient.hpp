@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2022
 ** R-Type
 ** File description:
-** Client
+** NetworkClient
 */
 
 #pragma once
@@ -11,10 +11,10 @@
 
 namespace ecs
 {
-    class Client : public Component {
+    class NetworkClient : public Component {
       public:
         std::size_t id;
-        Client(std::size_t ID = 0) : id(ID){};
-        ~Client() = default;
+        NetworkClient(std::size_t ID = 0) : id(ID){};
+        ~NetworkClient() = default;
     };
 } // namespace ecs

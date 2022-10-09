@@ -1,7 +1,7 @@
 set (TARGET r-type_server)
 
 set(SRC_ROOT ${PROJECT_SOURCE_DIR}/Server)
-set (INC_ROOT ${PROJECT_SOURCE_DIR}/Server)
+set(INC_ROOT ${PROJECT_SOURCE_DIR}/Server)
 
 set(SRC
 
