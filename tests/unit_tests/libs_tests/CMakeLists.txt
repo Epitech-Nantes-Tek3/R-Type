@@ -1,1 +1,2 @@
 add_subdirectory(ECS_tests)
+add_subdirectory(LibsClient_tests)
