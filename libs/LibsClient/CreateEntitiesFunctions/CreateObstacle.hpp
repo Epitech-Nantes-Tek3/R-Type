@@ -9,18 +9,18 @@
 #define CREATEOBSTACLE_HPP_
 
 #include <World/World.hpp>
-#include <GameComponents/PositionComponent.hpp>
-#include <GameComponents/VelocityComponent.hpp>
-#include <GameComponents/WeightComponent.hpp>
-#include <GameComponents/SizeComponent.hpp>
-#include <GameComponents/LifetimeComponent.hpp>
-#include <GameComponents/DamageComponent.hpp>
-#include <GameComponents/LifeComponent.hpp>
-#include <GameComponents/DamageComponent.hpp>
-#include <GameComponents/DamageRadiusComponent.hpp>
-#include <GameComponents/CollidableComponent.hpp>
-#include <GameComponents/ObstacleComponent.hpp>
-#include <GameComponents/VelocityComponent.hpp>
+#include <../GameComponents/PositionComponent.hpp>
+#include <../GameComponents/VelocityComponent.hpp>
+#include <../GameComponents/WeightComponent.hpp>
+#include <../GameComponents/SizeComponent.hpp>
+#include <../GameComponents/LifeTimeComponent.hpp>
+#include <../GameComponents/DamageComponent.hpp>
+#include <../GameComponents/LifeComponent.hpp>
+#include <../GameComponents/DamageComponent.hpp>
+#include <../GameComponents/DamageRadiusComponent.hpp>
+#include <../GameComponents/CollidableComponent.hpp>
+#include <../GameComponents/ObstacleComponent.hpp>
+#include <../GameComponents/VelocityComponent.hpp>
 
 using namespace ecs;
 
@@ -29,9 +29,9 @@ using namespace ecs;
 /// @param pos The position of the new Obstacle
 /// @param damage The damage inflict at an Entity if this Entity hit this Obstacle
 /// @return Id of the new Obstacle in std::size_t
-inline std::size_t createNewObstacle(World *world, Position pos, Damage damage)
+inline std::size_t createNewObstacle(World &world, Position &pos, Damage &damage)
 {
-    std::size_t new_obstacle = world->addEntity()
+    std::size_t new_obstacle = world.addEntity()
                                     .addComponent<Position>(pos.x, pos.y)
                                     .addComponent<Weight>(1)
                                     .addComponent<Size>(1, 1)

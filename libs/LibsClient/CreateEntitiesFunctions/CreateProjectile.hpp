@@ -9,18 +9,18 @@
 #define CREATEPROJECTILE_HPP_
 
 #include <World/World.hpp>
-#include <GameComponents/PositionComponent.hpp>
-#include <GameComponents/VelocityComponent.hpp>
-#include <GameComponents/WeightComponent.hpp>
-#include <GameComponents/SizeComponent.hpp>
-#include <GameComponents/LifetimeComponent.hpp>
-#include <GameComponents/DamageComponent.hpp>
-#include <GameComponents/LifeComponent.hpp>
-#include <GameComponents/DamageComponent.hpp>
-#include <GameComponents/DamageRadiusComponent.hpp>
-#include <GameComponents/CollidableComponent.hpp>
-#include <GameComponents/ProjectileComponent.hpp>
-#include <GameComponents/VelocityComponent.hpp>
+#include <../GameComponents/PositionComponent.hpp>
+#include <../GameComponents/VelocityComponent.hpp>
+#include <../GameComponents/WeightComponent.hpp>
+#include <../GameComponents/SizeComponent.hpp>
+#include <../GameComponents/LifeTimeComponent.hpp>
+#include <../GameComponents/DamageComponent.hpp>
+#include <../GameComponents/LifeComponent.hpp>
+#include <../GameComponents/DamageComponent.hpp>
+#include <../GameComponents/DamageRadiusComponent.hpp>
+#include <../GameComponents/CollidableComponent.hpp>
+#include <../GameComponents/ProjectileComponent.hpp>
+#include <../GameComponents/VelocityComponent.hpp>
 
 using namespace ecs;
 
@@ -30,9 +30,9 @@ using namespace ecs;
 /// @param velocity The Velocity of the new Projectile
 /// @param damage The Damage of the new Projectile
 /// @return Id of the new Projectile in std::size_t
-inline std::size_t createNewProjectile(World *world, Position pos, Velocity velocity, Damage damage)
+inline std::size_t createNewProjectile(World &world, Position &pos, Velocity &velocity, Damage &damage)
 {
-    std::size_t new_projectile = world->addEntity()
+    std::size_t new_projectile = world.addEntity()
                                         .addComponent<Position>(pos.x, pos.y)
                                         .addComponent<Weight>(1)
                                         .addComponent<Size>(2, 1)
