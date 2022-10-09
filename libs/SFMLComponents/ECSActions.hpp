@@ -12,10 +12,7 @@ namespace ecs
 {
     namespace Actions
     {
-        void goForward();
-        void goBackward();
-        void goLeft();
-        void goRight();
+        /// Action funtion have to be added. They will be add in issue #93.
     }
 }
 
