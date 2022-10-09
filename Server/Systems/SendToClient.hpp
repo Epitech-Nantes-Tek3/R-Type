@@ -29,21 +29,25 @@ static const std::map<std::type_index, std::size_t> componentRFCId = {{typeid(ec
 
 struct SendToClient : public ecs::System {
     template <std::derived_from<ecs::Component>... C>
-    requires(sizeof...(C) == 0) void sendToClients(const std::size_t &networkId, ecs::Entity *entity, const std::vector<std::size_t> &clientIdList) const {
-        (void) networkId;
-        (void) entity;
-        (void) clientIdList;
-        return; }
+    requires(sizeof...(C) == 0) void sendToClients(ecs::World &world, const std::size_t &networkId, ecs::Entity *entity,
+        const std::vector<std::size_t> &clientIdList) const
+    {
+        (void)networkId;
+        (void)entity;
+        (void)clientIdList;
+        return;
+    }
 
     template <std::derived_from<ecs::Component> C1, std::derived_from<ecs::Component>... C2>
-    void sendToClients(const std::size_t &networkId, ecs::Entity *entity, const std::vector<std::size_t> &clientIdList) const
+    void sendToClients(ecs::World &world, const std::size_t &networkId, ecs::Entity *entity,
+        const std::vector<std::size_t> &clientIdList) const
     {
-        if (componentRFCId.find(typeid(C1)) != componentRFCId.end()) {
+        std::map<std::type_index, std::size_t>::const_iterator it = componentRFCId.find(typeid(C1));
+        if (it != componentRFCId.end()) {
             if (entity->contains<C1>()) {
-                (void) networkId;
-                (void) clientIdList;
-                // TRANSISTOR_FUNCTION(networkId, componentRFCId.at(typeid(C1)), entity->getComponent<C1>(),
-                // clientIdList);
+                (void)clientIdList;
+                world.getTransisthorBridge().get()->transitEcsDataToNetworkData<C1>(networkId, it->second, entity->getComponent<C1>());
+                // send clientIdList later when it will be implemented
             }
         }
     }
@@ -58,11 +62,11 @@ struct SendToClient : public ecs::System {
             clientIdList.emplace_back(entityPtr.get()->getComponent<ecs::NetworkClient>().id);
         };
 
-        auto update = [this, clientIdList](std::shared_ptr<ecs::Entity> entityPtr) {
+        auto update = [this, &world, &clientIdList](std::shared_ptr<ecs::Entity> entityPtr) {
             ecs::Entity *entity = entityPtr.get();
             std::size_t networkId = entity->getComponent<ecs::Networkable>().id;
             sendToClients<ecs::Destination, ecs::Equipment, ecs::Invinsible, ecs::Invisible, ecs::Life, ecs::Position,
-                ecs::Velocity>(networkId, entity, clientIdList);
+                ecs::Velocity>(world, networkId, entity, clientIdList);
             return entityPtr;
         };
 
