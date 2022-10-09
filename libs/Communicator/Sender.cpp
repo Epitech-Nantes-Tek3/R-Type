@@ -8,6 +8,7 @@
 /// @file libs/Communicator/Sender.cpp
 
 #include "Sender.hpp"
+#include "Error/Error.hpp"
 #include <boost/asio.hpp>
 #include <iostream>
 
@@ -29,7 +30,7 @@ void Sender::sendDataToAClient(Client &client, void *data, size_t size, unsigned
     void *dataHeader = generateDataHeader(type);
 
     if (newData == nullptr)
-        throw std::system_error();
+        throw error_lib::MallocError("Malloc failed.");
     socket.open(udp::v4());
     std::memcpy(newData, dataHeader, NETWORK_HEADER_SIZE);
     std::memcpy((void *)((char *)newData + NETWORK_HEADER_SIZE), data, size);
@@ -52,7 +53,7 @@ void *Sender::generateDataHeader(unsigned short communicationType)
     void *dataHeader = std::malloc(sizeof(void *) * (NETWORK_HEADER_SIZE));
 
     if (dataHeader == nullptr)
-        throw std::system_error();
+        throw error_lib::MallocError("Malloc failed.");
     std::memcpy(dataHeader, &_receiverPort, NETWORK_HEADER_SIZE / 2);
     std::memcpy((void *)((char *)dataHeader + NETWORK_HEADER_SIZE / 2), &communicationType, NETWORK_HEADER_SIZE / 2);
     return dataHeader;
