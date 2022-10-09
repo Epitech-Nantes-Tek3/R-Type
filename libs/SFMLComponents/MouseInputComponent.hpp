@@ -11,7 +11,6 @@
 #include "Component/Component.hpp"
 #include <SFML/Graphics.hpp>
 #include <unordered_map>
-#include <ECSActions.hpp>
 #include <functional>
 
 namespace ecs

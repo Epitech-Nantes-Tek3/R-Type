@@ -8,7 +8,6 @@
 #ifndef ACTIONQUEUECOMPONENT_HPP_
 #define ACTIONQUEUECOMPONENT_HPP_
 
-#include "ECSActions.hpp"
 #include "Component/Component.hpp"
 #include <queue>
 #include <functional>
