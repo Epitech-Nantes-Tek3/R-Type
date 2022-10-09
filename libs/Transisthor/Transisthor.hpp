@@ -23,6 +23,14 @@ namespace communicator_lib
 
 namespace transisthor_lib
 {
+    /// @brief Wrapper function to call sendDataToAClient in this file.
+    /// @param communicator Instance of the communicator
+    /// @param client Destination of the message
+    /// @param data Content of the message
+    /// @param size of the message
+    /// @param type of the message
+    void sendDataToAClientWithoutCommunicator(Communicator &communicator, Client &client, void *data, size_t size, unsigned short type);
+
     /// @brief Bridge between Communicator data and ECS data
     class Transisthor {
       public:
@@ -46,9 +54,10 @@ namespace transisthor_lib
         /// @param id Id of the transfered component
         /// @param type Type id of the component
         /// @param component The transfered component
+        /// @param destination of the message
         /// @return Return value will be removed when transitor have been finished.
         template <std::derived_from<Component> C>
-        void *transitEcsDataToNetworkData(unsigned short id, unsigned short type, C component)
+        void *transitEcsDataToNetworkData(unsigned short id, unsigned short type, C component, std::vector<Client> destination)
         {
             void *networkObject = std::malloc(sizeof(void *) * ((sizeof(C)) + sizeof(unsigned short) * 2));
 
@@ -57,7 +66,8 @@ namespace transisthor_lib
             std::memcpy(networkObject, &id, sizeof(unsigned short));
             std::memcpy((void *)((char *)networkObject + sizeof(unsigned short)), &type, sizeof(unsigned short));
             std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2), &component, sizeof(C));
-            /// CALL NETWORK FUNCTION FOR SENDING
+            for (auto it : destination)
+                transisthor_lib::sendDataToAClientWithoutCommunicator(_communicator, it, networkObject, sizeof(void *) * ((sizeof(C)) + sizeof(unsigned short) * 2), 30);
             return networkObject;
         }
 
