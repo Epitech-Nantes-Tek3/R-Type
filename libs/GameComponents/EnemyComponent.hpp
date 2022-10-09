@@ -13,7 +13,7 @@
 namespace ecs
 {
     /// @brief This Component specifies if an entity is a player
-    class Enemy {
+    class Enemy : public Component {
     };
 } // namespace ecs
 
