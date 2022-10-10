@@ -12,16 +12,7 @@ set(SRC
     ${SFML_INPUT_INC_ROOT}/ECSActions.hpp
 )
 
-add_library(${TARGET} ${SRC})
-
-target_include_directories(${TARGET}
-    PUBLIC ${SFML_INPUT_INC_ROOT}
-)
-
-target_link_libraries(${TARGET}
-    ${PROJECT_NAME}_ecs
-    CONAN_PKG::sfml
-)
+add_library(${TARGET} INTERFACE ${SRC})
 
 set_target_properties(${TARGET} PROPERTIES LINKER_LANGUAGE CXX)
 include(${PROJECT_SOURCE_DIR}/build/conanbuildinfo.cmake)
