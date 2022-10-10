@@ -10,16 +10,15 @@
 #ifndef ARGUMENTHANDLER_HPP_
 #define ARGUMENTHANDLER_HPP_
 
+#include <map>
 #include <string>
 #include <vector>
-#include <map>
 
 namespace argument_handler
 {
     /// @brief Class holding parse of arguments from main. Possibility of extract the data to create some other class
     class ArgumentHandler {
       public:
-
         /// @brief Struct containing all Arguments needs by the server executable
         struct ServerInformation {
             /// @brief Ip address to connect to.
@@ -31,13 +30,13 @@ namespace argument_handler
 
         /// @brief Struct containing all Arguments needs by the client executable
         struct ClientInformation {
-           /// @brief Ip address to connect to.
+            /// @brief Ip address to connect to.
             std::string clientAddress;
 
             /// @brief Port to bind to.
             unsigned short clientPort;
 
-           /// @brief Server ip address to connect to.
+            /// @brief Server ip address to connect to.
             std::string serverAddress;
 
             /// @brief Server port to bind to.
@@ -45,11 +44,7 @@ namespace argument_handler
         };
 
         /// @brief Type list of all the possible use of ArgumentHandler class
-        enum ArgumentFunctionType {
-            UNDEFINED,
-            SERVER_EXECUTABLE,
-            CLIENT_EXECUTABLE
-        };
+        enum ArgumentFunctionType { UNDEFINED, SERVER_EXECUTABLE, CLIENT_EXECUTABLE };
 
         /// @brief Construct a new ArgumentHandler object with default value
         ArgumentHandler();
@@ -80,13 +75,12 @@ namespace argument_handler
         ClientInformation extractClientInformation(void);
 
       private:
-
         /// @brief List of all the arguments to parse
         std::vector<std::string> _argumentsToParse;
 
         /// @brief List of all the -h option text
         std::map<unsigned short, std::string> _hTextList;
     };
-} // namespace server_data
+} // namespace argument_handler
 
 #endif /* !ARGUMENTHANDLER_HPP_ */

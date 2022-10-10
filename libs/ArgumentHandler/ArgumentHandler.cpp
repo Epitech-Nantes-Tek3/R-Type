@@ -32,7 +32,8 @@ ArgumentHandler::ArgumentHandler(const int ac, char **av)
 void ArgumentHandler::bindAllHOptionText(void)
 {
     _hTextList[ArgumentHandler::SERVER_EXECUTABLE] = "./r-type_server <IP_ADDRESS> <PORT>";
-    _hTextList[ArgumentHandler::CLIENT_EXECUTABLE] = "./r-type_server <CLIENT_IP_ADDRESS> <CLIENT_PORT> <SERVER_IP_ADDRESS> <SERVER_PORT + 1000>";
+    _hTextList[ArgumentHandler::CLIENT_EXECUTABLE] =
+        "./r-type_server <CLIENT_IP_ADDRESS> <CLIENT_PORT> <SERVER_IP_ADDRESS> <SERVER_PORT + 1000>";
 }
 
 bool ArgumentHandler::processHOptionVerification(ArgumentHandler::ArgumentFunctionType functionType)
@@ -51,8 +52,7 @@ ArgumentHandler::ServerInformation ArgumentHandler::extractServerInformation(voi
     ArgumentHandler::ServerInformation serverInformation;
 
     if (processHOptionVerification(ArgumentHandler::SERVER_EXECUTABLE))
-        throw ArgumentError(
-            "Use of a -h option", "extractServerInformation -> ArgumentHandler.cpp");
+        throw ArgumentError("Use of a -h option", "extractServerInformation -> ArgumentHandler.cpp");
     if (_argumentsToParse.size() != 2) {
         std::cerr << _hTextList[ArgumentHandler::SERVER_EXECUTABLE] << std::endl;
         throw ArgumentError(
@@ -75,8 +75,7 @@ ArgumentHandler::ClientInformation ArgumentHandler::extractClientInformation(voi
     ArgumentHandler::ClientInformation clientInformation;
 
     if (processHOptionVerification(ArgumentHandler::CLIENT_EXECUTABLE))
-        throw ArgumentError(
-            "Use of a -h option", "extractClientInformation -> ArgumentHandler.cpp");
+        throw ArgumentError("Use of a -h option", "extractClientInformation -> ArgumentHandler.cpp");
     if (_argumentsToParse.size() != 4) {
         std::cerr << _hTextList[ArgumentHandler::CLIENT_EXECUTABLE] << std::endl;
         throw ArgumentError(
