@@ -16,8 +16,7 @@ int main(int ac, char **av)
     ArgumentHandler argumentHandler = ArgumentHandler(ac, av);
     ArgumentHandler::ServerInformation serverInformation = argumentHandler.extractServerInformation();
     Server server = Server(serverInformation.address, serverInformation.port);
-    unsigned short roomId = server.createANewRoom();
 
-    std::cerr << "A Room have been created with the id " << roomId << "." << std::endl;
+    server.createANewRoom();
     return 0;
 }
