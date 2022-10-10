@@ -9,7 +9,7 @@ var namespaces_dup =
     [ "Pull Request Rules", "md__c_o_n_t_r_i_b_u_t_i_n_g.html#autotoc_md15", null ],
     [ "client_data", "namespaceclient__data.html", null ],
     [ "communicator_lib", "namespacecommunicator__lib.html", null ],
-    [ "ecs", "namespaceecs.html", null ],
+    [ "ecs", "namespaceecs.html", "namespaceecs" ],
     [ "error_lib", "namespaceerror__lib.html", null ],
     [ "server_data", "namespaceserver__data.html", null ],
     [ "transisthor_lib", "namespacetransisthor__lib.html", null ]

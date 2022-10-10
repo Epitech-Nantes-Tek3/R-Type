@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['isclicked_438',['IsClicked',['../classecs_1_1_button.html#a49021e1ba07d18b8d9c24fa0a5d640e3',1,'ecs::Button']]],
-  ['ishovered_439',['IsHovered',['../classecs_1_1_button.html#a08f741506b61b684bb5d79774fd67593',1,'ecs::Button']]]
+  ['frequency_492',['frequency',['../classecs_1_1_shooting_frequency.html#a7e740de3091edf4d0934e8c1f69d0144',1,'ecs::ShootingFrequency']]]
 ];

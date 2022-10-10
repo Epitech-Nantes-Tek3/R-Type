@@ -1,5 +1,8 @@
 var namespaceecs =
 [
+    [ "ActionQueueComponent", "classecs_1_1_action_queue_component.html", "classecs_1_1_action_queue_component" ],
+    [ "AllowControllerComponent", "classecs_1_1_allow_controller_component.html", null ],
+    [ "AllowMouseAndKeyboardComponent", "classecs_1_1_allow_mouse_and_keyboard_component.html", null ],
     [ "Bouncing", "classecs_1_1_bouncing.html", null ],
     [ "BreakThrought", "classecs_1_1_break_throught.html", null ],
     [ "Button", "classecs_1_1_button.html", "classecs_1_1_button" ],
@@ -7,6 +10,8 @@ var namespaceecs =
     [ "Collidable", "classecs_1_1_collidable.html", null ],
     [ "Component", "classecs_1_1_component.html", "classecs_1_1_component" ],
     [ "Controlable", "classecs_1_1_controlable.html", null ],
+    [ "ControllerButtonInputComponent", "classecs_1_1_controller_button_input_component.html", "classecs_1_1_controller_button_input_component" ],
+    [ "ControllerJoystickInputComponent", "classecs_1_1_controller_joystick_input_component.html", "classecs_1_1_controller_joystick_input_component" ],
     [ "Damage", "classecs_1_1_damage.html", "classecs_1_1_damage" ],
     [ "DamageRadius", "classecs_1_1_damage_radius.html", "classecs_1_1_damage_radius" ],
     [ "DeathDamage", "classecs_1_1_death_damage.html", "classecs_1_1_death_damage" ],
@@ -15,8 +20,10 @@ var namespaceecs =
     [ "Equipment", "classecs_1_1_equipment.html", "classecs_1_1_equipment" ],
     [ "Invinsible", "classecs_1_1_invinsible.html", null ],
     [ "Invisible", "classecs_1_1_invisible.html", null ],
+    [ "KeyboardInputComponent", "classecs_1_1_keyboard_input_component.html", "classecs_1_1_keyboard_input_component" ],
     [ "Life", "classecs_1_1_life.html", "classecs_1_1_life" ],
     [ "Lifetime", "classecs_1_1_lifetime.html", "classecs_1_1_lifetime" ],
+    [ "MouseInputComponent", "classecs_1_1_mouse_input_component.html", "classecs_1_1_mouse_input_component" ],
     [ "Pattern", "classecs_1_1_pattern.html", "classecs_1_1_pattern" ],
     [ "Position", "classecs_1_1_position.html", "classecs_1_1_position" ],
     [ "RenderWindowResource", "classecs_1_1_render_window_resource.html", "classecs_1_1_render_window_resource" ],

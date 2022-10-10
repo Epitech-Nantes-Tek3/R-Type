@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['sender_249',['Sender',['../classcommunicator__lib_1_1_sender.html',1,'communicator_lib']]],
-  ['server_250',['Server',['../classserver__data_1_1_server.html',1,'server_data']]],
-  ['shootingfrequency_251',['ShootingFrequency',['../classecs_1_1_shooting_frequency.html',1,'ecs']]],
-  ['size_252',['Size',['../classecs_1_1_size.html',1,'ecs']]],
-  ['system_253',['System',['../classecs_1_1_system.html',1,'ecs']]]
+  ['pattern_275',['Pattern',['../classecs_1_1_pattern.html',1,'ecs']]],
+  ['position_276',['Position',['../classecs_1_1_position.html',1,'ecs']]]
 ];

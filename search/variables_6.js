@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['newclient_444',['newClient',['../structcommunicator__lib_1_1_communicator_message.html#a9231e1a6f87aa36c75c9557e8bae72cd',1,'communicator_lib::CommunicatorMessage']]]
+  ['lifepoint_496',['lifePoint',['../classecs_1_1_life.html#ae7784365d59fadc42676c409c2383bc4',1,'ecs::Life']]]
 ];

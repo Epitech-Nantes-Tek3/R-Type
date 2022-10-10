@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['y_455',['y',['../classecs_1_1_destination.html#a016756f6bb51a689ac853f9e92d859a2',1,'ecs::Destination::y()'],['../classecs_1_1_position.html#adcc6b34fd80df9ec3f929bf5743480ee',1,'ecs::Position::y()'],['../classecs_1_1_size.html#a129dead23aa04d23af2d326d3df867e8',1,'ecs::Size::y()']]]
+  ['weight_509',['weight',['../classecs_1_1_weight.html#a5759518e89dec4efb88d38cd55ece123',1,'ecs::Weight']]],
+  ['window_510',['window',['../classecs_1_1_render_window_resource.html#a45f9e75334d69946d931b258d19db36a',1,'ecs::RenderWindowResource']]]
 ];
