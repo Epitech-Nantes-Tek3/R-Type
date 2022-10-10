@@ -21,8 +21,8 @@ ClientRoom::ClientRoom()
     _communicatorInstance = std::make_shared<Communicator>(_networkInformations);
     _worldInstance = std::make_shared<World>(1);
     _transisthorInstance = std::make_shared<Transisthor>(*(_communicatorInstance.get()), *(_worldInstance.get()));
-    _communicatorInstance.get()->updateTransisthorBridge(_transisthorInstance);
-    _worldInstance.get()->updateTransisthorBridge(_communicatorInstance.get()->getTransisthorBridge());
+    _communicatorInstance.get()->setTransisthorBridge(_transisthorInstance);
+    _worldInstance.get()->setTransisthorBridge(_communicatorInstance.get()->getTransisthorBridge());
     _state = ClientState::UNDEFINED;
 }
 
@@ -33,8 +33,8 @@ ClientRoom::ClientRoom(std::string address, unsigned short port, std::string ser
     _communicatorInstance = std::make_shared<Communicator>(_networkInformations);
     _worldInstance = std::make_shared<World>(1);
     _transisthorInstance = std::make_shared<Transisthor>(*(_communicatorInstance.get()), *(_worldInstance.get()));
-    _communicatorInstance.get()->updateTransisthorBridge(_transisthorInstance);
-    _worldInstance.get()->updateTransisthorBridge(_communicatorInstance.get()->getTransisthorBridge());
+    _communicatorInstance.get()->setTransisthorBridge(_transisthorInstance);
+    _worldInstance.get()->setTransisthorBridge(_communicatorInstance.get()->getTransisthorBridge());
     _state = ClientState::UNDEFINED;
 }
 
