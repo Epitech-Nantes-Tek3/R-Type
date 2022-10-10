@@ -22,9 +22,9 @@
 
 using namespace ecs;
 
-/// @brief This function create a new Entity projectile_ally when an ally shoot
-/// @param world
-/// @param ally Ally who fired
+/// @brief This function creates a new Entity projectile_ally when an ally shoot
+/// @param world The world in that the Enemy must be created
+/// @param ally Entity who fired an ally projectile
 /// @return Id in size_t of the new Entity
 inline std::size_t createNewAllyProjectile(World &world, Entity &ally)
 {
