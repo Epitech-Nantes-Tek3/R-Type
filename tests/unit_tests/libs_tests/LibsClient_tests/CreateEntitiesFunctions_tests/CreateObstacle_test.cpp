@@ -16,10 +16,9 @@ using namespace ecs;
 Test(CreateObstacle_test, CreateObstacle)
 {
     World world(1);
-    Position pos = {1, 1};
-    Damage damage = 10;
 
-    std::size_t id_new_entity = createNewObstacle(world, pos, damage);
+    std::size_t id_new_entity = createNewObstacle(world, 10, 120, 5);
 
     cr_assert_eq(1, id_new_entity);
+    cr_assert_eq(10, world.getEntity(1).getComponent<Position>().x);
 }

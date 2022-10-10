@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2022
 ** R-Type
 ** File description:
-** CreateAllyProjectile
+** CreateAlliedProjectile
 */
 
 #ifndef CREATEALLYPROJECTILE_HPP_
@@ -15,17 +15,17 @@
 #include "GameComponents/LifeComponent.hpp"
 #include "GameComponents/LifeTimeComponent.hpp"
 #include "GameComponents/PositionComponent.hpp"
-#include "GameComponents/ProjectileAllyComponent.hpp"
+#include "GameComponents/AlliedProjectileComponent.hpp"
 #include "GameComponents/SizeComponent.hpp"
 #include "GameComponents/VelocityComponent.hpp"
 #include "GameComponents/WeightComponent.hpp"
 
 namespace ecs
 {
-    /// @brief This function creates a new Entity projectile_ally when an ally shoot
+    /// @brief This function creates a new Entity projectile_ally when an allied shoot
     /// @param world The world in that the Enemy must be created
-    /// @param ally Entity who fired an ally projectile
+    /// @param allied Entity who fired an allied projectile
     /// @return Id in size_t of the new Entity
-    std::size_t createNewAllyProjectile(World &world, Entity &ally);
+    std::size_t createNewAlliedProjectile(World &world, Entity &allied);
 } // namespace ecs
 #endif /* !CREATEALLYPROJECTILE_HPP_ */

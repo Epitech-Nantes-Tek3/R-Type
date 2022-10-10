@@ -26,7 +26,7 @@ namespace ecs
                 .addComponent<Damage>(damage)
                 .addComponent<DamageRadius>(5)
                 .addComponent<Collidable>()
-                .addComponent<ProjectileEnemy>()
+                .addComponent<EnemyProjectile>()
                 .getId();
         return new_projectile;
     }

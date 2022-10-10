@@ -15,7 +15,7 @@
 #include "GameComponents/LifeComponent.hpp"
 #include "GameComponents/LifeTimeComponent.hpp"
 #include "GameComponents/PositionComponent.hpp"
-#include "GameComponents/ProjectileEnemyComponent.hpp"
+#include "GameComponents/EnemyProjectileComponent.hpp"
 #include "GameComponents/SizeComponent.hpp"
 #include "GameComponents/VelocityComponent.hpp"
 #include "GameComponents/WeightComponent.hpp"

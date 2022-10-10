@@ -2,17 +2,17 @@
 ** EPITECH PROJECT, 2022
 ** R-Type
 ** File description:
-** ProjectileEnemyComponent
+** EnemyProjectileComponent
 */
 
-#ifndef PROJECTILEENEMYCOMPONENT_HPP_
-#define PROJECTILEENEMYCOMPONENT_HPP_
+#ifndef EnemyProjectileCOMPONENT_HPP_
+#define EnemyProjectileCOMPONENT_HPP_
 
 #include "Component/Component.hpp"
 
 namespace ecs
 {
     /// @brief This Component specifies if an entity is an Enemy Projectile
-    class ProjectileEnemy : public Component {};
+    class EnemyProjectile : public Component {};
 } // namespace ecs
-#endif /* !PROJECTILEENEMYCOMPONENT_HPP_ */
+#endif /* !EnemyProjectileCOMPONENT_HPP_ */

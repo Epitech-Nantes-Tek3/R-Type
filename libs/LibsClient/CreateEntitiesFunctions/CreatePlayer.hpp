@@ -31,11 +31,11 @@ namespace ecs
     /// @param damage Damage of projectiles fired by this Player
     /// @param damageRadius DamageRadius of projectiles fired by this Player
     /// @return Id of the new Player in std::size_t
-    inline std::size_t createNewPlayer(World &world, Position &pos, Weight &weight, Size &size, Life &life, Damage &damage, DamageRadius &damageRadius) {
+    inline std::size_t createNewPlayer(World &world, int pos_x, int pos_y, short weight, int size_x, int size_y, unsigned short life, unsigned short damage, unsigned short damageRadius) {
                 std::size_t new_player = world.addEntity()
-                                     .addComponent<Position>(pos.x, pos.y)
+                                     .addComponent<Position>(pos_x, pos_y)
                                      .addComponent<Weight>(weight)
-                                     .addComponent<Size>(size.x, size.y)
+                                     .addComponent<Size>(size_x, size_y)
                                      .addComponent<Lifetime>()
                                      .addComponent<Life>(life)
                                      .addComponent<Damage>(damage)

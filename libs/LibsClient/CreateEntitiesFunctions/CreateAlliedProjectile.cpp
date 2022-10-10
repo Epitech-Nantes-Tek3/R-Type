@@ -2,18 +2,18 @@
 ** EPITECH PROJECT, 2022
 ** R-Type
 ** File description:
-** CreateAllyProjectile
+** CreateAlliedProjectile
 */
 
-#include "CreateAllyProjectile.hpp"
+#include "CreateAlliedProjectile.hpp"
 
 namespace ecs
 {
-    std::size_t createNewAllyProjectile(World &world, Entity &ally)
+    std::size_t createNewAlliedProjectile(World &world, Entity &allied)
     {
-        Position pos = ally.getComponent<Position>();
-        Damage damage = ally.getComponent<Damage>();
-        Velocity velocity = ally.getComponent<Velocity>();
+        Position pos = allied.getComponent<Position>();
+        Damage damage = allied.getComponent<Damage>();
+        Velocity velocity = allied.getComponent<Velocity>();
 
         std::size_t new_projectile =
             world.addEntity()
@@ -26,7 +26,7 @@ namespace ecs
                 .addComponent<Damage>(damage)
                 .addComponent<DamageRadius>(5)
                 .addComponent<Collidable>()
-                .addComponent<ProjectileAlly>()
+                .addComponent<AlliedProjectile>()
                 .getId();
         return new_projectile;
     }

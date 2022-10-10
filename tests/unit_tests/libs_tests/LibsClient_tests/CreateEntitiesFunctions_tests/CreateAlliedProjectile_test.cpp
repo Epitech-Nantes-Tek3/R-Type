@@ -2,29 +2,29 @@
 ** EPITECH PROJECT, 2022
 ** R-Type
 ** File description:
-** CreateAllyProjectile_test
+** CreateAlliedProjectile_test
 */
 
 #include <algorithm>
 #include <iostream>
 #include <criterion/criterion.h>
 #include "World/World.hpp"
-#include "CreateAllyProjectile.hpp"
+#include "CreateAlliedProjectile.hpp"
 
 using namespace ecs;
 
-Test(CreateAllyProjectile_test, CreateAllyProjectile)
+Test(CreateAlliedProjectile_test, CreateAlliedProjectile)
 {
     World world(1);
     
-    std::size_t ally = world.addEntity()
+    std::size_t allied = world.addEntity()
                             .addComponent<Position>(1, 1)
                             .addComponent<Damage>(10)
                             .addComponent<Velocity>(1, 1)
                             .getId();
 
-    std::size_t id_new_entity = createNewAllyProjectile(world, world.getEntity(ally));
+    std::size_t id_new_entity = createNewAlliedProjectile(world, world.getEntity(allied));
     
-    cr_assert_eq(1, ally);
+    cr_assert_eq(1, allied);
     cr_assert_eq(2, id_new_entity);
 }

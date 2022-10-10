@@ -25,13 +25,14 @@ namespace ecs
 
     /// @brief This function can create a new Obstacle Entity in the world pass in params
     /// @param world The world in that the Obstacle must be created
-    /// @param pos The position of the new Obstacle
+    /// @param pos_x The position x of the new Obstacle
+    /// @param pos_y The position y of the new Obstacle
     /// @param damage The damage inflicted to an Entity if this Entity hits this Obstacle
     /// @return Id of the new Obstacle in std::size_t
-    inline std::size_t createNewObstacle(World &world, Position &pos, Damage &damage)
+    inline std::size_t createNewObstacle(World &world, int pos_x, int pos_y, unsigned short damage)
     {
         std::size_t new_obstacle = world.addEntity()
-                                       .addComponent<Position>(pos.x, pos.y)
+                                       .addComponent<Position>(pos_x, pos_y)
                                        .addComponent<Weight>(1)
                                        .addComponent<Size>(1, 1)
                                        .addComponent<Lifetime>()

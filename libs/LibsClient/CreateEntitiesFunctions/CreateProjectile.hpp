@@ -22,17 +22,20 @@
 
 namespace ecs
 {
+
     /// @brief This function can create a new Projectile Entity in the world pass in params
     /// @param world The world in that the Projectile must be created
-    /// @param pos The start position of the new Projectile
-    /// @param velocity The Velocity of the new Projectile
+    /// @param pos_x The start position x of the new Projectile
+    /// @param pos_y The start position y of the new Projectile
+    /// @param multiplierAbscissa The Velocity x of the new Projectile
+    /// @param multiplierOrdinate The Velocity y of the new Projectile
     /// @param damage The Damage of the new Projectile
-    /// @return Id of the new Projectile in std::size_t
-    inline std::size_t createNewProjectile(World &world, Position &pos, Velocity &velocity, Damage &damage)
+    /// @return  Id of the new Projectile in std::size_t
+    inline std::size_t createNewProjectile(World &world, int pos_x, int pos_y, double multiplierAbscissa, double multiplierOrdinate, unsigned short damage)
     {
         std::size_t new_projectile =
             world.addEntity()
-                .addComponent<Position>(pos.x, pos.y)
+                .addComponent<Position>(pos_x, pos_y)
                 .addComponent<Weight>(1)
                 .addComponent<Size>(2, 1)
                 .addComponent<Lifetime>()
@@ -41,7 +44,7 @@ namespace ecs
                 .addComponent<DamageRadius>(5)
                 .addComponent<Collidable>()
                 .addComponent<Projectile>()
-                .addComponent<Velocity>(velocity.multiplierAbscissa, velocity.multiplierOrdinate)
+                .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate)
                 .getId();
         return new_projectile;
     }

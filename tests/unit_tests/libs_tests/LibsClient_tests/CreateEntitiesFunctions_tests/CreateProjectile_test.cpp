@@ -13,14 +13,13 @@
 
 using namespace ecs;
 
-Test(CreateProjectile_test, CreateAllyProjectile)
+Test(CreateProjectile_test, CreateAlliedProjectile)
 {
     World world(1);
-    Position pos = {1, 1};
-    Velocity velocity = {1, 1};
-    Damage damage = 10;
 
-    std::size_t id_new_entity = createNewProjectile(world, pos, velocity, damage);
+
+    std::size_t id_new_entity = createNewProjectile(world, 5, 5, 10, 10, 10);
 
     cr_assert_eq(1, id_new_entity);
+    cr_assert_eq(5, world.getEntity(1).getComponent<Position>().x);
 }

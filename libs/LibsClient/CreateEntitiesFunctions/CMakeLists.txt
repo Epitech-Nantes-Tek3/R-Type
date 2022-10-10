@@ -5,8 +5,8 @@ set(TARGET ${PROJECT_NAME}_createEntitiesFunctions)
 set(SRC
     ${INC_ROOT}/CreateEnemyProjectile.hpp
     ${INC_ROOT}/CreateEnemyProjectile.cpp
-    ${INC_ROOT}/CreateAllyProjectile.hpp
-    ${INC_ROOT}/CreateAllyProjectile.cpp
+    ${INC_ROOT}/CreateAlliedProjectile.hpp
+    ${INC_ROOT}/CreateAlliedProjectile.cpp
     ${INC_ROOT}/CreatePlayer.hpp
     ${INC_ROOT}/CreateProjectile.hpp
 )
