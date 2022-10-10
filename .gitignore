@@ -52,4 +52,5 @@ Size_entities.txt
 tests/R-Type_communicator_send
 
 #Documentation
-docs
+docs/html
+CMakeGraphVizOptions.cmake
