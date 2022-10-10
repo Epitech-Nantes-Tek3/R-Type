@@ -32,6 +32,7 @@ ArgumentHandler::ArgumentHandler(const int ac, char **av)
 void ArgumentHandler::bindAllHOptionText(void)
 {
     _hTextList[ArgumentHandler::SERVER_EXECUTABLE] = "./r-type_server <IP_ADDRESS> <PORT>";
+    _hTextList[ArgumentHandler::CLIENT_EXECUTABLE] = "./r-type_server <CLIENT_IP_ADDRESS> <CLIENT_PORT> <SERVER_IP_ADDRESS> <SERVER_PORT + 1000>";
 }
 
 bool ArgumentHandler::processHOptionVerification(ArgumentHandler::ArgumentFunctionType functionType)

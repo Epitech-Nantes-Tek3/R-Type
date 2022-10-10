@@ -32,7 +32,8 @@ namespace argument_handler
         /// @brief Type list of all the possible use of ArgumentHandler class
         enum ArgumentFunctionType {
             UNDEFINED,
-            SERVER_EXECUTABLE
+            SERVER_EXECUTABLE,
+            CLIENT_EXECUTABLE
         };
 
         /// @brief Construct a new ArgumentHandler object with default value
