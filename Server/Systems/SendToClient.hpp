@@ -46,8 +46,8 @@ struct SendToClient : public ecs::System {
         if (it != componentRFCId.end()) {
             if (entity->contains<C1>()) {
                 (void)clientIdList;
-                world.getTransisthorBridge().get()->transitEcsDataToNetworkData<C1>(networkId, it->second, entity->getComponent<C1>());
-                // send clientIdList later when it will be implemented
+                world.getTransisthorBridge().get()->transitEcsDataToNetworkData<C1>(
+                    networkId, it->second, entity->getComponent<C1>(), clientIdList);
             }
         }
     }
