@@ -11,6 +11,7 @@
 #define ARGUMENTHANDLER_HPP_
 
 #include <string>
+#include <vector>
 
 namespace server_data
 {
@@ -29,8 +30,10 @@ namespace server_data
         /// @brief Destroy the Argument Handler object
         ~ArgumentHandler() = default;
 
-      protected:
       private:
+
+        /// @brief List of all the arguments to parse
+        std::vector<std::string> _argumentsToParse;
     };
 } // namespace server_data
 
