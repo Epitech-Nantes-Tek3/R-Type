@@ -50,3 +50,6 @@ tests/R-Type_communicator_tests
 tests/R-Type_communicator_switch_tests
 Size_entities.txt
 tests/R-Type_communicator_send
+
+#Documentation
+docs

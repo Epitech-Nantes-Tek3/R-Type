@@ -116,3 +116,8 @@ void Transisthor::componentConvertVelocityType(unsigned short id, void *byteCode
     (void)newComponent;
     /// SEND THE NEW COMPONENT TO ECS, WILL BE ADDED WHEN TRANSISTHOR WILL BE FULLY IMPLEMENTED
 }
+
+void transisthor_lib::sendDataToAClientWithoutCommunicator(Communicator &communicator, Client &client, void *data, size_t size, unsigned short type)
+{
+    communicator.sendDataToAClient(client, data, size, type);
+}
