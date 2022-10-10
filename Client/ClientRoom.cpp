@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2022
-** Project
+** R-Type
 ** File description:
 ** Client
 */
@@ -48,7 +48,6 @@ void ClientRoom::startLobbyLoop(void)
     while (_state != ClientState::ENDED && _state != ClientState::UNDEFINED) {
         try {
             connexionResponse = _communicatorInstance.get()->getLastMessage();
-            (void)connexionResponse;
             std::cerr << "ClientRoom received a connexion protocol answer."
                       << std::endl; /// WILL BE DELETED WITH CONNEXION PROTOCOL ISSUE
         } catch (NetworkError &error) {

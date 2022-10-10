@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2022
-** Project
+** R-Type
 ** File description:
 ** Client
 */
@@ -32,8 +32,8 @@ namespace client_data
         ClientRoom();
 
         /// @brief Construct a new ClientRoom
-        /// @param address The room address
-        /// @param port room port
+        /// @param address The ClientRoom address
+        /// @param port ClientRoom port
         /// @param serverAddress server address
         /// @param serverPort room port
         ClientRoom(std::string address, unsigned short port, std::string serverAddress, unsigned short serverPort);
