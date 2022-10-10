@@ -1,4 +1,0 @@
-<map id="ecs::Life" name="ecs::Life">
-<area shape="rect" id="node1" title="The Life class, needed for every ennemies, bosses or players." alt="" coords="31,80,107,107"/>
-<area shape="rect" id="node2" href="$classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone..." alt="" coords="5,5,132,32"/>
-</map>

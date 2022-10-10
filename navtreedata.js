@@ -22,55 +22,22 @@ for the JavaScript code in this file
 */
 var NAVTREE =
 [
-  [ "R-Type", "index.html", [
-    [ "README", "md__r_e_a_d_m_e.html", [
-      [ "R-Type", "md__r_e_a_d_m_e.html#autotoc_md0", [
-        [ "Prerequisites", "md__r_e_a_d_m_e.html#autotoc_md1", null ],
-        [ "Build the program", "md__r_e_a_d_m_e.html#autotoc_md2", null ],
-        [ "Testing program", "md__r_e_a_d_m_e.html#autotoc_md3", null ],
-        [ "Supported Platform", "md__r_e_a_d_m_e.html#autotoc_md4", null ],
-        [ "Usefulls Links", "md__r_e_a_d_m_e.html#autotoc_md5", null ],
-        [ "Thank for reading", "md__r_e_a_d_m_e.html#autotoc_md6", null ],
-        [ "Authors", "md__r_e_a_d_m_e.html#autotoc_md7", null ]
-      ] ]
-    ] ],
-    [ "LICENSE", "md__l_i_c_e_n_s_e.html", null ],
-    [ "Development Rules", "md__c_o_n_t_r_i_b_u_t_i_n_g.html", null ],
-    [ "Namespaces", "namespaces.html", [
-      [ "Namespace List", "namespaces.html", "namespaces_dup" ],
-      [ "Namespace Members", "namespacemembers.html", [
-        [ "All", "namespacemembers.html", null ],
-        [ "Functions", "namespacemembers_func.html", null ]
-      ] ]
-    ] ],
-    [ "Classes", "annotated.html", [
-      [ "Class List", "annotated.html", "annotated_dup" ],
-      [ "Class Index", "classes.html", null ],
-      [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
-      [ "Class Members", "functions.html", [
-        [ "All", "functions.html", null ],
-        [ "Functions", "functions_func.html", null ],
-        [ "Variables", "functions_vars.html", null ],
-        [ "Typedefs", "functions_type.html", null ],
-        [ "Enumerations", "functions_enum.html", null ],
-        [ "Enumerator", "functions_eval.html", null ]
-      ] ]
-    ] ],
-    [ "Files", "files.html", [
-      [ "File List", "files.html", "files_dup" ],
-      [ "File Members", "globals.html", [
-        [ "All", "globals.html", null ],
-        [ "Functions", "globals_func.html", null ],
-        [ "Macros", "globals_defs.html", null ]
-      ] ]
+  [ "Zaaaaaaappppy", "index.html", [
+    [ "R-Type", "index.html#autotoc_md0", [
+      [ "Prerequisites", "index.html#autotoc_md1", null ],
+      [ "Build the program", "index.html#autotoc_md2", null ],
+      [ "Testing program", "index.html#autotoc_md3", null ],
+      [ "Supported Platform", "index.html#autotoc_md4", null ],
+      [ "Usefulls Links", "index.html#autotoc_md5", null ],
+      [ "Thank for reading", "index.html#autotoc_md6", null ],
+      [ "Authors", "index.html#autotoc_md7", null ]
     ] ]
   ] ]
 ];
 
 var NAVTREEINDEX =
 [
-"_bouncing_component_8hpp.html",
-"classecs_1_1_world.html#a8ced482c3db57a0932fc691aeef01935"
+"index.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

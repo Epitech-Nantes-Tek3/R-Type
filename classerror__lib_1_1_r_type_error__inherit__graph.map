@@ -1,7 +1,0 @@
-<map id="error_lib::RTypeError" name="error_lib::RTypeError">
-<area shape="rect" id="node1" title="Custom error class for rtype project." alt="" coords="169,80,323,107"/>
-<area shape="rect" id="node3" href="$classerror__lib_1_1_ecs_error.html" title="Error class for the ecs part." alt="" coords="5,155,143,181"/>
-<area shape="rect" id="node4" href="$classerror__lib_1_1_malloc_error.html" title="Error class for a malloc fail." alt="" coords="167,155,325,181"/>
-<area shape="rect" id="node5" href="$classerror__lib_1_1_network_error.html" title="Error class for the network part." alt="" coords="350,155,521,181"/>
-<area shape="rect" id="node2" title=" " alt="" coords="189,5,303,32"/>
-</map>

@@ -1,4 +1,0 @@
-<map id="communicator_lib::Message" name="communicator_lib::Message">
-<area shape="rect" id="node1" title="A network data." alt="" coords="5,95,211,121"/>
-<area shape="rect" id="node2" href="$classcommunicator__lib_1_1_client.html" title="A representation of a client (Address + Port)" alt="" coords="15,5,201,32"/>
-</map>

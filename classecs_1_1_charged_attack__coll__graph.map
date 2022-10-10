@@ -1,4 +1,0 @@
-<map id="ecs::ChargedAttack" name="ecs::ChargedAttack">
-<area shape="rect" id="node1" title="The Charged attack class, adding a cooldown before making huge damage." alt="" coords="5,80,153,107"/>
-<area shape="rect" id="node2" href="$classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone..." alt="" coords="16,5,143,32"/>
-</map>
