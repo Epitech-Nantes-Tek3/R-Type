@@ -8,7 +8,6 @@
 #ifndef CREATEPROJECTILE_HPP_
 #define CREATEPROJECTILE_HPP_
 
-#include "World/World.hpp"
 #include "GameComponents/CollidableComponent.hpp"
 #include "GameComponents/DamageComponent.hpp"
 #include "GameComponents/DamageRadiusComponent.hpp"
@@ -19,8 +18,9 @@
 #include "GameComponents/SizeComponent.hpp"
 #include "GameComponents/VelocityComponent.hpp"
 #include "GameComponents/WeightComponent.hpp"
+#include "World/World.hpp"
 
-using namespace ecs
+namespace ecs
 {
     /// @brief This function can create a new Projectile Entity in the world pass in params
     /// @param world The world in that the Projectile must be created
@@ -30,8 +30,7 @@ using namespace ecs
     /// @return Id of the new Projectile in std::size_t
     inline std::size_t createNewProjectile(World & world, Position & pos, Velocity & velocity, Damage & damage)
     {
-        std::size_t new_projectile =
-            world.addEntity()
+        std::size_t new_projectile = world.addEntity()
                 .addComponent<Position>(pos.x, pos.y)
                 .addComponent<Weight>(1)
                 .addComponent<Size>(2, 1)
