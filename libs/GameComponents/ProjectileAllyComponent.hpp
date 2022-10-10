@@ -8,7 +8,7 @@
 #ifndef PROJECTILEALLYCOMPONENT_HPP_
 #define PROJECTILEALLYCOMPONENT_HPP_
 
-#include <Component/Component.hpp>
+#include "Component/Component.hpp"
 
 namespace ecs
 {

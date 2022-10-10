@@ -5,15 +5,15 @@
 ** Movement_System_tests
 */
 
-#include "World/World.hpp"
-#include <Entity/Entity.hpp>
-#include <GameComponents/PositionComponent.hpp>
-#include <GameComponents/VelocityComponent.hpp>
-#include <GameComponents/SizeComponent.hpp>
-#include <GameSystems/MouvementSystem.hpp>
 #include <algorithm>
 #include <iostream>
 #include <criterion/criterion.h>
+#include "World/World.hpp"
+#include "Entity/Entity.hpp"
+#include "GameComponents/PositionComponent.hpp"
+#include "GameComponents/VelocityComponent.hpp"
+#include "GameComponents/SizeComponent.hpp"
+#include "GameSystems/MouvementSystem.hpp"
 
 using namespace ecs;
 

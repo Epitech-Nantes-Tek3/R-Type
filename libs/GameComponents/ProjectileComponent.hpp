@@ -8,7 +8,7 @@
 #ifndef PROJECTILECOMPONENT_HPP_
 #define PROJECTILECOMPONENT_HPP_
 
-#include <Component/Component.hpp>
+#include "Component/Component.hpp"
 
 namespace ecs
 {
