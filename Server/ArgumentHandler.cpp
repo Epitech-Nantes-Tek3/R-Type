@@ -22,6 +22,11 @@ ArgumentHandler::ArgumentHandler(const int ac, const char **av)
     }
 }
 
+void ArgumentHandler::bindAllHOptionText(void)
+{
+    _hTextList[ArgumentHandler::SERVER_EXECUTABLE] = "./r-type_server <IP_ADDRESS> <PORT>";
+}
+
 ArgumentHandler::ServerInformation ArgumentHandler::extractServerInformation(void)
 {
     ArgumentHandler::ServerInformation serverInformation;

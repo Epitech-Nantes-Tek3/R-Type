@@ -29,6 +29,12 @@ namespace server_data
             unsigned short port;
         };
 
+        /// @brief Type list of all the possible use of ArgumentHandler class
+        enum ArgumentFunctionType {
+            UNDEFINED,
+            SERVER_EXECUTABLE
+        };
+
         /// @brief Construct a new ArgumentHandler object with default value
         ArgumentHandler();
 
@@ -39,6 +45,9 @@ namespace server_data
 
         /// @brief Destroy the Argument Handler object
         ~ArgumentHandler() = default;
+
+        /// @brief Bind all -h option text inside the _hTextList map
+        void bindAllHOptionText(void);
 
         /// @brief Extract all wanted value by server from stored arguments.
         /// @return A struct containing all wanted informations.
