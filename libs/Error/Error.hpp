@@ -75,7 +75,7 @@ namespace error_lib
         /// @brief Constructor of the Argument Error
         /// @param message Error message (Some description and information about the error)
         /// @param component Provenance of the error (File, function...)
-        inline ArgumentError(std::string const &message, std::string const &component = "Malloc")
+        inline ArgumentError(std::string const &message, std::string const &component = "ArgumentHandler")
             : RTypeError(message, component){};
     };
 } // namespace error_lib

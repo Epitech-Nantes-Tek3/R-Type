@@ -7,13 +7,12 @@
 
 #include "ArgumentHandler.hpp"
 #include <iostream>
+#include "Error/Error.hpp"
 
 using namespace server_data;
+using namespace error_lib;
 
-ArgumentHandler::ArgumentHandler()
-{
-    _argumentsToParse = {};
-}
+ArgumentHandler::ArgumentHandler() { _argumentsToParse = {}; }
 
 ArgumentHandler::ArgumentHandler(const int ac, const char **av)
 {
@@ -29,7 +28,8 @@ ArgumentHandler::ServerInformation ArgumentHandler::extractServerInformation(voi
     if (_argumentsToParse.size() != 2) {
         std::cerr << "Invalid number of argument sended. Please refer to -h option" << std::endl;
         /// ADD -h display call.
-        /// THROW A CUSTOM ERROR
+        throw ArgumentError(
+            "Invalid number of argument. 2 needed by the server.", "extractServerInformation -> ArgumentHandler.cpp");
     }
     return {"", 0};
 }
