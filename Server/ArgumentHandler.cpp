@@ -46,7 +46,10 @@ bool ArgumentHandler::processHOptionVerification(ArgumentHandler::ArgumentFuncti
 ArgumentHandler::ServerInformation ArgumentHandler::extractServerInformation(void)
 {
     ArgumentHandler::ServerInformation serverInformation;
-    /// ADD -H GESTION
+
+    if (processHOptionVerification(ArgumentHandler::SERVER_EXECUTABLE))
+        throw ArgumentError(
+            "Use of a -h option", "extractServerInformation -> ArgumentHandler.cpp");
     if (_argumentsToParse.size() != 2) {
         std::cerr << _hTextList[ArgumentHandler::SERVER_EXECUTABLE] << std::endl;
         throw ArgumentError(
