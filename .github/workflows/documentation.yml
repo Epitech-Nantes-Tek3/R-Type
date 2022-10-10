@@ -32,9 +32,7 @@ jobs:
         run: doxygen
 
       - name: Deploy documentation
-        uses: JamesIves/github-pages-deploy-action@v4.2.5
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          github_token: ${{ inputs.github_token }}
           folder: docs/html
-          message: "Update generated documentation"
           branch: gh-pages
