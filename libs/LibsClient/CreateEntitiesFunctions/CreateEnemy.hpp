@@ -27,15 +27,17 @@ namespace ecs
     /// @param world The world in that the Enemy must be created
     /// @param pos_x Position x of the Enemy
     /// @param pos_y Position y of the Enemy
+    /// @param multiplierAbscissa The Velocity multiplierAbscissa for the new Enemy
+    /// @param multiplierOrdinate The Velocity multiplierOrdinate for the new Enemy
     /// @param weight Weight of the Enemy
-    /// @param size_x Size x of the player
-    /// @param size_y Size y of the player
+    /// @param size_x Size x of the Enemy
+    /// @param size_y Size y of the Enemy
     /// @param life Life of the Enemy
     /// @param damage Damage of projectiles fired by this Enemy
     /// @param damageRadius DamageRadius of projectiles fired by this Enemy
     /// @return Id of the new Enemy in std::size_t
     inline std::size_t createNewEnemy(
-        World &world, const int pos_x, const int pos_y, const short weight, const int size_x, const int size_y, const unsigned short life, const unsigned short damage, const unsigned short damageRadius)
+        World &world, const int pos_x, const int pos_y, const double multiplierAbscissa, const double multiplierOrdinate, const short weight, const int size_x, const int size_y, const unsigned short life, const unsigned short damage, const unsigned short damageRadius)
     {
         std::size_t new_enemy = world.addEntity()
                                     .addComponent<Position>(pos_x, pos_y)
@@ -46,6 +48,7 @@ namespace ecs
                                     .addComponent<Damage>(damage)
                                     .addComponent<DamageRadius>(damageRadius)
                                     .addComponent<Collidable>()
+                                    .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate)
                                     .addComponent<Enemy>()
                                     .getId();
         return new_enemy;

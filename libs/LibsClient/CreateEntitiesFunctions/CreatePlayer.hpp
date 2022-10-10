@@ -29,13 +29,13 @@ namespace ecs
     /// @param weight Weight of the Player
     /// @param size_x Size x of the player
     /// @param size_y Size y of the player
-    /// @param multiplierAbscissa The Velocity multiplierAbscissa of the new Projectile
-    /// @param multiplierOrdinate The Velocity multiplierOrdinate of the new Projectile
+    /// @param multiplierAbscissa The Velocity multiplierAbscissa for the new Player
+    /// @param multiplierOrdinate The Velocity multiplierOrdinate for the new Player
     /// @param life Life of the Player
     /// @param damage Damage of projectiles fired by this Player
     /// @param damageRadius DamageRadius of projectiles fired by this Player
     /// @return Id of the new Player in std::size_t
-    inline std::size_t createNewPlayer(World &world, const int pos_x, const int pos_y, const double multiplierAbscissa, const double multiplierOrdinateconst, short weight, const int size_x, const int size_y, const unsigned short life, const unsigned short damage, const unsigned short damageRadius) {
+    inline std::size_t createNewPlayer(World &world, const int pos_x, const int pos_y, const double multiplierAbscissa, const double multiplierOrdinate, const short weight, const int size_x, const int size_y, const unsigned short life, const unsigned short damage, const unsigned short damageRadius) {
                 std::size_t new_player = world.addEntity()
                                      .addComponent<Position>(pos_x, pos_y)
                                      .addComponent<Weight>(weight)
