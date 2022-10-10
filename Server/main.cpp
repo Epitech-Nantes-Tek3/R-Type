@@ -6,10 +6,11 @@
 */
 
 #include <iostream>
-#include "ArgumentHandler.hpp"
+#include "ArgumentHandler/ArgumentHandler.hpp"
 #include "Server.hpp"
 
 using namespace server_data;
+using namespace argument_handler;
 
 int main(int ac, char **av)
 {

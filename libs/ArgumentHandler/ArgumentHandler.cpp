@@ -5,11 +5,13 @@
 ** ArgumentHandler
 */
 
+/// @file libs/ArgumentHandler.hpp
+
 #include "ArgumentHandler.hpp"
 #include <iostream>
 #include "Error/Error.hpp"
 
-using namespace server_data;
+using namespace argument_handler;
 using namespace error_lib;
 
 ArgumentHandler::ArgumentHandler()

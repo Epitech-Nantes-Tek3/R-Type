@@ -8,11 +8,9 @@ set(SRC
     ${SRC_ROOT}/main.cpp
     ${SRC_ROOT}/Server.cpp
     ${SRC_ROOT}/Room.cpp
-    ${SRC_ROOT}/ArgumentHandler.cpp
 
     ${INC_ROOT}/Server.hpp
     ${INC_ROOT}/Room.hpp
-    ${INC_ROOT}/ArgumentHandler.hpp
 )
 
 add_executable(${TARGET} ${SRC})
@@ -25,6 +23,7 @@ set_target_properties(${TARGET}
 target_include_directories(${TARGET}
     PUBLIC ${INC_ROOT}
     PUBLIC ${PROJECT_NAME}_transisthor
+    PUBLIC ${PROJECT_NAME}_argumentHandler
     INTERFACE ${PROJECT_NAME}_error
     PRIVATE ${SRC_ROOT}
 )
@@ -32,4 +31,5 @@ target_include_directories(${TARGET}
 target_link_libraries(${TARGET}
     ${PROJECT_NAME}_error
     ${PROJECT_NAME}_transisthor
+    ${PROJECT_NAME}_argumentHandler
 )

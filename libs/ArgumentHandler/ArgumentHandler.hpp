@@ -5,7 +5,7 @@
 ** ArgumentHandler
 */
 
-/// @file Server/ArgumentHandler.hpp
+/// @file libs/ArgumentHandler/ArgumentHandler.hpp
 
 #ifndef ARGUMENTHANDLER_HPP_
 #define ARGUMENTHANDLER_HPP_
@@ -14,7 +14,7 @@
 #include <vector>
 #include <map>
 
-namespace server_data
+namespace argument_handler
 {
     /// @brief Class holding parse of arguments from main. Possibility of extract the data to create some other class
     class ArgumentHandler {
