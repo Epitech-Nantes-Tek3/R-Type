@@ -52,7 +52,7 @@ void *Transisthor::transitNetworkDataToEcsData(Message networkData)
         return object;                                                   /// THROW ERROR INVALID TYPE
     std::cerr << "A component have been transfered to ECS" << std::endl; /// ONLY USE FOR FUNCTIONAL TESTING
     _componentConvertFunctionList[type](id, object);
-    return object; /// ONLY USED FOR UNIT TESTING
+    return object;
 }
 
 void Transisthor::componentConvertDestinationType(unsigned short id, void *byteCode)
