@@ -68,6 +68,16 @@ namespace error_lib
         inline MallocError(std::string const &message, std::string const &component = "Malloc")
             : RTypeError(message, component){};
     };
+
+    /// @brief Error class for a argument fail
+    class ArgumentError : public RTypeError {
+      public:
+        /// @brief Constructor of the Argument Error
+        /// @param message Error message (Some description and information about the error)
+        /// @param component Provenance of the error (File, function...)
+        inline ArgumentError(std::string const &message, std::string const &component = "Malloc")
+            : RTypeError(message, component){};
+    };
 } // namespace error_lib
 
 #endif /* !ERROR_HPP_ */
