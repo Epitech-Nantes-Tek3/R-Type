@@ -49,6 +49,12 @@ namespace server_data
         /// @brief Bind all -h option text inside the _hTextList map
         void bindAllHOptionText(void);
 
+        /// @brief Check if the passed arguments are a -h option. If is it, display matching -h
+        /// @param functionType Matching Enum for the function type
+        /// @return True if the passed arguments is a -h option.
+        /// @return Otherwise, return false
+        bool processHOptionVerification(ArgumentFunctionType functionType);
+
         /// @brief Extract all wanted value by server from stored arguments.
         /// @return A struct containing all wanted informations.
         ServerInformation extractServerInformation(void);

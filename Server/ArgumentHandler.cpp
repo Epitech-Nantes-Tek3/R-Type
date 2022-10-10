@@ -32,6 +32,17 @@ void ArgumentHandler::bindAllHOptionText(void)
     _hTextList[ArgumentHandler::SERVER_EXECUTABLE] = "./r-type_server <IP_ADDRESS> <PORT>";
 }
 
+bool ArgumentHandler::processHOptionVerification(ArgumentHandler::ArgumentFunctionType functionType)
+{
+    if (_argumentsToParse.size() != 1)
+        return false;
+    if (_argumentsToParse.at(0) != "-h")
+        return false;
+    std::cerr << _hTextList[functionType] << std::endl;
+    _argumentsToParse.emplace(_argumentsToParse.begin());
+    return true;
+}
+
 ArgumentHandler::ServerInformation ArgumentHandler::extractServerInformation(void)
 {
     ArgumentHandler::ServerInformation serverInformation;
