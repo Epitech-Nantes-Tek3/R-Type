@@ -8,9 +8,11 @@ set(SRC
     ${SRC_ROOT}/main.cpp
     ${SRC_ROOT}/Server.cpp
     ${SRC_ROOT}/Room.cpp
+    ${SRC_ROOT}/ArgumentHandler.cpp
 
     ${INC_ROOT}/Server.hpp
     ${INC_ROOT}/Room.hpp
+    ${INC_ROOT}/ArgumentHandler.hpp
 )
 
 add_executable(${TARGET} ${SRC})
