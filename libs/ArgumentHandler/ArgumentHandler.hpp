@@ -20,13 +20,28 @@ namespace argument_handler
     class ArgumentHandler {
       public:
 
-        /// @brief Struct containing all Argument needs by the server executable
+        /// @brief Struct containing all Arguments needs by the server executable
         struct ServerInformation {
             /// @brief Ip address to connect to.
             std::string address;
 
             /// @brief Port to bind to.
             unsigned short port;
+        };
+
+        /// @brief Struct containing all Arguments needs by the client executable
+        struct ClientInformation {
+           /// @brief Ip address to connect to.
+            std::string clientAddress;
+
+            /// @brief Port to bind to.
+            unsigned short clientPort;
+
+           /// @brief Server ip address to connect to.
+            std::string serverAddress;
+
+            /// @brief Server port to bind to.
+            unsigned short serverPort;
         };
 
         /// @brief Type list of all the possible use of ArgumentHandler class
