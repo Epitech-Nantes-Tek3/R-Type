@@ -35,17 +35,17 @@ jobs:
           sudo apt update
           sudo apt install graphviz -y
           sudo apt install doxygen -y
+
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Setup Pages
-        uses: actions/configure-pages@v2
+
       - name: Build documentation
         run: doxygen
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+
+      - name: Deploy documentation
+        uses: JamesIves/github-pages-deploy-action@v4.2.5
         with:
-          # Upload entire repository
-          path: 'docs/build/html'
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
+          github_token: ${{ inputs.github_token }}
+          folder: docs/build/html
+          message: "Update generated documentation"
+          branch: gh-pages
