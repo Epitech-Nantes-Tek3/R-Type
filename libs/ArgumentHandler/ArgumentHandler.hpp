@@ -75,6 +75,10 @@ namespace argument_handler
         /// @return A struct containing all wanted informations.
         ServerInformation extractServerInformation(void);
 
+        /// @brief Extract all wanted value by client from stored arguments.
+        /// @return A struct containing all wanted informations.
+        ClientInformation extractClientInformation(void);
+
       private:
 
         /// @brief List of all the arguments to parse

@@ -69,3 +69,31 @@ ArgumentHandler::ServerInformation ArgumentHandler::extractServerInformation(voi
     }
     return serverInformation;
 }
+
+ArgumentHandler::ClientInformation ArgumentHandler::extractClientInformation(void)
+{
+    ArgumentHandler::ClientInformation clientInformation;
+
+    if (processHOptionVerification(ArgumentHandler::CLIENT_EXECUTABLE))
+        throw ArgumentError(
+            "Use of a -h option", "extractClientInformation -> ArgumentHandler.cpp");
+    if (_argumentsToParse.size() != 4) {
+        std::cerr << _hTextList[ArgumentHandler::CLIENT_EXECUTABLE] << std::endl;
+        throw ArgumentError(
+            "Invalid number of argument. 4 needed by the client.", "extractClientInformation -> ArgumentHandler.cpp");
+    }
+    clientInformation.clientAddress = std::string(_argumentsToParse.at(0));
+    _argumentsToParse.erase(_argumentsToParse.begin());
+    clientInformation.clientPort = std::atoi(_argumentsToParse.at(0).c_str());
+    _argumentsToParse.erase(_argumentsToParse.begin());
+    clientInformation.serverAddress = std::string(_argumentsToParse.at(0));
+    _argumentsToParse.erase(_argumentsToParse.begin());
+    clientInformation.serverPort = std::atoi(_argumentsToParse.at(0).c_str());
+    _argumentsToParse.erase(_argumentsToParse.begin());
+    if (clientInformation.clientPort == 0 || clientInformation.serverPort == 0) {
+        std::cerr << _hTextList[ArgumentHandler::CLIENT_EXECUTABLE] << std::endl;
+        throw ArgumentError(
+            "Invalid args type. Please refer to -h option", "extractClientInformation -> ArgumentHandler.cpp");
+    }
+    return clientInformation;
+}
