@@ -18,7 +18,7 @@ ArgumentHandler::ArgumentHandler()
     bindAllHOptionText();
 }
 
-ArgumentHandler::ArgumentHandler(const int ac, const char **av)
+ArgumentHandler::ArgumentHandler(const int ac, char **av)
 {
     _argumentsToParse = {};
     for (int i = 1; i < ac; i++) {
@@ -39,7 +39,7 @@ bool ArgumentHandler::processHOptionVerification(ArgumentHandler::ArgumentFuncti
     if (_argumentsToParse.at(0) != "-h")
         return false;
     std::cerr << _hTextList[functionType] << std::endl;
-    _argumentsToParse.emplace(_argumentsToParse.begin());
+    _argumentsToParse.erase(_argumentsToParse.begin());
     return true;
 }
 
@@ -56,8 +56,9 @@ ArgumentHandler::ServerInformation ArgumentHandler::extractServerInformation(voi
             "Invalid number of argument. 2 needed by the server.", "extractServerInformation -> ArgumentHandler.cpp");
     }
     serverInformation.address = std::string(_argumentsToParse.at(0));
-    _argumentsToParse.emplace(_argumentsToParse.begin());
+    _argumentsToParse.erase(_argumentsToParse.begin());
     serverInformation.port = std::atoi(_argumentsToParse.at(0).c_str());
+    _argumentsToParse.erase(_argumentsToParse.begin());
     if (serverInformation.port == 0) {
         std::cerr << _hTextList[ArgumentHandler::SERVER_EXECUTABLE] << std::endl;
         throw ArgumentError(

@@ -41,7 +41,7 @@ namespace server_data
         /// @brief Construct a new ArgumentHandler object
         /// @param ac Number of argument to parse
         /// @param av List of arguments to parse
-        ArgumentHandler(const int ac, const char **av);
+        ArgumentHandler(const int ac, char **av);
 
         /// @brief Destroy the Argument Handler object
         ~ArgumentHandler() = default;
