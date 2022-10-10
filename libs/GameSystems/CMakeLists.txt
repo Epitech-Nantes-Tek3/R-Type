@@ -5,7 +5,6 @@ set(TARGET ${PROJECT_NAME}_gameSystems)
 
 set(SRC
     ${SRC_ROOT}/MouvementSystem.hpp
-    ${SRC_ROOT}/MouvementSystem.cpp
 )
 
 add_library(${TARGET} ${SRC})
