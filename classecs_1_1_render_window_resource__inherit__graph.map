@@ -1,0 +1,4 @@
+<map id="ecs::RenderWindowResource" name="ecs::RenderWindowResource">
+<area shape="rect" id="node1" title="This shared resource adds a window. It will used by graphics part to draw something on screen,..." alt="" coords="5,80,216,107"/>
+<area shape="rect" id="node2" href="$classecs_1_1_resource.html" title="This is the Resource Class for ECS The base Resource type, all Resources must inherit from Resource." alt="" coords="55,5,167,32"/>
+</map>

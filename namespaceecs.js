@@ -19,6 +19,7 @@ var namespaceecs =
     [ "Lifetime", "classecs_1_1_lifetime.html", "classecs_1_1_lifetime" ],
     [ "Pattern", "classecs_1_1_pattern.html", "classecs_1_1_pattern" ],
     [ "Position", "classecs_1_1_position.html", "classecs_1_1_position" ],
+    [ "RenderWindowResource", "classecs_1_1_render_window_resource.html", "classecs_1_1_render_window_resource" ],
     [ "Resource", "classecs_1_1_resource.html", "classecs_1_1_resource" ],
     [ "ShootingFrequency", "classecs_1_1_shooting_frequency.html", "classecs_1_1_shooting_frequency" ],
     [ "Size", "classecs_1_1_size.html", "classecs_1_1_size" ],

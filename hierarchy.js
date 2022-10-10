@@ -38,7 +38,9 @@ var hierarchy =
     ] ],
     [ "communicator_lib::Message", "structcommunicator__lib_1_1_message.html", null ],
     [ "communicator_lib::Receiver", "classcommunicator__lib_1_1_receiver.html", null ],
-    [ "ecs::Resource", "classecs_1_1_resource.html", null ],
+    [ "ecs::Resource", "classecs_1_1_resource.html", [
+      [ "ecs::RenderWindowResource", "classecs_1_1_render_window_resource.html", null ]
+    ] ],
     [ "server_data::Room", "classserver__data_1_1_room.html", null ],
     [ "communicator_lib::Sender", "classcommunicator__lib_1_1_sender.html", null ],
     [ "server_data::Server", "classserver__data_1_1_server.html", null ],
