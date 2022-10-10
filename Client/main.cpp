@@ -7,6 +7,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "ClientRoom.hpp"
+#include "ArgumentHandler/ArgumentHandler.hpp"
 
 using namespace client_data;
 
