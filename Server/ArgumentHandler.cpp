@@ -12,7 +12,11 @@
 using namespace server_data;
 using namespace error_lib;
 
-ArgumentHandler::ArgumentHandler() { _argumentsToParse = {}; }
+ArgumentHandler::ArgumentHandler()
+{
+    _argumentsToParse = {};
+    bindAllHOptionText();
+}
 
 ArgumentHandler::ArgumentHandler(const int ac, const char **av)
 {
@@ -20,6 +24,7 @@ ArgumentHandler::ArgumentHandler(const int ac, const char **av)
     for (int i = 1; i < ac; i++) {
         _argumentsToParse.push_back(std::string(av[i]));
     }
+    bindAllHOptionText();
 }
 
 void ArgumentHandler::bindAllHOptionText(void)
