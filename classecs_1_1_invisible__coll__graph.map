@@ -1,0 +1,4 @@
+<map id="ecs::Invisible" name="ecs::Invisible">
+<area shape="rect" id="node1" title="The Invisible component, to make an entity lives without drawing it." alt="" coords="15,80,122,107"/>
+<area shape="rect" id="node2" href="$classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone..." alt="" coords="5,5,132,32"/>
+</map>

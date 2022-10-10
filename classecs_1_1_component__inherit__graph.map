@@ -1,0 +1,25 @@
+<map id="ecs::Component" name="ecs::Component">
+<area shape="rect" id="node1" title="This is the Component Class for ECS The base component type, all components must inherit from Compone..." alt="" coords="5,537,132,564"/>
+<area shape="rect" id="node2" href="$classecs_1_1_bouncing.html" title="The Bouncing component, to bounce projectiles after hitting one enemy." alt="" coords="212,5,324,32"/>
+<area shape="rect" id="node3" href="$classecs_1_1_break_throught.html" title="The BreakThrought component, to add the piercing ability to projectiles." alt="" coords="194,56,342,83"/>
+<area shape="rect" id="node4" href="$classecs_1_1_button.html" title="The Button Component, used to make the difference between the component." alt="" coords="221,107,315,133"/>
+<area shape="rect" id="node5" href="$classecs_1_1_charged_attack.html" title="The Charged attack class, adding a cooldown before making huge damage." alt="" coords="194,157,342,184"/>
+<area shape="rect" id="node6" href="$classecs_1_1_collidable.html" title="The Collidable component, almost used for every entities." alt="" coords="209,208,327,235"/>
+<area shape="rect" id="node7" href="$classecs_1_1_controlable.html" title="The controlable class, defining if an entity is affected by the player&#39;s input." alt="" coords="205,259,331,285"/>
+<area shape="rect" id="node8" href="$classecs_1_1_damage.html" title="The Damage class, reducing the entity&#39;s life." alt="" coords="215,309,321,336"/>
+<area shape="rect" id="node9" href="$classecs_1_1_damage_radius.html" title="The Damage Radius class, defining the damage zone." alt="" coords="193,360,343,387"/>
+<area shape="rect" id="node10" href="$classecs_1_1_death_damage.html" title="The DeathDamage class, inflicting damage after the owner&#39;s death." alt="" coords="195,411,341,437"/>
+<area shape="rect" id="node11" href="$classecs_1_1_destination.html" title="The Destination component, used for mobiles entities." alt="" coords="205,461,331,488"/>
+<area shape="rect" id="node12" href="$classecs_1_1_equipment.html" title="The Equipment class, giving bonuses to entities." alt="" coords="207,512,329,539"/>
+<area shape="rect" id="node13" href="$classecs_1_1_invinsible.html" title="The Invinsible component, to nullify all damages." alt="" coords="211,563,325,589"/>
+<area shape="rect" id="node14" href="$classecs_1_1_invisible.html" title="The Invisible component, to make an entity lives without drawing it." alt="" coords="215,613,321,640"/>
+<area shape="rect" id="node15" href="$classecs_1_1_life.html" title="The Life class, needed for every ennemies, bosses or players." alt="" coords="230,664,306,691"/>
+<area shape="rect" id="node16" href="$classecs_1_1_lifetime.html" title="The Lifetime class, telling how long an entity is going to live." alt="" coords="215,715,321,741"/>
+<area shape="rect" id="node17" href="$classecs_1_1_pattern.html" title="The Movement component, used for mobiles entities." alt="" coords="219,765,317,792"/>
+<area shape="rect" id="node18" href="$classecs_1_1_position.html" title="The Position component, almost used for every entities." alt="" coords="216,816,320,843"/>
+<area shape="rect" id="node19" href="$classecs_1_1_shooting_frequency.html" title="The ShootingFrequency class, how many seconds will be between two projectiles." alt="" coords="180,867,356,893"/>
+<area shape="rect" id="node20" href="$classecs_1_1_size.html" title="The Size component, almost used for everything." alt="" coords="229,917,307,944"/>
+<area shape="rect" id="node21" href="$classecs_1_1_velocity.html" title="The velocity class, multiplying the movement of the entity." alt="" coords="216,968,320,995"/>
+<area shape="rect" id="node22" href="$classecs_1_1_weakness.html" title="The Weakness component, to create a target for projectiles." alt="" coords="209,1019,327,1045"/>
+<area shape="rect" id="node23" href="$classecs_1_1_weight.html" title="The Weight class, almost used for everything, used in gravity system." alt="" coords="219,1069,317,1096"/>
+</map>

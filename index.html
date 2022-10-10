@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Zaaaaaaappppy: Main Page</title>
+<title>R-Type: Main Page</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -17,6 +17,7 @@
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -25,9 +26,9 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Zaaaaaaappppy
+   <div id="projectname">R-Type
    </div>
-   <div id="projectbrief">A tribute to Zaphod Beeblebrox</div>
+   <div id="projectbrief">R-Type Epitech Project</div>
   </td>
  </tr>
  </tbody>
@@ -81,67 +82,11 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 </iframe>
 </div>
 
-<div class="PageDoc"><div class="header">
+<div class="header">
   <div class="headertitle">
-<div class="title">Zaaaaaaappppy Documentation</div>  </div>
+<div class="title">R-Type Documentation</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><hr  />
-<p> <a href="https://github.com/osvegn/R-Type/actions/workflows/CI.yml"><object type="image/svg+xml" data="https://github.com/osvegn/R-Type/actions/workflows/CI.yml/badge.svg" style="pointer-events: none;">CI</object></a></p>
-<p><a href="https://codecov.io/gh/R-Type-Epitech-Nantes/R-Type"><object type="image/svg+xml" data="https://codecov.io/gh/R-Type-Epitech-Nantes/R-Type/branch/master/graph/badge.svg?token=iUiqejopI0" style="pointer-events: none;">codecov</object></a></p>
-<p><a href="https://forthebadge.com"><object type="image/svg+xml" data="https://forthebadge.com/images/badges/made-with-c-plus-plus.svg" style="pointer-events: none;">forthebadge</object></a></p>
-<hr  />
-<h1><a class="anchor" id="autotoc_md0"></a>
-R-Type</h1>
-<p>The goal of the Epitech R-Type project is to implement a multithreaded server and a graphical client for a game called R-Type, using an engine of our own design.</p>
-<p>Composed of two parts, namely the server and the client both in C++ with the graphic library SFML for the client and boost asio for the server.</p>
-<h2><a class="anchor" id="autotoc_md1"></a>
-Prerequisites</h2>
-<p>To build our R-Type project, you will need CMake 3.17.0 Compiler, C++ 20 and Conan.</p>
-<h2><a class="anchor" id="autotoc_md2"></a>
-Build the program</h2>
-<p>On Linux :</p>
-<p>You may use the build.sh or the following commands :</p>
-<div class="fragment"><div class="line">cmake -B ./build -DCMAKE_BUILD_TYPE=Release</div>
-<div class="line">cmake --build ./build</div>
-</div><!-- fragment --><p>On Windows :</p>
-<ul>
-<li>You may use the build.bat or the following commands :</li>
-</ul>
-<div class="fragment"><div class="line">mkdir build</div>
-<div class="line">cd build</div>
-<div class="line">conan install .. --build=missing  -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True</div>
-<div class="line">cd ..</div>
-<div class="line">cmake -B ./build -DCMAKE_BUILD_TYPE=Release</div>
-<div class="line">cmake --build ./build</div>
-<div class="line">&quot;copy .\Debug\r-type_client.exe .&quot;</div>
-<div class="line">&quot;copy .\Debug\r-type_server.exe .&quot;</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md3"></a>
-Testing program</h2>
-<div class="fragment"><div class="line">rm -rf ./build</div>
-<div class="line">cmake -B ./build -DCMAKE_BUILD_TYPE=Debug -DTESTING=ON</div>
-<div class="line">cmake --build ./build</div>
-<div class="line">cd ./build</div>
-<div class="line">ctest --ouput-on-failure</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md4"></a>
-Supported Platform</h2>
-<p>The R-Type project is supported on Windows AND Linux !!</p>
-<h2><a class="anchor" id="autotoc_md5"></a>
-Usefulls Links</h2>
-<p>You can see the UDP Protocol used in the project <a href="https://www.notion.so/3e9469baeb9e4ae2bf05c215babdf142?v=4047238dabd94ec6b7c035eabf6bbc31">right here</a></p>
-<h2><a class="anchor" id="autotoc_md6"></a>
-Thank for reading</h2>
-<p>Feel free to read the CONTRIBUTING.md</p>
-<p>Do not hesitate to contact any member for any questions or remarks.</p>
-<ul>
-<li>Mail -&gt; <a href="#" onclick="location.href='mai'+'lto:'+'fir'+'st'+'nam'+'e.'+'las'+'tn'+'ame'+'@e'+'pit'+'ec'+'h.e'+'u'; return false;">first<span style="display: none;">.nosp@m.</span>name<span style="display: none;">.nosp@m.</span>.last<span style="display: none;">.nosp@m.</span>name<span style="display: none;">.nosp@m.</span>@epit<span style="display: none;">.nosp@m.</span>ech.<span style="display: none;">.nosp@m.</span>eu</a></li>
-</ul>
-<h2><a class="anchor" id="autotoc_md7"></a>
-Authors</h2>
-<ul>
-<li><b>Tom Duval-Mahe, Quentin Camilleri, Thomas Prud'homme, Nathan Rousseau, Lucas Tesnier</b> </li>
-</ul>
-</div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
