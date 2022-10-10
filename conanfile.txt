@@ -1,0 +1,16 @@
+[requires]
+sfml/2.5.1
+boost/1.79.0
+
+[options]
+boost:shared=True
+sfml:graphics=True
+sfml:window=True
+sfml:audio=True
+sfml:network=True
+#sfml:shared=True
+
+[generators]
+cmake
+
+[imports]

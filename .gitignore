@@ -1,0 +1,51 @@
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+r-type_client
+r-type_server
+
+# CMake
+build
+Debug
+build_graph.sh
+graph
+graph.png
+
+#Testing
+tests/Testing
+Makefile
+.vscode/
+tests/R-Type_sender_tests
+tests/R-Type_receiver_tests
+tests/R-Type_communicator_tests
+tests/R-Type_communicator_switch_tests
+tests/R-Type_communicator_send
