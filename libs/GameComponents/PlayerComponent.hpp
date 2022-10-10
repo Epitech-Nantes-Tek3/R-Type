@@ -12,9 +12,8 @@
 
 namespace ecs
 {
-    /// @brief This Component specifies if an entity is an Enemy
-    class Player : public Component {
-    };
+    /// @brief This Component specifies if an entity is an Player
+    class Player : public Component {};
 } // namespace ecs
 
 #endif /* !PLAYERCOMPONENT_HPP_ */
