@@ -39,6 +39,10 @@ namespace server_data
         /// @brief Destroy the Argument Handler object
         ~ArgumentHandler() = default;
 
+        /// @brief Extract all wanted value by server from stored arguments.
+        /// @return A struct containing all wanted informations.
+        ServerInformation extractServerInformation(void);
+
       private:
 
         /// @brief List of all the arguments to parse
