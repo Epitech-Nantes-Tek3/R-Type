@@ -27,4 +27,5 @@ Test(CreateAlliedProjectile_test, CreateAlliedProjectile)
     
     cr_assert_eq(1, allied);
     cr_assert_eq(2, id_new_entity);
+    cr_assert_eq(1, world.getEntity(1).getComponent<Position>().x);
 }
