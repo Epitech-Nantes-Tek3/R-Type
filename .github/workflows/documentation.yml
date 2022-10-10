@@ -1,0 +1,35 @@
+# Simple workflow for deploying static content to GitHub Pages
+name: Deploy static content to Pages
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["master"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  # Single deploy job since we're just deploying
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install graphviz -y
+          sudo apt install doxygen -y
+
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Build documentation
+        run: doxygen
+
+      - name: Deploy documentation
+        uses: JamesIves/github-pages-deploy-action@v4.2.5
+        with:
+          github_token: ${{ inputs.github_token }}
+          folder: docs/html
+          message: "Update generated documentation"
+          branch: gh-pages
