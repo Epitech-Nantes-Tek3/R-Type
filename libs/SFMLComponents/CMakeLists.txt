@@ -12,7 +12,7 @@ set(SRC
     ${SFML_INPUT_INC_ROOT}/ECSActions.hpp
 )
 
-add_library(${TARGET} INTERFACE ${SRC})
+add_library(${TARGET} ${SRC})
 
 target_include_directories(${TARGET}
     PUBLIC ${SFML_INPUT_INC_ROOT}
