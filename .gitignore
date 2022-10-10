@@ -51,4 +51,4 @@ tests/R-Type_communicator_switch_tests
 tests/R-Type_communicator_send
 
 #Documentation
-docs
+docs/html
