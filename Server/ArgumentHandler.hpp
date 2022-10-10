@@ -12,6 +12,7 @@
 
 #include <string>
 #include <vector>
+#include <map>
 
 namespace server_data
 {
@@ -47,6 +48,9 @@ namespace server_data
 
         /// @brief List of all the arguments to parse
         std::vector<std::string> _argumentsToParse;
+
+        /// @brief List of all the -h option text
+        std::map<unsigned short, std::string> _hTextList;
     };
 } // namespace server_data
 
