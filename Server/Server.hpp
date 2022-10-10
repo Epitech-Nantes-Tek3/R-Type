@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2022
-** Project
+** R-Type
 ** File description:
 ** Server
 */
@@ -12,6 +12,7 @@
 
 #include <vector>
 #include "Communicator/Client.hpp"
+#include "Communicator/Communicator.hpp"
 #include "Room.hpp"
 
 using namespace communicator_lib;
@@ -46,6 +47,9 @@ namespace server_data
 
         /// @brief Network information of the server. Setup at the construction
         Client _networkInformations;
+
+        /// @brief Instance of the communicator library
+        Communicator _communicatorInstance;
     };
 } // namespace server_data
 

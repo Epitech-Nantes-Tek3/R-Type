@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2022
-** Project
+** R-Type
 ** File description:
 ** Room
 */
@@ -25,6 +25,9 @@ namespace server_data
     /// @brief Place where the game run (Like a lobby). Hold all libraries instance.
     class Room {
       public:
+        /// @brief All the possible state of a room
+        enum RoomState { UNDEFINED, LOBBY, IN_GAME, ENDED };
+
         /// @brief Construct a new Room object with default value
         Room();
 
@@ -39,6 +42,9 @@ namespace server_data
         /// @brief Get the room id
         /// @return The room id
         inline unsigned short getRoomId(void) const { return _id; };
+
+        /// @brief Start the loop function of the room. Warning, call it inside a thread
+        void startLobbyLoop(void);
 
       private:
         /// @brief Id of the room. (Used by the server)
@@ -55,6 +61,9 @@ namespace server_data
 
         /// @brief Instance of the ECS library.
         std::shared_ptr<World> _worldInstance;
+
+        /// @brief Current state of the room
+        RoomState _state;
     };
 
     /// @brief Overload of the == operator to compare two rooms

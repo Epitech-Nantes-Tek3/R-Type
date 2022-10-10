@@ -84,3 +84,24 @@ target_link_libraries(${TARGET}
 set_target_properties(${TARGET} PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/tests
 )
+
+set (TARGET ${PROJECT_NAME}_communicator_send)
+
+set (SRC
+    ${SRC_ROOT}/communicator_send.cpp
+)
+
+add_executable(${TARGET} ${SRC})
+
+target_include_directories(${TARGET}
+    PUBLIC ${INCLUDE_ROOT}
+    PRIVATE ${SRC_ROOT}
+)
+
+target_link_libraries(${TARGET}
+    PUBLIC ${PROJECT_NAME}_communicator
+)
+
+set_target_properties(${TARGET} PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/tests
+)

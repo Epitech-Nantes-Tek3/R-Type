@@ -119,6 +119,10 @@ namespace communicator_lib
         /// @param lastMessage The message to trait
         void receiveProtocol2X(Message lastMessage);
 
+        /// @brief If the data type is 3X, the function will process the data following the 3X protocol
+        /// @param lastMessage Message to trait
+        void receiveProtocol3X(Message lastMessage);
+
         /// @brief Replace a client in the memory by another
         /// @param oldClient The oldest client to replace
         /// @param newClient to replace with
