@@ -24,12 +24,20 @@ ArgumentHandler::ArgumentHandler(const int ac, const char **av)
 
 ArgumentHandler::ServerInformation ArgumentHandler::extractServerInformation(void)
 {
+    ArgumentHandler::ServerInformation serverInformation;
     /// ADD -H GESTION
     if (_argumentsToParse.size() != 2) {
-        std::cerr << "Invalid number of argument sended. Please refer to -h option" << std::endl;
         /// ADD -h display call.
         throw ArgumentError(
             "Invalid number of argument. 2 needed by the server.", "extractServerInformation -> ArgumentHandler.cpp");
     }
-    return {"", 0};
+    serverInformation.address = std::string(_argumentsToParse.at(0));
+    _argumentsToParse.emplace(_argumentsToParse.begin());
+    serverInformation.port = std::atoi(_argumentsToParse.at(0).c_str());
+    if (serverInformation.port == 0) {
+        /// ADD -h display call.
+        throw ArgumentError(
+            "Invalid args type. Please refer to -h option", "extractServerInformation -> ArgumentHandler.cpp");
+    }
+    return serverInformation;
 }
