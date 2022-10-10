@@ -37,7 +37,7 @@ ArgumentHandler::ServerInformation ArgumentHandler::extractServerInformation(voi
     ArgumentHandler::ServerInformation serverInformation;
     /// ADD -H GESTION
     if (_argumentsToParse.size() != 2) {
-        /// ADD -h display call.
+        std::cerr << _hTextList[ArgumentHandler::SERVER_EXECUTABLE] << std::endl;
         throw ArgumentError(
             "Invalid number of argument. 2 needed by the server.", "extractServerInformation -> ArgumentHandler.cpp");
     }
@@ -45,7 +45,7 @@ ArgumentHandler::ServerInformation ArgumentHandler::extractServerInformation(voi
     _argumentsToParse.emplace(_argumentsToParse.begin());
     serverInformation.port = std::atoi(_argumentsToParse.at(0).c_str());
     if (serverInformation.port == 0) {
-        /// ADD -h display call.
+        std::cerr << _hTextList[ArgumentHandler::SERVER_EXECUTABLE] << std::endl;
         throw ArgumentError(
             "Invalid args type. Please refer to -h option", "extractServerInformation -> ArgumentHandler.cpp");
     }
