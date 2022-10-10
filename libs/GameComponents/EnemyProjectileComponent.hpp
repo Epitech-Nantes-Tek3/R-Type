@@ -12,7 +12,7 @@
 
 namespace ecs
 {
-    /// @brief This Component specifies if an entity is an Enemy Projectile
+    /// @brief Enemy Projectile Component allow an entity to be used as a Enemy Projectile
     class EnemyProjectile : public Component {};
 } // namespace ecs
 #endif /* !EnemyProjectileCOMPONENT_HPP_ */
