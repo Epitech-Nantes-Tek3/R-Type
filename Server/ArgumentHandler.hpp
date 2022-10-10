@@ -19,6 +19,15 @@ namespace server_data
     class ArgumentHandler {
       public:
 
+        /// @brief Struct containing all Argument needs by the server executable
+        struct ServerInformation {
+            /// @brief Ip address to connect to.
+            std::string address;
+
+            /// @brief Port to bind to.
+            unsigned short port;
+        };
+
         /// @brief Construct a new ArgumentHandler object with default value
         ArgumentHandler();
 
