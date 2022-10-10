@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2022
-** 1
+** R-Type
 ** File description:
 ** ProjectileEnemyComponent
 */
