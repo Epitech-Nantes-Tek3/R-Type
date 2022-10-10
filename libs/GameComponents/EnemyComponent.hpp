@@ -12,7 +12,7 @@
 
 namespace ecs
 {
-    /// @brief This Component specifies if an entity is a Enemy
+    /// @brief Enemy Component allow an entity to be used as a Enemy
     class Enemy : public Component {};
 } // namespace ecs
 
