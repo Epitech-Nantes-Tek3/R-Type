@@ -12,7 +12,7 @@
 
 namespace ecs
 {
-   /// @brief This Component specifies if an entity is an Obstacle
+   /// @brief Obstacle Component allow an entity to be used as a Obstacle
    class Obstacle : public Component {}; 
 } // namespace ecs
 
