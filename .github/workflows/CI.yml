@@ -51,7 +51,7 @@ jobs:
       uses: actions/cache@v3
       with:
         path: ~/.conan
-        key: ${{ runner.os }}-build-${{ hashFiles('conanfile.txt') }}
+        key: ${{ runner.os }}-build-${{ hashFiles('**/conanfile.txt') }}
 
     - name: Install Conan
       id: conan
