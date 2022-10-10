@@ -50,6 +50,7 @@ void *Transisthor::transitNetworkDataToEcsData(Message networkData)
     object = (void *)((char *)networkData.data + sizeof(unsigned short) * 2);
     if (_componentConvertFunctionList.find(type) == _componentConvertFunctionList.end())
         return object; /// THROW ERROR INVALID TYPE
+    std::cerr << "A component have been transfered to ECS" << std::endl; /// ONLY USE FOR FUNCTIONAL TESTING
     _componentConvertFunctionList[type](id, object);
     return object; /// ONLY USED FOR UNIT TESTING
 }
