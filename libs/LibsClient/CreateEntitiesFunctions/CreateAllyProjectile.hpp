@@ -9,16 +9,16 @@
 #define CREATEALLYPROJECTILE_HPP_
 
 #include <World/World.hpp>
-#include "../GameComponents/CollidableComponent.hpp"
-#include "../GameComponents/DamageComponent.hpp"
-#include "../GameComponents/DamageRadiusComponent.hpp"
-#include "../GameComponents/LifeComponent.hpp"
-#include "../GameComponents/LifeTimeComponent.hpp"
-#include "../GameComponents/PositionComponent.hpp"
-#include "../GameComponents/ProjectileAllyComponent.hpp"
-#include "../GameComponents/SizeComponent.hpp"
-#include "../GameComponents/VelocityComponent.hpp"
-#include "../GameComponents/WeightComponent.hpp"
+#include "GameComponents/CollidableComponent.hpp"
+#include "GameComponents/DamageComponent.hpp"
+#include "GameComponents/DamageRadiusComponent.hpp"
+#include "GameComponents/LifeComponent.hpp"
+#include "GameComponents/LifeTimeComponent.hpp"
+#include "GameComponents/PositionComponent.hpp"
+#include "GameComponents/ProjectileAllyComponent.hpp"
+#include "GameComponents/SizeComponent.hpp"
+#include "GameComponents/VelocityComponent.hpp"
+#include "GameComponents/WeightComponent.hpp"
 
 using namespace ecs;
 

@@ -9,17 +9,17 @@
 #define CREATEPLAYER_HPP_
 
 #include <World/World.hpp>
-#include <../GameComponents/PositionComponent.hpp>
-#include <../GameComponents/VelocityComponent.hpp>
-#include <../GameComponents/WeightComponent.hpp>
-#include <../GameComponents/SizeComponent.hpp>
-#include <../GameComponents/LifeTimeComponent.hpp>
-#include <../GameComponents/DamageComponent.hpp>
-#include <../GameComponents/LifeComponent.hpp>
-#include <../GameComponents/DamageComponent.hpp>
-#include <../GameComponents/DamageRadiusComponent.hpp>
-#include <../GameComponents/CollidableComponent.hpp>
-#include <../GameComponents/PlayerComponent.hpp>
+#include <GameComponents/PositionComponent.hpp>
+#include <GameComponents/VelocityComponent.hpp>
+#include <GameComponents/WeightComponent.hpp>
+#include <GameComponents/SizeComponent.hpp>
+#include <GameComponents/LifeTimeComponent.hpp>
+#include <GameComponents/DamageComponent.hpp>
+#include <GameComponents/LifeComponent.hpp>
+#include <GameComponents/DamageComponent.hpp>
+#include <GameComponents/DamageRadiusComponent.hpp>
+#include <GameComponents/CollidableComponent.hpp>
+#include <GameComponents/PlayerComponent.hpp>
 
 using namespace ecs;
 
