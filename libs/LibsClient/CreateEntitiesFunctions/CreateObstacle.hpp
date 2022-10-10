@@ -29,7 +29,7 @@ namespace ecs
     /// @param pos_y The position y of the new Obstacle
     /// @param damage The damage inflicted to an Entity if this Entity hits this Obstacle
     /// @return Id of the new Obstacle in std::size_t
-    inline std::size_t createNewObstacle(World &world, int pos_x, int pos_y, unsigned short damage)
+    inline std::size_t createNewObstacle(World &world, const int pos_x, const int pos_y, const unsigned short damage)
     {
         std::size_t new_obstacle = world.addEntity()
                                        .addComponent<Position>(pos_x, pos_y)

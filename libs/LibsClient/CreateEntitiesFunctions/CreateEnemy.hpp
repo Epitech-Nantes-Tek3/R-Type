@@ -35,7 +35,7 @@ namespace ecs
     /// @param damageRadius DamageRadius of projectiles fired by this Enemy
     /// @return Id of the new Enemy in std::size_t
     inline std::size_t createNewEnemy(
-        World &world, int pos_x, int pos_y, short weight, int size_x, int size_y, unsigned short life, unsigned short damage, unsigned short damageRadius)
+        World &world, const int pos_x, const int pos_y, const short weight, const int size_x, const int size_y, const unsigned short life, const unsigned short damage, const unsigned short damageRadius)
     {
         std::size_t new_enemy = world.addEntity()
                                     .addComponent<Position>(pos_x, pos_y)

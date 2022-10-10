@@ -27,11 +27,11 @@ namespace ecs
     /// @param world The world in that the Projectile must be created
     /// @param pos_x The start position x of the new Projectile
     /// @param pos_y The start position y of the new Projectile
-    /// @param multiplierAbscissa The Velocity x of the new Projectile
-    /// @param multiplierOrdinate The Velocity y of the new Projectile
+    /// @param multiplierAbscissa The Velocity multiplierAbscissa of the new Projectile
+    /// @param multiplierOrdinate The Velocity multiplierOrdinate of the new Projectile
     /// @param damage The Damage of the new Projectile
     /// @return  Id of the new Projectile in std::size_t
-    inline std::size_t createNewProjectile(World &world, int pos_x, int pos_y, double multiplierAbscissa, double multiplierOrdinate, unsigned short damage)
+    inline std::size_t createNewProjectile(World &world, const int pos_x, const int pos_y, const double multiplierAbscissa, const double multiplierOrdinate, const unsigned short damage)
     {
         std::size_t new_projectile =
             world.addEntity()
