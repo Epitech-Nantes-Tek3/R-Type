@@ -4,9 +4,14 @@ set(TARGET ${PROJECT_NAME}_createEntitiesFunctions)
 
 set(SRC
     ${INC_ROOT}/CreateEnemyProjectile.hpp
+    ${INC_ROOT}/CreateEnemyProjectile.cpp
+    ${INC_ROOT}/CreateAllyProjectile.hpp
+    ${INC_ROOT}/CreateAllyProjectile.cpp
+    ${INC_ROOT}/CreatePlayer.hpp
+    ${INC_ROOT}/CreateProjectile.hpp
 )
 
-add_library(${TARGET} ${SRC})
+add_library(${TARGET} SHARED ${SRC})
 
 target_include_directories(${TARGET}
     PUBLIC ${INC_ROOT}

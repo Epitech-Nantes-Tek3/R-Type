@@ -8,6 +8,7 @@
 #ifndef CREATEPLAYER_HPP_
 #define CREATEPLAYER_HPP_
 
+#include "World/World.hpp"
 #include "GameComponents/CollidableComponent.hpp"
 #include "GameComponents/DamageComponent.hpp"
 #include "GameComponents/DamageRadiusComponent.hpp"
@@ -18,11 +19,9 @@
 #include "GameComponents/SizeComponent.hpp"
 #include "GameComponents/VelocityComponent.hpp"
 #include "GameComponents/WeightComponent.hpp"
-#include "World/World.hpp"
 
 namespace ecs
 {
-
     /// @brief This function creates a new Player Entity with these parameters
     /// @param world The world in that the Player must be created
     /// @param pos Position of the Player
@@ -32,10 +31,8 @@ namespace ecs
     /// @param damage Damage of projectiles fired by this Player
     /// @param damageRadius DamageRadius of projectiles fired by this Player
     /// @return Id of the new Player in std::size_t
-    inline std::size_t createNewPlayer(
-        World &world, Position &pos, Weight &weight, Size &size, Life &life, Damage &damage, DamageRadius &damageRadius)
-    {
-        std::size_t new_player = world.addEntity()
+    inline std::size_t createNewPlayer(World &world, Position &pos, Weight &weight, Size &size, Life &life, Damage &damage, DamageRadius &damageRadius) {
+                std::size_t new_player = world.addEntity()
                                      .addComponent<Position>(pos.x, pos.y)
                                      .addComponent<Weight>(weight)
                                      .addComponent<Size>(size.x, size.y)
@@ -48,5 +45,6 @@ namespace ecs
                                      .getId();
         return new_player;
     }
+
 } // namespace ecs
 #endif /* !CREATEPLAYER_HPP_ */
