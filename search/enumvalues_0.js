@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ended_520',['ENDED',['../classclient__data_1_1_client_room.html#a8e238231449feaa8357997ae01f9f2cea813cb4e5ad16ad700c47ba48bd3e23e5',1,'client_data::ClientRoom::ENDED()'],['../classserver__data_1_1_room.html#a1af48f2f03799721c8ea726182e05786a77611e9eeea5ac7b75b7a1b6fc9c0352',1,'server_data::Room::ENDED()']]]
+  ['client_5fexecutable_562',['CLIENT_EXECUTABLE',['../classargument__handler_1_1_argument_handler.html#ade7b92c1c2885408ad21f61d3d8faa05a7ed04c353f6be8ce211022b92d42d8b1',1,'argument_handler::ArgumentHandler']]]
 ];

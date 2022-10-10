@@ -7,6 +7,7 @@ var namespaces_dup =
     [ "Committing Rules", "md__c_o_n_t_r_i_b_u_t_i_n_g.html#autotoc_md13", null ],
     [ "Testing Rules", "md__c_o_n_t_r_i_b_u_t_i_n_g.html#autotoc_md14", null ],
     [ "Pull Request Rules", "md__c_o_n_t_r_i_b_u_t_i_n_g.html#autotoc_md15", null ],
+    [ "argument_handler", "namespaceargument__handler.html", null ],
     [ "client_data", "namespaceclient__data.html", null ],
     [ "communicator_lib", "namespacecommunicator__lib.html", null ],
     [ "ecs", "namespaceecs.html", "namespaceecs" ],

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['clientstate_518',['ClientState',['../classclient__data_1_1_client_room.html#a8e238231449feaa8357997ae01f9f2ce',1,'client_data::ClientRoom']]]
+  ['argumentfunctiontype_559',['ArgumentFunctionType',['../classargument__handler_1_1_argument_handler.html#ade7b92c1c2885408ad21f61d3d8faa05',1,'argument_handler::ArgumentHandler']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['roomstate_519',['RoomState',['../classserver__data_1_1_room.html#a1af48f2f03799721c8ea726182e05786',1,'server_data::Room']]]
+  ['clientstate_560',['ClientState',['../classclient__data_1_1_client_room.html#a8e238231449feaa8357997ae01f9f2ce',1,'client_data::ClientRoom']]]
 ];

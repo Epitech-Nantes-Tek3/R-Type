@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['client_5fdata_292',['client_data',['../namespaceclient__data.html',1,'']]],
-  ['communicator_5flib_293',['communicator_lib',['../namespacecommunicator__lib.html',1,'']]]
+  ['argument_5fhandler_317',['argument_handler',['../namespaceargument__handler.html',1,'']]]
 ];

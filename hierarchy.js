@@ -1,6 +1,8 @@
 var hierarchy =
 [
+    [ "argument_handler::ArgumentHandler", "classargument__handler_1_1_argument_handler.html", null ],
     [ "communicator_lib::Client", "classcommunicator__lib_1_1_client.html", null ],
+    [ "argument_handler::ArgumentHandler::ClientInformation", "structargument__handler_1_1_argument_handler_1_1_client_information.html", null ],
     [ "client_data::ClientRoom", "classclient__data_1_1_client_room.html", null ],
     [ "communicator_lib::Communicator", "classcommunicator__lib_1_1_communicator.html", null ],
     [ "communicator_lib::CommunicatorMessage", "structcommunicator__lib_1_1_communicator_message.html", null ],
@@ -38,6 +40,7 @@ var hierarchy =
     [ "ecs::Entity", "classecs_1_1_entity.html", null ],
     [ "exception", null, [
       [ "error_lib::RTypeError", "classerror__lib_1_1_r_type_error.html", [
+        [ "error_lib::ArgumentError", "classerror__lib_1_1_argument_error.html", null ],
         [ "error_lib::EcsError", "classerror__lib_1_1_ecs_error.html", null ],
         [ "error_lib::MallocError", "classerror__lib_1_1_malloc_error.html", null ],
         [ "error_lib::NetworkError", "classerror__lib_1_1_network_error.html", null ]
@@ -51,6 +54,7 @@ var hierarchy =
     [ "server_data::Room", "classserver__data_1_1_room.html", null ],
     [ "communicator_lib::Sender", "classcommunicator__lib_1_1_sender.html", null ],
     [ "server_data::Server", "classserver__data_1_1_server.html", null ],
+    [ "argument_handler::ArgumentHandler::ServerInformation", "structargument__handler_1_1_argument_handler_1_1_server_information.html", null ],
     [ "ecs::System", "classecs_1_1_system.html", null ],
     [ "transisthor_lib::Transisthor", "classtransisthor__lib_1_1_transisthor.html", null ],
     [ "ecs::World", "classecs_1_1_world.html", null ]
