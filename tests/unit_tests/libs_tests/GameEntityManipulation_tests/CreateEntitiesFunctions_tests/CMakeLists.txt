@@ -1,5 +1,5 @@
-set (INCLUDE_ROOT ${PROJECT_SOURCE_DIR}/tests/unit_tests/libs_tests/LibsClient_tests/CreateEntitiesFunctions_tests)
-set (SRC_ROOT ${PROJECT_SOURCE_DIR}/tests/unit_tests/libs_tests/LibsClient_tests/CreateEntitiesFunctions_tests)
+set (INCLUDE_ROOT ${PROJECT_SOURCE_DIR}/tests/unit_tests/libs_tests/GameEntityManipulation_tests/CreateEntitiesFunctions_tests)
+set (SRC_ROOT ${PROJECT_SOURCE_DIR}/tests/unit_tests/libs_tests/GameEntityManipulation_tests/CreateEntitiesFunctions_tests)
 
 set(TEST_SRC_ROOT
     ${SRC_ROOT}/CreateAlliedProjectile_test.cpp

@@ -1,4 +1,4 @@
-set(INC_ROOT ${PROJECT_SOURCE_DIR}/libs/LibsClient/CreateEntitiesFunctions)
+set(INC_ROOT ${PROJECT_SOURCE_DIR}/libs/GameEntityManipulation/CreateEntitiesFunctions)
 
 set(TARGET ${PROJECT_NAME}_createEntitiesFunctions)
 
