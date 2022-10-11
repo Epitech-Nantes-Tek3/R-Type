@@ -66,10 +66,10 @@ void *Transisthor::transitNetworkDataToEcsDataEntity(Message networkData)
     std::memcpy(&id, networkData.data, sizeof(unsigned short));
     std::memcpy(&type, (void *)((char *)networkData.data + sizeof(unsigned short)), sizeof(unsigned short));
     object = (void *)((char *)networkData.data + sizeof(unsigned short) * 2);
-    if (_componentConvertFunctionList.find(type) == _componentConvertFunctionList.end())
+    if (_entityConvertFunctionList.find(type) == _entityConvertFunctionList.end())
         return object;                                                   /// THROW ERROR INVALID TYPE
-    std::cerr << "A component have been transfered to ECS" << std::endl; /// ONLY USE FOR FUNCTIONAL TESTING
-    _componentConvertFunctionList[type](id, object);
+    std::cerr << "A entity have been transfered to ECS" << std::endl; /// ONLY USE FOR FUNCTIONAL TESTING
+    _entityConvertFunctionList[type](id, object);
     return object;
 }
 
