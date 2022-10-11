@@ -16,6 +16,7 @@
 #include "GameComponents/VelocityComponent.hpp"
 #include "Transisthor/Transisthor.hpp"
 #include "CreateAlliedProjectile.hpp"
+#include "CreateEnemy.hpp"
 
 using namespace transisthor_lib;
 using namespace communicator_lib;
@@ -218,6 +219,32 @@ Test(transisthor_testing, transit_get_a_server_id_when_multiple_server_here)
     } catch (NetworkError &err) {
         cr_assert_eq(42, 42);
     }
+}
+
+Test(transisthor_testing, transit_enemy_entity)
+{
+    Communicator communicator = Communicator();
+    World world = World(2);
+    Transisthor transisthor = Transisthor(communicator, world);
+    Velocity pos = Velocity(10, 12);
+    Velocity newPos;
+    Client temporaryClient = Client();
+    communicator.addClientToList(temporaryClient);
+
+    std::size_t entityId = createNewEnemy(world, 1, 2, 0, 0, 0, 1, 1, 1, 1, 1);
+
+    Position entityPosition = world.getEntity(entityId).getComponent<Position>();
+
+    void *temp = transisthor.transitEcsDataToNetworkDataEntityEnemy(entityId, entityPosition.x, entityPosition.y, {1});
+    void *networkAnswer = transisthor.transitNetworkDataToEcsDataEntity({Client(), temp, 1, 31});
+
+    int posX = 0;
+    int posY = 0;
+
+    std::memcpy(&posX, networkAnswer, sizeof(int));
+    std::memcpy(&posY, (void *)((char *)networkAnswer + sizeof(int)), sizeof(int));
+    cr_assert_eq(posX, 1);
+    cr_assert_eq(posY, 2);
 }
 
 Test(transisthor_testing, transit_alliedProjectile_entity)
