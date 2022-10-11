@@ -62,7 +62,7 @@ namespace transisthor_lib
         void *transitEcsDataToNetworkData(
             unsigned short id, unsigned short type, C component, std::vector<unsigned short> destination)
         {
-            void *networkObject = std::malloc(sizeof(void *) * ((sizeof(C)) + sizeof(unsigned short) * 2));
+            void *networkObject = std::malloc(((sizeof(C)) + sizeof(unsigned short) * 2));
             Client temporaryClient;
 
             if (networkObject == nullptr)
@@ -73,7 +73,7 @@ namespace transisthor_lib
             for (auto it : destination) {
                 temporaryClient = getClientByHisId(it);
                 transisthor_lib::sendDataToAClientWithoutCommunicator(_communicator, temporaryClient, networkObject,
-                    sizeof(void *) * ((sizeof(C)) + sizeof(unsigned short) * 2), 30);
+                    ((sizeof(C)) + sizeof(unsigned short) * 2), 30);
             }
             return networkObject;
         }
@@ -119,7 +119,7 @@ namespace transisthor_lib
         /// @return Return value his only used for testing (Unit and functional)
         void *transitEcsDataToNetworkDataEntityAlliedProjectile(unsigned short id, int posX, int posY, std::vector<unsigned short> destination)
         {
-            void *networkObject = std::malloc(sizeof(void *) * (sizeof(unsigned short) * 2 + sizeof(int) * 2));
+            void *networkObject = std::malloc((sizeof(unsigned short) * 2 + sizeof(int) * 2));
             unsigned short typeId = 1;
             Client temporaryClient;
 
@@ -132,7 +132,7 @@ namespace transisthor_lib
             for (auto it : destination) {
                 temporaryClient = getClientByHisId(it);
                 transisthor_lib::sendDataToAClientWithoutCommunicator(_communicator, temporaryClient, networkObject,
-                    sizeof(void *) * (sizeof(unsigned short) * 2 + sizeof(int) * 2), 31);
+                    (sizeof(unsigned short) * 2 + sizeof(int) * 2), 31);
             }
             return networkObject;
         }
