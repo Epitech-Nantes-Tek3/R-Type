@@ -5,6 +5,7 @@ set(TARGET ${PROJECT_NAME}_gameSystems)
 
 set(SRC
     ${SRC_ROOT}/MouvementSystem.hpp
+    ${SRC_ROOT}/CollidableSystem.hpp
 )
 
 add_library(${TARGET} ${SRC})
