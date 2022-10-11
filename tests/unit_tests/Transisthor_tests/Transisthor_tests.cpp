@@ -15,6 +15,7 @@
 #include "GameComponents/PositionComponent.hpp"
 #include "GameComponents/VelocityComponent.hpp"
 #include "Transisthor/Transisthor.hpp"
+#include "CreateAlliedProjectile.hpp"
 
 using namespace transisthor_lib;
 using namespace communicator_lib;
@@ -217,4 +218,35 @@ Test(transisthor_testing, transit_get_a_server_id_when_multiple_server_here)
     } catch (NetworkError &err) {
         cr_assert_eq(42, 42);
     }
+}
+
+Test(transisthor_testing, transit_alliedProjectile_entity)
+{
+    Communicator communicator = Communicator();
+    World world = World(2);
+    Transisthor transisthor = Transisthor(communicator, world);
+    Velocity pos = Velocity(10, 12);
+    Velocity newPos;
+    Client temporaryClient = Client();
+    communicator.addClientToList(temporaryClient);
+
+    std::size_t allied = world.addEntity()
+                            .addComponent<Position>(1, 1)
+                            .addComponent<Damage>(10)
+                            .addComponent<Velocity>(1, 1)
+                            .getId();
+
+    std::size_t entityId = createNewAlliedProjectile(world, world.getEntity(allied));
+
+    Position entityPosition = world.getEntity(entityId).getComponent<Position>();
+
+    void *temp = transisthor.transitEcsDataToNetworkDataEntityAlliedProjectile(entityId, entityPosition.x, entityPosition.y, {1});
+    /*void *networkAnswer = transisthor.transitNetworkDataToEcsData({Client(), temp, sizeof(Velocity), 30});
+
+    cr_assert_eq(pos.multiplierOrdinate, 12);
+    cr_assert_eq(pos.multiplierAbscissa, 10);
+    newPos = buildComponentFromByteCode<Velocity>(networkAnswer);
+    cr_assert_eq(newPos.multiplierOrdinate, 12);
+    cr_assert_eq(newPos.multiplierAbscissa, 10);*/
+    (void) temp;
 }
