@@ -115,6 +115,11 @@ namespace communicator_lib
         /// @throw an error when no client his founded, throw a NetworkError
         Client getClientByHisId(unsigned short id);
 
+        /// @brief Function called inside ecs server to know server Endpoint id
+        /// @return The server endpoint id
+        /// @throw an error when no server can be found (Not in a client communicator), throw a NetworkError
+        unsigned short getServerEndpointId(void);
+
       private:
         /// @brief Send a protocol 20 to a client
         /// @param client The destination

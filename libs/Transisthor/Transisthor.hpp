@@ -111,6 +111,11 @@ namespace transisthor_lib
         /// @throw When no client his founded, throw a NetowkrError
         Client getClientByHisId(unsigned short id);
 
+        /// @brief Function called inside ecs server to know server Endpoint id
+        /// @return The server endpoint id
+        /// @throw an error when no server can be found (Not in a client communicator), throw a NetworkError
+        unsigned short getServerEndpointId(void);
+
       private:
         /// @brief A reference to a communicator
         Communicator &_communicator;
