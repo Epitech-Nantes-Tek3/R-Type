@@ -16,5 +16,6 @@ Client::Client(std::string address, long port)
 {
     this->_address = address;
     this->_port = port;
+    _id = 0;
 }
 

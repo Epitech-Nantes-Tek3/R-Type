@@ -47,6 +47,8 @@ namespace communicator_lib
         std::string _address;
         /// @brief The port of the client (0 by default)
         unsigned short _port;
+        /// @brief Id of the client
+        unsigned short _id;
     };
 
     /// @brief Overload of the == operator to compare two clients
