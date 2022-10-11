@@ -149,4 +149,14 @@ void Communicator::replaceClientByAnother(Client oldClient, Client newClient)
     _receiverModule.removeAllClientMessage(oldClient);
 }
 
+Client Communicator::getClientByHisId(unsigned short id)
+{
+    for (auto it : _clientList) {
+        if (it.getId() == id)
+            return it;
+    }
+    /// THROW AN ERROR
+    return Client();
+}
+
 Communicator::~Communicator() {}

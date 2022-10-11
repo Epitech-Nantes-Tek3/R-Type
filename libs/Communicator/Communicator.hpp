@@ -109,6 +109,12 @@ namespace communicator_lib
         /// @return The transisthor bridge
         inline std::shared_ptr<Transisthor> getTransisthorBridge(void) { return _transisthorBridge; }
 
+        /// @brief Cross all client list and return the matched client
+        /// @param id matched id
+        /// @return founded client
+        /// @throw an error when no client his founded (CommunicatorError)
+        Client getClientByHisId(unsigned short id);
+
       private:
         /// @brief Send a protocol 20 to a client
         /// @param client The destination
