@@ -20,6 +20,7 @@
 #include "CreateEnemyProjectile.hpp"
 #include "CreatePlayer.hpp"
 #include "CreateObstacle.hpp"
+#include "CreateProjectile.hpp"
 
 using namespace transisthor_lib;
 using namespace communicator_lib;
@@ -366,5 +367,39 @@ Test(transisthor_testing, transit_obstacle_entity)
     ///std::memcpy(&velOrd, (void *)((char *)networkAnswer + sizeof(int) * 2 + sizeof(double)), sizeof(double));
     cr_assert_eq(posX, 10);
     cr_assert_eq(posY, 120);
+
+}
+
+Test(transisthor_testing, transit_projectile_entity)
+{
+    Communicator communicator = Communicator();
+    World world = World(2);
+    Transisthor transisthor = Transisthor(communicator, world);
+    Velocity pos = Velocity(10, 12);
+    Velocity newPos;
+    Client temporaryClient = Client();
+    communicator.addClientToList(temporaryClient);
+
+    std::size_t entityId = createNewProjectile(world, 10, 120, 4, 5, 1);
+
+    Position entityPosition = world.getEntity(entityId).getComponent<Position>();
+    Velocity entityVel = world.getEntity(entityId).getComponent<Velocity>();
+
+    void *temp = transisthor.transitEcsDataToNetworkDataEntityProjectile(entityId, entityPosition.x, entityPosition.y, entityVel.multiplierAbscissa, entityVel.multiplierOrdinate, {1});
+    void *networkAnswer = transisthor.transitNetworkDataToEcsDataEntity({Client(), temp, 1, 31});
+
+    int posX = 0;
+    int posY = 0;
+    double velAbsc = 0;
+    double velOrd = 0;
+
+    std::memcpy(&posX, networkAnswer, sizeof(int));
+    std::memcpy(&posY, (void *)((char *)networkAnswer + sizeof(int)), sizeof(int));
+    std::memcpy(&velAbsc, (void *)((char *)networkAnswer + sizeof(int) * 2), sizeof(double));
+    std::memcpy(&velOrd, (void *)((char *)networkAnswer + sizeof(int) * 2 + sizeof(double)), sizeof(double));
+    cr_assert_eq(posX, 10);
+    cr_assert_eq(posY, 120);
+    cr_assert_eq(velAbsc, 4);
+    cr_assert_eq(velOrd, 5);
 
 }
