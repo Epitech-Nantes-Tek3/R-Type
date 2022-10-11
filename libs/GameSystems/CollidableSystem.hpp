@@ -16,6 +16,12 @@ namespace ecs
     /// This system will check every entities, see if they collide and apply damage on consequence
     /// Needed Component : Collidable, Position, Size, Damage
     struct Collide : public System {
+        /// @brief isSameWidth Function
+        /// This function checks if two entities have a common part on the map's width
+        /// @param fstPos position of the first Entity
+        /// @param sndPos position of the second Entity
+        /// @param fstSize size of the first Entity
+        /// @param sndSize size of the second Entity
         bool isSameWidth(Position &fstPos, Position &sndPos, Size &fstSize, Size &sndSize)
         {
             bool fstBelowSnd = fstPos.y <= sndPos.y && sndPos.y <= fstPos.y + fstSize.y;
@@ -26,6 +32,12 @@ namespace ecs
             return fstBelowSnd || fstAboveSnd || sndBelowFst || snfAboveFst;
         }
 
+        /// @brief isSameHeight Function
+        /// This function checks if two entities have a common part on the map's height
+        /// @param fstPos position of the first Entity
+        /// @param sndPos position of the second Entity
+        /// @param fstSize size of the first Entity
+        /// @param sndSize size of the second Entity
         bool isSameHeight(Position &fstPos, Position &sndPos, Size &fstSize, Size &sndSize)
         {
             bool fstToTheRightSnd = fstPos.x <= sndPos.x && sndPos.x <= fstPos.x + fstSize.x;
@@ -36,6 +48,10 @@ namespace ecs
             return fstToTheRightSnd || fstToTheLeftSnd || sndToTheRightFst || sndToTheLeftFst;
         }
 
+        /// @brief Collide Function
+        /// This function checks all the given entities given in params, to see if they collide
+        /// @param fstEntities first vector of entities to be checked
+        /// @param sndEntities second vector of Entities to be checked
         void collide(
             std::vector<std::shared_ptr<ecs::Entity>> &fstEntities, std::vector<std::shared_ptr<ecs::Entity>> &sndEntities)
         {
@@ -65,19 +81,29 @@ namespace ecs
             }
         }
 
-        void enemyCollide(gtd::vector<std::shared_ptr<ecs::Entity>> &enemyProjectiles,
+        /// @brief enemyCollide Function
+        /// Check for enemy entities if they collide with obstacles
+        /// @param enemiesProjectiles vector of entities containing the enemies' projectiles
+        /// @param obstacles vector of entities containing the obstacles
+        void enemyCollide(gtd::vector<std::shared_ptr<ecs::Entity>> &enemiesProjectiles,
             std::vector<std::shared_ptr<ecs::Entity>> &obstacles)
         {
-            collide(enemyProjectiles, obstacles);
+            collide(enemiesProjectiles, obstacles);
         }
 
+        /// @brief AllyCollide Function
+        /// Check for every alliedEntities if they collide with enemyEntities
+        /// @param allyEntities vector of entities which need to be checked if there is collision with the following params
+        /// @param enemies vector of entities containing the enemies
+        /// @param enemiesProjectiles vector of entities containing the enemies' projectiles
+        /// @param obstacles vector of entities containing the obstacles
         void allyCollide(std::vector<std::shared_ptr<ecs::Entity>> &allyEntities,
             std::vector<std::shared_ptr<ecs::Entity>> &enemies,
-            std::vector<std::shared_ptr<ecs::Entity>> &enemyProjectiles,
+            std::vector<std::shared_ptr<ecs::Entity>> &enemiesProjectiles,
             std::vector<std::shared_ptr<ecs::Entity>> &obstacles)
         {
             collide(allyEntities, enemies);
-            collide(allyEntities, enemyProjectiles);
+            collide(allyEntities, enemiesProjectiles);
             collide(allyEntities, obstacles);
         }
 
@@ -89,14 +115,14 @@ namespace ecs
                 world.joinEntities<Position, Size, Collidable, Damage, alliedProjectiles>();
             std::vector<std::shared_ptr<ecs::Entity>> enemies =
                 world.joinEntities<Position, Size, Collidable, Damage, Enemy>();
-            std::vector<std::shared_ptr<ecs::Entity>> enemyProjectiles =
+            std::vector<std::shared_ptr<ecs::Entity>> enemiesProjectiles =
                 world.joinEntities<Position, Size, Collidable, Damage, EnemyProjectile>();
             std::vector<std::shared_ptr<ecs::Entity>> obstacles =
                 world.joinEntities<Position, Size, Collidable, Damage, Obstacle>();
 
-            allyCollide(players, enemies, enemyProjectiles, obstacles);
-            allyCollide(alliedProjectiles, enemies, enemyProjectiles, obstacles);
-            enemyCollide(enemyProjectiles, obstacles);
+            allyCollide(players, enemies, enemiesProjectiles, obstacles);
+            allyCollide(alliedProjectiles, enemies, enemiesProjectiles, obstacles);
+            enemyCollide(enemiesProjectiles, obstacles);
         }
     };
 } // namespace ecs
