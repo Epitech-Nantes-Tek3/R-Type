@@ -153,7 +153,7 @@ namespace ecs
             return *this;
         }
 
-        /// @brief Change the bridge destination to a new transisthor
+        /// @brief Set the bridge destination to a new transisthor
         /// @param transisthorBridge New bridge destination
         inline void setTransisthorBridge(std::shared_ptr<Transisthor> transisthorBridge)
         {
