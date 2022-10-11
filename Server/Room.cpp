@@ -8,7 +8,7 @@
 /// @file Server/Room.cpp
 
 #include "Room.hpp"
-#include "CreateObstacle.hpp"
+#include "GameEntityManipulation/CreateEntitiesFunctions/CreateObstacle.hpp"
 #include "Error/Error.hpp"
 #include "GameComponents/PositionComponent.hpp"
 

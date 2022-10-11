@@ -24,7 +24,6 @@ target_link_libraries(${TARGET}
     ${PROJECT_NAME}_transisthor
     ${PROJECT_NAME}_argumentHandler
     ${PROJECT_NAME}_error
-    ${PROJECT_NAME}_createEntitiesFunctions
 )
 
 target_include_directories(${TARGET}
@@ -32,7 +31,6 @@ target_include_directories(${TARGET}
     PUBLIC ${INC_ROOT}
     PUBLIC ${PROJECT_NAME}_argumentHandler
     PUBLIC ${PROJECT_NAME}_transisthor
-    PUBLIC ${PROJECT_NAME}_createEntitiesFunctions
     INTERFACE ${PROJECT_NAME}_error
     PRIVATE ${SRC_ROOT}
 )

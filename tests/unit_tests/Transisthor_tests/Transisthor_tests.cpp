@@ -6,12 +6,12 @@
 */
 
 #include <criterion/criterion.h>
-#include "CreateAlliedProjectile.hpp"
-#include "CreateEnemy.hpp"
-#include "CreateEnemyProjectile.hpp"
-#include "CreateObstacle.hpp"
-#include "CreatePlayer.hpp"
-#include "CreateProjectile.hpp"
+#include "GameEntityManipulation/CreateEntitiesFunctions/CreateAlliedProjectile.hpp"
+#include "GameEntityManipulation/CreateEntitiesFunctions/CreateEnemy.hpp"
+#include "GameEntityManipulation/CreateEntitiesFunctions/CreateEnemyProjectile.hpp"
+#include "GameEntityManipulation/CreateEntitiesFunctions/CreateObstacle.hpp"
+#include "GameEntityManipulation/CreateEntitiesFunctions/CreatePlayer.hpp"
+#include "GameEntityManipulation/CreateEntitiesFunctions/CreateProjectile.hpp"
 #include "Error/Error.hpp"
 #include "GameComponents/DestinationComponent.hpp"
 #include "GameComponents/EquipmentComponent.hpp"
