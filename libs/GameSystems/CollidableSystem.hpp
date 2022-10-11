@@ -37,9 +37,32 @@ namespace ecs
         }
 
         void collide(
-            std::vector<std::shared_ptr<ecs::Entity>> &first, std::vector<std::shared_ptr<ecs::Entity>> &second)
+            std::vector<std::shared_ptr<ecs::Entity>> &fstEntities, std::vector<std::shared_ptr<ecs::Entity>> &sndEntities)
         {
+            for (std::shared_ptr<ecs::Entity> fstEntity : fstEntities) {
+                Position &fstPos = fstEntity->getComponent<Position>();
+                Size &fstSize = fstEntity->getComponent<Size>();
 
+                for (std::shared_ptr<ecs::Entity> sndEntity : sndEntities) {
+                    Position &sndPos = sndEntity->getComponent<Position>();
+                    Size &sndSize = sndEntity->getComponent<Size>();
+
+                    if (isSameHeight(fstPos, sndPos, fstSize, sndSize) && isSameWidth(fstPos, sndPos, fstSize, sndSize)) {
+                        Damage &fstDamage = fstEntity->getComponent<Damage>();
+                        Damage &sndDamage = sndEntity->getComponent<Damage>();
+
+                        if (fstEntity->contains<Life>()) {
+                            Life &fstLife = fstEntity->getComponent<Life>();
+                            fstLife.lifePoint -= sndDamage.damagePoint;
+                        }
+
+                        if (sndEntity->contains<Life>()) {
+                            Life &sndLife = sndEntity->getComponent<Life>();
+                            sndLife.lifePoint -= fstDamage.damagePoint;
+                        }
+                    }
+                }
+            }
         }
 
         void enemyCollide(gtd::vector<std::shared_ptr<ecs::Entity>> &enemyProjectiles,
