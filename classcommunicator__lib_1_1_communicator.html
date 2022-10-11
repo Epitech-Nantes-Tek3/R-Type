@@ -140,6 +140,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a55b0b0709cd59258ac0e118a719cfb4e"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classtransisthor__lib_1_1_transisthor.html">Transisthor</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcommunicator__lib_1_1_communicator.html#a55b0b0709cd59258ac0e118a719cfb4e">getTransisthorBridge</a> (void)</td></tr>
 <tr class="memdesc:a55b0b0709cd59258ac0e118a719cfb4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the transisthor bridge.  <a href="classcommunicator__lib_1_1_communicator.html#a55b0b0709cd59258ac0e118a719cfb4e">More...</a><br /></td></tr>
 <tr class="separator:a55b0b0709cd59258ac0e118a719cfb4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a48d831a65b934ff8f0798d64fdc011"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcommunicator__lib_1_1_client.html">Client</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcommunicator__lib_1_1_communicator.html#a5a48d831a65b934ff8f0798d64fdc011">getClientByHisId</a> (unsigned short id)</td></tr>
+<tr class="memdesc:a5a48d831a65b934ff8f0798d64fdc011"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cross all client list and return the matched client.  <a href="classcommunicator__lib_1_1_communicator.html#a5a48d831a65b934ff8f0798d64fdc011">More...</a><br /></td></tr>
+<tr class="separator:a5a48d831a65b934ff8f0798d64fdc011"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82ffc3a45ab0f31f6c8e6db199470190"><td class="memItemLeft" align="right" valign="top">unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcommunicator__lib_1_1_communicator.html#a82ffc3a45ab0f31f6c8e6db199470190">getServerEndpointId</a> (void)</td></tr>
+<tr class="memdesc:a82ffc3a45ab0f31f6c8e6db199470190"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function called inside ecs server to know server Endpoint id.  <a href="classcommunicator__lib_1_1_communicator.html#a82ffc3a45ab0f31f6c8e6db199470190">More...</a><br /></td></tr>
+<tr class="separator:a82ffc3a45ab0f31f6c8e6db199470190"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Network gestionner. </p>
@@ -235,6 +241,39 @@ Public Member Functions</h2></td></tr>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
     <tr><td class="paramname">Throw</td><td>an error if the client is already on the database (NetworkError) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5a48d831a65b934ff8f0798d64fdc011"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a48d831a65b934ff8f0798d64fdc011">&#9670;&nbsp;</a></span>getClientByHisId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcommunicator__lib_1_1_client.html">Client</a> Communicator::getClientByHisId </td>
+          <td>(</td>
+          <td class="paramtype">unsigned short&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cross all client list and return the matched client. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>matched id </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>founded client </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">an</td><td>error when no client his founded, throw a NetworkError </td></tr>
   </table>
   </dd>
 </dl>
@@ -368,6 +407,33 @@ Public Member Functions</h2></td></tr>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
     <tr><td class="paramname">Throw</td><td>an error when no message are found (NetworkError) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a82ffc3a45ab0f31f6c8e6db199470190"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82ffc3a45ab0f31f6c8e6db199470190">&#9670;&nbsp;</a></span>getServerEndpointId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned short Communicator::getServerEndpointId </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function called inside ecs server to know server Endpoint id. </p>
+<dl class="section return"><dt>Returns</dt><dd>The server endpoint id </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">an</td><td>error when no server can be found (Not in a client communicator), throw a NetworkError </td></tr>
   </table>
   </dd>
 </dl>

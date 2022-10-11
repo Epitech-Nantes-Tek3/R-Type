@@ -1,26 +1,26 @@
 <map id="libs/Communicator/Communicator.hpp" name="libs/Communicator/Communicator.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="176,5,448,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="44,304,122,331"/>
-<area shape="rect" id="node3" title=" " alt="" coords="30,229,93,256"/>
-<area shape="rect" id="node4" href="$_client_8hpp.html" title=" " alt="" coords="635,155,723,181"/>
-<area shape="rect" id="node6" href="$_receiver_8hpp.html" title=" " alt="" coords="259,80,366,107"/>
-<area shape="rect" id="node10" href="$_sender_8hpp.html" title=" " alt="" coords="140,80,234,107"/>
-<area shape="rect" id="node11" href="$_transisthor_8hpp.html" title=" " alt="" coords="447,80,642,107"/>
-<area shape="rect" id="node5" title=" " alt="" coords="1034,229,1092,256"/>
-<area shape="rect" id="node7" title=" " alt="" coords="195,155,318,181"/>
-<area shape="rect" id="node8" title=" " alt="" coords="342,155,459,181"/>
-<area shape="rect" id="node9" title=" " alt="" coords="127,229,178,256"/>
-<area shape="rect" id="node12" href="$_world_8hpp.html" title=" " alt="" coords="483,155,611,181"/>
-<area shape="rect" id="node23" href="$_error_8hpp.html" title=" " alt="" coords="1006,155,1120,181"/>
-<area shape="rect" id="node13" title=" " alt="" coords="146,304,226,331"/>
-<area shape="rect" id="node14" title=" " alt="" coords="250,304,321,331"/>
-<area shape="rect" id="node15" title=" " alt="" coords="574,304,654,331"/>
-<area shape="rect" id="node16" title=" " alt="" coords="678,304,765,331"/>
-<area shape="rect" id="node17" href="$_entity_8hpp.html" title=" " alt="" coords="354,229,482,256"/>
-<area shape="rect" id="node18" title=" " alt="" coords="876,304,1000,331"/>
-<area shape="rect" id="node21" href="$_resource_8hpp.html" title=" " alt="" coords="608,229,782,256"/>
-<area shape="rect" id="node22" href="$_system_8hpp.html" title=" " alt="" coords="807,229,959,256"/>
-<area shape="rect" id="node19" href="$_component_8hpp.html" title=" " alt="" coords="345,304,549,331"/>
-<area shape="rect" id="node20" title=" " alt="" coords="414,379,480,405"/>
-<area shape="rect" id="node24" title=" " alt="" coords="1117,229,1204,256"/>
+<area shape="rect" id="node1" title=" " alt="" coords="78,5,350,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="409,304,486,331"/>
+<area shape="rect" id="node3" title=" " alt="" coords="48,229,111,256"/>
+<area shape="rect" id="node4" href="$_client_8hpp.html" title=" " alt="" coords="108,155,196,181"/>
+<area shape="rect" id="node6" href="$_receiver_8hpp.html" title=" " alt="" coords="265,80,372,107"/>
+<area shape="rect" id="node10" href="$_sender_8hpp.html" title=" " alt="" coords="82,80,176,107"/>
+<area shape="rect" id="node11" href="$_transisthor_8hpp.html" title=" " alt="" coords="518,80,713,107"/>
+<area shape="rect" id="node5" title=" " alt="" coords="146,229,205,256"/>
+<area shape="rect" id="node7" title=" " alt="" coords="270,155,393,181"/>
+<area shape="rect" id="node8" title=" " alt="" coords="417,155,534,181"/>
+<area shape="rect" id="node9" title=" " alt="" coords="360,229,410,256"/>
+<area shape="rect" id="node12" href="$_error_8hpp.html" title=" " alt="" coords="558,155,673,181"/>
+<area shape="rect" id="node14" href="$_world_8hpp.html" title=" " alt="" coords="748,155,876,181"/>
+<area shape="rect" id="node13" title=" " alt="" coords="248,229,335,256"/>
+<area shape="rect" id="node15" title=" " alt="" coords="1038,304,1118,331"/>
+<area shape="rect" id="node16" title=" " alt="" coords="1143,304,1214,331"/>
+<area shape="rect" id="node17" title=" " alt="" coords="1238,304,1318,331"/>
+<area shape="rect" id="node18" title=" " alt="" coords="531,304,618,331"/>
+<area shape="rect" id="node19" href="$_entity_8hpp.html" title=" " alt="" coords="962,229,1090,256"/>
+<area shape="rect" id="node20" title=" " alt="" coords="662,304,786,331"/>
+<area shape="rect" id="node23" href="$_resource_8hpp.html" title=" " alt="" coords="536,229,711,256"/>
+<area shape="rect" id="node24" href="$_system_8hpp.html" title=" " alt="" coords="736,229,888,256"/>
+<area shape="rect" id="node21" href="$_component_8hpp.html" title=" " alt="" coords="810,304,1014,331"/>
+<area shape="rect" id="node22" title=" " alt="" coords="878,379,945,405"/>
 </map>

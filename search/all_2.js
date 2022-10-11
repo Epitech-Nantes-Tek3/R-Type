@@ -4,7 +4,7 @@ var searchData=
   ['changefrequency_31',['changeFrequency',['../classecs_1_1_pattern.html#a3ea31d4c5d6d61d048a73866ac3f3ed8',1,'ecs::Pattern']]],
   ['chargedattack_32',['ChargedAttack',['../classecs_1_1_charged_attack.html',1,'ecs::ChargedAttack'],['../classecs_1_1_charged_attack.html#a0c1343907e46ebd187a63f866a9d15b5',1,'ecs::ChargedAttack::ChargedAttack()']]],
   ['chargedattackcomponent_2ehpp_33',['ChargedAttackComponent.hpp',['../_charged_attack_component_8hpp.html',1,'']]],
-  ['client_34',['Client',['../classcommunicator__lib_1_1_client.html',1,'communicator_lib::Client'],['../classcommunicator__lib_1_1_client.html#ae24eaae0c42e941d9f38fa11b4422972',1,'communicator_lib::Client::Client()']]],
+  ['client_34',['Client',['../classcommunicator__lib_1_1_client.html',1,'communicator_lib::Client'],['../classcommunicator__lib_1_1_client.html#aead4161faa91392a6b2d1485a4b14fa7',1,'communicator_lib::Client::Client()']]],
   ['client_2ecpp_35',['Client.cpp',['../_client_8cpp.html',1,'']]],
   ['client_2ehpp_36',['Client.hpp',['../_client_8hpp.html',1,'']]],
   ['client_5fdata_37',['client_data',['../namespaceclient__data.html',1,'']]],

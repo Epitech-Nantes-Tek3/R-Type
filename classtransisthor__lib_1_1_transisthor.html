@@ -107,10 +107,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a53fb214cea93cbd0513c1f6e2da381d2"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtransisthor__lib_1_1_transisthor.html#a53fb214cea93cbd0513c1f6e2da381d2">transitNetworkDataToEcsData</a> (<a class="el" href="structcommunicator__lib_1_1_message.html">Message</a> networkData)</td></tr>
 <tr class="memdesc:a53fb214cea93cbd0513c1f6e2da381d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function called by the Communicator. The transfered data will be converted to an ECS object and send to the ecs.  <a href="classtransisthor__lib_1_1_transisthor.html#a53fb214cea93cbd0513c1f6e2da381d2">More...</a><br /></td></tr>
 <tr class="separator:a53fb214cea93cbd0513c1f6e2da381d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad90d77179509c3365e239686967b35eb"><td class="memTemplParams" colspan="2">template&lt;std::derived_from&lt; Component &gt; C&gt; </td></tr>
-<tr class="memitem:ad90d77179509c3365e239686967b35eb"><td class="memTemplItemLeft" align="right" valign="top">void *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classtransisthor__lib_1_1_transisthor.html#ad90d77179509c3365e239686967b35eb">transitEcsDataToNetworkData</a> (unsigned short id, unsigned short type, C component, std::vector&lt; <a class="el" href="classcommunicator__lib_1_1_client.html">Client</a> &gt; destination)</td></tr>
-<tr class="memdesc:ad90d77179509c3365e239686967b35eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function called by the ECS. The transfered data will be converted to a Network object and send to the communicator.  <a href="classtransisthor__lib_1_1_transisthor.html#ad90d77179509c3365e239686967b35eb">More...</a><br /></td></tr>
-<tr class="separator:ad90d77179509c3365e239686967b35eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fe13e311dad7808e98bcf1f5516370a"><td class="memTemplParams" colspan="2">template&lt;std::derived_from&lt; Component &gt; C&gt; </td></tr>
+<tr class="memitem:a9fe13e311dad7808e98bcf1f5516370a"><td class="memTemplItemLeft" align="right" valign="top">void *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classtransisthor__lib_1_1_transisthor.html#a9fe13e311dad7808e98bcf1f5516370a">transitEcsDataToNetworkData</a> (unsigned short id, unsigned short type, C component, std::vector&lt; unsigned short &gt; destination)</td></tr>
+<tr class="memdesc:a9fe13e311dad7808e98bcf1f5516370a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function called by the ECS. The transfered data will be converted to a Network object and send to the communicator.  <a href="classtransisthor__lib_1_1_transisthor.html#a9fe13e311dad7808e98bcf1f5516370a">More...</a><br /></td></tr>
+<tr class="separator:a9fe13e311dad7808e98bcf1f5516370a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a94a0ac5ecec90ad113f65604403aa2cd"><td class="memTemplParams" colspan="2">template&lt;std::derived_from&lt; Resource &gt; C&gt; </td></tr>
 <tr class="memitem:a94a0ac5ecec90ad113f65604403aa2cd"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classtransisthor__lib_1_1_transisthor.html#a94a0ac5ecec90ad113f65604403aa2cd">transitEcsDataToNetworkData</a> (unsigned short id, unsigned short type, C component)</td></tr>
 <tr class="memdesc:a94a0ac5ecec90ad113f65604403aa2cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function called by the ECS. The transfered data will be converted to a Network object and send to the communicator.  <a href="classtransisthor__lib_1_1_transisthor.html#a94a0ac5ecec90ad113f65604403aa2cd">More...</a><br /></td></tr>
@@ -119,6 +119,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a76a0c9878247a3306e51425ee7a6fe16"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classtransisthor__lib_1_1_transisthor.html#a76a0c9878247a3306e51425ee7a6fe16">transitEcsDataToNetworkData</a> (unsigned short id, unsigned short type, C &amp;&amp;...args)</td></tr>
 <tr class="memdesc:a76a0c9878247a3306e51425ee7a6fe16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function called by the ECS. The transfered data will be converted to a Network object and send to the communicator.  <a href="classtransisthor__lib_1_1_transisthor.html#a76a0c9878247a3306e51425ee7a6fe16">More...</a><br /></td></tr>
 <tr class="separator:a76a0c9878247a3306e51425ee7a6fe16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5295e46f2a62bb88c3086dedd94b7d4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcommunicator__lib_1_1_client.html">Client</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtransisthor__lib_1_1_transisthor.html#af5295e46f2a62bb88c3086dedd94b7d4">getClientByHisId</a> (unsigned short id)</td></tr>
+<tr class="memdesc:af5295e46f2a62bb88c3086dedd94b7d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cross communicator client list and return the matched client.  <a href="classtransisthor__lib_1_1_transisthor.html#af5295e46f2a62bb88c3086dedd94b7d4">More...</a><br /></td></tr>
+<tr class="separator:af5295e46f2a62bb88c3086dedd94b7d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36b6abf6251ee755e4fbbfe78137134e"><td class="memItemLeft" align="right" valign="top">unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtransisthor__lib_1_1_transisthor.html#a36b6abf6251ee755e4fbbfe78137134e">getServerEndpointId</a> (void)</td></tr>
+<tr class="memdesc:a36b6abf6251ee755e4fbbfe78137134e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function called inside ecs server to know server Endpoint id.  <a href="classtransisthor__lib_1_1_transisthor.html#a36b6abf6251ee755e4fbbfe78137134e">More...</a><br /></td></tr>
+<tr class="separator:a36b6abf6251ee755e4fbbfe78137134e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Bridge between Communicator data and ECS data. </p>
@@ -188,6 +194,66 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="af5295e46f2a62bb88c3086dedd94b7d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5295e46f2a62bb88c3086dedd94b7d4">&#9670;&nbsp;</a></span>getClientByHisId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcommunicator__lib_1_1_client.html">Client</a> Transisthor::getClientByHisId </td>
+          <td>(</td>
+          <td class="paramtype">unsigned short&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cross communicator client list and return the matched client. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>wanted id </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>matched client </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">When</td><td>no client his founded, throw a NetowkrError </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a36b6abf6251ee755e4fbbfe78137134e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36b6abf6251ee755e4fbbfe78137134e">&#9670;&nbsp;</a></span>getServerEndpointId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned short Transisthor::getServerEndpointId </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function called inside ecs server to know server Endpoint id. </p>
+<dl class="section return"><dt>Returns</dt><dd>The server endpoint id </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">an</td><td>error when no server can be found (Not in a client communicator), throw a NetworkError </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a76a0c9878247a3306e51425ee7a6fe16"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a76a0c9878247a3306e51425ee7a6fe16">&#9670;&nbsp;</a></span>transitEcsDataToNetworkData() <span class="overload">[1/3]</span></h2>
 
@@ -311,8 +377,8 @@ template&lt;std::derived_from&lt; Resource &gt; C&gt; </div>
 
 </div>
 </div>
-<a id="ad90d77179509c3365e239686967b35eb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad90d77179509c3365e239686967b35eb">&#9670;&nbsp;</a></span>transitEcsDataToNetworkData() <span class="overload">[3/3]</span></h2>
+<a id="a9fe13e311dad7808e98bcf1f5516370a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fe13e311dad7808e98bcf1f5516370a">&#9670;&nbsp;</a></span>transitEcsDataToNetworkData() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -343,7 +409,7 @@ template&lt;std::derived_from&lt; Component &gt; C&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="classcommunicator__lib_1_1_client.html">Client</a> &gt;&#160;</td>
+          <td class="paramtype">std::vector&lt; unsigned short &gt;&#160;</td>
           <td class="paramname"><em>destination</em>&#160;</td>
         </tr>
         <tr>
