@@ -18,7 +18,14 @@ namespace ecs
     struct CollidableSystem : public System {
         inline void run(World &world) override final
         {
-            
+            std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Position, Size, Collidable, Damageb>();
+            unsigned int length = joined.size();
+
+            auto collide = [](std::shared_ptr<ecs::Entity> entityPtr) {
+
+            };
+            for (unsigned x = 0; x < length; ++x)
+              std::for_each(joined.begin() + x, joined.end(), collide);
         }
     };
 } // namespace ecs
