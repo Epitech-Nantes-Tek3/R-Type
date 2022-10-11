@@ -57,8 +57,7 @@ void *Transisthor::transitNetworkDataToEcsData(Message networkData)
 
 Client Transisthor::getClientByHisId(unsigned short id)
 {
-    (void) id;
-    return Client();
+    return _communicator.getClientByHisId(id);
 }
 
 void Transisthor::componentConvertDestinationType(unsigned short id, void *byteCode)
