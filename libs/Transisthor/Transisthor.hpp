@@ -81,7 +81,7 @@ namespace transisthor_lib
         /// @brief Function called by the ECS. The transfered data will be converted to a Network object and send to the
         /// communicator.
         /// @tparam C Type of the resource
-        /// @param id Id of the transfered resource
+        /// @param id Id of the transferehttps://tekfeed.epitech.eu/#/universite/38/categorie/courses-for-epitech-studentsd resource
         /// @param type Type id of the resource
         /// @param resource The transfered resource
         template <std::derived_from<Resource> C>
@@ -95,16 +95,16 @@ namespace transisthor_lib
 
         /// @brief Function called by the ECS. The transfered data will be converted to a Network object and send to the
         /// communicator.
-        /// @tparam ...Args This allow to send multiple Component (Used for an entity)
-        /// @tparam C Type of the component
-        /// @param id Id of the transfered entity
-        /// @param type Type id of the transfered entity
-        /// @param ...args All components used inside the wanted entity.
-        template <std::derived_from<Component>... C>
-        void transitEcsDataToNetworkData(unsigned short id, unsigned short type, C &&...args)
+        /// @param id Id of the entity
+        /// @param type Type id of the entity
+        /// @param destination of the message
+        /// @return Return value his only used for testing (Unit and functional)
+        void *transitEcsDataToNetworkDataEntity(unsigned short id, unsigned short type, std::vector<unsigned short> destination)
         {
             (void)id;
             (void)type;
+            (void)destination;
+            return nullptr;
             /// WILL BE IMPLEMENTED WHEN ENTITY HAVE BEEN MERGED.
         }
 
