@@ -112,7 +112,7 @@ namespace ecs
             std::vector<std::shared_ptr<ecs::Entity>> players =
                 world.joinEntities<Position, Size, Collidable, Damage, Player>();
             std::vector<std::shared_ptr<ecs::Entity>> alliedProjectiles =
-                world.joinEntities<Position, Size, Collidable, Damage, alliedProjectiles>();
+                world.joinEntities<Position, Size, Collidable, Damage, AlliedProjectile>();
             std::vector<std::shared_ptr<ecs::Entity>> enemies =
                 world.joinEntities<Position, Size, Collidable, Damage, Enemy>();
             std::vector<std::shared_ptr<ecs::Entity>> enemiesProjectiles =
