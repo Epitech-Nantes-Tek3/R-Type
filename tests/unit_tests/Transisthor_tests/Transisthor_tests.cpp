@@ -37,7 +37,9 @@ Test(transisthor_testing, transit_position_component)
     Transisthor transisthor = Transisthor(communicator, world);
     Position pos = Position(10, 95);
     Position newPos;
-    void *temp = transisthor.transitEcsDataToNetworkData<Position>(1, 6, pos, {Client()});
+    Client temporaryClient = Client();
+    communicator.addClientToList(temporaryClient);
+    void *temp = transisthor.transitEcsDataToNetworkData<Position>(1, 6, pos, {1});
     void *networkAnswer = transisthor.transitNetworkDataToEcsData({Client(), temp, sizeof(Position), 30});
 
     cr_assert_eq(pos.x, 10);
@@ -54,7 +56,9 @@ Test(transisthor_testing, transit_destination_component)
     Transisthor transisthor = Transisthor(communicator, world);
     Destination pos = Destination(10, 95);
     Destination newPos;
-    void *temp = transisthor.transitEcsDataToNetworkData<Destination>(1, 1, pos, {Client()});
+    Client temporaryClient = Client();
+    communicator.addClientToList(temporaryClient);
+    void *temp = transisthor.transitEcsDataToNetworkData<Destination>(1, 1, pos, {1});
     void *networkAnswer = transisthor.transitNetworkDataToEcsData({Client(), temp, sizeof(Destination), 30});
 
     cr_assert_eq(pos.x, 10);
@@ -71,7 +75,9 @@ Test(transisthor_testing, transit_equipment_component)
     Transisthor transisthor = Transisthor(communicator, world);
     Equipment pos = Equipment(10);
     Equipment newPos;
-    void *temp = transisthor.transitEcsDataToNetworkData<Equipment>(1, 2, pos, {Client()});
+    Client temporaryClient = Client();
+    communicator.addClientToList(temporaryClient);
+    void *temp = transisthor.transitEcsDataToNetworkData<Equipment>(1, 2, pos, {1});
     void *networkAnswer = transisthor.transitNetworkDataToEcsData({Client(), temp, sizeof(Equipment), 30});
 
     cr_assert_eq(pos.typeId, 10);
@@ -86,7 +92,9 @@ Test(transisthor_testing, transit_invinsible_component)
     Transisthor transisthor = Transisthor(communicator, world);
     Invinsible pos = Invinsible();
     Invinsible newPos;
-    void *temp = transisthor.transitEcsDataToNetworkData<Invinsible>(1, 3, pos, {Client()});
+    Client temporaryClient = Client();
+    communicator.addClientToList(temporaryClient);
+    void *temp = transisthor.transitEcsDataToNetworkData<Invinsible>(1, 3, pos, {1});
     void *networkAnswer = transisthor.transitNetworkDataToEcsData({Client(), temp, sizeof(Invinsible), 30});
 
     newPos = buildComponentFromByteCode<Invinsible>(networkAnswer);
@@ -100,7 +108,9 @@ Test(transisthor_testing, transit_invisible_component)
     Transisthor transisthor = Transisthor(communicator, world);
     Invisible pos = Invisible();
     Invisible newPos;
-    void *temp = transisthor.transitEcsDataToNetworkData<Invisible>(1, 4, pos, {Client()});
+    Client temporaryClient = Client();
+    communicator.addClientToList(temporaryClient);
+    void *temp = transisthor.transitEcsDataToNetworkData<Invisible>(1, 4, pos, {1});
     void *networkAnswer = transisthor.transitNetworkDataToEcsData({Client(), temp, sizeof(Invisible), 30});
 
     newPos = buildComponentFromByteCode<Invisible>(networkAnswer);
@@ -114,7 +124,9 @@ Test(transisthor_testing, transit_life_component)
     Transisthor transisthor = Transisthor(communicator, world);
     Life pos = Life(10);
     Life newPos;
-    void *temp = transisthor.transitEcsDataToNetworkData<Life>(1, 5, pos, {Client()});
+    Client temporaryClient = Client();
+    communicator.addClientToList(temporaryClient);
+    void *temp = transisthor.transitEcsDataToNetworkData<Life>(1, 5, pos, {1});
     void *networkAnswer = transisthor.transitNetworkDataToEcsData({Client(), temp, sizeof(Life), 30});
 
     cr_assert_eq(pos.lifePoint, 10);
@@ -129,7 +141,9 @@ Test(transisthor_testing, transit_velocity_component)
     Transisthor transisthor = Transisthor(communicator, world);
     Velocity pos = Velocity(10, 12);
     Velocity newPos;
-    void *temp = transisthor.transitEcsDataToNetworkData<Velocity>(1, 7, pos, {Client()});
+    Client temporaryClient = Client();
+    communicator.addClientToList(temporaryClient);
+    void *temp = transisthor.transitEcsDataToNetworkData<Velocity>(1, 7, pos, {1});
     void *networkAnswer = transisthor.transitNetworkDataToEcsData({Client(), temp, sizeof(Velocity), 30});
 
     cr_assert_eq(pos.multiplierOrdinate, 12);

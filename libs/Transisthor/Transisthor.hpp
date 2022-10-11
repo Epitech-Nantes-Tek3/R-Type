@@ -60,18 +60,21 @@ namespace transisthor_lib
         /// @return Return value his only used for testing (Unit and functional)
         template <std::derived_from<Component> C>
         void *transitEcsDataToNetworkData(
-            unsigned short id, unsigned short type, C component, std::vector<Client> destination)
+            unsigned short id, unsigned short type, C component, std::vector<unsigned short> destination)
         {
             void *networkObject = std::malloc(sizeof(void *) * ((sizeof(C)) + sizeof(unsigned short) * 2));
+            Client temporaryClient;
 
             if (networkObject == nullptr)
                 throw error_lib::MallocError("Malloc failed.");
             std::memcpy(networkObject, &id, sizeof(unsigned short));
             std::memcpy((void *)((char *)networkObject + sizeof(unsigned short)), &type, sizeof(unsigned short));
             std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2), &component, sizeof(C));
-            for (auto it : destination)
+            for (auto it : destination) {
+                temporaryClient = getClientByHisId(it);
                 transisthor_lib::sendDataToAClientWithoutCommunicator(
-                    _communicator, it, networkObject, sizeof(void *) * ((sizeof(C)) + sizeof(unsigned short) * 2), 30);
+                    _communicator, temporaryClient, networkObject, sizeof(void *) * ((sizeof(C)) + sizeof(unsigned short) * 2), 30);
+            }
             return networkObject;
         }
 
