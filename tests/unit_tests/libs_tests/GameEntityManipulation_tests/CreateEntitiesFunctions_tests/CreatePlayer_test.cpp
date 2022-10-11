@@ -18,7 +18,4 @@ Test(CreatePlayer_test, CreatePlayer)
     std::size_t id_new_entity = createNewPlayer(world, 50, 20, 1, 1, 1, 4, 4, 100, 10, 5);
 
     cr_assert_eq(1, id_new_entity);
-    cr_assert_eq(50, world.getEntity(1).getComponent<Position>().x);
-    cr_assert_eq(100, world.getEntity(1).getComponent<Life>().lifePoint);
-    cr_assert_eq(5, world.getEntity(1).getComponent<DamageRadius>().radius);
 }

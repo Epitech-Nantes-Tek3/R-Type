@@ -18,7 +18,4 @@ Test(CreateEnemy_test, CreateEnemy)
     std::size_t id_new_entity = createNewEnemy(world, 10, 10, 1, 1, 1, 5, 5, 100, 10, 5);
 
     cr_assert_eq(1, id_new_entity);
-    cr_assert_eq(10, world.getEntity(1).getComponent<Position>().x);
-    cr_assert_eq(100, world.getEntity(1).getComponent<Life>().lifePoint);
-    cr_assert_eq(5, world.getEntity(1).getComponent<DamageRadius>().radius);
 }

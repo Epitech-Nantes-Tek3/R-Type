@@ -19,7 +19,4 @@ Test(CreateObstacle_test, CreateObstacle)
     std::size_t id_new_entity = createNewObstacle(world, 10, 120, 5);
 
     cr_assert_eq(1, id_new_entity);
-    cr_assert_eq(10, world.getEntity(1).getComponent<Position>().x);
-    cr_assert_eq(120, world.getEntity(1).getComponent<Position>().y);
-    cr_assert_eq(5, world.getEntity(1).getComponent<Damage>().damagePoint);
 }
