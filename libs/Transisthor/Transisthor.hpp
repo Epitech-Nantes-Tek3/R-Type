@@ -255,7 +255,7 @@ namespace transisthor_lib
         void *transitEcsDataToNetworkDataEntityProjectile(unsigned short id, int posX, int posY, double velAbsc, double velOrd, std::vector<unsigned short> destination)
         {
             void *networkObject = std::malloc((sizeof(unsigned short) * 2 + sizeof(int) * 2 + sizeof(double) * 2));
-            unsigned short typeId = 4;
+            unsigned short typeId = 6;
             Client temporaryClient;
 
             if (networkObject == nullptr)
@@ -351,6 +351,11 @@ namespace transisthor_lib
         /// @param id Entity ID attached to the entity
         /// @param byteCode byte value of the Player entity
         void entityConvertPlayerType(unsigned short id, void *byteCode);
+
+        /// @brief Convert a byteCode data into a Projectile entity and send it to the ECS
+        /// @param id Entity ID attached to the entity
+        /// @param byteCode byte value of the Projectile entity
+        void entityConvertProjectileType(unsigned short id, void *byteCode);
 
         /// @brief List of all the Convert function for Component. Ordered by the component type value (Refer to RFC for
         /// more informations)
