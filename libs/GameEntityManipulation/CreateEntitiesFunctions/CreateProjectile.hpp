@@ -22,7 +22,7 @@
 
 namespace ecs
 {
-    /// @brief This function can create a new Projectile Entity in the world pass in params
+    /// @brief This function can create a new Projectile Entity in the world passed as params
     /// @param world The world in which the Projectile must be created
     /// @param pos_x The start position x of the new Projectile
     /// @param pos_y The start position y of the new Projectile
