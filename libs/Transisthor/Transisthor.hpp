@@ -105,6 +105,12 @@ namespace transisthor_lib
             /// WILL BE IMPLEMENTED WHEN ENTITY HAVE BEEN MERGED.
         }
 
+        /// @brief Cross communicator client list and return the matched client
+        /// @param id wanted id
+        /// @return matched client
+        /// @throw When no client his founded, throw a CommunicatorError
+        Client getClientByHisId(unsigned short id);
+
       private:
         /// @brief A reference to a communicator
         Communicator &_communicator;
