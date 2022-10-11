@@ -53,7 +53,7 @@ void Room::startLobbyLoop(void)
             std::cerr << "Room " << _id << " received a connexion protocol."
                       << std::endl; /// WILL BE DELETED WITH CONNEXION PROTOCOL ISSUE
             _transisthorInstance.get()->transitEcsDataToNetworkData<Position>(1, 6, pos,
-                {connexionDemand.message.clientInfo}); /// USED FOR FUNCTIONNAL TESTING, WILL BE REMOVED LATER
+                {connexionDemand.message.clientInfo.getId()}); /// USED FOR FUNCTIONNAL TESTING, WILL BE REMOVED LATER
         } catch (NetworkError &error) {
         }
         _worldInstance.get()->runSystems(); /// WILL BE IMPROVED IN PART TWO (THREAD + CLOCK)
