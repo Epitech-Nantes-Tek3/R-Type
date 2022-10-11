@@ -10,9 +10,11 @@ set(SRC
     ${SFML_INPUT_INC_ROOT}/KeyboardInputComponent.hpp
     ${SFML_INPUT_INC_ROOT}/MouseInputComponent.hpp
     ${SFML_INPUT_INC_ROOT}/ECSActions.hpp
+    ${SFML_INPUT_INC_ROOT}/GraphicsRectangleComponent.hpp
+    ${SFML_INPUT_INC_ROOT}/GraphicsTextComponent.hpp
 )
 
-add_library(${TARGET} ${SRC})
+add_library(${TARGET} SHARED ${SRC})
 
 target_include_directories(${TARGET}
     PUBLIC ${SFML_INPUT_INC_ROOT}
