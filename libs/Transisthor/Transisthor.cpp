@@ -191,17 +191,11 @@ void Transisthor::entityConvertObstacleType(unsigned short id, void *byteCode)
 {
     int posX = 0;
     int posY = 0;
-    double velAbsc = 0;
-    double velOrd = 0;
 
     std::memcpy(&posX, byteCode, sizeof(int));
     std::memcpy(&posY, (void *)((char *)byteCode + sizeof(int)), sizeof(int));
-    std::memcpy(&velAbsc, (void *)((char *)byteCode + sizeof(int) * 2), sizeof(double));
-    std::memcpy(&velOrd, (void *)((char *)byteCode + sizeof(int) * 2 + sizeof(double)), sizeof(double));
     (void) posX;
     (void) posY;
-    (void) velAbsc;
-    (void) velOrd;
     (void) id;
     /// SEND THE NEW ENTITY TO ECS, WILL BE ADDED WHEN TRANSISTHOR WILL BE FULLY IMPLEMENTED
 }

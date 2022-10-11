@@ -196,13 +196,11 @@ namespace transisthor_lib
         /// @param id Id of the new entity to create
         /// @param posX X value for the Position component
         /// @param posY Y value for the Position component
-        /// @param velAbsc Abscissa value for the Velocity component
-        /// @param velOrd Ordinate value for the Velocity component
         /// @param destination of the message
         /// @return Return value his only used for testing (Unit and functional)
-        void *transitEcsDataToNetworkDataEntityObstacle(unsigned short id, int posX, int posY, double velAbsc, double velOrd, std::vector<unsigned short> destination)
+        void *transitEcsDataToNetworkDataEntityObstacle(unsigned short id, int posX, int posY, std::vector<unsigned short> destination)
         {
-            void *networkObject = std::malloc((sizeof(unsigned short) * 2 + sizeof(int) * 2 + sizeof(double) * 2));
+            void *networkObject = std::malloc((sizeof(unsigned short) * 2 + sizeof(int) * 2));
             unsigned short typeId = 4;
             Client temporaryClient;
 
@@ -212,12 +210,12 @@ namespace transisthor_lib
             std::memcpy((void *)((char *)networkObject + sizeof(unsigned short)), &typeId, sizeof(unsigned short));
             std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2), &posX, sizeof(int));
             std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2 + sizeof(int)), &posY, sizeof(int));
-            std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2 + sizeof(int) * 2), &velAbsc, sizeof(double));
-            std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2 + sizeof(int) * 2 + sizeof(double)), &velOrd, sizeof(double));
+            ///std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2 + sizeof(int) * 2), &velAbsc, sizeof(double));
+            ///std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2 + sizeof(int) * 2 + sizeof(double)), &velOrd, sizeof(double));
             for (auto it : destination) {
                 temporaryClient = getClientByHisId(it);
                 transisthor_lib::sendDataToAClientWithoutCommunicator(_communicator, temporaryClient, networkObject,
-                    (sizeof(unsigned short) * 2 + sizeof(int) * 2 + sizeof(double) * 2), 31);
+                    (sizeof(unsigned short) * 2 + sizeof(int) * 2), 31);
             }
             return networkObject;
         }
