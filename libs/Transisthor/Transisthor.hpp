@@ -316,6 +316,11 @@ namespace transisthor_lib
         /// @param byteCode byte value of the EnemyProjectile entity
         void entityConvertEnemyProjectileType(unsigned short id, void *byteCode);
 
+        /// @brief Convert a byteCode data into a Obstacle entity and send it to the ECS
+        /// @param id Entity ID attached to the entity
+        /// @param byteCode byte value of the Obstacle entity
+        void entityConvertObstacleType(unsigned short id, void *byteCode);
+
         /// @brief Convert a byteCode data into a Player entity and send it to the ECS
         /// @param id Entity ID attached to the entity
         /// @param byteCode byte value of the Player entity
