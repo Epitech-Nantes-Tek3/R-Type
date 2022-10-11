@@ -74,3 +74,57 @@ Test(Collidable_Test, entities_do_collide_extremities)
     cr_assert_eq(13, fst.lifePoint);
     cr_assert_eq(8, snd.lifePoint);
 }
+
+Test(Collidable_Test, entities_ally_collide)
+{
+    World world(1);
+
+    std::size_t FirstId = world.addEntity().addComponent<Position>(10, 10).addComponent<Size>(15, 15).addComponent<Damage>(10).addComponent<Collidable>().addComponent<Player>().addComponent<Life>(20).getId();
+    std::size_t SecondId = world.addEntity().addComponent<Position>(10, 10).addComponent<Size>(15, 15).addComponent<Damage>(5).addComponent<Collidable>().addComponent<AlliedProjectile>().addComponent<Life>(20).getId();
+
+    world.addSystem<Collide>();
+
+    world.runSystems();
+
+    Life fst = world.getEntity(FirstId).getComponent<Life>();
+    Life snd = world.getEntity(SecondId).getComponent<Life>();
+
+    cr_assert_eq(20, fst.lifePoint);
+    cr_assert_eq(20, snd.lifePoint);
+}
+
+Test(Collidable_Test, entities_enemy_collide)
+{
+    World world(1);
+
+    std::size_t FirstId = world.addEntity().addComponent<Position>(10, 10).addComponent<Size>(15, 15).addComponent<Damage>(10).addComponent<Collidable>().addComponent<Enemy>().addComponent<Life>(20).getId();
+    std::size_t SecondId = world.addEntity().addComponent<Position>(10, 10).addComponent<Size>(15, 15).addComponent<Damage>(5).addComponent<Collidable>().addComponent<EnemyProjectile>().addComponent<Life>(20).getId();
+
+    world.addSystem<Collide>();
+
+    world.runSystems();
+
+    Life fst = world.getEntity(FirstId).getComponent<Life>();
+    Life snd = world.getEntity(SecondId).getComponent<Life>();
+
+    cr_assert_eq(20, fst.lifePoint);
+    cr_assert_eq(20, snd.lifePoint);
+}
+
+Test(Collidable_Test, entities_enemy_collide_obstacle)
+{
+    World world(1);
+
+    std::size_t FirstId = world.addEntity().addComponent<Position>(10, 10).addComponent<Size>(15, 15).addComponent<Damage>(10).addComponent<Collidable>().addComponent<Enemy>().addComponent<Life>(20).getId();
+    std::size_t SecondId = world.addEntity().addComponent<Position>(10, 10).addComponent<Size>(15, 15).addComponent<Damage>(5).addComponent<Collidable>().addComponent<Obstacle>().addComponent<Life>(20).getId();
+
+    world.addSystem<Collide>();
+
+    world.runSystems();
+
+    Life fst = world.getEntity(FirstId).getComponent<Life>();
+    Life snd = world.getEntity(SecondId).getComponent<Life>();
+
+    cr_assert_eq(20, fst.lifePoint);
+    cr_assert_eq(20, snd.lifePoint);
+}
