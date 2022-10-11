@@ -37,6 +37,8 @@ Transisthor::Transisthor(Communicator &communicator, World &ecsWorld) : _communi
         std::bind(&Transisthor::componentConvertPositionType, this, std::placeholders::_1, std::placeholders::_2);
     _componentConvertFunctionList[7] =
         std::bind(&Transisthor::componentConvertVelocityType, this, std::placeholders::_1, std::placeholders::_2);
+    _entityConvertFunctionList[1] =
+        std::bind(&Transisthor::entityConvertAlliedProjectileType, this, std::placeholders::_1, std::placeholders::_2);
 }
 
 void *Transisthor::transitNetworkDataToEcsData(Message networkData)
@@ -120,6 +122,13 @@ void Transisthor::componentConvertVelocityType(unsigned short id, void *byteCode
     (void)id;
     (void)newComponent;
     /// SEND THE NEW COMPONENT TO ECS, WILL BE ADDED WHEN TRANSISTHOR WILL BE FULLY IMPLEMENTED
+}
+
+void Transisthor::entityConvertAlliedProjectileType(unsigned short id, void *byteCode)
+{
+    (void)id;
+    (void)byteCode;
+    /// SEND THE NEW ENTITY TO ECS, WILL BE ADDED WHEN TRANSISTHOR WILL BE FULLY IMPLEMENTED
 }
 
 void transisthor_lib::sendDataToAClientWithoutCommunicator(

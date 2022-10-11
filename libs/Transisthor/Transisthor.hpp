@@ -190,9 +190,17 @@ namespace transisthor_lib
         /// @param byteCode byte value of the Velocity component
         void componentConvertVelocityType(unsigned short id, void *byteCode);
 
+        /// @brief Convert a byteCode data into a AlliedProjectile entity and send it to the ECS
+        /// @param id Entity ID attached to the entity
+        /// @param byteCode byte value of the AlliedProjectile entity
+        void entityConvertAlliedProjectileType(unsigned short id, void *byteCode);
+
         /// @brief List of all the Convert function for Component. Ordered by the component type value (Refer to RFC for
         /// more informations)
         std::map<unsigned short, std::function<void(unsigned short, void *)>> _componentConvertFunctionList;
+
+        /// @brief List of all the Convert function for Entity. Ordered by the entity type value (Refer to RFC for more informations)
+        std::map<unsigned short, std::function<void(unsigned short, void *)>> _entityConvertFunctionList;
     };
 } // namespace transisthor_lib
 
