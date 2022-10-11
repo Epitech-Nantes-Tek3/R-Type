@@ -8,6 +8,7 @@ var hierarchy =
     [ "communicator_lib::CommunicatorMessage", "structcommunicator__lib_1_1_communicator_message.html", null ],
     [ "ecs::Component", "classecs_1_1_component.html", [
       [ "ecs::ActionQueueComponent", "classecs_1_1_action_queue_component.html", null ],
+      [ "ecs::AlliedProjectile", "classecs_1_1_allied_projectile.html", null ],
       [ "ecs::AllowControllerComponent", "classecs_1_1_allow_controller_component.html", null ],
       [ "ecs::AllowMouseAndKeyboardComponent", "classecs_1_1_allow_mouse_and_keyboard_component.html", null ],
       [ "ecs::Bouncing", "classecs_1_1_bouncing.html", null ],
@@ -22,6 +23,8 @@ var hierarchy =
       [ "ecs::DamageRadius", "classecs_1_1_damage_radius.html", null ],
       [ "ecs::DeathDamage", "classecs_1_1_death_damage.html", null ],
       [ "ecs::Destination", "classecs_1_1_destination.html", null ],
+      [ "ecs::Enemy", "classecs_1_1_enemy.html", null ],
+      [ "ecs::EnemyProjectile", "classecs_1_1_enemy_projectile.html", null ],
       [ "ecs::Equipment", "classecs_1_1_equipment.html", null ],
       [ "ecs::Invinsible", "classecs_1_1_invinsible.html", null ],
       [ "ecs::Invisible", "classecs_1_1_invisible.html", null ],
@@ -29,8 +32,11 @@ var hierarchy =
       [ "ecs::Life", "classecs_1_1_life.html", null ],
       [ "ecs::Lifetime", "classecs_1_1_lifetime.html", null ],
       [ "ecs::MouseInputComponent", "classecs_1_1_mouse_input_component.html", null ],
+      [ "ecs::Obstacle", "classecs_1_1_obstacle.html", null ],
       [ "ecs::Pattern", "classecs_1_1_pattern.html", null ],
+      [ "ecs::Player", "classecs_1_1_player.html", null ],
       [ "ecs::Position", "classecs_1_1_position.html", null ],
+      [ "ecs::Projectile", "classecs_1_1_projectile.html", null ],
       [ "ecs::ShootingFrequency", "classecs_1_1_shooting_frequency.html", null ],
       [ "ecs::Size", "classecs_1_1_size.html", null ],
       [ "ecs::Velocity", "classecs_1_1_velocity.html", null ],
@@ -55,7 +61,9 @@ var hierarchy =
     [ "communicator_lib::Sender", "classcommunicator__lib_1_1_sender.html", null ],
     [ "server_data::Server", "classserver__data_1_1_server.html", null ],
     [ "argument_handler::ArgumentHandler::ServerInformation", "structargument__handler_1_1_argument_handler_1_1_server_information.html", null ],
-    [ "ecs::System", "classecs_1_1_system.html", null ],
+    [ "ecs::System", "classecs_1_1_system.html", [
+      [ "ecs::Movement", "structecs_1_1_movement.html", null ]
+    ] ],
     [ "transisthor_lib::Transisthor", "classtransisthor__lib_1_1_transisthor.html", null ],
     [ "ecs::World", "classecs_1_1_world.html", null ]
 ];
