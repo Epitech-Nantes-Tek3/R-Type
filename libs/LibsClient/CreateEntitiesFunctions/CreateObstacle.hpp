@@ -8,7 +8,6 @@
 #ifndef CREATEOBSTACLE_HPP_
 #define CREATEOBSTACLE_HPP_
 
-#include "World/World.hpp"
 #include "GameComponents/CollidableComponent.hpp"
 #include "GameComponents/DamageComponent.hpp"
 #include "GameComponents/DamageRadiusComponent.hpp"
@@ -19,6 +18,7 @@
 #include "GameComponents/SizeComponent.hpp"
 #include "GameComponents/VelocityComponent.hpp"
 #include "GameComponents/WeightComponent.hpp"
+#include "World/World.hpp"
 
 namespace ecs
 {
@@ -31,18 +31,17 @@ namespace ecs
     /// @return Id of the new Obstacle in std::size_t
     inline std::size_t createNewObstacle(World &world, const int pos_x, const int pos_y, const unsigned short damage)
     {
-        std::size_t new_obstacle = world.addEntity()
-                                       .addComponent<Position>(pos_x, pos_y)
-                                       .addComponent<Weight>(1)
-                                       .addComponent<Size>(1, 1)
-                                       .addComponent<Lifetime>()
-                                       .addComponent<Life>(10)
-                                       .addComponent<Damage>(damage)
-                                       .addComponent<DamageRadius>(5)
-                                       .addComponent<Collidable>()
-                                       .addComponent<Obstacle>()
-                                       .getId();
-        return new_obstacle;
+        return world.addEntity()
+            .addComponent<Position>(pos_x, pos_y)
+            .addComponent<Weight>(1)
+            .addComponent<Size>(1, 1)
+            .addComponent<Lifetime>()
+            .addComponent<Life>(10)
+            .addComponent<Damage>(damage)
+            .addComponent<DamageRadius>(5)
+            .addComponent<Collidable>()
+            .addComponent<Obstacle>()
+            .getId();
     }
 } // namespace ecs
 #endif /* !CREATEOBSTACLE_HPP_ */

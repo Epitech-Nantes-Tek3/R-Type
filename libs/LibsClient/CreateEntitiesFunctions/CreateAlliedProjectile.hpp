@@ -24,8 +24,8 @@ namespace ecs
 {
     /// @brief This function creates a new Entity projectile_ally when an ally shoot
     /// @param world The world in that the Enemy must be created
-    /// @param allied Entity who fired an allied projectile
+    /// @param ally Entity who fired an ally projectile
     /// @return Id in size_t of the new Entity
-    std::size_t createNewAlliedProjectile(World &world, Entity &allied);
+    std::size_t createNewAlliedProjectile(World &world, Entity &ally);
 } // namespace ecs
 #endif /* !CREATEALLYPROJECTILE_HPP_ */

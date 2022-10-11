@@ -8,7 +8,6 @@
 #ifndef CREATEPROJECTILE_HPP_
 #define CREATEPROJECTILE_HPP_
 
-#include "World/World.hpp"
 #include "GameComponents/CollidableComponent.hpp"
 #include "GameComponents/DamageComponent.hpp"
 #include "GameComponents/DamageRadiusComponent.hpp"
@@ -19,10 +18,10 @@
 #include "GameComponents/SizeComponent.hpp"
 #include "GameComponents/VelocityComponent.hpp"
 #include "GameComponents/WeightComponent.hpp"
+#include "World/World.hpp"
 
 namespace ecs
 {
-
     /// @brief This function can create a new Projectile Entity in the world pass in params
     /// @param world The world in that the Projectile must be created
     /// @param pos_x The start position x of the new Projectile
@@ -34,19 +33,18 @@ namespace ecs
     inline std::size_t createNewProjectile(World &world, const int pos_x, const int pos_y,
         const double multiplierAbscissa, const double multiplierOrdinate, const unsigned short damage)
     {
-        std::size_t new_projectile = world.addEntity()
-                                         .addComponent<Position>(pos_x, pos_y)
-                                         .addComponent<Weight>(1)
-                                         .addComponent<Size>(2, 1)
-                                         .addComponent<Lifetime>()
-                                         .addComponent<Life>(10)
-                                         .addComponent<Damage>(damage)
-                                         .addComponent<DamageRadius>(5)
-                                         .addComponent<Collidable>()
-                                         .addComponent<Projectile>()
-                                         .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate)
-                                         .getId();
-        return new_projectile;
+        return world.addEntity()
+            .addComponent<Position>(pos_x, pos_y)
+            .addComponent<Weight>(1)
+            .addComponent<Size>(2, 1)
+            .addComponent<Lifetime>()
+            .addComponent<Life>(10)
+            .addComponent<Damage>(damage)
+            .addComponent<DamageRadius>(5)
+            .addComponent<Collidable>()
+            .addComponent<Projectile>()
+            .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate)
+            .getId();
     }
 } // namespace ecs
 #endif /* !CREATEPROJECTILE_HPP_ */
