@@ -33,6 +33,7 @@ void Communicator::addClientToList(Client &client)
 {
     if (std::find(_clientList.begin(), _clientList.end(), client) != _clientList.end())
         throw NetworkError("Client already registered in the communicator.", "Communicator.cpp -> addClientToList");
+    client.setId(_clientList.size() + 1);
     _clientList.push_back(client);
 }
 
