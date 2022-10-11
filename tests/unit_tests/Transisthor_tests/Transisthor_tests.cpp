@@ -243,10 +243,11 @@ Test(transisthor_testing, transit_alliedProjectile_entity)
     void *temp = transisthor.transitEcsDataToNetworkDataEntityAlliedProjectile(entityId, entityPosition.x, entityPosition.y, {1});
     void *networkAnswer = transisthor.transitNetworkDataToEcsDataEntity({Client(), temp, 1, 31});
 
-    /*cr_assert_eq(pos.multiplierOrdinate, 12);
-    cr_assert_eq(pos.multiplierAbscissa, 10);
-    newPos = buildComponentFromByteCode<Velocity>(networkAnswer);
-    cr_assert_eq(newPos.multiplierOrdinate, 12);
-    cr_assert_eq(newPos.multiplierAbscissa, 10);*/
-    (void) networkAnswer;
+    int posX = 0;
+    int posY = 0;
+
+    std::memcpy(&posX, networkAnswer, sizeof(int));
+    std::memcpy(&posY, (void *)((char *)networkAnswer + sizeof(int)), sizeof(int));
+    cr_assert_eq(posX, 1);
+    cr_assert_eq(posY, 1);
 }
