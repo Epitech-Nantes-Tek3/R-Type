@@ -27,6 +27,6 @@ Test(CreateAlliedProjectile_test, CreateAlliedProjectile)
     cr_assert_eq(2, id_new_entity);
     cr_assert_eq(1, world.getEntity(1).getComponent<Position>().x);
     cr_assert_eq(10, world.getEntity(1).getComponent<Damage>().damagePoint);
-    cr_assert_eq(1, world.getEntity(1).getComponent<Velocity>().x);
-    cr_assert_eq(1, world.getEntity(1).getComponent<Velocity>().y);
+    cr_assert_eq(1, world.getEntity(1).getComponent<Velocity>().multiplierAbscissa);
+    cr_assert_eq(1, world.getEntity(1).getComponent<Velocity>().multiplierOrdinate);
 }

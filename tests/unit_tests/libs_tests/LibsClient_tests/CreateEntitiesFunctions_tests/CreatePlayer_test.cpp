@@ -19,4 +19,6 @@ Test(CreatePlayer_test, CreatePlayer)
 
     cr_assert_eq(1, id_new_entity);
     cr_assert_eq(50, world.getEntity(1).getComponent<Position>().x);
+    cr_assert_eq(100, world.getEntity(1).getComponent<Life>().lifePoint);
+    cr_assert_eq(5, world.getEntity(1).getComponent<DamageRadius>().radius);
 }
