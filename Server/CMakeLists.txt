@@ -23,6 +23,7 @@ set_target_properties(${TARGET}
 target_include_directories(${TARGET}
     PUBLIC ${INC_ROOT}
     PUBLIC ${PROJECT_NAME}_transisthor
+    PUBLIC ${PROJECT_NAME}_createEntitiesFunctions
     PUBLIC ${PROJECT_NAME}_argumentHandler
     INTERFACE ${PROJECT_NAME}_error
     PRIVATE ${SRC_ROOT}
@@ -32,4 +33,5 @@ target_link_libraries(${TARGET}
     ${PROJECT_NAME}_error
     ${PROJECT_NAME}_transisthor
     ${PROJECT_NAME}_argumentHandler
+    ${PROJECT_NAME}_createEntitiesFunctions
 )
