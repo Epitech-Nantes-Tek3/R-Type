@@ -12,7 +12,7 @@
 
 namespace ecs
 {
-    /// @brief Player Component allow an entity to be used as a Player
+    /// @brief Player Component allows an entity to be used as a Player
     class Player : public Component {};
 } // namespace ecs
 

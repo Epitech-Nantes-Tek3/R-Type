@@ -35,20 +35,22 @@ namespace ecs
     /// @param damage Damage of projectiles fired by this Player
     /// @param damageRadius DamageRadius of projectiles fired by this Player
     /// @return Id of the new Player in std::size_t
-    inline std::size_t createNewPlayer(World &world, const int pos_x, const int pos_y, const double multiplierAbscissa, const double multiplierOrdinate, const short weight, const int size_x, const int size_y, const unsigned short life, const unsigned short damage, const unsigned short damageRadius) {
-                std::size_t new_player = world.addEntity()
-                                     .addComponent<Position>(pos_x, pos_y)
-                                     .addComponent<Weight>(weight)
-                                     .addComponent<Size>(size_x, size_y)
-                                     .addComponent<Lifetime>()
-                                     .addComponent<Life>(life)
-                                     .addComponent<Damage>(damage)
-                                     .addComponent<DamageRadius>(damageRadius)
-                                     .addComponent<Collidable>()
-                                     .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate)
-                                     .addComponent<Player>()
-                                     .getId();
-        return new_player;
+    inline std::size_t createNewPlayer(World &world, const int pos_x, const int pos_y, const double multiplierAbscissa,
+        const double multiplierOrdinate, const short weight, const int size_x, const int size_y,
+        const unsigned short life, const unsigned short damage, const unsigned short damageRadius)
+    {
+        return world.addEntity()
+            .addComponent<Position>(pos_x, pos_y)
+            .addComponent<Weight>(weight)
+            .addComponent<Size>(size_x, size_y)
+            .addComponent<Lifetime>()
+            .addComponent<Life>(life)
+            .addComponent<Damage>(damage)
+            .addComponent<DamageRadius>(damageRadius)
+            .addComponent<Collidable>()
+            .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate)
+            .addComponent<Player>()
+            .getId();
     }
 
 } // namespace ecs

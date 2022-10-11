@@ -12,7 +12,7 @@
 
 namespace ecs
 {
-    /// @brief Enemy Projectile Component allow an entity to be used as a Enemy Projectile
+    /// @brief Enemy Projectile Component allows an entity to be used as an Enemy Projectile
     class EnemyProjectile : public Component {};
 } // namespace ecs
 #endif /* !EnemyProjectileCOMPONENT_HPP_ */

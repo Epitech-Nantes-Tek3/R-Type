@@ -12,9 +12,8 @@
 
 namespace ecs
 {
-   /// @brief This Component specifies if an entity is a Projectile. This component specifies whether an entity is neither friendly fire nor enemy fire
-   class Projectile : public Component {
-}; 
+   /// @brief This Component specifies if an entity is a Projectile. This component specifies whether an entity is either friendly fire or enemy fire
+   class Projectile : public Component {}; 
 } // namespace ecs
 
 #endif /* !PROJECTILECOMPONENT_HPP_ */

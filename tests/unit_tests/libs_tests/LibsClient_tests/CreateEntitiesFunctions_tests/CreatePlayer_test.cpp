@@ -5,8 +5,6 @@
 ** CreatePlayer_test
 */
 
-#include <algorithm>
-#include <iostream>
 #include <criterion/criterion.h>
 #include "World/World.hpp"
 #include "CreatePlayer.hpp"

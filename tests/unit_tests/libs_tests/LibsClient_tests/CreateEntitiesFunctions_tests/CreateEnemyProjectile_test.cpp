@@ -5,8 +5,7 @@
 ** CreateEnemyProjectile_test
 */
 
-#include <algorithm>
-#include <iostream>
+
 #include <criterion/criterion.h>
 #include "World/World.hpp"
 #include "CreateEnemyProjectile.hpp"

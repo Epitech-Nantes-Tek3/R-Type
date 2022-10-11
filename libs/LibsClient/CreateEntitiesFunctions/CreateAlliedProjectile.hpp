@@ -22,7 +22,7 @@
 
 namespace ecs
 {
-    /// @brief This function creates a new Entity projectile_ally when an allied shoot
+    /// @brief This function creates a new Entity projectile_ally when an ally shoot
     /// @param world The world in that the Enemy must be created
     /// @param allied Entity who fired an allied projectile
     /// @return Id in size_t of the new Entity

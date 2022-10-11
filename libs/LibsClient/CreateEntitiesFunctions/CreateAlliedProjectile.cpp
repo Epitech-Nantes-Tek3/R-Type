@@ -9,8 +9,7 @@
 
 namespace ecs
 {
-    std::size_t createNewAlliedProjectile(World &world, Entity &allied)
-    {
+    std::size_t createNewAlliedProjectile(World &world, Entity &allied) {
         Position pos = allied.getComponent<Position>();
         Damage damage = allied.getComponent<Damage>();
         Velocity velocity = allied.getComponent<Velocity>();

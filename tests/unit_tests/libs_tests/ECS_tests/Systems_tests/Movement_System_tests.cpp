@@ -5,8 +5,6 @@
 ** Movement_System_tests
 */
 
-#include <algorithm>
-#include <iostream>
 #include <criterion/criterion.h>
 #include "World/World.hpp"
 #include "Entity/Entity.hpp"

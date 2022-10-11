@@ -31,21 +31,21 @@ namespace ecs
     /// @param multiplierOrdinate The Velocity multiplierOrdinate of the new Projectile
     /// @param damage The Damage of the new Projectile
     /// @return  Id of the new Projectile in std::size_t
-    inline std::size_t createNewProjectile(World &world, const int pos_x, const int pos_y, const double multiplierAbscissa, const double multiplierOrdinate, const unsigned short damage)
+    inline std::size_t createNewProjectile(World &world, const int pos_x, const int pos_y,
+        const double multiplierAbscissa, const double multiplierOrdinate, const unsigned short damage)
     {
-        std::size_t new_projectile =
-            world.addEntity()
-                .addComponent<Position>(pos_x, pos_y)
-                .addComponent<Weight>(1)
-                .addComponent<Size>(2, 1)
-                .addComponent<Lifetime>()
-                .addComponent<Life>(10)
-                .addComponent<Damage>(damage)
-                .addComponent<DamageRadius>(5)
-                .addComponent<Collidable>()
-                .addComponent<Projectile>()
-                .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate)
-                .getId();
+        std::size_t new_projectile = world.addEntity()
+                                         .addComponent<Position>(pos_x, pos_y)
+                                         .addComponent<Weight>(1)
+                                         .addComponent<Size>(2, 1)
+                                         .addComponent<Lifetime>()
+                                         .addComponent<Life>(10)
+                                         .addComponent<Damage>(damage)
+                                         .addComponent<DamageRadius>(5)
+                                         .addComponent<Collidable>()
+                                         .addComponent<Projectile>()
+                                         .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate)
+                                         .getId();
         return new_projectile;
     }
 } // namespace ecs
