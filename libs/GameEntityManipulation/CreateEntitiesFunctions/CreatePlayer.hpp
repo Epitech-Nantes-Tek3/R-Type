@@ -23,7 +23,7 @@
 namespace ecs
 {
     /// @brief This function creates a new Player Entity with these parameters
-    /// @param world The world in that the Player must be created
+    /// @param world The world in which the Player must be created
     /// @param pos_x Position x of the Player
     /// @param pos_y Position y of the Player
     /// @param weight Weight of the Player

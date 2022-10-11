@@ -24,7 +24,7 @@ namespace ecs
 {
 
     /// @brief This function create a new Enemy Entity with these parameters
-    /// @param world The world in that the Enemy must be created
+    /// @param world The world in which the Enemy must be created
     /// @param pos_x Position x of the Enemy
     /// @param pos_y Position y of the Enemy
     /// @param multiplierAbscissa The Velocity multiplierAbscissa for the new Enemy

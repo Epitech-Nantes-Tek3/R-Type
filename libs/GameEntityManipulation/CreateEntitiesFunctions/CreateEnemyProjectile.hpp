@@ -24,7 +24,7 @@ namespace ecs
 {
 
     /// @brief This function create a new Entity projectile_enemy when an enemy shoot
-    /// @param world The world in that the EnemyProjectile must be created
+    /// @param world The world in which the EnemyProjectile must be created
     /// @param enemy Enemy who fired
     /// @return Id in size_t of the new Entity
     std::size_t createNewEnemyProjectile(World &world, Entity &enemy)

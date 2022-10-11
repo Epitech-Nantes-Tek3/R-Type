@@ -24,7 +24,7 @@ namespace ecs
 {
 
     /// @brief This function can create a new Obstacle Entity in the world pass in params
-    /// @param world The world in that the Obstacle must be created
+    /// @param world The world in which the Obstacle must be created
     /// @param pos_x The position x of the new Obstacle
     /// @param pos_y The position y of the new Obstacle
     /// @param damage The damage inflicted to an Entity if this Entity hits this Obstacle
