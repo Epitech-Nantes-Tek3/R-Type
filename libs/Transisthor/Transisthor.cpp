@@ -142,8 +142,14 @@ void Transisthor::componentConvertVelocityType(unsigned short id, void *byteCode
 
 void Transisthor::entityConvertAlliedProjectileType(unsigned short id, void *byteCode)
 {
-    (void)id;
-    (void)byteCode;
+    int posX = 0;
+    int posY = 0;
+
+    std::memcpy(&posX, byteCode, sizeof(int));
+    std::memcpy(&posY, (void *)((char *)byteCode + sizeof(int)), sizeof(int));
+    (void) posX;
+    (void) posY;
+    (void) id;
     /// SEND THE NEW ENTITY TO ECS, WILL BE ADDED WHEN TRANSISTHOR WILL BE FULLY IMPLEMENTED
 }
 
