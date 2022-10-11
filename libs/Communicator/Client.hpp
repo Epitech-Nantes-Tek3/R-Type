@@ -21,7 +21,7 @@ namespace communicator_lib
         /// @brief Construct a new Client object
         /// @param address The address of the client
         /// @param port The port of the client
-        Client(std::string address = "127.0.0.1", long port = 0);
+        Client(std::string address = "127.0.0.1", unsigned short port = 0);
 
         /// @brief Destroy the Client object
         ~Client() = default;
