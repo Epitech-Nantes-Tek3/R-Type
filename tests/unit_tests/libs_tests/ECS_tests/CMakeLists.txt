@@ -1,3 +1,4 @@
 add_subdirectory(Entity_tests)
 add_subdirectory(Resource_tests)
 add_subdirectory(World_tests)
+add_subdirectory(Systems_tests)

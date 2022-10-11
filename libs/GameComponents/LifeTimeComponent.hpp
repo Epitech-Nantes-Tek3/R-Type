@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2022
 ** R-Type
 ** File description:
-** LifetimeComponent
+** LifeTime
 */
 
 #ifndef LIFETIMECOMPONENT_HPP_
