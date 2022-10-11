@@ -152,3 +152,18 @@ Test(transisthor_testing, transit_velocity_component)
     cr_assert_eq(newPos.multiplierOrdinate, 12);
     cr_assert_eq(newPos.multiplierAbscissa, 10);
 }
+
+Test(transisthor_testing, transit_to_a_non_valid_client)
+{
+    Communicator communicator = Communicator();
+    World world = World(2);
+    Transisthor transisthor = Transisthor(communicator, world);
+    Velocity pos = Velocity(10, 12);
+    try {
+        void *temp = transisthor.transitEcsDataToNetworkData<Velocity>(1, 7, pos, {1});
+        (void) temp;
+        cr_assert_eq(41, 42);
+    } catch (NetworkError &err) {
+        cr_assert_eq(42, 42);
+    }
+}
