@@ -6,9 +6,18 @@
 */
 
 #include <iostream>
+#include "ArgumentHandler/ArgumentHandler.hpp"
+#include "Server.hpp"
 
-int main(__attribute__((unused)) int ac, __attribute__((unused)) char **av)
+using namespace server_data;
+using namespace argument_handler;
+
+int main(int ac, char **av)
 {
-    std::cout << "Server : 42" << std::endl;
+    ArgumentHandler argumentHandler = ArgumentHandler(ac, av);
+    ArgumentHandler::ServerInformation serverInformation = argumentHandler.extractServerInformation();
+    Server server = Server(serverInformation.address, serverInformation.port);
+
+    server.createANewRoom();
     return 0;
 }

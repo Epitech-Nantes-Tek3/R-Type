@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2022
-** Project
+** R-Type
 ** File description:
 ** EquipmentComponent
 */
@@ -13,14 +13,14 @@
 namespace ecs
 {
     /// @brief The Equipment class, giving bonuses to entities
-    class Equipment : public Component{
+    class Equipment : public Component {
       public:
         /// @brief The equipment type
         unsigned short typeId;
 
         /// @brief Constructor of the Equipment
         /// @param EquipId the id of the equipment (defined in the corresponding system)
-        Equipment(unsigned short EquipId = 0) : typeId(EquipId) {};
+        Equipment(unsigned short EquipId = 0) : typeId(EquipId){};
         /// @brief Default Constructor
         ~Equipment() = default;
     };

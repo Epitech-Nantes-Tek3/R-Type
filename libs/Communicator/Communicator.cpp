@@ -19,12 +19,14 @@ Communicator::Communicator() : _receiverModule(Receiver())
 {
     _clientList = {};
     _senderModule = Sender();
+    _transisthorBridge = std::shared_ptr<Transisthor>(nullptr);
 }
 
 Communicator::Communicator(Client networkBind) : _receiverModule(Receiver(networkBind))
 {
     _clientList = {};
     _senderModule = Sender(networkBind.getPort());
+    _transisthorBridge = std::shared_ptr<Transisthor>(nullptr);
 }
 
 void Communicator::addClientToList(Client &client)
@@ -57,6 +59,7 @@ CommunicatorMessage Communicator::getLastMessage(void)
     try {
         Message lastMessage = _receiverModule.getLastMessage();
         receiveProtocol2X(lastMessage);
+        receiveProtocol3X(lastMessage);
         try {
             addClientToList(lastMessage.clientInfo);
             return CommunicatorMessage{lastMessage, true};
@@ -108,7 +111,7 @@ void Communicator::sendProtocol20(Client client, Client newEndpoint)
     unsigned short endpointPort = newEndpoint.getPort();
 
     if (dataContent == nullptr)
-        throw std::system_error();
+        throw error_lib::MallocError("Malloc failed.");
     std::memcpy(dataContent, &endpointPort, sizeof(unsigned short));
     std::memcpy((void *)((char *)dataContent + sizeof(unsigned short)), newEndpoint.getAddress().data(),
         newEndpoint.getAddress().size());
@@ -127,6 +130,14 @@ void Communicator::receiveProtocol2X(Message lastMessage)
         replaceClientByAnother(_receiverModule.getLastMessage().clientInfo, lastMessage.clientInfo);
         std::cerr << "You have been asked to switch to a new communicator." << std::endl;
         _senderModule.sendDataToAClient(lastMessage.clientInfo, nullptr, 0, 21);
+    }
+}
+
+void Communicator::receiveProtocol3X(Message lastMessage)
+{
+    if (lastMessage.type == 30) {
+        _transisthorBridge.get()->transitNetworkDataToEcsData(lastMessage);
+        throw NetworkError("No message waiting for traitment.", "Communicator.cpp -> getLastMessage");
     }
 }
 

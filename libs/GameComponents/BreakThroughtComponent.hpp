@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2022
-** Project
+** R-Type
 ** File description:
 ** BreakThrought
 */
@@ -15,6 +15,5 @@ namespace ecs
     /// @brief The BreakThrought component, to add the piercing ability to projectiles
     class BreakThrought : public Component {};
 } // namespace ecs
-
 
 #endif /* !BREAKTHROUGHT_HPP_ */
