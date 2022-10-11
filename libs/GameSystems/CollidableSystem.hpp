@@ -49,7 +49,7 @@ namespace ecs
         }
 
         /// @brief Collide Function
-        /// This function checks all the given entities given in params, to see if they collide
+        /// This function checks all the given entities passed in params, to see if they collide
         /// @param fstEntities first vector of entities to be checked
         /// @param sndEntities second vector of Entities to be checked
         void collide(
