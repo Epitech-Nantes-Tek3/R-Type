@@ -41,7 +41,23 @@ Transisthor::Transisthor(Communicator &communicator, World &ecsWorld) : _communi
         std::bind(&Transisthor::entityConvertAlliedProjectileType, this, std::placeholders::_1, std::placeholders::_2);
 }
 
-void *Transisthor::transitNetworkDataToEcsData(Message networkData)
+void *Transisthor::transitNetworkDataToEcsDataComponent(Message networkData)
+{
+    unsigned short id = 0;
+    unsigned short type = 0;
+    void *object = nullptr;
+
+    std::memcpy(&id, networkData.data, sizeof(unsigned short));
+    std::memcpy(&type, (void *)((char *)networkData.data + sizeof(unsigned short)), sizeof(unsigned short));
+    object = (void *)((char *)networkData.data + sizeof(unsigned short) * 2);
+    if (_componentConvertFunctionList.find(type) == _componentConvertFunctionList.end())
+        return object;                                                   /// THROW ERROR INVALID TYPE
+    std::cerr << "A component have been transfered to ECS" << std::endl; /// ONLY USE FOR FUNCTIONAL TESTING
+    _componentConvertFunctionList[type](id, object);
+    return object;
+}
+
+void *Transisthor::transitNetworkDataToEcsDataEntity(Message networkData)
 {
     unsigned short id = 0;
     unsigned short type = 0;

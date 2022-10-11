@@ -48,7 +48,13 @@ namespace transisthor_lib
         /// to the ecs.
         /// @param networkData Content of the network data (Refer to communicator lib document for more details)
         /// @return Return value his only used for testing (Unit and functional)
-        void *transitNetworkDataToEcsData(Message networkData);
+        void *transitNetworkDataToEcsDataComponent(Message networkData);
+
+        /// @brief Function called by the Communicator. The transfered data will be converted to an ECS object and send
+        /// to the ecs.
+        /// @param networkData Content of the network data (Refer to communicator lib document for more details)
+        /// @return Return value his only used for testing (Unit and functional)
+        void *transitNetworkDataToEcsDataEntity(Message networkData);
 
         /// @brief Function called by the ECS. The transfered data will be converted to a Network object and send to the
         /// communicator.
