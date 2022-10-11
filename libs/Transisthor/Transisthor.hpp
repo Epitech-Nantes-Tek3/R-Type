@@ -108,7 +108,7 @@ namespace transisthor_lib
         /// @brief Cross communicator client list and return the matched client
         /// @param id wanted id
         /// @return matched client
-        /// @throw When no client his founded, throw a CommunicatorError
+        /// @throw When no client his founded, throw a NetowkrError
         Client getClientByHisId(unsigned short id);
 
       private:

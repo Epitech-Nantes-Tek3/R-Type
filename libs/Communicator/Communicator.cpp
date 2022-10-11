@@ -155,7 +155,7 @@ Client Communicator::getClientByHisId(unsigned short id)
         if (it.getId() == id)
             return it;
     }
-    /// THROW AN ERROR
+    throw NetworkError("No matched client founded.", "Communicator.cpp -> getClientByHisId");
     return Client();
 }
 

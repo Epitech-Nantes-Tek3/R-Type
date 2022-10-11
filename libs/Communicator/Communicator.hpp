@@ -112,7 +112,7 @@ namespace communicator_lib
         /// @brief Cross all client list and return the matched client
         /// @param id matched id
         /// @return founded client
-        /// @throw an error when no client his founded (CommunicatorError)
+        /// @throw an error when no client his founded, throw a NetworkError
         Client getClientByHisId(unsigned short id);
 
       private:
