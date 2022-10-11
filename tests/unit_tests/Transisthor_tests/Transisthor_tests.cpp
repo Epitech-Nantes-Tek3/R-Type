@@ -167,3 +167,54 @@ Test(transisthor_testing, transit_to_a_non_valid_client)
         cr_assert_eq(42, 42);
     }
 }
+
+Test(transisthor_testing, transit_get_a_server_id)
+{
+    Communicator communicator = Communicator();
+    World world = World(2);
+    Transisthor transisthor = Transisthor(communicator, world);
+    Velocity pos = Velocity(10, 12);
+    Client temporaryClient = Client();
+    communicator.addClientToList(temporaryClient);
+    try {
+        void *temp = transisthor.transitEcsDataToNetworkData<Velocity>(1, 7, pos, {transisthor.getServerEndpointId()});
+        (void) temp;
+        cr_assert_eq(42, 42);
+    } catch (NetworkError &err) {
+        cr_assert_eq(41, 42);
+    }
+}
+
+Test(transisthor_testing, transit_get_a_server_id_when_no_server_here)
+{
+    Communicator communicator = Communicator();
+    World world = World(2);
+    Transisthor transisthor = Transisthor(communicator, world);
+    Velocity pos = Velocity(10, 12);
+    try {
+        void *temp = transisthor.transitEcsDataToNetworkData<Velocity>(1, 7, pos, {transisthor.getServerEndpointId()});
+        (void) temp;
+        cr_assert_eq(41, 42);
+    } catch (NetworkError &err) {
+        cr_assert_eq(42, 42);
+    }
+}
+
+Test(transisthor_testing, transit_get_a_server_id_when_multiple_server_here)
+{
+    Communicator communicator = Communicator();
+    World world = World(2);
+    Transisthor transisthor = Transisthor(communicator, world);
+    Velocity pos = Velocity(10, 12);
+    Client temporaryClient = Client();
+    Client temporaryClientTwo = Client("AAA", 10);
+    communicator.addClientToList(temporaryClient);
+    communicator.addClientToList(temporaryClientTwo);
+    try {
+        void *temp = transisthor.transitEcsDataToNetworkData<Velocity>(1, 7, pos, {transisthor.getServerEndpointId()});
+        (void) temp;
+        cr_assert_eq(41, 42);
+    } catch (NetworkError &err) {
+        cr_assert_eq(42, 42);
+    }
+}
