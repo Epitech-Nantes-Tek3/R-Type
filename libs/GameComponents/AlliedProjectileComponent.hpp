@@ -12,7 +12,7 @@
 
 namespace ecs
 {
-    /// @brief Allied Projectile Component allows an entity to be used as an Ally Projectile
+    /// @brief Allied Projectile Component allows an entity to be used as an Allied Projectile
     class AlliedProjectile : public Component {};
 } // namespace ecs
 #endif /* !PROJECTILEALLYCOMPONENT_HPP_ */
