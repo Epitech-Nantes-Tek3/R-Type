@@ -18,4 +18,3 @@ Client::Client(std::string address, unsigned short port)
     this->_port = port;
     _id = 0;
 }
-

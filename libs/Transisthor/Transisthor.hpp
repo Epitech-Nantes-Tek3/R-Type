@@ -11,8 +11,8 @@
 #define TRANSISTHOR_HPP_
 
 #include "Communicator/Communicator.hpp"
-#include "World/World.hpp"
 #include "Error/Error.hpp"
+#include "World/World.hpp"
 
 using namespace ecs;
 using namespace communicator_lib;
@@ -72,8 +72,8 @@ namespace transisthor_lib
             std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2), &component, sizeof(C));
             for (auto it : destination) {
                 temporaryClient = getClientByHisId(it);
-                transisthor_lib::sendDataToAClientWithoutCommunicator(
-                    _communicator, temporaryClient, networkObject, sizeof(void *) * ((sizeof(C)) + sizeof(unsigned short) * 2), 30);
+                transisthor_lib::sendDataToAClientWithoutCommunicator(_communicator, temporaryClient, networkObject,
+                    sizeof(void *) * ((sizeof(C)) + sizeof(unsigned short) * 2), 30);
             }
             return networkObject;
         }

@@ -162,7 +162,8 @@ Client Communicator::getClientByHisId(unsigned short id)
 unsigned short Communicator::getServerEndpointId(void)
 {
     if (_clientList.size() != 1)
-        throw NetworkError("You are not inside a client communicator. No server can be found.", "Communicator.cpp -> getServerEndpointId");
+        throw NetworkError("You are not inside a client communicator. No server can be found.",
+            "Communicator.cpp -> getServerEndpointId");
     return _clientList.at(0).getId();
 }
 

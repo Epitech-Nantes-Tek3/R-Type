@@ -161,7 +161,7 @@ Test(transisthor_testing, transit_to_a_non_valid_client)
     Velocity pos = Velocity(10, 12);
     try {
         void *temp = transisthor.transitEcsDataToNetworkData<Velocity>(1, 7, pos, {1});
-        (void) temp;
+        (void)temp;
         cr_assert_eq(41, 42);
     } catch (NetworkError &err) {
         cr_assert_eq(42, 42);
@@ -178,7 +178,7 @@ Test(transisthor_testing, transit_get_a_server_id)
     communicator.addClientToList(temporaryClient);
     try {
         void *temp = transisthor.transitEcsDataToNetworkData<Velocity>(1, 7, pos, {transisthor.getServerEndpointId()});
-        (void) temp;
+        (void)temp;
         cr_assert_eq(42, 42);
     } catch (NetworkError &err) {
         cr_assert_eq(41, 42);
@@ -193,7 +193,7 @@ Test(transisthor_testing, transit_get_a_server_id_when_no_server_here)
     Velocity pos = Velocity(10, 12);
     try {
         void *temp = transisthor.transitEcsDataToNetworkData<Velocity>(1, 7, pos, {transisthor.getServerEndpointId()});
-        (void) temp;
+        (void)temp;
         cr_assert_eq(41, 42);
     } catch (NetworkError &err) {
         cr_assert_eq(42, 42);
@@ -212,7 +212,7 @@ Test(transisthor_testing, transit_get_a_server_id_when_multiple_server_here)
     communicator.addClientToList(temporaryClientTwo);
     try {
         void *temp = transisthor.transitEcsDataToNetworkData<Velocity>(1, 7, pos, {transisthor.getServerEndpointId()});
-        (void) temp;
+        (void)temp;
         cr_assert_eq(41, 42);
     } catch (NetworkError &err) {
         cr_assert_eq(42, 42);
