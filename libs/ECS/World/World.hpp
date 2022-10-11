@@ -17,8 +17,8 @@
 #include "Entity/Entity.hpp"
 #include "Resource/Resource.hpp"
 #include "System/System.hpp"
-#include <unordered_map>
 #include "Transisthor/Transisthor.hpp"
+#include <unordered_map>
 
 namespace transisthor_lib
 {
@@ -45,7 +45,7 @@ namespace ecs
 
         ///@brief Construct a new World object
         ///@param id It's used to know what World is (example in a video game you can have a World(1) for pause menu and
-        ///another World(2) for your game)
+        /// another World(2) for your game)
         inline World(ID id) : _id(id), _nextEntityId(1) { _transisthorBridge = std::shared_ptr<Transisthor>(nullptr); };
 
         ///@brief Get the object's ID
@@ -61,6 +61,28 @@ namespace ecs
         ///@return Entity& reference to the searched Entity
         ///@throw std::logic_error Throw an error if the entity does not exist
         Entity &getEntity(ID id) const;
+
+        /// @brief It's a function which is used to update a component of an entity from a given distinctive component.
+        /// @tparam DistinctiveC The component type which is used to disctinct the Entity
+        /// @tparam C The component type of the component to update
+        /// @param distinctive The component which is used to disctinct the Entity
+        /// @param component The component of the component to update
+        /// @return bool True if the coponent has been modified. False otherwise.
+        template <std::derived_from<Component> DistinctiveC, std::derived_from<Component> C>
+        bool updateComponentOfAnEntityFromGivenDistinctiveComponent(DistinctiveC distinctive, C component)
+        {
+            std::vector<std::shared_ptr<Entity>> joined = this->joinEntities<DistinctiveC>();
+
+            for (std::shared_ptr<Entity> entityPtr : joined) {
+                DistinctiveC &dc = entityPtr->getComponent<DistinctiveC>();
+                if (distinctive == dc) {
+                    C &old = entityPtr->getComponent<C>();
+                    old = component;
+                    return true;
+                }
+            }
+            return false;
+        }
 
         ///@brief This function is used to join entities with the same components
         ///@tparam C Component types to search
