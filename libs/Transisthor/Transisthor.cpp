@@ -77,7 +77,7 @@ void *Transisthor::transitNetworkDataToEcsDataEntity(Message networkData)
     std::memcpy(&type, (void *)((char *)networkData.data + sizeof(unsigned short)), sizeof(unsigned short));
     object = (void *)((char *)networkData.data + sizeof(unsigned short) * 2);
     if (_entityConvertFunctionList.find(type) == _entityConvertFunctionList.end())
-        return object;                                                   /// THROW ERROR INVALID TYPE
+        return object;                                                /// THROW ERROR INVALID TYPE
     std::cerr << "A entity have been transfered to ECS" << std::endl; /// ONLY USE FOR FUNCTIONAL TESTING
     _entityConvertFunctionList[type](id, object);
     return object;
@@ -157,9 +157,9 @@ void Transisthor::entityConvertAlliedProjectileType(unsigned short id, void *byt
 
     std::memcpy(&posX, byteCode, sizeof(int));
     std::memcpy(&posY, (void *)((char *)byteCode + sizeof(int)), sizeof(int));
-    (void) posX;
-    (void) posY;
-    (void) id;
+    (void)posX;
+    (void)posY;
+    (void)id;
     /// SEND THE NEW ENTITY TO ECS, WILL BE ADDED WHEN TRANSISTHOR WILL BE FULLY IMPLEMENTED
 }
 
@@ -170,9 +170,9 @@ void Transisthor::entityConvertEnemyType(unsigned short id, void *byteCode)
 
     std::memcpy(&posX, byteCode, sizeof(int));
     std::memcpy(&posY, (void *)((char *)byteCode + sizeof(int)), sizeof(int));
-    (void) posX;
-    (void) posY;
-    (void) id;
+    (void)posX;
+    (void)posY;
+    (void)id;
     /// SEND THE NEW ENTITY TO ECS, WILL BE ADDED WHEN TRANSISTHOR WILL BE FULLY IMPLEMENTED
 }
 
@@ -183,9 +183,9 @@ void Transisthor::entityConvertEnemyProjectileType(unsigned short id, void *byte
 
     std::memcpy(&posX, byteCode, sizeof(int));
     std::memcpy(&posY, (void *)((char *)byteCode + sizeof(int)), sizeof(int));
-    (void) posX;
-    (void) posY;
-    (void) id;
+    (void)posX;
+    (void)posY;
+    (void)id;
     /// SEND THE NEW ENTITY TO ECS, WILL BE ADDED WHEN TRANSISTHOR WILL BE FULLY IMPLEMENTED
 }
 
@@ -196,9 +196,9 @@ void Transisthor::entityConvertObstacleType(unsigned short id, void *byteCode)
 
     std::memcpy(&posX, byteCode, sizeof(int));
     std::memcpy(&posY, (void *)((char *)byteCode + sizeof(int)), sizeof(int));
-    (void) posX;
-    (void) posY;
-    (void) id;
+    (void)posX;
+    (void)posY;
+    (void)id;
     /// SEND THE NEW ENTITY TO ECS, WILL BE ADDED WHEN TRANSISTHOR WILL BE FULLY IMPLEMENTED
 }
 
@@ -209,9 +209,9 @@ void Transisthor::entityConvertPlayerType(unsigned short id, void *byteCode)
 
     std::memcpy(&posX, byteCode, sizeof(int));
     std::memcpy(&posY, (void *)((char *)byteCode + sizeof(int)), sizeof(int));
-    (void) posX;
-    (void) posY;
-    (void) id;
+    (void)posX;
+    (void)posY;
+    (void)id;
     /// SEND THE NEW ENTITY TO ECS, WILL BE ADDED WHEN TRANSISTHOR WILL BE FULLY IMPLEMENTED
 }
 
@@ -226,11 +226,11 @@ void Transisthor::entityConvertProjectileType(unsigned short id, void *byteCode)
     std::memcpy(&posY, (void *)((char *)byteCode + sizeof(int)), sizeof(int));
     std::memcpy(&velAbsc, (void *)((char *)byteCode + sizeof(int) * 2), sizeof(double));
     std::memcpy(&velOrd, (void *)((char *)byteCode + sizeof(int) * 2 + sizeof(double)), sizeof(double));
-    (void) posX;
-    (void) posY;
-    (void) velAbsc;
-    (void) velOrd;
-    (void) id;
+    (void)posX;
+    (void)posY;
+    (void)velAbsc;
+    (void)velOrd;
+    (void)id;
     /// SEND THE NEW ENTITY TO ECS, WILL BE ADDED WHEN TRANSISTHOR WILL BE FULLY IMPLEMENTED
 }
 

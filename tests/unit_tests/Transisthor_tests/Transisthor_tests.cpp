@@ -6,6 +6,12 @@
 */
 
 #include <criterion/criterion.h>
+#include "CreateAlliedProjectile.hpp"
+#include "CreateEnemy.hpp"
+#include "CreateEnemyProjectile.hpp"
+#include "CreateObstacle.hpp"
+#include "CreatePlayer.hpp"
+#include "CreateProjectile.hpp"
 #include "Error/Error.hpp"
 #include "GameComponents/DestinationComponent.hpp"
 #include "GameComponents/EquipmentComponent.hpp"
@@ -15,12 +21,6 @@
 #include "GameComponents/PositionComponent.hpp"
 #include "GameComponents/VelocityComponent.hpp"
 #include "Transisthor/Transisthor.hpp"
-#include "CreateAlliedProjectile.hpp"
-#include "CreateEnemy.hpp"
-#include "CreateEnemyProjectile.hpp"
-#include "CreatePlayer.hpp"
-#include "CreateObstacle.hpp"
-#include "CreateProjectile.hpp"
 
 using namespace transisthor_lib;
 using namespace communicator_lib;
@@ -287,17 +287,15 @@ Test(transisthor_testing, transit_alliedProjectile_entity)
     Client temporaryClient = Client();
     communicator.addClientToList(temporaryClient);
 
-    std::size_t allied = world.addEntity()
-                            .addComponent<Position>(1, 2)
-                            .addComponent<Damage>(10)
-                            .addComponent<Velocity>(1, 1)
-                            .getId();
+    std::size_t allied =
+        world.addEntity().addComponent<Position>(1, 2).addComponent<Damage>(10).addComponent<Velocity>(1, 1).getId();
 
     std::size_t entityId = createNewAlliedProjectile(world, world.getEntity(allied));
 
     Position entityPosition = world.getEntity(entityId).getComponent<Position>();
 
-    void *temp = transisthor.transitEcsDataToNetworkDataEntityAlliedProjectile(entityId, entityPosition.x, entityPosition.y, {1});
+    void *temp = transisthor.transitEcsDataToNetworkDataEntityAlliedProjectile(
+        entityId, entityPosition.x, entityPosition.y, {1});
     void *networkAnswer = transisthor.transitNetworkDataToEcsDataEntity({Client(), temp, 1, 31});
 
     int posX = 0;
@@ -319,17 +317,15 @@ Test(transisthor_testing, transit_enemyProjectile_entity)
     Client temporaryClient = Client();
     communicator.addClientToList(temporaryClient);
 
-    std::size_t enemy = world.addEntity()
-                            .addComponent<Position>(1, 2)
-                            .addComponent<Damage>(10)
-                            .addComponent<Velocity>(1, 1)
-                            .getId();
+    std::size_t enemy =
+        world.addEntity().addComponent<Position>(1, 2).addComponent<Damage>(10).addComponent<Velocity>(1, 1).getId();
 
     std::size_t entityId = createNewEnemyProjectile(world, world.getEntity(enemy));
 
     Position entityPosition = world.getEntity(entityId).getComponent<Position>();
 
-    void *temp = transisthor.transitEcsDataToNetworkDataEntityEnemyProjectile(entityId, entityPosition.x, entityPosition.y, {1});
+    void *temp =
+        transisthor.transitEcsDataToNetworkDataEntityEnemyProjectile(entityId, entityPosition.x, entityPosition.y, {1});
     void *networkAnswer = transisthor.transitNetworkDataToEcsDataEntity({Client(), temp, 1, 31});
 
     int posX = 0;
@@ -355,7 +351,8 @@ Test(transisthor_testing, transit_obstacle_entity)
 
     Position entityPosition = world.getEntity(entityId).getComponent<Position>();
 
-    void *temp = transisthor.transitEcsDataToNetworkDataEntityObstacle(entityId, entityPosition.x, entityPosition.y, {1});
+    void *temp =
+        transisthor.transitEcsDataToNetworkDataEntityObstacle(entityId, entityPosition.x, entityPosition.y, {1});
     void *networkAnswer = transisthor.transitNetworkDataToEcsDataEntity({Client(), temp, 1, 31});
 
     int posX = 0;
@@ -363,11 +360,8 @@ Test(transisthor_testing, transit_obstacle_entity)
 
     std::memcpy(&posX, networkAnswer, sizeof(int));
     std::memcpy(&posY, (void *)((char *)networkAnswer + sizeof(int)), sizeof(int));
-    ///std::memcpy(&velAbsc, (void *)((char *)networkAnswer + sizeof(int) * 2), sizeof(double));
-    ///std::memcpy(&velOrd, (void *)((char *)networkAnswer + sizeof(int) * 2 + sizeof(double)), sizeof(double));
     cr_assert_eq(posX, 10);
     cr_assert_eq(posY, 120);
-
 }
 
 Test(transisthor_testing, transit_projectile_entity)
@@ -385,7 +379,8 @@ Test(transisthor_testing, transit_projectile_entity)
     Position entityPosition = world.getEntity(entityId).getComponent<Position>();
     Velocity entityVel = world.getEntity(entityId).getComponent<Velocity>();
 
-    void *temp = transisthor.transitEcsDataToNetworkDataEntityProjectile(entityId, entityPosition.x, entityPosition.y, entityVel.multiplierAbscissa, entityVel.multiplierOrdinate, {1});
+    void *temp = transisthor.transitEcsDataToNetworkDataEntityProjectile(
+        entityId, entityPosition.x, entityPosition.y, entityVel.multiplierAbscissa, entityVel.multiplierOrdinate, {1});
     void *networkAnswer = transisthor.transitNetworkDataToEcsDataEntity({Client(), temp, 1, 31});
 
     int posX = 0;
@@ -401,5 +396,4 @@ Test(transisthor_testing, transit_projectile_entity)
     cr_assert_eq(posY, 120);
     cr_assert_eq(velAbsc, 4);
     cr_assert_eq(velOrd, 5);
-
 }

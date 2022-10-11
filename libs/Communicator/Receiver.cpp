@@ -136,10 +136,7 @@ void Receiver::dataTraitmentType20(Message dataContent)
     addMessage({dataContent.clientInfo, nullptr, 0, 20});
 }
 
-void Receiver::dataTraitmentType21(Message dataContent)
-{
-    addMessage({dataContent.clientInfo, nullptr, 0, 21});
-}
+void Receiver::dataTraitmentType21(Message dataContent) { addMessage({dataContent.clientInfo, nullptr, 0, 21}); }
 
 void Receiver::dataTraitmentType30(Message dataContent)
 {
