@@ -117,16 +117,24 @@ namespace transisthor_lib
         /// @param veloOrd Ordinate value for the Velocity component
         /// @param destination of the message
         /// @return Return value his only used for testing (Unit and functional)
-        void *transitEcsDataToNetworkDataEntityAlliedProjectile(unsigned short id, unsigned short life, int posX, int posY, double veloAbsc, double veloOrd, std::vector<unsigned short> destination)
+        void *transitEcsDataToNetworkDataEntityAlliedProjectile(unsigned short id, int posX, int posY, std::vector<unsigned short> destination)
         {
-            (void)id;
-            (void)life;
-            (void)posX;
-            (void)posY;
-            (void)veloAbsc;
-            (void)veloOrd;
-            (void)destination;
-            return nullptr;
+            void *networkObject = std::malloc(sizeof(void *) * (sizeof(unsigned short) * 2 + sizeof(int) * 2));
+            unsigned short typeId = 1;
+            Client temporaryClient;
+
+            if (networkObject == nullptr)
+                throw error_lib::MallocError("Malloc failed.");
+            std::memcpy(networkObject, &id, sizeof(unsigned short));
+            std::memcpy((void *)((char *)networkObject + sizeof(unsigned short)), &typeId, sizeof(unsigned short));
+            std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2), &posX, sizeof(int));
+            std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2 + sizeof(int)), &posY, sizeof(int));
+            for (auto it : destination) {
+                temporaryClient = getClientByHisId(it);
+                transisthor_lib::sendDataToAClientWithoutCommunicator(_communicator, temporaryClient, networkObject,
+                    sizeof(void *) * (sizeof(unsigned short) * 2 + sizeof(int) * 2), 31);
+            }
+            return networkObject;
         }
 
         /// @brief Cross communicator client list and return the matched client
