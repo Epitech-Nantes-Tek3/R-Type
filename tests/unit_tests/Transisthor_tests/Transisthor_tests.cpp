@@ -231,7 +231,7 @@ Test(transisthor_testing, transit_alliedProjectile_entity)
     communicator.addClientToList(temporaryClient);
 
     std::size_t allied = world.addEntity()
-                            .addComponent<Position>(1, 1)
+                            .addComponent<Position>(1, 2)
                             .addComponent<Damage>(10)
                             .addComponent<Velocity>(1, 1)
                             .getId();
@@ -249,5 +249,5 @@ Test(transisthor_testing, transit_alliedProjectile_entity)
     std::memcpy(&posX, networkAnswer, sizeof(int));
     std::memcpy(&posY, (void *)((char *)networkAnswer + sizeof(int)), sizeof(int));
     cr_assert_eq(posX, 1);
-    cr_assert_eq(posY, 1);
+    cr_assert_eq(posY, 2);
 }
