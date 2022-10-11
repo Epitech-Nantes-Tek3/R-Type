@@ -85,7 +85,7 @@ namespace ecs
         /// Check for enemy entities if they collide with obstacles
         /// @param enemiesProjectiles vector of entities containing the enemies' projectiles
         /// @param obstacles vector of entities containing the obstacles
-        void enemyCollide(gtd::vector<std::shared_ptr<ecs::Entity>> &enemiesProjectiles,
+        void enemyCollide(std::vector<std::shared_ptr<ecs::Entity>> &enemiesProjectiles,
             std::vector<std::shared_ptr<ecs::Entity>> &obstacles)
         {
             collide(enemiesProjectiles, obstacles);
