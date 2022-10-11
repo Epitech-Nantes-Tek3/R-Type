@@ -108,6 +108,27 @@ namespace transisthor_lib
             /// WILL BE IMPLEMENTED WHEN ENTITY HAVE BEEN MERGED.
         }
 
+        /// @brief Function called by the ECS to transfer an order of creation for an AlliedProjectile entity
+        /// @param id Id of the new entity to create
+        /// @param life Value for the Life component
+        /// @param posX X value for the Position component
+        /// @param posY Y value for the Position component
+        /// @param veloAbsc Abscisse value for the Velocity component
+        /// @param veloOrd Ordinate value for the Velocity component
+        /// @param destination of the message
+        /// @return Return value his only used for testing (Unit and functional)
+        void *transitEcsDataToNetworkDataEntityAlliedProjectile(unsigned short id, unsigned short life, int posX, int posY, double veloAbsc, double veloOrd, std::vector<unsigned short> destination)
+        {
+            (void)id;
+            (void)life;
+            (void)posX;
+            (void)posY;
+            (void)veloAbsc;
+            (void)veloOrd;
+            (void)destination;
+            return nullptr;
+        }
+
         /// @brief Cross communicator client list and return the matched client
         /// @param id wanted id
         /// @return matched client
