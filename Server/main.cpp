@@ -6,16 +6,18 @@
 */
 
 #include <iostream>
+#include "ArgumentHandler/ArgumentHandler.hpp"
 #include "Server.hpp"
 
 using namespace server_data;
+using namespace argument_handler;
 
 int main(int ac, char **av)
 {
-    if (ac != 3)
-        return 84; /// PARSE SERVER ARGUMENT MORE PROPERLY (REBASE MONDAY)
-    Server server = Server(std::string(av[1]), std::atoi(av[2]));
-    unsigned short roomId = server.createANewRoom();
-    std::cerr << "A Room have been created with the id " << roomId << "." << std::endl;
+    ArgumentHandler argumentHandler = ArgumentHandler(ac, av);
+    ArgumentHandler::ServerInformation serverInformation = argumentHandler.extractServerInformation();
+    Server server = Server(serverInformation.address, serverInformation.port);
+
+    server.createANewRoom();
     return 0;
 }
