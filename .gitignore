@@ -54,3 +54,4 @@ tests/R-Type_communicator_send
 #Documentation
 docs/html
 CMakeGraphVizOptions.cmake
+CMakeGraphVizOptions.cmake

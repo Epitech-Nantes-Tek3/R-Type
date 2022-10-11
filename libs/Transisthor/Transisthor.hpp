@@ -11,8 +11,8 @@
 #define TRANSISTHOR_HPP_
 
 #include "Communicator/Communicator.hpp"
-#include "World/World.hpp"
 #include "Error/Error.hpp"
+#include "World/World.hpp"
 
 using namespace ecs;
 using namespace communicator_lib;
@@ -60,18 +60,21 @@ namespace transisthor_lib
         /// @return Return value his only used for testing (Unit and functional)
         template <std::derived_from<Component> C>
         void *transitEcsDataToNetworkData(
-            unsigned short id, unsigned short type, C component, std::vector<Client> destination)
+            unsigned short id, unsigned short type, C component, std::vector<unsigned short> destination)
         {
             void *networkObject = std::malloc(sizeof(void *) * ((sizeof(C)) + sizeof(unsigned short) * 2));
+            Client temporaryClient;
 
             if (networkObject == nullptr)
                 throw error_lib::MallocError("Malloc failed.");
             std::memcpy(networkObject, &id, sizeof(unsigned short));
             std::memcpy((void *)((char *)networkObject + sizeof(unsigned short)), &type, sizeof(unsigned short));
             std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2), &component, sizeof(C));
-            for (auto it : destination)
-                transisthor_lib::sendDataToAClientWithoutCommunicator(
-                    _communicator, it, networkObject, sizeof(void *) * ((sizeof(C)) + sizeof(unsigned short) * 2), 30);
+            for (auto it : destination) {
+                temporaryClient = getClientByHisId(it);
+                transisthor_lib::sendDataToAClientWithoutCommunicator(_communicator, temporaryClient, networkObject,
+                    sizeof(void *) * ((sizeof(C)) + sizeof(unsigned short) * 2), 30);
+            }
             return networkObject;
         }
 
@@ -104,6 +107,17 @@ namespace transisthor_lib
             (void)type;
             /// WILL BE IMPLEMENTED WHEN ENTITY HAVE BEEN MERGED.
         }
+
+        /// @brief Cross communicator client list and return the matched client
+        /// @param id wanted id
+        /// @return matched client
+        /// @throw When no client his founded, throw a NetowkrError
+        Client getClientByHisId(unsigned short id);
+
+        /// @brief Function called inside ecs server to know server Endpoint id
+        /// @return The server endpoint id
+        /// @throw an error when no server can be found (Not in a client communicator), throw a NetworkError
+        unsigned short getServerEndpointId(void);
 
       private:
         /// @brief A reference to a communicator

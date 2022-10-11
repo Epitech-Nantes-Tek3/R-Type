@@ -2,17 +2,17 @@
 ** EPITECH PROJECT, 2022
 ** R-Type
 ** File description:
-** ProjectileAllyComponent
+** AlliedProjectileComponent
 */
 
 #ifndef PROJECTILEALLYCOMPONENT_HPP_
 #define PROJECTILEALLYCOMPONENT_HPP_
 
-#include <Component/Component.hpp>
+#include "Component/Component.hpp"
 
 namespace ecs
 {
-    /// @brief This Component specifies if an entity is an Ally Projectile
-    class ProjectileAlly {};
+    /// @brief Allied Projectile Component allows an entity to be used as an Allied Projectile
+    class AlliedProjectile : public Component {};
 } // namespace ecs
 #endif /* !PROJECTILEALLYCOMPONENT_HPP_ */

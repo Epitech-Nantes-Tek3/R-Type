@@ -8,10 +8,12 @@
 #ifndef OBSTACLECOMPONENT_HPP_
 #define OBSTACLECOMPONENT_HPP_
 
+#include "Component/Component.hpp"
+
 namespace ecs
 {
-   /// @brief This Component specifies if an entity is an Obstacle
-   class Obstacle {}; 
+   /// @brief Obstacle Component allows an entity to be used as an Obstacle
+   class Obstacle : public Component {}; 
 } // namespace ecs
 
 
