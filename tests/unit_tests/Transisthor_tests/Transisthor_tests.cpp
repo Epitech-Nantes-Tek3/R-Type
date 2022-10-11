@@ -241,12 +241,12 @@ Test(transisthor_testing, transit_alliedProjectile_entity)
     Position entityPosition = world.getEntity(entityId).getComponent<Position>();
 
     void *temp = transisthor.transitEcsDataToNetworkDataEntityAlliedProjectile(entityId, entityPosition.x, entityPosition.y, {1});
-    /*void *networkAnswer = transisthor.transitNetworkDataToEcsData({Client(), temp, sizeof(Velocity), 30});
+    void *networkAnswer = transisthor.transitNetworkDataToEcsDataEntity({Client(), temp, 1, 31});
 
-    cr_assert_eq(pos.multiplierOrdinate, 12);
+    /*cr_assert_eq(pos.multiplierOrdinate, 12);
     cr_assert_eq(pos.multiplierAbscissa, 10);
     newPos = buildComponentFromByteCode<Velocity>(networkAnswer);
     cr_assert_eq(newPos.multiplierOrdinate, 12);
     cr_assert_eq(newPos.multiplierAbscissa, 10);*/
-    (void) temp;
+    (void) networkAnswer;
 }
