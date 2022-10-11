@@ -166,6 +166,32 @@ namespace transisthor_lib
             return networkObject;
         }
 
+        /// @brief Function called by the ECS to transfer an order of creation for an EnemyProjectile entity
+        /// @param id Id of the new entity to create
+        /// @param posX X value for the Position component
+        /// @param posY Y value for the Position component
+        /// @param destination of the message
+        /// @return Return value his only used for testing (Unit and functional)
+        void *transitEcsDataToNetworkDataEntityEnemyProjectile(unsigned short id, int posX, int posY, std::vector<unsigned short> destination)
+        {
+            void *networkObject = std::malloc((sizeof(unsigned short) * 2 + sizeof(int) * 2));
+            unsigned short typeId = 3;
+            Client temporaryClient;
+
+            if (networkObject == nullptr)
+                throw error_lib::MallocError("Malloc failed.");
+            std::memcpy(networkObject, &id, sizeof(unsigned short));
+            std::memcpy((void *)((char *)networkObject + sizeof(unsigned short)), &typeId, sizeof(unsigned short));
+            std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2), &posX, sizeof(int));
+            std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2 + sizeof(int)), &posY, sizeof(int));
+            for (auto it : destination) {
+                temporaryClient = getClientByHisId(it);
+                transisthor_lib::sendDataToAClientWithoutCommunicator(_communicator, temporaryClient, networkObject,
+                    (sizeof(unsigned short) * 2 + sizeof(int) * 2), 31);
+            }
+            return networkObject;
+        }
+
         /// @brief Cross communicator client list and return the matched client
         /// @param id wanted id
         /// @return matched client
