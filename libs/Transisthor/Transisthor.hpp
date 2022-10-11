@@ -224,6 +224,11 @@ namespace transisthor_lib
         /// @param byteCode byte value of the AlliedProjectile entity
         void entityConvertAlliedProjectileType(unsigned short id, void *byteCode);
 
+        /// @brief Convert a byteCode data into a Enemy entity and send it to the ECS
+        /// @param id Entity ID attached to the entity
+        /// @param byteCode byte value of the Enemy entity
+        void entityConvertEnemyType(unsigned short id, void *byteCode);
+
         /// @brief List of all the Convert function for Component. Ordered by the component type value (Refer to RFC for
         /// more informations)
         std::map<unsigned short, std::function<void(unsigned short, void *)>> _componentConvertFunctionList;
