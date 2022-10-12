@@ -23,6 +23,13 @@ namespace ecs
             /// @brief Default constructor of the class.
             GraphicsTextureResource() = default;
 
+            /// @brief Create a texture from the path to an image.
+            /// @param texturePath The texture path to be used.
+            GraphicsTextureResource(const std::string &texturePath)
+            {
+                texture.loadFromFile(texturePath);
+            }
+
             /// @brief Default destructor of the class.
             ~GraphicsTextureResource() = default;
     };
