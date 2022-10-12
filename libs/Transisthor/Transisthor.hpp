@@ -87,8 +87,7 @@ namespace transisthor_lib
         /// @brief Function called by the ECS. The transfered data will be converted to a Network object and send to the
         /// communicator.
         /// @tparam C Type of the resource
-        /// @param id Id of the
-        /// transferehttps://tekfeed.epitech.eu/#/universite/38/categorie/courses-for-epitech-studentsd resource
+        /// @param id Id of the transfered resource
         /// @param type Type id of the resource
         /// @param resource The transfered resource
         template <std::derived_from<Resource> C>
