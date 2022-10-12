@@ -10,7 +10,6 @@ set(SRC
 
 add_library(${TARGET} SHARED ${SRC})
 
-
 target_include_directories(${TARGET}
     PUBLIC ${SFML_INPUT_INC_ROOT}
     PUBLIC ${PROJECT_NAME}_ecs
@@ -24,4 +23,3 @@ target_link_libraries(${TARGET}
 set_target_properties(${TARGET} PROPERTIES LINKER_LANGUAGE CXX)
 include(${PROJECT_SOURCE_DIR}/build/conanbuildinfo.cmake)
 conan_basic_setup(TARGETS)
-

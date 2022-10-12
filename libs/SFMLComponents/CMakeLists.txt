@@ -16,7 +16,7 @@ set(SRC
     ${SFML_INPUT_INC_ROOT}/GraphicsTextComponent.cpp
 )
 
-add_library(${TARGET} SHARED ${SRC})
+add_library(${TARGET} ${SRC})
 
 target_include_directories(${TARGET}
     PUBLIC ${SFML_INPUT_INC_ROOT}
