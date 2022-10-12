@@ -9,11 +9,13 @@
 #define MOUVEMENT_HPP_
 
 #include "World/World.hpp"
+#include "GameComponents/PositionComponent.hpp"
+#include "GameComponents/VelocityComponent.hpp"
 
 namespace ecs
 {
     /// @brief This is the Movement system. This system can move any entities which contains a Position and a Velocity
-    /// Components It's a system that will be called by the engine world with the function runSystem()
+    /// Components. It's a system that will be called by the engine world with the function runSystem()
     struct Movement : public System {
         inline void run(World &world) override final
         {
