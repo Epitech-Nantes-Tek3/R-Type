@@ -55,6 +55,10 @@ void *Transisthor::transitNetworkDataToEcsData(Message networkData)
     return object;
 }
 
+Client Transisthor::getClientByHisId(unsigned short id) { return _communicator.getClientByHisId(id); }
+
+unsigned short Transisthor::getServerEndpointId(void) { return _communicator.getServerEndpointId(); }
+
 void Transisthor::componentConvertDestinationType(unsigned short id, void *byteCode)
 {
     Destination newComponent = buildComponentFromByteCode<Destination>(byteCode);
