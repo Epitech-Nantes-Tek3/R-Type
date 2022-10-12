@@ -8,9 +8,9 @@
 /// @file Server/Room.cpp
 
 #include "Room.hpp"
-#include "GameEntityManipulation/CreateEntitiesFunctions/CreateObstacle.hpp"
 #include "Error/Error.hpp"
 #include "GameComponents/PositionComponent.hpp"
+#include "GameEntityManipulation/CreateEntitiesFunctions/CreateObstacle.hpp"
 
 using namespace server_data;
 using namespace error_lib;
