@@ -9,8 +9,8 @@ set(TEST_SRC_ROOT
     ${SRC_ROOT}/ControllerInputComponentTests.cpp
     ${SRC_ROOT}/KeyboardInputComponentTests.cpp
     ${SRC_ROOT}/MouseInputComponentTests.cpp
-    ${SRC_ROOT}/GraphicsRectangleComponent.cpp
-    ${SRC_ROOT}/GraphicsTextComponent.cpp
+    ${SRC_ROOT}/GraphicsRectangleComponentTests.cpp
+    ${SRC_ROOT}/GraphicsTextComponentTests.cpp
 )
 
 ## Documented Example ##
