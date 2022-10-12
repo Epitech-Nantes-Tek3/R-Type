@@ -24,6 +24,11 @@ namespace ecs
             /// @brief Default constructor of the class.
             GraphicsFontResource() = default;
 
+            inline GraphicsFontResource(const std::string &fontPath)
+            {
+                font.loadFromFile(fontPath);
+            }
+
             /// @brief Default destructor of the class.
             ~GraphicsFontResource() = default;
     };
