@@ -1,3 +1,5 @@
+add_subdirectory(Systems)
+
 set(TARGET r-type_client)
 
 set(SRC_ROOT ${PROJECT_SOURCE_DIR}/Client)
@@ -6,7 +8,7 @@ set(INC_ROOT ${PROJECT_SOURCE_DIR}/Client)
 set(SRC
     ${SRC_ROOT}/main.cpp
     ${SRC_ROOT}/ClientRoom.cpp
-
+    ${SRC_CLIENT_SYSTEM}
     ${SRC_ROOT}/ClientRoom.hpp
 )
 
