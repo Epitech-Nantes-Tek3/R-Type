@@ -21,7 +21,7 @@ namespace ecs
             sf::RectangleShape shape;
 
             /// @brief Default constructor of the class.
-            GraphicsRectangleComponent() = default;
+            GraphicsRectangleComponent(const std::size_t x = 10, const std::size_t y = 10, const std::size_t width = 10, const std::size_t height = 10);
 
             /// @brief Default destructor of the class.
             ~GraphicsRectangleComponent() = default;
