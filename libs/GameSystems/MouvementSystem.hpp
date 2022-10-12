@@ -15,19 +15,21 @@ namespace ecs
     /// @brief This is the Movement system. This system can move any entities which contains a Position and a Velocity
     /// Components It's a system that will be called by the engine world with the function runSystem()
     struct Movement : public System {
-        inline void run(World &world) override final
-        {
-            std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Position, Velocity>();
+        void run(World &world) override final;
+        // {
+        //     std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Position, Velocity>();
+        //     GameClock &clock = world.getResource<GameClock>();
+        //     double elapsedTimeInSeconds = clock.elapsedTime();
 
-            auto move = [](std::shared_ptr<ecs::Entity> entityPtr) {
-                Position &pos = entityPtr.get()->getComponent<Position>();
-                Velocity &vel = entityPtr.get()->getComponent<Velocity>();
+        //     auto move = [&elapsedTimeInSeconds](std::shared_ptr<ecs::Entity> entityPtr) {
+        //         Position &pos = entityPtr.get()->getComponent<Position>();
+        //         Velocity &vel = entityPtr.get()->getComponent<Velocity>();
 
-                pos.x += vel.multiplierAbscissa;
-                pos.y += vel.multiplierOrdinate;
-            };
-            std::for_each(joined.begin(), joined.end(), move);
-        }
+        //         pos.x += (vel.multiplierAbscissa * elapsedTimeInSeconds);
+        //         pos.y += (vel.multiplierOrdinate * elapsedTimeInSeconds);
+        //     };
+        //     std::for_each(joined.begin(), joined.end(), move);
+        // }
     };
 } // namespace ecs
 

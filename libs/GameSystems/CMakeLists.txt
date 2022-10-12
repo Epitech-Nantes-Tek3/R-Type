@@ -5,6 +5,7 @@ set(TARGET ${PROJECT_NAME}_gameSystems)
 
 set(SRC
     ${SRC_ROOT}/MouvementSystem.hpp
+    ${SRC_ROOT}/MouvementSystem.cpp
 )
 
 add_library(${TARGET} ${SRC})
@@ -13,6 +14,7 @@ target_include_directories(${TARGET}
     PUBLIC ${INC_ROOT}
     PUBLIC ${PROJECT_NAME}_ecs
     PUBLIC ${PROJECT_NAME}_gameComponents
+    PUBLIC ${PROJECT_NAME}_gameSharedResources
     INTERFACE ${PROJECT_NAME}_error
     PRIVATE $(SRC_ROOT)
 )

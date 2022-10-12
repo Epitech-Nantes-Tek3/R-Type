@@ -15,6 +15,9 @@
 
 using namespace ecs;
 
+/// OUTDATED TEST, NEED TO CALC THE TIME
+/// WILL BE DONE SOON
+
 Test(Movement_System, moove_a_position)
 {
     World world(1);
