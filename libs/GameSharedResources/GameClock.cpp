@@ -7,12 +7,17 @@
 
 #include "GameClock.hpp"
 
+using namespace std::chrono;
+
 namespace ecs
 {
 
-    GameClock::GameClock() {}
+    GameClock::GameClock() : _lastTime(steady_clock::now()) {}
 
-    GameClock::~GameClock() {}
+    double GameClock::elapsedTime()
+    {
+        duration<double> elapsedTime = steady_clock::now() - this->_lastTime;
 
-    double GameClock::elapsedTime() {}
+        return elapsedTime.count();
+    }
 } // namespace ecs

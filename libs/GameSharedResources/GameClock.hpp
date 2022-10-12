@@ -14,16 +14,17 @@
 
 namespace ecs
 {
+    /// @brief Shared Resource Clock for the Game
     class GameClock : public Resource {
     public:
-
+        /// @brief Create the Clock (Basic constructor)
         GameClock();
 
-        ~GameClock();
+        inline void resetClock() {this->_lastTime = std::chrono::steady_clock::now();};
 
         double elapsedTime();
     private:
-        std::chrono::steady_clock::time_point _lastReset;
+        std::chrono::steady_clock::time_point _lastTime;
 };
 } // namespace ecs
 
