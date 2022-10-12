@@ -21,10 +21,6 @@ Test(Death_system, kill_entity)
     World world(1);
 
     createNewProjectile(world, 10, 10, 1, 1, 10);
-    
-    // world.getEntity(1).getComponent<Life>().lifePoint = 0;
-    // world.getEntity(2).getComponent<Life>().lifePoint = 0;
-    // world.getEntity(3).getComponent<Life>().lifePoint = 0;
 
     std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Projectile>();
 
@@ -47,10 +43,6 @@ Test(Death_system, kill_entities)
     createNewProjectile(world, 10, 10, 1, 1, 10);
     createNewProjectile(world, 10, 10, 1, 1, 10);
     createNewProjectile(world, 10, 10, 1, 1, 10);
-    
-    // world.getEntity(1).getComponent<Life>().lifePoint = 0;
-    // world.getEntity(2).getComponent<Life>().lifePoint = 0;
-    // world.getEntity(3).getComponent<Life>().lifePoint = 0;
 
     std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Projectile>();
 

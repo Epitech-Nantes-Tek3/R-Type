@@ -24,8 +24,6 @@ Test(add_Death_component_system, lifeTime_death_entity)
     std::chrono::duration<double> time_0(0.0);
 
     createNewProjectile(world, 10, 10, 1, 1, 10);
-    createNewProjectile(world, 10, 10, 1, 1, 10);
-    createNewProjectile(world, 10, 10, 1, 1, 10);
     
     world.getEntity(1).getComponent<Lifetime>().timeLeft = time_0;
 

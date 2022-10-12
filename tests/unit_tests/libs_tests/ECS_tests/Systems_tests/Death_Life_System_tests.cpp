@@ -21,8 +21,6 @@ Test(add_Death_component_system, life_death_entity)
     World world(1);
 
     createNewProjectile(world, 10, 10, 1, 1, 10);
-    createNewProjectile(world, 10, 10, 1, 1, 10);
-    createNewProjectile(world, 10, 10, 1, 1, 10);
     
     world.getEntity(1).getComponent<Life>().lifePoint = 0;
 
