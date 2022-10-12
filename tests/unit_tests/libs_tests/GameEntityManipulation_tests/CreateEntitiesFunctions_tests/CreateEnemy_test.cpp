@@ -7,7 +7,7 @@
 
 #include <criterion/criterion.h>
 #include "World/World.hpp"
-#include "CreateEnemy.hpp"
+#include "GameEntityManipulation/CreateEntitiesFunctions/CreateEnemy.hpp"
 
 using namespace ecs;
 

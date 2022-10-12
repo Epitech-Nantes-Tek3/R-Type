@@ -8,7 +8,7 @@
 
 #include <criterion/criterion.h>
 #include "World/World.hpp"
-#include "CreateObstacle.hpp"
+#include "GameEntityManipulation/CreateEntitiesFunctions/CreateObstacle.hpp"
 
 using namespace ecs;
 

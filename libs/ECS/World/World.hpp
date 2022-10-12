@@ -175,12 +175,16 @@ namespace ecs
             return *this;
         }
 
-        /// @brief Change the bridge destination to a new transisthor
+        /// @brief Set the bridge destination to a new transisthor
         /// @param transisthorBridge New bridge destination
-        inline void updateTransisthorBridge(std::shared_ptr<Transisthor> transisthorBridge)
+        inline void setTransisthorBridge(std::shared_ptr<Transisthor> transisthorBridge)
         {
             _transisthorBridge = transisthorBridge;
         }
+
+        ///@brief Get the Transisthor Bridge object
+        ///@return std::shared_ptr<Transisthor>
+        inline std::shared_ptr<Transisthor> getTransisthorBridge() { return _transisthorBridge; }
 
         ///@brief It runs all systems in the world
         void runSystems();
