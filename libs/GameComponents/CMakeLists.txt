@@ -12,7 +12,7 @@ set(SRC
     ${INC_ROOT}/ControlableComponent.hpp
     ${INC_ROOT}/LifeComponent.hpp
     ${INC_ROOT}/DamageComponent.hpp
-    ${INC_ROOT}/LifetimeComponent.hpp
+    ${INC_ROOT}/LifeTimeComponent.hpp
     ${INC_ROOT}/EquipmentComponent.hpp
     ${INC_ROOT}/WeaknessComponent.hpp
     ${INC_ROOT}/CollidableComponent.hpp
@@ -25,6 +25,13 @@ set(SRC
     ${INC_ROOT}/DeathDamageComponent.hpp
     ${INC_ROOT}/PatternComponent.hpp
     ${INC_ROOT}/ChargedAttackComponent.hpp
+
+    ${INC_ROOT}/AlliedProjectileComponent.hpp
+    ${INC_ROOT}/EnemyProjectileComponent.hpp
+    ${INC_ROOT}/ProjectileComponent.hpp
+    ${INC_ROOT}/PlayerComponent.hpp
+    ${INC_ROOT}/EnemyComponent.hpp
+    ${INC_ROOT}/ObstacleComponent.hpp
 )
 
 add_library(${TARGET} INTERFACE ${SRC})

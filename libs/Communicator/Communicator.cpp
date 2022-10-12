@@ -33,6 +33,7 @@ void Communicator::addClientToList(Client &client)
 {
     if (std::find(_clientList.begin(), _clientList.end(), client) != _clientList.end())
         throw NetworkError("Client already registered in the communicator.", "Communicator.cpp -> addClientToList");
+    client.setId(_clientList.size() + 1);
     _clientList.push_back(client);
 }
 
@@ -136,8 +137,12 @@ void Communicator::receiveProtocol2X(Message lastMessage)
 void Communicator::receiveProtocol3X(Message lastMessage)
 {
     if (lastMessage.type == 30) {
-        _transisthorBridge.get()->transitNetworkDataToEcsData(lastMessage);
-        throw NetworkError("No message waiting for traitment.", "Communicator.cpp -> getLastMessage");
+        _transisthorBridge.get()->transitNetworkDataToEcsDataComponent(lastMessage);
+        throw NetworkError("No message waiting for traitment.", "Communicator.cpp -> receiveProtocol3X");
+    }
+    if (lastMessage.type == 31) {
+        _transisthorBridge.get()->transitNetworkDataToEcsDataEntity(lastMessage);
+        throw NetworkError("No message waiting for traitment.", "Communicator.cpp -> receiveProtocol3X");
     }
 }
 
@@ -146,6 +151,24 @@ void Communicator::replaceClientByAnother(Client oldClient, Client newClient)
     removeClientFromList(oldClient);
     addClientToList(newClient);
     _receiverModule.removeAllClientMessage(oldClient);
+}
+
+Client Communicator::getClientByHisId(unsigned short id)
+{
+    for (auto it : _clientList) {
+        if (it.getId() == id)
+            return it;
+    }
+    throw NetworkError("No matched client founded.", "Communicator.cpp -> getClientByHisId");
+    return Client();
+}
+
+unsigned short Communicator::getServerEndpointId(void)
+{
+    if (_clientList.size() != 1)
+        throw NetworkError("You are not inside a client communicator. No server can be found.",
+            "Communicator.cpp -> getServerEndpointId");
+    return _clientList.at(0).getId();
 }
 
 Communicator::~Communicator() {}

@@ -12,9 +12,9 @@
 
 using namespace communicator_lib;
 
-Client::Client(std::string address, long port)
+Client::Client(std::string address, unsigned short port)
 {
     this->_address = address;
     this->_port = port;
+    _id = 0;
 }
-

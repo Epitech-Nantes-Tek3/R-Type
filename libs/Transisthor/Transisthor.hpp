@@ -11,8 +11,8 @@
 #define TRANSISTHOR_HPP_
 
 #include "Communicator/Communicator.hpp"
-#include "World/World.hpp"
 #include "Error/Error.hpp"
+#include "World/World.hpp"
 
 using namespace ecs;
 using namespace communicator_lib;
@@ -48,7 +48,13 @@ namespace transisthor_lib
         /// to the ecs.
         /// @param networkData Content of the network data (Refer to communicator lib document for more details)
         /// @return Return value his only used for testing (Unit and functional)
-        void *transitNetworkDataToEcsData(Message networkData);
+        void *transitNetworkDataToEcsDataComponent(Message networkData);
+
+        /// @brief Function called by the Communicator. The transfered data will be converted to an ECS object and send
+        /// to the ecs.
+        /// @param networkData Content of the network data (Refer to communicator lib document for more details)
+        /// @return Return value his only used for testing (Unit and functional)
+        void *transitNetworkDataToEcsDataEntity(Message networkData);
 
         /// @brief Function called by the ECS. The transfered data will be converted to a Network object and send to the
         /// communicator.
@@ -60,18 +66,21 @@ namespace transisthor_lib
         /// @return Return value his only used for testing (Unit and functional)
         template <std::derived_from<Component> C>
         void *transitEcsDataToNetworkData(
-            unsigned short id, unsigned short type, C component, std::vector<Client> destination)
+            unsigned short id, unsigned short type, C component, std::vector<unsigned short> destination)
         {
-            void *networkObject = std::malloc(sizeof(void *) * ((sizeof(C)) + sizeof(unsigned short) * 2));
+            void *networkObject = std::malloc(((sizeof(C)) + sizeof(unsigned short) * 2));
+            Client temporaryClient;
 
             if (networkObject == nullptr)
                 throw error_lib::MallocError("Malloc failed.");
             std::memcpy(networkObject, &id, sizeof(unsigned short));
             std::memcpy((void *)((char *)networkObject + sizeof(unsigned short)), &type, sizeof(unsigned short));
             std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2), &component, sizeof(C));
-            for (auto it : destination)
+            for (auto it : destination) {
+                temporaryClient = getClientByHisId(it);
                 transisthor_lib::sendDataToAClientWithoutCommunicator(
-                    _communicator, it, networkObject, sizeof(void *) * ((sizeof(C)) + sizeof(unsigned short) * 2), 30);
+                    _communicator, temporaryClient, networkObject, ((sizeof(C)) + sizeof(unsigned short) * 2), 30);
+            }
             return networkObject;
         }
 
@@ -90,20 +99,72 @@ namespace transisthor_lib
             /// WILL BE IMPLEMENTED WHEN RESSOURCE HAVE BEEN MERGED.
         }
 
-        /// @brief Function called by the ECS. The transfered data will be converted to a Network object and send to the
-        /// communicator.
-        /// @tparam ...Args This allow to send multiple Component (Used for an entity)
-        /// @tparam C Type of the component
-        /// @param id Id of the transfered entity
-        /// @param type Type id of the transfered entity
-        /// @param ...args All components used inside the wanted entity.
-        template <std::derived_from<Component>... C>
-        void transitEcsDataToNetworkData(unsigned short id, unsigned short type, C &&...args)
-        {
-            (void)id;
-            (void)type;
-            /// WILL BE IMPLEMENTED WHEN ENTITY HAVE BEEN MERGED.
-        }
+        /// @brief Function called by the ECS to transfer an order of creation for an AlliedProjectile entity
+        /// @param id Id of the new entity to create
+        /// @param posX X value for the Position component
+        /// @param posY Y value for the Position component
+        /// @param destination of the message
+        /// @return Return value his only used for testing (Unit and functional)
+        void *transitEcsDataToNetworkDataEntityAlliedProjectile(
+            unsigned short id, int posX, int posY, std::vector<unsigned short> destination);
+
+        /// @brief Function called by the ECS to transfer an order of creation for an Enemy entity
+        /// @param id Id of the new entity to create
+        /// @param posX X value for the Position component
+        /// @param posY Y value for the Position component
+        /// @param destination of the message
+        /// @return Return value his only used for testing (Unit and functional)
+        void *transitEcsDataToNetworkDataEntityEnemy(
+            unsigned short id, int posX, int posY, std::vector<unsigned short> destination);
+
+        /// @brief Function called by the ECS to transfer an order of creation for an EnemyProjectile entity
+        /// @param id Id of the new entity to create
+        /// @param posX X value for the Position component
+        /// @param posY Y value for the Position component
+        /// @param destination of the message
+        /// @return Return value his only used for testing (Unit and functional)
+        void *transitEcsDataToNetworkDataEntityEnemyProjectile(
+            unsigned short id, int posX, int posY, std::vector<unsigned short> destination);
+
+        /// @brief Function called by the ECS to transfer an order of creation for an Obstacle entity
+        /// @param id Id of the new entity to create
+        /// @param posX X value for the Position component
+        /// @param posY Y value for the Position component
+        /// @param destination of the message
+        /// @return Return value his only used for testing (Unit and functional)
+        void *transitEcsDataToNetworkDataEntityObstacle(
+            unsigned short id, int posX, int posY, std::vector<unsigned short> destination);
+
+        /// @brief Function called by the ECS to transfer an order of creation for an Player entity
+        /// @param id Id of the new entity to create
+        /// @param posX X value for the Position component
+        /// @param posY Y value for the Position component
+        /// @param destination of the message
+        /// @return Return value his only used for testing (Unit and functional)
+        void *transitEcsDataToNetworkDataEntityPlayer(
+            unsigned short id, int posX, int posY, std::vector<unsigned short> destination);
+
+        /// @brief Function called by the ECS to transfer an order of creation for an Projectile entity
+        /// @param id Id of the new entity to create
+        /// @param posX X value for the Position component
+        /// @param posY Y value for the Position component
+        /// @param velAbsc Abscissa value for the Velocity component
+        /// @param velOrd Ordonate value for the Velocity component
+        /// @param destination of the message
+        /// @return Return value his only used for testing (Unit and functional)
+        void *transitEcsDataToNetworkDataEntityProjectile(unsigned short id, int posX, int posY, double velAbsc,
+            double velOrd, std::vector<unsigned short> destination);
+
+        /// @brief Cross communicator client list and return the matched client
+        /// @param id wanted id
+        /// @return matched client
+        /// @throw When no client his founded, throw a NetowkrError
+        Client getClientByHisId(unsigned short id);
+
+        /// @brief Function called inside ecs server to know server Endpoint id
+        /// @return The server endpoint id
+        /// @throw an error when no server can be found (Not in a client communicator), throw a NetworkError
+        unsigned short getServerEndpointId(void);
 
       private:
         /// @brief A reference to a communicator
@@ -147,9 +208,43 @@ namespace transisthor_lib
         /// @param byteCode byte value of the Velocity component
         void componentConvertVelocityType(unsigned short id, void *byteCode);
 
+        /// @brief Convert a byteCode data into a AlliedProjectile entity and send it to the ECS
+        /// @param id Entity ID attached to the entity
+        /// @param byteCode byte value of the AlliedProjectile entity
+        void entityConvertAlliedProjectileType(unsigned short id, void *byteCode);
+
+        /// @brief Convert a byteCode data into a Enemy entity and send it to the ECS
+        /// @param id Entity ID attached to the entity
+        /// @param byteCode byte value of the Enemy entity
+        void entityConvertEnemyType(unsigned short id, void *byteCode);
+
+        /// @brief Convert a byteCode data into a EnemyProjectile entity and send it to the ECS
+        /// @param id Entity ID attached to the entity
+        /// @param byteCode byte value of the EnemyProjectile entity
+        void entityConvertEnemyProjectileType(unsigned short id, void *byteCode);
+
+        /// @brief Convert a byteCode data into a Obstacle entity and send it to the ECS
+        /// @param id Entity ID attached to the entity
+        /// @param byteCode byte value of the Obstacle entity
+        void entityConvertObstacleType(unsigned short id, void *byteCode);
+
+        /// @brief Convert a byteCode data into a Player entity and send it to the ECS
+        /// @param id Entity ID attached to the entity
+        /// @param byteCode byte value of the Player entity
+        void entityConvertPlayerType(unsigned short id, void *byteCode);
+
+        /// @brief Convert a byteCode data into a Projectile entity and send it to the ECS
+        /// @param id Entity ID attached to the entity
+        /// @param byteCode byte value of the Projectile entity
+        void entityConvertProjectileType(unsigned short id, void *byteCode);
+
         /// @brief List of all the Convert function for Component. Ordered by the component type value (Refer to RFC for
         /// more informations)
         std::map<unsigned short, std::function<void(unsigned short, void *)>> _componentConvertFunctionList;
+
+        /// @brief List of all the Convert function for Entity. Ordered by the entity type value (Refer to RFC for more
+        /// informations)
+        std::map<unsigned short, std::function<void(unsigned short, void *)>> _entityConvertFunctionList;
     };
 } // namespace transisthor_lib
 

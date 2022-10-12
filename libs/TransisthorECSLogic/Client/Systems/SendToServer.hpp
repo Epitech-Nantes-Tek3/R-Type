@@ -14,8 +14,6 @@
 #include "../Components/Controllable.hpp"
 #include "../Components/NetworkServer.hpp"
 #include "../Components/Networkable.hpp"
-#include "World/World.hpp"
-
 #include "GameComponents/DestinationComponent.hpp"
 #include "GameComponents/EquipmentComponent.hpp"
 #include "GameComponents/InvinsibleComponent.hpp"
@@ -23,9 +21,10 @@
 #include "GameComponents/LifeComponent.hpp"
 #include "GameComponents/PositionComponent.hpp"
 #include "GameComponents/VelocityComponent.hpp"
+#include "World/World.hpp"
 
 ///@brief a static map which is used to know which ID is used for a component type for the RFC protocol
-static const std::map<std::type_index, std::size_t> componentRFCId = {{typeid(ecs::Destination), 1},
+static const std::map<std::type_index, unsigned short> componentRFCId = {{typeid(ecs::Destination), 1},
     {typeid(ecs::Equipment), 2}, {typeid(ecs::Invinsible), 3}, {typeid(ecs::Invisible), 4}, {typeid(ecs::Life), 5},
     {typeid(ecs::Position), 6}, {typeid(ecs::Velocity), 7}};
 
@@ -37,8 +36,8 @@ struct SendToServer : public ecs::System {
     /// @param entity Entity which must be shared
     /// @param serverIdList The list of servers to which the datas must be sent
     template <std::derived_from<ecs::Component>... C>
-    requires(sizeof...(C) == 0) void sendToServer(ecs::World &world, const std::size_t &networkId, ecs::Entity *entity,
-        const std::vector<std::size_t> &serverIdList) const
+    requires(sizeof...(C) == 0) void sendToServer(ecs::World &world, const unsigned short &networkId,
+        std::shared_ptr<ecs::Entity> entity, const std::vector<unsigned short> &serverIdList) const
     {
         (void)networkId;
         (void)entity;
@@ -54,40 +53,22 @@ struct SendToServer : public ecs::System {
     /// @param entity Entity which must be shared
     /// @param serverIdList The list of servers to which the datas must be sent
     template <std::derived_from<ecs::Component> C1, std::derived_from<ecs::Component>... C2>
-    void sendToServer(ecs::World &world, const std::size_t &networkId, ecs::Entity *entity,
-        const std::vector<std::size_t> &serverIdList) const
+    void sendToServer(ecs::World &world, const unsigned short &networkId, std::shared_ptr<ecs::Entity> entity,
+        const std::vector<unsigned short> &serverIdList) const
     {
-        std::map<std::type_index, std::size_t>::const_iterator it = componentRFCId.find(typeid(C1));
-
-        if (it != componentRFCId.end()) {
+        if (componentRFCId.find(typeid(C1)) != componentRFCId.end()) {
             if (entity->contains<C1>()) {
-                (void)serverIdList;
                 world.getTransisthorBridge().get()->transitEcsDataToNetworkData<C1>(
-                    networkId, it->second, entity->getComponent<C1>(), serverIdList);
+                    networkId, componentRFCId.find(typeid(C1))->second, entity->getComponent<C1>(), serverIdList);
             }
         }
     }
 
     /// @brief For each player, send their velocity to the server
     /// @param world The world that the system is running in.
-    void run(ecs::World &world) override final
-    {
-        std::vector<std::shared_ptr<ecs::Entity>> servers = world.joinEntities<ecs::NetworkServer>();
-        std::vector<std::shared_ptr<ecs::Entity>> players = world.joinEntities<ecs::Controllable>();
-        std::vector<std::size_t> serverIdList;
+    void runSystem(ecs::World &world);
 
-        auto addToServerList = [&serverIdList](std::shared_ptr<ecs::Entity> entityPtr) {
-            serverIdList.emplace_back(entityPtr.get()->getComponent<ecs::NetworkServer>().id);
-        };
-
-        auto update = [this, &world, &serverIdList](std::shared_ptr<ecs::Entity> entityPtr) {
-            ecs::Entity *entity = entityPtr.get();
-            std::size_t networkId = entity->getComponent<ecs::Networkable>().id;
-            sendToServer<ecs::Velocity>(world, networkId, entity, serverIdList);
-            return entityPtr;
-        };
-
-        std::for_each(servers.begin(), servers.end(), addToServerList);
-        std::for_each(players.begin(), players.end(), update);
-    }
+    /// @brief It runs the system
+    /// @param world The world that the system is running in.
+    inline void run(ecs::World &world) override final { runSystem(world); }
 };

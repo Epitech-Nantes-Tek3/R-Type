@@ -15,11 +15,11 @@ namespace ecs
     class NetworkServer : public Component {
       public:
         ///@brief The id of the Communicator Server'ID
-        std::size_t id;
+        unsigned short id;
 
         ///@brief Construct a new Network Server object
-        ///@param ID ID of the Communicator Server
-        NetworkServer(std::size_t ID = 0) : id(ID){};
+        ///@param newId Id of the Communicator Server
+        NetworkServer(unsigned short newId = 0) : id(newId){};
 
         ///@brief Destroy the Network Server object
         ~NetworkServer() = default;

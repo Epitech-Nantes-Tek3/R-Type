@@ -15,11 +15,11 @@ namespace ecs
     class NetworkClient : public Component {
       public:
         ///@brief The id of the Communicator Client'ID
-        std::size_t id;
+        unsigned short id;
 
         ///@brief Construct a new Network Client object
-        ///@param ID ID of the Communicator Client
-        NetworkClient(std::size_t ID = 0) : id(ID){};
+        ///@param newId ID of the Communicator Client
+        NetworkClient(unsigned short newId = 0) : id(newId){};
 
         ///@brief Destroy the Network Client object
         ~NetworkClient() = default;
