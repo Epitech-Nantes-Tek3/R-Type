@@ -7,7 +7,8 @@
 
 #include <criterion/criterion.h>
 #include "World/World.hpp"
-#include "CreateEnemyRandomPosition.hpp"
+#include "GameSharedResources/Random.hpp"
+#include "GameEntityManipulation/CreateEntitiesFunctions/CreateEnemyRandomPosition.hpp"
 
 using namespace ecs;
 

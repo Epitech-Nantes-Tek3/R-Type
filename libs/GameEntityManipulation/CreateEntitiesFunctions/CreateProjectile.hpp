@@ -8,7 +8,6 @@
 #ifndef CREATEPROJECTILE_HPP_
 #define CREATEPROJECTILE_HPP_
 
-#include "World/World.hpp"
 #include "GameComponents/CollidableComponent.hpp"
 #include "GameComponents/DamageComponent.hpp"
 #include "GameComponents/DamageRadiusComponent.hpp"
@@ -19,6 +18,7 @@
 #include "GameComponents/SizeComponent.hpp"
 #include "GameComponents/VelocityComponent.hpp"
 #include "GameComponents/WeightComponent.hpp"
+#include "World/World.hpp"
 
 namespace ecs
 {

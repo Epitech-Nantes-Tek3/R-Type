@@ -17,8 +17,8 @@
 #include "Entity/Entity.hpp"
 #include "Resource/Resource.hpp"
 #include "System/System.hpp"
-#include <unordered_map>
 #include "Transisthor/Transisthor.hpp"
+#include <unordered_map>
 
 namespace transisthor_lib
 {
@@ -45,7 +45,7 @@ namespace ecs
 
         ///@brief Construct a new World object
         ///@param id It's used to know what World is (example in a video game you can have a World(1) for pause menu and
-        ///another World(2) for your game)
+        /// another World(2) for your game)
         inline World(ID id) : _id(id), _nextEntityId(1) { _transisthorBridge = std::shared_ptr<Transisthor>(nullptr); };
 
         ///@brief Get the object's ID
@@ -153,12 +153,16 @@ namespace ecs
             return *this;
         }
 
-        /// @brief Change the bridge destination to a new transisthor
+        /// @brief Set the bridge destination to a new transisthor
         /// @param transisthorBridge New bridge destination
-        inline void updateTransisthorBridge(std::shared_ptr<Transisthor> transisthorBridge)
+        inline void setTransisthorBridge(std::shared_ptr<Transisthor> transisthorBridge)
         {
             _transisthorBridge = transisthorBridge;
         }
+
+        ///@brief Get the Transisthor Bridge object
+        ///@return std::shared_ptr<Transisthor>
+        inline std::shared_ptr<Transisthor> getTransisthorBridge() { return _transisthorBridge; }
 
         ///@brief It runs all systems in the world
         void runSystems();
