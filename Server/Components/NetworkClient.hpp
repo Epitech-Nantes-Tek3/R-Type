@@ -19,7 +19,7 @@ namespace ecs
 
         ///@brief Construct a new Network Client object
         ///@param ID ID of the Communicator Client
-        NetworkClient(std::size_t ID = 0) : id(ID){};
+        NetworkClient(std::size_t Id = 0) : id(Id){};
 
         ///@brief Destroy the Network Client object
         ~NetworkClient() = default;
