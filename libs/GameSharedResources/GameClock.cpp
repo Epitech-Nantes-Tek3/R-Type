@@ -8,16 +8,15 @@
 #include "GameClock.hpp"
 
 using namespace std::chrono;
+using namespace ecs;
 
-namespace ecs
+GameClock::GameClock() : _lastTime(steady_clock::now()) {}
+
+double GameClock::getElapsedTime()
 {
+    duration<double> elapsedTime = steady_clock::now() - this->_lastTime;
 
-    GameClock::GameClock() : _lastTime(steady_clock::now()) {}
+    return elapsedTime.count();
+}
 
-    double GameClock::elapsedTime()
-    {
-        duration<double> elapsedTime = steady_clock::now() - this->_lastTime;
-
-        return elapsedTime.count();
-    }
-} // namespace ecs
+void GameClock::resetClock() { this->_lastTime = std::chrono::steady_clock::now(); };

@@ -16,20 +16,21 @@ namespace ecs
 {
     /// @brief Shared Resource Clock for the Game
     class GameClock : public Resource {
-    public:
+      public:
         /// @brief Create the Clock (Basic constructor)
         GameClock();
 
         /// @brief This function reinitialize the clock to the actual time
-        inline void resetClock() {this->_lastTime = std::chrono::steady_clock::now();};
+        void resetClock();
 
         /// @brief This function do the difference between now and the last time the clock was reset
         /// @return The difference between now and _lastTime
-        double elapsedTime();
-    private:
+        double getElapsedTime();
+
+      private:
         /// @brief The last time the clock was reset
         std::chrono::steady_clock::time_point _lastTime;
-};
+    };
 } // namespace ecs
 
 #endif /* !GAMECLOCK_HPP_ */
