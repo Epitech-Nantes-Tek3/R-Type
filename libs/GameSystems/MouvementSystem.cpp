@@ -10,22 +10,20 @@
 #include "GameComponents/VelocityComponent.hpp"
 #include "GameSharedResources/GameClock.hpp"
 
-namespace ecs
+using namespace ecs;
+
+void Movement::run(World &world)
 {
-    void Movement::run(World &world)
-    {
-        std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Position, Velocity>();
-        GameClock &clock = world.getResource<GameClock>();
-        double elapsedTimeInSeconds = clock.elapsedTime();
+    std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Position, Velocity>();
+    GameClock &clock = world.getResource<GameClock>();
+    double elapsedTimeInSeconds = clock.getElapsedTime();
 
-        auto move = [&elapsedTimeInSeconds](std::shared_ptr<ecs::Entity> entityPtr) {
-            Position &pos = entityPtr.get()->getComponent<Position>();
-            Velocity &vel = entityPtr.get()->getComponent<Velocity>();
+    auto move = [&elapsedTimeInSeconds](std::shared_ptr<ecs::Entity> entityPtr) {
+        Position &pos = entityPtr.get()->getComponent<Position>();
+        Velocity &vel = entityPtr.get()->getComponent<Velocity>();
 
-            pos.x += (vel.multiplierAbscissa * elapsedTimeInSeconds);
-            pos.y += (vel.multiplierOrdinate * elapsedTimeInSeconds);
-        };
-        std::for_each(joined.begin(), joined.end(), move);
-    }
-} // namespace ecs
-
+        pos.x += (vel.multiplierAbscissa * elapsedTimeInSeconds);
+        pos.y += (vel.multiplierOrdinate * elapsedTimeInSeconds);
+    };
+    std::for_each(joined.begin(), joined.end(), move);
+}
