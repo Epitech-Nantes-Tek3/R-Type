@@ -104,9 +104,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a3b92de4f82573d2bacbaee005de7a2b2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtransisthor__lib_1_1_transisthor.html#a3b92de4f82573d2bacbaee005de7a2b2">~Transisthor</a> ()=default</td></tr>
 <tr class="memdesc:a3b92de4f82573d2bacbaee005de7a2b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy a <a class="el" href="classtransisthor__lib_1_1_transisthor.html" title="Bridge between Communicator data and ECS data.">Transisthor</a> object (Default value)  <a href="classtransisthor__lib_1_1_transisthor.html#a3b92de4f82573d2bacbaee005de7a2b2">More...</a><br /></td></tr>
 <tr class="separator:a3b92de4f82573d2bacbaee005de7a2b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a53fb214cea93cbd0513c1f6e2da381d2"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtransisthor__lib_1_1_transisthor.html#a53fb214cea93cbd0513c1f6e2da381d2">transitNetworkDataToEcsData</a> (<a class="el" href="structcommunicator__lib_1_1_message.html">Message</a> networkData)</td></tr>
-<tr class="memdesc:a53fb214cea93cbd0513c1f6e2da381d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function called by the Communicator. The transfered data will be converted to an ECS object and send to the ecs.  <a href="classtransisthor__lib_1_1_transisthor.html#a53fb214cea93cbd0513c1f6e2da381d2">More...</a><br /></td></tr>
-<tr class="separator:a53fb214cea93cbd0513c1f6e2da381d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac62903f3426e50fa8c5f015bd97c0329"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtransisthor__lib_1_1_transisthor.html#ac62903f3426e50fa8c5f015bd97c0329">transitNetworkDataToEcsDataComponent</a> (<a class="el" href="structcommunicator__lib_1_1_message.html">Message</a> networkData)</td></tr>
+<tr class="memdesc:ac62903f3426e50fa8c5f015bd97c0329"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function called by the Communicator. The transfered data will be converted to an ECS object and send to the ecs.  <a href="classtransisthor__lib_1_1_transisthor.html#ac62903f3426e50fa8c5f015bd97c0329">More...</a><br /></td></tr>
+<tr class="separator:ac62903f3426e50fa8c5f015bd97c0329"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d284959eb3c953fa9c40b9dadfdff1c"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtransisthor__lib_1_1_transisthor.html#a7d284959eb3c953fa9c40b9dadfdff1c">transitNetworkDataToEcsDataEntity</a> (<a class="el" href="structcommunicator__lib_1_1_message.html">Message</a> networkData)</td></tr>
+<tr class="memdesc:a7d284959eb3c953fa9c40b9dadfdff1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function called by the Communicator. The transfered data will be converted to an ECS object and send to the ecs.  <a href="classtransisthor__lib_1_1_transisthor.html#a7d284959eb3c953fa9c40b9dadfdff1c">More...</a><br /></td></tr>
+<tr class="separator:a7d284959eb3c953fa9c40b9dadfdff1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9fe13e311dad7808e98bcf1f5516370a"><td class="memTemplParams" colspan="2">template&lt;std::derived_from&lt; Component &gt; C&gt; </td></tr>
 <tr class="memitem:a9fe13e311dad7808e98bcf1f5516370a"><td class="memTemplItemLeft" align="right" valign="top">void *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classtransisthor__lib_1_1_transisthor.html#a9fe13e311dad7808e98bcf1f5516370a">transitEcsDataToNetworkData</a> (unsigned short id, unsigned short type, C component, std::vector&lt; unsigned short &gt; destination)</td></tr>
 <tr class="memdesc:a9fe13e311dad7808e98bcf1f5516370a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function called by the ECS. The transfered data will be converted to a Network object and send to the communicator.  <a href="classtransisthor__lib_1_1_transisthor.html#a9fe13e311dad7808e98bcf1f5516370a">More...</a><br /></td></tr>
@@ -115,10 +118,24 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a94a0ac5ecec90ad113f65604403aa2cd"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classtransisthor__lib_1_1_transisthor.html#a94a0ac5ecec90ad113f65604403aa2cd">transitEcsDataToNetworkData</a> (unsigned short id, unsigned short type, C component)</td></tr>
 <tr class="memdesc:a94a0ac5ecec90ad113f65604403aa2cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function called by the ECS. The transfered data will be converted to a Network object and send to the communicator.  <a href="classtransisthor__lib_1_1_transisthor.html#a94a0ac5ecec90ad113f65604403aa2cd">More...</a><br /></td></tr>
 <tr class="separator:a94a0ac5ecec90ad113f65604403aa2cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a76a0c9878247a3306e51425ee7a6fe16"><td class="memTemplParams" colspan="2">template&lt;std::derived_from&lt; Component &gt;... C&gt; </td></tr>
-<tr class="memitem:a76a0c9878247a3306e51425ee7a6fe16"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classtransisthor__lib_1_1_transisthor.html#a76a0c9878247a3306e51425ee7a6fe16">transitEcsDataToNetworkData</a> (unsigned short id, unsigned short type, C &amp;&amp;...args)</td></tr>
-<tr class="memdesc:a76a0c9878247a3306e51425ee7a6fe16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function called by the ECS. The transfered data will be converted to a Network object and send to the communicator.  <a href="classtransisthor__lib_1_1_transisthor.html#a76a0c9878247a3306e51425ee7a6fe16">More...</a><br /></td></tr>
-<tr class="separator:a76a0c9878247a3306e51425ee7a6fe16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b6a2104625d80b50a31b36f05c7b0b6"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtransisthor__lib_1_1_transisthor.html#a4b6a2104625d80b50a31b36f05c7b0b6">transitEcsDataToNetworkDataEntityAlliedProjectile</a> (unsigned short id, int posX, int posY, std::vector&lt; unsigned short &gt; destination)</td></tr>
+<tr class="memdesc:a4b6a2104625d80b50a31b36f05c7b0b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function called by the ECS to transfer an order of creation for an AlliedProjectile entity.  <a href="classtransisthor__lib_1_1_transisthor.html#a4b6a2104625d80b50a31b36f05c7b0b6">More...</a><br /></td></tr>
+<tr class="separator:a4b6a2104625d80b50a31b36f05c7b0b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a306010e0e3af840a452474e5822fefe5"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtransisthor__lib_1_1_transisthor.html#a306010e0e3af840a452474e5822fefe5">transitEcsDataToNetworkDataEntityEnemy</a> (unsigned short id, int posX, int posY, std::vector&lt; unsigned short &gt; destination)</td></tr>
+<tr class="memdesc:a306010e0e3af840a452474e5822fefe5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function called by the ECS to transfer an order of creation for an Enemy entity.  <a href="classtransisthor__lib_1_1_transisthor.html#a306010e0e3af840a452474e5822fefe5">More...</a><br /></td></tr>
+<tr class="separator:a306010e0e3af840a452474e5822fefe5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7441c5c90c2af342ccabb5283fa4dd17"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtransisthor__lib_1_1_transisthor.html#a7441c5c90c2af342ccabb5283fa4dd17">transitEcsDataToNetworkDataEntityEnemyProjectile</a> (unsigned short id, int posX, int posY, std::vector&lt; unsigned short &gt; destination)</td></tr>
+<tr class="memdesc:a7441c5c90c2af342ccabb5283fa4dd17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function called by the ECS to transfer an order of creation for an EnemyProjectile entity.  <a href="classtransisthor__lib_1_1_transisthor.html#a7441c5c90c2af342ccabb5283fa4dd17">More...</a><br /></td></tr>
+<tr class="separator:a7441c5c90c2af342ccabb5283fa4dd17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50dfe3a1841dc8831777a3284b47cead"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtransisthor__lib_1_1_transisthor.html#a50dfe3a1841dc8831777a3284b47cead">transitEcsDataToNetworkDataEntityObstacle</a> (unsigned short id, int posX, int posY, std::vector&lt; unsigned short &gt; destination)</td></tr>
+<tr class="memdesc:a50dfe3a1841dc8831777a3284b47cead"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function called by the ECS to transfer an order of creation for an Obstacle entity.  <a href="classtransisthor__lib_1_1_transisthor.html#a50dfe3a1841dc8831777a3284b47cead">More...</a><br /></td></tr>
+<tr class="separator:a50dfe3a1841dc8831777a3284b47cead"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed33a82649027c045f7cb4810c4f21dc"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtransisthor__lib_1_1_transisthor.html#aed33a82649027c045f7cb4810c4f21dc">transitEcsDataToNetworkDataEntityPlayer</a> (unsigned short id, int posX, int posY, std::vector&lt; unsigned short &gt; destination)</td></tr>
+<tr class="memdesc:aed33a82649027c045f7cb4810c4f21dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function called by the ECS to transfer an order of creation for an Player entity.  <a href="classtransisthor__lib_1_1_transisthor.html#aed33a82649027c045f7cb4810c4f21dc">More...</a><br /></td></tr>
+<tr class="separator:aed33a82649027c045f7cb4810c4f21dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27ede70d8d5a18abba0afd93cc9bcdfe"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtransisthor__lib_1_1_transisthor.html#a27ede70d8d5a18abba0afd93cc9bcdfe">transitEcsDataToNetworkDataEntityProjectile</a> (unsigned short id, int posX, int posY, double velAbsc, double velOrd, std::vector&lt; unsigned short &gt; destination)</td></tr>
+<tr class="memdesc:a27ede70d8d5a18abba0afd93cc9bcdfe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function called by the ECS to transfer an order of creation for an Projectile entity.  <a href="classtransisthor__lib_1_1_transisthor.html#a27ede70d8d5a18abba0afd93cc9bcdfe">More...</a><br /></td></tr>
+<tr class="separator:a27ede70d8d5a18abba0afd93cc9bcdfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af5295e46f2a62bb88c3086dedd94b7d4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcommunicator__lib_1_1_client.html">Client</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtransisthor__lib_1_1_transisthor.html#af5295e46f2a62bb88c3086dedd94b7d4">getClientByHisId</a> (unsigned short id)</td></tr>
 <tr class="memdesc:af5295e46f2a62bb88c3086dedd94b7d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cross communicator client list and return the matched client.  <a href="classtransisthor__lib_1_1_transisthor.html#af5295e46f2a62bb88c3086dedd94b7d4">More...</a><br /></td></tr>
 <tr class="separator:af5295e46f2a62bb88c3086dedd94b7d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -254,70 +271,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a76a0c9878247a3306e51425ee7a6fe16"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a76a0c9878247a3306e51425ee7a6fe16">&#9670;&nbsp;</a></span>transitEcsDataToNetworkData() <span class="overload">[1/3]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;std::derived_from&lt; Component &gt;... C&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void transisthor_lib::Transisthor::transitEcsDataToNetworkData </td>
-          <td>(</td>
-          <td class="paramtype">unsigned short&#160;</td>
-          <td class="paramname"><em>id</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned short&#160;</td>
-          <td class="paramname"><em>type</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">C &amp;&amp;...&#160;</td>
-          <td class="paramname"><em>args</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Function called by the ECS. The transfered data will be converted to a Network object and send to the communicator. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">...Args</td><td>This allow to send multiple Component (Used for an entity) </td></tr>
-    <tr><td class="paramname">C</td><td>Type of the component </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">id</td><td>Id of the transfered entity </td></tr>
-    <tr><td class="paramname">type</td><td>Type id of the transfered entity </td></tr>
-    <tr><td class="paramname">...args</td><td>All components used inside the wanted entity. </td></tr>
-  </table>
-  </dd>
-</dl>
-<p>WILL BE IMPLEMENTED WHEN ENTITY HAVE BEEN MERGED.</p>
-
-</div>
-</div>
 <a id="a94a0ac5ecec90ad113f65604403aa2cd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a94a0ac5ecec90ad113f65604403aa2cd">&#9670;&nbsp;</a></span>transitEcsDataToNetworkData() <span class="overload">[2/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a94a0ac5ecec90ad113f65604403aa2cd">&#9670;&nbsp;</a></span>transitEcsDataToNetworkData() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -378,7 +333,7 @@ template&lt;std::derived_from&lt; Resource &gt; C&gt; </div>
 </div>
 </div>
 <a id="a9fe13e311dad7808e98bcf1f5516370a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9fe13e311dad7808e98bcf1f5516370a">&#9670;&nbsp;</a></span>transitEcsDataToNetworkData() <span class="overload">[3/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fe13e311dad7808e98bcf1f5516370a">&#9670;&nbsp;</a></span>transitEcsDataToNetworkData() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -445,14 +400,369 @@ template&lt;std::derived_from&lt; Component &gt; C&gt; </div>
 
 </div>
 </div>
-<a id="a53fb214cea93cbd0513c1f6e2da381d2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a53fb214cea93cbd0513c1f6e2da381d2">&#9670;&nbsp;</a></span>transitNetworkDataToEcsData()</h2>
+<a id="a4b6a2104625d80b50a31b36f05c7b0b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b6a2104625d80b50a31b36f05c7b0b6">&#9670;&nbsp;</a></span>transitEcsDataToNetworkDataEntityAlliedProjectile()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void * Transisthor::transitNetworkDataToEcsData </td>
+          <td class="memname">void * Transisthor::transitEcsDataToNetworkDataEntityAlliedProjectile </td>
+          <td>(</td>
+          <td class="paramtype">unsigned short&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>posX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>posY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; unsigned short &gt;&#160;</td>
+          <td class="paramname"><em>destination</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function called by the ECS to transfer an order of creation for an AlliedProjectile entity. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>Id of the new entity to create </td></tr>
+    <tr><td class="paramname">posX</td><td>X value for the Position component </td></tr>
+    <tr><td class="paramname">posY</td><td>Y value for the Position component </td></tr>
+    <tr><td class="paramname">destination</td><td>of the message </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Return value his only used for testing (Unit and functional) </dd></dl>
+
+</div>
+</div>
+<a id="a306010e0e3af840a452474e5822fefe5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a306010e0e3af840a452474e5822fefe5">&#9670;&nbsp;</a></span>transitEcsDataToNetworkDataEntityEnemy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void * Transisthor::transitEcsDataToNetworkDataEntityEnemy </td>
+          <td>(</td>
+          <td class="paramtype">unsigned short&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>posX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>posY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; unsigned short &gt;&#160;</td>
+          <td class="paramname"><em>destination</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function called by the ECS to transfer an order of creation for an Enemy entity. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>Id of the new entity to create </td></tr>
+    <tr><td class="paramname">posX</td><td>X value for the Position component </td></tr>
+    <tr><td class="paramname">posY</td><td>Y value for the Position component </td></tr>
+    <tr><td class="paramname">destination</td><td>of the message </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Return value his only used for testing (Unit and functional) </dd></dl>
+
+</div>
+</div>
+<a id="a7441c5c90c2af342ccabb5283fa4dd17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7441c5c90c2af342ccabb5283fa4dd17">&#9670;&nbsp;</a></span>transitEcsDataToNetworkDataEntityEnemyProjectile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void * Transisthor::transitEcsDataToNetworkDataEntityEnemyProjectile </td>
+          <td>(</td>
+          <td class="paramtype">unsigned short&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>posX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>posY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; unsigned short &gt;&#160;</td>
+          <td class="paramname"><em>destination</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function called by the ECS to transfer an order of creation for an EnemyProjectile entity. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>Id of the new entity to create </td></tr>
+    <tr><td class="paramname">posX</td><td>X value for the Position component </td></tr>
+    <tr><td class="paramname">posY</td><td>Y value for the Position component </td></tr>
+    <tr><td class="paramname">destination</td><td>of the message </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Return value his only used for testing (Unit and functional) </dd></dl>
+
+</div>
+</div>
+<a id="a50dfe3a1841dc8831777a3284b47cead"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50dfe3a1841dc8831777a3284b47cead">&#9670;&nbsp;</a></span>transitEcsDataToNetworkDataEntityObstacle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void * Transisthor::transitEcsDataToNetworkDataEntityObstacle </td>
+          <td>(</td>
+          <td class="paramtype">unsigned short&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>posX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>posY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; unsigned short &gt;&#160;</td>
+          <td class="paramname"><em>destination</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function called by the ECS to transfer an order of creation for an Obstacle entity. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>Id of the new entity to create </td></tr>
+    <tr><td class="paramname">posX</td><td>X value for the Position component </td></tr>
+    <tr><td class="paramname">posY</td><td>Y value for the Position component </td></tr>
+    <tr><td class="paramname">destination</td><td>of the message </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Return value his only used for testing (Unit and functional) </dd></dl>
+
+</div>
+</div>
+<a id="aed33a82649027c045f7cb4810c4f21dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed33a82649027c045f7cb4810c4f21dc">&#9670;&nbsp;</a></span>transitEcsDataToNetworkDataEntityPlayer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void * Transisthor::transitEcsDataToNetworkDataEntityPlayer </td>
+          <td>(</td>
+          <td class="paramtype">unsigned short&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>posX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>posY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; unsigned short &gt;&#160;</td>
+          <td class="paramname"><em>destination</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function called by the ECS to transfer an order of creation for an Player entity. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>Id of the new entity to create </td></tr>
+    <tr><td class="paramname">posX</td><td>X value for the Position component </td></tr>
+    <tr><td class="paramname">posY</td><td>Y value for the Position component </td></tr>
+    <tr><td class="paramname">destination</td><td>of the message </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Return value his only used for testing (Unit and functional) </dd></dl>
+
+</div>
+</div>
+<a id="a27ede70d8d5a18abba0afd93cc9bcdfe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27ede70d8d5a18abba0afd93cc9bcdfe">&#9670;&nbsp;</a></span>transitEcsDataToNetworkDataEntityProjectile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void * Transisthor::transitEcsDataToNetworkDataEntityProjectile </td>
+          <td>(</td>
+          <td class="paramtype">unsigned short&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>posX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>posY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>velAbsc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>velOrd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; unsigned short &gt;&#160;</td>
+          <td class="paramname"><em>destination</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function called by the ECS to transfer an order of creation for an Projectile entity. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>Id of the new entity to create </td></tr>
+    <tr><td class="paramname">posX</td><td>X value for the Position component </td></tr>
+    <tr><td class="paramname">posY</td><td>Y value for the Position component </td></tr>
+    <tr><td class="paramname">velAbsc</td><td>Abscissa value for the Velocity component </td></tr>
+    <tr><td class="paramname">velOrd</td><td>Ordonate value for the Velocity component </td></tr>
+    <tr><td class="paramname">destination</td><td>of the message </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Return value his only used for testing (Unit and functional) </dd></dl>
+
+</div>
+</div>
+<a id="ac62903f3426e50fa8c5f015bd97c0329"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac62903f3426e50fa8c5f015bd97c0329">&#9670;&nbsp;</a></span>transitNetworkDataToEcsDataComponent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void * Transisthor::transitNetworkDataToEcsDataComponent </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcommunicator__lib_1_1_message.html">Message</a>&#160;</td>
+          <td class="paramname"><em>networkData</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function called by the Communicator. The transfered data will be converted to an ECS object and send to the ecs. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">networkData</td><td>Content of the network data (Refer to communicator lib document for more details) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Return value his only used for testing (Unit and functional) </dd></dl>
+<p>THROW ERROR INVALID TYPE</p>
+<p>ONLY USE FOR FUNCTIONAL TESTING</p>
+
+</div>
+</div>
+<a id="a7d284959eb3c953fa9c40b9dadfdff1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d284959eb3c953fa9c40b9dadfdff1c">&#9670;&nbsp;</a></span>transitNetworkDataToEcsDataEntity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void * Transisthor::transitNetworkDataToEcsDataEntity </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structcommunicator__lib_1_1_message.html">Message</a>&#160;</td>
           <td class="paramname"><em>networkData</em></td><td>)</td>

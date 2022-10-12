@@ -1,5 +1,5 @@
 <map id="ecs::Component" name="ecs::Component">
-<area shape="rect" id="node1" title="This is the Component Class for ECS The base component type, all components must inherit from Compone..." alt="" coords="5,913,132,940"/>
+<area shape="rect" id="node1" title="This is the Component Class for ECS The base component type, all components must inherit from Compone..." alt="" coords="5,964,132,991"/>
 <area shape="rect" id="node2" href="$classecs_1_1_action_queue_component.html" title="This component class stores a function queue. These functions will be added when an input occurs duri..." alt="" coords="188,5,399,32"/>
 <area shape="rect" id="node3" href="$classecs_1_1_allied_projectile.html" title="Allied Projectile Component allows an entity to be used as an Allied Projectile." alt="" coords="218,56,369,83"/>
 <area shape="rect" id="node4" href="$classecs_1_1_allow_controller_component.html" title="This component class allows controller usage in client." alt="" coords="180,107,407,133"/>
@@ -25,14 +25,16 @@
 <area shape="rect" id="node24" href="$classecs_1_1_life.html" title="The Life class, needed for every ennemies, bosses or players." alt="" coords="255,1167,331,1193"/>
 <area shape="rect" id="node25" href="$classecs_1_1_lifetime.html" title="The Lifetime class, telling how long an entity is going to live." alt="" coords="240,1217,347,1244"/>
 <area shape="rect" id="node26" href="$classecs_1_1_mouse_input_component.html" title="This component class stores an unsorted map of action/value pair. This class is created in order to f..." alt="" coords="192,1268,395,1295"/>
-<area shape="rect" id="node27" href="$classecs_1_1_obstacle.html" title="Obstacle Component allows an entity to be used as an Obstacle." alt="" coords="239,1319,348,1345"/>
-<area shape="rect" id="node28" href="$classecs_1_1_pattern.html" title="The Movement component, used for mobiles entities." alt="" coords="244,1369,343,1396"/>
-<area shape="rect" id="node29" href="$classecs_1_1_player.html" title="Player Component allows an entity to be used as a Player." alt="" coords="247,1420,340,1447"/>
-<area shape="rect" id="node30" href="$classecs_1_1_position.html" title="The Position component, almost used for every entities." alt="" coords="241,1471,345,1497"/>
-<area shape="rect" id="node31" href="$classecs_1_1_projectile.html" title="This Component specifies if an entity is a Projectile. This component specifies whether an entity is ..." alt="" coords="237,1521,350,1548"/>
-<area shape="rect" id="node32" href="$classecs_1_1_shooting_frequency.html" title="The ShootingFrequency class, how many seconds will be between two projectiles." alt="" coords="205,1572,381,1599"/>
-<area shape="rect" id="node33" href="$classecs_1_1_size.html" title="The Size component, almost used for everything." alt="" coords="254,1623,333,1649"/>
-<area shape="rect" id="node34" href="$classecs_1_1_velocity.html" title="The velocity class, multiplying the movement of the entity." alt="" coords="241,1673,345,1700"/>
-<area shape="rect" id="node35" href="$classecs_1_1_weakness.html" title="The Weakness component, to create a target for projectiles." alt="" coords="234,1724,353,1751"/>
-<area shape="rect" id="node36" href="$classecs_1_1_weight.html" title="The Weight class, almost used for everything, used in gravity system." alt="" coords="245,1775,342,1801"/>
+<area shape="rect" id="node27" href="$classecs_1_1_networkable.html" title="This component is used to know which entities must be the same in the server and in client...." alt="" coords="226,1319,361,1345"/>
+<area shape="rect" id="node28" href="$classecs_1_1_network_client.html" title="The component which will be used to link the Communicator Client&#39;ID." alt="" coords="221,1369,366,1396"/>
+<area shape="rect" id="node29" href="$classecs_1_1_obstacle.html" title="Obstacle Component allows an entity to be used as an Obstacle." alt="" coords="239,1420,348,1447"/>
+<area shape="rect" id="node30" href="$classecs_1_1_pattern.html" title="The Movement component, used for mobiles entities." alt="" coords="244,1471,343,1497"/>
+<area shape="rect" id="node31" href="$classecs_1_1_player.html" title="Player Component allows an entity to be used as a Player." alt="" coords="247,1521,340,1548"/>
+<area shape="rect" id="node32" href="$classecs_1_1_position.html" title="The Position component, almost used for every entities." alt="" coords="241,1572,345,1599"/>
+<area shape="rect" id="node33" href="$classecs_1_1_projectile.html" title="This Component specifies if an entity is a Projectile. This component specifies whether an entity is ..." alt="" coords="237,1623,350,1649"/>
+<area shape="rect" id="node34" href="$classecs_1_1_shooting_frequency.html" title="The ShootingFrequency class, how many seconds will be between two projectiles." alt="" coords="205,1673,381,1700"/>
+<area shape="rect" id="node35" href="$classecs_1_1_size.html" title="The Size component, almost used for everything." alt="" coords="254,1724,333,1751"/>
+<area shape="rect" id="node36" href="$classecs_1_1_velocity.html" title="The velocity class, multiplying the movement of the entity." alt="" coords="241,1775,345,1801"/>
+<area shape="rect" id="node37" href="$classecs_1_1_weakness.html" title="The Weakness component, to create a target for projectiles." alt="" coords="234,1825,353,1852"/>
+<area shape="rect" id="node38" href="$classecs_1_1_weight.html" title="The Weight class, almost used for everything, used in gravity system." alt="" coords="245,1876,342,1903"/>
 </map>

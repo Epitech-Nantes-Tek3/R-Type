@@ -154,9 +154,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aab0537eccec241d5b749a47937d091c5"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classecs_1_1_world.html">World</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classecs_1_1_world.html#aab0537eccec241d5b749a47937d091c5">addSystem</a> ()</td></tr>
 <tr class="memdesc:aab0537eccec241d5b749a47937d091c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function can add a <a class="el" href="classecs_1_1_system.html">System</a> to the <a class="el" href="classecs_1_1_world.html">World</a>.  <a href="classecs_1_1_world.html#aab0537eccec241d5b749a47937d091c5">More...</a><br /></td></tr>
 <tr class="separator:aab0537eccec241d5b749a47937d091c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a22512fdc45b6216a3880441d10e4af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_world.html#a4a22512fdc45b6216a3880441d10e4af">updateTransisthorBridge</a> (std::shared_ptr&lt; <a class="el" href="classtransisthor__lib_1_1_transisthor.html">Transisthor</a> &gt; transisthorBridge)</td></tr>
-<tr class="memdesc:a4a22512fdc45b6216a3880441d10e4af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change the bridge destination to a new transisthor.  <a href="classecs_1_1_world.html#a4a22512fdc45b6216a3880441d10e4af">More...</a><br /></td></tr>
-<tr class="separator:a4a22512fdc45b6216a3880441d10e4af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a825c59d02e9091eb65dacda56fb5c5b0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_world.html#a825c59d02e9091eb65dacda56fb5c5b0">setTransisthorBridge</a> (std::shared_ptr&lt; <a class="el" href="classtransisthor__lib_1_1_transisthor.html">Transisthor</a> &gt; transisthorBridge)</td></tr>
+<tr class="memdesc:a825c59d02e9091eb65dacda56fb5c5b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the bridge destination to a new transisthor.  <a href="classecs_1_1_world.html#a825c59d02e9091eb65dacda56fb5c5b0">More...</a><br /></td></tr>
+<tr class="separator:a825c59d02e9091eb65dacda56fb5c5b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ea940d773ebdb916f49d89c43ba174d"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classtransisthor__lib_1_1_transisthor.html">Transisthor</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_world.html#a2ea940d773ebdb916f49d89c43ba174d">getTransisthorBridge</a> ()</td></tr>
+<tr class="memdesc:a2ea940d773ebdb916f49d89c43ba174d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Transisthor Bridge object.  <a href="classecs_1_1_world.html#a2ea940d773ebdb916f49d89c43ba174d">More...</a><br /></td></tr>
+<tr class="separator:a2ea940d773ebdb916f49d89c43ba174d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8ced482c3db57a0932fc691aeef01935"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_world.html#a8ced482c3db57a0932fc691aeef01935">runSystems</a> ()</td></tr>
 <tr class="memdesc:a8ced482c3db57a0932fc691aeef01935"><td class="mdescLeft">&#160;</td><td class="mdescRight">It runs all systems in the world.  <a href="classecs_1_1_world.html#a8ced482c3db57a0932fc691aeef01935">More...</a><br /></td></tr>
 <tr class="separator:a8ced482c3db57a0932fc691aeef01935"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -581,6 +584,34 @@ template&lt;std::derived_from&lt; Resource &gt; R&gt; </div>
 
 </div>
 </div>
+<a id="a2ea940d773ebdb916f49d89c43ba174d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ea940d773ebdb916f49d89c43ba174d">&#9670;&nbsp;</a></span>getTransisthorBridge()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt;<a class="el" href="classtransisthor__lib_1_1_transisthor.html">Transisthor</a>&gt; ecs::World::getTransisthorBridge </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the Transisthor Bridge object. </p>
+<dl class="section return"><dt>Returns</dt><dd>std::shared_ptr&lt;Transisthor&gt; </dd></dl>
+
+</div>
+</div>
 <a id="adcbfd0e32647d24f15d124f92dc3fe73"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adcbfd0e32647d24f15d124f92dc3fe73">&#9670;&nbsp;</a></span>joinEntities()</h2>
 
@@ -715,8 +746,8 @@ template&lt;std::derived_from&lt; Resource &gt; R&gt; </div>
 
 </div>
 </div>
-<a id="a4a22512fdc45b6216a3880441d10e4af"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4a22512fdc45b6216a3880441d10e4af">&#9670;&nbsp;</a></span>updateTransisthorBridge()</h2>
+<a id="a825c59d02e9091eb65dacda56fb5c5b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a825c59d02e9091eb65dacda56fb5c5b0">&#9670;&nbsp;</a></span>setTransisthorBridge()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -725,7 +756,7 @@ template&lt;std::derived_from&lt; Resource &gt; R&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void ecs::World::updateTransisthorBridge </td>
+          <td class="memname">void ecs::World::setTransisthorBridge </td>
           <td>(</td>
           <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classtransisthor__lib_1_1_transisthor.html">Transisthor</a> &gt;&#160;</td>
           <td class="paramname"><em>transisthorBridge</em></td><td>)</td>
@@ -739,7 +770,7 @@ template&lt;std::derived_from&lt; Resource &gt; R&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Change the bridge destination to a new transisthor. </p>
+<p>Set the bridge destination to a new transisthor. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">transisthorBridge</td><td>New bridge destination </td></tr>

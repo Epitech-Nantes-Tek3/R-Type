@@ -16,5 +16,5 @@ var searchData=
   ['getresource_127',['getResource',['../classecs_1_1_world.html#a68a3b8090fb192e9b535c713da4f6cd7',1,'ecs::World']]],
   ['getroomid_128',['getRoomId',['../classserver__data_1_1_room.html#af7672ed27fad789e479ef8b62d973ea3',1,'server_data::Room']]],
   ['getserverendpointid_129',['getServerEndpointId',['../classcommunicator__lib_1_1_communicator.html#a82ffc3a45ab0f31f6c8e6db199470190',1,'communicator_lib::Communicator::getServerEndpointId()'],['../classtransisthor__lib_1_1_transisthor.html#a36b6abf6251ee755e4fbbfe78137134e',1,'transisthor_lib::Transisthor::getServerEndpointId()']]],
-  ['gettransisthorbridge_130',['getTransisthorBridge',['../classcommunicator__lib_1_1_communicator.html#a55b0b0709cd59258ac0e118a719cfb4e',1,'communicator_lib::Communicator']]]
+  ['gettransisthorbridge_130',['getTransisthorBridge',['../classcommunicator__lib_1_1_communicator.html#a55b0b0709cd59258ac0e118a719cfb4e',1,'communicator_lib::Communicator::getTransisthorBridge()'],['../classecs_1_1_world.html#a2ea940d773ebdb916f49d89c43ba174d',1,'ecs::World::getTransisthorBridge()']]]
 ];

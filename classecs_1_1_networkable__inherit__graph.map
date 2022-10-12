@@ -1,0 +1,4 @@
+<map id="ecs::Networkable" name="ecs::Networkable">
+<area shape="rect" id="node1" title="This component is used to know which entities must be the same in the server and in client...." alt="" coords="5,80,140,107"/>
+<area shape="rect" id="node2" href="$classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone..." alt="" coords="9,5,136,32"/>
+</map>
