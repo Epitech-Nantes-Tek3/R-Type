@@ -21,10 +21,10 @@ namespace ecs
             sf::RectangleShape shape;
 
             /// @brief Default constructor of the class.
-            GraphicsRectangleComponent();
+            GraphicsRectangleComponent() = default;
 
             /// @brief Default destructor of the class.
-            ~GraphicsRectangleComponent();
+            ~GraphicsRectangleComponent() = default;
     };
 } // namespace ecs
 
