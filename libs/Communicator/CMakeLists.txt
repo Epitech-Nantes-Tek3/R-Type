@@ -21,8 +21,8 @@ target_include_directories(${TARGET}
     PUBLIC ${INC_ROOT}
     PUBLIC ${CONAN_INCLUDE_DIRS_BOOST}
     INTERFACE ${PROJECT_NAME}_error
-    PRIVATE ${SRC_ROOT}
     PRIVATE ${PROJECT_NAME}_transisthor
+    PRIVATE ${SRC_ROOT}
 )
 
 target_link_libraries(${TARGET}

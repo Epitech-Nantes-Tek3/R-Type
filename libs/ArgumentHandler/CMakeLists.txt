@@ -9,7 +9,7 @@ set(SRC
     ${SRC_ROOT}/ArgumentHandler.hpp
 )
 
-add_library(${TARGET} ${SRC})
+add_library(${TARGET} SHARED ${SRC})
 
 target_include_directories(${TARGET}
     PUBLIC ${INC_ROOT}
