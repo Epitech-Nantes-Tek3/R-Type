@@ -20,7 +20,7 @@ namespace ecs
 
         ///@brief Construct a new Networkable object
         ///@param ID The Entity’s common unique identifier
-        Networkable(std::size_t ID = 0) : id(ID){};
+        Networkable(std::size_t Id = 0) : id(Id){};
 
         ///@brief Destroy the Networkable object
         ///
