@@ -99,22 +99,6 @@ namespace transisthor_lib
             /// WILL BE IMPLEMENTED WHEN RESSOURCE HAVE BEEN MERGED.
         }
 
-        /// @brief Function called by the ECS. The transfered data will be converted to a Network object and send to the
-        /// communicator.
-        /// @param id Id of the entity
-        /// @param type Type id of the entity
-        /// @param destination of the message
-        /// @return Return value his only used for testing (Unit and functional)
-        void *transitEcsDataToNetworkDataEntity(
-            unsigned short id, unsigned short type, std::vector<unsigned short> destination)
-        {
-            (void)id;
-            (void)type;
-            (void)destination;
-            return nullptr;
-            /// WILL BE IMPLEMENTED WHEN ENTITY HAVE BEEN MERGED.
-        }
-
         /// @brief Function called by the ECS to transfer an order of creation for an AlliedProjectile entity
         /// @param id Id of the new entity to create
         /// @param posX X value for the Position component
