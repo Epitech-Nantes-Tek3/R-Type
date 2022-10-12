@@ -6,11 +6,10 @@ set(SRC_ROOT ${PROJECT_SOURCE_DIR}/Server)
 set(INC_ROOT ${PROJECT_SOURCE_DIR}/Server)
 
 set(SRC
-
     ${SRC_ROOT}/main.cpp
     ${SRC_ROOT}/Server.cpp
     ${SRC_ROOT}/Room.cpp
-    ${SRC_SERVER_SYSTEM_ROOT}
+    ${SRC_SERVER_SYSTEM}
     ${INC_ROOT}/Server.hpp
     ${INC_ROOT}/Room.hpp
 )

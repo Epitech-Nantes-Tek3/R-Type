@@ -12,7 +12,7 @@
 namespace ecs
 {
     /// @brief This component is used to know which entities must be the same in the server and in client.
-    /// Each one as a unique ID.
+    /// Each one has a unique ID.
     class Networkable : public Component {
       public:
         /// @brief The Entity’s common unique identifier

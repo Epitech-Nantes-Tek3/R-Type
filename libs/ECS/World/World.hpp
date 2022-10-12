@@ -62,6 +62,28 @@ namespace ecs
         ///@throw std::logic_error Throw an error if the entity does not exist
         Entity &getEntity(ID id) const;
 
+        /// @brief It's a function which is used to update a component of an entity from a given distinctive component.
+        /// @tparam DistinctiveC The component type which is used to disctinct the Entity
+        /// @tparam C The component type of the component to update
+        /// @param distinctive The component which is used to disctinct the Entity
+        /// @param component The component of the component to update
+        /// @return bool True if the coponent has been modified. False otherwise.
+        template <std::derived_from<Component> DistinctiveC, std::derived_from<Component> C>
+        bool updateComponentOfAnEntityFromGivenDistinctiveComponent(DistinctiveC distinctive, C component)
+        {
+            std::vector<std::shared_ptr<Entity>> joined = this->joinEntities<DistinctiveC>();
+
+            for (std::shared_ptr<Entity> entityPtr : joined) {
+                DistinctiveC &dc = entityPtr->getComponent<DistinctiveC>();
+                if (distinctive == dc) {
+                    C &old = entityPtr->getComponent<C>();
+                    old = component;
+                    return true;
+                }
+            }
+            return false;
+        }
+
         ///@brief This function is used to join entities with the same components
         ///@tparam C Component types to search
         ///@param world The world to search in
