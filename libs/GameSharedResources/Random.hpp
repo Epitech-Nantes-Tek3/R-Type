@@ -13,13 +13,13 @@
 
 namespace ecs
 {
-    /// Game map resource.
+    /// World Shared Resource.
     struct RandomDevice : public Resource {
       public:
-        /// Construct a new Random Device resource
+        /// Construct a new Random Device Shared Resource
         RandomDevice() : _generation(_device()) {}
 
-        /// Generate a random number in the interval [min, max]
+        /// @brief Generate a random number in the interval [min, max]
         ///
         /// @tparam numeric type of the numbers.
         /// @param min minimum value.
@@ -33,7 +33,9 @@ namespace ecs
         }
 
       private:
+        /// @brief Will be used to obtain a seed for the random number engine
         std::random_device _device;
+        /// @brief Standard generation seeded with rd()
         std::mt19937 _generation;
     };
 } // namespace game::resources
