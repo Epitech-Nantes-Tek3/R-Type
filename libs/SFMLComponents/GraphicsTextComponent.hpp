@@ -22,7 +22,7 @@ namespace ecs
             sf::Text text;
 
             /// @brief Default constructor of the class.
-            GraphicsTextComponent() = default;
+            GraphicsTextComponent(const std::string newText = "", const std::size_t x = 10, const std::size_t y = 10, const std::size_t size = 16);
 
             /// @brief Default destructor of the class.
             ~GraphicsTextComponent() = default;
