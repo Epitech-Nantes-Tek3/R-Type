@@ -10,6 +10,7 @@
 
 #include "Resource/Resource.hpp"
 #include <SFML/Graphics.hpp>
+#include <filesystem>
 
 namespace ecs
 {
@@ -26,7 +27,7 @@ namespace ecs
 
             /// @brief Create a font from the path to a font file.
             /// @param fontPath The font file path to be used.
-            inline GraphicsFontResource(const std::string &fontPath)
+            inline GraphicsFontResource(const std::filesystem::path &fontPath)
             {
                 font.loadFromFile(fontPath);
             }

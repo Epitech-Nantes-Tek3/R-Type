@@ -10,6 +10,7 @@
 
 #include "Resource/Resource.hpp"
 #include <SFML/Graphics.hpp>
+#include <filesystem>
 
 namespace ecs
 {
@@ -25,7 +26,7 @@ namespace ecs
 
             /// @brief Create a texture from the path to an image.
             /// @param texturePath The texture path to be used.
-            inline GraphicsTextureResource(const std::string &texturePath)
+            inline GraphicsTextureResource(const std::filesystem::path &texturePath)
             {
                 texture.loadFromFile(texturePath);
             }
