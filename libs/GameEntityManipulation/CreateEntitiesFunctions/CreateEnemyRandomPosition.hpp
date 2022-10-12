@@ -1,0 +1,12 @@
+/*
+** EPITECH PROJECT, 2022
+** R-Type
+** File description:
+** CreateEnemyRandomPosition
+*/
+
+#ifndef CREATEENEMYRANDOMPOSITION_HPP_
+#define CREATEENEMYRANDOMPOSITION_HPP_
+
+
+#endif /* !CREATEENEMYRANDOMPOSITION_HPP_ */

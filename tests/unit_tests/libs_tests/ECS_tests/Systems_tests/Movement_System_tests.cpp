@@ -11,7 +11,7 @@
 #include "GameComponents/PositionComponent.hpp"
 #include "GameComponents/VelocityComponent.hpp"
 #include "GameComponents/SizeComponent.hpp"
-#include "GameSystems/MouvementSystem.hpp"
+#include "GameSystems/MovementSystem.hpp"
 
 using namespace ecs;
 
