@@ -38,7 +38,7 @@ struct SendToClient : public ecs::System {
     /// @param clientIdList The list of clients to which the datas must be sent
     template <std::derived_from<ecs::Component>... C>
     requires(sizeof...(C) == 0) void sendToClients(ecs::World &world, const unsigned short &networkId,
-        std::shared_ptr<ecs::Entity> entity, const std::vector<std::size_t> &clientIdList) const
+        std::shared_ptr<ecs::Entity> entity, const std::vector<unsigned short> &clientIdList) const
     {
         (void)networkId;
         (void)entity;
@@ -55,7 +55,7 @@ struct SendToClient : public ecs::System {
     /// @param clientIdList The list of clients to which the datas must be sent
     template <std::derived_from<ecs::Component> C1, std::derived_from<ecs::Component>... C2>
     void sendToClients(ecs::World &world, const unsigned short &networkId, std::shared_ptr<ecs::Entity> entity,
-        const std::vector<std::size_t> &clientIdList) const
+        const std::vector<unsigned short> &clientIdList) const
     {
         if (componentRFCId.find(typeid(C1)) != componentRFCId.end()) {
             if (entity->contains<C1>()) {
@@ -65,9 +65,11 @@ struct SendToClient : public ecs::System {
         }
     }
 
+    /// @brief It sends the data of all the entities which have the Networkable component to all the clients
+    /// @param world The world which the system is running in.
     void runSystem(ecs::World &world);
 
-    /// @brief It sends the data of all the entities which have the Networkable component to all the clients
+    /// @brief It runs the system
     /// @param world The world which the system is running in.
     inline void run(ecs::World &world) override final
     {

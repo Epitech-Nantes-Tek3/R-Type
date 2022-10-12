@@ -11,14 +11,14 @@ void SendToClient::runSystem(ecs::World &world)
 {
     std::vector<std::shared_ptr<ecs::Entity>> clients = world.joinEntities<ecs::NetworkClient>();
     std::vector<std::shared_ptr<ecs::Entity>> joinedNetworkable = world.joinEntities<ecs::Networkable>();
-    std::vector<std::size_t> clientIdList;
+    std::vector<unsigned short> clientIdList;
 
     auto addToClientList = [&clientIdList](std::shared_ptr<ecs::Entity> entityPtr) {
         clientIdList.emplace_back(entityPtr.get()->getComponent<ecs::NetworkClient>().id);
     };
 
     auto update = [this, &world, &clientIdList](std::shared_ptr<ecs::Entity> entityPtr) {
-        std::size_t networkId = entityPtr->getComponent<ecs::Networkable>().id;
+        unsigned short networkId = entityPtr->getComponent<ecs::Networkable>().id;
         sendToClients<ecs::Destination, ecs::Equipment, ecs::Invinsible, ecs::Invisible, ecs::Life, ecs::Position,
             ecs::Velocity>(world, networkId, entityPtr, clientIdList);
         return;
