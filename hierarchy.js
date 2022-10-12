@@ -17,6 +17,7 @@ var hierarchy =
       [ "ecs::ChargedAttack", "classecs_1_1_charged_attack.html", null ],
       [ "ecs::Collidable", "classecs_1_1_collidable.html", null ],
       [ "ecs::Controlable", "classecs_1_1_controlable.html", null ],
+      [ "ecs::Controllable", "classecs_1_1_controllable.html", null ],
       [ "ecs::ControllerButtonInputComponent", "classecs_1_1_controller_button_input_component.html", null ],
       [ "ecs::ControllerJoystickInputComponent", "classecs_1_1_controller_joystick_input_component.html", null ],
       [ "ecs::Damage", "classecs_1_1_damage.html", null ],
@@ -32,6 +33,9 @@ var hierarchy =
       [ "ecs::Life", "classecs_1_1_life.html", null ],
       [ "ecs::Lifetime", "classecs_1_1_lifetime.html", null ],
       [ "ecs::MouseInputComponent", "classecs_1_1_mouse_input_component.html", null ],
+      [ "ecs::Networkable", "classecs_1_1_networkable.html", null ],
+      [ "ecs::NetworkClient", "classecs_1_1_network_client.html", null ],
+      [ "ecs::NetworkServer", "classecs_1_1_network_server.html", null ],
       [ "ecs::Obstacle", "classecs_1_1_obstacle.html", null ],
       [ "ecs::Pattern", "classecs_1_1_pattern.html", null ],
       [ "ecs::Player", "classecs_1_1_player.html", null ],
@@ -62,7 +66,9 @@ var hierarchy =
     [ "server_data::Server", "classserver__data_1_1_server.html", null ],
     [ "argument_handler::ArgumentHandler::ServerInformation", "structargument__handler_1_1_argument_handler_1_1_server_information.html", null ],
     [ "ecs::System", "classecs_1_1_system.html", [
-      [ "ecs::Movement", "structecs_1_1_movement.html", null ]
+      [ "ecs::Movement", "structecs_1_1_movement.html", null ],
+      [ "SendToClient", "struct_send_to_client.html", null ],
+      [ "SendToServer", "struct_send_to_server.html", null ]
     ] ],
     [ "transisthor_lib::Transisthor", "classtransisthor__lib_1_1_transisthor.html", null ],
     [ "ecs::World", "classecs_1_1_world.html", null ]

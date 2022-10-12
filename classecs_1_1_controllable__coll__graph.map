@@ -1,0 +1,4 @@
+<map id="ecs::Controllable" name="ecs::Controllable">
+<area shape="rect" id="node1" title="A Component which is used to know which Entity the player control." alt="" coords="5,80,136,107"/>
+<area shape="rect" id="node2" href="$classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone..." alt="" coords="7,5,134,32"/>
+</map>
