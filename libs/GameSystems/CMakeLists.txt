@@ -11,10 +11,9 @@ add_library(${TARGET} SHARED ${SRC})
 
 target_include_directories(${TARGET}
     PUBLIC ${INC_ROOT}
-    PUBLIC ${PROJECT_NAME}_ecs
-    PUBLIC ${PROJECT_NAME}_gameComponents
-    INTERFACE ${PROJECT_NAME}_error
-    PRIVATE $(SRC_ROOT)
+    PRIVATE ${PROJECT_NAME}_ecs
+    PRIVATE ${PROJECT_NAME}_gameComponents
+    PRIVATE ${SRC_ROOT}
 )
 
 target_link_libraries(${TARGET}
