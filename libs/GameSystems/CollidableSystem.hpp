@@ -59,6 +59,8 @@ namespace ecs
             std::vector<std::shared_ptr<ecs::Entity>> &enemiesProjectiles,
             std::vector<std::shared_ptr<ecs::Entity>> &obstacles);
 
+        /// @brief Run function for the Collide System
+        /// @param world The world where the collisions will be checked
         void run(World &world) override final;
     };
 } // namespace ecs
