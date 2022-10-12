@@ -83,6 +83,136 @@ void *Transisthor::transitNetworkDataToEcsDataEntity(Message networkData)
     return object;
 }
 
+void *Transisthor::transitEcsDataToNetworkDataEntityAlliedProjectile(
+    unsigned short id, int posX, int posY, std::vector<unsigned short> destination)
+{
+    void *networkObject = std::malloc((sizeof(unsigned short) * 2 + sizeof(int) * 2));
+    unsigned short typeId = 1;
+    Client temporaryClient;
+
+    if (networkObject == nullptr)
+        throw error_lib::MallocError("Malloc failed.");
+    std::memcpy(networkObject, &id, sizeof(unsigned short));
+    std::memcpy((void *)((char *)networkObject + sizeof(unsigned short)), &typeId, sizeof(unsigned short));
+    std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2), &posX, sizeof(int));
+    std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2 + sizeof(int)), &posY, sizeof(int));
+    for (auto it : destination) {
+        temporaryClient = getClientByHisId(it);
+        transisthor_lib::sendDataToAClientWithoutCommunicator(
+            _communicator, temporaryClient, networkObject, (sizeof(unsigned short) * 2 + sizeof(int) * 2), 31);
+    }
+    return networkObject;
+}
+
+void *Transisthor::transitEcsDataToNetworkDataEntityEnemy(
+    unsigned short id, int posX, int posY, std::vector<unsigned short> destination)
+{
+    void *networkObject = std::malloc((sizeof(unsigned short) * 2 + sizeof(int) * 2));
+    unsigned short typeId = 2;
+    Client temporaryClient;
+
+    if (networkObject == nullptr)
+        throw error_lib::MallocError("Malloc failed.");
+    std::memcpy(networkObject, &id, sizeof(unsigned short));
+    std::memcpy((void *)((char *)networkObject + sizeof(unsigned short)), &typeId, sizeof(unsigned short));
+    std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2), &posX, sizeof(int));
+    std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2 + sizeof(int)), &posY, sizeof(int));
+    for (auto it : destination) {
+        temporaryClient = getClientByHisId(it);
+        transisthor_lib::sendDataToAClientWithoutCommunicator(
+            _communicator, temporaryClient, networkObject, (sizeof(unsigned short) * 2 + sizeof(int) * 2), 31);
+    }
+    return networkObject;
+}
+
+void *Transisthor::transitEcsDataToNetworkDataEntityEnemyProjectile(
+    unsigned short id, int posX, int posY, std::vector<unsigned short> destination)
+{
+    void *networkObject = std::malloc((sizeof(unsigned short) * 2 + sizeof(int) * 2));
+    unsigned short typeId = 3;
+    Client temporaryClient;
+
+    if (networkObject == nullptr)
+        throw error_lib::MallocError("Malloc failed.");
+    std::memcpy(networkObject, &id, sizeof(unsigned short));
+    std::memcpy((void *)((char *)networkObject + sizeof(unsigned short)), &typeId, sizeof(unsigned short));
+    std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2), &posX, sizeof(int));
+    std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2 + sizeof(int)), &posY, sizeof(int));
+    for (auto it : destination) {
+        temporaryClient = getClientByHisId(it);
+        transisthor_lib::sendDataToAClientWithoutCommunicator(
+            _communicator, temporaryClient, networkObject, (sizeof(unsigned short) * 2 + sizeof(int) * 2), 31);
+    }
+    return networkObject;
+}
+
+void *Transisthor::transitEcsDataToNetworkDataEntityObstacle(
+    unsigned short id, int posX, int posY, std::vector<unsigned short> destination)
+{
+    void *networkObject = std::malloc((sizeof(unsigned short) * 2 + sizeof(int) * 2));
+    unsigned short typeId = 4;
+    Client temporaryClient;
+
+    if (networkObject == nullptr)
+        throw error_lib::MallocError("Malloc failed.");
+    std::memcpy(networkObject, &id, sizeof(unsigned short));
+    std::memcpy((void *)((char *)networkObject + sizeof(unsigned short)), &typeId, sizeof(unsigned short));
+    std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2), &posX, sizeof(int));
+    std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2 + sizeof(int)), &posY, sizeof(int));
+    for (auto it : destination) {
+        temporaryClient = getClientByHisId(it);
+        transisthor_lib::sendDataToAClientWithoutCommunicator(
+            _communicator, temporaryClient, networkObject, (sizeof(unsigned short) * 2 + sizeof(int) * 2), 31);
+    }
+    return networkObject;
+}
+
+void *Transisthor::transitEcsDataToNetworkDataEntityPlayer(
+    unsigned short id, int posX, int posY, std::vector<unsigned short> destination)
+{
+    void *networkObject = std::malloc((sizeof(unsigned short) * 2 + sizeof(int) * 2));
+    unsigned short typeId = 5;
+    Client temporaryClient;
+
+    if (networkObject == nullptr)
+        throw error_lib::MallocError("Malloc failed.");
+    std::memcpy(networkObject, &id, sizeof(unsigned short));
+    std::memcpy((void *)((char *)networkObject + sizeof(unsigned short)), &typeId, sizeof(unsigned short));
+    std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2), &posX, sizeof(int));
+    std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2 + sizeof(int)), &posY, sizeof(int));
+    for (auto it : destination) {
+        temporaryClient = getClientByHisId(it);
+        transisthor_lib::sendDataToAClientWithoutCommunicator(
+            _communicator, temporaryClient, networkObject, (sizeof(unsigned short) * 2 + sizeof(int) * 2), 31);
+    }
+    return networkObject;
+}
+
+void *Transisthor::transitEcsDataToNetworkDataEntityProjectile(
+    unsigned short id, int posX, int posY, double velAbsc, double velOrd, std::vector<unsigned short> destination)
+{
+    void *networkObject = std::malloc((sizeof(unsigned short) * 2 + sizeof(int) * 2 + sizeof(double) * 2));
+    unsigned short typeId = 6;
+    Client temporaryClient;
+
+    if (networkObject == nullptr)
+        throw error_lib::MallocError("Malloc failed.");
+    std::memcpy(networkObject, &id, sizeof(unsigned short));
+    std::memcpy((void *)((char *)networkObject + sizeof(unsigned short)), &typeId, sizeof(unsigned short));
+    std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2), &posX, sizeof(int));
+    std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2 + sizeof(int)), &posY, sizeof(int));
+    std::memcpy(
+        (void *)((char *)networkObject + sizeof(unsigned short) * 2 + sizeof(int) * 2), &velAbsc, sizeof(double));
+    std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2 + sizeof(int) * 2 + sizeof(double)),
+        &velOrd, sizeof(double));
+    for (auto it : destination) {
+        temporaryClient = getClientByHisId(it);
+        transisthor_lib::sendDataToAClientWithoutCommunicator(_communicator, temporaryClient, networkObject,
+            (sizeof(unsigned short) * 2 + sizeof(int) * 2 + sizeof(double) * 2), 31);
+    }
+    return networkObject;
+}
+
 Client Transisthor::getClientByHisId(unsigned short id) { return _communicator.getClientByHisId(id); }
 
 unsigned short Transisthor::getServerEndpointId(void) { return _communicator.getServerEndpointId(); }
