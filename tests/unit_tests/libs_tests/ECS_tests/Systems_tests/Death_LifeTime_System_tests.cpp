@@ -2,33 +2,36 @@
 ** EPITECH PROJECT, 2022
 ** R-Type
 ** File description:
-** Death_Life_System_tests
+** Death_LifeTime_System_tests
 */
 
 #include <criterion/criterion.h>
 #include "World/World.hpp"
 #include "Entity/Entity.hpp"
-#include "GameSystems/DeathLifeSystem.hpp"
+#include "GameSystems/DeathLifeTimeSystem.hpp"
 #include "GameEntityManipulation/CreateEntitiesFunctions/CreateProjectile.hpp"
 #include "GameComponents/DeathComponent.hpp"
 #include "GameComponents/ProjectileComponent.hpp"
-#include "GameComponents/LifeComponent.hpp"
+#include "GameComponents/LifeTimeComponent.hpp"
 
 using namespace ecs;
 
-Test(add_Death_component_system, life_death_entity)
+Test(add_Death_component_system, lifeTime_death_entity)
 {
     World world(1);
+
+    std::chrono::duration<double> time_1(1.0);
+    std::chrono::duration<double> time_0(0.0);
 
     createNewProjectile(world, 10, 10, 1, 1, 10);
     createNewProjectile(world, 10, 10, 1, 1, 10);
     createNewProjectile(world, 10, 10, 1, 1, 10);
     
-    world.getEntity(1).getComponent<Life>().lifePoint = 0;
+    world.getEntity(1).getComponent<Lifetime>().timeLeft = time_0;
 
     std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Death>();
 
-    world.addSystem<DeathLife>();
+    world.addSystem<DeathLifeTime>();
 
     world.runSystems();
 
@@ -38,21 +41,24 @@ Test(add_Death_component_system, life_death_entity)
     cr_assert_eq(1, death_joined.size());
 }
 
-Test(add_Death_component_system, life_death_entities)
+Test(add_Death_component_system, lifeTime_death_entities)
 {
     World world(1);
+
+    std::chrono::duration<double> time_1(1.0);
+    std::chrono::duration<double> time_0(0.0);
 
     createNewProjectile(world, 10, 10, 1, 1, 10);
     createNewProjectile(world, 10, 10, 1, 1, 10);
     createNewProjectile(world, 10, 10, 1, 1, 10);
     
-    world.getEntity(1).getComponent<Life>().lifePoint = 1;
-    world.getEntity(2).getComponent<Life>().lifePoint = 0;
-    world.getEntity(3).getComponent<Life>().lifePoint = 0;
+    world.getEntity(1).getComponent<Lifetime>().timeLeft = time_1;
+    world.getEntity(2).getComponent<Lifetime>().timeLeft = time_0;
+    world.getEntity(3).getComponent<Lifetime>().timeLeft = time_0;
 
     std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Death>();
 
-    world.addSystem<DeathLife>();
+    world.addSystem<DeathLifeTime>();
 
     world.runSystems();
 

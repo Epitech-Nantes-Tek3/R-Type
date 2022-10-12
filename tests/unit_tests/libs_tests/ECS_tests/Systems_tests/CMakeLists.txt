@@ -8,6 +8,7 @@ set(TEST_SRC_ROOT
     ${SRC_ROOT}/Decrease_LifeTime_System_tests.cpp
     ${SRC_ROOT}/Death_System_tests.cpp
     ${SRC_ROOT}/Death_LifeTime_System_tests.cpp
+    ${SRC_ROOT}/Death_Life_System_tests.cpp
 )
 
 ## Documented Example ##

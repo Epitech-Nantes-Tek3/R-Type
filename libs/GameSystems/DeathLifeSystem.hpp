@@ -9,8 +9,8 @@
 #define DEATHLIFESYSTEM_HPP_
 
 #include "World/World.hpp"
-#include "Component/LifeComponent.hpp"
-#include "Component/DeathComponent.hpp"
+#include "GameComponents/LifeComponent.hpp"
+#include "GameComponents/DeathComponent.hpp"
 
 namespace ecs
 {
@@ -23,7 +23,7 @@ namespace ecs
             std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Life>();
 
             auto move = [](std::shared_ptr<ecs::Entity> entityPtr) {
-                if (entityPtr.get()->getComponent<Life>() <= 0)
+                if (entityPtr.get()->getComponent<Life>().lifePoint <= 0)
                     entityPtr.get()->addComponent<Death>();
             };
             std::for_each(joined.begin(), joined.end(), move);
