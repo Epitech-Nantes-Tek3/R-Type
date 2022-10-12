@@ -37,8 +37,8 @@ struct SendToServer : public ecs::System {
     /// @param entity Entity which must be shared
     /// @param serverIdList The list of servers to which the datas must be sent
     template <std::derived_from<ecs::Component>... C>
-    requires(sizeof...(C) == 0) void sendToServer(ecs::World &world, const unsigned short &networkId, ecs::Entity *entity,
-        const std::vector<unsigned short> &serverIdList) const
+    requires(sizeof...(C) == 0) void sendToServer(ecs::World &world, const unsigned short &networkId,
+        ecs::Entity *entity, const std::vector<unsigned short> &serverIdList) const
     {
         (void)networkId;
         (void)entity;
@@ -72,8 +72,5 @@ struct SendToServer : public ecs::System {
 
     /// @brief It runs the system
     /// @param world The world that the system is running in.
-    inline void run(ecs::World &world) override final
-    {
-        runSystem(world);
-    }
+    inline void run(ecs::World &world) override final { runSystem(world); }
 };

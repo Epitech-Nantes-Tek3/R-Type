@@ -71,8 +71,5 @@ struct SendToClient : public ecs::System {
 
     /// @brief It runs the system
     /// @param world The world which the system is running in.
-    inline void run(ecs::World &world) override final
-    {
-        runSystem(world);
-    };
+    inline void run(ecs::World &world) override final { runSystem(world); };
 };

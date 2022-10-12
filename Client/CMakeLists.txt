@@ -22,7 +22,7 @@ set_target_properties(${TARGET}
 )
 
 target_link_libraries(${TARGET}
-	CONAN_PKG::sfml
+    CONAN_PKG::sfml
     ${PROJECT_NAME}_transisthor
     ${PROJECT_NAME}_argumentHandler
     ${PROJECT_NAME}_error
