@@ -23,6 +23,5 @@ target_link_libraries(${TARGET}
     ${PROJECT_NAME}_ecs
 )
 
-set_target_properties(${TARGET} PROPERTIES LINKER_LANGUAGE CXX)
 include(${PROJECT_SOURCE_DIR}/build/conanbuildinfo.cmake)
 conan_basic_setup(TARGETS)

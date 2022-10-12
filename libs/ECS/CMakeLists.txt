@@ -31,4 +31,3 @@ target_link_libraries(${TARGET}
     ${PROJECT_NAME}_transisthor
 )
 
-set_target_properties(${TARGET} PROPERTIES LINKER_LANGUAGE CXX)
