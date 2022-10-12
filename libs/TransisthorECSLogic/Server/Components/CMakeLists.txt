@@ -1,0 +1,6 @@
+set(SRC_TEL_SERVER_COMP_ROOT ${PROJECT_SOURCE_DIR}/libs/TransisthorECSLogic/Server/Components)
+
+set(SRC_TEL_SERVER_COMP
+    ${SRC_TEL_SERVER_COMP_ROOT}/NetworkClient.hpp
+    PARENT_SCOPE
+)
