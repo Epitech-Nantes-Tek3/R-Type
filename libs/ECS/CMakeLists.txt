@@ -19,7 +19,6 @@ set(INCLUDE_ECS_LIB
 
 target_include_directories(${TARGET}
     PUBLIC ${INCLUDE_ECS_LIB}
-    INTERFACE ${PROJECT_NAME}_error
     PRIVATE ${INCLUDE_ECS_LIB}/Entity
     PRIVATE ${INCLUDE_ECS_LIB}/Component
     PRIVATE ${INCLUDE_ECS_LIB}/World
@@ -29,7 +28,6 @@ target_include_directories(${TARGET}
 )
 
 target_link_libraries(${TARGET}
-    ${PROJECT_NAME}_error
     ${PROJECT_NAME}_transisthor
 )
 
