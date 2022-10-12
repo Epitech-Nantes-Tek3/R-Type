@@ -5,15 +5,16 @@
 ** Movement_System_tests
 */
 
-#include <unistd.h>
+#include <chrono>
+#include <thread>
 #include <criterion/criterion.h>
-#include "World/World.hpp"
 #include "Entity/Entity.hpp"
 #include "GameComponents/PositionComponent.hpp"
-#include "GameComponents/VelocityComponent.hpp"
 #include "GameComponents/SizeComponent.hpp"
-#include "GameSystems/MouvementSystem.hpp"
+#include "GameComponents/VelocityComponent.hpp"
 #include "GameSharedResources/GameClock.hpp"
+#include "GameSystems/MouvementSystem.hpp"
+#include "World/World.hpp"
 
 using namespace ecs;
 
@@ -31,7 +32,7 @@ Test(Movement_System, moove_a_position)
     cr_assert_eq(10, pos1.x);
     cr_assert_eq(10, pos1.y);
 
-    sleep(1);
+    std::this_thread::sleep_for(std::chrono::duration<int>(1));
     world.runSystems();
 
     pos1 = world.getEntity(id).getComponent<Position>();

@@ -8,9 +8,8 @@
 #ifndef GAMECLOCK_HPP_
 #define GAMECLOCK_HPP_
 
-#include "Resource/Resource.hpp"
-
 #include <chrono>
+#include "Resource/Resource.hpp"
 
 namespace ecs
 {
