@@ -22,8 +22,6 @@ namespace ecs
         {
             std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Lifetime>();
 
-
-
             auto move = [](std::shared_ptr<ecs::Entity> entityPtr) {
                 if (entityPtr.get()->getComponent<Lifetime>().timeLeft <= std::chrono::duration<double>(0.0))
                     entityPtr.get()->addComponent<Death>();
