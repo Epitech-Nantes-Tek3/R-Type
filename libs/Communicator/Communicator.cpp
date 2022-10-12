@@ -137,8 +137,12 @@ void Communicator::receiveProtocol2X(Message lastMessage)
 void Communicator::receiveProtocol3X(Message lastMessage)
 {
     if (lastMessage.type == 30) {
-        _transisthorBridge.get()->transitNetworkDataToEcsData(lastMessage);
-        throw NetworkError("No message waiting for traitment.", "Communicator.cpp -> getLastMessage");
+        _transisthorBridge.get()->transitNetworkDataToEcsDataComponent(lastMessage);
+        throw NetworkError("No message waiting for traitment.", "Communicator.cpp -> receiveProtocol3X");
+    }
+    if (lastMessage.type == 31) {
+        _transisthorBridge.get()->transitNetworkDataToEcsDataEntity(lastMessage);
+        throw NetworkError("No message waiting for traitment.", "Communicator.cpp -> receiveProtocol3X");
     }
 }
 

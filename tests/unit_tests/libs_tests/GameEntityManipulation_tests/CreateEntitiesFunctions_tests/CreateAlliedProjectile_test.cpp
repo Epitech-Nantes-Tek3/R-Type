@@ -7,7 +7,7 @@
 
 #include <criterion/criterion.h>
 #include "World/World.hpp"
-#include "CreateAlliedProjectile.hpp"
+#include "GameEntityManipulation/CreateEntitiesFunctions/CreateAlliedProjectile.hpp"
 
 using namespace ecs;
 

@@ -10,6 +10,7 @@
 #include "Room.hpp"
 #include "Error/Error.hpp"
 #include "GameComponents/PositionComponent.hpp"
+#include "GameEntityManipulation/CreateEntitiesFunctions/CreateObstacle.hpp"
 
 using namespace server_data;
 using namespace error_lib;
@@ -53,6 +54,17 @@ void Room::startLobbyLoop(void)
             std::cerr << "Room " << _id << " received a connexion protocol."
                       << std::endl; /// WILL BE DELETED WITH CONNEXION PROTOCOL ISSUE
             _transisthorInstance.get()->transitEcsDataToNetworkData<Position>(1, 6, pos,
+                {connexionDemand.message.clientInfo.getId()}); /// USED FOR FUNCTIONNAL TESTING, WILL BE REMOVED LATER
+
+            std::size_t entityId = createNewObstacle(
+                *(_worldInstance.get()), 10, 120, 5); /// USED FOR FUNCTIONNAL TESTING, WILL BE REMOVED LATER
+            Position entityPosition =
+                _worldInstance.get()
+                    ->getEntity(entityId)
+                    .getComponent<Position>(); /// USED FOR FUNCTIONNAL TESTING, WILL BE REMOVED LATER
+
+            _transisthorInstance.get()->transitEcsDataToNetworkDataEntityObstacle(entityId, entityPosition.x,
+                entityPosition.y,
                 {connexionDemand.message.clientInfo.getId()}); /// USED FOR FUNCTIONNAL TESTING, WILL BE REMOVED LATER
         } catch (NetworkError &error) {
         }
