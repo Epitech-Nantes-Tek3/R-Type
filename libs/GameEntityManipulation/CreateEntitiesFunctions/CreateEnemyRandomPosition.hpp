@@ -21,6 +21,11 @@
 #include "GameSharedResources/Random.hpp"
 #include "World/World.hpp"
 
+#define MINIMUM_HIGH_WIDTH 1400
+#define MAXIMUM_HIGH_WIDTH 1920
+#define MINIMUM_HIGH_HEIGTH 0
+#define MAXIMUM_HIGH_HEIGTH 1080
+
 namespace ecs
 {
     
@@ -38,8 +43,8 @@ namespace ecs
     std::size_t createNewEnemyRandom(World &world, const double multiplierAbscissa, const double multiplierOrdinate, const short weight, const int size_x, const int size_y, const unsigned short life, const unsigned short damage, const unsigned short damageRadius)
     {
         return world.addEntity()
-            .addComponent<Position>(world.getResource<RandomDevice>().randInt(1400, 1920),
-                world.getResource<RandomDevice>().randInt(0, 1080))
+            .addComponent<Position>(world.getResource<RandomDevice>().randInt(MINIMUM_HIGH_WIDTH, MAXIMUM_HIGH_WIDTH),
+                world.getResource<RandomDevice>().randInt(MINIMUM_HIGH_HEIGTH, 1080))
             .addComponent<Weight>(weight)
             .addComponent<Size>(size_x, size_y)
             .addComponent<Lifetime>()

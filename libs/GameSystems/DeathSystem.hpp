@@ -10,6 +10,7 @@
 
 #include "World/World.hpp"
 #include "GameComponents/DeathComponent.hpp"
+#include "GameEntityManipulation/CreateEntitiesFunctions/CreateEnemyRandomPosition.hpp"
 
 namespace ecs
 {
@@ -22,6 +23,8 @@ namespace ecs
             std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Death>();
         
             auto move = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
+                if (world.getEntity(entityPtr->contains<Enemy>()) == true)
+                    createNewEnemyRandom(world, 1, 1, 1, 4, 4, 100, 10, 5);
                 world.removeEntity(entityPtr->getId());
             };
             std::for_each(joined.begin(), joined.end(), move);
