@@ -21,7 +21,7 @@ namespace communicator_lib
         /// @brief Construct a new Client object
         /// @param address The address of the client
         /// @param port The port of the client
-        Client(std::string address = "127.0.0.1", long port = 0);
+        Client(std::string address = "127.0.0.1", unsigned short port = 0);
 
         /// @brief Destroy the Client object
         ~Client() = default;
@@ -34,6 +34,8 @@ namespace communicator_lib
         /// @return unsigned short The value of the port
         inline unsigned short getPort(void) const { return _port; };
 
+        inline unsigned short getId(void) const { return _id; };
+
         /// @brief Set the Address value
         /// @param address The newly address
         inline void setAddress(std::string address) { _address = address; };
@@ -42,11 +44,17 @@ namespace communicator_lib
         /// @param port The new port number
         inline void setPort(unsigned short port) { _port = port; };
 
+        /// @brief Set the id value
+        /// @param id THe new id number
+        inline void setId(unsigned short id){_id = id;};
+
       private:
         /// @brief The ip address of the client (127.0.0.1 by default)
         std::string _address;
         /// @brief The port of the client (0 by default)
         unsigned short _port;
+        /// @brief Id of the client
+        unsigned short _id;
     };
 
     /// @brief Overload of the == operator to compare two clients

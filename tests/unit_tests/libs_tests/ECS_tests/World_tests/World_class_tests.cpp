@@ -7,9 +7,8 @@
 
 /// @file tests/unit_tests/libs_tests/ECS_tests/World_tests
 
-#include <World/World.hpp>
+#include "World/World.hpp"
 #include <algorithm>
-#include <iostream>
 #include <criterion/criterion.h>
 
 class Position : public ecs::Component {
@@ -19,6 +18,16 @@ class Position : public ecs::Component {
 
     Position(const double X, const double Y) : x(X), y(Y){};
     Position(Position &old) : x(old.x), y(old.y){};
+
+    Position &operator=(Position const &other)
+    {
+        if (this == &other)
+            return *this;
+
+        this->x = other.x;
+        this->y = other.y;
+        return *this;
+    }
 };
 
 class Velocity : public ecs::Component {
@@ -29,6 +38,16 @@ class Velocity : public ecs::Component {
     Velocity(const double X, const double Y) : x(X), y(Y){};
     Velocity(Velocity &old) : x(old.x), y(old.y){};
 };
+
+class Distinct : public ecs::Component {
+  public:
+    std::size_t id;
+
+    Distinct(const std::size_t ID = 0) : id(ID){};
+};
+
+auto operator==(Distinct const &distinct, Distinct const &other) { return distinct.id == other.id; }
+auto operator!=(Distinct const &distinct, Distinct const &other) { return distinct.id != other.id; }
 
 class Hitbox : public ecs::Component {
   public:
@@ -185,4 +204,23 @@ Test(World, test_system)
     cr_assert_eq(2, entity22.get()->getId());
     cr_assert_eq(pos22.x, 57.5);
     cr_assert_eq(pos22.y, 37.9);
+}
+
+Test(World, test_updateComponentOfAnEntityFromGivenDistinctiveComponent)
+{
+    ecs::World world(1);
+
+    world.addEntity().addComponent<Position>(5, 10).addComponent<Distinct>(1);
+    world.addEntity().addComponent<Position>(57, 35).addComponent<Velocity>(0.5, 2.9);
+    world.addEntity().addComponent<Velocity>(0.1, -0.1).addComponent<Distinct>(2);
+    world.addEntity().addComponent<Velocity>(-9, 1.4).addComponent<Position>(26, 62);
+    std::size_t id = world.addEntity().addComponent<Hitbox>(9, 4).addComponent<Position>(26, 62).addComponent<Distinct>(3).getId();
+    world.addEntity().addComponent<Hitbox>(57, 35).addComponent<Velocity>(562, 785);
+
+    Position &pos = world.getEntity(id).getComponent<Position>();
+
+    world.updateComponentOfAnEntityFromGivenDistinctiveComponent<Distinct, Position>(Distinct(3), Position(100, 200));
+
+    cr_assert_eq(100, pos.x);
+    cr_assert_eq(200, pos.y);
 }

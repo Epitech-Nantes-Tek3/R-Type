@@ -1,2 +1,3 @@
 add_subdirectory(ECS_tests)
-add_subdirectory(SFML_tests)
+add_subdirectory(GameEntityManipulation_tests)
+#add_subdirectory(SFML_tests)
