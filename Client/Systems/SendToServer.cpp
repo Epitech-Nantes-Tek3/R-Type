@@ -14,13 +14,12 @@ void SendToServer::runSystem(ecs::World &world)
     std::vector<unsigned short> serverIdList;
 
     auto addToServerList = [&serverIdList](std::shared_ptr<ecs::Entity> entityPtr) {
-        serverIdList.emplace_back(entityPtr.get()->getComponent<ecs::NetworkServer>().id);
+        serverIdList.emplace_back(entityPtr->getComponent<ecs::NetworkServer>().id);
     };
 
     auto update = [this, &world, &serverIdList](std::shared_ptr<ecs::Entity> entityPtr) {
-        ecs::Entity *entity = entityPtr.get();
-        unsigned short networkId = entity->getComponent<ecs::Networkable>().id;
-        sendToServer<ecs::Velocity>(world, networkId, entity, serverIdList);
+        unsigned short networkId = entityPtr->getComponent<ecs::Networkable>().id;
+        sendToServer<ecs::Velocity>(world, networkId, entityPtr, serverIdList);
         return entityPtr;
     };
 

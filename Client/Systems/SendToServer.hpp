@@ -14,8 +14,6 @@
 #include "../Components/Controllable.hpp"
 #include "../Components/NetworkServer.hpp"
 #include "../Components/Networkable.hpp"
-#include "World/World.hpp"
-
 #include "GameComponents/DestinationComponent.hpp"
 #include "GameComponents/EquipmentComponent.hpp"
 #include "GameComponents/InvinsibleComponent.hpp"
@@ -23,6 +21,7 @@
 #include "GameComponents/LifeComponent.hpp"
 #include "GameComponents/PositionComponent.hpp"
 #include "GameComponents/VelocityComponent.hpp"
+#include "World/World.hpp"
 
 ///@brief a static map which is used to know which ID is used for a component type for the RFC protocol
 static const std::map<std::type_index, unsigned short> componentRFCId = {{typeid(ecs::Destination), 1},
@@ -38,7 +37,7 @@ struct SendToServer : public ecs::System {
     /// @param serverIdList The list of servers to which the datas must be sent
     template <std::derived_from<ecs::Component>... C>
     requires(sizeof...(C) == 0) void sendToServer(ecs::World &world, const unsigned short &networkId,
-        ecs::Entity *entity, const std::vector<unsigned short> &serverIdList) const
+        std::shared_ptr<ecs::Entity> entity, const std::vector<unsigned short> &serverIdList) const
     {
         (void)networkId;
         (void)entity;
@@ -54,12 +53,11 @@ struct SendToServer : public ecs::System {
     /// @param entity Entity which must be shared
     /// @param serverIdList The list of servers to which the datas must be sent
     template <std::derived_from<ecs::Component> C1, std::derived_from<ecs::Component>... C2>
-    void sendToServer(ecs::World &world, const unsigned short &networkId, ecs::Entity *entity,
+    void sendToServer(ecs::World &world, const unsigned short &networkId, std::shared_ptr<ecs::Entity> entity,
         const std::vector<unsigned short> &serverIdList) const
     {
         if (componentRFCId.find(typeid(C1)) != componentRFCId.end()) {
             if (entity->contains<C1>()) {
-                (void)serverIdList;
                 world.getTransisthorBridge().get()->transitEcsDataToNetworkData<C1>(
                     networkId, componentRFCId.find(typeid(C1))->second, entity->getComponent<C1>(), serverIdList);
             }
