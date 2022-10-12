@@ -19,8 +19,8 @@ namespace ecs
         unsigned short id;
 
         ///@brief Construct a new Networkable object
-        ///@param ID The Entity’s common unique identifier
-        Networkable(unsigned short Id = 0) : id(Id){};
+        ///@param newId The Entity’s common unique identifier
+        Networkable(unsigned short newId = 0) : id(newId){};
 
         ///@brief Destroy the Networkable object
         ///

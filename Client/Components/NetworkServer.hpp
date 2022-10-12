@@ -18,8 +18,8 @@ namespace ecs
         unsigned short id;
 
         ///@brief Construct a new Network Server object
-        ///@param Id Id of the Communicator Server
-        NetworkServer(unsigned short Id = 0) : id(Id){};
+        ///@param newId Id of the Communicator Server
+        NetworkServer(unsigned short newId = 0) : id(newId){};
 
         ///@brief Destroy the Network Server object
         ~NetworkServer() = default;
