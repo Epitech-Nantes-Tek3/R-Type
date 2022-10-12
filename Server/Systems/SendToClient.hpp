@@ -24,7 +24,7 @@
 #include "GameComponents/VelocityComponent.hpp"
 
 ///@brief a static map which is used to know which ID is used for a component type for the RFC protocol
-static const std::map<std::type_index, std::size_t> componentRFCId = {{typeid(ecs::Destination), 1},
+static const std::map<std::type_index, unsigned short> componentRFCId = {{typeid(ecs::Destination), 1},
     {typeid(ecs::Equipment), 2}, {typeid(ecs::Invinsible), 3}, {typeid(ecs::Invisible), 4}, {typeid(ecs::Life), 5},
     {typeid(ecs::Position), 6}, {typeid(ecs::Velocity), 7}};
 
@@ -37,8 +37,8 @@ struct SendToClient : public ecs::System {
     /// @param entity Entity which must be shared
     /// @param clientIdList The list of clients to which the datas must be sent
     template <std::derived_from<ecs::Component>... C>
-    requires(sizeof...(C) == 0) void sendToClients(ecs::World &world, const std::size_t &networkId, ecs::Entity *entity,
-        const std::vector<std::size_t> &clientIdList) const
+    requires(sizeof...(C) == 0) void sendToClients(ecs::World &world, const unsigned short &networkId,
+        std::shared_ptr<ecs::Entity> entity, const std::vector<std::size_t> &clientIdList) const
     {
         (void)networkId;
         (void)entity;
@@ -54,21 +54,23 @@ struct SendToClient : public ecs::System {
     /// @param entity Entity which must be shared
     /// @param clientIdList The list of clients to which the datas must be sent
     template <std::derived_from<ecs::Component> C1, std::derived_from<ecs::Component>... C2>
-    void sendToClients(ecs::World &world, const std::size_t &networkId, ecs::Entity *entity,
+    void sendToClients(ecs::World &world, const unsigned short &networkId, std::shared_ptr<ecs::Entity> entity,
         const std::vector<std::size_t> &clientIdList) const
     {
-        std::map<std::type_index, std::size_t>::const_iterator it = componentRFCId.find(typeid(C1));
-
-        if (it != componentRFCId.end()) {
+        if (componentRFCId.find(typeid(C1)) != componentRFCId.end()) {
             if (entity->contains<C1>()) {
-                (void)clientIdList;
                 world.getTransisthorBridge().get()->transitEcsDataToNetworkData<C1>(
-                    networkId, it->second, entity->getComponent<C1>(), clientIdList);
+                    networkId, componentRFCId.find(typeid(C1))->second, entity->getComponent<C1>(), clientIdList);
             }
         }
     }
 
+    void runSystem(ecs::World &world);
+
     /// @brief It sends the data of all the entities which have the Networkable component to all the clients
     /// @param world The world which the system is running in.
-    void run(ecs::World &world) override final;
+    inline void run(ecs::World &world) override final
+    {
+        runSystem(world);
+    };
 };

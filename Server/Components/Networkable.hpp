@@ -16,11 +16,11 @@ namespace ecs
     class Networkable : public Component {
       public:
         /// @brief The Entity’s common unique identifier
-        std::size_t id;
+        unsigned short id;
 
         ///@brief Construct a new Networkable object
         ///@param ID The Entity’s common unique identifier
-        Networkable(std::size_t Id = 0) : id(Id){};
+        Networkable(unsigned short Id = 0) : id(Id){};
 
         ///@brief Destroy the Networkable object
         ///

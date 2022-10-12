@@ -7,7 +7,7 @@
 
 #include "SendToClient.hpp"
 
-void SendToClient::run(ecs::World &world)
+void SendToClient::runSystem(ecs::World &world)
 {
     std::vector<std::shared_ptr<ecs::Entity>> clients = world.joinEntities<ecs::NetworkClient>();
     std::vector<std::shared_ptr<ecs::Entity>> joinedNetworkable = world.joinEntities<ecs::Networkable>();
@@ -18,11 +18,10 @@ void SendToClient::run(ecs::World &world)
     };
 
     auto update = [this, &world, &clientIdList](std::shared_ptr<ecs::Entity> entityPtr) {
-        ecs::Entity *entity = entityPtr.get();
-        std::size_t networkId = entity->getComponent<ecs::Networkable>().id;
+        std::size_t networkId = entityPtr->getComponent<ecs::Networkable>().id;
         sendToClients<ecs::Destination, ecs::Equipment, ecs::Invinsible, ecs::Invisible, ecs::Life, ecs::Position,
-            ecs::Velocity>(world, networkId, entity, clientIdList);
-        return entityPtr;
+            ecs::Velocity>(world, networkId, entityPtr, clientIdList);
+        return;
     };
 
     std::for_each(clients.begin(), clients.end(), addToClientList);
