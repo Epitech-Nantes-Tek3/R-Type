@@ -11,9 +11,9 @@
 #include <concepts>
 #include <map>
 #include <typeindex>
-#include "../Components/Controllable.hpp"
-#include "../Components/NetworkServer.hpp"
-#include "../Components/Networkable.hpp"
+#include "TransisthorECSLogic/Client/Components/Controllable.hpp"
+#include "TransisthorECSLogic/Client/Components/NetworkServer.hpp"
+#include "TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "GameComponents/DestinationComponent.hpp"
 #include "GameComponents/EquipmentComponent.hpp"
 #include "GameComponents/InvinsibleComponent.hpp"

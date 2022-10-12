@@ -11,8 +11,8 @@
 #include <concepts>
 #include <map>
 #include <typeindex>
-#include "../Components/NetworkClient.hpp"
-#include "../Components/Networkable.hpp"
+#include "TransisthorECSLogic/Both/Components/Networkable.hpp"
+#include "TransisthorECSLogic/Server/Components/NetworkClient.hpp"
 #include "World/World.hpp"
 
 #include "GameComponents/DestinationComponent.hpp"
