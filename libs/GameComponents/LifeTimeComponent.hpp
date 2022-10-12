@@ -23,7 +23,11 @@ namespace ecs
 
         /// @brief Constructor of the Lifetime
         /// @param newLifetime the life time of the entity
-        Lifetime(const duration<double> &newLifetime = duration<double>(0)) : timeLeft(newLifetime){};
+        Lifetime(const duration<double> &newLifetime) : timeLeft(newLifetime){};
+        
+        /// @brief onstructor of the Lifetime
+        /// @param newLifetime the life time of the entity
+        Lifetime(double newLifetime = 0.0) : timeLeft(duration<double>(newLifetime)){};
         /// @brief Default destructor
         ~Lifetime() = default;
     };
