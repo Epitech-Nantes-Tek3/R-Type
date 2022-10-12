@@ -28,8 +28,6 @@ var namespaceecs =
     [ "Lifetime", "classecs_1_1_lifetime.html", "classecs_1_1_lifetime" ],
     [ "MouseInputComponent", "classecs_1_1_mouse_input_component.html", "classecs_1_1_mouse_input_component" ],
     [ "Movement", "structecs_1_1_movement.html", "structecs_1_1_movement" ],
-    [ "Networkable", "classecs_1_1_networkable.html", "classecs_1_1_networkable" ],
-    [ "NetworkClient", "classecs_1_1_network_client.html", "classecs_1_1_network_client" ],
     [ "Obstacle", "classecs_1_1_obstacle.html", null ],
     [ "Pattern", "classecs_1_1_pattern.html", "classecs_1_1_pattern" ],
     [ "Player", "classecs_1_1_player.html", null ],

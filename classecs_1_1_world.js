@@ -14,10 +14,9 @@ var classecs_1_1_world =
     [ "getEntity", "classecs_1_1_world.html#a9b59263ad57371f10d8362c2436a675f", null ],
     [ "getId", "classecs_1_1_world.html#a39f39c6ffec35ee5b19184e7529e4686", null ],
     [ "getResource", "classecs_1_1_world.html#a68a3b8090fb192e9b535c713da4f6cd7", null ],
-    [ "getTransisthorBridge", "classecs_1_1_world.html#a2ea940d773ebdb916f49d89c43ba174d", null ],
     [ "joinEntities", "classecs_1_1_world.html#adcbfd0e32647d24f15d124f92dc3fe73", null ],
     [ "removeEntity", "classecs_1_1_world.html#a593e838ce09a7924c81ff86f1a1e61c0", null ],
     [ "removeResource", "classecs_1_1_world.html#a4b2230f7925af348e7645b0a6c3a95d2", null ],
     [ "runSystems", "classecs_1_1_world.html#a8ced482c3db57a0932fc691aeef01935", null ],
-    [ "setTransisthorBridge", "classecs_1_1_world.html#a825c59d02e9091eb65dacda56fb5c5b0", null ]
+    [ "updateTransisthorBridge", "classecs_1_1_world.html#a4a22512fdc45b6216a3880441d10e4af", null ]
 ];

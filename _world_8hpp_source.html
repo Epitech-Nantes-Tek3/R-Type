@@ -106,8 +106,8 @@ $(document).ready(function(){initNavTree('_world_8hpp_source.html',''); initResi
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_entity_8hpp.html">Entity/Entity.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_resource_8hpp.html">Resource/Resource.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_system_8hpp.html">System/System.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_transisthor_8hpp.html">Transisthor/Transisthor.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;unordered_map&gt;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;unordered_map&gt;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_transisthor_8hpp.html">Transisthor/Transisthor.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacetransisthor__lib.html">transisthor_lib</a></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;{</div>
@@ -195,45 +195,43 @@ $(document).ready(function(){initNavTree('_world_8hpp_source.html',''); initResi
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;            <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
 <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        }</div>
 <div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160; </div>
-<div class="line"><a name="l00158"></a><span class="lineno"><a class="line" href="classecs_1_1_world.html#a825c59d02e9091eb65dacda56fb5c5b0">  158</a></span>&#160;        <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="classecs_1_1_world.html#a825c59d02e9091eb65dacda56fb5c5b0">setTransisthorBridge</a>(std::shared_ptr&lt;Transisthor&gt; transisthorBridge)</div>
+<div class="line"><a name="l00158"></a><span class="lineno"><a class="line" href="classecs_1_1_world.html#a4a22512fdc45b6216a3880441d10e4af">  158</a></span>&#160;        <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="classecs_1_1_world.html#a4a22512fdc45b6216a3880441d10e4af">updateTransisthorBridge</a>(std::shared_ptr&lt;Transisthor&gt; transisthorBridge)</div>
 <div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        {</div>
 <div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            _transisthorBridge = transisthorBridge;</div>
 <div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        }</div>
 <div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; </div>
-<div class="line"><a name="l00165"></a><span class="lineno"><a class="line" href="classecs_1_1_world.html#a2ea940d773ebdb916f49d89c43ba174d">  165</a></span>&#160;        <span class="keyword">inline</span> std::shared_ptr&lt;Transisthor&gt; <a class="code" href="classecs_1_1_world.html#a2ea940d773ebdb916f49d89c43ba174d">getTransisthorBridge</a>() { <span class="keywordflow">return</span> _transisthorBridge; }</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        <span class="keywordtype">void</span> runSystems();</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160; </div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        ~<a class="code" href="classecs_1_1_world.html">World</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160; </div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;      <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;      <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;        ID _id;</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160; </div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        ID _nextEntityId;</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160; </div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;        EntitiesList _entitiesList;</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160; </div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;        ResourcesList _resourcesList;</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160; </div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;        SystemsList _systemsList;</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160; </div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;        std::shared_ptr&lt;Transisthor&gt; _transisthorBridge;</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160; </div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;        <span class="keyword">template</span> &lt;std::derived_from&lt;Resource&gt;... R&gt;</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;        requires(<span class="keyword">sizeof</span>...(R) == 0) bool containsResource()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <span class="keyword">true</span>; }</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160; </div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;        <span class="keyword">template</span> &lt;std::derived_from&lt;System&gt;... S&gt;</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;        requires(<span class="keyword">sizeof</span>...(S) == 0) bool containsSystem()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <span class="keyword">true</span>; }</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    };</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;} <span class="comment">// namespace ecs</span></div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        <span class="keywordtype">void</span> runSystems();</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160; </div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        ~<a class="code" href="classecs_1_1_world.html">World</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160; </div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;      <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;      <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;        ID _id;</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160; </div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;        ID _nextEntityId;</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160; </div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        EntitiesList _entitiesList;</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160; </div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        ResourcesList _resourcesList;</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160; </div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        SystemsList _systemsList;</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160; </div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;        std::shared_ptr&lt;Transisthor&gt; _transisthorBridge;</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160; </div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        <span class="keyword">template</span> &lt;std::derived_from&lt;Resource&gt;... R&gt;</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        requires(<span class="keyword">sizeof</span>...(R) == 0) bool containsResource()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <span class="keyword">true</span>; }</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160; </div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;        <span class="keyword">template</span> &lt;std::derived_from&lt;System&gt;... S&gt;</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;        requires(<span class="keyword">sizeof</span>...(S) == 0) bool containsSystem()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <span class="keyword">true</span>; }</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    };</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;} <span class="comment">// namespace ecs</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="aclassecs_1_1_world_html_ad021ed08ad584edb816e13e4a4d0fe7c"><div class="ttname"><a href="classecs_1_1_world.html#ad021ed08ad584edb816e13e4a4d0fe7c">ecs::World::World</a></div><div class="ttdeci">World(ID id)</div><div class="ttdoc">Construct a new World object.</div><div class="ttdef"><b>Definition:</b> World.hpp:49</div></div>
 <div class="ttc" id="a_transisthor_8hpp_html"><div class="ttname"><a href="_transisthor_8hpp.html">Transisthor.hpp</a></div></div>
 <div class="ttc" id="aclassecs_1_1_world_html_adcbfd0e32647d24f15d124f92dc3fe73"><div class="ttname"><a href="classecs_1_1_world.html#adcbfd0e32647d24f15d124f92dc3fe73">ecs::World::joinEntities</a></div><div class="ttdeci">std::vector&lt; std::shared_ptr&lt; Entity &gt; &gt; joinEntities() const</div><div class="ttdoc">This function is used to join entities with the same components.</div><div class="ttdef"><b>Definition:</b> World.hpp:69</div></div>
+<div class="ttc" id="aclassecs_1_1_world_html_a4a22512fdc45b6216a3880441d10e4af"><div class="ttname"><a href="classecs_1_1_world.html#a4a22512fdc45b6216a3880441d10e4af">ecs::World::updateTransisthorBridge</a></div><div class="ttdeci">void updateTransisthorBridge(std::shared_ptr&lt; Transisthor &gt; transisthorBridge)</div><div class="ttdoc">Change the bridge destination to a new transisthor.</div><div class="ttdef"><b>Definition:</b> World.hpp:158</div></div>
 <div class="ttc" id="aclassecs_1_1_world_html_ac91e004d1bd2d29bb1d3478f061819bf"><div class="ttname"><a href="classecs_1_1_world.html#ac91e004d1bd2d29bb1d3478f061819bf">ecs::World::containsSystem</a></div><div class="ttdeci">bool containsSystem() const</div><div class="ttdoc">This function will check if a group of System types (at least one System type) is in an World.</div><div class="ttdef"><b>Definition:</b> World.hpp:137</div></div>
-<div class="ttc" id="aclassecs_1_1_world_html_a825c59d02e9091eb65dacda56fb5c5b0"><div class="ttname"><a href="classecs_1_1_world.html#a825c59d02e9091eb65dacda56fb5c5b0">ecs::World::setTransisthorBridge</a></div><div class="ttdeci">void setTransisthorBridge(std::shared_ptr&lt; Transisthor &gt; transisthorBridge)</div><div class="ttdoc">Set the bridge destination to a new transisthor.</div><div class="ttdef"><b>Definition:</b> World.hpp:158</div></div>
 <div class="ttc" id="aclassecs_1_1_world_html_a937b406f7b772c2c946eef8afe1107d4"><div class="ttname"><a href="classecs_1_1_world.html#a937b406f7b772c2c946eef8afe1107d4">ecs::World::EntitiesList</a></div><div class="ttdeci">std::map&lt; ID, std::shared_ptr&lt; Entity &gt; &gt; EntitiesList</div><div class="ttdoc">This is the map of Entities in the World.</div><div class="ttdef"><b>Definition:</b> World.hpp:38</div></div>
 <div class="ttc" id="aclassecs_1_1_world_html_a2cf2545a86db752628a00bef7b572fb6"><div class="ttname"><a href="classecs_1_1_world.html#a2cf2545a86db752628a00bef7b572fb6">ecs::World::addResource</a></div><div class="ttdeci">World &amp; addResource(Args &amp;&amp;...args)</div><div class="ttdoc">This function can add a Resource to the World.</div><div class="ttdef"><b>Definition:</b> World.hpp:92</div></div>
 <div class="ttc" id="aclassecs_1_1_world_html_afc2b9c7f105040242d10c47e5481511b"><div class="ttname"><a href="classecs_1_1_world.html#afc2b9c7f105040242d10c47e5481511b">ecs::World::SystemsList</a></div><div class="ttdeci">std::unordered_map&lt; std::type_index, std::unique_ptr&lt; System &gt; &gt; SystemsList</div><div class="ttdoc">This is the map of Systems in the World.</div><div class="ttdef"><b>Definition:</b> World.hpp:44</div></div>
@@ -241,7 +239,6 @@ $(document).ready(function(){initNavTree('_world_8hpp_source.html',''); initResi
 <div class="ttc" id="aclasstransisthor__lib_1_1_transisthor_html"><div class="ttname"><a href="classtransisthor__lib_1_1_transisthor.html">transisthor_lib::Transisthor</a></div><div class="ttdoc">Bridge between Communicator data and ECS data.</div><div class="ttdef"><b>Definition:</b> Transisthor.hpp:37</div></div>
 <div class="ttc" id="aclassecs_1_1_world_html_a6054711e61cf30d121a764bfce06bab0"><div class="ttname"><a href="classecs_1_1_world.html#a6054711e61cf30d121a764bfce06bab0">ecs::World::ID</a></div><div class="ttdeci">std::size_t ID</div><div class="ttdoc">The ID type.</div><div class="ttdef"><b>Definition:</b> World.hpp:35</div></div>
 <div class="ttc" id="aclassecs_1_1_world_html_a39f39c6ffec35ee5b19184e7529e4686"><div class="ttname"><a href="classecs_1_1_world.html#a39f39c6ffec35ee5b19184e7529e4686">ecs::World::getId</a></div><div class="ttdeci">ID getId() const</div><div class="ttdoc">Get the object's ID.</div><div class="ttdef"><b>Definition:</b> World.hpp:53</div></div>
-<div class="ttc" id="aclassecs_1_1_world_html_a2ea940d773ebdb916f49d89c43ba174d"><div class="ttname"><a href="classecs_1_1_world.html#a2ea940d773ebdb916f49d89c43ba174d">ecs::World::getTransisthorBridge</a></div><div class="ttdeci">std::shared_ptr&lt; Transisthor &gt; getTransisthorBridge()</div><div class="ttdoc">Get the Transisthor Bridge object.</div><div class="ttdef"><b>Definition:</b> World.hpp:165</div></div>
 <div class="ttc" id="anamespacetransisthor__lib_html"><div class="ttname"><a href="namespacetransisthor__lib.html">transisthor_lib</a></div><div class="ttdef"><b>Definition:</b> Communicator.hpp:20</div></div>
 <div class="ttc" id="a_system_8hpp_html"><div class="ttname"><a href="_system_8hpp.html">System.hpp</a></div></div>
 <div class="ttc" id="aclassecs_1_1_world_html"><div class="ttname"><a href="classecs_1_1_world.html">ecs::World</a></div><div class="ttdef"><b>Definition:</b> World.hpp:32</div></div>

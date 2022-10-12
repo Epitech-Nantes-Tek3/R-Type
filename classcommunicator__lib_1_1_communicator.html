@@ -134,9 +134,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aae9c840367165a903e7dd0cc1fdafde2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcommunicator__lib_1_1_communicator.html#aae9c840367165a903e7dd0cc1fdafde2">sendDataToAClient</a> (<a class="el" href="classcommunicator__lib_1_1_client.html">Client</a> &amp;client, void *data, size_t size, unsigned short type)</td></tr>
 <tr class="memdesc:aae9c840367165a903e7dd0cc1fdafde2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ask the sender to send data to a given client.  <a href="classcommunicator__lib_1_1_communicator.html#aae9c840367165a903e7dd0cc1fdafde2">More...</a><br /></td></tr>
 <tr class="separator:aae9c840367165a903e7dd0cc1fdafde2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8dba9adea6f7c334f752fde1124ffaca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcommunicator__lib_1_1_communicator.html#a8dba9adea6f7c334f752fde1124ffaca">setTransisthorBridge</a> (std::shared_ptr&lt; <a class="el" href="classtransisthor__lib_1_1_transisthor.html">Transisthor</a> &gt; transisthorBridge)</td></tr>
-<tr class="memdesc:a8dba9adea6f7c334f752fde1124ffaca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change the bridge destination to a new transisthor.  <a href="classcommunicator__lib_1_1_communicator.html#a8dba9adea6f7c334f752fde1124ffaca">More...</a><br /></td></tr>
-<tr class="separator:a8dba9adea6f7c334f752fde1124ffaca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a006f64feb127e4d4c47c9d04342a7588"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcommunicator__lib_1_1_communicator.html#a006f64feb127e4d4c47c9d04342a7588">updateTransisthorBridge</a> (std::shared_ptr&lt; <a class="el" href="classtransisthor__lib_1_1_transisthor.html">Transisthor</a> &gt; transisthorBridge)</td></tr>
+<tr class="memdesc:a006f64feb127e4d4c47c9d04342a7588"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change the bridge destination to a new transisthor.  <a href="classcommunicator__lib_1_1_communicator.html#a006f64feb127e4d4c47c9d04342a7588">More...</a><br /></td></tr>
+<tr class="separator:a006f64feb127e4d4c47c9d04342a7588"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a55b0b0709cd59258ac0e118a719cfb4e"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classtransisthor__lib_1_1_transisthor.html">Transisthor</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcommunicator__lib_1_1_communicator.html#a55b0b0709cd59258ac0e118a719cfb4e">getTransisthorBridge</a> (void)</td></tr>
 <tr class="memdesc:a55b0b0709cd59258ac0e118a719cfb4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the transisthor bridge.  <a href="classcommunicator__lib_1_1_communicator.html#a55b0b0709cd59258ac0e118a719cfb4e">More...</a><br /></td></tr>
 <tr class="separator:a55b0b0709cd59258ac0e118a719cfb4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -592,40 +592,6 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a8dba9adea6f7c334f752fde1124ffaca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8dba9adea6f7c334f752fde1124ffaca">&#9670;&nbsp;</a></span>setTransisthorBridge()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void communicator_lib::Communicator::setTransisthorBridge </td>
-          <td>(</td>
-          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classtransisthor__lib_1_1_transisthor.html">Transisthor</a> &gt;&#160;</td>
-          <td class="paramname"><em>transisthorBridge</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Change the bridge destination to a new transisthor. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">transisthorBridge</td><td>New bridge destination </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a id="aed7f706b345fd016c70d970e084b591f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aed7f706b345fd016c70d970e084b591f">&#9670;&nbsp;</a></span>startReceiverListening()</h2>
 
@@ -651,6 +617,40 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Ask the receiver to start the listening process. </p>
+
+</div>
+</div>
+<a id="a006f64feb127e4d4c47c9d04342a7588"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a006f64feb127e4d4c47c9d04342a7588">&#9670;&nbsp;</a></span>updateTransisthorBridge()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void communicator_lib::Communicator::updateTransisthorBridge </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classtransisthor__lib_1_1_transisthor.html">Transisthor</a> &gt;&#160;</td>
+          <td class="paramname"><em>transisthorBridge</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Change the bridge destination to a new transisthor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">transisthorBridge</td><td>New bridge destination </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

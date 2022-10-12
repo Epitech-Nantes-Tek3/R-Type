@@ -14,6 +14,6 @@ var classcommunicator__lib_1_1_communicator =
     [ "kickAClient", "classcommunicator__lib_1_1_communicator.html#ac609968cc689b60055e9ecc220d79e3b", null ],
     [ "removeClientFromList", "classcommunicator__lib_1_1_communicator.html#abf12e00a58c4ebfe7b2d9b0f730178ef", null ],
     [ "sendDataToAClient", "classcommunicator__lib_1_1_communicator.html#aae9c840367165a903e7dd0cc1fdafde2", null ],
-    [ "setTransisthorBridge", "classcommunicator__lib_1_1_communicator.html#a8dba9adea6f7c334f752fde1124ffaca", null ],
-    [ "startReceiverListening", "classcommunicator__lib_1_1_communicator.html#aed7f706b345fd016c70d970e084b591f", null ]
+    [ "startReceiverListening", "classcommunicator__lib_1_1_communicator.html#aed7f706b345fd016c70d970e084b591f", null ],
+    [ "updateTransisthorBridge", "classcommunicator__lib_1_1_communicator.html#a006f64feb127e4d4c47c9d04342a7588", null ]
 ];
