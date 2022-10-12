@@ -14,9 +14,9 @@
 
 namespace ecs
 {
-    /// @brief This is the DeathLifeTime Component. This Component take all entities which have LifeTime
-    /// Component with 0 or under life and add Death Component to it. It's a system that will be called
-    /// by the engine world with the function runSystem()
+    /// @brief This is the DeathLife System. 
+    /// This System takes all entities that have a LifeTime Component with 0 HP/life or less and adds a Death Component to them.
+    /// It's a system that will be called by the engine world with the function runSystem()
     struct DeathLifeTime : public System {
         inline void run(World &world) override final
         {
