@@ -20,7 +20,11 @@ namespace ecs
             /// @brief The Graphical SFML rectangle shape to be rendered.
             sf::RectangleShape shape;
 
-            /// @brief Default constructor of the class.
+            /// @brief Construct a GraphicsRectanbleComponent with default parameters if they aren't specified.
+            /// @param x The x position of the shape on the window. Default 10.
+            /// @param y The y position of the shape on the window. Default 10.
+            /// @param width The width size of the shape on the window. Default 10.
+            /// @param height The height size of the shape on the window. Default 10.
             GraphicsRectangleComponent(const std::size_t x = 10, const std::size_t y = 10, const std::size_t width = 10, const std::size_t height = 10);
 
             /// @brief Default destructor of the class.
