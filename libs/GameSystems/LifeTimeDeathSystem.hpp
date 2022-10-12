@@ -2,11 +2,11 @@
 ** EPITECH PROJECT, 2022
 ** R-Type
 ** File description:
-** DeathLifeTimeSystem
+** LifeTimeDeathSystem
 */
 
-#ifndef DEATHLIFETIMESYSTEM_HPP_
-#define DEATHLIFETIMESYSTEM_HPP_
+#ifndef LifeTimeDeathSYSTEM_HPP_
+#define LifeTimeDeathSYSTEM_HPP_
 
 #include "World/World.hpp"
 #include "GameComponents/LifeTimeComponent.hpp"
@@ -14,10 +14,10 @@
 
 namespace ecs
 {
-    /// @brief This is the DeathLifeTime System. 
+    /// @brief This is the LifeTimeDeath System. 
     /// This System takes all entities that have a LifeTime Component with 0 timeLeft or less and adds a Death Component to them.
     /// It's a system that will be called by the engine world with the function runSystem()
-    struct DeathLifeTime : public System {
+    struct LifeTimeDeath : public System {
         inline void run(World &world) override final
         {
             std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Lifetime>();
@@ -33,4 +33,4 @@ namespace ecs
     };
 } // namespace ecs
 
-#endif /* !DEATHLIFETIMESYSTEM_HPP_ */
+#endif /* !LifeTimeDeathSYSTEM_HPP_ */

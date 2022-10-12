@@ -14,8 +14,8 @@
 
 namespace ecs
 {
-    /// @brief This is the Movement system. This system can move any entities which contains a Position and a Velocity
-    /// Components. It's a system that will be called by the engine world with the function runSystem()
+    /// @brief This is the Movement system. This system can move any entities which contains a Position and a Velocity Component.
+    /// It's a system that will be called by the engine world with the function runSystem()
     struct Movement : public System {
         inline void run(World &world) override final
         {

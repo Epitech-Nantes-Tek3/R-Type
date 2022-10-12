@@ -8,7 +8,7 @@
 #include <criterion/criterion.h>
 #include "World/World.hpp"
 #include "Entity/Entity.hpp"
-#include "GameSystems/DeathLifeTimeSystem.hpp"
+#include "GameSystems/LifeTimeDeathSystem.hpp"
 #include "GameEntityManipulation/CreateEntitiesFunctions/CreateProjectile.hpp"
 #include "GameComponents/DeathComponent.hpp"
 #include "GameComponents/ProjectileComponent.hpp"
@@ -29,7 +29,7 @@ Test(add_Death_component_system, lifeTime_death_entity)
 
     std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Death>();
 
-    world.addSystem<DeathLifeTime>();
+    world.addSystem<LifeTimeDeath>();
 
     world.runSystems();
 
@@ -56,7 +56,7 @@ Test(add_Death_component_system, lifeTime_death_entities)
 
     std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Death>();
 
-    world.addSystem<DeathLifeTime>();
+    world.addSystem<LifeTimeDeath>();
 
     world.runSystems();
 
@@ -64,4 +64,20 @@ Test(add_Death_component_system, lifeTime_death_entities)
 
     cr_assert_eq(0, joined.size());
     cr_assert_eq(2, death_joined.size());
+}
+
+Test(add_Death_component_system, none_entities_lifeTime_death_entities)
+{
+    World world(1);
+
+    std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Death>();
+
+    world.addSystem<LifeTimeDeath>();
+
+    world.runSystems();
+
+    std::vector<std::shared_ptr<ecs::Entity>> death_joined = world.joinEntities<Death>();
+
+    cr_assert_eq(0, joined.size());
+    cr_assert_eq(0, death_joined.size());
 }

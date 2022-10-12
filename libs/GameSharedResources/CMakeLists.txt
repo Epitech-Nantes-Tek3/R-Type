@@ -10,8 +10,8 @@ set(SRC
 add_library(${TARGET} ${SRC})
 
 target_include_directories(${TARGET}
-    PUBLIC ${INC_ROOT}
-    PUBLIC ${PROJECT_NAME}_ecs
+    PRIVATE ${INC_ROOT}
+    PRIVATE ${PROJECT_NAME}_ecs
 )
 
 target_link_libraries(${TARGET}

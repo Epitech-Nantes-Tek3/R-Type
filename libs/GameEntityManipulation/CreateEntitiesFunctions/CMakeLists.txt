@@ -8,7 +8,6 @@ set(SRC
     ${INC_ROOT}/CreatePlayer.hpp
     ${INC_ROOT}/CreateProjectile.hpp
     ${INC_ROOT}/CreateEnemy.hpp
-    ${INC_ROOT}/CreateEnemyRandomPosition.hpp
     ${INC_ROOT}/CreateObstacle.hpp
 )
 

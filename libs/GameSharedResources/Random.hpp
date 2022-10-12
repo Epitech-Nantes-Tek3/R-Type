@@ -13,14 +13,13 @@
 
 namespace ecs
 {
-    /// World Shared Resource.
+    /// Random Shared Resource.
     struct RandomDevice : public Resource {
       public:
         /// Construct a new Random Device Shared Resource
         RandomDevice() : _generation(_device()) {}
 
         /// @brief Generate a random number in the interval [min, max]
-        ///
         /// @tparam numeric type of the numbers.
         /// @param min minimum value.
         /// @param max maximum value.

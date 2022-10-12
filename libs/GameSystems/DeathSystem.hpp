@@ -10,7 +10,7 @@
 
 #include "World/World.hpp"
 #include "GameComponents/DeathComponent.hpp"
-#include "GameEntityManipulation/CreateEntitiesFunctions/CreateEnemyRandomPosition.hpp"
+#include "GameEntityManipulation/CreateEntitiesFunctions/CreateEnemy.hpp"
 
 namespace ecs
 {

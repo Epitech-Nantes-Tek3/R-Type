@@ -9,7 +9,7 @@ set(SRC
     ${SRC_ROOT}/MovementSystem.hpp
     ${SRC_ROOT}/DeathSystem.hpp
     ${SRC_ROOT}/DeathLifeSystem.hpp
-    ${SRC_ROOT}/DeathLifeTimeSystem.hpp
+    ${SRC_ROOT}/LifeTimeDeathSystem.hpp
     ${SRC_ROOT}/DecreaseLifeTimeSystem.hpp
 )
 
