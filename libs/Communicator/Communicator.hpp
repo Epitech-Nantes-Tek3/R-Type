@@ -100,7 +100,7 @@ namespace communicator_lib
 
         /// @brief Change the bridge destination to a new transisthor
         /// @param transisthorBridge New bridge destination
-        inline void updateTransisthorBridge(std::shared_ptr<Transisthor> transisthorBridge)
+        inline void setTransisthorBridge(std::shared_ptr<Transisthor> transisthorBridge)
         {
             _transisthorBridge = transisthorBridge;
         }
