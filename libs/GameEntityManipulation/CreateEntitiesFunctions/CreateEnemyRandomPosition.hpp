@@ -26,7 +26,7 @@ namespace ecs
     
     /// @brief This function create a new Enemy Entity with random position and with these parameters
     /// @param world The world in which the Enemy must be created
-     /// @param multiplierAbscissa The Velocity multiplierAbscissa for the new Enemy
+    /// @param multiplierAbscissa The Velocity multiplierAbscissa for the new Enemy
     /// @param multiplierOrdinate The Velocity multiplierOrdinate for the new Enemy
     /// @param weight Weight of the Enemy
     /// @param size_x Size x of the Enemy

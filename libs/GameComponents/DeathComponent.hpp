@@ -12,7 +12,7 @@
 
 namespace ecs
 {
-    /// @brief The Death class, defining if an entity is dead. If an Entity has it's component, it's destroyed by the system DeathSystem
+    /// @brief The Death Class which defines that an entity is dead and will be deleted by Death System
     class Death : public Component {};
 } // namespace ecs
 
