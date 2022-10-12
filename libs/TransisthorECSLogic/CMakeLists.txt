@@ -5,7 +5,6 @@ add_subdirectory(Server)
 set(TARGET ${PROJECT_NAME}_tel)
 
 add_library(${TARGET}
-    SHARED
     ${SRC_TEL_BOTH}
     ${SRC_TEL_CLIENT}
     ${SRC_TEL_SERVER}
