@@ -41,6 +41,7 @@ target_include_directories(${TARGET_CLIENT}
     PUBLIC ${INC_ROOT}
     PRIVATE ${PROJECT_NAME}_ecs
     PRIVATE ${PROJECT_NAME}_gameComponents
+    PRIVATE ${PROJECT_NAME}_gameSharedResources
     PRIVATE ${SRC_ROOT}
 )
 
@@ -53,4 +54,5 @@ target_link_libraries(${TARGET}
 target_link_libraries(${TARGET_CLIENT}
     ${PROJECT_NAME}_ecs
     ${PROJECT_NAME}_gameComponents
+    ${PROJECT_NAME}_gameSharedResources
 )
