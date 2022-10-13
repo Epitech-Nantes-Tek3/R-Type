@@ -120,29 +120,32 @@ namespace transisthor_lib
         /// @param life Life of the Enemy
         /// @param damage Damage of projectiles fired by this Enemy
         /// @param damageRadius DamageRadius of projectiles fired by this Enemy
+        /// @param uuid string representing the entity uuid (Used only for a first sync process in client side)
         /// @param destination of the message
         /// @return Return value his only used for testing (Unit and functional)
         void *transitEcsDataToNetworkDataEntityEnemy(unsigned short id, int posX, int posY, double multiplierAbscissa,
             double multiplierOrdinate, short weight, int size_x, int size_y, short life, unsigned short damage,
-            unsigned short damageRadius, std::vector<unsigned short> destination);
+            unsigned short damageRadius, std::string uuid, std::vector<unsigned short> destination);
 
         /// @brief Function called by the ECS to transfer an order of creation for an EnemyProjectile entity
         /// @param id Id of the new entity to create
         /// @param enemyId If of the enemy who fired
+        /// @param uuid string representing the entity uuid (Used only for a first sync process in client side)
         /// @param destination of the message
         /// @return Return value his only used for testing (Unit and functional)
         void *transitEcsDataToNetworkDataEntityEnemyProjectile(
-            unsigned short id, unsigned short enemyId, std::vector<unsigned short> destination);
+            unsigned short id, unsigned short enemyId, std::string uuid, std::vector<unsigned short> destination);
 
         /// @brief Function called by the ECS to transfer an order of creation for an Obstacle entity
         /// @param id Id of the new entity to create
         /// @param posX X value for the Position component
         /// @param posY Y value for the Position component
         /// @param damage Damage value of the Obstacle
+        /// @param uuid string representing the entity uuid (Used only for a first sync process in client side)
         /// @param destination of the message
         /// @return Return value his only used for testing (Unit and functional)
         void *transitEcsDataToNetworkDataEntityObstacle(
-            unsigned short id, int posX, int posY, unsigned short damage, std::vector<unsigned short> destination);
+            unsigned short id, int posX, int posY, unsigned short damage, std::string uuid, std::vector<unsigned short> destination);
 
         /// @brief Function called by the ECS to transfer an order of creation for an Player entity
         /// @param id Id of the new entity to create
@@ -156,11 +159,12 @@ namespace transisthor_lib
         /// @param life Life of the Enemy
         /// @param damage Damage of projectiles fired by this Enemy
         /// @param damageRadius DamageRadius of projectiles fired by this Enemy
+        /// @param uuid string representing the entity uuid (Used only for a first sync process in client side)
         /// @param destination of the message
         /// @return Return value his only used for testing (Unit and functional)
         void *transitEcsDataToNetworkDataEntityPlayer(unsigned short id, int posX, int posY, double multiplierAbscissa,
             double multiplierOrdinate, short weight, int size_x, int size_y, short life, unsigned short damage,
-            unsigned short damageRadius, std::vector<unsigned short> destination);
+            unsigned short damageRadius, std::string uuid, std::vector<unsigned short> destination);
 
         /// @brief Function called by the ECS to transfer an order of creation for an Projectile entity
         /// @param id Id of the new entity to create
@@ -169,10 +173,11 @@ namespace transisthor_lib
         /// @param velAbsc Abscissa value for the Velocity component
         /// @param velOrd Ordonate value for the Velocity component
         /// @param damage Damage value of the projectile
+        /// @param uuid string representing the entity uuid (Used only for a first sync process in client side)
         /// @param destination of the message
         /// @return Return value his only used for testing (Unit and functional)
         void *transitEcsDataToNetworkDataEntityProjectile(unsigned short id, int posX, int posY, double velAbsc,
-            double velOrd, unsigned short damage, std::vector<unsigned short> destination);
+            double velOrd, unsigned short damage, std::string uuid, std::vector<unsigned short> destination);
 
         /// @brief Cross communicator client list and return the matched client
         /// @param id wanted id
