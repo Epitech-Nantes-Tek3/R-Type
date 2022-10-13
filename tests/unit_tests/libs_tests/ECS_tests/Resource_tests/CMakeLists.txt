@@ -5,6 +5,7 @@ set (SRC_ROOT ${PROJECT_SOURCE_DIR}/tests/unit_tests/libs_tests/ECS_tests/Resour
 
 set(TEST_SRC_ROOT
     ${SRC_ROOT}/Resource_class_tests.cpp
+    ${SRC_ROOT}/GameClock_resource_tests.cpp
 )
 
 ## Documented Example ##
@@ -14,6 +15,6 @@ create_test(
     ## Second, the sources for the test ##
     TEST_SRC ${TEST_SRC_ROOT}
     ## Last, the depenancies (necessary libraries) ##
-    TEST_DEPS ${PROJECT_NAME}_ecs
+    TEST_DEPS ${PROJECT_NAME}_ecs ${PROJECT_NAME}_gameSharedResources
     ## In this case none, otherwise add TEST_DEPS ${DEPENDANCY_NAME}
 )

@@ -5,6 +5,8 @@ set(TARGET ${PROJECT_NAME}_SFMLSystems)
 set(SRC
     ${INC_SFML_SYSTEM_ROOT}/InputManagement.cpp
     ${INC_SFML_SYSTEM_ROOT}/InputManagement.hpp
+    ${INC_SFML_SYSTEM_ROOT}/DrawComponents.cpp
+    ${INC_SFML_SYSTEM_ROOT}/DrawComponents.hpp
 )
 
 add_library(${TARGET} ${SRC})

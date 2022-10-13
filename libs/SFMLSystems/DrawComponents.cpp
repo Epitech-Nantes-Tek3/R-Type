@@ -5,8 +5,8 @@
 ** DrawComponents
 */
 
-#include "DrawComponents.hpp"
 #include "World/World.hpp"
+#include "DrawComponents.hpp"
 #include "RenderWindowResource.hpp"
 #include "LayerLvL.hpp"
 #include "GraphicsTextComponent.hpp"
@@ -14,7 +14,7 @@
 
 using namespace ecs;
 
-void DrawComponents::run(World &world)
+void DrawComponents::runSystem(World &world)
 {
     std::vector<std::shared_ptr<Entity>> Inputs = world.joinEntities<LayerLvL>();
 
