@@ -1,5 +1,3 @@
-add_subdirectory(Systems)
-
 set (TARGET r-type_server)
 
 set(SRC_ROOT ${PROJECT_SOURCE_DIR}/Server)

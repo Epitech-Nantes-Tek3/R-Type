@@ -8,32 +8,61 @@
 #ifndef GRAPHICSTEXTURERESOURCE_HPP_
 #define GRAPHICSTEXTURERESOURCE_HPP_
 
-#include "Resource/Resource.hpp"
-#include <SFML/Graphics.hpp>
 #include <filesystem>
+#include <unordered_map>
+#include <SFML/Graphics.hpp>
+#include "Resource/Resource.hpp"
 
 namespace ecs
 {
-    /// @brief This resource class stores a Graphical SFML texture to be set on a rectangle shape resource.
-    /// This class is created in order to set a texture on a rectangle shape resource.
+
+    /// @brief This resource class stores a map of Graphical SFML textures to be set on Shapes.
     class GraphicsTextureResource : public Resource {
-        public:
-            /// @brief The graphical SFML texture to be set on a rectangle shape resource.
-            sf::Texture texture;
+      public:
+        /// @brief Enumeration of all available Textures
+        enum textureName_e {
+            UNDEFINED,
+            PLAYER_STATIC,
+            PLAYER_UP,
+            PLAYER_DOWN,
+            ENEMY_STATIC,
+            ENEMY_UP,
+            ENEMY_DOWN,
+            BACKGROUND_LAYER_1,
+            BACKGROUND_LAYER_2,
+            BACKGROUND_LAYER_3,
+            OBSTACLE_1,
+            OBSTACLE_2,
+            OBSTACLE_3,
+            PROJECTILE,
+            BUTTON,
+            NATURAL_PROJECTILE
+        };
 
-            /// @brief Default constructor of the class.
-            GraphicsTextureResource() = default;
+        /// @brief Name of map which contains Textures.
+        using TexturesList = std::unordered_map<textureName_e, std::shared_ptr<sf::Texture>>;
 
-            /// @brief Create a texture from the path to an image.
-            /// @param texturePath The texture path to be used.
-            inline GraphicsTextureResource(const std::filesystem::path &texturePath)
-            {
-                texture.loadFromFile(texturePath);
-            }
+        /// @brief Add a Texture from it's Texture Path passed as parameter
+        /// @param texture_e Enum of the Texture
+        /// @param texturePath The texture path to be used.
+        inline GraphicsTextureResource(const textureName_e texture_e, const std::filesystem::path &texturePath)
+        {
+            addTexture(texture_e, texturePath);
+        }
 
-            /// @brief Default destructor of the class.
-            ~GraphicsTextureResource() = default;
+        /// @brief Add a texture to the TexturesList
+        /// @param texture_e Enum which give the name of the Texture
+        /// @param texturePath Path of the Texture
+        inline void addTexture(const textureName_e texture_e, const std::filesystem::path &texturePath)
+        {
+            _texturesList.emplace(texture_e, std::make_shared<sf::Texture>()->loadFromFile(texturePath));
+        }
+
+        /// @brief Default destructor of the class.
+        ~GraphicsTextureResource() = default;
+
+        TexturesList _texturesList;
     };
-} // namespace
+} // namespace ecs
 
 #endif /* !GRAPHICSTEXTURERESOURCE_HPP_ */

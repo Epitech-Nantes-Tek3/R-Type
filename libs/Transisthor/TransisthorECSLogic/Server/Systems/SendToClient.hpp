@@ -11,10 +11,6 @@
 #include <concepts>
 #include <map>
 #include <typeindex>
-#include "../Components/NetworkClient.hpp"
-#include "../Components/Networkable.hpp"
-#include "World/World.hpp"
-
 #include "GameComponents/DestinationComponent.hpp"
 #include "GameComponents/EquipmentComponent.hpp"
 #include "GameComponents/InvinsibleComponent.hpp"
@@ -22,11 +18,15 @@
 #include "GameComponents/LifeComponent.hpp"
 #include "GameComponents/PositionComponent.hpp"
 #include "GameComponents/VelocityComponent.hpp"
+#include "GameComponents/DeathComponent.hpp"
+#include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
+#include "Transisthor/TransisthorECSLogic/Server/Components/NetworkClient.hpp"
+#include "World/World.hpp"
 
 ///@brief a static map which is used to know which ID is used for a component type for the RFC protocol
 static const std::map<std::type_index, unsigned short> componentRFCId = {{typeid(ecs::Destination), 1},
     {typeid(ecs::Equipment), 2}, {typeid(ecs::Invinsible), 3}, {typeid(ecs::Invisible), 4}, {typeid(ecs::Life), 5},
-    {typeid(ecs::Position), 6}, {typeid(ecs::Velocity), 7}};
+    {typeid(ecs::Position), 6}, {typeid(ecs::Velocity), 7}, {typeid(ecs::Death), 8}};
 
 ///@brief `SendToClient` is a system that sends Networkable Entities datas to clients
 struct SendToClient : public ecs::System {
@@ -43,6 +43,7 @@ struct SendToClient : public ecs::System {
         (void)networkId;
         (void)entity;
         (void)clientIdList;
+        (void)world;
         return;
     }
 
@@ -59,10 +60,15 @@ struct SendToClient : public ecs::System {
     {
         if (componentRFCId.find(typeid(C1)) != componentRFCId.end()) {
             if (entity->contains<C1>()) {
-                world.getTransisthorBridge().get()->transitEcsDataToNetworkData<C1>(
-                    networkId, componentRFCId.find(typeid(C1))->second, entity->getComponent<C1>(), clientIdList);
+                C1 &component = entity->getComponent<C1>();
+                if (component.modified) {
+                    component.modified = false;
+                    world.getTransisthorBridge().get()->transitEcsDataToNetworkData<C1>(
+                        networkId, componentRFCId.find(typeid(C1))->second, component, clientIdList);
+                }
             }
         }
+        sendToClients<C2...>(world, networkId, entity, clientIdList);
     }
 
     /// @brief It sends the data of all the entities which have the Networkable component to all the clients
