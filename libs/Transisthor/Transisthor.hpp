@@ -144,8 +144,8 @@ namespace transisthor_lib
         /// @param uuid string representing the entity uuid (Used only for a first sync process in client side)
         /// @param destination of the message
         /// @return Return value his only used for testing (Unit and functional)
-        void *transitEcsDataToNetworkDataEntityObstacle(
-            unsigned short id, int posX, int posY, unsigned short damage, std::string uuid, std::vector<unsigned short> destination);
+        void *transitEcsDataToNetworkDataEntityObstacle(unsigned short id, int posX, int posY, unsigned short damage,
+            std::string uuid, std::vector<unsigned short> destination);
 
         /// @brief Function called by the ECS to transfer an order of creation for an Player entity
         /// @param id Id of the new entity to create

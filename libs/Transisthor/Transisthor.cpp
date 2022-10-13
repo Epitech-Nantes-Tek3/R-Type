@@ -99,8 +99,8 @@ void *Transisthor::transitEcsDataToNetworkDataEntityAlliedProjectile(
     std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 3), uuid.c_str(), sizeof(char) * uuid.size());
     for (auto it : destination) {
         temporaryClient = getClientByHisId(it);
-        transisthor_lib::sendDataToAClientWithoutCommunicator(
-            _communicator, temporaryClient, networkObject, (sizeof(unsigned short) * 3 + sizeof(char) * uuid.size()), 31);
+        transisthor_lib::sendDataToAClientWithoutCommunicator(_communicator, temporaryClient, networkObject,
+            (sizeof(unsigned short) * 3 + sizeof(char) * uuid.size()), 31);
     }
     return networkObject;
 }
@@ -109,8 +109,8 @@ void *Transisthor::transitEcsDataToNetworkDataEntityEnemy(unsigned short id, int
     double multiplierAbscissa, double multiplierOrdinate, short weight, int size_x, int size_y, short life,
     unsigned short damage, unsigned short damageRadius, std::string uuid, std::vector<unsigned short> destination)
 {
-    void *networkObject =
-        std::malloc((sizeof(unsigned short) * 4 + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2 + sizeof(char) * uuid.size()));
+    void *networkObject = std::malloc((sizeof(unsigned short) * 4 + sizeof(int) * 4 + sizeof(double) * 2
+        + sizeof(short) * 2 + sizeof(char) * uuid.size()));
     unsigned short typeId = 2;
     Client temporaryClient;
 
@@ -147,7 +147,9 @@ void *Transisthor::transitEcsDataToNetworkDataEntityEnemy(unsigned short id, int
     for (auto it : destination) {
         temporaryClient = getClientByHisId(it);
         transisthor_lib::sendDataToAClientWithoutCommunicator(_communicator, temporaryClient, networkObject,
-            (sizeof(unsigned short) * 4 + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2 + sizeof(char) * uuid.size()), 31);
+            (sizeof(unsigned short) * 4 + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2
+                + sizeof(char) * uuid.size()),
+            31);
     }
     return networkObject;
 }
@@ -167,14 +169,14 @@ void *Transisthor::transitEcsDataToNetworkDataEntityEnemyProjectile(
     std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 3), uuid.c_str(), sizeof(char) * uuid.size());
     for (auto it : destination) {
         temporaryClient = getClientByHisId(it);
-        transisthor_lib::sendDataToAClientWithoutCommunicator(
-            _communicator, temporaryClient, networkObject, (sizeof(unsigned short) * 3 + sizeof(char) * uuid.size()), 31);
+        transisthor_lib::sendDataToAClientWithoutCommunicator(_communicator, temporaryClient, networkObject,
+            (sizeof(unsigned short) * 3 + sizeof(char) * uuid.size()), 31);
     }
     return networkObject;
 }
 
-void *Transisthor::transitEcsDataToNetworkDataEntityObstacle(
-    unsigned short id, int posX, int posY, unsigned short damage, std::string uuid, std::vector<unsigned short> destination)
+void *Transisthor::transitEcsDataToNetworkDataEntityObstacle(unsigned short id, int posX, int posY,
+    unsigned short damage, std::string uuid, std::vector<unsigned short> destination)
 {
     void *networkObject = std::malloc((sizeof(unsigned short) * 3 + sizeof(int) * 2 + sizeof(char) * uuid.size()));
     unsigned short typeId = 4;
@@ -192,8 +194,8 @@ void *Transisthor::transitEcsDataToNetworkDataEntityObstacle(
         sizeof(char) * uuid.size());
     for (auto it : destination) {
         temporaryClient = getClientByHisId(it);
-        transisthor_lib::sendDataToAClientWithoutCommunicator(
-            _communicator, temporaryClient, networkObject, (sizeof(unsigned short) * 3 + sizeof(int) * 2 + sizeof(char) * uuid.size()), 31);
+        transisthor_lib::sendDataToAClientWithoutCommunicator(_communicator, temporaryClient, networkObject,
+            (sizeof(unsigned short) * 3 + sizeof(int) * 2 + sizeof(char) * uuid.size()), 31);
     }
     return networkObject;
 }
@@ -202,8 +204,8 @@ void *Transisthor::transitEcsDataToNetworkDataEntityPlayer(unsigned short id, in
     double multiplierAbscissa, double multiplierOrdinate, short weight, int size_x, int size_y, short life,
     unsigned short damage, unsigned short damageRadius, std::string uuid, std::vector<unsigned short> destination)
 {
-    void *networkObject =
-        std::malloc((sizeof(unsigned short) * 4 + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2 + sizeof(char) * uuid.size()));
+    void *networkObject = std::malloc((sizeof(unsigned short) * 4 + sizeof(int) * 4 + sizeof(double) * 2
+        + sizeof(short) * 2 + sizeof(char) * uuid.size()));
     unsigned short typeId = 5;
     Client temporaryClient;
 
@@ -240,7 +242,9 @@ void *Transisthor::transitEcsDataToNetworkDataEntityPlayer(unsigned short id, in
     for (auto it : destination) {
         temporaryClient = getClientByHisId(it);
         transisthor_lib::sendDataToAClientWithoutCommunicator(_communicator, temporaryClient, networkObject,
-            (sizeof(unsigned short) * 4 + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2 + sizeof(char) * uuid.size()), 31);
+            (sizeof(unsigned short) * 4 + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2
+                + sizeof(char) * uuid.size()),
+            31);
     }
     return networkObject;
 }
@@ -248,7 +252,8 @@ void *Transisthor::transitEcsDataToNetworkDataEntityPlayer(unsigned short id, in
 void *Transisthor::transitEcsDataToNetworkDataEntityProjectile(unsigned short id, int posX, int posY, double velAbsc,
     double velOrd, unsigned short damage, std::string uuid, std::vector<unsigned short> destination)
 {
-    void *networkObject = std::malloc((sizeof(unsigned short) * 3 + sizeof(int) * 2 + sizeof(double) * 2 + sizeof(char) * uuid.size()));
+    void *networkObject =
+        std::malloc((sizeof(unsigned short) * 3 + sizeof(int) * 2 + sizeof(double) * 2 + sizeof(char) * uuid.size()));
     unsigned short typeId = 6;
     Client temporaryClient;
 
@@ -357,7 +362,8 @@ void Transisthor::entityConvertEnemyType(unsigned short id, void *byteCode)
     short life = 0;
     unsigned short damage = 0;
     unsigned short damageRadius = 0;
-    char *uuid = (char *)byteCode + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2 + sizeof(unsigned short) * 2;
+    char *uuid =
+        (char *)byteCode + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2 + sizeof(unsigned short) * 2;
 
     std::memcpy(&posX, byteCode, sizeof(int));
     std::memcpy(&posY, (void *)((char *)byteCode + sizeof(int)), sizeof(int));
@@ -432,7 +438,8 @@ void Transisthor::entityConvertPlayerType(unsigned short id, void *byteCode)
     short life = 0;
     unsigned short damage = 0;
     unsigned short damageRadius = 0;
-    char *uuid = (char *)byteCode + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2 + sizeof(unsigned short) * 2;
+    char *uuid =
+        (char *)byteCode + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2 + sizeof(unsigned short) * 2;
 
     std::memcpy(&posX, byteCode, sizeof(int));
     std::memcpy(&posY, (void *)((char *)byteCode + sizeof(int)), sizeof(int));
