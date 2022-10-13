@@ -25,7 +25,7 @@ namespace ecs
             /// @param style Set the style of the window. Set to "sf::Style::Default". See SFML documentation about sf::Style for more information.
             RenderWindowResource(std::string title = "Default", sf::VideoMode mode = sf::VideoMode(1920, 1080, 32), sf::Uint32 style = sf::Style::Default)
             {
-                window.create(mode, title, sf::Style::Default);
+                window.create(mode, title, style);
             };
 
             /// @brief Default destructor.
