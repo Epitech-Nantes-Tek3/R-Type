@@ -11,6 +11,8 @@ set(SRC
     ${SRC_ROOT}/DeathLifeSystem.hpp
     ${SRC_ROOT}/LifeTimeDeathSystem.hpp
     ${SRC_ROOT}/DecreaseLifeTimeSystem.hpp
+    ${SRC_ROOT}/CollidableSystem.hpp
+    ${SRC_ROOT}/CollidableSystem.cpp
 )
 
 set(SRC_SYSTEM_CLIENT

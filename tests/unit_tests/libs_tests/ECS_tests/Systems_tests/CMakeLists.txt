@@ -5,8 +5,9 @@ set(TEST_SRC_ROOT
     ${SRC_ROOT}/Movement_System_tests.cpp
     ${SRC_ROOT}/Decrease_LifeTime_System_tests.cpp
     ${SRC_ROOT}/Death_System_tests.cpp
-    ${SRC_ROOT}/Death_LifeTime_System_tests.cpp
+    ${SRC_ROOT}/LifeTimeDeath_tests.cpp
     ${SRC_ROOT}/Death_Life_System_tests.cpp
+    ${SRC_ROOT}/Collidable_system_test.cpp
 )
 
 create_test(
