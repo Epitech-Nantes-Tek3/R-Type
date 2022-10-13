@@ -23,7 +23,7 @@ namespace ecs
             std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Death>();
         
             auto death = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
-                if (world.getEntity(entityPtr->contains<Enemy>()) == true)
+                if (entityPtr->contains<Enemy>() == true)
                     createNewEnemyRandom(world, 1, 1, 1, 4, 4, 100, 10, 5);
                 world.removeEntity(entityPtr->getId());
             };
