@@ -1,5 +1,6 @@
 <map id="libs/GameComponents/EnemyProjectileComponent.hpp" name="libs/GameComponents/EnemyProjectileComponent.hpp">
 <area shape="rect" id="node1" title=" " alt="" coords="5,5,240,47"/>
 <area shape="rect" id="node2" href="$_component_8hpp.html" title=" " alt="" coords="21,95,225,121"/>
-<area shape="rect" id="node3" title=" " alt="" coords="89,169,156,196"/>
+<area shape="rect" id="node3" title=" " alt="" coords="41,169,108,196"/>
+<area shape="rect" id="node4" title=" " alt="" coords="132,169,212,196"/>
 </map>

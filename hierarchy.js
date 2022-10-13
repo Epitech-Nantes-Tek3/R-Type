@@ -27,9 +27,12 @@ var hierarchy =
       [ "ecs::Enemy", "classecs_1_1_enemy.html", null ],
       [ "ecs::EnemyProjectile", "classecs_1_1_enemy_projectile.html", null ],
       [ "ecs::Equipment", "classecs_1_1_equipment.html", null ],
+      [ "ecs::GraphicsRectangleComponent", "classecs_1_1_graphics_rectangle_component.html", null ],
+      [ "ecs::GraphicsTextComponent", "classecs_1_1_graphics_text_component.html", null ],
       [ "ecs::Invinsible", "classecs_1_1_invinsible.html", null ],
       [ "ecs::Invisible", "classecs_1_1_invisible.html", null ],
       [ "ecs::KeyboardInputComponent", "classecs_1_1_keyboard_input_component.html", null ],
+      [ "ecs::LayerLvL", "classecs_1_1_layer_lv_l.html", null ],
       [ "ecs::Life", "classecs_1_1_life.html", null ],
       [ "ecs::Lifetime", "classecs_1_1_lifetime.html", null ],
       [ "ecs::MouseInputComponent", "classecs_1_1_mouse_input_component.html", null ],
@@ -60,6 +63,8 @@ var hierarchy =
     [ "communicator_lib::Receiver", "classcommunicator__lib_1_1_receiver.html", null ],
     [ "ecs::Resource", "classecs_1_1_resource.html", [
       [ "ecs::GameClock", "classecs_1_1_game_clock.html", null ],
+      [ "ecs::GraphicsFontResource", "classecs_1_1_graphics_font_resource.html", null ],
+      [ "ecs::GraphicsTextureResource", "classecs_1_1_graphics_texture_resource.html", null ],
       [ "ecs::RenderWindowResource", "classecs_1_1_render_window_resource.html", null ]
     ] ],
     [ "server_data::Room", "classserver__data_1_1_room.html", null ],
