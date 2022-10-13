@@ -8,9 +8,9 @@
 #ifndef DEATHSYSTEM_HPP_
 #define DEATHSYSTEM_HPP_
 
-#include "World/World.hpp"
 #include "GameComponents/DeathComponent.hpp"
 #include "GameEntityManipulation/CreateEntitiesFunctions/CreateEnemy.hpp"
+#include "World/World.hpp"
 
 namespace ecs
 {
@@ -21,7 +21,7 @@ namespace ecs
         inline void run(World &world) override final
         {
             std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Death>();
-        
+
             auto death = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
                 if (entityPtr->contains<Enemy>() == true)
                     createNewEnemyRandom(world, 1, 1, 1, 4, 4, 100, 10, 5);

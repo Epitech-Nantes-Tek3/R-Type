@@ -8,15 +8,15 @@
 #ifndef DEATHLIFESYSTEM_HPP_
 #define DEATHLIFESYSTEM_HPP_
 
-#include "World/World.hpp"
-#include "GameComponents/LifeComponent.hpp"
 #include "GameComponents/DeathComponent.hpp"
+#include "GameComponents/LifeComponent.hpp"
+#include "World/World.hpp"
 
 namespace ecs
 {
-    /// @brief This is the DeathLife System. 
-    /// This System takes all entities that have a Life Component with 0 HP/life or less and adds a Death Component to them.
-    /// It's a system that will be called by the engine world with the function runSystem()
+    /// @brief This is the DeathLife System.
+    /// This System takes all entities that have a Life Component with 0 HP/life or less and adds a Death Component to
+    /// them. It's a system that will be called by the engine world with the function runSystem()
     struct DeathLife : public System {
         inline void run(World &world) override final
         {

@@ -8,15 +8,15 @@
 #ifndef LifeTimeDeathSYSTEM_HPP_
 #define LifeTimeDeathSYSTEM_HPP_
 
-#include "World/World.hpp"
-#include "GameComponents/LifeTimeComponent.hpp"
 #include "GameComponents/DeathComponent.hpp"
+#include "GameComponents/LifeTimeComponent.hpp"
+#include "World/World.hpp"
 
 namespace ecs
 {
-    /// @brief This is the LifeTimeDeath System. 
-    /// This System takes all entities that have a LifeTime Component with 0 timeLeft or less and adds a Death Component to them.
-    /// It's a system that will be called by the engine world with the function runSystem()
+    /// @brief This is the LifeTimeDeath System.
+    /// This System takes all entities that have a LifeTime Component with 0 timeLeft or less and adds a Death Component
+    /// to them. It's a system that will be called by the engine world with the function runSystem()
     struct LifeTimeDeath : public System {
         inline void run(World &world) override final
         {

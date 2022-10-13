@@ -37,6 +37,6 @@ namespace ecs
         /// @brief Standard generation seeded with rd()
         std::mt19937 _generation;
     };
-} // namespace game::resources
+} // namespace ecs
 
 #endif /* !RANDOM_HPP_ */

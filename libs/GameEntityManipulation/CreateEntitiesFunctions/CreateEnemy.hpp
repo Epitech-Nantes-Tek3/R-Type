@@ -21,8 +21,8 @@
 #include "GameSharedResources/Random.hpp"
 #include "World/World.hpp"
 
-#define MINIMUM_WIDTH 1400
-#define MAXIMUM_WIDTH 1920
+#define MINIMUM_WIDTH  1400
+#define MAXIMUM_WIDTH  1920
 #define MINIMUM_HEIGTH 0
 #define MAXIMUM_HEIGTH 1080
 
@@ -71,12 +71,14 @@ namespace ecs
     /// @param damage Damage of projectiles fired by this Enemy
     /// @param damageRadius DamageRadius of projectiles fired by this Enemy
     /// @return Id of the new Enemy in std::size_t
-    inline std::size_t createNewEnemyRandom(World &world, const double multiplierAbscissa, const double multiplierOrdinate, const short weight, const int size_x, const int size_y, const unsigned short life, const unsigned short damage, const unsigned short damageRadius)
+    inline std::size_t createNewEnemyRandom(World &world, const double multiplierAbscissa,
+        const double multiplierOrdinate, const short weight, const int size_x, const int size_y,
+        const unsigned short life, const unsigned short damage, const unsigned short damageRadius)
     {
         return createNewEnemy(world, world.getResource<RandomDevice>().randInt(MINIMUM_WIDTH, MAXIMUM_WIDTH),
-                world.getResource<RandomDevice>().randInt(MINIMUM_HEIGTH, MAXIMUM_HEIGTH), multiplierAbscissa, multiplierOrdinate, weight, size_x, size_y, life, damage, damageRadius);
+            world.getResource<RandomDevice>().randInt(MINIMUM_HEIGTH, MAXIMUM_HEIGTH), multiplierAbscissa,
+            multiplierOrdinate, weight, size_x, size_y, life, damage, damageRadius);
     }
-
 
 } // namespace ecs
 #endif /* !CREATEENEMY_HPP_ */
