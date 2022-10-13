@@ -18,6 +18,7 @@
 #include "GameComponents/LifeComponent.hpp"
 #include "GameComponents/PositionComponent.hpp"
 #include "GameComponents/VelocityComponent.hpp"
+#include "GameComponents/DeathComponent.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "Transisthor/TransisthorECSLogic/Server/Components/NetworkClient.hpp"
 #include "World/World.hpp"
@@ -25,7 +26,7 @@
 ///@brief a static map which is used to know which ID is used for a component type for the RFC protocol
 static const std::map<std::type_index, unsigned short> componentRFCId = {{typeid(ecs::Destination), 1},
     {typeid(ecs::Equipment), 2}, {typeid(ecs::Invinsible), 3}, {typeid(ecs::Invisible), 4}, {typeid(ecs::Life), 5},
-    {typeid(ecs::Position), 6}, {typeid(ecs::Velocity), 7}};
+    {typeid(ecs::Position), 6}, {typeid(ecs::Velocity), 7}, {typeid(ecs::Death), 8}};
 
 ///@brief `SendToClient` is a system that sends Networkable Entities datas to clients
 struct SendToClient : public ecs::System {
