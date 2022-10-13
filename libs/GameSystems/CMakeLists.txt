@@ -8,6 +8,8 @@ set(SRC
     ${SRC_ROOT}/MouvementSystem.cpp
     ${SRC_ROOT}/UpdateClockSystem.hpp
     ${SRC_ROOT}/UpdateClockSystem.cpp
+    ${SRC_ROOT}/CollidableSystem.hpp
+    ${SRC_ROOT}/CollidableSystem.cpp
 )
 
 add_library(${TARGET} ${SRC})

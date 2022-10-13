@@ -1,3 +1,5 @@
+add_subdirectory(Systems)
+
 set(TARGET r-type_client)
 
 set(SRC_ROOT ${PROJECT_SOURCE_DIR}/Client)
@@ -6,7 +8,7 @@ set(INC_ROOT ${PROJECT_SOURCE_DIR}/Client)
 set(SRC
     ${SRC_ROOT}/main.cpp
     ${SRC_ROOT}/ClientRoom.cpp
-
+    ${SRC_CLIENT_SYSTEM}
     ${SRC_ROOT}/ClientRoom.hpp
 )
 
@@ -20,7 +22,7 @@ set_target_properties(${TARGET}
 )
 
 target_link_libraries(${TARGET}
-	CONAN_PKG::sfml
+    CONAN_PKG::sfml
     ${PROJECT_NAME}_transisthor
     ${PROJECT_NAME}_argumentHandler
     ${PROJECT_NAME}_error
