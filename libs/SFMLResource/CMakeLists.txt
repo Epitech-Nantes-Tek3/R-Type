@@ -4,9 +4,11 @@ set(TARGET ${PROJECT_NAME}_SFMLResource)
 
 set(SRC
     ${INC_SFML_RESOURCE_ROOT}/RenderWindowResource.hpp
+    ${INC_SFML_RESOURCE_ROOT}/GraphicsFontResource.hpp
+    ${INC_SFML_RESOURCE_ROOT}/GraphicsTextureResource.hpp
 )
 
-add_library(${TARGET} ${SRC})
+add_library(${TARGET} SHARED ${SRC})
 
 target_include_directories(${TARGET}
     PUBLIC ${INC_SFML_RESOURCE_ROOT}

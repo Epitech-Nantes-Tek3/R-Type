@@ -6,7 +6,6 @@
 */
 
 #include <criterion/criterion.h>
-#include <SFML/Graphics.hpp>
 #include "ControllerJoystickInputComponent.hpp"
 #include "ControllerButtonInputComponent.hpp"
 
