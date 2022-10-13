@@ -1,4 +1,4 @@
-set(SRC_TEL_CLIENT_SYSTEM_ROOT ${PROJECT_SOURCE_DIR}/libs/TransisthorECSLogic/Client/Systems)
+set(SRC_TEL_CLIENT_SYSTEM_ROOT ${PROJECT_SOURCE_DIR}/libs/Transisthor/TransisthorECSLogic/Client/Systems)
 
 set(SRC_TEL_CLIENT_SYSTEM
     ${SRC_TEL_CLIENT_SYSTEM_ROOT}/SendToServer.hpp
