@@ -290,21 +290,18 @@ Test(transisthor_testing, transit_alliedProjectile_entity)
     std::size_t allied =
         world.addEntity().addComponent<Position>(1, 2).addComponent<Damage>(10).addComponent<Velocity>(1, 1).getId();
 
-    std::size_t entityId = createNewAlliedProjectile(world, world.getEntity(allied));
+    unsigned short entityId = createNewAlliedProjectile(world, world.getEntity(allied));
 
     Position entityPosition = world.getEntity(entityId).getComponent<Position>();
 
     void *temp = transisthor.transitEcsDataToNetworkDataEntityAlliedProjectile(
-        entityId, entityPosition.x, entityPosition.y, {1});
+        entityId, allied, {1});
     void *networkAnswer = transisthor.transitNetworkDataToEcsDataEntity({Client(), temp, 1, 31});
 
-    int posX = 0;
-    int posY = 0;
+    unsigned short newAllied = 0;
 
-    std::memcpy(&posX, networkAnswer, sizeof(int));
-    std::memcpy(&posY, (void *)((char *)networkAnswer + sizeof(int)), sizeof(int));
-    cr_assert_eq(posX, 1);
-    cr_assert_eq(posY, 2);
+    std::memcpy(&newAllied, networkAnswer, sizeof(unsigned short));
+    cr_assert_eq(newAllied, allied);
 }
 
 Test(transisthor_testing, transit_enemyProjectile_entity)

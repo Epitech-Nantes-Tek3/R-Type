@@ -85,9 +85,9 @@ void *Transisthor::transitNetworkDataToEcsDataEntity(Message networkData)
 }
 
 void *Transisthor::transitEcsDataToNetworkDataEntityAlliedProjectile(
-    unsigned short id, int posX, int posY, std::vector<unsigned short> destination)
+    unsigned short id,  unsigned short allyId, std::vector<unsigned short> destination)
 {
-    void *networkObject = std::malloc((sizeof(unsigned short) * 2 + sizeof(int) * 2));
+    void *networkObject = std::malloc((sizeof(unsigned short) * 3));
     unsigned short typeId = 1;
     Client temporaryClient;
 
@@ -95,12 +95,11 @@ void *Transisthor::transitEcsDataToNetworkDataEntityAlliedProjectile(
         throw error_lib::MallocError("Malloc failed.");
     std::memcpy(networkObject, &id, sizeof(unsigned short));
     std::memcpy((void *)((char *)networkObject + sizeof(unsigned short)), &typeId, sizeof(unsigned short));
-    std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2), &posX, sizeof(int));
-    std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2 + sizeof(int)), &posY, sizeof(int));
+    std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2), &allyId, sizeof(unsigned short));
     for (auto it : destination) {
         temporaryClient = getClientByHisId(it);
         transisthor_lib::sendDataToAClientWithoutCommunicator(
-            _communicator, temporaryClient, networkObject, (sizeof(unsigned short) * 2 + sizeof(int) * 2), 31);
+            _communicator, temporaryClient, networkObject, (sizeof(unsigned short) * 3), 31);
     }
     return networkObject;
 }
@@ -275,13 +274,10 @@ void Transisthor::componentConvertVelocityType(unsigned short id, void *byteCode
 
 void Transisthor::entityConvertAlliedProjectileType(unsigned short id, void *byteCode)
 {
-    int posX = 0;
-    int posY = 0;
+    unsigned short allyId = 0;
 
-    std::memcpy(&posX, byteCode, sizeof(int));
-    std::memcpy(&posY, (void *)((char *)byteCode + sizeof(int)), sizeof(int));
-    (void)posX;
-    (void)posY;
+    std::memcpy(&allyId, byteCode, sizeof(unsigned short));
+    (void)allyId;
     (void)id;
     /// SEND THE NEW ENTITY TO ECS, WILL BE ADDED WHEN TRANSISTHOR WILL BE FULLY IMPLEMENTED
 }
