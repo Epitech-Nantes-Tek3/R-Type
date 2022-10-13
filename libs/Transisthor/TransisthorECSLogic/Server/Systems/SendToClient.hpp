@@ -11,10 +11,9 @@
 #include <concepts>
 #include <map>
 #include <typeindex>
-#include "TransisthorECSLogic/Both/Components/Networkable.hpp"
-#include "TransisthorECSLogic/Server/Components/NetworkClient.hpp"
+#include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
+#include "Transisthor/TransisthorECSLogic/Server/Components/NetworkClient.hpp"
 #include "World/World.hpp"
-
 #include "GameComponents/DestinationComponent.hpp"
 #include "GameComponents/EquipmentComponent.hpp"
 #include "GameComponents/InvinsibleComponent.hpp"
@@ -43,6 +42,7 @@ struct SendToClient : public ecs::System {
         (void)networkId;
         (void)entity;
         (void)clientIdList;
+        (void)world;
         return;
     }
 
@@ -63,6 +63,7 @@ struct SendToClient : public ecs::System {
                     networkId, componentRFCId.find(typeid(C1))->second, entity->getComponent<C1>(), clientIdList);
             }
         }
+        sendToClients<C2...>(world, networkId, entity, clientIdList);
     }
 
     /// @brief It sends the data of all the entities which have the Networkable component to all the clients

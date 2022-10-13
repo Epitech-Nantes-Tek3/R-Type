@@ -1,3 +1,5 @@
+add_subdirectory(TransisthorECSLogic)
+
 set(INC_ROOT ${PROJECT_SOURCE_DIR}/libs)
 set(SRC_ROOT ${PROJECT_SOURCE_DIR}/libs/Transisthor)
 

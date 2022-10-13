@@ -11,9 +11,9 @@
 #include <concepts>
 #include <map>
 #include <typeindex>
-#include "TransisthorECSLogic/Client/Components/Controllable.hpp"
-#include "TransisthorECSLogic/Client/Components/NetworkServer.hpp"
-#include "TransisthorECSLogic/Both/Components/Networkable.hpp"
+#include "Transisthor/TransisthorECSLogic/Client/Components/Controllable.hpp"
+#include "Transisthor/TransisthorECSLogic/Client/Components/NetworkServer.hpp"
+#include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "GameComponents/DestinationComponent.hpp"
 #include "GameComponents/EquipmentComponent.hpp"
 #include "GameComponents/InvinsibleComponent.hpp"
@@ -42,6 +42,7 @@ struct SendToServer : public ecs::System {
         (void)networkId;
         (void)entity;
         (void)serverIdList;
+        (void)world;
         return;
     }
 
@@ -62,6 +63,7 @@ struct SendToServer : public ecs::System {
                     networkId, componentRFCId.find(typeid(C1))->second, entity->getComponent<C1>(), serverIdList);
             }
         }
+        sendToServer<C2...>(world, networkId, entity, serverIdList);
     }
 
     /// @brief For each player, send their velocity to the server

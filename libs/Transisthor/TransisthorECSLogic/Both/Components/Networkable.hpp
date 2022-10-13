@@ -27,5 +27,5 @@ namespace ecs
         ~Networkable() = default;
     };
 
-    auto operator==(Networkable &one, Networkable &two) { return one.id == two.id;}
+    inline bool operator==(const Networkable &one, const Networkable &two) { return one.id == two.id;}
 } // namespace ecs
