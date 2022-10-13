@@ -15,8 +15,8 @@ add_library(${TARGET} ${SRC})
 
 target_include_directories(${TARGET}
     PUBLIC ${INC_ROOT}
-    PUBLIC ${PROJECT_NAME}_communicator
-    PUBLIC ${PROJECT_NAME}_ecs
+    PRIVATE ${PROJECT_NAME}_communicator
+    PRIVATE ${PROJECT_NAME}_ecs
     INTERFACE ${PROJECT_NAME}_createEntitiesFunctions
     INTERFACE ${PROJECT_NAME}_gameComponents
     INTERFACE ${PROJECT_NAME}_error
