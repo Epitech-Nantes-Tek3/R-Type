@@ -16,6 +16,7 @@
 #include "GameComponents/LifeComponent.hpp"
 #include "GameComponents/PositionComponent.hpp"
 #include "GameComponents/VelocityComponent.hpp"
+#include "TransisthorECSLogic/Both/Components/Networkable.hpp"
 
 using namespace transisthor_lib;
 using namespace error_lib;
@@ -221,64 +222,55 @@ void Transisthor::componentConvertDestinationType(unsigned short id, void *byteC
 {
     Destination newComponent = buildComponentFromByteCode<Destination>(byteCode);
 
-    (void)id;
-    (void)newComponent;
-    
-    /// SEND THE NEW COMPONENT TO ECS, WILL BE ADDED WHEN TRANSISTHOR WILL BE FULLY IMPLEMENTED
+    _ecsWorld.updateComponentOfAnEntityFromGivenDistinctiveComponent<Networkable, Destination>(
+        Networkable(id), newComponent);
 }
 
 void Transisthor::componentConvertEquipmentType(unsigned short id, void *byteCode)
 {
     Equipment newComponent = buildComponentFromByteCode<Equipment>(byteCode);
 
-    (void)id;
-    (void)newComponent;
-    /// SEND THE NEW COMPONENT TO ECS, WILL BE ADDED WHEN TRANSISTHOR WILL BE FULLY IMPLEMENTED
+    _ecsWorld.updateComponentOfAnEntityFromGivenDistinctiveComponent<Networkable, Equipment>(
+        Networkable(id), newComponent);
 }
 
 void Transisthor::componentConvertInvinsibleType(unsigned short id, void *byteCode)
 {
     Invinsible newComponent = buildComponentFromByteCode<Invinsible>(byteCode);
 
-    (void)id;
-    (void)newComponent;
-    /// SEND THE NEW COMPONENT TO ECS, WILL BE ADDED WHEN TRANSISTHOR WILL BE FULLY IMPLEMENTED
+    _ecsWorld.updateComponentOfAnEntityFromGivenDistinctiveComponent<Networkable, Invinsible>(
+        Networkable(id), newComponent);
 }
 
 void Transisthor::componentConvertInvisibleType(unsigned short id, void *byteCode)
 {
     Invisible newComponent = buildComponentFromByteCode<Invisible>(byteCode);
 
-    (void)id;
-    (void)newComponent;
-    /// SEND THE NEW COMPONENT TO ECS, WILL BE ADDED WHEN TRANSISTHOR WILL BE FULLY IMPLEMENTED
+    _ecsWorld.updateComponentOfAnEntityFromGivenDistinctiveComponent<Networkable, Invisible>(
+        Networkable(id), newComponent);
 }
 
 void Transisthor::componentConvertLifeType(unsigned short id, void *byteCode)
 {
     Life newComponent = buildComponentFromByteCode<Life>(byteCode);
 
-    (void)id;
-    (void)newComponent;
-    /// SEND THE NEW COMPONENT TO ECS, WILL BE ADDED WHEN TRANSISTHOR WILL BE FULLY IMPLEMENTED
+    _ecsWorld.updateComponentOfAnEntityFromGivenDistinctiveComponent<Networkable, Life>(Networkable(id), newComponent);
 }
 
 void Transisthor::componentConvertPositionType(unsigned short id, void *byteCode)
 {
     Position newComponent = buildComponentFromByteCode<Position>(byteCode);
 
-    (void)id;
-    (void)newComponent;
-    /// SEND THE NEW COMPONENT TO ECS, WILL BE ADDED WHEN TRANSISTHOR WILL BE FULLY IMPLEMENTED
+    _ecsWorld.updateComponentOfAnEntityFromGivenDistinctiveComponent<Networkable, Position>(
+        Networkable(id), newComponent);
 }
 
 void Transisthor::componentConvertVelocityType(unsigned short id, void *byteCode)
 {
     Velocity newComponent = buildComponentFromByteCode<Velocity>(byteCode);
 
-    (void)id;
-    (void)newComponent;
-    /// SEND THE NEW COMPONENT TO ECS, WILL BE ADDED WHEN TRANSISTHOR WILL BE FULLY IMPLEMENTED
+    _ecsWorld.updateComponentOfAnEntityFromGivenDistinctiveComponent<Networkable, Velocity>(
+        Networkable(id), newComponent);
 }
 
 void Transisthor::entityConvertAlliedProjectileType(unsigned short id, void *byteCode)
