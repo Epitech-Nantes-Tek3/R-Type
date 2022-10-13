@@ -101,16 +101,25 @@ $(document).ready(function(){initNavTree('_death_component_8hpp_source.html','')
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceecs.html">ecs</a></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{</div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="classecs_1_1_death.html">   16</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classecs_1_1_death.html">Death</a> : <span class="keyword">public</span> <a class="code" href="classecs_1_1_component.html">Component</a> {};</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;} <span class="comment">// namespace ecs</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !DEATHCOMPONENT_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="classecs_1_1_death.html">   17</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classecs_1_1_death.html">Death</a> : <span class="keyword">public</span> <a class="code" href="classecs_1_1_component.html">Component</a> {</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;      <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="classecs_1_1_death.html#a1c6e3b678ccc2ba3fc556b16cfe337cc">   20</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classecs_1_1_death.html#a1c6e3b678ccc2ba3fc556b16cfe337cc">modified</a>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classecs_1_1_death.html#af3ca7344f084c66b2a0c28ad0dd2da62">   23</a></span>&#160;        <a class="code" href="classecs_1_1_death.html#af3ca7344f084c66b2a0c28ad0dd2da62">Death</a>() : <a class="code" href="classecs_1_1_death.html#a1c6e3b678ccc2ba3fc556b16cfe337cc">modified</a>(true){};</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <a class="code" href="classecs_1_1_death.html#aa387eba700806f63beb01ea6ea5feab8">~Death</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    };</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;} <span class="comment">// namespace ecs</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !DEATHCOMPONENT_HPP_ */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aclassecs_1_1_death_html"><div class="ttname"><a href="classecs_1_1_death.html">ecs::Death</a></div><div class="ttdoc">The Death Component which defines that an entity is dead and will be deleted by Death System.</div><div class="ttdef"><b>Definition:</b> DeathComponent.hpp:16</div></div>
+<div class="ttc" id="aclassecs_1_1_death_html"><div class="ttname"><a href="classecs_1_1_death.html">ecs::Death</a></div><div class="ttdoc">The Death Component which defines that an entity is dead and will be deleted by Death System It's a n...</div><div class="ttdef"><b>Definition:</b> DeathComponent.hpp:17</div></div>
 <div class="ttc" id="a_component_8hpp_html"><div class="ttname"><a href="_component_8hpp.html">Component.hpp</a></div></div>
 <div class="ttc" id="aclassecs_1_1_component_html"><div class="ttname"><a href="classecs_1_1_component.html">ecs::Component</a></div><div class="ttdoc">This is the Component Class for ECS The base component type, all components must inherit from Compone...</div><div class="ttdef"><b>Definition:</b> Component.hpp:16</div></div>
+<div class="ttc" id="aclassecs_1_1_death_html_aa387eba700806f63beb01ea6ea5feab8"><div class="ttname"><a href="classecs_1_1_death.html#aa387eba700806f63beb01ea6ea5feab8">ecs::Death::~Death</a></div><div class="ttdeci">~Death()=default</div><div class="ttdoc">Destroy the Death object.</div></div>
 <div class="ttc" id="anamespaceecs_html"><div class="ttname"><a href="namespaceecs.html">ecs</a></div><div class="ttdef"><b>Definition:</b> Component.hpp:12</div></div>
+<div class="ttc" id="aclassecs_1_1_death_html_af3ca7344f084c66b2a0c28ad0dd2da62"><div class="ttname"><a href="classecs_1_1_death.html#af3ca7344f084c66b2a0c28ad0dd2da62">ecs::Death::Death</a></div><div class="ttdeci">Death()</div><div class="ttdoc">Construct a new Death object.</div><div class="ttdef"><b>Definition:</b> DeathComponent.hpp:23</div></div>
+<div class="ttc" id="aclassecs_1_1_death_html_a1c6e3b678ccc2ba3fc556b16cfe337cc"><div class="ttname"><a href="classecs_1_1_death.html#a1c6e3b678ccc2ba3fc556b16cfe337cc">ecs::Death::modified</a></div><div class="ttdeci">bool modified</div><div class="ttdoc">The network status of the component. True if it has been modified since it was last sent.</div><div class="ttdef"><b>Definition:</b> DeathComponent.hpp:20</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

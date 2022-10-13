@@ -92,7 +92,7 @@ $(document).ready(function(){initNavTree('classecs_1_1_equipment.html',''); init
 </div><!--header-->
 <div class="contents">
 
-<p>The <a class="el" href="classecs_1_1_equipment.html" title="The Equipment class, giving bonuses to entities.">Equipment</a> class, giving bonuses to entities.  
+<p>The <a class="el" href="classecs_1_1_equipment.html" title="The Equipment component, giving bonuses to entities It&#39;s a networkable component.">Equipment</a> component, giving bonuses to entities It's a networkable component.  
  <a href="classecs_1_1_equipment.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_equipment_component_8hpp_source.html">EquipmentComponent.hpp</a>&gt;</code></p>
@@ -101,7 +101,7 @@ Inheritance diagram for ecs::Equipment:</div>
 <div class="dyncontent">
 <div class="center"><img src="classecs_1_1_equipment__inherit__graph.png" border="0" usemap="#ecs_1_1_equipment_inherit__map" alt="Inheritance graph"/></div>
 <map name="ecs_1_1_equipment_inherit__map" id="ecs_1_1_equipment_inherit__map">
-<area shape="rect" title="The Equipment class, giving bonuses to entities." alt="" coords="7,80,130,107"/>
+<area shape="rect" title="The Equipment component, giving bonuses to entities It&#39;s a networkable component." alt="" coords="7,80,130,107"/>
 <area shape="rect" href="classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone..." alt="" coords="5,5,132,32"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
@@ -110,7 +110,7 @@ Collaboration diagram for ecs::Equipment:</div>
 <div class="dyncontent">
 <div class="center"><img src="classecs_1_1_equipment__coll__graph.png" border="0" usemap="#ecs_1_1_equipment_coll__map" alt="Collaboration graph"/></div>
 <map name="ecs_1_1_equipment_coll__map" id="ecs_1_1_equipment_coll__map">
-<area shape="rect" title="The Equipment class, giving bonuses to entities." alt="" coords="7,80,130,107"/>
+<area shape="rect" title="The Equipment component, giving bonuses to entities It&#39;s a networkable component." alt="" coords="7,80,130,107"/>
 <area shape="rect" href="classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone..." alt="" coords="5,5,132,32"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
@@ -118,7 +118,7 @@ Collaboration diagram for ecs::Equipment:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a1513f270bbb347ba2848fe4e05527b0b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_equipment.html#a1513f270bbb347ba2848fe4e05527b0b">Equipment</a> (unsigned short EquipId=0)</td></tr>
-<tr class="memdesc:a1513f270bbb347ba2848fe4e05527b0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of the <a class="el" href="classecs_1_1_equipment.html" title="The Equipment class, giving bonuses to entities.">Equipment</a>.  <a href="classecs_1_1_equipment.html#a1513f270bbb347ba2848fe4e05527b0b">More...</a><br /></td></tr>
+<tr class="memdesc:a1513f270bbb347ba2848fe4e05527b0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of the <a class="el" href="classecs_1_1_equipment.html" title="The Equipment component, giving bonuses to entities It&#39;s a networkable component.">Equipment</a>.  <a href="classecs_1_1_equipment.html#a1513f270bbb347ba2848fe4e05527b0b">More...</a><br /></td></tr>
 <tr class="separator:a1513f270bbb347ba2848fe4e05527b0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a206b198440077962ee91ef18a50bff61"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_equipment.html#a206b198440077962ee91ef18a50bff61">~Equipment</a> ()=default</td></tr>
 <tr class="memdesc:a206b198440077962ee91ef18a50bff61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default Constructor.  <a href="classecs_1_1_equipment.html#a206b198440077962ee91ef18a50bff61">More...</a><br /></td></tr>
@@ -133,6 +133,9 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a09167a7a7cf65cccbc4de966d4191e91"><td class="memItemLeft" align="right" valign="top">unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_equipment.html#a09167a7a7cf65cccbc4de966d4191e91">typeId</a></td></tr>
 <tr class="memdesc:a09167a7a7cf65cccbc4de966d4191e91"><td class="mdescLeft">&#160;</td><td class="mdescRight">The equipment type.  <a href="classecs_1_1_equipment.html#a09167a7a7cf65cccbc4de966d4191e91">More...</a><br /></td></tr>
 <tr class="separator:a09167a7a7cf65cccbc4de966d4191e91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b942bc26187d05c04f9cbc91252e3a5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_equipment.html#a5b942bc26187d05c04f9cbc91252e3a5">modified</a></td></tr>
+<tr class="memdesc:a5b942bc26187d05c04f9cbc91252e3a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">The network status of the component. True if it has been modified since it was last sent.  <a href="classecs_1_1_equipment.html#a5b942bc26187d05c04f9cbc91252e3a5">More...</a><br /></td></tr>
+<tr class="separator:a5b942bc26187d05c04f9cbc91252e3a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -142,7 +145,7 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a03794632c30cbe13f476caacfd937b14 inherit pro_methods_classecs_1_1_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>The <a class="el" href="classecs_1_1_equipment.html" title="The Equipment class, giving bonuses to entities.">Equipment</a> class, giving bonuses to entities. </p>
+<div class="textblock"><p>The <a class="el" href="classecs_1_1_equipment.html" title="The Equipment component, giving bonuses to entities It&#39;s a networkable component.">Equipment</a> component, giving bonuses to entities It's a networkable component. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a1513f270bbb347ba2848fe4e05527b0b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1513f270bbb347ba2848fe4e05527b0b">&#9670;&nbsp;</a></span>Equipment()</h2>
@@ -168,7 +171,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Constructor of the <a class="el" href="classecs_1_1_equipment.html" title="The Equipment class, giving bonuses to entities.">Equipment</a>. </p>
+<p>Constructor of the <a class="el" href="classecs_1_1_equipment.html" title="The Equipment component, giving bonuses to entities It&#39;s a networkable component.">Equipment</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">EquipId</td><td>the id of the equipment (defined in the corresponding system) </td></tr>
@@ -206,6 +209,22 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="a5b942bc26187d05c04f9cbc91252e3a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b942bc26187d05c04f9cbc91252e3a5">&#9670;&nbsp;</a></span>modified</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ecs::Equipment::modified</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The network status of the component. True if it has been modified since it was last sent. </p>
+
+</div>
+</div>
 <a id="a09167a7a7cf65cccbc4de966d4191e91"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a09167a7a7cf65cccbc4de966d4191e91">&#9670;&nbsp;</a></span>typeId</h2>
 

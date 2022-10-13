@@ -1,4 +1,5 @@
 <map id="libs/GameEntityManipulation/CreateEntitiesFunctions/CreateObstacle.hpp" name="libs/GameEntityManipulation/CreateEntitiesFunctions/CreateObstacle.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,216,61"/>
-<area shape="rect" id="node2" href="$_room_8cpp.html" title=" " alt="" coords="44,109,177,136"/>
+<area shape="rect" id="node1" title=" " alt="" coords="70,5,281,61"/>
+<area shape="rect" id="node2" href="$_client_room_8cpp.html" title=" " alt="" coords="5,109,172,136"/>
+<area shape="rect" id="node3" href="$_room_8cpp.html" title=" " alt="" coords="197,109,330,136"/>
 </map>

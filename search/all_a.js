@@ -9,7 +9,7 @@ var searchData=
   ['life_191',['Life',['../classecs_1_1_life.html',1,'ecs::Life'],['../classecs_1_1_life.html#ae8ad37cb66f638be217dc1c0d6cbf533',1,'ecs::Life::Life()']]],
   ['lifecomponent_2ehpp_192',['LifeComponent.hpp',['../_life_component_8hpp.html',1,'']]],
   ['lifepoint_193',['lifePoint',['../classecs_1_1_life.html#ae7784365d59fadc42676c409c2383bc4',1,'ecs::Life']]],
-  ['lifetime_194',['Lifetime',['../classecs_1_1_lifetime.html',1,'ecs::Lifetime'],['../classecs_1_1_lifetime.html#a97390130b46b7a645ff158ca0010945a',1,'ecs::Lifetime::Lifetime(const duration&lt; double &gt; &amp;newLifetime)'],['../classecs_1_1_lifetime.html#a5b38436b561e7c0038d9ac7c3474fa79',1,'ecs::Lifetime::Lifetime(double newLifetime=0.0)']]],
+  ['lifetime_194',['LifeTime',['../classecs_1_1_life_time.html',1,'ecs::LifeTime'],['../classecs_1_1_life_time.html#a27a8ee96146f8575f0a0aa5a8f15856a',1,'ecs::LifeTime::LifeTime(const duration&lt; double &gt; &amp;newLifeTime)'],['../classecs_1_1_life_time.html#af7d310cda20ef972a71aee3b5b44030b',1,'ecs::LifeTime::LifeTime(double newLifeTime=0.0)']]],
   ['lifetimecomponent_2ehpp_195',['LifeTimeComponent.hpp',['../_life_time_component_8hpp.html',1,'']]],
   ['lifetimedeath_196',['LifeTimeDeath',['../structecs_1_1_life_time_death.html',1,'ecs']]],
   ['lifetimedeathsystem_2ehpp_197',['LifeTimeDeathSystem.hpp',['../_life_time_death_system_8hpp.html',1,'']]],

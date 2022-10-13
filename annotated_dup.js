@@ -8,5 +8,6 @@ var annotated_dup =
     [ "server_data", "namespaceserver__data.html", "namespaceserver__data" ],
     [ "transisthor_lib", "namespacetransisthor__lib.html", "namespacetransisthor__lib" ],
     [ "SendToClient", "struct_send_to_client.html", null ],
-    [ "SendToServer", "struct_send_to_server.html", null ]
+    [ "SendToServer", "struct_send_to_server.html", null ],
+    [ "Temp", "struct_temp.html", "struct_temp" ]
 ];

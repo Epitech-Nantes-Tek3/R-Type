@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>R-Type: Server/Systems/SendToClient.hpp Source File</title>
+<title>R-Type: libs/Transisthor/TransisthorECSLogic/Server/Systems/SendToClient.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -100,30 +100,30 @@ $(document).ready(function(){initNavTree('_send_to_client_8hpp_source.html','');
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;concepts&gt;</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;map&gt;</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;typeindex&gt;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;../Components/NetworkClient.hpp&quot;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;../Components/Networkable.hpp&quot;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_world_8hpp.html">World/World.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_destination_component_8hpp.html">GameComponents/DestinationComponent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_equipment_component_8hpp.html">GameComponents/EquipmentComponent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_invinsible_component_8hpp.html">GameComponents/InvinsibleComponent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_invisible_component_8hpp.html">GameComponents/InvisibleComponent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_life_component_8hpp.html">GameComponents/LifeComponent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_position_component_8hpp.html">GameComponents/PositionComponent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_velocity_component_8hpp.html">GameComponents/VelocityComponent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">static</span> <span class="keyword">const</span> std::map&lt;std::type_index, unsigned short&gt; componentRFCId = {{<span class="keyword">typeid</span>(<a class="code" href="classecs_1_1_destination.html">ecs::Destination</a>), 1},</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    {<span class="keyword">typeid</span>(<a class="code" href="classecs_1_1_equipment.html">ecs::Equipment</a>), 2}, {<span class="keyword">typeid</span>(<a class="code" href="classecs_1_1_invinsible.html">ecs::Invinsible</a>), 3}, {<span class="keyword">typeid</span>(<a class="code" href="classecs_1_1_invisible.html">ecs::Invisible</a>), 4}, {<span class="keyword">typeid</span>(<a class="code" href="classecs_1_1_life.html">ecs::Life</a>), 5},</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    {<span class="keyword">typeid</span>(<a class="code" href="classecs_1_1_position.html">ecs::Position</a>), 6}, {<span class="keyword">typeid</span>(<a class="code" href="classecs_1_1_velocity.html">ecs::Velocity</a>), 7}};</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="struct_send_to_client.html">   32</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_send_to_client.html">SendToClient</a> : <span class="keyword">public</span> <a class="code" href="classecs_1_1_system.html">ecs::System</a> {</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">template</span> &lt;std::derived_from&lt;ecs::Component&gt;... C&gt;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    requires(<span class="keyword">sizeof</span>...(C) == 0) <span class="keywordtype">void</span> sendToClients(<a class="code" href="classecs_1_1_world.html">ecs::World</a> &amp;world, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> &amp;networkId,</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        std::shared_ptr&lt;ecs::Entity&gt; entity, <span class="keyword">const</span> std::vector&lt;unsigned short&gt; &amp;clientIdList)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">    </span>{</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        (void)networkId;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        (void)entity;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        (void)clientIdList;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_destination_component_8hpp.html">GameComponents/DestinationComponent.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_equipment_component_8hpp.html">GameComponents/EquipmentComponent.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_invinsible_component_8hpp.html">GameComponents/InvinsibleComponent.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_invisible_component_8hpp.html">GameComponents/InvisibleComponent.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_life_component_8hpp.html">GameComponents/LifeComponent.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_position_component_8hpp.html">GameComponents/PositionComponent.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_velocity_component_8hpp.html">GameComponents/VelocityComponent.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_networkable_8hpp.html">Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_network_client_8hpp.html">Transisthor/TransisthorECSLogic/Server/Components/NetworkClient.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_world_8hpp.html">World/World.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">static</span> <span class="keyword">const</span> std::map&lt;std::type_index, unsigned short&gt; componentRFCId = {{<span class="keyword">typeid</span>(<a class="code" href="classecs_1_1_destination.html">ecs::Destination</a>), 1},</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    {<span class="keyword">typeid</span>(<a class="code" href="classecs_1_1_equipment.html">ecs::Equipment</a>), 2}, {<span class="keyword">typeid</span>(<a class="code" href="classecs_1_1_invinsible.html">ecs::Invinsible</a>), 3}, {<span class="keyword">typeid</span>(<a class="code" href="classecs_1_1_invisible.html">ecs::Invisible</a>), 4}, {<span class="keyword">typeid</span>(<a class="code" href="classecs_1_1_life.html">ecs::Life</a>), 5},</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    {<span class="keyword">typeid</span>(<a class="code" href="classecs_1_1_position.html">ecs::Position</a>), 6}, {<span class="keyword">typeid</span>(<a class="code" href="classecs_1_1_velocity.html">ecs::Velocity</a>), 7}};</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="struct_send_to_client.html">   31</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_send_to_client.html">SendToClient</a> : <span class="keyword">public</span> <a class="code" href="classecs_1_1_system.html">ecs::System</a> {</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keyword">template</span> &lt;std::derived_from&lt;ecs::Component&gt;... C&gt;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    requires(<span class="keyword">sizeof</span>...(C) == 0) <span class="keywordtype">void</span> sendToClients(<a class="code" href="classecs_1_1_world.html">ecs::World</a> &amp;world, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> &amp;networkId,</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        std::shared_ptr&lt;ecs::Entity&gt; entity, <span class="keyword">const</span> std::vector&lt;unsigned short&gt; &amp;clientIdList)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">    </span>{</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        (void)networkId;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        (void)entity;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        (void)clientIdList;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        (void)world;</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordflow">return</span>;</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    }</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
@@ -133,42 +133,49 @@ $(document).ready(function(){initNavTree('_send_to_client_8hpp_source.html','');
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keyword">    </span>{</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordflow">if</span> (componentRFCId.find(<span class="keyword">typeid</span>(C1)) != componentRFCId.end()) {</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            <span class="keywordflow">if</span> (entity-&gt;contains&lt;C1&gt;()) {</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                world.<a class="code" href="classecs_1_1_world.html#a2ea940d773ebdb916f49d89c43ba174d">getTransisthorBridge</a>().get()-&gt;transitEcsDataToNetworkData&lt;C1&gt;(</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                    networkId, componentRFCId.find(<span class="keyword">typeid</span>(C1))-&gt;second, entity-&gt;getComponent&lt;C1&gt;(), clientIdList);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            }</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        }</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    }</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordtype">void</span> runSystem(<a class="code" href="classecs_1_1_world.html">ecs::World</a> &amp;world);</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="classecs_1_1_system.html#ace40d0fa9fb6fb054036b0d96cf94cae">run</a>(<a class="code" href="classecs_1_1_world.html">ecs::World</a> &amp;world) <span class="keyword">override</span> <span class="keyword">final</span> { runSystem(world); };</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;};</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                C1 &amp;component = entity-&gt;getComponent&lt;C1&gt;();</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                <span class="keywordflow">if</span> (component.modified) {</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                    component.modified = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                    world.<a class="code" href="classecs_1_1_world.html#a2ea940d773ebdb916f49d89c43ba174d">getTransisthorBridge</a>().get()-&gt;transitEcsDataToNetworkData&lt;C1&gt;(</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                        networkId, componentRFCId.find(<span class="keyword">typeid</span>(C1))-&gt;second, component, clientIdList);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                }</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            }</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        }</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        sendToClients&lt;C2...&gt;(world, networkId, entity, clientIdList);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    }</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordtype">void</span> runSystem(<a class="code" href="classecs_1_1_world.html">ecs::World</a> &amp;world);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="classecs_1_1_system.html#ace40d0fa9fb6fb054036b0d96cf94cae">run</a>(<a class="code" href="classecs_1_1_world.html">ecs::World</a> &amp;world) <span class="keyword">override</span> <span class="keyword">final</span> { runSystem(world); };</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;};</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
+<div class="ttc" id="a_network_client_8hpp_html"><div class="ttname"><a href="_network_client_8hpp.html">NetworkClient.hpp</a></div></div>
 <div class="ttc" id="a_invisible_component_8hpp_html"><div class="ttname"><a href="_invisible_component_8hpp.html">InvisibleComponent.hpp</a></div></div>
 <div class="ttc" id="a_invinsible_component_8hpp_html"><div class="ttname"><a href="_invinsible_component_8hpp.html">InvinsibleComponent.hpp</a></div></div>
 <div class="ttc" id="aclassecs_1_1_system_html_ace40d0fa9fb6fb054036b0d96cf94cae"><div class="ttname"><a href="classecs_1_1_system.html#ace40d0fa9fb6fb054036b0d96cf94cae">ecs::System::run</a></div><div class="ttdeci">virtual void run(World &amp;world)=0</div><div class="ttdoc">The main function which implements the desired logic.</div></div>
 <div class="ttc" id="a_life_component_8hpp_html"><div class="ttname"><a href="_life_component_8hpp.html">LifeComponent.hpp</a></div></div>
 <div class="ttc" id="a_equipment_component_8hpp_html"><div class="ttname"><a href="_equipment_component_8hpp.html">EquipmentComponent.hpp</a></div></div>
-<div class="ttc" id="aclassecs_1_1_position_html"><div class="ttname"><a href="classecs_1_1_position.html">ecs::Position</a></div><div class="ttdoc">The Position component, almost used for every entities.</div><div class="ttdef"><b>Definition:</b> PositionComponent.hpp:16</div></div>
-<div class="ttc" id="aclassecs_1_1_life_html"><div class="ttname"><a href="classecs_1_1_life.html">ecs::Life</a></div><div class="ttdoc">The Life class, needed for every ennemies, bosses or players.</div><div class="ttdef"><b>Definition:</b> LifeComponent.hpp:16</div></div>
-<div class="ttc" id="astruct_send_to_client_html"><div class="ttname"><a href="struct_send_to_client.html">SendToClient</a></div><div class="ttdoc">SendToClient is a system that sends Networkable Entities datas to clients</div><div class="ttdef"><b>Definition:</b> SendToClient.hpp:32</div></div>
+<div class="ttc" id="aclassecs_1_1_position_html"><div class="ttname"><a href="classecs_1_1_position.html">ecs::Position</a></div><div class="ttdoc">The Position component, almost used for every entities It's a networkable component.</div><div class="ttdef"><b>Definition:</b> PositionComponent.hpp:17</div></div>
+<div class="ttc" id="aclassecs_1_1_life_html"><div class="ttname"><a href="classecs_1_1_life.html">ecs::Life</a></div><div class="ttdoc">The Life class, needed for every ennemies, bosses or players It's a networkable component.</div><div class="ttdef"><b>Definition:</b> LifeComponent.hpp:17</div></div>
+<div class="ttc" id="astruct_send_to_client_html"><div class="ttname"><a href="struct_send_to_client.html">SendToClient</a></div><div class="ttdoc">SendToClient is a system that sends Networkable Entities datas to clients</div><div class="ttdef"><b>Definition:</b> SendToClient.hpp:31</div></div>
 <div class="ttc" id="a_destination_component_8hpp_html"><div class="ttname"><a href="_destination_component_8hpp.html">DestinationComponent.hpp</a></div></div>
-<div class="ttc" id="aclassecs_1_1_velocity_html"><div class="ttname"><a href="classecs_1_1_velocity.html">ecs::Velocity</a></div><div class="ttdoc">The velocity class, multiplying the movement of the entity.</div><div class="ttdef"><b>Definition:</b> VelocityComponent.hpp:16</div></div>
+<div class="ttc" id="aclassecs_1_1_velocity_html"><div class="ttname"><a href="classecs_1_1_velocity.html">ecs::Velocity</a></div><div class="ttdoc">The velocity class, multiplying the movement of the entity It's a networkable component.</div><div class="ttdef"><b>Definition:</b> VelocityComponent.hpp:17</div></div>
 <div class="ttc" id="a_world_8hpp_html"><div class="ttname"><a href="_world_8hpp.html">World.hpp</a></div></div>
-<div class="ttc" id="aclassecs_1_1_world_html_a2ea940d773ebdb916f49d89c43ba174d"><div class="ttname"><a href="classecs_1_1_world.html#a2ea940d773ebdb916f49d89c43ba174d">ecs::World::getTransisthorBridge</a></div><div class="ttdeci">std::shared_ptr&lt; Transisthor &gt; getTransisthorBridge()</div><div class="ttdoc">Get the Transisthor Bridge object.</div><div class="ttdef"><b>Definition:</b> World.hpp:186</div></div>
+<div class="ttc" id="aclassecs_1_1_world_html_a2ea940d773ebdb916f49d89c43ba174d"><div class="ttname"><a href="classecs_1_1_world.html#a2ea940d773ebdb916f49d89c43ba174d">ecs::World::getTransisthorBridge</a></div><div class="ttdeci">std::shared_ptr&lt; Transisthor &gt; getTransisthorBridge()</div><div class="ttdoc">Get the Transisthor Bridge object.</div><div class="ttdef"><b>Definition:</b> World.hpp:190</div></div>
 <div class="ttc" id="aclassecs_1_1_world_html"><div class="ttname"><a href="classecs_1_1_world.html">ecs::World</a></div><div class="ttdef"><b>Definition:</b> World.hpp:31</div></div>
 <div class="ttc" id="aclassecs_1_1_system_html"><div class="ttname"><a href="classecs_1_1_system.html">ecs::System</a></div><div class="ttdef"><b>Definition:</b> System.hpp:19</div></div>
 <div class="ttc" id="a_position_component_8hpp_html"><div class="ttname"><a href="_position_component_8hpp.html">PositionComponent.hpp</a></div></div>
-<div class="ttc" id="aclassecs_1_1_equipment_html"><div class="ttname"><a href="classecs_1_1_equipment.html">ecs::Equipment</a></div><div class="ttdoc">The Equipment class, giving bonuses to entities.</div><div class="ttdef"><b>Definition:</b> EquipmentComponent.hpp:16</div></div>
-<div class="ttc" id="aclassecs_1_1_invinsible_html"><div class="ttname"><a href="classecs_1_1_invinsible.html">ecs::Invinsible</a></div><div class="ttdoc">The Invinsible component, to nullify all damages.</div><div class="ttdef"><b>Definition:</b> InvinsibleComponent.hpp:16</div></div>
+<div class="ttc" id="aclassecs_1_1_equipment_html"><div class="ttname"><a href="classecs_1_1_equipment.html">ecs::Equipment</a></div><div class="ttdoc">The Equipment component, giving bonuses to entities It's a networkable component.</div><div class="ttdef"><b>Definition:</b> EquipmentComponent.hpp:17</div></div>
+<div class="ttc" id="aclassecs_1_1_invinsible_html"><div class="ttname"><a href="classecs_1_1_invinsible.html">ecs::Invinsible</a></div><div class="ttdoc">The Invinsible component, to nullify all damages It's a networkable component.</div><div class="ttdef"><b>Definition:</b> InvinsibleComponent.hpp:17</div></div>
+<div class="ttc" id="a_networkable_8hpp_html"><div class="ttname"><a href="_networkable_8hpp.html">Networkable.hpp</a></div></div>
 <div class="ttc" id="a_velocity_component_8hpp_html"><div class="ttname"><a href="_velocity_component_8hpp.html">VelocityComponent.hpp</a></div></div>
-<div class="ttc" id="aclassecs_1_1_invisible_html"><div class="ttname"><a href="classecs_1_1_invisible.html">ecs::Invisible</a></div><div class="ttdoc">The Invisible component, to make an entity lives without drawing it.</div><div class="ttdef"><b>Definition:</b> InvisibleComponent.hpp:16</div></div>
-<div class="ttc" id="aclassecs_1_1_destination_html"><div class="ttname"><a href="classecs_1_1_destination.html">ecs::Destination</a></div><div class="ttdoc">The Destination component, used for mobiles entities.</div><div class="ttdef"><b>Definition:</b> DestinationComponent.hpp:16</div></div>
+<div class="ttc" id="aclassecs_1_1_invisible_html"><div class="ttname"><a href="classecs_1_1_invisible.html">ecs::Invisible</a></div><div class="ttdoc">The Invisible component, to make an entity lives without drawing it It's a networkable component.</div><div class="ttdef"><b>Definition:</b> InvisibleComponent.hpp:17</div></div>
+<div class="ttc" id="aclassecs_1_1_destination_html"><div class="ttname"><a href="classecs_1_1_destination.html">ecs::Destination</a></div><div class="ttdoc">The Destination component, used for mobiles entities It's a networkable component.</div><div class="ttdef"><b>Definition:</b> DestinationComponent.hpp:17</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_1a445cb237d74f7a5f8d11ec3b0585cc.html">Server</a></li><li class="navelem"><a class="el" href="dir_e76ba4bfa50650e23c45685b08ae443e.html">Systems</a></li><li class="navelem"><a class="el" href="_send_to_client_8hpp.html">SendToClient.hpp</a></li>
+    <li class="navelem"><a class="el" href="dir_6719ab1f1f7655efc2fa43f7eb574fd1.html">libs</a></li><li class="navelem"><a class="el" href="dir_489dc0c656b07a9a8c5c61e6a7fb7777.html">Transisthor</a></li><li class="navelem"><a class="el" href="dir_fee7b59d3a4f5f79bc3d4bfa3d8804c4.html">TransisthorECSLogic</a></li><li class="navelem"><a class="el" href="dir_2e89380aa0b209e47b317fe07d152935.html">Server</a></li><li class="navelem"><a class="el" href="dir_07ebbef8f395fd0519d0c43a49ba0263.html">Systems</a></li><li class="navelem"><a class="el" href="_send_to_client_8hpp.html">SendToClient.hpp</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>

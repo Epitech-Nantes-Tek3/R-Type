@@ -1,6 +1,6 @@
-<map id="Client/Components/Controllable.hpp" name="Client/Components/Controllable.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,263,32"/>
-<area shape="rect" id="node2" href="$_component_8hpp.html" title=" " alt="" coords="32,80,236,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="53,155,119,181"/>
-<area shape="rect" id="node4" title=" " alt="" coords="143,155,223,181"/>
+<map id="libs/Transisthor/TransisthorECSLogic/Client/Components/Controllable.hpp" name="libs/Transisthor/TransisthorECSLogic/Client/Components/Controllable.hpp">
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,215,61"/>
+<area shape="rect" id="node2" href="$_component_8hpp.html" title=" " alt="" coords="8,109,212,136"/>
+<area shape="rect" id="node3" title=" " alt="" coords="29,184,95,211"/>
+<area shape="rect" id="node4" title=" " alt="" coords="119,184,199,211"/>
 </map>

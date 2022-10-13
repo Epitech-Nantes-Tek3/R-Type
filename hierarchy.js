@@ -35,7 +35,7 @@ var hierarchy =
       [ "ecs::KeyboardInputComponent", "classecs_1_1_keyboard_input_component.html", null ],
       [ "ecs::LayerLvL", "classecs_1_1_layer_lv_l.html", null ],
       [ "ecs::Life", "classecs_1_1_life.html", null ],
-      [ "ecs::Lifetime", "classecs_1_1_lifetime.html", null ],
+      [ "ecs::LifeTime", "classecs_1_1_life_time.html", null ],
       [ "ecs::MouseInputComponent", "classecs_1_1_mouse_input_component.html", null ],
       [ "ecs::Networkable", "classecs_1_1_networkable.html", null ],
       [ "ecs::NetworkClient", "classecs_1_1_network_client.html", null ],
@@ -84,7 +84,8 @@ var hierarchy =
       [ "ecs::Movement", "structecs_1_1_movement.html", null ],
       [ "ecs::UpdateClock", "structecs_1_1_update_clock.html", null ],
       [ "SendToClient", "struct_send_to_client.html", null ],
-      [ "SendToServer", "struct_send_to_server.html", null ]
+      [ "SendToServer", "struct_send_to_server.html", null ],
+      [ "Temp", "struct_temp.html", null ]
     ] ],
     [ "transisthor_lib::Transisthor", "classtransisthor__lib_1_1_transisthor.html", null ],
     [ "ecs::World", "classecs_1_1_world.html", null ]

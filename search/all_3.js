@@ -6,7 +6,7 @@ var searchData=
   ['damageradius_93',['DamageRadius',['../classecs_1_1_damage_radius.html',1,'ecs::DamageRadius'],['../classecs_1_1_damage_radius.html#a8d552b21864e557da0bff3dda26738ec',1,'ecs::DamageRadius::DamageRadius()']]],
   ['damageradiuscomponent_2ehpp_94',['DamageRadiusComponent.hpp',['../_damage_radius_component_8hpp.html',1,'']]],
   ['data_95',['data',['../structcommunicator__lib_1_1_message.html#a9e7d643b31248f511a3e6ea6939a59c2',1,'communicator_lib::Message']]],
-  ['death_96',['Death',['../classecs_1_1_death.html',1,'ecs']]],
+  ['death_96',['Death',['../classecs_1_1_death.html',1,'ecs::Death'],['../classecs_1_1_death.html#af3ca7344f084c66b2a0c28ad0dd2da62',1,'ecs::Death::Death()']]],
   ['deathcomponent_2ehpp_97',['DeathComponent.hpp',['../_death_component_8hpp.html',1,'']]],
   ['deathdamage_98',['DeathDamage',['../classecs_1_1_death_damage.html',1,'ecs::DeathDamage'],['../classecs_1_1_death_damage.html#afb87fe3129211d07a37a460986c29a02',1,'ecs::DeathDamage::DeathDamage()']]],
   ['deathdamagecomponent_2ehpp_99',['DeathDamageComponent.hpp',['../_death_damage_component_8hpp.html',1,'']]],

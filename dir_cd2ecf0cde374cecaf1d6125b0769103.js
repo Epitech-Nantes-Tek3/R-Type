@@ -28,7 +28,7 @@ var dir_cd2ecf0cde374cecaf1d6125b0769103 =
       [ "DamageRadius", "classecs_1_1_damage_radius.html", "classecs_1_1_damage_radius" ]
     ] ],
     [ "DeathComponent.hpp", "_death_component_8hpp.html", [
-      [ "Death", "classecs_1_1_death.html", null ]
+      [ "Death", "classecs_1_1_death.html", "classecs_1_1_death" ]
     ] ],
     [ "DeathDamageComponent.hpp", "_death_damage_component_8hpp.html", [
       [ "DeathDamage", "classecs_1_1_death_damage.html", "classecs_1_1_death_damage" ]
@@ -46,16 +46,16 @@ var dir_cd2ecf0cde374cecaf1d6125b0769103 =
       [ "Equipment", "classecs_1_1_equipment.html", "classecs_1_1_equipment" ]
     ] ],
     [ "InvinsibleComponent.hpp", "_invinsible_component_8hpp.html", [
-      [ "Invinsible", "classecs_1_1_invinsible.html", null ]
+      [ "Invinsible", "classecs_1_1_invinsible.html", "classecs_1_1_invinsible" ]
     ] ],
     [ "InvisibleComponent.hpp", "_invisible_component_8hpp.html", [
-      [ "Invisible", "classecs_1_1_invisible.html", null ]
+      [ "Invisible", "classecs_1_1_invisible.html", "classecs_1_1_invisible" ]
     ] ],
     [ "LifeComponent.hpp", "_life_component_8hpp.html", [
       [ "Life", "classecs_1_1_life.html", "classecs_1_1_life" ]
     ] ],
     [ "LifeTimeComponent.hpp", "_life_time_component_8hpp.html", [
-      [ "Lifetime", "classecs_1_1_lifetime.html", "classecs_1_1_lifetime" ]
+      [ "LifeTime", "classecs_1_1_life_time.html", "classecs_1_1_life_time" ]
     ] ],
     [ "ObstacleComponent.hpp", "_obstacle_component_8hpp.html", [
       [ "Obstacle", "classecs_1_1_obstacle.html", null ]

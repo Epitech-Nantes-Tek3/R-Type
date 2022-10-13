@@ -92,10 +92,10 @@ $(document).ready(function(){initNavTree('classecs_1_1_networkable.html',''); in
 </div><!--header-->
 <div class="contents">
 
-<p>This component is used to know which entities must be the same in the server and in client. Each one has a unique ID.  
+<p>This component is used to know which entities must be the same in the server and in client. Each one has a unique ID. This <a class="el" href="classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone...">Component</a> is a distinctive one (used by the function updateComponentOfAnEntityFromGivenDistinctiveComponent in the world) so it must have a operator== overload.  
  <a href="classecs_1_1_networkable.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="_client_2_components_2_networkable_8hpp_source.html">Networkable.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="_networkable_8hpp_source.html">Networkable.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for ecs::Networkable:</div>
 <div class="dyncontent">
@@ -123,12 +123,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a094a9ebf25e4dc962239be9ada6ebd63"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_networkable.html#a094a9ebf25e4dc962239be9ada6ebd63">~Networkable</a> ()=default</td></tr>
 <tr class="memdesc:a094a9ebf25e4dc962239be9ada6ebd63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy the <a class="el" href="classecs_1_1_networkable.html" title="This component is used to know which entities must be the same in the server and in client....">Networkable</a> object.  <a href="classecs_1_1_networkable.html#a094a9ebf25e4dc962239be9ada6ebd63">More...</a><br /></td></tr>
 <tr class="separator:a094a9ebf25e4dc962239be9ada6ebd63"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1585ae31151e8da839243d6db6a2c13a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_networkable.html#a1585ae31151e8da839243d6db6a2c13a">Networkable</a> (unsigned short newId=0)</td></tr>
-<tr class="memdesc:a1585ae31151e8da839243d6db6a2c13a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="classecs_1_1_networkable.html" title="This component is used to know which entities must be the same in the server and in client....">Networkable</a> object.  <a href="classecs_1_1_networkable.html#a1585ae31151e8da839243d6db6a2c13a">More...</a><br /></td></tr>
-<tr class="separator:a1585ae31151e8da839243d6db6a2c13a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a094a9ebf25e4dc962239be9ada6ebd63"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_networkable.html#a094a9ebf25e4dc962239be9ada6ebd63">~Networkable</a> ()=default</td></tr>
-<tr class="memdesc:a094a9ebf25e4dc962239be9ada6ebd63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy the <a class="el" href="classecs_1_1_networkable.html" title="This component is used to know which entities must be the same in the server and in client....">Networkable</a> object.  <a href="classecs_1_1_networkable.html#a094a9ebf25e4dc962239be9ada6ebd63">More...</a><br /></td></tr>
-<tr class="separator:a094a9ebf25e4dc962239be9ada6ebd63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classecs_1_1_component"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classecs_1_1_component')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classecs_1_1_component.html">ecs::Component</a></td></tr>
 <tr class="memitem:a65815c50dbd7663e925accf2eb8b4bd0 inherit pub_methods_classecs_1_1_component"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_component.html#a65815c50dbd7663e925accf2eb8b4bd0">~Component</a> ()=default</td></tr>
 <tr class="memdesc:a65815c50dbd7663e925accf2eb8b4bd0 inherit pub_methods_classecs_1_1_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the default destructor of <a class="el" href="classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone...">Component</a> Class.  <a href="classecs_1_1_component.html#a65815c50dbd7663e925accf2eb8b4bd0">More...</a><br /></td></tr>
@@ -148,11 +142,10 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a03794632c30cbe13f476caacfd937b14 inherit pro_methods_classecs_1_1_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This component is used to know which entities must be the same in the server and in client. Each one has a unique ID. </p>
-<p>This component is used to know which entities must be the same in the server and in client. Each one as a unique ID. </p>
+<div class="textblock"><p>This component is used to know which entities must be the same in the server and in client. Each one has a unique ID. This <a class="el" href="classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone...">Component</a> is a distinctive one (used by the function updateComponentOfAnEntityFromGivenDistinctiveComponent in the world) so it must have a operator== overload. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a1585ae31151e8da839243d6db6a2c13a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1585ae31151e8da839243d6db6a2c13a">&#9670;&nbsp;</a></span>Networkable() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a1585ae31151e8da839243d6db6a2c13a">&#9670;&nbsp;</a></span>Networkable()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -186,68 +179,7 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <a id="a094a9ebf25e4dc962239be9ada6ebd63"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a094a9ebf25e4dc962239be9ada6ebd63">&#9670;&nbsp;</a></span>~Networkable() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">ecs::Networkable::~Networkable </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">default</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Destroy the <a class="el" href="classecs_1_1_networkable.html" title="This component is used to know which entities must be the same in the server and in client....">Networkable</a> object. </p>
-
-</div>
-</div>
-<a id="a1585ae31151e8da839243d6db6a2c13a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1585ae31151e8da839243d6db6a2c13a">&#9670;&nbsp;</a></span>Networkable() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">ecs::Networkable::Networkable </td>
-          <td>(</td>
-          <td class="paramtype">unsigned short&#160;</td>
-          <td class="paramname"><em>newId</em> = <code>0</code></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Construct a new <a class="el" href="classecs_1_1_networkable.html" title="This component is used to know which entities must be the same in the server and in client....">Networkable</a> object. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">newId</td><td>The Entity’s common unique identifier </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a094a9ebf25e4dc962239be9ada6ebd63"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a094a9ebf25e4dc962239be9ada6ebd63">&#9670;&nbsp;</a></span>~Networkable() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a094a9ebf25e4dc962239be9ada6ebd63">&#9670;&nbsp;</a></span>~Networkable()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -291,7 +223,7 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>Client/Components/<a class="el" href="_client_2_components_2_networkable_8hpp_source.html">Networkable.hpp</a></li>
+<li>libs/Transisthor/TransisthorECSLogic/Both/Components/<a class="el" href="_networkable_8hpp_source.html">Networkable.hpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

@@ -101,16 +101,25 @@ $(document).ready(function(){initNavTree('_invisible_component_8hpp_source.html'
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceecs.html">ecs</a></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{</div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="classecs_1_1_invisible.html">   16</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classecs_1_1_invisible.html">Invisible</a> : <span class="keyword">public</span> <a class="code" href="classecs_1_1_component.html">Component</a> {};</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;} <span class="comment">// namespace ecs</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !INVISIBLECOMPONENT_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="classecs_1_1_invisible.html">   17</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classecs_1_1_invisible.html">Invisible</a> : <span class="keyword">public</span> <a class="code" href="classecs_1_1_component.html">Component</a> {</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;      <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="classecs_1_1_invisible.html#a2c5ae8cefb74fe91e59efa71e69a0206">   20</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classecs_1_1_invisible.html#a2c5ae8cefb74fe91e59efa71e69a0206">modified</a>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classecs_1_1_invisible.html#a14d9e671fe6e6f24bff27e9610bc34a2">   23</a></span>&#160;        <a class="code" href="classecs_1_1_invisible.html#a14d9e671fe6e6f24bff27e9610bc34a2">Invisible</a>() : <a class="code" href="classecs_1_1_invisible.html#a2c5ae8cefb74fe91e59efa71e69a0206">modified</a>(false){};</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <a class="code" href="classecs_1_1_invisible.html#a921c4886b1df91b8ac6cf01e84261563">~Invisible</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    };</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;} <span class="comment">// namespace ecs</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !INVISIBLECOMPONENT_HPP_ */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
+<div class="ttc" id="aclassecs_1_1_invisible_html_a14d9e671fe6e6f24bff27e9610bc34a2"><div class="ttname"><a href="classecs_1_1_invisible.html#a14d9e671fe6e6f24bff27e9610bc34a2">ecs::Invisible::Invisible</a></div><div class="ttdeci">Invisible()</div><div class="ttdoc">Construct a new Invisible object.</div><div class="ttdef"><b>Definition:</b> InvisibleComponent.hpp:23</div></div>
+<div class="ttc" id="aclassecs_1_1_invisible_html_a921c4886b1df91b8ac6cf01e84261563"><div class="ttname"><a href="classecs_1_1_invisible.html#a921c4886b1df91b8ac6cf01e84261563">ecs::Invisible::~Invisible</a></div><div class="ttdeci">~Invisible()=default</div><div class="ttdoc">Destroy the Invisible object.</div></div>
 <div class="ttc" id="a_component_8hpp_html"><div class="ttname"><a href="_component_8hpp.html">Component.hpp</a></div></div>
+<div class="ttc" id="aclassecs_1_1_invisible_html_a2c5ae8cefb74fe91e59efa71e69a0206"><div class="ttname"><a href="classecs_1_1_invisible.html#a2c5ae8cefb74fe91e59efa71e69a0206">ecs::Invisible::modified</a></div><div class="ttdeci">bool modified</div><div class="ttdoc">The network status of the component. True if it has been modified since it was last sent.</div><div class="ttdef"><b>Definition:</b> InvisibleComponent.hpp:20</div></div>
 <div class="ttc" id="aclassecs_1_1_component_html"><div class="ttname"><a href="classecs_1_1_component.html">ecs::Component</a></div><div class="ttdoc">This is the Component Class for ECS The base component type, all components must inherit from Compone...</div><div class="ttdef"><b>Definition:</b> Component.hpp:16</div></div>
 <div class="ttc" id="anamespaceecs_html"><div class="ttname"><a href="namespaceecs.html">ecs</a></div><div class="ttdef"><b>Definition:</b> Component.hpp:12</div></div>
-<div class="ttc" id="aclassecs_1_1_invisible_html"><div class="ttname"><a href="classecs_1_1_invisible.html">ecs::Invisible</a></div><div class="ttdoc">The Invisible component, to make an entity lives without drawing it.</div><div class="ttdef"><b>Definition:</b> InvisibleComponent.hpp:16</div></div>
+<div class="ttc" id="aclassecs_1_1_invisible_html"><div class="ttname"><a href="classecs_1_1_invisible.html">ecs::Invisible</a></div><div class="ttdoc">The Invisible component, to make an entity lives without drawing it It's a networkable component.</div><div class="ttdef"><b>Definition:</b> InvisibleComponent.hpp:17</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

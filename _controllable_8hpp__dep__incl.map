@@ -1,5 +1,5 @@
-<map id="Client/Components/Controllable.hpp" name="Client/Components/Controllable.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,263,32"/>
-<area shape="rect" id="node2" href="$_send_to_server_8hpp.html" title=" " alt="" coords="15,80,253,107"/>
-<area shape="rect" id="node3" href="$_send_to_server_8cpp.html" title=" " alt="" coords="15,155,253,181"/>
+<map id="libs/Transisthor/TransisthorECSLogic/Client/Components/Controllable.hpp" name="libs/Transisthor/TransisthorECSLogic/Client/Components/Controllable.hpp">
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,215,61"/>
+<area shape="rect" id="node2" href="$_send_to_server_8hpp.html" title=" " alt="" coords="13,109,207,165"/>
+<area shape="rect" id="node3" href="$_send_to_server_8cpp.html" title=" " alt="" coords="13,213,207,269"/>
 </map>
