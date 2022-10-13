@@ -82,11 +82,11 @@ void Room::startLobbyLoop(void)
 void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
 {
     if (_remainingPlaces == 0) {
-        _communicatorInstance.get()->sendDataToAClient(connexionDemand.message.clientInfo, nullptr, 0, 21);
+        _communicatorInstance.get()->sendDataToAClient(connexionDemand.message.clientInfo, nullptr, 0, 11);
         return;
     }
+    _remainingPlaces -= 1;
     std::cerr << "Room " << _id << " received a connexion protocol." << std::endl;
     _worldInstance->addEntity().addComponent<NetworkClient>(connexionDemand.message.clientInfo.getId());
     /// SEND A PROTOCOL 22
-    _remainingPlaces -= 1;
 }
