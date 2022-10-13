@@ -25,5 +25,6 @@ void SendToClient::runSystem(ecs::World &world)
     };
 
     std::for_each(clients.begin(), clients.end(), addToClientList);
-    std::for_each(joinedNetworkable.begin(), joinedNetworkable.end(), update);
+    if (!clientIdList.empty())
+        std::for_each(joinedNetworkable.begin(), joinedNetworkable.end(), update);
 }

@@ -13,18 +13,21 @@
 namespace ecs
 {
     /// @brief The velocity class, multiplying the movement of the entity
+    /// It's a networkable component.
     class Velocity : public Component {
       public:
         /// @brief The multiplier of the abscissa movement (between 0.1 and 10)
         double multiplierAbscissa;
         /// @brief The multiplier of the ordinate movement (between 0.1 and 10)
         double multiplierOrdinate;
+        /// @brief The network status of the component. True if it has been modified since it was last sent.
+        bool modified;
 
         /// @brief Constructor of the Velocity Component
         /// @param newMultiplierX the movement's multiplier of abscissa
         /// @param newMultiplierY the movement's multiplier of ordinate
         Velocity(double newMultiplierX = 0, double newMultiplierY = 0)
-            : multiplierAbscissa(newMultiplierX), multiplierOrdinate(newMultiplierY){};
+            : multiplierAbscissa(newMultiplierX), multiplierOrdinate(newMultiplierY), modified(false){};
         /// @brief Default Destructor
         ~Velocity() = default;
     };

@@ -1,7 +1,0 @@
-set(SRC_CLIENT_SYSTEM_ROOT ${PROJECT_SOURCE_DIR}/Client/Systems/)
-
-set(SRC_CLIENT_SYSTEM
-    ${SRC_CLIENT_SYSTEM_ROOT}/SendToServer.hpp
-    ${SRC_CLIENT_SYSTEM_ROOT}/SendToServer.cpp
-    PARENT_SCOPE
-    )
