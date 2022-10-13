@@ -32,5 +32,8 @@ var dir_0943bb3b04e949be25f9c894a9313a68 =
     ] ],
     [ "MouseInputComponent.hpp", "_mouse_input_component_8hpp.html", [
       [ "MouseInputComponent", "classecs_1_1_mouse_input_component.html", "classecs_1_1_mouse_input_component" ]
+    ] ],
+    [ "TextureName.hpp", "_texture_name_8hpp.html", [
+      [ "TextureName", "classecs_1_1_texture_name.html", "classecs_1_1_texture_name" ]
     ] ]
 ];

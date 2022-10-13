@@ -57,6 +57,7 @@ var namespaceecs =
     [ "ShootingFrequency", "classecs_1_1_shooting_frequency.html", "classecs_1_1_shooting_frequency" ],
     [ "Size", "classecs_1_1_size.html", "classecs_1_1_size" ],
     [ "System", "classecs_1_1_system.html", "classecs_1_1_system" ],
+    [ "TextureName", "classecs_1_1_texture_name.html", "classecs_1_1_texture_name" ],
     [ "UpdateClock", "structecs_1_1_update_clock.html", "structecs_1_1_update_clock" ],
     [ "Velocity", "classecs_1_1_velocity.html", "classecs_1_1_velocity" ],
     [ "Weakness", "classecs_1_1_weakness.html", "classecs_1_1_weakness" ],

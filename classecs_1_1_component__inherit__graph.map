@@ -1,5 +1,5 @@
 <map id="ecs::Component" name="ecs::Component">
-<area shape="rect" id="node1" title="This is the Component Class for ECS The base component type, all components must inherit from Compone..." alt="" coords="5,1116,132,1143"/>
+<area shape="rect" id="node1" title="This is the Component Class for ECS The base component type, all components must inherit from Compone..." alt="" coords="5,1141,132,1168"/>
 <area shape="rect" id="node2" href="$classecs_1_1_action_queue_component.html" title="This component class stores a function queue. These functions will be added when an input occurs duri..." alt="" coords="199,5,410,32"/>
 <area shape="rect" id="node3" href="$classecs_1_1_allied_projectile.html" title="Allied Projectile Component allows an entity to be used as an Allied Projectile." alt="" coords="229,56,380,83"/>
 <area shape="rect" id="node4" href="$classecs_1_1_allow_controller_component.html" title="This component class allows controller usage in client." alt="" coords="191,107,418,133"/>
@@ -40,7 +40,8 @@
 <area shape="rect" id="node39" href="$classecs_1_1_projectile.html" title="This Component specifies if an entity is a Projectile. This component specifies whether an entity is ..." alt="" coords="248,1927,361,1953"/>
 <area shape="rect" id="node40" href="$classecs_1_1_shooting_frequency.html" title="The ShootingFrequency class, how many seconds will be between two projectiles." alt="" coords="217,1977,393,2004"/>
 <area shape="rect" id="node41" href="$classecs_1_1_size.html" title="The Size component, almost used for everything." alt="" coords="265,2028,344,2055"/>
-<area shape="rect" id="node42" href="$classecs_1_1_velocity.html" title="The velocity class, multiplying the movement of the entity It&#39;s a networkable component." alt="" coords="253,2079,357,2105"/>
-<area shape="rect" id="node43" href="$classecs_1_1_weakness.html" title="The Weakness component, to create a target for projectiles." alt="" coords="245,2129,364,2156"/>
-<area shape="rect" id="node44" href="$classecs_1_1_weight.html" title="The Weight class, almost used for everything, used in gravity system." alt="" coords="256,2180,353,2207"/>
+<area shape="rect" id="node42" href="$classecs_1_1_texture_name.html" title="TextureName store the key as enum to the corresponding texture stores in shared resource." alt="" coords="235,2079,374,2105"/>
+<area shape="rect" id="node43" href="$classecs_1_1_velocity.html" title="The velocity class, multiplying the movement of the entity It&#39;s a networkable component." alt="" coords="253,2129,357,2156"/>
+<area shape="rect" id="node44" href="$classecs_1_1_weakness.html" title="The Weakness component, to create a target for projectiles." alt="" coords="245,2180,364,2207"/>
+<area shape="rect" id="node45" href="$classecs_1_1_weight.html" title="The Weight class, almost used for everything, used in gravity system." alt="" coords="256,2231,353,2257"/>
 </map>
