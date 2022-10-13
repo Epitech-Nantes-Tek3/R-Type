@@ -156,9 +156,9 @@ void *Transisthor::transitEcsDataToNetworkDataEntityEnemyProjectile(
 }
 
 void *Transisthor::transitEcsDataToNetworkDataEntityObstacle(
-    unsigned short id, int posX, int posY, std::vector<unsigned short> destination)
+    unsigned short id, int posX, int posY, unsigned short damage, std::vector<unsigned short> destination)
 {
-    void *networkObject = std::malloc((sizeof(unsigned short) * 2 + sizeof(int) * 2));
+    void *networkObject = std::malloc((sizeof(unsigned short) * 3 + sizeof(int) * 2));
     unsigned short typeId = 4;
     Client temporaryClient;
 
@@ -168,10 +168,11 @@ void *Transisthor::transitEcsDataToNetworkDataEntityObstacle(
     std::memcpy((void *)((char *)networkObject + sizeof(unsigned short)), &typeId, sizeof(unsigned short));
     std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2), &posX, sizeof(int));
     std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2 + sizeof(int)), &posY, sizeof(int));
+    std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2 + sizeof(int) * 2), &damage, sizeof(unsigned short));
     for (auto it : destination) {
         temporaryClient = getClientByHisId(it);
         transisthor_lib::sendDataToAClientWithoutCommunicator(
-            _communicator, temporaryClient, networkObject, (sizeof(unsigned short) * 2 + sizeof(int) * 2), 31);
+            _communicator, temporaryClient, networkObject, (sizeof(unsigned short) * 3 + sizeof(int) * 2), 31);
     }
     return networkObject;
 }
@@ -330,13 +331,10 @@ void Transisthor::entityConvertEnemyType(unsigned short id, void *byteCode)
 
 void Transisthor::entityConvertEnemyProjectileType(unsigned short id, void *byteCode)
 {
-    int posX = 0;
-    int posY = 0;
+    unsigned short allyId = 0;
 
-    std::memcpy(&posX, byteCode, sizeof(int));
-    std::memcpy(&posY, (void *)((char *)byteCode + sizeof(int)), sizeof(int));
-    (void)posX;
-    (void)posY;
+    std::memcpy(&allyId, byteCode, sizeof(unsigned short));
+    (void)allyId;
     (void)id;
     /// SEND THE NEW ENTITY TO ECS, WILL BE ADDED WHEN TRANSISTHOR WILL BE FULLY IMPLEMENTED
 }
@@ -345,11 +343,14 @@ void Transisthor::entityConvertObstacleType(unsigned short id, void *byteCode)
 {
     int posX = 0;
     int posY = 0;
+    unsigned short damage = 0;
 
     std::memcpy(&posX, byteCode, sizeof(int));
     std::memcpy(&posY, (void *)((char *)byteCode + sizeof(int)), sizeof(int));
+    std::memcpy(&damage, (void *)((char *)byteCode + sizeof(int) * 2), sizeof(unsigned short));
     (void)posX;
     (void)posY;
+    (void)damage;
     (void)id;
     /// SEND THE NEW ENTITY TO ECS, WILL BE ADDED WHEN TRANSISTHOR WILL BE FULLY IMPLEMENTED
 }

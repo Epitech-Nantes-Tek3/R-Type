@@ -81,7 +81,7 @@ void Room::startLobbyLoop(void)
                       << std::endl; /// WILL BE DELETED WITH CONNEXION PROTOCOL ISSUE
             _worldInstance->addEntity().addComponent<NetworkClient>(connexionDemand.message.clientInfo.getId());
             _transisthorInstance.get()->transitEcsDataToNetworkDataEntityObstacle(entityId, entityPosition.x,
-                entityPosition.y,
+                entityPosition.y, 5,
                 {connexionDemand.message.clientInfo.getId()}); /// USED FOR FUNCTIONNAL TESTING, WILL BE REMOVED LATER
         } catch (NetworkError &error) {
         }

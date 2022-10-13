@@ -137,10 +137,11 @@ namespace transisthor_lib
         /// @param id Id of the new entity to create
         /// @param posX X value for the Position component
         /// @param posY Y value for the Position component
+        /// @param damage Damage value of the Obstacle
         /// @param destination of the message
         /// @return Return value his only used for testing (Unit and functional)
         void *transitEcsDataToNetworkDataEntityObstacle(
-            unsigned short id, int posX, int posY, std::vector<unsigned short> destination);
+            unsigned short id, int posX, int posY, unsigned short damage, std::vector<unsigned short> destination);
 
         /// @brief Function called by the ECS to transfer an order of creation for an Player entity
         /// @param id Id of the new entity to create

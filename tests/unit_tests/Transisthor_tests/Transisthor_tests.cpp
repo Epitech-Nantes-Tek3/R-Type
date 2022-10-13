@@ -367,16 +367,19 @@ Test(transisthor_testing, transit_obstacle_entity)
     Position entityPosition = world.getEntity(entityId).getComponent<Position>();
 
     void *temp =
-        transisthor.transitEcsDataToNetworkDataEntityObstacle(entityId, entityPosition.x, entityPosition.y, {1});
+        transisthor.transitEcsDataToNetworkDataEntityObstacle(entityId, entityPosition.x, entityPosition.y, 5, {1});
     void *networkAnswer = transisthor.transitNetworkDataToEcsDataEntity({Client(), temp, 1, 31});
 
     int posX = 0;
     int posY = 0;
+    unsigned short damage = 0;
 
     std::memcpy(&posX, networkAnswer, sizeof(int));
     std::memcpy(&posY, (void *)((char *)networkAnswer + sizeof(int)), sizeof(int));
+    std::memcpy(&damage, (void *)((char *)networkAnswer + sizeof(int) * 2), sizeof(unsigned short));
     cr_assert_eq(posX, 10);
     cr_assert_eq(posY, 120);
+    cr_assert_eq(damage, 5);
 }
 
 Test(transisthor_testing, transit_projectile_entity)
