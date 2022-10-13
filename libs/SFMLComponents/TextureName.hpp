@@ -13,7 +13,7 @@
 
 namespace ecs
 {
-
+    /// @brief TextureName store the key as enum to the corresponding texture stores in shared resource.
     class TextureName : public Component {
         public:
             /// @brief The texture name stores to find the corresponding textureName.
