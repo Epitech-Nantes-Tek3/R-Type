@@ -14,7 +14,7 @@
 
 using namespace ecs;
 
-void DrawComponents::runSystem(World &world)
+void DrawComponents::run(World &world)
 {
     std::vector<std::shared_ptr<Entity>> Inputs = world.joinEntities<LayerLvL>();
 
