@@ -30,6 +30,7 @@ Room::Room()
     _communicatorInstance.get()->setTransisthorBridge(_transisthorInstance);
     _worldInstance.get()->setTransisthorBridge(_communicatorInstance.get()->getTransisthorBridge());
     _state = RoomState::UNDEFINED;
+    _remainingPlaces = 4;
 }
 
 Room::Room(unsigned short id, Client networkInformations)
@@ -42,6 +43,7 @@ Room::Room(unsigned short id, Client networkInformations)
     _communicatorInstance.get()->setTransisthorBridge(_transisthorInstance);
     _worldInstance.get()->setTransisthorBridge(_communicatorInstance.get()->getTransisthorBridge());
     _state = RoomState::UNDEFINED;
+    _remainingPlaces = 4;
 }
 
 struct Temp : public System {
@@ -69,7 +71,7 @@ void Room::startLobbyLoop(void)
     while (_state != RoomState::ENDED && _state != RoomState::UNDEFINED) {
         try {
             connexionDemand = _communicatorInstance.get()->getLastMessage();
-            if (connexionDemand.message.type == 20)
+            if (connexionDemand.message.type == 10)
                 holdANewConnexionRequest(connexionDemand);
         } catch (NetworkError &error) {
         }
@@ -79,6 +81,12 @@ void Room::startLobbyLoop(void)
 
 void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
 {
+    if (_remainingPlaces == 0) {
+        /// SEND A PROTOCOL 21
+        return;
+    }
     std::cerr << "Room " << _id << " received a connexion protocol." << std::endl;
     _worldInstance->addEntity().addComponent<NetworkClient>(connexionDemand.message.clientInfo.getId());
+    /// SEND A PROTOCOL 22
+    _remainingPlaces -= 1;
 }
