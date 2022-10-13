@@ -21,7 +21,24 @@ namespace ecs
     class GraphicsTextureResource : public Resource {
       public:
         /// @brief All the possible Textures
-        enum textureName_e { UNDEFINED, PLAYER, PLAYER_UP, PLAYER_DOWN };
+        enum textureName_e {
+            UNDEFINED,
+            PLAYER_STATIC,
+            PLAYER_UP,
+            PLAYER_DOWN,
+            ENEMY_STATIC,
+            ENEMY_UP,
+            ENEMY_DOWN,
+            BACKGROUND_LAYER_1,
+            BACKGROUND_LAYER_2,
+            BACKGROUND_LAYER_3,
+            OBSTACLE_1,
+            OBSTACLE_2,
+            OBSTACLE_3,
+            PROJECTILE,
+            BUTTON,
+            NATURAL_PROJECTILE
+        };
 
         /// @brief Name of map which contains Textures. It's sorted by the name of the Texture and the Texture
         using TexturesList = std::unordered_map<textureName_e, std::shared_ptr<sf::Texture>>;
