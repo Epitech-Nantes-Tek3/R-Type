@@ -5,7 +5,6 @@
 ** Death_System_tests
 */
 
-
 #include <criterion/criterion.h>
 #include "World/World.hpp"
 #include "Entity/Entity.hpp"
