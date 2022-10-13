@@ -22,13 +22,13 @@ namespace ecs
         /// @brief The Entity’s unique identifier
         std::string uuid;
         /// @brief It says if the entity has been created in the server (false) or in the client (true)
-        bool isClientIntance;
+        bool isClientInstance;
 
         /// @brief Construct a new NewlyCreated object
         /// @param newUuid The UUID
         /// @param inClient Must be true if it's in the Client instance. False otherwise.
         inline NewlyCreated(std::string newUuid = "", bool inClient = false)
-            : uuid(newUuid), isClientIntance(inClient){};
+            : uuid(newUuid), isClientInstance(inClient){};
 
         ///@brief Destroy the NewlyCreated object
         ///

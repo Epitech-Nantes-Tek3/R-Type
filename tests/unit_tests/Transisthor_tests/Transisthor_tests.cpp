@@ -22,6 +22,9 @@
 #include "GameEntityManipulation/CreateEntitiesFunctions/CreatePlayer.hpp"
 #include "GameEntityManipulation/CreateEntitiesFunctions/CreateProjectile.hpp"
 #include "Transisthor/Transisthor.hpp"
+#include "Transisthor/TransisthorECSLogic/Client/Systems/SendNewlyCreatedToServer.hpp"
+#include "Transisthor/TransisthorECSLogic/Server/Resources/NetworkableIdGenerator.hpp"
+#include "Transisthor/TransisthorECSLogic/Server/Systems/SendNewlyCreatedToClients.hpp"
 
 using namespace transisthor_lib;
 using namespace communicator_lib;
@@ -749,4 +752,15 @@ Test(transisthor_testing, transit_projectile_entity_without_uuid)
     cr_assert_eq(velOrd, 5);
     cr_assert_eq(damage, 1);
     cr_assert_str_eq("", uuid);
+}
+
+Test(transisthor_lib, test_networkable_id_generator_resource)
+{
+    World world = World(2);
+
+    world.addResource<NetworkableIdGenerator>();
+
+    cr_assert_eq(1, world.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
+    cr_assert_eq(2, world.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
+    cr_assert_eq(3, world.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
 }
