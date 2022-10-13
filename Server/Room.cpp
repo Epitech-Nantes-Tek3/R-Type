@@ -62,14 +62,6 @@ void Room::startLobbyLoop(void)
 {
     CommunicatorMessage connexionDemand;
 
-    std::size_t entityId = createNewObstacle(*(_worldInstance.get()), 4, 50, 5);
-
-    _worldInstance.get()->getEntity(entityId).addComponent<Networkable>(10);
-
-    Position &entityPosition = _worldInstance.get()->getEntity(entityId).getComponent<Position>();
-
-    entityPosition.modified = true;
-
     _communicatorInstance.get()->startReceiverListening();
     _worldInstance->addSystem<Temp>();
     _worldInstance->addSystem<SendToClient>();
@@ -77,14 +69,16 @@ void Room::startLobbyLoop(void)
     while (_state != RoomState::ENDED && _state != RoomState::UNDEFINED) {
         try {
             connexionDemand = _communicatorInstance.get()->getLastMessage();
-            std::cerr << "Room " << _id << " received a connexion protocol."
-                      << std::endl; /// WILL BE DELETED WITH CONNEXION PROTOCOL ISSUE
-            _worldInstance->addEntity().addComponent<NetworkClient>(connexionDemand.message.clientInfo.getId());
-            _transisthorInstance.get()->transitEcsDataToNetworkDataEntityObstacle(entityId, entityPosition.x,
-                entityPosition.y, 5, std::string(""),
-                {connexionDemand.message.clientInfo.getId()}); /// USED FOR FUNCTIONNAL TESTING, WILL BE REMOVED LATER
+            if (connexionDemand.message.type == 20)
+                holdANewConnexionRequest(connexionDemand);
         } catch (NetworkError &error) {
         }
         _worldInstance.get()->runSystems(); /// WILL BE IMPROVED IN PART TWO (THREAD + CLOCK)
     }
+}
+
+void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
+{
+    std::cerr << "Room " << _id << " received a connexion protocol." << std::endl;
+    _worldInstance->addEntity().addComponent<NetworkClient>(connexionDemand.message.clientInfo.getId());
 }

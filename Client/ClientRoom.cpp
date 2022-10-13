@@ -56,7 +56,6 @@ void ClientRoom::startLobbyLoop(void)
     while (_state != ClientState::ENDED && _state != ClientState::UNDEFINED) {
         try {
             Position entityPosition = _worldInstance.get()->getEntity(entityId).getComponent<Position>();
-            std::cerr << "OBSTACLE POSITION : " << entityPosition.x << " , " << entityPosition.y << std::endl;
             connexionResponse = _communicatorInstance.get()->getLastMessage();
             std::cerr << "ClientRoom received a connexion protocol answer."
                       << std::endl; /// WILL BE DELETED WITH CONNEXION PROTOCOL ISSUE
