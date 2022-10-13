@@ -78,6 +78,8 @@ var hierarchy =
       [ "ecs::DeathLife", "structecs_1_1_death_life.html", null ],
       [ "ecs::DeathSystem", "structecs_1_1_death_system.html", null ],
       [ "ecs::DecreaseLifeTime", "structecs_1_1_decrease_life_time.html", null ],
+      [ "ecs::DrawComponents", "structecs_1_1_draw_components.html", null ],
+      [ "ecs::InputManagement", "structecs_1_1_input_management.html", null ],
       [ "ecs::LifeTimeDeath", "structecs_1_1_life_time_death.html", null ],
       [ "ecs::Movement", "structecs_1_1_movement.html", null ],
       [ "ecs::UpdateClock", "structecs_1_1_update_clock.html", null ],

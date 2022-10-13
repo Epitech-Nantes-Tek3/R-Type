@@ -7,7 +7,8 @@ var classecs_1_1_layer_lv_l =
       [ "OBSTACLE", "classecs_1_1_layer_lv_l.html#a3d249124964fcfd2525e3ccc99313799abc7d4b8de91005aa8194be1de7811393", null ],
       [ "ENEMY", "classecs_1_1_layer_lv_l.html#a3d249124964fcfd2525e3ccc99313799a44b3c00aea6e4bca7e6baa0d9ee63037", null ],
       [ "PLAYER", "classecs_1_1_layer_lv_l.html#a3d249124964fcfd2525e3ccc99313799a44419a19202de3a25c455f6c91fdd20f", null ],
-      [ "PROJECTILE", "classecs_1_1_layer_lv_l.html#a3d249124964fcfd2525e3ccc99313799a1163826042e27f3e0535dc06548cc4ef", null ]
+      [ "PROJECTILE", "classecs_1_1_layer_lv_l.html#a3d249124964fcfd2525e3ccc99313799a1163826042e27f3e0535dc06548cc4ef", null ],
+      [ "LAYER_NUMBER", "classecs_1_1_layer_lv_l.html#a3d249124964fcfd2525e3ccc99313799a7b26ee0c4f47809f4b54c73e3991ae0f", null ]
     ] ],
     [ "LayerLvL", "classecs_1_1_layer_lv_l.html#ad5fb09220b7ee6a3b03f2be8defff35a", null ],
     [ "~LayerLvL", "classecs_1_1_layer_lv_l.html#a3daad5b8ec22581f18bb0f52144880b3", null ],
