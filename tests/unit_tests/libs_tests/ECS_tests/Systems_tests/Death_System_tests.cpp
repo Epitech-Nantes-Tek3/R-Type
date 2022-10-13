@@ -83,9 +83,3 @@ Test(Death_system, kill_entities_with_an_Enemy)
     cr_assert_eq(3, joined.size());
     cr_assert_eq(2, death_joined.size());
 }
-
-
-
-
-
-
