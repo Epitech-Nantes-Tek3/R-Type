@@ -13,10 +13,10 @@
 #include "GameComponents/DamageRadiusComponent.hpp"
 #include "GameComponents/LifeComponent.hpp"
 #include "GameComponents/LifeTimeComponent.hpp"
+#include "GameComponents/NewlyCreated.hpp"
 #include "GameComponents/PositionComponent.hpp"
 #include "GameComponents/ProjectileComponent.hpp"
 #include "GameComponents/SizeComponent.hpp"
-#include "GameComponents/Uuid.hpp"
 #include "GameComponents/VelocityComponent.hpp"
 #include "GameComponents/WeightComponent.hpp"
 #include "GameSharedResources/Random.hpp"
@@ -31,23 +31,36 @@ namespace ecs
     /// @param multiplierAbscissa The Velocity multiplierAbscissa of the new Projectile
     /// @param multiplierOrdinate The Velocity multiplierOrdinate of the new Projectile
     /// @param damage The Damage of the new Projectile
+    /// @param uuid The uuid of the entity. Can be empty.
+    /// @param networkId The id of the Networkable Component. In the client instance, it MUST NOT be filled in.
     /// @return  Id of the new Projectile in std::size_t
     inline std::size_t createNewProjectile(World &world, const int pos_x, const int pos_y,
-        const double multiplierAbscissa, const double multiplierOrdinate, const unsigned short damage)
+        const double multiplierAbscissa, const double multiplierOrdinate, const unsigned short damage,
+        const std::string uuid = "", unsigned short networkId = 0)
     {
-        return world.addEntity()
-            .addComponent<Uuid>(world.getResource<RandomDevice>().getRandomDevice(), 16)
-            .addComponent<Position>(pos_x, pos_y)
-            .addComponent<Weight>(1)
-            .addComponent<Size>(2, 1)
-            .addComponent<LifeTime>(100.0)
-            .addComponent<Life>(10)
-            .addComponent<Damage>(damage)
-            .addComponent<DamageRadius>(5)
-            .addComponent<Collidable>()
-            .addComponent<Projectile>()
-            .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate)
-            .getId();
+        Entity &entity = world.addEntity()
+                             .addComponent<Position>(pos_x, pos_y)
+                             .addComponent<Weight>(1)
+                             .addComponent<Size>(2, 1)
+                             .addComponent<LifeTime>(100.0)
+                             .addComponent<Life>(10)
+                             .addComponent<Damage>(damage)
+                             .addComponent<DamageRadius>(5)
+                             .addComponent<Collidable>()
+                             .addComponent<Projectile>()
+                             .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate);
+
+        if (networkId) {
+            // Case : Creation in a server instance
+            entity.addComponent<NewlyCreated>(uuid, false);
+        } else {
+            // Case : Creation in a Client instance
+            if (uuid != "") {
+                // Special case : the client created the entity and not the server
+                entity.addComponent<NewlyCreated>(uuid, true);
+            }
+        }
+        return entity.getId();
     }
 } // namespace ecs
 #endif /* !CREATEPROJECTILE_HPP_ */

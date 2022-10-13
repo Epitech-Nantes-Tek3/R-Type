@@ -2,10 +2,11 @@
 ** EPITECH PROJECT, 2022
 ** R-Type
 ** File description:
-** Uuid
+** NewlyCreated
 */
 
-#pragma once
+#ifndef NEWLYCREATED_HPP_
+#define NEWLYCREATED_HPP_
 
 #include <random>
 #include <string.h>
@@ -16,27 +17,30 @@ namespace ecs
     /// @brief This component is in order to give a unique id to an entity, it's used in the sending of the creation of
     /// a entity in the client This Component is a distinctive one (used by the function
     /// updateComponentOfAnEntityFromGivenDistinctiveComponent in the world) so it must have a operator== overload
-    class Uuid : public Component {
+    class NewlyCreated : public Component {
       public:
         /// @brief The Entity’s unique identifier
         std::string uuid;
+        /// @brief It says if the entity has been created in the server (false) or in the client (true)
+        bool isClientIntance;
 
-        /// @brief Construct a new Uuid object
-        /// @param uuidLen The len of the UUID
-        Uuid(std::mt19937 gen = std::mt19937(std::random_device()()), unsigned short uuidLen = 16) :  uuid(_generate_uuid(gen, uuidLen)){};
+        /// @brief Construct a new NewlyCreated object
+        /// @param newUuid The UUID
+        /// @param inClient Must be true if it's in the Client instance. False otherwise.
+        inline NewlyCreated(std::string newUuid = "", bool inClient = false)
+            : uuid(newUuid), isClientIntance(inClient){};
 
-        ///@brief Destroy the Uuid object
+        ///@brief Destroy the NewlyCreated object
         ///
-        ~Uuid() = default;
+        ~NewlyCreated() = default;
 
-      private:
         /// @brief It creates an UUID.
         /// DISCLAIMER : It's not a RFC-4122-compliant UUID.
         /// @param len
         /// @return std::string
-        static std::string _generate_uuid(std::mt19937 gen, size_t len)
+        std::string generate_uuid(std::mt19937 gen, size_t len)
         {
-            static const char hex_char[] = "0123456789ABCDEF";
+            const char hex_char[] = "0123456789ABCDEF";
 
             std::string uuid(len, '\0');
 
@@ -48,5 +52,6 @@ namespace ecs
         }
     };
 
-    inline bool operator==(const Uuid &one, const Uuid &two) { return one.uuid == two.uuid; }
+    inline bool operator==(const NewlyCreated &one, const NewlyCreated &two) { return one.uuid == two.uuid; }
 } // namespace ecs
+#endif /* !NEWLYCREATED_HPP_ */
