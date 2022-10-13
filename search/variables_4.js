@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['id_783',['id',['../classecs_1_1_networkable.html#ae27ad133ebb6f887f7533fc4eaf56d36',1,'ecs::Networkable::id()'],['../classecs_1_1_network_server.html#a284f6a83c9dc6b71830111eeee099c3b',1,'ecs::NetworkServer::id()'],['../classecs_1_1_network_client.html#a5cef85e73fa39999d85b41da8e45423d',1,'ecs::NetworkClient::id()']]],
-  ['isclicked_784',['IsClicked',['../classecs_1_1_button.html#a49021e1ba07d18b8d9c24fa0a5d640e3',1,'ecs::Button']]],
-  ['ishovered_785',['IsHovered',['../classecs_1_1_button.html#a08f741506b61b684bb5d79774fd67593',1,'ecs::Button']]]
+  ['font_799',['font',['../classecs_1_1_graphics_font_resource.html#a7d5f97ed1eea5caa26297e2af13a8a43',1,'ecs::GraphicsFontResource']]],
+  ['frequency_800',['frequency',['../classecs_1_1_shooting_frequency.html#a7e740de3091edf4d0934e8c1f69d0144',1,'ecs::ShootingFrequency']]]
 ];

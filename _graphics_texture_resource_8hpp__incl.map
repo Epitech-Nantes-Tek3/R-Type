@@ -1,6 +1,7 @@
 <map id="libs/SFMLResource/GraphicsTextureResource.hpp" name="libs/SFMLResource/GraphicsTextureResource.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="175,5,381,47"/>
-<area shape="rect" id="node2" href="$_resource_8hpp.html" title=" " alt="" coords="5,95,180,121"/>
-<area shape="rect" id="node3" title=" " alt="" coords="205,95,351,121"/>
-<area shape="rect" id="node4" title=" " alt="" coords="375,95,466,121"/>
+<area shape="rect" id="node1" title=" " alt="" coords="160,5,365,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,95,96,121"/>
+<area shape="rect" id="node3" title=" " alt="" coords="121,95,245,121"/>
+<area shape="rect" id="node4" title=" " alt="" coords="269,95,416,121"/>
+<area shape="rect" id="node5" href="$_resource_8hpp.html" title=" " alt="" coords="441,95,615,121"/>
 </map>

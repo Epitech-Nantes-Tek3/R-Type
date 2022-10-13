@@ -1,13 +1,10 @@
 var searchData=
 [
-  ['pattern_230',['Pattern',['../classecs_1_1_pattern.html',1,'ecs::Pattern'],['../classecs_1_1_pattern.html#a872fc016edc09afc8f34c983f1dfea05',1,'ecs::Pattern::pattern()'],['../classecs_1_1_pattern.html#a9728128e55a7cd0fd26c476bd365e9af',1,'ecs::Pattern::Pattern(const std::vector&lt; std::tuple&lt; int, int &gt;&gt; &amp;directions={}, duration&lt; double &gt; movingFrequency=duration&lt; double &gt;(0))']]],
-  ['patterncomponent_2ehpp_231',['PatternComponent.hpp',['../_pattern_component_8hpp.html',1,'']]],
-  ['player_232',['Player',['../classecs_1_1_player.html',1,'ecs::Player'],['../classecs_1_1_layer_lv_l.html#a3d249124964fcfd2525e3ccc99313799a44419a19202de3a25c455f6c91fdd20f',1,'ecs::LayerLvL::PLAYER()']]],
-  ['playercomponent_2ehpp_233',['PlayerComponent.hpp',['../_player_component_8hpp.html',1,'']]],
-  ['port_234',['port',['../structargument__handler_1_1_argument_handler_1_1_server_information.html#af603043dc8c2629046df45661274b04c',1,'argument_handler::ArgumentHandler::ServerInformation']]],
-  ['position_235',['Position',['../classecs_1_1_position.html',1,'ecs::Position'],['../classecs_1_1_position.html#aee4cb9ed66e882c6706bc381ad41b346',1,'ecs::Position::Position()']]],
-  ['positioncomponent_2ehpp_236',['PositionComponent.hpp',['../_position_component_8hpp.html',1,'']]],
-  ['processhoptionverification_237',['processHOptionVerification',['../classargument__handler_1_1_argument_handler.html#af5ffd4e71843e1e36a27bc64b2fb0321',1,'argument_handler::ArgumentHandler']]],
-  ['projectile_238',['Projectile',['../classecs_1_1_projectile.html',1,'ecs::Projectile'],['../classecs_1_1_layer_lv_l.html#a3d249124964fcfd2525e3ccc99313799a1163826042e27f3e0535dc06548cc4ef',1,'ecs::LayerLvL::PROJECTILE()']]],
-  ['projectilecomponent_2ehpp_239',['ProjectileComponent.hpp',['../_projectile_component_8hpp.html',1,'']]]
+  ['obstacle_235',['Obstacle',['../classecs_1_1_obstacle.html',1,'ecs::Obstacle'],['../classecs_1_1_layer_lv_l.html#a3d249124964fcfd2525e3ccc99313799abc7d4b8de91005aa8194be1de7811393',1,'ecs::LayerLvL::OBSTACLE()']]],
+  ['obstacle_5f1_236',['OBSTACLE_1',['../classecs_1_1_graphics_texture_resource.html#af837603102b91ff4b94589320843fdf3a8bdfd96567c7161cfe3e749009e1323e',1,'ecs::GraphicsTextureResource']]],
+  ['obstacle_5f2_237',['OBSTACLE_2',['../classecs_1_1_graphics_texture_resource.html#af837603102b91ff4b94589320843fdf3a6a6ac732b9702ff9edd257dc4a6f5966',1,'ecs::GraphicsTextureResource']]],
+  ['obstacle_5f3_238',['OBSTACLE_3',['../classecs_1_1_graphics_texture_resource.html#af837603102b91ff4b94589320843fdf3a55332ddd8503e85f443870ebcc86ae6d',1,'ecs::GraphicsTextureResource']]],
+  ['obstaclecomponent_2ehpp_239',['ObstacleComponent.hpp',['../_obstacle_component_8hpp.html',1,'']]],
+  ['operator_21_3d_240',['operator!=',['../namespaceecs.html#aabf6f9698af5a96f1c4d0c59abcba27a',1,'ecs']]],
+  ['operator_3d_3d_241',['operator==',['../namespacecommunicator__lib.html#a09b5d088e66a5c9af9461003c1781016',1,'communicator_lib::operator==()'],['../namespaceecs.html#a39ebfffd5d00bfa78f36d811a02af290',1,'ecs::operator==(Entity const &amp;entity, Entity const &amp;other)'],['../namespaceecs.html#a102705ce465733035dfb209936d15883',1,'ecs::operator==(const Networkable &amp;one, const Networkable &amp;two)'],['../namespaceserver__data.html#a57ed7d487be0665b19190244d4dc5a9f',1,'server_data::operator==()']]]
 ];
