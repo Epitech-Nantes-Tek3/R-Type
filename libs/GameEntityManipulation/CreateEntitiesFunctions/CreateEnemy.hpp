@@ -16,6 +16,7 @@
 #include "GameComponents/LifeTimeComponent.hpp"
 #include "GameComponents/PositionComponent.hpp"
 #include "GameComponents/SizeComponent.hpp"
+#include "GameComponents/Uuid.hpp"
 #include "GameComponents/VelocityComponent.hpp"
 #include "GameComponents/WeightComponent.hpp"
 #include "GameSharedResources/Random.hpp"
@@ -47,6 +48,7 @@ namespace ecs
         const unsigned short life, const unsigned short damage, const unsigned short damageRadius)
     {
         return world.addEntity()
+            .addComponent<Uuid>(world.getResource<RandomDevice>().getRandomDevice(), 16)
             .addComponent<Position>(pos_x, pos_y)
             .addComponent<Weight>(weight)
             .addComponent<Size>(size_x, size_y)

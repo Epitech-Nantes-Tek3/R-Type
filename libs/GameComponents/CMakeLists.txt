@@ -32,7 +32,7 @@ set(SRC
     ${INC_ROOT}/PlayerComponent.hpp
     ${INC_ROOT}/EnemyComponent.hpp
     ${INC_ROOT}/ObstacleComponent.hpp
+    ${INC_ROOT}/Uuid.hpp
 )
 
 add_library(${TARGET} INTERFACE ${SRC})
-

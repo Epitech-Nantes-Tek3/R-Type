@@ -23,7 +23,7 @@ namespace ecs
 
         /// @brief Construct a new Uuid object
         /// @param uuidLen The len of the UUID
-        Uuid(unsigned short uuidLen = 16) : uuid(_generate_uuid(uuidLen)){};
+        Uuid(std::mt19937 gen = std::mt19937(std::random_device()()), unsigned short uuidLen = 16) :  uuid(_generate_uuid(gen, uuidLen)){};
 
         ///@brief Destroy the Uuid object
         ///
@@ -34,14 +34,11 @@ namespace ecs
         /// DISCLAIMER : It's not a RFC-4122-compliant UUID.
         /// @param len
         /// @return std::string
-        static std::string _generate_uuid(size_t len)
+        static std::string _generate_uuid(std::mt19937 gen, size_t len)
         {
             static const char hex_char[] = "0123456789ABCDEF";
 
             std::string uuid(len, '\0');
-
-            std::random_device rd;
-            std::mt19937 gen(rd());
 
             std::uniform_int_distribution<> dis(0, sizeof(hex_char) - 2);
             for (auto &c : uuid) {

@@ -16,8 +16,10 @@
 #include "GameComponents/ObstacleComponent.hpp"
 #include "GameComponents/PositionComponent.hpp"
 #include "GameComponents/SizeComponent.hpp"
+#include "GameComponents/Uuid.hpp"
 #include "GameComponents/VelocityComponent.hpp"
 #include "GameComponents/WeightComponent.hpp"
+#include "GameSharedResources/Random.hpp"
 #include "World/World.hpp"
 
 namespace ecs
@@ -32,6 +34,7 @@ namespace ecs
     inline std::size_t createNewObstacle(World &world, const int pos_x, const int pos_y, const unsigned short damage)
     {
         return world.addEntity()
+            .addComponent<Uuid>(world.getResource<RandomDevice>().getRandomDevice(), 16)
             .addComponent<Position>(pos_x, pos_y)
             .addComponent<Weight>(1)
             .addComponent<Size>(1, 1)

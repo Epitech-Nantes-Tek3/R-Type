@@ -16,8 +16,10 @@
 #include "GameComponents/LifeTimeComponent.hpp"
 #include "GameComponents/PositionComponent.hpp"
 #include "GameComponents/SizeComponent.hpp"
+#include "GameComponents/Uuid.hpp"
 #include "GameComponents/VelocityComponent.hpp"
 #include "GameComponents/WeightComponent.hpp"
+#include "GameSharedResources/Random.hpp"
 #include "World/World.hpp"
 
 namespace ecs
@@ -33,6 +35,7 @@ namespace ecs
         Velocity velocity = ally.getComponent<Velocity>();
 
         return world.addEntity()
+            .addComponent<Uuid>(world.getResource<RandomDevice>().getRandomDevice(), 16)
             .addComponent<Position>(pos.x, pos.y)
             .addComponent<Velocity>(velocity.multiplierAbscissa, velocity.multiplierOrdinate)
             .addComponent<Weight>(1)
