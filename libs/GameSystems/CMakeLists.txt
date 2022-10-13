@@ -11,11 +11,15 @@ set(SRC
     ${SRC_ROOT}/DeathLifeSystem.hpp
     ${SRC_ROOT}/LifeTimeDeathSystem.hpp
     ${SRC_ROOT}/DecreaseLifeTimeSystem.hpp
+    ${SRC_ROOT}/MovementSystem.cpp
+    ${SRC_ROOT}/UpdateClockSystem.hpp
+    ${SRC_ROOT}/UpdateClockSystem.cpp
     ${SRC_ROOT}/CollidableSystem.hpp
     ${SRC_ROOT}/CollidableSystem.cpp
 )
 
 set(SRC_SYSTEM_CLIENT
+    ${SRC_ROOT}/MovementSystem.cpp
     ${SRC_ROOT}/MovementSystem.hpp
     ${SRC_ROOT}/DeathSystem.hpp
 )
@@ -28,6 +32,7 @@ target_include_directories(${TARGET}
     PUBLIC ${INC_ROOT}
     PUBLIC ${PROJECT_NAME}_ecs
     PUBLIC ${PROJECT_NAME}_gameComponents
+    PUBLIC ${PROJECT_NAME}_gameSharedResources
     INTERFACE ${PROJECT_NAME}_error
     PRIVATE $(SRC_ROOT)
 )
@@ -43,6 +48,7 @@ target_include_directories(${TARGET_CLIENT}
 target_link_libraries(${TARGET}
     ${PROJECT_NAME}_ecs
     ${PROJECT_NAME}_gameComponents
+    ${PROJECT_NAME}_gameSharedResources
 )
 
 target_link_libraries(${TARGET_CLIENT}

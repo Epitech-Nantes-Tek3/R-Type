@@ -7,7 +7,6 @@
 
 #include <criterion/criterion.h>
 #include "MouseInputComponent.hpp"
-#include "SFML/Graphics.hpp"
 
 using namespace ecs;
 
