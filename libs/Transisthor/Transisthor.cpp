@@ -16,6 +16,7 @@
 #include "GameComponents/LifeComponent.hpp"
 #include "GameComponents/PositionComponent.hpp"
 #include "GameComponents/VelocityComponent.hpp"
+#include "GameComponents/DeathComponent.hpp"
 #include "TransisthorECSLogic/Both/Components/Networkable.hpp"
 
 using namespace transisthor_lib;
@@ -38,6 +39,8 @@ Transisthor::Transisthor(Communicator &communicator, World &ecsWorld) : _communi
         std::bind(&Transisthor::componentConvertPositionType, this, std::placeholders::_1, std::placeholders::_2);
     _componentConvertFunctionList[7] =
         std::bind(&Transisthor::componentConvertVelocityType, this, std::placeholders::_1, std::placeholders::_2);
+    _componentConvertFunctionList[8] =
+        std::bind(&Transisthor::componentConvertDeathType, this, std::placeholders::_1, std::placeholders::_2);
     _entityConvertFunctionList[1] =
         std::bind(&Transisthor::entityConvertAlliedProjectileType, this, std::placeholders::_1, std::placeholders::_2);
     _entityConvertFunctionList[2] =
@@ -335,6 +338,14 @@ void Transisthor::componentConvertVelocityType(unsigned short id, void *byteCode
     Velocity newComponent = buildComponentFromByteCode<Velocity>(byteCode);
 
     _ecsWorld.updateComponentOfAnEntityFromGivenDistinctiveComponent<Networkable, Velocity>(
+        Networkable(id), newComponent);
+}
+
+void Transisthor::componentConvertDeathType(unsigned short id, void *byteCode)
+{
+    Death newComponent = buildComponentFromByteCode<Death>(byteCode);
+
+    _ecsWorld.updateComponentOfAnEntityFromGivenDistinctiveComponent<Networkable, Death>(
         Networkable(id), newComponent);
 }
 
