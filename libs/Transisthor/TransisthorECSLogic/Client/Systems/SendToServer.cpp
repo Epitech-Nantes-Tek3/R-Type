@@ -24,6 +24,6 @@ void SendToServer::runSystem(ecs::World &world)
     };
 
     std::for_each(servers.begin(), servers.end(), addToServerList);
-    if (serverIdList.size())
+    if (!serverIdList.empty())
         std::for_each(players.begin(), players.end(), update);
 }
