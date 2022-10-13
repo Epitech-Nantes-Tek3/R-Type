@@ -44,6 +44,7 @@ namespace ecs
             .addComponent<Collidable>()
             .addComponent<Projectile>()
             .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate)
+            .addComponent<TextureName>()
             .getId();
     }
 } // namespace ecs

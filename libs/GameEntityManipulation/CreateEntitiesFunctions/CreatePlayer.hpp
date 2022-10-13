@@ -50,6 +50,7 @@ namespace ecs
             .addComponent<Collidable>()
             .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate)
             .addComponent<Player>()
+            .addComponent<TextureName>()
             .getId();
     }
 

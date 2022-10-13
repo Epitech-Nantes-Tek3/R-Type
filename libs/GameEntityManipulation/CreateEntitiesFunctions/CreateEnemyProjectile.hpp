@@ -44,6 +44,7 @@ namespace ecs
             .addComponent<DamageRadius>(5)
             .addComponent<Collidable>()
             .addComponent<EnemyProjectile>()
+            .addComponent<TextureName>()
             .getId();
     }
 } // namespace ecs

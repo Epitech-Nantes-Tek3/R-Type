@@ -41,6 +41,7 @@ namespace ecs
             .addComponent<DamageRadius>(5)
             .addComponent<Collidable>()
             .addComponent<Obstacle>()
+            .addComponent<TextureName>()
             .getId();
     }
 } // namespace ecs

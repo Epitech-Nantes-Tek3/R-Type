@@ -57,6 +57,7 @@ namespace ecs
             .addComponent<Collidable>()
             .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate)
             .addComponent<Enemy>()
+            .addComponent<TextureName>()
             .getId();
     }
 
