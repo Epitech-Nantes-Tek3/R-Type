@@ -149,8 +149,9 @@ namespace transisthor_lib
         /// @param posY Y value for the Position component
         /// @param destination of the message
         /// @return Return value his only used for testing (Unit and functional)
-        void *transitEcsDataToNetworkDataEntityPlayer(
-            unsigned short id, int posX, int posY, std::vector<unsigned short> destination);
+        void *transitEcsDataToNetworkDataEntityPlayer(unsigned short id, int posX, int posY, double multiplierAbscissa,
+            double multiplierOrdinate, short weight, int size_x, int size_y, short life, unsigned short damage,
+            unsigned short damageRadius, std::vector<unsigned short> destination);
 
         /// @brief Function called by the ECS to transfer an order of creation for an Projectile entity
         /// @param id Id of the new entity to create
