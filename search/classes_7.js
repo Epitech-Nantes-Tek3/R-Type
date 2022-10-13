@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['life_359',['Life',['../classecs_1_1_life.html',1,'ecs']]],
-  ['lifetime_360',['Lifetime',['../classecs_1_1_lifetime.html',1,'ecs']]]
+  ['keyboardinputcomponent_368',['KeyboardInputComponent',['../classecs_1_1_keyboard_input_component.html',1,'ecs']]]
 ];

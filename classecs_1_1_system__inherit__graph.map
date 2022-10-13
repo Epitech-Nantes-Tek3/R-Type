@@ -1,7 +1,8 @@
 <map id="ecs::System" name="ecs::System">
-<area shape="rect" id="node1" title=" " alt="" coords="207,5,309,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="291,5,393,32"/>
 <area shape="rect" id="node2" href="$structecs_1_1_collide.html" title="This is the Collide System. This system will check every entities, see if they collide and apply dama..." alt="" coords="5,80,103,107"/>
 <area shape="rect" id="node3" href="$structecs_1_1_movement.html" title="This is the Movement system. This system can move any entities which contains a Position and a Veloci..." alt="" coords="127,80,250,107"/>
-<area shape="rect" id="node4" href="$struct_send_to_client.html" title="SendToClient is a system that sends Networkable Entities datas to clients" alt="" coords="274,80,381,107"/>
-<area shape="rect" id="node5" href="$struct_send_to_server.html" title=" " alt="" coords="405,80,516,107"/>
+<area shape="rect" id="node4" href="$structecs_1_1_update_clock.html" title="UpdateClock System. Will be used to call the GameClock&#39;s reset." alt="" coords="275,80,409,107"/>
+<area shape="rect" id="node5" href="$struct_send_to_client.html" title="SendToClient is a system that sends Networkable Entities datas to clients" alt="" coords="434,80,541,107"/>
+<area shape="rect" id="node6" href="$struct_send_to_server.html" title=" " alt="" coords="565,80,676,107"/>
 </map>
