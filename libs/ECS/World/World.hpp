@@ -76,9 +76,14 @@ namespace ecs
             for (std::shared_ptr<Entity> entityPtr : joined) {
                 DistinctiveC &dc = entityPtr->getComponent<DistinctiveC>();
                 if (distinctive == dc) {
-                    C &old = entityPtr->getComponent<C>();
-                    old = component;
-                    return true;
+                    if (entityPtr->contains<C>()) {
+                        C &old = entityPtr->getComponent<C>();
+                        old = component;
+                        return true;
+                    } else {
+                        entityPtr->addComponent<C>(component);
+                        return true;
+                    }
                 }
             }
             return false;
