@@ -6,7 +6,6 @@
 */
 
 #include "SendToClient.hpp"
-#include <iostream>
 
 void SendToClient::runSystem(ecs::World &world)
 {
