@@ -352,6 +352,33 @@ Test(transisthor_testing, transit_alliedProjectile_entity)
     cr_assert_str_eq("UUID", uuid);
 }
 
+Test(transisthor_testing, transit_alliedProjectile_entity_empty_uuid)
+{
+    Communicator communicator = Communicator();
+    World world = World(2);
+    Transisthor transisthor = Transisthor(communicator, world);
+    Velocity pos = Velocity(10, 12);
+    Velocity newPos;
+    Client temporaryClient = Client();
+    communicator.addClientToList(temporaryClient);
+
+    std::size_t allied =
+        world.addEntity().addComponent<Position>(1, 2).addComponent<Damage>(10).addComponent<Velocity>(1, 1).getId();
+
+    unsigned short entityId = createNewAlliedProjectile(world, world.getEntity(allied));
+
+    void *temp = transisthor.transitEcsDataToNetworkDataEntityAlliedProjectile(
+        entityId, allied, std::string(""), {1});
+    void *networkAnswer = transisthor.transitNetworkDataToEcsDataEntity({Client(), temp, 1, 31});
+
+    unsigned short newAllied = 0;
+    char *uuid = (char *)networkAnswer + sizeof(unsigned short);
+
+    std::memcpy(&newAllied, networkAnswer, sizeof(unsigned short));
+    cr_assert_eq(newAllied, allied);
+    cr_assert_str_eq("", uuid);
+}
+
 Test(transisthor_testing, transit_enemyProjectile_entity)
 {
     Communicator communicator = Communicator();
