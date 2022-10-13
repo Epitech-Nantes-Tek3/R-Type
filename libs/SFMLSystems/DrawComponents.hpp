@@ -9,11 +9,13 @@
 #define DRAWCOMPONENTS_HPP_
 
 #include "System/System.hpp"
+#include "World/World.hpp"
 
 namespace ecs
 {
     /// @brief This class draw GraphicsComponents on window.
     struct DrawComponents : public System {
+        static bool compareLayer(std::shared_ptr<Entity> e1, std::shared_ptr<Entity> e2);
         /// @brief The run function of this system. It will be used by the world in the function runSystems.
         /// @param world The corresponding world on which run this system.
         void run(World &world) override final;

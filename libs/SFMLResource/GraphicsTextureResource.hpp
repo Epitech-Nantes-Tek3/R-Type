@@ -55,7 +55,10 @@ namespace ecs
         /// @param texturePath Path of the Texture
         inline void addTexture(const textureName_e texture_e, const std::filesystem::path &texturePath)
         {
-            _texturesList.emplace(texture_e, std::make_shared<sf::Texture>()->loadFromFile(texturePath));
+            sf::Texture t;
+
+            t.loadFromFile(texturePath);
+            _texturesList.emplace(texture_e, std::make_shared<sf::Texture>(t));
         }
 
         /// @brief Default destructor of the class.
