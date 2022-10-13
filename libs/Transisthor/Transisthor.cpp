@@ -89,7 +89,6 @@ void *Transisthor::transitEcsDataToNetworkDataEntityAlliedProjectile(
 {
     void *networkObject = std::malloc((sizeof(unsigned short) * 3 + sizeof(char) * uuid.size()));
     unsigned short typeId = 1;
-    char *uuidContent = (char *)uuid.c_str();
     Client temporaryClient;
 
     if (networkObject == nullptr)
@@ -97,7 +96,7 @@ void *Transisthor::transitEcsDataToNetworkDataEntityAlliedProjectile(
     std::memcpy(networkObject, &id, sizeof(unsigned short));
     std::memcpy((void *)((char *)networkObject + sizeof(unsigned short)), &typeId, sizeof(unsigned short));
     std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2), &allyId, sizeof(unsigned short));
-    std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 3), &uuidContent, sizeof(char) * uuid.size());
+    std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 3), uuid.c_str(), sizeof(char) * uuid.size());
     for (auto it : destination) {
         temporaryClient = getClientByHisId(it);
         transisthor_lib::sendDataToAClientWithoutCommunicator(
@@ -326,9 +325,11 @@ void Transisthor::componentConvertVelocityType(unsigned short id, void *byteCode
 void Transisthor::entityConvertAlliedProjectileType(unsigned short id, void *byteCode)
 {
     unsigned short allyId = 0;
+    char *uuid = (char *)byteCode + sizeof(unsigned short);
 
     std::memcpy(&allyId, byteCode, sizeof(unsigned short));
     (void)allyId;
+    (void) uuid;
     (void)id;
     /// SEND THE NEW ENTITY TO ECS, WILL BE ADDED WHEN TRANSISTHOR WILL BE FULLY IMPLEMENTED
 }

@@ -345,9 +345,11 @@ Test(transisthor_testing, transit_alliedProjectile_entity)
     void *networkAnswer = transisthor.transitNetworkDataToEcsDataEntity({Client(), temp, 1, 31});
 
     unsigned short newAllied = 0;
+    char *uuid = (char *)networkAnswer + sizeof(unsigned short);
 
     std::memcpy(&newAllied, networkAnswer, sizeof(unsigned short));
     cr_assert_eq(newAllied, allied);
+    cr_assert_str_eq("UUID", uuid);
 }
 
 Test(transisthor_testing, transit_enemyProjectile_entity)
