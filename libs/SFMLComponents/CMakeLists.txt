@@ -14,6 +14,7 @@ set(SRC
     ${SFML_INPUT_INC_ROOT}/GraphicsRectangleComponent.cpp
     ${SFML_INPUT_INC_ROOT}/GraphicsTextComponent.hpp
     ${SFML_INPUT_INC_ROOT}/GraphicsTextComponent.cpp
+    ${SFML_INPUT_INC_ROOT}/TextureName.hpp
 )
 
 add_library(${TARGET} SHARED ${SRC})
