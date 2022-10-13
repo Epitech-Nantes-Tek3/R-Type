@@ -127,12 +127,11 @@ namespace transisthor_lib
 
         /// @brief Function called by the ECS to transfer an order of creation for an EnemyProjectile entity
         /// @param id Id of the new entity to create
-        /// @param posX X value for the Position component
-        /// @param posY Y value for the Position component
+        /// @param enemyId If of the enemy who fired
         /// @param destination of the message
         /// @return Return value his only used for testing (Unit and functional)
         void *transitEcsDataToNetworkDataEntityEnemyProjectile(
-            unsigned short id, int posX, int posY, std::vector<unsigned short> destination);
+            unsigned short id, unsigned short enemyId, std::vector<unsigned short> destination);
 
         /// @brief Function called by the ECS to transfer an order of creation for an Obstacle entity
         /// @param id Id of the new entity to create
