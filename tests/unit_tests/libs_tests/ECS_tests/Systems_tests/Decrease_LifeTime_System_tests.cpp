@@ -25,9 +25,9 @@ Test(Decrease_LifeTime_System, decrease_all_life_time)
     for (int i = 0; i < 100; i++)
         world.runSystems();
 
-    std::chrono::duration<double> LifeTime = world.getEntity(1).getComponent<LifeTime>().timeLeft;
+    std::chrono::duration<double> lifeTime = world.getEntity(1).getComponent<LifeTime>().timeLeft;
 
-    cr_assert_eq(0, LifeTime.count());
+    cr_assert_eq(0, lifeTime.count());
 }
 
 Test(Decrease_LifeTime_System, multiple_decrease_all_life_time)
@@ -42,9 +42,9 @@ Test(Decrease_LifeTime_System, multiple_decrease_all_life_time)
     for (int i = 0; i < 100; i++)
         world.runSystems();
 
-    std::chrono::duration<double> LifeTime = world.getEntity(1).getComponent<LifeTime>().timeLeft;
-    std::chrono::duration<double> LifeTime2 = world.getEntity(2).getComponent<LifeTime>().timeLeft;
+    std::chrono::duration<double> lifeTime = world.getEntity(1).getComponent<LifeTime>().timeLeft;
+    std::chrono::duration<double> lifeTime2 = world.getEntity(2).getComponent<LifeTime>().timeLeft;
 
-    cr_assert_eq(0, LifeTime.count());
-    cr_assert_eq(0, LifeTime2.count());
+    cr_assert_eq(0, lifeTime.count());
+    cr_assert_eq(0, lifeTime2.count());
 }
