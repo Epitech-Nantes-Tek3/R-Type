@@ -61,13 +61,23 @@ struct Temp : public System {
     }
 };
 
+void Room::initEcsGameData(void)
+{
+    _worldInstance->addSystem<Temp>();
+    _worldInstance->addSystem<SendToClient>();
+}
+
+void Room::startConnexionProtocol(void)
+{
+    _communicatorInstance.get()->startReceiverListening();
+}
+
 void Room::startLobbyLoop(void)
 {
     CommunicatorMessage connexionDemand;
 
-    _communicatorInstance.get()->startReceiverListening();
-    _worldInstance->addSystem<Temp>();
-    _worldInstance->addSystem<SendToClient>();
+    startConnexionProtocol();
+    initEcsGameData();
     _state = RoomState::LOBBY;
     while (_state != RoomState::ENDED && _state != RoomState::UNDEFINED) {
         try {

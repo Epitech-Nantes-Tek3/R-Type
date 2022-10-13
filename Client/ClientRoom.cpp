@@ -12,6 +12,7 @@
 #include "GameComponents/PositionComponent.hpp"
 #include "GameEntityManipulation/CreateEntitiesFunctions/CreateObstacle.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
+#include "Transisthor/TransisthorECSLogic/Client/Systems/SendToServer.hpp"
 
 using namespace error_lib;
 using namespace communicator_lib;
@@ -42,25 +43,45 @@ ClientRoom::ClientRoom(std::string address, unsigned short port, std::string ser
     _state = ClientState::UNDEFINED;
 }
 
+struct Temp : public System {
+    void run(World &world)
+    {
+        std::cerr << "You are connected !" << std::endl;
+        (void)world;
+    }
+};
+
+void ClientRoom::initEcsGameData(void)
+{
+    _worldInstance->addSystem<Temp>();
+    _worldInstance->addSystem<SendToServer>();
+}
+
+void ClientRoom::startConnexionProtocol(void)
+{
+    _communicatorInstance.get()->startReceiverListening();
+    _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, nullptr, 0, 10);
+}
+
 void ClientRoom::startLobbyLoop(void)
 {
     CommunicatorMessage connexionResponse;
 
-    std::size_t entityId = createNewObstacle(*(_worldInstance.get()), 5, 60, 5);
-
-    _worldInstance.get()->getEntity(entityId).addComponent<Networkable>(10);
-
-    _communicatorInstance.get()->startReceiverListening();
-    _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, nullptr, 0, 10);
+    startConnexionProtocol();
+    initEcsGameData();
     _state = ClientState::LOBBY;
     while (_state != ClientState::ENDED && _state != ClientState::UNDEFINED) {
         try {
-            Position entityPosition = _worldInstance.get()->getEntity(entityId).getComponent<Position>();
             connexionResponse = _communicatorInstance.get()->getLastMessage();
-            std::cerr << "ClientRoom received a connexion protocol answer."
-                      << std::endl; /// WILL BE DELETED WITH CONNEXION PROTOCOL ISSUE
+            if (connexionResponse.message.type == 11) {
+                std::cerr << "No places left inside the wanted room. Please retry later" << std::endl;
+                return;
+            }
+            if (connexionResponse.message.type == 12)
+                _state = ClientState::IN_GAME;
         } catch (NetworkError &error) {
         }
-        _worldInstance.get()->runSystems(); /// WILL BE IMPROVED IN PART TWO (THREAD + CLOCK)
+        if (_state == ClientState::IN_GAME)
+            _worldInstance.get()->runSystems(); /// WILL BE IMPROVED IN PART TWO (THREAD + CLOCK)
     }
 }

@@ -61,6 +61,12 @@ namespace client_data
 
         /// @brief Current state of the client
         ClientState _state;
+
+        /// @brief Init the Ressources and Systems of the ECS
+        void initEcsGameData(void);
+
+        /// @brief Start the connexion protocol and ask the server for a place inside the room
+        void startConnexionProtocol(void);
     };
 } // namespace client_data
 
