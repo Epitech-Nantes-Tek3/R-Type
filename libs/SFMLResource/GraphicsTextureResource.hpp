@@ -16,11 +16,10 @@
 namespace ecs
 {
 
-    /// @brief This resource class stores a Graphical SFML texture to be set on a rectangle shape resource.
-    /// This class is created in order to set a texture on a rectangle shape resource.
+    /// @brief This resource class stores a map of Graphical SFML textures to be set on Shapes.
     class GraphicsTextureResource : public Resource {
       public:
-        /// @brief All the possible Textures
+        /// @brief Enumeration of all available Textures
         enum textureName_e {
             UNDEFINED,
             PLAYER_STATIC,
@@ -40,13 +39,11 @@ namespace ecs
             NATURAL_PROJECTILE
         };
 
-        /// @brief Name of map which contains Textures. It's sorted by the name of the Texture and the Texture
+        /// @brief Name of map which contains Textures.
         using TexturesList = std::unordered_map<textureName_e, std::shared_ptr<sf::Texture>>;
 
-        /// @brief Default constructor of the class.
-        GraphicsTextureResource() = default;
-
-        /// @brief Create a texture from the path to an image.
+        /// @brief Add a Texture from it's Texture Path passed as parameter
+        /// @param texture_e Enum of the Texture
         /// @param texturePath The texture path to be used.
         inline GraphicsTextureResource(const textureName_e texture_e, const std::filesystem::path &texturePath)
         {
@@ -55,7 +52,7 @@ namespace ecs
 
         /// @brief Add a texture to the TexturesList
         /// @param texture_e Enum which give the name of the Texture
-        /// @param texturePath Path of the Textrue
+        /// @param texturePath Path of the Texture
         inline void addTexture(const textureName_e texture_e, const std::filesystem::path &texturePath)
         {
             _texturesList.emplace(texture_e, std::make_shared<sf::Texture>()->loadFromFile(texturePath));
@@ -64,7 +61,6 @@ namespace ecs
         /// @brief Default destructor of the class.
         ~GraphicsTextureResource() = default;
 
-      private:
         TexturesList _texturesList;
     };
 } // namespace ecs
