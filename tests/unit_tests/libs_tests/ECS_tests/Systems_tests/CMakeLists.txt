@@ -3,6 +3,7 @@ set (SRC_ROOT ${PROJECT_SOURCE_DIR}/tests/unit_tests/libs_tests/ECS_tests/System
 
 set(TEST_SRC_ROOT
     ${SRC_ROOT}/Movement_System_tests.cpp
+    ${SRC_ROOT}/Collidable_system_test.cpp
 )
 
 create_test(
