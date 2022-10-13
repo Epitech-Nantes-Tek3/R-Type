@@ -145,8 +145,16 @@ namespace transisthor_lib
 
         /// @brief Function called by the ECS to transfer an order of creation for an Player entity
         /// @param id Id of the new entity to create
-        /// @param posX X value for the Position component
-        /// @param posY Y value for the Position component
+        /// @param pos_x Position x of the Enemy
+        /// @param pos_y Position y of the Enemy
+        /// @param multiplierAbscissa The Velocity multiplierAbscissa for the new Enemy
+        /// @param multiplierOrdinate The Velocity multiplierOrdinate for the new Enemy
+        /// @param weight Weight of the Enemy
+        /// @param size_x Size x of the Enemy
+        /// @param size_y Size y of the Enemy
+        /// @param life Life of the Enemy
+        /// @param damage Damage of projectiles fired by this Enemy
+        /// @param damageRadius DamageRadius of projectiles fired by this Enemy
         /// @param destination of the message
         /// @return Return value his only used for testing (Unit and functional)
         void *transitEcsDataToNetworkDataEntityPlayer(unsigned short id, int posX, int posY, double multiplierAbscissa,
@@ -159,10 +167,11 @@ namespace transisthor_lib
         /// @param posY Y value for the Position component
         /// @param velAbsc Abscissa value for the Velocity component
         /// @param velOrd Ordonate value for the Velocity component
+        /// @param damage Damage value of the projectile
         /// @param destination of the message
         /// @return Return value his only used for testing (Unit and functional)
         void *transitEcsDataToNetworkDataEntityProjectile(unsigned short id, int posX, int posY, double velAbsc,
-            double velOrd, std::vector<unsigned short> destination);
+            double velOrd, unsigned short damage, std::vector<unsigned short> destination);
 
         /// @brief Cross communicator client list and return the matched client
         /// @param id wanted id

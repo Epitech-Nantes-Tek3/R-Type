@@ -421,20 +421,23 @@ Test(transisthor_testing, transit_projectile_entity)
     Velocity entityVel = world.getEntity(entityId).getComponent<Velocity>();
 
     void *temp = transisthor.transitEcsDataToNetworkDataEntityProjectile(
-        entityId, entityPosition.x, entityPosition.y, entityVel.multiplierAbscissa, entityVel.multiplierOrdinate, {1});
+        entityId, entityPosition.x, entityPosition.y, entityVel.multiplierAbscissa, entityVel.multiplierOrdinate, 1, {1});
     void *networkAnswer = transisthor.transitNetworkDataToEcsDataEntity({Client(), temp, 1, 31});
 
     int posX = 0;
     int posY = 0;
     double velAbsc = 0;
     double velOrd = 0;
+    unsigned short damage = 0;
 
     std::memcpy(&posX, networkAnswer, sizeof(int));
     std::memcpy(&posY, (void *)((char *)networkAnswer + sizeof(int)), sizeof(int));
     std::memcpy(&velAbsc, (void *)((char *)networkAnswer + sizeof(int) * 2), sizeof(double));
     std::memcpy(&velOrd, (void *)((char *)networkAnswer + sizeof(int) * 2 + sizeof(double)), sizeof(double));
+    std::memcpy(&damage, (void *)((char *)networkAnswer + sizeof(int) * 2 + sizeof(double) * 2), sizeof(unsigned short));
     cr_assert_eq(posX, 10);
     cr_assert_eq(posY, 120);
     cr_assert_eq(velAbsc, 4);
     cr_assert_eq(velOrd, 5);
+    cr_assert_eq(damage, 1);
 }

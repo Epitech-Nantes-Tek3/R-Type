@@ -235,10 +235,10 @@ void *Transisthor::transitEcsDataToNetworkDataEntityPlayer(unsigned short id, in
     return networkObject;
 }
 
-void *Transisthor::transitEcsDataToNetworkDataEntityProjectile(
-    unsigned short id, int posX, int posY, double velAbsc, double velOrd, std::vector<unsigned short> destination)
+void *Transisthor::transitEcsDataToNetworkDataEntityProjectile(unsigned short id, int posX, int posY, double velAbsc,
+    double velOrd, unsigned short damage, std::vector<unsigned short> destination)
 {
-    void *networkObject = std::malloc((sizeof(unsigned short) * 2 + sizeof(int) * 2 + sizeof(double) * 2));
+    void *networkObject = std::malloc((sizeof(unsigned short) * 3 + sizeof(int) * 2 + sizeof(double) * 2));
     unsigned short typeId = 6;
     Client temporaryClient;
 
@@ -252,10 +252,12 @@ void *Transisthor::transitEcsDataToNetworkDataEntityProjectile(
         (void *)((char *)networkObject + sizeof(unsigned short) * 2 + sizeof(int) * 2), &velAbsc, sizeof(double));
     std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2 + sizeof(int) * 2 + sizeof(double)),
         &velOrd, sizeof(double));
+    std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2 + sizeof(int) * 2 + sizeof(double) * 2),
+        &damage, sizeof(unsigned short));
     for (auto it : destination) {
         temporaryClient = getClientByHisId(it);
         transisthor_lib::sendDataToAClientWithoutCommunicator(_communicator, temporaryClient, networkObject,
-            (sizeof(unsigned short) * 2 + sizeof(int) * 2 + sizeof(double) * 2), 31);
+            (sizeof(unsigned short) * 3 + sizeof(int) * 2 + sizeof(double) * 2), 31);
     }
     return networkObject;
 }
@@ -447,15 +449,18 @@ void Transisthor::entityConvertProjectileType(unsigned short id, void *byteCode)
     int posY = 0;
     double velAbsc = 0;
     double velOrd = 0;
+    unsigned short damage = 0;
 
     std::memcpy(&posX, byteCode, sizeof(int));
     std::memcpy(&posY, (void *)((char *)byteCode + sizeof(int)), sizeof(int));
     std::memcpy(&velAbsc, (void *)((char *)byteCode + sizeof(int) * 2), sizeof(double));
     std::memcpy(&velOrd, (void *)((char *)byteCode + sizeof(int) * 2 + sizeof(double)), sizeof(double));
+    std::memcpy(&damage, (void *)((char *)byteCode + sizeof(int) * 2 + sizeof(double) * 2), sizeof(unsigned short));
     (void)posX;
     (void)posY;
     (void)velAbsc;
     (void)velOrd;
+    (void)damage;
     (void)id;
     /// SEND THE NEW ENTITY TO ECS, WILL BE ADDED WHEN TRANSISTHOR WILL BE FULLY IMPLEMENTED
 }
