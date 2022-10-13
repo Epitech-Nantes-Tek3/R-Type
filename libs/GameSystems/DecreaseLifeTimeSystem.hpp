@@ -21,10 +21,10 @@ namespace ecs
         {
             std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Lifetime>();
 
-            auto move = [](std::shared_ptr<ecs::Entity> entityPtr) {
+            auto decreaseLifeTime = [](std::shared_ptr<ecs::Entity> entityPtr) {
                 entityPtr.get()->getComponent<Lifetime>() = entityPtr.get()->getComponent<Lifetime>().timeLeft - std::chrono::duration<double>(1);
             };
-            std::for_each(joined.begin(), joined.end(), move);
+            std::for_each(joined.begin(), joined.end(), decreaseLifeTime);
         }
     };
 } // namespace ecs

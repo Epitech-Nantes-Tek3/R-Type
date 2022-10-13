@@ -22,11 +22,11 @@ namespace ecs
         {
             std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Life>();
 
-            auto move = [](std::shared_ptr<ecs::Entity> entityPtr) {
+            auto deathlifetime = [](std::shared_ptr<ecs::Entity> entityPtr) {
                 if (entityPtr.get()->getComponent<Life>().lifePoint <= 0)
                     entityPtr.get()->addComponent<Death>();
             };
-            std::for_each(joined.begin(), joined.end(), move);
+            std::for_each(joined.begin(), joined.end(), deathlifetime);
         }
     };
 } // namespace ecs

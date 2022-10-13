@@ -14,7 +14,7 @@
 
 namespace ecs
 {
-    /// @brief This is the Death System. This system take all entities which have Dead Component and
+    /// @brief This is the Death System. This system takes all entities which have Dead Component and
     /// removes them from the world.
     /// It's a system that will be called by the engine world with the function runSystem()
     struct DeathSystem : public System {
@@ -22,12 +22,12 @@ namespace ecs
         {
             std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Death>();
         
-            auto move = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
+            auto death = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
                 if (world.getEntity(entityPtr->contains<Enemy>()) == true)
                     createNewEnemyRandom(world, 1, 1, 1, 4, 4, 100, 10, 5);
                 world.removeEntity(entityPtr->getId());
             };
-            std::for_each(joined.begin(), joined.end(), move);
+            std::for_each(joined.begin(), joined.end(), death);
         }
     };
 } // namespace ecs
