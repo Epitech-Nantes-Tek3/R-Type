@@ -26,6 +26,7 @@ ClientRoom::ClientRoom()
     _communicatorInstance = std::make_shared<Communicator>(_networkInformations);
     _worldInstance = std::make_shared<World>(1);
     _initSharedResources();
+    _initSystems();
     _transisthorInstance = std::make_shared<Transisthor>(*(_communicatorInstance.get()), *(_worldInstance.get()));
     _communicatorInstance.get()->setTransisthorBridge(_transisthorInstance);
     _worldInstance.get()->setTransisthorBridge(_communicatorInstance.get()->getTransisthorBridge());
@@ -68,4 +69,9 @@ void ClientRoom::_initSharedResources()
     _worldInstance->addResource<RandomDevice>();
     _worldInstance->addResource<RenderWindowResource>();
     _worldInstance->addResource<GraphicsFontResource>("assets/arial.ttf");
+}
+
+void ClientRoom::_initSystems()
+{
+
 }
