@@ -22,6 +22,7 @@
 #include "GameEntityManipulation/CreateEntitiesFunctions/CreatePlayer.hpp"
 #include "GameEntityManipulation/CreateEntitiesFunctions/CreateProjectile.hpp"
 #include "Transisthor/Transisthor.hpp"
+#include "Transisthor/TransisthorECSLogic/Client/Systems/SendNewlyCreatedToServer.hpp"
 #include "Transisthor/TransisthorECSLogic/Server/Resources/NetworkableIdGenerator.hpp"
 #include "Transisthor/TransisthorECSLogic/Server/Systems/SendNewlyCreatedToClients.hpp"
 
@@ -758,9 +759,6 @@ Test(transisthor_lib, test_networkable_id_generator_resource)
     World world = World(2);
 
     world.addResource<NetworkableIdGenerator>();
-    world.addSystem<SendNewlyCreatedToClients>();
-
-    world.runSystems();
 
     cr_assert_eq(1, world.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
     cr_assert_eq(2, world.getResource<NetworkableIdGenerator>().generateNewNetworkableId());

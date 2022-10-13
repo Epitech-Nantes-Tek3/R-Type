@@ -96,6 +96,7 @@ void SendNewlyCreatedToClients::runSystem(ecs::World &world)
         }
         return;
     };
+
     std::for_each(clients.begin(), clients.end(), addToClientList);
     if (!clientIdList.empty())
         std::for_each(joinedNewlyCreated.begin(), joinedNewlyCreated.end(), update);
