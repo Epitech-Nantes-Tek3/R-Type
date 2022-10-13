@@ -49,15 +49,8 @@ Room::Room(unsigned short id, Client networkInformations)
 struct Temp : public System {
     void run(World &world)
     {
-        std::cerr << "HEY" << std::endl;
-        std::vector<std::shared_ptr<Entity>> joined = world.joinEntities<Position>();
-
-        for (std::shared_ptr<Entity> entityPtr : joined) {
-            Position &pos = entityPtr->getComponent<Position>();
-
-            pos.x = 60;
-            pos.y = 120;
-        }
+        std::cerr << "Runnin the system" << std::endl;
+        (void)world;
     }
 };
 
@@ -100,5 +93,5 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
     _remainingPlaces -= 1;
     std::cerr << "Room " << _id << " received a connexion protocol." << std::endl;
     _worldInstance->addEntity().addComponent<NetworkClient>(connexionDemand.message.clientInfo.getId());
-    /// SEND A PROTOCOL 22
+    /// SEND A PROTOCOL 12
 }
