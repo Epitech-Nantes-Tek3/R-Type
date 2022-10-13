@@ -13,7 +13,7 @@
 #include "ControllerJoystickInputComponent.hpp"
 #include "KeyboardInputComponent.hpp"
 #include "MouseInputComponent.hpp"
-#include "RenderWindowResource.hpp"
+#include "SFMLResource/RenderWindowResource.hpp"
 #include "World/World.hpp"
 
 using namespace ecs;

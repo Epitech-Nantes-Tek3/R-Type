@@ -12,5 +12,3 @@ set(SRC
 )
 
 add_library(${TARGET} INTERFACE ${SRC})
-
-set_target_properties(${TARGET} PROPERTIES LINKER_LANGUAGE CXX)

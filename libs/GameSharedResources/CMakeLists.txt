@@ -9,7 +9,7 @@ set(SRC
     ${SRC_ROOT}/GameClock.hpp
 )
 
-add_library(${TARGET} ${SRC})
+add_library(${TARGET} SHARED ${SRC})
 
 target_include_directories(${TARGET}
     PUBLIC ${INC_ROOT}
@@ -19,5 +19,3 @@ target_include_directories(${TARGET}
 target_link_libraries(${TARGET}
     ${PROJECT_NAME}_ecs
 )
-
-set_target_properties(${TARGET} PROPERTIES LINKER_LANGUAGE CXX)

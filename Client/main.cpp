@@ -5,7 +5,6 @@
 ** main for the client
 */
 
-#include <SFML/Graphics.hpp>
 #include "ArgumentHandler/ArgumentHandler.hpp"
 #include "ClientRoom.hpp"
 

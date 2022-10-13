@@ -14,7 +14,7 @@ add_library(${TARGET} SHARED ${SRC})
 target_include_directories(${TARGET}
     PUBLIC ${INC_SFML_SYSTEM_ROOT}
     PRIVATE ${PROJECT_NAME}_ecs
-    PRIVATE ${PROJECT_NAME}_SFMLResource
+    INTERFACE ${PROJECT_NAME}_SFMLResource
 )
 
 target_link_libraries(${TARGET}
