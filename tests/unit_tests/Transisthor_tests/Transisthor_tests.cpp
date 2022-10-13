@@ -20,6 +20,7 @@
 #include "GameComponents/LifeComponent.hpp"
 #include "GameComponents/PositionComponent.hpp"
 #include "GameComponents/VelocityComponent.hpp"
+#include "GameComponents/DeathComponent.hpp"
 #include "Transisthor/Transisthor.hpp"
 
 using namespace transisthor_lib;
@@ -157,6 +158,23 @@ Test(transisthor_testing, transit_velocity_component)
     newPos = buildComponentFromByteCode<Velocity>(networkAnswer);
     cr_assert_eq(newPos.multiplierOrdinate, 12);
     cr_assert_eq(newPos.multiplierAbscissa, 10);
+}
+
+Test(transisthor_testing, transit_death_component)
+{
+    Communicator communicator = Communicator();
+    World world = World(2);
+    Transisthor transisthor = Transisthor(communicator, world);
+    Death death = Death();
+    Death newDeath;
+    Client temporaryClient = Client();
+    communicator.addClientToList(temporaryClient);
+    void *temp = transisthor.transitEcsDataToNetworkData<Death>(1, 8, death, {1});
+    void *networkAnswer = transisthor.transitNetworkDataToEcsDataComponent({Client(), temp, sizeof(Death), 30});
+
+    cr_assert_eq(death.modified, true);
+    newDeath = buildComponentFromByteCode<Death>(networkAnswer);
+    cr_assert_eq(newDeath.modified, true);
 }
 
 Test(transisthor_testing, transit_to_a_non_valid_client)
