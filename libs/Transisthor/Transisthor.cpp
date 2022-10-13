@@ -24,6 +24,7 @@
 #include "GameEntityManipulation/CreateEntitiesFunctions/CreatePlayer.hpp"
 #include "GameEntityManipulation/CreateEntitiesFunctions/CreateProjectile.hpp"
 #include "TransisthorECSLogic/Both/Components/Networkable.hpp"
+#include "TransisthorECSLogic/Server/Resources/NetworkableIdGenerator.hpp"
 
 using namespace transisthor_lib;
 using namespace error_lib;
@@ -378,7 +379,7 @@ void Transisthor::entityConvertAlliedProjectileType(unsigned short id, void *byt
 
     std::string uuidStr(uuid);
     if (uuidStr != "" && id == 0) {
-        createNewAlliedProjectile(_ecsWorld, *(shooter.get()), "", id); // GENERATE A NETWORK ID
+        createNewAlliedProjectile(_ecsWorld, *(shooter.get()), "", _ecsWorld.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
     } else {
         std::size_t entityId;
 
@@ -433,7 +434,7 @@ void Transisthor::entityConvertEnemyType(unsigned short id, void *byteCode)
 
     std::string uuidStr(uuid);
     if (uuidStr != "" && id == 0) {
-        createNewEnemy(_ecsWorld, posX, posY, multiplierAbscissa, multiplierOrdinate, weight, sizeX, sizeY, life, damage, damageRadius, "", id); // GENERATE A NETWORK ID
+        createNewEnemy(_ecsWorld, posX, posY, multiplierAbscissa, multiplierOrdinate, weight, sizeX, sizeY, life, damage, damageRadius, "", _ecsWorld.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
     } else {
         std::size_t entityId;
 
@@ -478,7 +479,7 @@ void Transisthor::entityConvertEnemyProjectileType(unsigned short id, void *byte
 
     std::string uuidStr(uuid);
     if (uuidStr != "" && id == 0) {
-        createNewEnemyProjectile(_ecsWorld, *(shooter.get()), "", id); // GENERATE A NETWORK ID
+        createNewEnemyProjectile(_ecsWorld, *(shooter.get()), "", _ecsWorld.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
     } else {
         std::size_t entityId;
 
@@ -513,7 +514,7 @@ void Transisthor::entityConvertObstacleType(unsigned short id, void *byteCode)
     std::string uuidStr(uuid);
 
     if (uuidStr != "" && id == 0) {
-        createNewObstacle(_ecsWorld, posX, posY, damage, "", id); // GENERATE A NETWORK ID
+        createNewObstacle(_ecsWorld, posX, posY, damage, "", _ecsWorld.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
     } else {
         std::size_t entityId;
 
@@ -569,7 +570,7 @@ void Transisthor::entityConvertPlayerType(unsigned short id, void *byteCode)
     std::string uuidStr(uuid);
 
     if (uuidStr != "" && id == 0) {
-        createNewPlayer(_ecsWorld, posX, posY, multiplierAbscissa, multiplierOrdinate, weight, sizeX, sizeY, life, damage, damageRadius, "", id); // GENERATE A NETWORK ID
+        createNewPlayer(_ecsWorld, posX, posY, multiplierAbscissa, multiplierOrdinate, weight, sizeX, sizeY, life, damage, damageRadius, "", _ecsWorld.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
     } else {
         std::size_t entityId;
 
@@ -608,8 +609,8 @@ void Transisthor::entityConvertProjectileType(unsigned short id, void *byteCode)
     std::string uuidStr(uuid);
 
     if (uuidStr != "" && id == 0) {
-        createNewProjectile(_ecsWorld, posX, posY, velAbsc, velOrd, damage, "", id); // GENERATE A NETWORK ID
-    } else {
+        createNewProjectile(_ecsWorld, posX, posY, velAbsc, velOrd, damage, "", _ecsWorld.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
+        } else {
         std::size_t entityId;
 
         if (uuidStr == "") {
