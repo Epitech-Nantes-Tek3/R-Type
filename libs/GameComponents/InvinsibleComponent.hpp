@@ -14,7 +14,16 @@ namespace ecs
 {
     /// @brief The Invinsible component, to nullify all damages
     /// It's a networkable component.
-    class Invinsible : public Component {};
+    class Invinsible : public Component {
+      public:
+        /// @brief The network status of the component. True if it has been modified since it was last sent.
+        bool modified;
+
+        ///@brief Construct a new Invinsible object
+        Invinsible() : modified(false){};
+        ///@brief Destroy the Invinsible object
+        ~Invinsible() = default;
+    };
 } // namespace ecs
 
 #endif /* !INVINSIBLECOMPONENT_HPP_ */
