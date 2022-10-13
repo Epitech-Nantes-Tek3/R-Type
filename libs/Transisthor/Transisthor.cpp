@@ -9,6 +9,7 @@
 
 #include "Transisthor.hpp"
 #include "Error/Error.hpp"
+#include "GameComponents/DeathComponent.hpp"
 #include "GameComponents/DestinationComponent.hpp"
 #include "GameComponents/EquipmentComponent.hpp"
 #include "GameComponents/InvinsibleComponent.hpp"
@@ -22,7 +23,6 @@
 #include "GameEntityManipulation/CreateEntitiesFunctions/CreateObstacle.hpp"
 #include "GameEntityManipulation/CreateEntitiesFunctions/CreatePlayer.hpp"
 #include "GameEntityManipulation/CreateEntitiesFunctions/CreateProjectile.hpp"
-#include "GameComponents/DeathComponent.hpp"
 #include "TransisthorECSLogic/Both/Components/Networkable.hpp"
 
 using namespace transisthor_lib;
@@ -351,8 +351,7 @@ void Transisthor::componentConvertDeathType(unsigned short id, void *byteCode)
 {
     Death newComponent = buildComponentFromByteCode<Death>(byteCode);
 
-    _ecsWorld.updateComponentOfAnEntityFromGivenDistinctiveComponent<Networkable, Death>(
-        Networkable(id), newComponent);
+    _ecsWorld.updateComponentOfAnEntityFromGivenDistinctiveComponent<Networkable, Death>(Networkable(id), newComponent);
 }
 
 void Transisthor::entityConvertAlliedProjectileType(unsigned short id, void *byteCode)
@@ -361,9 +360,43 @@ void Transisthor::entityConvertAlliedProjectileType(unsigned short id, void *byt
     char *uuid = (char *)byteCode + sizeof(unsigned short);
 
     std::memcpy(&allyId, byteCode, sizeof(unsigned short));
-    (void)allyId;
-    (void)uuid;
-    (void)id;
+    std::vector<std::shared_ptr<Entity>> networkables = _ecsWorld.joinEntities<Networkable>();
+
+    auto findShooter = [allyId](std::vector<std::shared_ptr<Entity>> networkables) {
+        for (std::shared_ptr<Entity> ptr : networkables) {
+            if (ptr->getComponent<Networkable>().id == allyId)
+                return ptr;
+        }
+        throw NetworkError("The entity was not find");
+    };
+    std::shared_ptr<Entity> shooter;
+    try {
+        shooter = findShooter(networkables);
+    } catch (const NetworkError &e) {
+        return;
+    }
+
+    std::string uuidStr(uuid);
+    if (uuidStr != "" && id == 0) {
+        createNewAlliedProjectile(_ecsWorld, *(shooter.get()), "", id); // GENERATE A NETWORK ID
+    } else {
+        std::size_t entityId;
+
+        if (uuidStr == "") {
+            entityId = createNewAlliedProjectile(_ecsWorld, *(shooter.get()));
+        } else {
+            std::vector<std::shared_ptr<Entity>> newlyCreated = _ecsWorld.joinEntities<NewlyCreated>();
+
+            for (std::shared_ptr<Entity> ptr : newlyCreated) {
+                if (ptr->getComponent<NewlyCreated>().uuid == uuidStr) {
+                    ptr->removeComponent<NewlyCreated>();
+                    entityId = ptr->getId();
+                    break;
+                }
+            }
+        }
+        _ecsWorld.getEntity(entityId).addComponent<Networkable>(id);
+    }
     /// SEND THE NEW ENTITY TO ECS, WILL BE ADDED WHEN TRANSISTHOR WILL BE FULLY IMPLEMENTED
     /// It will be added after a refactorisation of the of the protocole to send projectiles (It must send the id of the
     /// entity instead of the Position component)
