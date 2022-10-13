@@ -4,6 +4,7 @@ set(INC_ROOT ${PROJECT_SOURCE_DIR}/libs)
 set(TARGET ${PROJECT_NAME}_gameSharedResources)
 
 set(SRC
+    ${SRC_ROOT}/Random.hpp
     ${SRC_ROOT}/GameClock.cpp
     ${SRC_ROOT}/GameClock.hpp
 )
@@ -12,7 +13,7 @@ add_library(${TARGET} ${SRC})
 
 target_include_directories(${TARGET}
     PUBLIC ${INC_ROOT}
-    PUBLIC ${PROJECT_NAME}_ecs
+    PRIVATE ${PROJECT_NAME}_ecs
 )
 
 target_link_libraries(${TARGET}
