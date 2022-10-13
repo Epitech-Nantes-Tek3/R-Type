@@ -13,6 +13,7 @@
 namespace ecs
 {
     /// @brief The Invinsible component, to nullify all damages
+    /// It's a networkable component.
     class Invinsible : public Component {};
 } // namespace ecs
 

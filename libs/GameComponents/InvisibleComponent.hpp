@@ -13,6 +13,7 @@
 namespace ecs
 {
     /// @brief The Invisible component, to make an entity lives without drawing it
+    /// It's a networkable component.
     class Invisible : public Component {};
 } // namespace ecs
 
