@@ -12,8 +12,8 @@
 #include "GameComponents/PositionComponent.hpp"
 #include "GameEntityManipulation/CreateEntitiesFunctions/CreateObstacle.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
-#include "Transisthor/TransisthorECSLogic/Server/Systems/SendToClient.hpp"
 #include "Transisthor/TransisthorECSLogic/Server/Components/NetworkClient.hpp"
+#include "Transisthor/TransisthorECSLogic/Server/Systems/SendToClient.hpp"
 
 using namespace server_data;
 using namespace error_lib;
@@ -62,15 +62,11 @@ void Room::startLobbyLoop(void)
 {
     CommunicatorMessage connexionDemand;
 
-    std::size_t entityId = createNewObstacle(
-                *(_worldInstance.get()), 4, 50, 5);
+    std::size_t entityId = createNewObstacle(*(_worldInstance.get()), 4, 50, 5);
 
     _worldInstance.get()->getEntity(entityId).addComponent<Networkable>(10);
 
-    Position &entityPosition =
-                _worldInstance.get()
-                    ->getEntity(entityId)
-                    .getComponent<Position>();
+    Position &entityPosition = _worldInstance.get()->getEntity(entityId).getComponent<Position>();
 
     entityPosition.modified = true;
 

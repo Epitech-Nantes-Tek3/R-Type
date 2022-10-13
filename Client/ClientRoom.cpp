@@ -46,8 +46,7 @@ void ClientRoom::startLobbyLoop(void)
 {
     CommunicatorMessage connexionResponse;
 
-    std::size_t entityId = createNewObstacle(
-        *(_worldInstance.get()), 5, 60, 5);
+    std::size_t entityId = createNewObstacle(*(_worldInstance.get()), 5, 60, 5);
 
     _worldInstance.get()->getEntity(entityId).addComponent<Networkable>(10);
 
@@ -56,10 +55,7 @@ void ClientRoom::startLobbyLoop(void)
     _state = ClientState::LOBBY;
     while (_state != ClientState::ENDED && _state != ClientState::UNDEFINED) {
         try {
-            Position entityPosition =
-                _worldInstance.get()
-                    ->getEntity(entityId)
-                    .getComponent<Position>();
+            Position entityPosition = _worldInstance.get()->getEntity(entityId).getComponent<Position>();
             std::cerr << "OBSTACLE POSITION : " << entityPosition.x << " , " << entityPosition.y << std::endl;
             connexionResponse = _communicatorInstance.get()->getLastMessage();
             std::cerr << "ClientRoom received a connexion protocol answer."
