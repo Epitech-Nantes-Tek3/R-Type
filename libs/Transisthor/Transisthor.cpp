@@ -85,10 +85,11 @@ void *Transisthor::transitNetworkDataToEcsDataEntity(Message networkData)
 }
 
 void *Transisthor::transitEcsDataToNetworkDataEntityAlliedProjectile(
-    unsigned short id, unsigned short allyId, std::vector<unsigned short> destination)
+    unsigned short id, unsigned short allyId, std::string uuid, std::vector<unsigned short> destination)
 {
-    void *networkObject = std::malloc((sizeof(unsigned short) * 3));
+    void *networkObject = std::malloc((sizeof(unsigned short) * 3 + sizeof(char) * uuid.size()));
     unsigned short typeId = 1;
+    char *uuidContent = (char *)uuid.c_str();
     Client temporaryClient;
 
     if (networkObject == nullptr)
@@ -96,10 +97,11 @@ void *Transisthor::transitEcsDataToNetworkDataEntityAlliedProjectile(
     std::memcpy(networkObject, &id, sizeof(unsigned short));
     std::memcpy((void *)((char *)networkObject + sizeof(unsigned short)), &typeId, sizeof(unsigned short));
     std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2), &allyId, sizeof(unsigned short));
+    std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 3), &uuidContent, sizeof(char) * uuid.size());
     for (auto it : destination) {
         temporaryClient = getClientByHisId(it);
         transisthor_lib::sendDataToAClientWithoutCommunicator(
-            _communicator, temporaryClient, networkObject, (sizeof(unsigned short) * 3), 31);
+            _communicator, temporaryClient, networkObject, (sizeof(unsigned short) * 3 + sizeof(char) * uuid.size()), 31);
     }
     return networkObject;
 }

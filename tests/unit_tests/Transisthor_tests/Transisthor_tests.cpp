@@ -341,7 +341,7 @@ Test(transisthor_testing, transit_alliedProjectile_entity)
     unsigned short entityId = createNewAlliedProjectile(world, world.getEntity(allied));
 
     void *temp = transisthor.transitEcsDataToNetworkDataEntityAlliedProjectile(
-        entityId, allied, {1});
+        entityId, allied, std::string("UUID"), {1});
     void *networkAnswer = transisthor.transitNetworkDataToEcsDataEntity({Client(), temp, 1, 31});
 
     unsigned short newAllied = 0;
