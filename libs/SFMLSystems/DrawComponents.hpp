@@ -17,7 +17,7 @@ namespace ecs
         void runSystem(World &world);
         /// @brief The run function of this system. It will be used by the world in the function runSystems.
         /// @param world The corresponding world on which run this system.
-        inline void run(World &world) override final {runSystem(world);};
+        inline void run(World &world) override final { runSystem(world); };
     };
 } // namespace ecs
 

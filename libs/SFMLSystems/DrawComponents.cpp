@@ -20,12 +20,12 @@ void DrawComponents::runSystem(World &world)
 
     world.getResource<RenderWindowResource>().window.clear();
     for (std::size_t layerI = 1; layerI < LayerLvL::LAYER_NUMBER; layerI++) {
-        auto layer = [layerI, world](std::shared_ptr<Entity> entityPtr) {
+        auto layer = [&layerI, &world](std::shared_ptr<Entity> entityPtr) {
             if (entityPtr->getComponent<LayerLvL>().layer == layerI) {
                 if (entityPtr->contains<GraphicsRectangleComponent>())
                     world.getResource<RenderWindowResource>().window.draw(entityPtr->getComponent<GraphicsRectangleComponent>().shape);
                 if (entityPtr->contains<GraphicsTextComponent>())
-                world.getResource<RenderWindowResource>().window.draw(entityPtr->getComponent<GraphicsTextComponent>().text);
+                    world.getResource<RenderWindowResource>().window.draw(entityPtr->getComponent<GraphicsTextComponent>().text);
             }
         };
         std::for_each(Inputs.begin(), Inputs.end(), layer);
