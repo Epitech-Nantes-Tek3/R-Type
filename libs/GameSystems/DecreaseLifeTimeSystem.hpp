@@ -19,11 +19,11 @@ namespace ecs
     struct DecreaseLifeTime : public System {
         inline void run(World &world) override final
         {
-            std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Lifetime>();
+            std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<LifeTime>();
 
             auto decreaseLifeTime = [](std::shared_ptr<ecs::Entity> entityPtr) {
-                entityPtr.get()->getComponent<Lifetime>() =
-                    entityPtr.get()->getComponent<Lifetime>().timeLeft - std::chrono::duration<double>(1);
+                entityPtr.get()->getComponent<LifeTime>() =
+                    entityPtr.get()->getComponent<LifeTime>().timeLeft - std::chrono::duration<double>(1);
             };
             std::for_each(joined.begin(), joined.end(), decreaseLifeTime);
         }
