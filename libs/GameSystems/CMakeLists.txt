@@ -34,7 +34,7 @@ target_include_directories(${TARGET}
     PUBLIC ${PROJECT_NAME}_gameComponents
     PUBLIC ${PROJECT_NAME}_gameSharedResources
     INTERFACE ${PROJECT_NAME}_error
-    # PRIVATE $(SRC_ROOT)
+    PRIVATE ${SRC_ROOT}
 )
 
 target_include_directories(${TARGET_CLIENT}
