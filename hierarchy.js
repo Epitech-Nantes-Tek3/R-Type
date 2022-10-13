@@ -22,6 +22,7 @@ var hierarchy =
       [ "ecs::ControllerJoystickInputComponent", "classecs_1_1_controller_joystick_input_component.html", null ],
       [ "ecs::Damage", "classecs_1_1_damage.html", null ],
       [ "ecs::DamageRadius", "classecs_1_1_damage_radius.html", null ],
+      [ "ecs::Death", "classecs_1_1_death.html", null ],
       [ "ecs::DeathDamage", "classecs_1_1_death_damage.html", null ],
       [ "ecs::Destination", "classecs_1_1_destination.html", null ],
       [ "ecs::Enemy", "classecs_1_1_enemy.html", null ],
@@ -65,6 +66,7 @@ var hierarchy =
       [ "ecs::GameClock", "classecs_1_1_game_clock.html", null ],
       [ "ecs::GraphicsFontResource", "classecs_1_1_graphics_font_resource.html", null ],
       [ "ecs::GraphicsTextureResource", "classecs_1_1_graphics_texture_resource.html", null ],
+      [ "ecs::RandomDevice", "structecs_1_1_random_device.html", null ],
       [ "ecs::RenderWindowResource", "classecs_1_1_render_window_resource.html", null ]
     ] ],
     [ "server_data::Room", "classserver__data_1_1_room.html", null ],
@@ -73,6 +75,10 @@ var hierarchy =
     [ "argument_handler::ArgumentHandler::ServerInformation", "structargument__handler_1_1_argument_handler_1_1_server_information.html", null ],
     [ "ecs::System", "classecs_1_1_system.html", [
       [ "ecs::Collide", "structecs_1_1_collide.html", null ],
+      [ "ecs::DeathLife", "structecs_1_1_death_life.html", null ],
+      [ "ecs::DeathSystem", "structecs_1_1_death_system.html", null ],
+      [ "ecs::DecreaseLifeTime", "structecs_1_1_decrease_life_time.html", null ],
+      [ "ecs::LifeTimeDeath", "structecs_1_1_life_time_death.html", null ],
       [ "ecs::Movement", "structecs_1_1_movement.html", null ],
       [ "ecs::UpdateClock", "structecs_1_1_update_clock.html", null ],
       [ "SendToClient", "struct_send_to_client.html", null ],

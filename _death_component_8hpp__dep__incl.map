@@ -1,0 +1,7 @@
+<map id="libs/GameComponents/DeathComponent.hpp" name="libs/GameComponents/DeathComponent.hpp">
+<area shape="rect" id="node1" title=" " alt="" coords="417,5,588,47"/>
+<area shape="rect" id="node2" href="$_death_life_system_8hpp.html" title=" " alt="" coords="5,95,216,136"/>
+<area shape="rect" id="node3" href="$_death_system_8hpp.html" title=" " alt="" coords="240,102,504,129"/>
+<area shape="rect" id="node4" href="$_decrease_life_time_system_8hpp.html" title=" " alt="" coords="529,95,738,136"/>
+<area shape="rect" id="node5" href="$_life_time_death_system_8hpp.html" title=" " alt="" coords="763,95,968,136"/>
+</map>

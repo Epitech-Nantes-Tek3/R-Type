@@ -1,0 +1,4 @@
+<map id="ecs::Death" name="ecs::Death">
+<area shape="rect" id="node1" title="The Death Component which defines that an entity is dead and will be deleted by Death System." alt="" coords="23,80,114,107"/>
+<area shape="rect" id="node2" href="$classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone..." alt="" coords="5,5,132,32"/>
+</map>

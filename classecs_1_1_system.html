@@ -97,12 +97,16 @@ Inheritance diagram for ecs::System:</div>
 <div class="dyncontent">
 <div class="center"><img src="classecs_1_1_system__inherit__graph.png" border="0" usemap="#ecs_1_1_system_inherit__map" alt="Inheritance graph"/></div>
 <map name="ecs_1_1_system_inherit__map" id="ecs_1_1_system_inherit__map">
-<area shape="rect" title=" " alt="" coords="291,5,393,32"/>
-<area shape="rect" href="structecs_1_1_collide.html" title="This is the Collide System. This system will check every entities, see if they collide and apply dama..." alt="" coords="5,80,103,107"/>
-<area shape="rect" href="structecs_1_1_movement.html" title="This is the Movement system. This system can move any entities which contains a Position and a Veloci..." alt="" coords="127,80,250,107"/>
-<area shape="rect" href="structecs_1_1_update_clock.html" title="UpdateClock System. Will be used to call the GameClock&#39;s reset." alt="" coords="275,80,409,107"/>
-<area shape="rect" href="struct_send_to_client.html" title="SendToClient is a system that sends Networkable Entities datas to clients" alt="" coords="434,80,541,107"/>
-<area shape="rect" href="struct_send_to_server.html" title=" " alt="" coords="565,80,676,107"/>
+<area shape="rect" title=" " alt="" coords="5,208,107,235"/>
+<area shape="rect" href="structecs_1_1_collide.html" title="This is the Collide System. This system will check every entities, see if they collide and apply dama..." alt="" coords="191,5,289,32"/>
+<area shape="rect" href="structecs_1_1_death_life.html" title="This is the DeathLife System. This System takes all entities that have a Life Component with 0 HP/lif..." alt="" coords="183,56,297,83"/>
+<area shape="rect" href="structecs_1_1_death_system.html" title="This is the Death System. This system takes all entities which have Dead Component and removes them f..." alt="" coords="170,107,310,133"/>
+<area shape="rect" href="structecs_1_1_decrease_life_time.html" title="This is the DecreaseLifeTime System. This System decrease LifeTime Component at every tick...." alt="" coords="155,157,325,184"/>
+<area shape="rect" href="structecs_1_1_life_time_death.html" title="This is the LifeTimeDeath System. This System takes all entities that have a LifeTime Component with ..." alt="" coords="166,208,314,235"/>
+<area shape="rect" href="structecs_1_1_movement.html" title="This is the Movement system. This system can move any entities which contains a Position and a Veloci..." alt="" coords="179,259,301,285"/>
+<area shape="rect" href="structecs_1_1_update_clock.html" title="UpdateClock System. Will be used to call the GameClock&#39;s reset." alt="" coords="173,309,307,336"/>
+<area shape="rect" href="struct_send_to_client.html" title="SendToClient is a system that sends Networkable Entities datas to clients" alt="" coords="187,360,293,387"/>
+<area shape="rect" href="struct_send_to_server.html" title=" " alt="" coords="185,411,295,437"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -169,7 +173,7 @@ Public Member Functions</h2></td></tr>
 
 <p>The main function which implements the desired logic. </p>
 
-<p>Implemented in <a class="el" href="structecs_1_1_collide.html#a8b31f7ed9bfde438999bd443ee5773a4">ecs::Collide</a>, <a class="el" href="structecs_1_1_movement.html#a3956c2d126f291e5d0949b9c720ea86c">ecs::Movement</a>, and <a class="el" href="structecs_1_1_update_clock.html#a8d1f99397ade16ec7aeb9ce7a08255b4">ecs::UpdateClock</a>.</p>
+<p>Implemented in <a class="el" href="structecs_1_1_collide.html#a8b31f7ed9bfde438999bd443ee5773a4">ecs::Collide</a>, <a class="el" href="structecs_1_1_movement.html#a3956c2d126f291e5d0949b9c720ea86c">ecs::Movement</a>, <a class="el" href="structecs_1_1_death_life.html#a7960f30274a3c3924b5e48e034544e38">ecs::DeathLife</a>, <a class="el" href="structecs_1_1_death_system.html#a96e3831feca5f69d82df7cf6906896bf">ecs::DeathSystem</a>, <a class="el" href="structecs_1_1_life_time_death.html#a69c55e0fcafc404178246cf9c0f25c2e">ecs::LifeTimeDeath</a>, <a class="el" href="structecs_1_1_decrease_life_time.html#a05996d10812ad9c196190c1e51bd7314">ecs::DecreaseLifeTime</a>, and <a class="el" href="structecs_1_1_update_clock.html#a8d1f99397ade16ec7aeb9ce7a08255b4">ecs::UpdateClock</a>.</p>
 
 </div>
 </div>

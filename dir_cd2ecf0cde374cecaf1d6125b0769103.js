@@ -27,6 +27,9 @@ var dir_cd2ecf0cde374cecaf1d6125b0769103 =
     [ "DamageRadiusComponent.hpp", "_damage_radius_component_8hpp.html", [
       [ "DamageRadius", "classecs_1_1_damage_radius.html", "classecs_1_1_damage_radius" ]
     ] ],
+    [ "DeathComponent.hpp", "_death_component_8hpp.html", [
+      [ "Death", "classecs_1_1_death.html", null ]
+    ] ],
     [ "DeathDamageComponent.hpp", "_death_damage_component_8hpp.html", [
       [ "DeathDamage", "classecs_1_1_death_damage.html", "classecs_1_1_death_damage" ]
     ] ],

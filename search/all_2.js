@@ -51,10 +51,11 @@ var searchData=
   ['createnewalliedprojectile_80',['createNewAlliedProjectile',['../namespaceecs.html#a9c748b98c60c315d8507b253e62b0f6a',1,'ecs']]],
   ['createnewenemy_81',['createNewEnemy',['../namespaceecs.html#ab985d16c01bfe647a93f4e8064a98b4f',1,'ecs']]],
   ['createnewenemyprojectile_82',['createNewEnemyProjectile',['../namespaceecs.html#a86cb01f989657db985f4003003714a28',1,'ecs']]],
-  ['createnewobstacle_83',['createNewObstacle',['../namespaceecs.html#a6bcc302fd257afdcaeaff0db1290b458',1,'ecs']]],
-  ['createnewplayer_84',['createNewPlayer',['../namespaceecs.html#af5401b6549bd6340777008fd66159eea',1,'ecs']]],
-  ['createnewprojectile_85',['createNewProjectile',['../namespaceecs.html#a312f0c7e275e1c39e786c0ab6cfc9fb6',1,'ecs']]],
-  ['createobstacle_2ehpp_86',['CreateObstacle.hpp',['../_create_obstacle_8hpp.html',1,'']]],
-  ['createplayer_2ehpp_87',['CreatePlayer.hpp',['../_create_player_8hpp.html',1,'']]],
-  ['createprojectile_2ehpp_88',['CreateProjectile.hpp',['../_create_projectile_8hpp.html',1,'']]]
+  ['createnewenemyrandom_83',['createNewEnemyRandom',['../namespaceecs.html#a55efbc3ade8ae98816983e20fda0857f',1,'ecs']]],
+  ['createnewobstacle_84',['createNewObstacle',['../namespaceecs.html#a6bcc302fd257afdcaeaff0db1290b458',1,'ecs']]],
+  ['createnewplayer_85',['createNewPlayer',['../namespaceecs.html#af5401b6549bd6340777008fd66159eea',1,'ecs']]],
+  ['createnewprojectile_86',['createNewProjectile',['../namespaceecs.html#a312f0c7e275e1c39e786c0ab6cfc9fb6',1,'ecs']]],
+  ['createobstacle_2ehpp_87',['CreateObstacle.hpp',['../_create_obstacle_8hpp.html',1,'']]],
+  ['createplayer_2ehpp_88',['CreatePlayer.hpp',['../_create_player_8hpp.html',1,'']]],
+  ['createprojectile_2ehpp_89',['CreateProjectile.hpp',['../_create_projectile_8hpp.html',1,'']]]
 ];
