@@ -8,10 +8,10 @@
 #ifndef GRAPHICSTEXTURERESOURCE_HPP_
 #define GRAPHICSTEXTURERESOURCE_HPP_
 
-#include <SFML/Graphics.hpp>
 #include <filesystem>
-#include "Resource/Resource.hpp"
 #include <unordered_map>
+#include <SFML/Graphics.hpp>
+#include "Resource/Resource.hpp"
 
 namespace ecs
 {
