@@ -44,6 +44,9 @@ namespace client_data
         void startLobbyLoop(void);
 
       private:
+        /// @brief Init all shared resources.
+        void _initSharedResources();
+
         /// @brief Network informations of the room.
         Client _networkInformations;
 

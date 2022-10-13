@@ -9,6 +9,11 @@
 
 #include "ClientRoom.hpp"
 #include "Error/Error.hpp"
+#include "GameSharedResources/GameClock.hpp"
+#include "GameSharedResources/Random.hpp"
+#include "SFMLResource/GraphicsFontResource.hpp"
+#include "SFMLResource/GraphicsTextureResource.hpp"
+#include "SFMLResource/RenderWindowResource.hpp"
 
 using namespace error_lib;
 using namespace communicator_lib;
@@ -20,6 +25,7 @@ ClientRoom::ClientRoom()
     _serverEndpoint = Client();
     _communicatorInstance = std::make_shared<Communicator>(_networkInformations);
     _worldInstance = std::make_shared<World>(1);
+    _initSharedResources();
     _transisthorInstance = std::make_shared<Transisthor>(*(_communicatorInstance.get()), *(_worldInstance.get()));
     _communicatorInstance.get()->setTransisthorBridge(_transisthorInstance);
     _worldInstance.get()->setTransisthorBridge(_communicatorInstance.get()->getTransisthorBridge());
@@ -54,4 +60,9 @@ void ClientRoom::startLobbyLoop(void)
         }
         _worldInstance.get()->runSystems(); /// WILL BE IMPROVED IN PART TWO (THREAD + CLOCK)
     }
+}
+
+void ClientRoom::_initSharedResources()
+{
+    _worldInstance->addResource<GameClock>();
 }
