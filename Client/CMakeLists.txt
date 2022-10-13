@@ -22,20 +22,6 @@ set_target_properties(${TARGET}
 )
 
 target_link_libraries(${TARGET}
-    CONAN_PKG::sfml
     ${PROJECT_NAME}_transisthor
     ${PROJECT_NAME}_argumentHandler
-    ${PROJECT_NAME}_error
 )
-
-target_include_directories(${TARGET}
-    PUBLIC ${CONAN_INCLUDE_DIRS_SFML}
-    PUBLIC ${INC_ROOT}
-    PUBLIC ${PROJECT_NAME}_argumentHandler
-    PUBLIC ${PROJECT_NAME}_transisthor
-    INTERFACE ${PROJECT_NAME}_error
-    PRIVATE ${SRC_ROOT}
-)
-
-include(${PROJECT_SOURCE_DIR}/build/conanbuildinfo.cmake)
-conan_basic_setup(TARGETS)

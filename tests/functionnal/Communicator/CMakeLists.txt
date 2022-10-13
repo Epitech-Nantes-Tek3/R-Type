@@ -9,11 +9,6 @@ set (SRC
 
 add_executable(${TARGET} ${SRC})
 
-target_include_directories(${TARGET}
-    PUBLIC ${INCLUDE_ROOT}
-    PRIVATE ${SRC_ROOT}
-)
-
 target_link_libraries(${TARGET}
     PUBLIC ${PROJECT_NAME}_communicator
 )
@@ -29,11 +24,6 @@ set (SRC
 )
 
 add_executable(${TARGET} ${SRC})
-
-target_include_directories(${TARGET}
-    PUBLIC ${INCLUDE_ROOT}
-    PRIVATE ${SRC_ROOT}
-)
 
 target_link_libraries(${TARGET}
     PUBLIC ${PROJECT_NAME}_communicator
@@ -51,11 +41,6 @@ set (SRC
 
 add_executable(${TARGET} ${SRC})
 
-target_include_directories(${TARGET}
-    PUBLIC ${INCLUDE_ROOT}
-    PRIVATE ${SRC_ROOT}
-)
-
 target_link_libraries(${TARGET}
     PUBLIC ${PROJECT_NAME}_communicator
 )
@@ -72,11 +57,6 @@ set (SRC
 
 add_executable(${TARGET} ${SRC})
 
-target_include_directories(${TARGET}
-    PUBLIC ${INCLUDE_ROOT}
-    PRIVATE ${SRC_ROOT}
-)
-
 target_link_libraries(${TARGET}
     PUBLIC ${PROJECT_NAME}_communicator
 )
@@ -92,11 +72,6 @@ set (SRC
 )
 
 add_executable(${TARGET} ${SRC})
-
-target_include_directories(${TARGET}
-    PUBLIC ${INCLUDE_ROOT}
-    PRIVATE ${SRC_ROOT}
-)
 
 target_link_libraries(${TARGET}
     PUBLIC ${PROJECT_NAME}_communicator
