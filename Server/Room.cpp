@@ -82,7 +82,7 @@ void Room::startLobbyLoop(void)
 void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
 {
     if (_remainingPlaces == 0) {
-        /// SEND A PROTOCOL 21
+        _communicatorInstance.get()->sendDataToAClient(connexionDemand.message.clientInfo, nullptr, 0, 21);
         return;
     }
     std::cerr << "Room " << _id << " received a connexion protocol." << std::endl;
