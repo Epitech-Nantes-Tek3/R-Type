@@ -30,7 +30,7 @@ namespace ecs
     /// @param uuid The uuid of the entity. Can be empty.
     /// @param networkId The id of the Networkable Component. In the client instance, it MUST NOT be filled in.
     /// @return Id in size_t of the new Entity
-    std::size_t createNewEnemyProjectile(
+    inline std::size_t createNewEnemyProjectile(
         World &world, Entity &enemy, const std::string uuid = "", unsigned short networkId = 0)
     {
         Position pos = enemy.getComponent<Position>();
