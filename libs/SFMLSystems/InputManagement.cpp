@@ -18,7 +18,7 @@
 
 using namespace ecs;
 
-void InputManagement::run(World &world)
+void InputManagement::runSystem(World &world)
 {
     sf::Event event;
     std::vector<std::shared_ptr<Entity>> Inputs = world.joinEntities<MouseInputComponent, KeyboardInputComponent, ControllerButtonInputComponent, ControllerJoystickInputComponent, ActionQueueComponent>();
