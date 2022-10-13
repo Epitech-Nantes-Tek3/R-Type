@@ -79,11 +79,10 @@ namespace ecs
                     if (entityPtr->contains<C>()) {
                         C &old = entityPtr->getComponent<C>();
                         old = component;
-                        return true;
                     } else {
                         entityPtr->addComponent<C>(component);
-                        return true;
                     }
+                    return true;
                 }
             }
             return false;

@@ -45,7 +45,7 @@ Room::Room(unsigned short id, Client networkInformations)
 }
 
 struct Temp : public System {
-    inline void run(World &world)
+    void run(World &world)
     {
         std::vector<std::shared_ptr<Entity>> joined = world.joinEntities<Position>();
 
