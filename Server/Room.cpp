@@ -49,6 +49,7 @@ Room::Room(unsigned short id, Client networkInformations)
 struct Temp : public System {
     void run(World &world)
     {
+        std::cerr << "HEY" << std::endl;
         std::vector<std::shared_ptr<Entity>> joined = world.joinEntities<Position>();
 
         for (std::shared_ptr<Entity> entityPtr : joined) {
@@ -75,7 +76,8 @@ void Room::startLobbyLoop(void)
                 holdANewConnexionRequest(connexionDemand);
         } catch (NetworkError &error) {
         }
-        _worldInstance.get()->runSystems(); /// WILL BE IMPROVED IN PART TWO (THREAD + CLOCK)
+        if (_remainingPlaces != 4)
+            _worldInstance.get()->runSystems(); /// WILL BE IMPROVED IN PART TWO (THREAD + CLOCK)
     }
 }
 
