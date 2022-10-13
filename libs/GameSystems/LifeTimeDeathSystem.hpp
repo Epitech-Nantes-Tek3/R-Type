@@ -5,8 +5,8 @@
 ** LifeTimeDeathSystem
 */
 
-#ifndef LifeTimeDeathSYSTEM_HPP_
-#define LifeTimeDeathSYSTEM_HPP_
+#ifndef LIFETIMEDEATH_SYSTEM_HPP_
+#define LIFETIMEDEATH_SYSTEM_HPP_
 
 #include "GameComponents/DeathComponent.hpp"
 #include "GameComponents/LifeTimeComponent.hpp"
