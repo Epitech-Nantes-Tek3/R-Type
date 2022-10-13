@@ -6,6 +6,7 @@
 */
 
 #include <criterion/criterion.h>
+#include "World/World.hpp"
 #include "Entity/Entity.hpp"
 #include "GameComponents/PositionComponent.hpp"
 #include "GameComponents/SizeComponent.hpp"

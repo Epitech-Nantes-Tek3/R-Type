@@ -6,14 +6,14 @@
 */
 
 #include "CollidableSystem.hpp"
-#include "GameComponents/PlayerComponent.hpp"
-#include "GameComponents/EnemyComponent.hpp"
-#include "GameComponents/EnemyProjectileComponent.hpp"
 #include "GameComponents/AlliedProjectileComponent.hpp"
-#include "GameComponents/ObstacleComponent.hpp"
 #include "GameComponents/CollidableComponent.hpp"
 #include "GameComponents/DamageComponent.hpp"
+#include "GameComponents/EnemyComponent.hpp"
+#include "GameComponents/EnemyProjectileComponent.hpp"
 #include "GameComponents/LifeComponent.hpp"
+#include "GameComponents/ObstacleComponent.hpp"
+#include "GameComponents/PlayerComponent.hpp"
 
 using namespace ecs;
 
@@ -38,7 +38,7 @@ bool Collide::isSameHeight(Position &fstPos, Position &sndPos, Size &fstSize, Si
 }
 
 void Collide::collide(
-            std::vector<std::shared_ptr<ecs::Entity>> &fstEntities, std::vector<std::shared_ptr<ecs::Entity>> &sndEntities)
+    std::vector<std::shared_ptr<ecs::Entity>> &fstEntities, std::vector<std::shared_ptr<ecs::Entity>> &sndEntities)
 {
     for (std::shared_ptr<ecs::Entity> fstEntity : fstEntities) {
         Position &fstPos = fstEntity->getComponent<Position>();
@@ -66,17 +66,15 @@ void Collide::collide(
     }
 }
 
-
-void Collide::enemyCollide(std::vector<std::shared_ptr<ecs::Entity>> &enemiesProjectiles,
-            std::vector<std::shared_ptr<ecs::Entity>> &obstacles)
+void Collide::enemyCollide(
+    std::vector<std::shared_ptr<ecs::Entity>> &enemiesProjectiles, std::vector<std::shared_ptr<ecs::Entity>> &obstacles)
 {
     collide(enemiesProjectiles, obstacles);
 }
 
 void Collide::allyCollide(std::vector<std::shared_ptr<ecs::Entity>> &allyEntities,
-            std::vector<std::shared_ptr<ecs::Entity>> &enemies,
-            std::vector<std::shared_ptr<ecs::Entity>> &enemiesProjectiles,
-            std::vector<std::shared_ptr<ecs::Entity>> &obstacles)
+    std::vector<std::shared_ptr<ecs::Entity>> &enemies, std::vector<std::shared_ptr<ecs::Entity>> &enemiesProjectiles,
+    std::vector<std::shared_ptr<ecs::Entity>> &obstacles)
 {
     collide(allyEntities, enemies);
     collide(allyEntities, enemiesProjectiles);
@@ -89,8 +87,7 @@ void Collide::run(World &world)
         world.joinEntities<Position, Size, Collidable, Damage, Player>();
     std::vector<std::shared_ptr<ecs::Entity>> alliedProjectiles =
         world.joinEntities<Position, Size, Collidable, Damage, AlliedProjectile>();
-    std::vector<std::shared_ptr<ecs::Entity>> enemies =
-        world.joinEntities<Position, Size, Collidable, Damage, Enemy>();
+    std::vector<std::shared_ptr<ecs::Entity>> enemies = world.joinEntities<Position, Size, Collidable, Damage, Enemy>();
     std::vector<std::shared_ptr<ecs::Entity>> enemiesProjectiles =
         world.joinEntities<Position, Size, Collidable, Damage, EnemyProjectile>();
     std::vector<std::shared_ptr<ecs::Entity>> obstacles =

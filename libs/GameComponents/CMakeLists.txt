@@ -25,7 +25,7 @@ set(SRC
     ${INC_ROOT}/DeathDamageComponent.hpp
     ${INC_ROOT}/PatternComponent.hpp
     ${INC_ROOT}/ChargedAttackComponent.hpp
-
+    ${INC_ROOT}/DeathComponent.hpp
     ${INC_ROOT}/AlliedProjectileComponent.hpp
     ${INC_ROOT}/EnemyProjectileComponent.hpp
     ${INC_ROOT}/ProjectileComponent.hpp
