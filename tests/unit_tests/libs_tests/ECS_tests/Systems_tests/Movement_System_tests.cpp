@@ -11,9 +11,9 @@
 #include "Entity/Entity.hpp"
 #include "GameComponents/PositionComponent.hpp"
 #include "GameComponents/SizeComponent.hpp"
+#include "GameSystems/MovementSystem.hpp"
 #include "GameComponents/VelocityComponent.hpp"
 #include "GameSharedResources/GameClock.hpp"
-#include "GameSystems/MouvementSystem.hpp"
 #include "World/World.hpp"
 
 using namespace ecs;

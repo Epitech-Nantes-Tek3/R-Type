@@ -8,9 +8,9 @@
 #ifndef COLLIDABLESYSTEM_HPP_
 #define COLLIDABLESYSTEM_HPP_
 
-#include "World/World.hpp"
 #include "GameComponents/PositionComponent.hpp"
 #include "GameComponents/SizeComponent.hpp"
+#include "World/World.hpp"
 
 namespace ecs
 {
@@ -38,8 +38,8 @@ namespace ecs
         /// This function checks all the given entities passed in params, to see if they collide
         /// @param fstEntities first vector of entities to be checked
         /// @param sndEntities second vector of Entities to be checked
-        void collide(
-            std::vector<std::shared_ptr<ecs::Entity>> &fstEntities, std::vector<std::shared_ptr<ecs::Entity>> &sndEntities);
+        void collide(std::vector<std::shared_ptr<ecs::Entity>> &fstEntities,
+            std::vector<std::shared_ptr<ecs::Entity>> &sndEntities);
 
         /// @brief enemyCollide Function
         /// Check for enemy entities if they collide with obstacles
@@ -50,7 +50,8 @@ namespace ecs
 
         /// @brief AllyCollide Function
         /// Check for every alliedEntities if they collide with enemyEntities
-        /// @param allyEntities vector of entities which need to be checked if there is collision with the following params
+        /// @param allyEntities vector of entities which need to be checked if there is collision with the following
+        /// params
         /// @param enemies vector of entities containing the enemies
         /// @param enemiesProjectiles vector of entities containing the enemies' projectiles
         /// @param obstacles vector of entities containing the obstacles
