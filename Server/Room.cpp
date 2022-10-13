@@ -67,10 +67,12 @@ void Room::startLobbyLoop(void)
 
     _worldInstance.get()->getEntity(entityId).addComponent<Networkable>(10);
 
-    Position entityPosition =
+    Position &entityPosition =
                 _worldInstance.get()
                     ->getEntity(entityId)
                     .getComponent<Position>();
+
+    entityPosition.modified = true;
 
     _communicatorInstance.get()->startReceiverListening();
     _worldInstance->addSystem<Temp>();
