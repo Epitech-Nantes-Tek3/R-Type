@@ -101,30 +101,37 @@ namespace transisthor_lib
 
         /// @brief Function called by the ECS to transfer an order of creation for an AlliedProjectile entity
         /// @param id Id of the new entity to create
-        /// @param posX X value for the Position component
-        /// @param posY Y value for the Position component
+        /// @param allyId Id of the allied who fired
         /// @param destination of the message
         /// @return Return value his only used for testing (Unit and functional)
         void *transitEcsDataToNetworkDataEntityAlliedProjectile(
-            unsigned short id, int posX, int posY, std::vector<unsigned short> destination);
+            unsigned short id, unsigned short allyId, std::vector<unsigned short> destination);
 
         /// @brief Function called by the ECS to transfer an order of creation for an Enemy entity
         /// @param id Id of the new entity to create
-        /// @param posX X value for the Position component
-        /// @param posY Y value for the Position component
+        /// @param pos_x Position x of the Enemy
+        /// @param pos_y Position y of the Enemy
+        /// @param multiplierAbscissa The Velocity multiplierAbscissa for the new Enemy
+        /// @param multiplierOrdinate The Velocity multiplierOrdinate for the new Enemy
+        /// @param weight Weight of the Enemy
+        /// @param size_x Size x of the Enemy
+        /// @param size_y Size y of the Enemy
+        /// @param life Life of the Enemy
+        /// @param damage Damage of projectiles fired by this Enemy
+        /// @param damageRadius DamageRadius of projectiles fired by this Enemy
         /// @param destination of the message
         /// @return Return value his only used for testing (Unit and functional)
-        void *transitEcsDataToNetworkDataEntityEnemy(
-            unsigned short id, int posX, int posY, std::vector<unsigned short> destination);
+        void *transitEcsDataToNetworkDataEntityEnemy(unsigned short id, int posX, int posY, double multiplierAbscissa,
+            double multiplierOrdinate, short weight, int size_x, int size_y, short life, unsigned short damage,
+            unsigned short damageRadius, std::vector<unsigned short> destination);
 
         /// @brief Function called by the ECS to transfer an order of creation for an EnemyProjectile entity
         /// @param id Id of the new entity to create
-        /// @param posX X value for the Position component
-        /// @param posY Y value for the Position component
+        /// @param enemyId If of the enemy who fired
         /// @param destination of the message
         /// @return Return value his only used for testing (Unit and functional)
         void *transitEcsDataToNetworkDataEntityEnemyProjectile(
-            unsigned short id, int posX, int posY, std::vector<unsigned short> destination);
+            unsigned short id, unsigned short enemyId, std::vector<unsigned short> destination);
 
         /// @brief Function called by the ECS to transfer an order of creation for an Obstacle entity
         /// @param id Id of the new entity to create
@@ -207,6 +214,11 @@ namespace transisthor_lib
         /// @param id Entity ID attached to the component
         /// @param byteCode byte value of the Velocity component
         void componentConvertVelocityType(unsigned short id, void *byteCode);
+
+        /// @brief Convert a byteCode data into a Death component and send it to the ECS
+        /// @param id Entity ID attached to the component
+        /// @param byteCode byte value of the Death component
+        void componentConvertDeathType(unsigned short id, void *byteCode);
 
         /// @brief Convert a byteCode data into a AlliedProjectile entity and send it to the ECS
         /// @param id Entity ID attached to the entity
