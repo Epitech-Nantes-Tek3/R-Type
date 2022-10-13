@@ -16,6 +16,12 @@
 #include "GameComponents/LifeComponent.hpp"
 #include "GameComponents/PositionComponent.hpp"
 #include "GameComponents/VelocityComponent.hpp"
+#include "GameEntityManipulation/CreateEntitiesFunctions/CreateAlliedProjectile.hpp"
+#include "GameEntityManipulation/CreateEntitiesFunctions/CreateEnemy.hpp"
+#include "GameEntityManipulation/CreateEntitiesFunctions/CreateEnemyProjectile.hpp"
+#include "GameEntityManipulation/CreateEntitiesFunctions/CreateObstacle.hpp"
+#include "GameEntityManipulation/CreateEntitiesFunctions/CreatePlayer.hpp"
+#include "GameEntityManipulation/CreateEntitiesFunctions/CreateProjectile.hpp"
 #include "TransisthorECSLogic/Both/Components/Networkable.hpp"
 
 using namespace transisthor_lib;
@@ -284,6 +290,8 @@ void Transisthor::entityConvertAlliedProjectileType(unsigned short id, void *byt
     (void)posY;
     (void)id;
     /// SEND THE NEW ENTITY TO ECS, WILL BE ADDED WHEN TRANSISTHOR WILL BE FULLY IMPLEMENTED
+    /// It will be added after a refactorisation of the of the protocole to send projectiles (It must send the id of the
+    /// entity instead of the Position component)
 }
 
 void Transisthor::entityConvertEnemyType(unsigned short id, void *byteCode)
@@ -310,6 +318,8 @@ void Transisthor::entityConvertEnemyProjectileType(unsigned short id, void *byte
     (void)posY;
     (void)id;
     /// SEND THE NEW ENTITY TO ECS, WILL BE ADDED WHEN TRANSISTHOR WILL BE FULLY IMPLEMENTED
+    /// It will be added after a refactorisation of the of the protocole to send projectiles (It must send the id of the
+    /// entity instead of the Position component)
 }
 
 void Transisthor::entityConvertObstacleType(unsigned short id, void *byteCode)
@@ -355,6 +365,8 @@ void Transisthor::entityConvertProjectileType(unsigned short id, void *byteCode)
     (void)velOrd;
     (void)id;
     /// SEND THE NEW ENTITY TO ECS, WILL BE ADDED WHEN TRANSISTHOR WILL BE FULLY IMPLEMENTED
+    /// It will be added after a refactorisation of the of the protocole to send projectiles (It must send the id of the
+    /// entity instead of the Position component)
 }
 
 void transisthor_lib::sendDataToAClientWithoutCommunicator(
