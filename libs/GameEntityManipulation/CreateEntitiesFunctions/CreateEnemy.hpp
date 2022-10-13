@@ -19,6 +19,7 @@
 #include "GameComponents/VelocityComponent.hpp"
 #include "GameComponents/WeightComponent.hpp"
 #include "GameSharedResources/Random.hpp"
+#include "GameComponents/TextureNameComponent.hpp"
 #include "World/World.hpp"
 
 #define MINIMUM_WIDTH  1400
