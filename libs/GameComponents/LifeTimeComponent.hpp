@@ -15,21 +15,21 @@ using namespace std::chrono;
 
 namespace ecs
 {
-    /// @brief The Lifetime class, telling how long an entity is going to live
-    class Lifetime : public Component {
+    /// @brief The LifeTime class, telling how long an entity is going to live
+    class LifeTime : public Component {
       public:
         /// @brief the life time of the entity
         duration<double> timeLeft;
 
-        /// @brief Constructor of the Lifetime
-        /// @param newLifetime the life time of the entity
-        Lifetime(const duration<double> &newLifetime) : timeLeft(newLifetime){};
-        
-        /// @brief Constructor of the Lifetime
-        /// @param newLifetime the life time of the entity
-        Lifetime(double newLifetime = 0.0) : timeLeft(duration<double>(newLifetime)){};
+        /// @brief Constructor of the LifeTime
+        /// @param newLifeTime the life time of the entity
+        LifeTime(const duration<double> &newLifeTime) : timeLeft(newLifeTime){};
+
+        /// @brief Constructor of the LifeTime
+        /// @param newLifeTime the life time of the entity
+        LifeTime(double newLifeTime = 0.0) : timeLeft(duration<double>(newLifeTime)){};
         /// @brief Default destructor
-        ~Lifetime() = default;
+        ~LifeTime() = default;
     };
 } // namespace ecs
 

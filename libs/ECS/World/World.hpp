@@ -9,7 +9,6 @@
 
 #include <concepts>
 #include <cstddef>
-#include <iostream>
 #include <map>
 #include <memory>
 #include <typeindex>
@@ -76,8 +75,12 @@ namespace ecs
             for (std::shared_ptr<Entity> entityPtr : joined) {
                 DistinctiveC &dc = entityPtr->getComponent<DistinctiveC>();
                 if (distinctive == dc) {
-                    C &old = entityPtr->getComponent<C>();
-                    old = component;
+                    if (entityPtr->contains<C>()) {
+                        C &old = entityPtr->getComponent<C>();
+                        old = component;
+                    } else {
+                        entityPtr->addComponent<C>(component);
+                    }
                     return true;
                 }
             }

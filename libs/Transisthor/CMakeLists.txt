@@ -1,11 +1,13 @@
+add_subdirectory(TransisthorECSLogic)
+
 set(INC_ROOT ${PROJECT_SOURCE_DIR}/libs)
 set(SRC_ROOT ${PROJECT_SOURCE_DIR}/libs/Transisthor)
 
 set(TARGET ${PROJECT_NAME}_transisthor)
 
 set(SRC
+    ${SRC_TEL}
     ${SRC_ROOT}/Transisthor.cpp
-
     ${SRC_ROOT}/Transisthor.hpp
 )
 
