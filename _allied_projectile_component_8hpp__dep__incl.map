@@ -1,4 +1,5 @@
 <map id="libs/GameComponents/AlliedProjectileComponent.hpp" name="libs/GameComponents/AlliedProjectileComponent.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,232,47"/>
-<area shape="rect" id="node2" href="$_create_allied_projectile_8hpp.html" title=" " alt="" coords="13,95,224,151"/>
+<area shape="rect" id="node1" title=" " alt="" coords="115,5,341,47"/>
+<area shape="rect" id="node2" href="$_create_allied_projectile_8hpp.html" title=" " alt="" coords="5,95,216,151"/>
+<area shape="rect" id="node3" href="$_collidable_system_8cpp.html" title=" " alt="" coords="240,102,453,143"/>
 </map>

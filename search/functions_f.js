@@ -1,13 +1,19 @@
 var searchData=
 [
-  ['transisthor_574',['Transisthor',['../classtransisthor__lib_1_1_transisthor.html#a382a702783fb59668f2df55375ec1847',1,'transisthor_lib::Transisthor']]],
-  ['transitecsdatatonetworkdata_575',['transitEcsDataToNetworkData',['../classtransisthor__lib_1_1_transisthor.html#a9fe13e311dad7808e98bcf1f5516370a',1,'transisthor_lib::Transisthor::transitEcsDataToNetworkData(unsigned short id, unsigned short type, C component, std::vector&lt; unsigned short &gt; destination)'],['../classtransisthor__lib_1_1_transisthor.html#a94a0ac5ecec90ad113f65604403aa2cd',1,'transisthor_lib::Transisthor::transitEcsDataToNetworkData(unsigned short id, unsigned short type, C component)']]],
-  ['transitecsdatatonetworkdataentityalliedprojectile_576',['transitEcsDataToNetworkDataEntityAlliedProjectile',['../classtransisthor__lib_1_1_transisthor.html#a4b6a2104625d80b50a31b36f05c7b0b6',1,'transisthor_lib::Transisthor']]],
-  ['transitecsdatatonetworkdataentityenemy_577',['transitEcsDataToNetworkDataEntityEnemy',['../classtransisthor__lib_1_1_transisthor.html#a306010e0e3af840a452474e5822fefe5',1,'transisthor_lib::Transisthor']]],
-  ['transitecsdatatonetworkdataentityenemyprojectile_578',['transitEcsDataToNetworkDataEntityEnemyProjectile',['../classtransisthor__lib_1_1_transisthor.html#a7441c5c90c2af342ccabb5283fa4dd17',1,'transisthor_lib::Transisthor']]],
-  ['transitecsdatatonetworkdataentityobstacle_579',['transitEcsDataToNetworkDataEntityObstacle',['../classtransisthor__lib_1_1_transisthor.html#a50dfe3a1841dc8831777a3284b47cead',1,'transisthor_lib::Transisthor']]],
-  ['transitecsdatatonetworkdataentityplayer_580',['transitEcsDataToNetworkDataEntityPlayer',['../classtransisthor__lib_1_1_transisthor.html#aed33a82649027c045f7cb4810c4f21dc',1,'transisthor_lib::Transisthor']]],
-  ['transitecsdatatonetworkdataentityprojectile_581',['transitEcsDataToNetworkDataEntityProjectile',['../classtransisthor__lib_1_1_transisthor.html#a27ede70d8d5a18abba0afd93cc9bcdfe',1,'transisthor_lib::Transisthor']]],
-  ['transitnetworkdatatoecsdatacomponent_582',['transitNetworkDataToEcsDataComponent',['../classtransisthor__lib_1_1_transisthor.html#ac62903f3426e50fa8c5f015bd97c0329',1,'transisthor_lib::Transisthor']]],
-  ['transitnetworkdatatoecsdataentity_583',['transitNetworkDataToEcsDataEntity',['../classtransisthor__lib_1_1_transisthor.html#a7d284959eb3c953fa9c40b9dadfdff1c',1,'transisthor_lib::Transisthor']]]
+  ['senddatatoaclient_573',['sendDataToAClient',['../classcommunicator__lib_1_1_communicator.html#aae9c840367165a903e7dd0cc1fdafde2',1,'communicator_lib::Communicator::sendDataToAClient()'],['../classcommunicator__lib_1_1_sender.html#abdf3a1fa28741eb1eed138e98197c517',1,'communicator_lib::Sender::sendDataToAClient()']]],
+  ['senddatatoaclientwithoutcommunicator_574',['sendDataToAClientWithoutCommunicator',['../namespacetransisthor__lib.html#ab858f6baa51b522c2dca712b54b88b07',1,'transisthor_lib']]],
+  ['senddatatomultipleclients_575',['sendDataToMultipleClients',['../classcommunicator__lib_1_1_sender.html#a615e2465e35eabb53ffb9297aec88a0d',1,'communicator_lib::Sender']]],
+  ['sender_576',['Sender',['../classcommunicator__lib_1_1_sender.html#ae14150bc5755bf478a7ad1904c017ba1',1,'communicator_lib::Sender::Sender()'],['../classcommunicator__lib_1_1_sender.html#a34bc63592e1ccaad550b9f9a259c0fa7',1,'communicator_lib::Sender::Sender(unsigned short receiverPort)']]],
+  ['server_577',['Server',['../classserver__data_1_1_server.html#a4198b176b5d91ee5211ff53fe78483f2',1,'server_data::Server::Server(std::string address, unsigned short port)'],['../classserver__data_1_1_server.html#ad5ec9462b520e59f7ea831e157ee5e59',1,'server_data::Server::Server()']]],
+  ['setaddress_578',['setAddress',['../classcommunicator__lib_1_1_client.html#ade4c3dcbfcfcc63a3d7ec022d4bd263c',1,'communicator_lib::Client']]],
+  ['setid_579',['setId',['../classcommunicator__lib_1_1_client.html#ae2ae7d37e1c20f9f140b9c481cc4f8a0',1,'communicator_lib::Client']]],
+  ['setmessagelist_580',['setMessageList',['../classcommunicator__lib_1_1_receiver.html#a3a8c3a1210aa3bb37f46e9c8e772423e',1,'communicator_lib::Receiver']]],
+  ['setnetworkdata_581',['setNetworkData',['../classcommunicator__lib_1_1_receiver.html#a75292eb39c459aa9b1332fb93cdc9320',1,'communicator_lib::Receiver']]],
+  ['setport_582',['setPort',['../classcommunicator__lib_1_1_client.html#a3a6bfcfbe441627c9327bef8cf599e05',1,'communicator_lib::Client']]],
+  ['settransisthorbridge_583',['setTransisthorBridge',['../classcommunicator__lib_1_1_communicator.html#a8dba9adea6f7c334f752fde1124ffaca',1,'communicator_lib::Communicator::setTransisthorBridge()'],['../classecs_1_1_world.html#a825c59d02e9091eb65dacda56fb5c5b0',1,'ecs::World::setTransisthorBridge()']]],
+  ['shootingfrequency_584',['ShootingFrequency',['../classecs_1_1_shooting_frequency.html#adf01a466c468d85e94774cbd12e1391a',1,'ecs::ShootingFrequency']]],
+  ['size_585',['Size',['../classecs_1_1_size.html#a118751ffc4edae9aaaa21876554f1323',1,'ecs::Size']]],
+  ['startlistening_586',['startListening',['../classcommunicator__lib_1_1_receiver.html#a90aaf43d506fd114edb3f79fd004f988',1,'communicator_lib::Receiver']]],
+  ['startlobbyloop_587',['startLobbyLoop',['../classclient__data_1_1_client_room.html#a7bcb5d3af2d4d0a8517ea037eb2bdb9c',1,'client_data::ClientRoom::startLobbyLoop()'],['../classserver__data_1_1_room.html#a17e01ed3a2808eda2bbab2080d6536d4',1,'server_data::Room::startLobbyLoop()']]],
+  ['startreceiverlistening_588',['startReceiverListening',['../classcommunicator__lib_1_1_communicator.html#aed7f706b345fd016c70d970e084b591f',1,'communicator_lib::Communicator']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['velocity_585',['Velocity',['../classecs_1_1_velocity.html#a99a3f3d665f83f686600629df9be2062',1,'ecs::Velocity']]]
+  ['updatecomponentofanentityfromgivendistinctivecomponent_599',['updateComponentOfAnEntityFromGivenDistinctiveComponent',['../classecs_1_1_world.html#a252fa9305ad3ed574bb68405efd7f738',1,'ecs::World']]]
 ];

@@ -66,6 +66,7 @@ var hierarchy =
     [ "server_data::Server", "classserver__data_1_1_server.html", null ],
     [ "argument_handler::ArgumentHandler::ServerInformation", "structargument__handler_1_1_argument_handler_1_1_server_information.html", null ],
     [ "ecs::System", "classecs_1_1_system.html", [
+      [ "ecs::Collide", "structecs_1_1_collide.html", null ],
       [ "ecs::Movement", "structecs_1_1_movement.html", null ],
       [ "SendToClient", "struct_send_to_client.html", null ],
       [ "SendToServer", "struct_send_to_server.html", null ]

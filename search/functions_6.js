@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['joinentities_529',['joinEntities',['../classecs_1_1_world.html#adcbfd0e32647d24f15d124f92dc3fe73',1,'ecs::World']]]
+  ['issameheight_542',['isSameHeight',['../structecs_1_1_collide.html#a421c368d5343e3d81b4897211b5848f2',1,'ecs::Collide']]],
+  ['issamewidth_543',['isSameWidth',['../structecs_1_1_collide.html#ac15e985f3bdabf29fee1fac27031cece',1,'ecs::Collide']]]
 ];

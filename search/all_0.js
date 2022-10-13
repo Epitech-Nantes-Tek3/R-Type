@@ -16,10 +16,11 @@ var searchData=
   ['allowcontrollercomponent_2ehpp_13',['AllowControllerComponent.hpp',['../_allow_controller_component_8hpp.html',1,'']]],
   ['allowmouseandkeyboardcomponent_14',['AllowMouseAndKeyboardComponent',['../classecs_1_1_allow_mouse_and_keyboard_component.html',1,'ecs']]],
   ['allowmouseandkeyboardcomponent_2ehpp_15',['AllowMouseAndKeyboardComponent.hpp',['../_allow_mouse_and_keyboard_component_8hpp.html',1,'']]],
-  ['argument_5fhandler_16',['argument_handler',['../namespaceargument__handler.html',1,'']]],
-  ['argumenterror_17',['ArgumentError',['../classerror__lib_1_1_argument_error.html',1,'error_lib::ArgumentError'],['../classerror__lib_1_1_argument_error.html#af64571724d5be89ba604c0d97f7e5a47',1,'error_lib::ArgumentError::ArgumentError()']]],
-  ['argumentfunctiontype_18',['ArgumentFunctionType',['../classargument__handler_1_1_argument_handler.html#ade7b92c1c2885408ad21f61d3d8faa05',1,'argument_handler::ArgumentHandler']]],
-  ['argumenthandler_19',['ArgumentHandler',['../classargument__handler_1_1_argument_handler.html',1,'argument_handler::ArgumentHandler'],['../classargument__handler_1_1_argument_handler.html#a557d671c8941fc6c612b7848e9612629',1,'argument_handler::ArgumentHandler::ArgumentHandler()'],['../classargument__handler_1_1_argument_handler.html#ac2273c25a5d835cd891e47254ea512b8',1,'argument_handler::ArgumentHandler::ArgumentHandler(const int ac, char **av)']]],
-  ['argumenthandler_2ecpp_20',['ArgumentHandler.cpp',['../_argument_handler_8cpp.html',1,'']]],
-  ['argumenthandler_2ehpp_21',['ArgumentHandler.hpp',['../_argument_handler_8hpp.html',1,'']]]
+  ['allycollide_16',['allyCollide',['../structecs_1_1_collide.html#a909746acf634eeda41fbfa2616a4fa44',1,'ecs::Collide']]],
+  ['argument_5fhandler_17',['argument_handler',['../namespaceargument__handler.html',1,'']]],
+  ['argumenterror_18',['ArgumentError',['../classerror__lib_1_1_argument_error.html',1,'error_lib::ArgumentError'],['../classerror__lib_1_1_argument_error.html#af64571724d5be89ba604c0d97f7e5a47',1,'error_lib::ArgumentError::ArgumentError()']]],
+  ['argumentfunctiontype_19',['ArgumentFunctionType',['../classargument__handler_1_1_argument_handler.html#ade7b92c1c2885408ad21f61d3d8faa05',1,'argument_handler::ArgumentHandler']]],
+  ['argumenthandler_20',['ArgumentHandler',['../classargument__handler_1_1_argument_handler.html',1,'argument_handler::ArgumentHandler'],['../classargument__handler_1_1_argument_handler.html#a557d671c8941fc6c612b7848e9612629',1,'argument_handler::ArgumentHandler::ArgumentHandler()'],['../classargument__handler_1_1_argument_handler.html#ac2273c25a5d835cd891e47254ea512b8',1,'argument_handler::ArgumentHandler::ArgumentHandler(const int ac, char **av)']]],
+  ['argumenthandler_2ecpp_21',['ArgumentHandler.cpp',['../_argument_handler_8cpp.html',1,'']]],
+  ['argumenthandler_2ehpp_22',['ArgumentHandler.hpp',['../_argument_handler_8hpp.html',1,'']]]
 ];

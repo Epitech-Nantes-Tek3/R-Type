@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['life_532',['Life',['../classecs_1_1_life.html#ae8ad37cb66f638be217dc1c0d6cbf533',1,'ecs::Life']]],
-  ['lifetime_533',['Lifetime',['../classecs_1_1_lifetime.html#a51cec9a360d2cdfe6c382e78092e58db',1,'ecs::Lifetime']]]
+  ['keyboardinputcomponent_545',['KeyboardInputComponent',['../classecs_1_1_keyboard_input_component.html#a5af9351e27a3b86c8a47ecbb46f21105',1,'ecs::KeyboardInputComponent']]],
+  ['kickaclient_546',['kickAClient',['../classcommunicator__lib_1_1_communicator.html#ac609968cc689b60055e9ecc220d79e3b',1,'communicator_lib::Communicator']]]
 ];

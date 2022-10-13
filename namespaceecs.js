@@ -9,6 +9,7 @@ var namespaceecs =
     [ "Button", "classecs_1_1_button.html", "classecs_1_1_button" ],
     [ "ChargedAttack", "classecs_1_1_charged_attack.html", "classecs_1_1_charged_attack" ],
     [ "Collidable", "classecs_1_1_collidable.html", null ],
+    [ "Collide", "structecs_1_1_collide.html", "structecs_1_1_collide" ],
     [ "Component", "classecs_1_1_component.html", "classecs_1_1_component" ],
     [ "Controlable", "classecs_1_1_controlable.html", null ],
     [ "Controllable", "classecs_1_1_controllable.html", null ],

@@ -1,19 +1,15 @@
 var searchData=
 [
-  ['senddatatoaclient_558',['sendDataToAClient',['../classcommunicator__lib_1_1_communicator.html#aae9c840367165a903e7dd0cc1fdafde2',1,'communicator_lib::Communicator::sendDataToAClient()'],['../classcommunicator__lib_1_1_sender.html#abdf3a1fa28741eb1eed138e98197c517',1,'communicator_lib::Sender::sendDataToAClient()']]],
-  ['senddatatoaclientwithoutcommunicator_559',['sendDataToAClientWithoutCommunicator',['../namespacetransisthor__lib.html#ab858f6baa51b522c2dca712b54b88b07',1,'transisthor_lib']]],
-  ['senddatatomultipleclients_560',['sendDataToMultipleClients',['../classcommunicator__lib_1_1_sender.html#a615e2465e35eabb53ffb9297aec88a0d',1,'communicator_lib::Sender']]],
-  ['sender_561',['Sender',['../classcommunicator__lib_1_1_sender.html#ae14150bc5755bf478a7ad1904c017ba1',1,'communicator_lib::Sender::Sender()'],['../classcommunicator__lib_1_1_sender.html#a34bc63592e1ccaad550b9f9a259c0fa7',1,'communicator_lib::Sender::Sender(unsigned short receiverPort)']]],
-  ['server_562',['Server',['../classserver__data_1_1_server.html#a4198b176b5d91ee5211ff53fe78483f2',1,'server_data::Server::Server(std::string address, unsigned short port)'],['../classserver__data_1_1_server.html#ad5ec9462b520e59f7ea831e157ee5e59',1,'server_data::Server::Server()']]],
-  ['setaddress_563',['setAddress',['../classcommunicator__lib_1_1_client.html#ade4c3dcbfcfcc63a3d7ec022d4bd263c',1,'communicator_lib::Client']]],
-  ['setid_564',['setId',['../classcommunicator__lib_1_1_client.html#ae2ae7d37e1c20f9f140b9c481cc4f8a0',1,'communicator_lib::Client']]],
-  ['setmessagelist_565',['setMessageList',['../classcommunicator__lib_1_1_receiver.html#a3a8c3a1210aa3bb37f46e9c8e772423e',1,'communicator_lib::Receiver']]],
-  ['setnetworkdata_566',['setNetworkData',['../classcommunicator__lib_1_1_receiver.html#a75292eb39c459aa9b1332fb93cdc9320',1,'communicator_lib::Receiver']]],
-  ['setport_567',['setPort',['../classcommunicator__lib_1_1_client.html#a3a6bfcfbe441627c9327bef8cf599e05',1,'communicator_lib::Client']]],
-  ['settransisthorbridge_568',['setTransisthorBridge',['../classcommunicator__lib_1_1_communicator.html#a8dba9adea6f7c334f752fde1124ffaca',1,'communicator_lib::Communicator::setTransisthorBridge()'],['../classecs_1_1_world.html#a825c59d02e9091eb65dacda56fb5c5b0',1,'ecs::World::setTransisthorBridge()']]],
-  ['shootingfrequency_569',['ShootingFrequency',['../classecs_1_1_shooting_frequency.html#adf01a466c468d85e94774cbd12e1391a',1,'ecs::ShootingFrequency']]],
-  ['size_570',['Size',['../classecs_1_1_size.html#a118751ffc4edae9aaaa21876554f1323',1,'ecs::Size']]],
-  ['startlistening_571',['startListening',['../classcommunicator__lib_1_1_receiver.html#a90aaf43d506fd114edb3f79fd004f988',1,'communicator_lib::Receiver']]],
-  ['startlobbyloop_572',['startLobbyLoop',['../classclient__data_1_1_client_room.html#a7bcb5d3af2d4d0a8517ea037eb2bdb9c',1,'client_data::ClientRoom::startLobbyLoop()'],['../classserver__data_1_1_room.html#a17e01ed3a2808eda2bbab2080d6536d4',1,'server_data::Room::startLobbyLoop()']]],
-  ['startreceiverlistening_573',['startReceiverListening',['../classcommunicator__lib_1_1_communicator.html#aed7f706b345fd016c70d970e084b591f',1,'communicator_lib::Communicator']]]
+  ['receiver_561',['Receiver',['../classcommunicator__lib_1_1_receiver.html#ab05f062ad8bc9105e7708c9567552908',1,'communicator_lib::Receiver::Receiver()'],['../classcommunicator__lib_1_1_receiver.html#a8037668132cd0ce68679eb0a64205fc4',1,'communicator_lib::Receiver::Receiver(Client networkData)']]],
+  ['removeallclientmessage_562',['removeAllClientMessage',['../classcommunicator__lib_1_1_receiver.html#adacc73bc3c4cbe2b06a06f359ebe905a',1,'communicator_lib::Receiver']]],
+  ['removeclientfromlist_563',['removeClientFromList',['../classcommunicator__lib_1_1_communicator.html#abf12e00a58c4ebfe7b2d9b0f730178ef',1,'communicator_lib::Communicator']]],
+  ['removecomponent_564',['removeComponent',['../classecs_1_1_entity.html#a30056c776dc8e57264e3fc83658e3198',1,'ecs::Entity']]],
+  ['removeentity_565',['removeEntity',['../classecs_1_1_world.html#a593e838ce09a7924c81ff86f1a1e61c0',1,'ecs::World']]],
+  ['removeresource_566',['removeResource',['../classecs_1_1_world.html#a4b2230f7925af348e7645b0a6c3a95d2',1,'ecs::World']]],
+  ['renderwindowresource_567',['RenderWindowResource',['../classecs_1_1_render_window_resource.html#ac222d8616d16eb84d0f87dd75b32739f',1,'ecs::RenderWindowResource']]],
+  ['resource_568',['Resource',['../classecs_1_1_resource.html#a4ab3f5cbdd0b55a5141ffcfb836bb274',1,'ecs::Resource']]],
+  ['room_569',['Room',['../classserver__data_1_1_room.html#ac6ef93a7d9c3e1d624e025058d5f16ff',1,'server_data::Room::Room()'],['../classserver__data_1_1_room.html#a5310158464c77945f1126128f3cdca65',1,'server_data::Room::Room(unsigned short id, Client networkInformations)']]],
+  ['rtypeerror_570',['RTypeError',['../classerror__lib_1_1_r_type_error.html#a0113f25ccfc5ed80b5ed41aa827e146d',1,'error_lib::RTypeError']]],
+  ['run_571',['run',['../classecs_1_1_system.html#ace40d0fa9fb6fb054036b0d96cf94cae',1,'ecs::System::run()'],['../structecs_1_1_collide.html#a8b31f7ed9bfde438999bd443ee5773a4',1,'ecs::Collide::run()'],['../structecs_1_1_movement.html#aa3304ced6d4179727122afe10166184b',1,'ecs::Movement::run()']]],
+  ['runsystems_572',['runSystems',['../classecs_1_1_world.html#a8ced482c3db57a0932fc691aeef01935',1,'ecs::World']]]
 ];
