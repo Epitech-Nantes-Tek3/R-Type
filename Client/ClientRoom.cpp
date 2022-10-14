@@ -36,6 +36,7 @@
 #include "Transisthor/TransisthorECSLogic/Client/Components/NetworkServer.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Systems/SendNewlyCreatedToServer.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Systems/SendToServer.hpp"
+#include <functional>
 
 using namespace error_lib;
 using namespace communicator_lib;
@@ -140,4 +141,9 @@ void ClientRoom::_initEntities()
         .addComponent<ControllerButtonInputComponent>()
         .addComponent<ControllerJoystickInputComponent>()
         .addComponent<ActionQueueComponent>();
+    auto entities = _worldInstance->joinEntities<KeyboardInputComponent>();
+    for (auto &it : entities) {
+        it->getComponent<KeyboardInputComponent>().keyboardMapActions.emplace(sf::Keyboard::Z, std::bind(&InputManagement::movePlayerY, it->getComponent<KeyboardInputComponent>(), *_worldInstance, 1));
+        it->getComponent<KeyboardInputComponent>().keyboardMapActions.emplace(sf::Keyboard::S, std::bind(&InputManagement::movePlayerY, it->getComponent<KeyboardInputComponent>(), *_worldInstance, -1));
+    }
 }

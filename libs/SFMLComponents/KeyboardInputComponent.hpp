@@ -22,7 +22,7 @@ namespace ecs
     class KeyboardInputComponent : public Component {
         public:
             /// @brief This unordered_map links SFML key input to an action/value pair enum.
-            std::unordered_map<sf::Keyboard::Key, std::pair<std::function<void(World &, float)>, float>> keyboardMapActions;
+            std::unordered_map<sf::Keyboard::Key, std::function<void(World &, float)>> keyboardMapActions;
 
             /// @brief Constructor of the class.
             KeyboardInputComponent() = default;

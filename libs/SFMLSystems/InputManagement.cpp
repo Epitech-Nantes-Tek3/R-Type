@@ -34,7 +34,7 @@ void InputManagement::run(World &world)
                 if (entityPtr->getComponent<KeyboardInputComponent>().keyboardMapActions.contains(event.key.code)
                     && entityPtr->contains<AllowMouseAndKeyboardComponent>())
                     entityPtr->getComponent<ActionQueueComponent>().actions.push(
-                        entityPtr->getComponent<KeyboardInputComponent>().keyboardMapActions[event.key.code].first);
+                        entityPtr->getComponent<KeyboardInputComponent>().keyboardMapActions[event.key.code]);
             };
             std::for_each(Inputs.begin(), Inputs.end(), keyPressed);
         }
@@ -43,7 +43,7 @@ void InputManagement::run(World &world)
                 if (entityPtr->getComponent<MouseInputComponent>().MouseMapActions.contains(event.mouseButton.button)
                     && entityPtr->contains<AllowMouseAndKeyboardComponent>())
                     entityPtr->getComponent<ActionQueueComponent>().actions.push(
-                        entityPtr->getComponent<MouseInputComponent>().MouseMapActions[event.mouseButton.button].first);
+                        entityPtr->getComponent<MouseInputComponent>().MouseMapActions[event.mouseButton.button]);
             };
             std::for_each(Inputs.begin(), Inputs.end(), mouseButtonPressed);
         }
@@ -54,8 +54,7 @@ void InputManagement::run(World &world)
                     && entityPtr->contains<AllowControllerComponent>())
                     entityPtr->getComponent<ActionQueueComponent>().actions.push(
                         entityPtr->getComponent<ControllerButtonInputComponent>()
-                            .controllerButtonMapActions[event.joystickButton.button]
-                            .first);
+                            .controllerButtonMapActions[event.joystickButton.button]);
             };
             std::for_each(Inputs.begin(), Inputs.end(), joyButtonPressed);
         }
@@ -66,8 +65,7 @@ void InputManagement::run(World &world)
                     && entityPtr->contains<AllowControllerComponent>())
                     entityPtr->getComponent<ActionQueueComponent>().actions.push(
                         entityPtr->getComponent<ControllerJoystickInputComponent>()
-                            .controllerJoystickMapActions[event.joystickMove.axis]
-                            .first);
+                            .controllerJoystickMapActions[event.joystickMove.axis]);
             };
             std::for_each(Inputs.begin(), Inputs.end(), joyMovePressed);
         }

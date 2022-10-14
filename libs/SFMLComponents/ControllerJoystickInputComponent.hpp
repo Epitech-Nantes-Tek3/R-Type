@@ -22,7 +22,7 @@ namespace ecs
     class ControllerJoystickInputComponent : public Component {
       public:
         /// @brief This unordered_map links SFML controller joystick input to an action/value pair enum.
-        std::unordered_map<unsigned int, std::pair<std::function<void(World &, float)>, float>> controllerJoystickMapActions;
+        std::unordered_map<unsigned int, std::function<void(World &, float)>> controllerJoystickMapActions;
 
         /// @brief Constructor of the class.
         ControllerJoystickInputComponent() = default;
