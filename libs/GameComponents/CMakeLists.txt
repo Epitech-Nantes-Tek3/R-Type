@@ -6,6 +6,7 @@ set(SRC
     ${INC_ROOT}/SizeComponent.hpp
     ${INC_ROOT}/PositionComponent.hpp
     ${INC_ROOT}/ButtonComponent.hpp
+    ${INC_ROOT}/BackGroundComponent.hpp
     ${INC_ROOT}/VelocityComponent.hpp
     ${INC_ROOT}/DestinationComponent.hpp
     ${INC_ROOT}/ShootingFrequencyComponent.hpp
