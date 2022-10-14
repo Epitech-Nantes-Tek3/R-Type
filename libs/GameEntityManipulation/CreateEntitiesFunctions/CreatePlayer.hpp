@@ -9,6 +9,7 @@
 #define CREATEPLAYER_HPP_
 
 #include "GameComponents/CollidableComponent.hpp"
+#include "GameComponents/ControlableComponent.hpp"
 #include "GameComponents/DamageComponent.hpp"
 #include "GameComponents/DamageRadiusComponent.hpp"
 #include "GameComponents/LifeComponent.hpp"
@@ -19,7 +20,6 @@
 #include "GameComponents/SizeComponent.hpp"
 #include "GameComponents/VelocityComponent.hpp"
 #include "GameComponents/WeightComponent.hpp"
-#include "GameComponents/ControlableComponent.hpp"
 #include "GameSharedResources/Random.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "World/World.hpp"
@@ -44,7 +44,7 @@ namespace ecs
     inline std::size_t createNewPlayer(World &world, const int posX, const int posY, const double multiplierAbscissa,
         const double multiplierOrdinate, const short weight, const int size_x, const int size_y,
         const unsigned short life, const unsigned short damage, const unsigned short damageRadius,
-        const std::string uuid = "", unsigned short networkId = 0)
+        bool controlable, const std::string uuid = "", unsigned short networkId = 0)
     {
         Entity &entity = world.addEntity()
                              .addComponent<Position>(posX, posY)
@@ -56,8 +56,9 @@ namespace ecs
                              .addComponent<DamageRadius>(damageRadius)
                              .addComponent<Collidable>()
                              .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate)
-                             .addComponent<Player>()
-                             .addComponent<Controlable>();
+                             .addComponent<Player>();
+        if (controlable == true)
+            world.addEntity().addComponent<Controlable>();
         if (networkId) {
             // Case : Creation in a server instance
             entity.addComponent<NewlyCreated>(uuid, false);
