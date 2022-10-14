@@ -383,10 +383,9 @@ void Transisthor::entityConvertAlliedProjectileType(unsigned short id, void *byt
         createNewAlliedProjectile(_ecsWorld, *(shooter.get()), uuid, _ecsWorld.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
     } else {
         std::size_t entityId;
-
         if (uuidStr == "") {
             entityId = createNewAlliedProjectile(_ecsWorld, *(shooter.get()));
-            _ecsWorld.getEntity(entityId).addComponent<Networkable>(id);
+            _ecsWorld.getEntity(entityId).getComponent<Networkable>() = id;
         } else {
             std::vector<std::shared_ptr<Entity>> newlyCreated = _ecsWorld.joinEntities<NewlyCreated>();
 
