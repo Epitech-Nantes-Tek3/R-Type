@@ -13,6 +13,6 @@ void GraphicsTextureResource::addTexture(const textureName_e texture_e, const st
 {
     sf::Texture t;
 
-    t.loadFromFile(texturePath);
+    t.loadFromFile(texturePath.string());
     _texturesList.emplace(texture_e, std::make_shared<sf::Texture>(t));
 }
