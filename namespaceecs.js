@@ -25,6 +25,7 @@ var namespaceecs =
     [ "DecreaseLifeTime", "structecs_1_1_decrease_life_time.html", "structecs_1_1_decrease_life_time" ],
     [ "Destination", "classecs_1_1_destination.html", "classecs_1_1_destination" ],
     [ "DrawComponents", "structecs_1_1_draw_components.html", "structecs_1_1_draw_components" ],
+    [ "EnemiesGoRandom", "classecs_1_1_enemies_go_random.html", "classecs_1_1_enemies_go_random" ],
     [ "Enemy", "classecs_1_1_enemy.html", null ],
     [ "EnemyProjectile", "classecs_1_1_enemy_projectile.html", "classecs_1_1_enemy_projectile" ],
     [ "Entity", "classecs_1_1_entity.html", "classecs_1_1_entity" ],
