@@ -111,6 +111,9 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_allow_mouse_and_keyboard_component.html">AllowMouseAndKeyboardComponent</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This component class allows mouse and keyboard usage in client.  <a href="classecs_1_1_allow_mouse_and_keyboard_component.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_back_ground.html">BackGround</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classecs_1_1_back_ground.html" title="BackGround Component allows an entity to be used as a BackGround.">BackGround</a> <a class="el" href="classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone...">Component</a> allows an entity to be used as a <a class="el" href="classecs_1_1_back_ground.html" title="BackGround Component allows an entity to be used as a BackGround.">BackGround</a>.  <a href="classecs_1_1_back_ground.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_bouncing.html">Bouncing</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="classecs_1_1_bouncing.html" title="The Bouncing component, to bounce projectiles after hitting one enemy.">Bouncing</a> component, to bounce projectiles after hitting one enemy.  <a href="classecs_1_1_bouncing.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -302,24 +305,30 @@ Functions</h2></td></tr>
 <tr class="memitem:a9c748b98c60c315d8507b253e62b0f6a"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceecs.html#a9c748b98c60c315d8507b253e62b0f6a">createNewAlliedProjectile</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, <a class="el" href="classecs_1_1_entity.html">Entity</a> &amp;ally)</td></tr>
 <tr class="memdesc:a9c748b98c60c315d8507b253e62b0f6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function creates a new <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components.">Entity</a> projectile_ally when an ally shoot.  <a href="namespaceecs.html#a9c748b98c60c315d8507b253e62b0f6a">More...</a><br /></td></tr>
 <tr class="separator:a9c748b98c60c315d8507b253e62b0f6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab985d16c01bfe647a93f4e8064a98b4f"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceecs.html#ab985d16c01bfe647a93f4e8064a98b4f">createNewEnemy</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, const int pos_x, const int pos_y, const double multiplierAbscissa, const double multiplierOrdinate, const short weight, const int size_x, const int size_y, const unsigned short life, const unsigned short damage, const unsigned short damageRadius)</td></tr>
-<tr class="memdesc:ab985d16c01bfe647a93f4e8064a98b4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function creates a new <a class="el" href="classecs_1_1_enemy.html" title="Enemy Component allows an entity to be used as an Enemy.">Enemy</a> <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components.">Entity</a> with these parameters.  <a href="namespaceecs.html#ab985d16c01bfe647a93f4e8064a98b4f">More...</a><br /></td></tr>
-<tr class="separator:ab985d16c01bfe647a93f4e8064a98b4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7e63222528f92e9bb7c8dcc57c9f551"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceecs.html#ab7e63222528f92e9bb7c8dcc57c9f551">createNewBackGround</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, const int posX, const int posY, const double multiplierAbscissa, const double multiplierOrdinate, const short weight, const int size_x, const int size_y)</td></tr>
+<tr class="memdesc:ab7e63222528f92e9bb7c8dcc57c9f551"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function creates a new <a class="el" href="classecs_1_1_back_ground.html" title="BackGround Component allows an entity to be used as a BackGround.">BackGround</a> <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components.">Entity</a> with these parameters.  <a href="namespaceecs.html#ab7e63222528f92e9bb7c8dcc57c9f551">More...</a><br /></td></tr>
+<tr class="separator:ab7e63222528f92e9bb7c8dcc57c9f551"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a9b39876438a6bf2bfe91a4432b1057"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceecs.html#a6a9b39876438a6bf2bfe91a4432b1057">createNewButton</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, const int posX, const int posY, const double multiplierAbscissa, const double multiplierOrdinate, const short weight, const int size_x, const int size_y)</td></tr>
+<tr class="memdesc:a6a9b39876438a6bf2bfe91a4432b1057"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function creates a new <a class="el" href="classecs_1_1_button.html" title="The Button Component, used to make the difference between the component.">Button</a> <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components.">Entity</a> with these parameters.  <a href="namespaceecs.html#a6a9b39876438a6bf2bfe91a4432b1057">More...</a><br /></td></tr>
+<tr class="separator:a6a9b39876438a6bf2bfe91a4432b1057"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade9f819690056ea6a2e01b35db816447"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceecs.html#ade9f819690056ea6a2e01b35db816447">createNewEnemy</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, const int posX, const int posY, const double multiplierAbscissa, const double multiplierOrdinate, const short weight, const int size_x, const int size_y, const unsigned short life, const unsigned short damage, const unsigned short damageRadius)</td></tr>
+<tr class="memdesc:ade9f819690056ea6a2e01b35db816447"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function creates a new <a class="el" href="classecs_1_1_enemy.html" title="Enemy Component allows an entity to be used as an Enemy.">Enemy</a> <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components.">Entity</a> with these parameters.  <a href="namespaceecs.html#ade9f819690056ea6a2e01b35db816447">More...</a><br /></td></tr>
+<tr class="separator:ade9f819690056ea6a2e01b35db816447"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a55efbc3ade8ae98816983e20fda0857f"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceecs.html#a55efbc3ade8ae98816983e20fda0857f">createNewEnemyRandom</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, const double multiplierAbscissa, const double multiplierOrdinate, const short weight, const int size_x, const int size_y, const unsigned short life, const unsigned short damage, const unsigned short damageRadius)</td></tr>
 <tr class="memdesc:a55efbc3ade8ae98816983e20fda0857f"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function creates a new <a class="el" href="classecs_1_1_enemy.html" title="Enemy Component allows an entity to be used as an Enemy.">Enemy</a> <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components.">Entity</a> with random position and with these parameters.  <a href="namespaceecs.html#a55efbc3ade8ae98816983e20fda0857f">More...</a><br /></td></tr>
 <tr class="separator:a55efbc3ade8ae98816983e20fda0857f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86cb01f989657db985f4003003714a28"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceecs.html#a86cb01f989657db985f4003003714a28">createNewEnemyProjectile</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, <a class="el" href="classecs_1_1_entity.html">Entity</a> &amp;enemy)</td></tr>
 <tr class="memdesc:a86cb01f989657db985f4003003714a28"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function create a new <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components.">Entity</a> projectile_enemy when an enemy shoot.  <a href="namespaceecs.html#a86cb01f989657db985f4003003714a28">More...</a><br /></td></tr>
 <tr class="separator:a86cb01f989657db985f4003003714a28"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6bcc302fd257afdcaeaff0db1290b458"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceecs.html#a6bcc302fd257afdcaeaff0db1290b458">createNewObstacle</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, const int pos_x, const int pos_y, const unsigned short damage)</td></tr>
-<tr class="memdesc:a6bcc302fd257afdcaeaff0db1290b458"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function can create a new <a class="el" href="classecs_1_1_obstacle.html" title="Obstacle Component allows an entity to be used as an Obstacle.">Obstacle</a> <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components.">Entity</a> in the world passed as params.  <a href="namespaceecs.html#a6bcc302fd257afdcaeaff0db1290b458">More...</a><br /></td></tr>
-<tr class="separator:a6bcc302fd257afdcaeaff0db1290b458"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af5401b6549bd6340777008fd66159eea"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceecs.html#af5401b6549bd6340777008fd66159eea">createNewPlayer</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, const int pos_x, const int pos_y, const double multiplierAbscissa, const double multiplierOrdinate, const short weight, const int size_x, const int size_y, const unsigned short life, const unsigned short damage, const unsigned short damageRadius)</td></tr>
-<tr class="memdesc:af5401b6549bd6340777008fd66159eea"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function creates a new <a class="el" href="classecs_1_1_player.html" title="Player Component allows an entity to be used as a Player.">Player</a> <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components.">Entity</a> with these parameters.  <a href="namespaceecs.html#af5401b6549bd6340777008fd66159eea">More...</a><br /></td></tr>
-<tr class="separator:af5401b6549bd6340777008fd66159eea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a312f0c7e275e1c39e786c0ab6cfc9fb6"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceecs.html#a312f0c7e275e1c39e786c0ab6cfc9fb6">createNewProjectile</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, const int pos_x, const int pos_y, const double multiplierAbscissa, const double multiplierOrdinate, const unsigned short damage)</td></tr>
-<tr class="memdesc:a312f0c7e275e1c39e786c0ab6cfc9fb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function can create a new <a class="el" href="classecs_1_1_projectile.html" title="This Component specifies if an entity is a Projectile. This component specifies whether an entity is ...">Projectile</a> <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components.">Entity</a> in the world passed as params.  <a href="namespaceecs.html#a312f0c7e275e1c39e786c0ab6cfc9fb6">More...</a><br /></td></tr>
-<tr class="separator:a312f0c7e275e1c39e786c0ab6cfc9fb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a4e004d58edf1663052a29c0a7fa1c0"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceecs.html#a9a4e004d58edf1663052a29c0a7fa1c0">createNewObstacle</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, const int posX, const int posY, const unsigned short damage)</td></tr>
+<tr class="memdesc:a9a4e004d58edf1663052a29c0a7fa1c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function can create a new <a class="el" href="classecs_1_1_obstacle.html" title="Obstacle Component allows an entity to be used as an Obstacle.">Obstacle</a> <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components.">Entity</a> in the world passed as params.  <a href="namespaceecs.html#a9a4e004d58edf1663052a29c0a7fa1c0">More...</a><br /></td></tr>
+<tr class="separator:a9a4e004d58edf1663052a29c0a7fa1c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8815dfa7ffedf6f1a013f2599c49881c"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceecs.html#a8815dfa7ffedf6f1a013f2599c49881c">createNewPlayer</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, const int posX, const int posY, const double multiplierAbscissa, const double multiplierOrdinate, const short weight, const int size_x, const int size_y, const unsigned short life, const unsigned short damage, const unsigned short damageRadius)</td></tr>
+<tr class="memdesc:a8815dfa7ffedf6f1a013f2599c49881c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function creates a new <a class="el" href="classecs_1_1_player.html" title="Player Component allows an entity to be used as a Player.">Player</a> <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components.">Entity</a> with these parameters.  <a href="namespaceecs.html#a8815dfa7ffedf6f1a013f2599c49881c">More...</a><br /></td></tr>
+<tr class="separator:a8815dfa7ffedf6f1a013f2599c49881c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a274f8eac853f0ccb811db5befe07cdc3"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceecs.html#a274f8eac853f0ccb811db5befe07cdc3">createNewProjectile</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, const int posX, const int posY, const double multiplierAbscissa, const double multiplierOrdinate, const unsigned short damage)</td></tr>
+<tr class="memdesc:a274f8eac853f0ccb811db5befe07cdc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function can create a new <a class="el" href="classecs_1_1_projectile.html" title="This Component specifies if an entity is a Projectile. This component specifies whether an entity is ...">Projectile</a> <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components.">Entity</a> in the world passed as params.  <a href="namespaceecs.html#a274f8eac853f0ccb811db5befe07cdc3">More...</a><br /></td></tr>
+<tr class="separator:a274f8eac853f0ccb811db5befe07cdc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a102705ce465733035dfb209936d15883"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceecs.html#a102705ce465733035dfb209936d15883">operator==</a> (const <a class="el" href="classecs_1_1_networkable.html">Networkable</a> &amp;one, const <a class="el" href="classecs_1_1_networkable.html">Networkable</a> &amp;two)</td></tr>
 <tr class="separator:a102705ce465733035dfb209936d15883"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -405,8 +414,184 @@ template&lt;std::derived_from&lt; Component &gt; C&gt; </div>
 
 </div>
 </div>
-<a id="ab985d16c01bfe647a93f4e8064a98b4f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab985d16c01bfe647a93f4e8064a98b4f">&#9670;&nbsp;</a></span>createNewEnemy()</h2>
+<a id="ab7e63222528f92e9bb7c8dcc57c9f551"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7e63222528f92e9bb7c8dcc57c9f551">&#9670;&nbsp;</a></span>createNewBackGround()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::size_t ecs::createNewBackGround </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classecs_1_1_world.html">World</a> &amp;&#160;</td>
+          <td class="paramname"><em>world</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>posX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>posY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>multiplierAbscissa</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>multiplierOrdinate</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const short&#160;</td>
+          <td class="paramname"><em>weight</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>size_x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>size_y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This function creates a new <a class="el" href="classecs_1_1_back_ground.html" title="BackGround Component allows an entity to be used as a BackGround.">BackGround</a> <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components.">Entity</a> with these parameters. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">world</td><td>The world in which the <a class="el" href="classecs_1_1_back_ground.html" title="BackGround Component allows an entity to be used as a BackGround.">BackGround</a> must be created </td></tr>
+    <tr><td class="paramname">posX</td><td><a class="el" href="classecs_1_1_position.html" title="The Position component, almost used for every entities It&#39;s a networkable component.">Position</a> x of the <a class="el" href="classecs_1_1_back_ground.html" title="BackGround Component allows an entity to be used as a BackGround.">BackGround</a> </td></tr>
+    <tr><td class="paramname">posY</td><td><a class="el" href="classecs_1_1_position.html" title="The Position component, almost used for every entities It&#39;s a networkable component.">Position</a> y of the <a class="el" href="classecs_1_1_back_ground.html" title="BackGround Component allows an entity to be used as a BackGround.">BackGround</a> </td></tr>
+    <tr><td class="paramname">weight</td><td><a class="el" href="classecs_1_1_weight.html" title="The Weight class, almost used for everything, used in gravity system.">Weight</a> of the <a class="el" href="classecs_1_1_back_ground.html" title="BackGround Component allows an entity to be used as a BackGround.">BackGround</a> </td></tr>
+    <tr><td class="paramname">size_x</td><td><a class="el" href="classecs_1_1_size.html" title="The Size component, almost used for everything.">Size</a> x of the player </td></tr>
+    <tr><td class="paramname">size_y</td><td><a class="el" href="classecs_1_1_size.html" title="The Size component, almost used for everything.">Size</a> y of the player </td></tr>
+    <tr><td class="paramname">multiplierAbscissa</td><td>The <a class="el" href="classecs_1_1_velocity.html" title="The velocity class, multiplying the movement of the entity It&#39;s a networkable component.">Velocity</a> multiplierAbscissa for the new <a class="el" href="classecs_1_1_back_ground.html" title="BackGround Component allows an entity to be used as a BackGround.">BackGround</a> </td></tr>
+    <tr><td class="paramname">multiplierOrdinate</td><td>The <a class="el" href="classecs_1_1_velocity.html" title="The velocity class, multiplying the movement of the entity It&#39;s a networkable component.">Velocity</a> multiplierOrdinate for the new <a class="el" href="classecs_1_1_back_ground.html" title="BackGround Component allows an entity to be used as a BackGround.">BackGround</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Id of the new <a class="el" href="classecs_1_1_back_ground.html" title="BackGround Component allows an entity to be used as a BackGround.">BackGround</a> in std::size_t </dd></dl>
+
+</div>
+</div>
+<a id="a6a9b39876438a6bf2bfe91a4432b1057"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a9b39876438a6bf2bfe91a4432b1057">&#9670;&nbsp;</a></span>createNewButton()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::size_t ecs::createNewButton </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classecs_1_1_world.html">World</a> &amp;&#160;</td>
+          <td class="paramname"><em>world</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>posX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>posY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>multiplierAbscissa</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>multiplierOrdinate</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const short&#160;</td>
+          <td class="paramname"><em>weight</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>size_x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>size_y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This function creates a new <a class="el" href="classecs_1_1_button.html" title="The Button Component, used to make the difference between the component.">Button</a> <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components.">Entity</a> with these parameters. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">world</td><td>The world in which the <a class="el" href="classecs_1_1_button.html" title="The Button Component, used to make the difference between the component.">Button</a> must be created </td></tr>
+    <tr><td class="paramname">posX</td><td><a class="el" href="classecs_1_1_position.html" title="The Position component, almost used for every entities It&#39;s a networkable component.">Position</a> x of the <a class="el" href="classecs_1_1_button.html" title="The Button Component, used to make the difference between the component.">Button</a> </td></tr>
+    <tr><td class="paramname">posY</td><td><a class="el" href="classecs_1_1_position.html" title="The Position component, almost used for every entities It&#39;s a networkable component.">Position</a> y of the <a class="el" href="classecs_1_1_button.html" title="The Button Component, used to make the difference between the component.">Button</a> </td></tr>
+    <tr><td class="paramname">weight</td><td><a class="el" href="classecs_1_1_weight.html" title="The Weight class, almost used for everything, used in gravity system.">Weight</a> of the <a class="el" href="classecs_1_1_button.html" title="The Button Component, used to make the difference between the component.">Button</a> </td></tr>
+    <tr><td class="paramname">size_x</td><td><a class="el" href="classecs_1_1_size.html" title="The Size component, almost used for everything.">Size</a> x of the <a class="el" href="classecs_1_1_button.html" title="The Button Component, used to make the difference between the component.">Button</a> </td></tr>
+    <tr><td class="paramname">size_y</td><td><a class="el" href="classecs_1_1_size.html" title="The Size component, almost used for everything.">Size</a> y of the <a class="el" href="classecs_1_1_button.html" title="The Button Component, used to make the difference between the component.">Button</a> </td></tr>
+    <tr><td class="paramname">multiplierAbscissa</td><td>The <a class="el" href="classecs_1_1_velocity.html" title="The velocity class, multiplying the movement of the entity It&#39;s a networkable component.">Velocity</a> multiplierAbscissa for the new <a class="el" href="classecs_1_1_button.html" title="The Button Component, used to make the difference between the component.">Button</a> </td></tr>
+    <tr><td class="paramname">multiplierOrdinate</td><td>The <a class="el" href="classecs_1_1_velocity.html" title="The velocity class, multiplying the movement of the entity It&#39;s a networkable component.">Velocity</a> multiplierOrdinate for the new <a class="el" href="classecs_1_1_button.html" title="The Button Component, used to make the difference between the component.">Button</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Id of the new <a class="el" href="classecs_1_1_button.html" title="The Button Component, used to make the difference between the component.">Button</a> in std::size_t </dd></dl>
+
+</div>
+</div>
+<a id="ade9f819690056ea6a2e01b35db816447"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade9f819690056ea6a2e01b35db816447">&#9670;&nbsp;</a></span>createNewEnemy()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -424,13 +609,13 @@ template&lt;std::derived_from&lt; Component &gt; C&gt; </div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>pos_x</em>, </td>
+          <td class="paramname"><em>posX</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>pos_y</em>, </td>
+          <td class="paramname"><em>posY</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -497,8 +682,8 @@ template&lt;std::derived_from&lt; Component &gt; C&gt; </div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">world</td><td>The world in which the <a class="el" href="classecs_1_1_enemy.html" title="Enemy Component allows an entity to be used as an Enemy.">Enemy</a> must be created </td></tr>
-    <tr><td class="paramname">pos_x</td><td><a class="el" href="classecs_1_1_position.html" title="The Position component, almost used for every entities It&#39;s a networkable component.">Position</a> x of the <a class="el" href="classecs_1_1_enemy.html" title="Enemy Component allows an entity to be used as an Enemy.">Enemy</a> </td></tr>
-    <tr><td class="paramname">pos_y</td><td><a class="el" href="classecs_1_1_position.html" title="The Position component, almost used for every entities It&#39;s a networkable component.">Position</a> y of the <a class="el" href="classecs_1_1_enemy.html" title="Enemy Component allows an entity to be used as an Enemy.">Enemy</a> </td></tr>
+    <tr><td class="paramname">posX</td><td><a class="el" href="classecs_1_1_position.html" title="The Position component, almost used for every entities It&#39;s a networkable component.">Position</a> x of the <a class="el" href="classecs_1_1_enemy.html" title="Enemy Component allows an entity to be used as an Enemy.">Enemy</a> </td></tr>
+    <tr><td class="paramname">posY</td><td><a class="el" href="classecs_1_1_position.html" title="The Position component, almost used for every entities It&#39;s a networkable component.">Position</a> y of the <a class="el" href="classecs_1_1_enemy.html" title="Enemy Component allows an entity to be used as an Enemy.">Enemy</a> </td></tr>
     <tr><td class="paramname">multiplierAbscissa</td><td>The <a class="el" href="classecs_1_1_velocity.html" title="The velocity class, multiplying the movement of the entity It&#39;s a networkable component.">Velocity</a> multiplierAbscissa for the new <a class="el" href="classecs_1_1_enemy.html" title="Enemy Component allows an entity to be used as an Enemy.">Enemy</a> </td></tr>
     <tr><td class="paramname">multiplierOrdinate</td><td>The <a class="el" href="classecs_1_1_velocity.html" title="The velocity class, multiplying the movement of the entity It&#39;s a networkable component.">Velocity</a> multiplierOrdinate for the new <a class="el" href="classecs_1_1_enemy.html" title="Enemy Component allows an entity to be used as an Enemy.">Enemy</a> </td></tr>
     <tr><td class="paramname">weight</td><td><a class="el" href="classecs_1_1_weight.html" title="The Weight class, almost used for everything, used in gravity system.">Weight</a> of the <a class="el" href="classecs_1_1_enemy.html" title="Enemy Component allows an entity to be used as an Enemy.">Enemy</a> </td></tr>
@@ -647,8 +832,8 @@ template&lt;std::derived_from&lt; Component &gt; C&gt; </div>
 
 </div>
 </div>
-<a id="a6bcc302fd257afdcaeaff0db1290b458"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6bcc302fd257afdcaeaff0db1290b458">&#9670;&nbsp;</a></span>createNewObstacle()</h2>
+<a id="a9a4e004d58edf1663052a29c0a7fa1c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a4e004d58edf1663052a29c0a7fa1c0">&#9670;&nbsp;</a></span>createNewObstacle()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -666,13 +851,13 @@ template&lt;std::derived_from&lt; Component &gt; C&gt; </div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>pos_x</em>, </td>
+          <td class="paramname"><em>posX</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>pos_y</em>, </td>
+          <td class="paramname"><em>posY</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -697,8 +882,8 @@ template&lt;std::derived_from&lt; Component &gt; C&gt; </div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">world</td><td>The world in which the <a class="el" href="classecs_1_1_obstacle.html" title="Obstacle Component allows an entity to be used as an Obstacle.">Obstacle</a> must be created </td></tr>
-    <tr><td class="paramname">pos_x</td><td>The position x of the new <a class="el" href="classecs_1_1_obstacle.html" title="Obstacle Component allows an entity to be used as an Obstacle.">Obstacle</a> </td></tr>
-    <tr><td class="paramname">pos_y</td><td>The position y of the new <a class="el" href="classecs_1_1_obstacle.html" title="Obstacle Component allows an entity to be used as an Obstacle.">Obstacle</a> </td></tr>
+    <tr><td class="paramname">posX</td><td>The position x of the new <a class="el" href="classecs_1_1_obstacle.html" title="Obstacle Component allows an entity to be used as an Obstacle.">Obstacle</a> </td></tr>
+    <tr><td class="paramname">posY</td><td>The position y of the new <a class="el" href="classecs_1_1_obstacle.html" title="Obstacle Component allows an entity to be used as an Obstacle.">Obstacle</a> </td></tr>
     <tr><td class="paramname">damage</td><td>The damage inflicted to an <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components.">Entity</a> if this <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components.">Entity</a> hits this <a class="el" href="classecs_1_1_obstacle.html" title="Obstacle Component allows an entity to be used as an Obstacle.">Obstacle</a> </td></tr>
   </table>
   </dd>
@@ -707,8 +892,8 @@ template&lt;std::derived_from&lt; Component &gt; C&gt; </div>
 
 </div>
 </div>
-<a id="af5401b6549bd6340777008fd66159eea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af5401b6549bd6340777008fd66159eea">&#9670;&nbsp;</a></span>createNewPlayer()</h2>
+<a id="a8815dfa7ffedf6f1a013f2599c49881c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8815dfa7ffedf6f1a013f2599c49881c">&#9670;&nbsp;</a></span>createNewPlayer()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -726,13 +911,13 @@ template&lt;std::derived_from&lt; Component &gt; C&gt; </div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>pos_x</em>, </td>
+          <td class="paramname"><em>posX</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>pos_y</em>, </td>
+          <td class="paramname"><em>posY</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -799,8 +984,8 @@ template&lt;std::derived_from&lt; Component &gt; C&gt; </div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">world</td><td>The world in which the <a class="el" href="classecs_1_1_player.html" title="Player Component allows an entity to be used as a Player.">Player</a> must be created </td></tr>
-    <tr><td class="paramname">pos_x</td><td><a class="el" href="classecs_1_1_position.html" title="The Position component, almost used for every entities It&#39;s a networkable component.">Position</a> x of the <a class="el" href="classecs_1_1_player.html" title="Player Component allows an entity to be used as a Player.">Player</a> </td></tr>
-    <tr><td class="paramname">pos_y</td><td><a class="el" href="classecs_1_1_position.html" title="The Position component, almost used for every entities It&#39;s a networkable component.">Position</a> y of the <a class="el" href="classecs_1_1_player.html" title="Player Component allows an entity to be used as a Player.">Player</a> </td></tr>
+    <tr><td class="paramname">posX</td><td><a class="el" href="classecs_1_1_position.html" title="The Position component, almost used for every entities It&#39;s a networkable component.">Position</a> x of the <a class="el" href="classecs_1_1_player.html" title="Player Component allows an entity to be used as a Player.">Player</a> </td></tr>
+    <tr><td class="paramname">posY</td><td><a class="el" href="classecs_1_1_position.html" title="The Position component, almost used for every entities It&#39;s a networkable component.">Position</a> y of the <a class="el" href="classecs_1_1_player.html" title="Player Component allows an entity to be used as a Player.">Player</a> </td></tr>
     <tr><td class="paramname">weight</td><td><a class="el" href="classecs_1_1_weight.html" title="The Weight class, almost used for everything, used in gravity system.">Weight</a> of the <a class="el" href="classecs_1_1_player.html" title="Player Component allows an entity to be used as a Player.">Player</a> </td></tr>
     <tr><td class="paramname">size_x</td><td><a class="el" href="classecs_1_1_size.html" title="The Size component, almost used for everything.">Size</a> x of the player </td></tr>
     <tr><td class="paramname">size_y</td><td><a class="el" href="classecs_1_1_size.html" title="The Size component, almost used for everything.">Size</a> y of the player </td></tr>
@@ -816,8 +1001,8 @@ template&lt;std::derived_from&lt; Component &gt; C&gt; </div>
 
 </div>
 </div>
-<a id="a312f0c7e275e1c39e786c0ab6cfc9fb6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a312f0c7e275e1c39e786c0ab6cfc9fb6">&#9670;&nbsp;</a></span>createNewProjectile()</h2>
+<a id="a274f8eac853f0ccb811db5befe07cdc3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a274f8eac853f0ccb811db5befe07cdc3">&#9670;&nbsp;</a></span>createNewProjectile()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -835,13 +1020,13 @@ template&lt;std::derived_from&lt; Component &gt; C&gt; </div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>pos_x</em>, </td>
+          <td class="paramname"><em>posX</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>pos_y</em>, </td>
+          <td class="paramname"><em>posY</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -878,8 +1063,8 @@ template&lt;std::derived_from&lt; Component &gt; C&gt; </div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">world</td><td>The world in which the <a class="el" href="classecs_1_1_projectile.html" title="This Component specifies if an entity is a Projectile. This component specifies whether an entity is ...">Projectile</a> must be created </td></tr>
-    <tr><td class="paramname">pos_x</td><td>The start position x of the new <a class="el" href="classecs_1_1_projectile.html" title="This Component specifies if an entity is a Projectile. This component specifies whether an entity is ...">Projectile</a> </td></tr>
-    <tr><td class="paramname">pos_y</td><td>The start position y of the new <a class="el" href="classecs_1_1_projectile.html" title="This Component specifies if an entity is a Projectile. This component specifies whether an entity is ...">Projectile</a> </td></tr>
+    <tr><td class="paramname">posX</td><td>The start position x of the new <a class="el" href="classecs_1_1_projectile.html" title="This Component specifies if an entity is a Projectile. This component specifies whether an entity is ...">Projectile</a> </td></tr>
+    <tr><td class="paramname">posY</td><td>The start position y of the new <a class="el" href="classecs_1_1_projectile.html" title="This Component specifies if an entity is a Projectile. This component specifies whether an entity is ...">Projectile</a> </td></tr>
     <tr><td class="paramname">multiplierAbscissa</td><td>The <a class="el" href="classecs_1_1_velocity.html" title="The velocity class, multiplying the movement of the entity It&#39;s a networkable component.">Velocity</a> multiplierAbscissa of the new <a class="el" href="classecs_1_1_projectile.html" title="This Component specifies if an entity is a Projectile. This component specifies whether an entity is ...">Projectile</a> </td></tr>
     <tr><td class="paramname">multiplierOrdinate</td><td>The <a class="el" href="classecs_1_1_velocity.html" title="The velocity class, multiplying the movement of the entity It&#39;s a networkable component.">Velocity</a> multiplierOrdinate of the new <a class="el" href="classecs_1_1_projectile.html" title="This Component specifies if an entity is a Projectile. This component specifies whether an entity is ...">Projectile</a> </td></tr>
     <tr><td class="paramname">damage</td><td>The <a class="el" href="classecs_1_1_damage.html" title="The Damage class, reducing the entity&#39;s life.">Damage</a> of the new <a class="el" href="classecs_1_1_projectile.html" title="This Component specifies if an entity is a Projectile. This component specifies whether an entity is ...">Projectile</a> </td></tr>

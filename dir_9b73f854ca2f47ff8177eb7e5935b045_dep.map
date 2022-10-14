@@ -1,12 +1,12 @@
 <map id="libs/GameEntityManipulation/CreateEntitiesFunctions" name="libs/GameEntityManipulation/CreateEntitiesFunctions">
 <area shape="rect" id="node1" href="dir_9b73f854ca2f47ff8177eb7e5935b045.html" title="CreateEntitiesFunctions" alt="" coords="171,52,347,100"/>
 <area shape="rect" id="node2" href="dir_cd2ecf0cde374cecaf1d6125b0769103.html" title="GameComponents" alt="" coords="5,148,148,196"/>
-<area shape="rect" id="edge1-headlabel" href="dir_000014_000012.html" title="60" alt="" coords="133,140,150,154"/>
+<area shape="rect" id="edge1-headlabel" href="dir_000014_000012.html" title="74" alt="" coords="133,140,150,154"/>
 <area shape="rect" id="node3" href="dir_c08c1cb438cabecb5ea7c9779f63ac3b.html" title="GameSharedResources" alt="" coords="173,148,346,196"/>
 <area shape="rect" id="edge2-headlabel" href="dir_000014_000015.html" title="1" alt="" coords="263,122,272,137"/>
 <area shape="rect" id="node4" href="dir_ee0526d395d6e0f4a61b0d3fd4728c02.html" title="ECS" alt="" coords="223,244,295,292"/>
-<area shape="rect" id="edge3-headlabel" href="dir_000014_000005.html" title="6" alt="" coords="311,243,320,257"/>
-<area shape="rect" id="edge4-headlabel" href="dir_000012_000005.html" title="29" alt="" coords="202,225,219,240"/>
+<area shape="rect" id="edge3-headlabel" href="dir_000014_000005.html" title="8" alt="" coords="311,243,320,257"/>
+<area shape="rect" id="edge4-headlabel" href="dir_000012_000005.html" title="30" alt="" coords="202,225,219,240"/>
 <area shape="rect" id="edge5-headlabel" href="dir_000015_000005.html" title="2" alt="" coords="263,218,272,233"/>
 <area shape="rect" id="clust1" href="dir_95f5c87b548473d5a6fa253149f86c32.html" title="GameEntityManipulation" alt="" coords="161,16,358,111"/>
 </map>

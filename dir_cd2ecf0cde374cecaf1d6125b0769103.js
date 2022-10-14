@@ -3,6 +3,9 @@ var dir_cd2ecf0cde374cecaf1d6125b0769103 =
     [ "AlliedProjectileComponent.hpp", "_allied_projectile_component_8hpp.html", [
       [ "AlliedProjectile", "classecs_1_1_allied_projectile.html", null ]
     ] ],
+    [ "BackGroundComponent.hpp", "_back_ground_component_8hpp.html", [
+      [ "BackGround", "classecs_1_1_back_ground.html", null ]
+    ] ],
     [ "BouncingComponent.hpp", "_bouncing_component_8hpp.html", [
       [ "Bouncing", "classecs_1_1_bouncing.html", null ]
     ] ],
