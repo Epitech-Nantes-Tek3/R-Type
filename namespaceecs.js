@@ -57,6 +57,7 @@ var namespaceecs =
     [ "RandomDevice", "structecs_1_1_random_device.html", "structecs_1_1_random_device" ],
     [ "RenderWindowResource", "classecs_1_1_render_window_resource.html", "classecs_1_1_render_window_resource" ],
     [ "Resource", "classecs_1_1_resource.html", "classecs_1_1_resource" ],
+    [ "SfRectangleFollowEntitySystem", "structecs_1_1_sf_rectangle_follow_entity_system.html", "structecs_1_1_sf_rectangle_follow_entity_system" ],
     [ "ShootingFrequency", "classecs_1_1_shooting_frequency.html", "classecs_1_1_shooting_frequency" ],
     [ "Size", "classecs_1_1_size.html", "classecs_1_1_size" ],
     [ "System", "classecs_1_1_system.html", "classecs_1_1_system" ],

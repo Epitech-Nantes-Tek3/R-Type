@@ -7,5 +7,9 @@ var dir_260390a1018d7c3dee6b315240e44f9a =
     [ "InputManagement.cpp", "_input_management_8cpp.html", null ],
     [ "InputManagement.hpp", "_input_management_8hpp.html", [
       [ "InputManagement", "structecs_1_1_input_management.html", "structecs_1_1_input_management" ]
+    ] ],
+    [ "SfRectangleFollowEntitySystem.cpp", "_sf_rectangle_follow_entity_system_8cpp.html", null ],
+    [ "SfRectangleFollowEntitySystem.hpp", "_sf_rectangle_follow_entity_system_8hpp.html", [
+      [ "SfRectangleFollowEntitySystem", "structecs_1_1_sf_rectangle_follow_entity_system.html", "structecs_1_1_sf_rectangle_follow_entity_system" ]
     ] ]
 ];

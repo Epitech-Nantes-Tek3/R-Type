@@ -87,6 +87,7 @@ var hierarchy =
       [ "ecs::InputManagement", "structecs_1_1_input_management.html", null ],
       [ "ecs::LifeTimeDeath", "structecs_1_1_life_time_death.html", null ],
       [ "ecs::Movement", "structecs_1_1_movement.html", null ],
+      [ "ecs::SfRectangleFollowEntitySystem", "structecs_1_1_sf_rectangle_follow_entity_system.html", null ],
       [ "ecs::UpdateClock", "structecs_1_1_update_clock.html", null ],
       [ "SendNewlyCreatedToClients", "struct_send_newly_created_to_clients.html", null ],
       [ "SendNewlyCreatedToServer", "struct_send_newly_created_to_server.html", null ],
