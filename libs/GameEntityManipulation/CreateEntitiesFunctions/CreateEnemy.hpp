@@ -19,7 +19,6 @@
 #include "GameComponents/VelocityComponent.hpp"
 #include "GameComponents/WeightComponent.hpp"
 #include "GameSharedResources/Random.hpp"
-#include "GameComponents/TextureNameComponent.hpp"
 #include "World/World.hpp"
 
 #define MINIMUM_WIDTH  1400
@@ -58,7 +57,6 @@ namespace ecs
             .addComponent<Collidable>()
             .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate)
             .addComponent<Enemy>()
-            .addComponent<TextureName>()
             .getId();
     }
 

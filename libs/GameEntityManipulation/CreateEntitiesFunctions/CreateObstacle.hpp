@@ -18,7 +18,6 @@
 #include "GameComponents/SizeComponent.hpp"
 #include "GameComponents/VelocityComponent.hpp"
 #include "GameComponents/WeightComponent.hpp"
-#include "GameComponents/TextureNameComponent.hpp"
 #include "World/World.hpp"
 
 namespace ecs
@@ -29,6 +28,7 @@ namespace ecs
     /// @param pos_x The position x of the new Obstacle
     /// @param pos_y The position y of the new Obstacle
     /// @param damage The damage inflicted to an Entity if this Entity hits this Obstacle
+    /// @param texture_e Texture of Obstacle
     /// @return Id of the new Obstacle in std::size_t
     inline std::size_t createNewObstacle(World &world, const int pos_x, const int pos_y, const unsigned short damage)
     {
@@ -42,7 +42,6 @@ namespace ecs
             .addComponent<DamageRadius>(5)
             .addComponent<Collidable>()
             .addComponent<Obstacle>()
-            .addComponent<TextureName>()
             .getId();
     }
 } // namespace ecs

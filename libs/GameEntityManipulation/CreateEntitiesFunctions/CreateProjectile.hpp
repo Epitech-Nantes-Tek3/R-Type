@@ -18,7 +18,6 @@
 #include "GameComponents/SizeComponent.hpp"
 #include "GameComponents/VelocityComponent.hpp"
 #include "GameComponents/WeightComponent.hpp"
-#include "GameComponents/TextureNameComponent.hpp"
 #include "World/World.hpp"
 
 namespace ecs
@@ -45,7 +44,6 @@ namespace ecs
             .addComponent<Collidable>()
             .addComponent<Projectile>()
             .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate)
-            .addComponent<TextureName>()
             .getId();
     }
 } // namespace ecs

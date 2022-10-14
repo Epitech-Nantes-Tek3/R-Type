@@ -18,7 +18,6 @@
 #include "GameComponents/SizeComponent.hpp"
 #include "GameComponents/VelocityComponent.hpp"
 #include "GameComponents/WeightComponent.hpp"
-#include "GameComponents/TextureNameComponent.hpp"
 #include "World/World.hpp"
 
 namespace ecs
@@ -45,7 +44,6 @@ namespace ecs
             .addComponent<DamageRadius>(5)
             .addComponent<Collidable>()
             .addComponent<EnemyProjectile>()
-            .addComponent<TextureName>()
             .getId();
     }
 } // namespace ecs
