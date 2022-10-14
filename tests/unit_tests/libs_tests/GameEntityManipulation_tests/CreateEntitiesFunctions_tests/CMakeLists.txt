@@ -8,6 +8,8 @@ set(TEST_SRC_ROOT
     ${SRC_ROOT}/CreateEnemy_test.cpp
     ${SRC_ROOT}/CreateObstacle_test.cpp
     ${SRC_ROOT}/CreateEnemyRandom_test.cpp
+    ${SRC_ROOT}/CreateBackGround_tests.cpp
+    ${SRC_ROOT}/CreateButton_tests.cpp
 )
 
 create_test(
