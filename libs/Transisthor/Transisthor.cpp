@@ -374,7 +374,7 @@ void Transisthor::entityConvertAlliedProjectileType(unsigned short id, void *byt
     try {
         shooter = findShooter(networkables);
     } catch (const NetworkError &e) {
-        std::cerr << "Parent entities cannot be founded." << std::endl;
+        std::cerr << "Parent entities cannot be found." << std::endl;
         return;
     }
 
@@ -477,7 +477,7 @@ void Transisthor::entityConvertEnemyProjectileType(unsigned short id, void *byte
     try {
         shooter = findShooter(networkables);
     } catch (const NetworkError &e) {
-        std::cerr << "Parent entities cannot be founded." << std::endl;
+        std::cerr << "Parent entities cannot be found." << std::endl;
         return;
     }
 
