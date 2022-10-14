@@ -31,6 +31,10 @@ namespace ecs
             return dist(_generation);
         }
 
+        /// @brief Return the generation seed
+        /// @return std::mt19937 the generation seed
+        inline std::mt19937 getRandomDevice() const { return _generation; }
+
       private:
         /// @brief Will be used to obtain a seed for the random number engine
         std::random_device _device;

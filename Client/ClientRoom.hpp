@@ -44,6 +44,15 @@ namespace client_data
         void startLobbyLoop(void);
 
       private:
+        /// @brief Init all shared resources of the world.
+        void _initSharedResources();
+
+        /// @brief Init all systems of the world.
+        void _initSystems();
+
+        /// @brief Init some entities only created by the client.
+        void _initEntities();
+
         /// @brief Network informations of the room.
         Client _networkInformations;
 
@@ -61,6 +70,15 @@ namespace client_data
 
         /// @brief Current state of the client
         ClientState _state;
+
+        /// @brief Init the Ressources and Systems of the ECS
+        void initEcsGameData(void);
+
+        /// @brief Start the connexion protocol and ask the server for a place inside the room
+        void startConnexionProtocol(void);
+
+        /// @brief Answer the reception of a protocol 12
+        void protocol12Answer(CommunicatorMessage connexionResponse);
     };
 } // namespace client_data
 
