@@ -24,19 +24,19 @@ namespace ecs
     /// @param posX Position x of the BackGround
     /// @param posY Position y of the BackGround
     /// @param weight Weight of the BackGround
-    /// @param size_x Size x of the player
-    /// @param size_y Size y of the player
+    /// @param sizeX Size x of the player
+    /// @param sizeY Size y of the player
     /// @param multiplierAbscissa The Velocity multiplierAbscissa for the new BackGround
     /// @param multiplierOrdinate The Velocity multiplierOrdinate for the new BackGround
     /// @return Id of the new BackGround in std::size_t
     inline std::size_t createNewBackGround(World &world, const int posX, const int posY,
-        const double multiplierAbscissa, const double multiplierOrdinate, const short weight, const int size_x,
-        const int size_y)
+        const double multiplierAbscissa, const double multiplierOrdinate, const short weight, const int sizeX,
+        const int sizeY)
     {
         return world.addEntity()
             .addComponent<Position>(posX, posY)
             .addComponent<Weight>(weight)
-            .addComponent<Size>(size_x, size_y)
+            .addComponent<Size>(sizeX, sizeY)
             .addComponent<Collidable>()
             .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate)
             .addComponent<BackGround>()

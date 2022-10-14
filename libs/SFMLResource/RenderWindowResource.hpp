@@ -26,6 +26,7 @@ namespace ecs
             inline RenderWindowResource(std::string title = "Default", sf::VideoMode mode = sf::VideoMode(1920, 1080, 32), sf::Uint32 style = sf::Style::Default)
             {
                 window.create(mode, title, style);
+                window.setFramerateLimit(60);
             };
 
             /// @brief Default destructor.

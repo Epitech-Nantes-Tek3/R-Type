@@ -29,7 +29,7 @@ namespace ecs
             /// @param fontPath The font file path to be used.
             inline GraphicsFontResource(const std::filesystem::path &fontPath)
             {
-                font.loadFromFile(fontPath);
+                font.loadFromFile(fontPath.string());
             }
 
             /// @brief Default destructor of the class.
