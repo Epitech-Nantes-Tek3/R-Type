@@ -121,6 +121,18 @@ void Receiver::dataTraitmentType10(Message dataContent)
         dataContent.size - NETWORK_HEADER_SIZE, 10});
 }
 
+void Receiver::dataTraitmentType11(Message dataContent)
+{
+    addMessage({dataContent.clientInfo, (void *)((char *)dataContent.data + NETWORK_HEADER_SIZE),
+        dataContent.size - NETWORK_HEADER_SIZE, 11});
+}
+
+void Receiver::dataTraitmentType12(Message dataContent)
+{
+    addMessage({dataContent.clientInfo, (void *)((char *)dataContent.data + NETWORK_HEADER_SIZE),
+        dataContent.size - NETWORK_HEADER_SIZE, 12});
+}
+
 void Receiver::dataTraitmentType20(Message dataContent)
 {
     unsigned short endpointPort = 0;
@@ -153,6 +165,8 @@ void Receiver::dataTraitmentType31(Message dataContent)
 void Receiver::bindDataTraitmentFunction(void)
 {
     _dataTraitment[10] = std::bind(&Receiver::dataTraitmentType10, this, std::placeholders::_1);
+    _dataTraitment[11] = std::bind(&Receiver::dataTraitmentType11, this, std::placeholders::_1);
+    _dataTraitment[12] = std::bind(&Receiver::dataTraitmentType12, this, std::placeholders::_1);
     _dataTraitment[20] = std::bind(&Receiver::dataTraitmentType20, this, std::placeholders::_1);
     _dataTraitment[21] = std::bind(&Receiver::dataTraitmentType21, this, std::placeholders::_1);
     _dataTraitment[30] = std::bind(&Receiver::dataTraitmentType30, this, std::placeholders::_1);

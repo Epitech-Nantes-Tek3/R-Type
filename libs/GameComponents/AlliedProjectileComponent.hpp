@@ -13,6 +13,17 @@
 namespace ecs
 {
     /// @brief Allied Projectile Component allows an entity to be used as an Allied Projectile
-    class AlliedProjectile : public Component {};
+    class AlliedProjectile : public Component {
+      public:
+        /// @brief Network id of the parent
+        unsigned short parentNetworkId;
+
+        /// @brief Construct a new AlliedProjectile component
+        /// @param parentNetId The parent network Id
+        AlliedProjectile(unsigned short parentNetId = 0) : parentNetworkId(parentNetId){};
+
+        /// @brief Destroy the Allied Projectile object
+        ~AlliedProjectile() = default;
+    };
 } // namespace ecs
 #endif /* !PROJECTILEALLYCOMPONENT_HPP_ */

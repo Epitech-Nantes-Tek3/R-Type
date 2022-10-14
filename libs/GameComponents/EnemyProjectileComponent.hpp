@@ -13,6 +13,17 @@
 namespace ecs
 {
     /// @brief Enemy Projectile Component allows an entity to be used as an Enemy Projectile
-    class EnemyProjectile : public Component {};
+    class EnemyProjectile : public Component {
+        public:
+        /// @brief Network id of the parent
+        unsigned short parentNetworkId;
+
+        /// @brief Construct a new EnemyProjectile component
+        /// @param parentNetId The parent network Id
+        EnemyProjectile(unsigned short parentNetId = 0) : parentNetworkId(parentNetId){};
+
+        /// @brief Destroy the Enemy Projectile object
+        ~EnemyProjectile() = default;
+    };
 } // namespace ecs
 #endif /* !EnemyProjectileCOMPONENT_HPP_ */

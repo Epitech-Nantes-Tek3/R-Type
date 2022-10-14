@@ -17,6 +17,7 @@ Test(CreateEnemyProjectile_test, CreateEnemyProjectile)
     World world(1);
     
     std::size_t enemy = world.addEntity()
+                            .addComponent<Networkable>(10)
                             .addComponent<Position>(1, 1)
                             .addComponent<Damage>(10)
                             .addComponent<Velocity>(1, 1)
