@@ -82,9 +82,7 @@ void ClientRoom::startConnexionProtocol(void)
 void ClientRoom::protocol12Answer(CommunicatorMessage connexionResponse)
 {
     _state = ClientState::IN_GAME;
-    std::cerr << "AMEN" << std::endl;
     _worldInstance.get()->addEntity().addComponent<NetworkServer>(connexionResponse.message.clientInfo.getId());
-    std::cerr << "yolo" << std::endl;
     // std::vector<std::shared_ptr<Entity>> joined = _worldInstance.get()->joinEntities<Player>();
     // createNewAlliedProjectile(*_worldInstance.get(), *joined[0],
     // NewlyCreated().generate_uuid(_worldInstance.get()->getResource<RandomDevice>().getRandomDevice(), 16));
