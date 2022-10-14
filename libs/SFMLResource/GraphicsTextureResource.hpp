@@ -8,10 +8,10 @@
 #ifndef GRAPHICSTEXTURERESOURCE_HPP_
 #define GRAPHICSTEXTURERESOURCE_HPP_
 
-#include <filesystem>
-#include <unordered_map>
 #include <SFML/Graphics.hpp>
+#include <filesystem>
 #include "Resource/Resource.hpp"
+#include <unordered_map>
 
 namespace ecs
 {
@@ -45,17 +45,21 @@ namespace ecs
         /// @brief Add a Texture from it's Texture Path passed as parameter
         /// @param texture_e Enum of the Texture
         /// @param texturePath The texture path to be used.
-        inline GraphicsTextureResource(const textureName_e texture_e, const std::filesystem::path &texturePath)
+        inline GraphicsTextureResource(const textureName_e texture_e, const std::filesystem::path &texturePath,
+            const sf::Vector2f &position = sf::Vector2f(0, 0), const sf::Vector2f &size = sf::Vector2f(0, 0))
         {
-            addTexture(texture_e, texturePath);
+            addTexture(texture_e, texturePath, position, size);
         }
 
         /// @brief Add a texture to the TexturesList
         /// @param texture_e Enum which give the name of the Texture
         /// @param texturePath Path of the Texture
-        inline void addTexture(const textureName_e texture_e, const std::filesystem::path &texturePath)
+        inline void addTexture(const textureName_e texture_e, const std::filesystem::path &texturePath,
+            const sf::Vector2f &position = sf::Vector2f(0, 0), const sf::Vector2f &size = sf::Vector2f(0, 0))
         {
-            _texturesList.emplace(texture_e, std::make_shared<sf::Texture>()->loadFromFile(texturePath));
+            _texturesList.emplace(texture_e,
+                std::make_shared<sf::Texture>()->loadFromFile(
+                    texturePath, sf::IntRect(sf::Vector2i(position), sf::Vector2i(size))));
         }
 
         /// @brief Default destructor of the class.
