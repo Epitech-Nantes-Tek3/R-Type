@@ -13,6 +13,8 @@
 #include "GameEntityManipulation/CreateEntitiesFunctions/CreateObstacle.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Systems/SendToServer.hpp"
+#include "Transisthor/TransisthorECSLogic/Client/Systems/SendNewlyCreatedToServer.hpp"
+#include "Transisthor/TransisthorECSLogic/Client/Components/NetworkServer.hpp"
 
 using namespace error_lib;
 using namespace communicator_lib;
@@ -46,7 +48,6 @@ ClientRoom::ClientRoom(std::string address, unsigned short port, std::string ser
 struct Temp : public System {
     void run(World &world)
     {
-        std::cerr << "You are connected !" << std::endl;
         (void)world;
     }
 };
@@ -55,12 +56,19 @@ void ClientRoom::initEcsGameData(void)
 {
     _worldInstance->addSystem<Temp>();
     _worldInstance->addSystem<SendToServer>();
+    _worldInstance->addSystem<SendNewlyCreatedToServer>();
 }
 
 void ClientRoom::startConnexionProtocol(void)
 {
     _communicatorInstance.get()->startReceiverListening();
     _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, nullptr, 0, 10);
+}
+
+void ClientRoom::protocol12Answer(CommunicatorMessage connexionResponse)
+{
+    _state = ClientState::IN_GAME;
+    _worldInstance.get()->addEntity().addComponent<NetworkServer>(connexionResponse.message.clientInfo.getId());
 }
 
 void ClientRoom::startLobbyLoop(void)
@@ -78,7 +86,7 @@ void ClientRoom::startLobbyLoop(void)
                 return;
             }
             if (connexionResponse.message.type == 12)
-                _state = ClientState::IN_GAME;
+                protocol12Answer(connexionResponse);
         } catch (NetworkError &error) {
         }
         if (_state == ClientState::IN_GAME)

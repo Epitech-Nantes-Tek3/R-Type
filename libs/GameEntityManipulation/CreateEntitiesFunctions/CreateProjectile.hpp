@@ -19,6 +19,7 @@
 #include "GameComponents/SizeComponent.hpp"
 #include "GameComponents/VelocityComponent.hpp"
 #include "GameComponents/WeightComponent.hpp"
+#include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "GameSharedResources/Random.hpp"
 #include "World/World.hpp"
 
@@ -53,6 +54,7 @@ namespace ecs
         if (networkId) {
             // Case : Creation in a server instance
             entity.addComponent<NewlyCreated>(uuid, false);
+            entity.addComponent<Networkable>(networkId);
         } else {
             // Case : Creation in a Client instance
             if (uuid != "") {

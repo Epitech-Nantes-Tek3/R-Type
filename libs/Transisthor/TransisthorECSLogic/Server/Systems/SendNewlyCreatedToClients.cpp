@@ -43,7 +43,6 @@ void SendNewlyCreatedToClients::runSystem(ecs::World &world)
         if (entityPtr->contains<ecs::AlliedProjectile>()) {
             world.getTransisthorBridge()->transitEcsDataToNetworkDataEntityAlliedProjectile(
                 entityPtr->getComponent<Networkable>().id, entityPtr->getId(), newlyCreated.uuid, clientIdList);
-            return;
         }
         if (entityPtr->contains<ecs::Enemy>()) {
             Position &pos = entityPtr->getComponent<Position>();
@@ -55,12 +54,10 @@ void SendNewlyCreatedToClients::runSystem(ecs::World &world)
                 entityPtr->getComponent<Weight>().weight, size.x, size.y, entityPtr->getComponent<Life>().lifePoint,
                 entityPtr->getComponent<Damage>().damagePoint, entityPtr->getComponent<DamageRadius>().radius,
                 newlyCreated.uuid, clientIdList);
-            return;
         }
         if (entityPtr->contains<ecs::EnemyProjectile>()) {
             world.getTransisthorBridge()->transitEcsDataToNetworkDataEntityEnemyProjectile(
                 entityPtr->getComponent<Networkable>().id, entityPtr->getId(), newlyCreated.uuid, clientIdList);
-            return;
         }
         if (entityPtr->contains<ecs::Obstacle>()) {
             Position &pos = entityPtr->getComponent<Position>();
@@ -68,7 +65,6 @@ void SendNewlyCreatedToClients::runSystem(ecs::World &world)
             world.getTransisthorBridge()->transitEcsDataToNetworkDataEntityObstacle(
                 entityPtr->getComponent<Networkable>().id, pos.x, pos.y, entityPtr->getComponent<Damage>().damagePoint,
                 newlyCreated.uuid, clientIdList);
-            return;
         }
         if (entityPtr->contains<ecs::Player>()) {
             Position &pos = entityPtr->getComponent<Position>();
@@ -80,7 +76,6 @@ void SendNewlyCreatedToClients::runSystem(ecs::World &world)
                 entityPtr->getComponent<Weight>().weight, size.x, size.y, entityPtr->getComponent<Life>().lifePoint,
                 entityPtr->getComponent<Damage>().damagePoint, entityPtr->getComponent<DamageRadius>().radius,
                 newlyCreated.uuid, clientIdList);
-            return;
         }
         if (entityPtr->contains<ecs::Projectile>()) {
             Position &pos = entityPtr->getComponent<Position>();
@@ -89,7 +84,6 @@ void SendNewlyCreatedToClients::runSystem(ecs::World &world)
             world.getTransisthorBridge()->transitEcsDataToNetworkDataEntityProjectile(
                 entityPtr->getComponent<Networkable>().id, pos.x, pos.y, vel.multiplierAbscissa, vel.multiplierOrdinate,
                 entityPtr->getComponent<Damage>().damagePoint, newlyCreated.uuid, clientIdList);
-            return;
         }
         if (newlyCreated.uuid == "") {
             entityPtr->removeComponent<NewlyCreated>();
