@@ -56,10 +56,12 @@ namespace ecs
         inline void shootAction(World &world, float action)
         {
             std::vector<std::shared_ptr<ecs::Entity>> player = world.joinEntities<Controlable>();
+            (void)action;
 
             auto shoot = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
                 createNewAlliedProjectile(world, *entityPtr.get());
             };
+            std::for_each(player.begin(), player.end(), shoot);
         }
     };
 } // namespace ecs
