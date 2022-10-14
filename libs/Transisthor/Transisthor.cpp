@@ -116,7 +116,7 @@ void *Transisthor::transitEcsDataToNetworkDataEntityAlliedProjectile(
 }
 
 void *Transisthor::transitEcsDataToNetworkDataEntityEnemy(unsigned short id, int posX, int posY,
-    double multiplierAbscissa, double multiplierOrdinate, short weight, int size_x, int size_y, short life,
+    double multiplierAbscissa, double multiplierOrdinate, short weight, int sizeX, int sizeY, short life,
     unsigned short damage, unsigned short damageRadius, std::string uuid, std::vector<unsigned short> destination)
 {
     void *networkObject = std::malloc((sizeof(unsigned short) * 4 + sizeof(int) * 4 + sizeof(double) * 2
@@ -138,10 +138,10 @@ void *Transisthor::transitEcsDataToNetworkDataEntityEnemy(unsigned short id, int
         &weight, sizeof(short));
     std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2 + sizeof(int) * 2 + sizeof(double) * 2
                     + sizeof(short)),
-        &size_x, sizeof(int));
+        &sizeX, sizeof(int));
     std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2 + sizeof(int) * 3 + sizeof(double) * 2
                     + sizeof(short)),
-        &size_y, sizeof(int));
+        &sizeY, sizeof(int));
     std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2 + sizeof(int) * 4 + sizeof(double) * 2
                     + sizeof(short)),
         &life, sizeof(short));
@@ -211,7 +211,7 @@ void *Transisthor::transitEcsDataToNetworkDataEntityObstacle(unsigned short id, 
 }
 
 void *Transisthor::transitEcsDataToNetworkDataEntityPlayer(unsigned short id, int posX, int posY,
-    double multiplierAbscissa, double multiplierOrdinate, short weight, int size_x, int size_y, short life,
+    double multiplierAbscissa, double multiplierOrdinate, short weight, int sizeX, int sizeY, short life,
     unsigned short damage, unsigned short damageRadius, std::string uuid, std::vector<unsigned short> destination)
 {
     void *networkObject = std::malloc((sizeof(unsigned short) * 4 + sizeof(int) * 4 + sizeof(double) * 2
@@ -233,10 +233,10 @@ void *Transisthor::transitEcsDataToNetworkDataEntityPlayer(unsigned short id, in
         &weight, sizeof(short));
     std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2 + sizeof(int) * 2 + sizeof(double) * 2
                     + sizeof(short)),
-        &size_x, sizeof(int));
+        &sizeX, sizeof(int));
     std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2 + sizeof(int) * 3 + sizeof(double) * 2
                     + sizeof(short)),
-        &size_y, sizeof(int));
+        &sizeY, sizeof(int));
     std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2 + sizeof(int) * 4 + sizeof(double) * 2
                     + sizeof(short)),
         &life, sizeof(short));
@@ -380,7 +380,8 @@ void Transisthor::entityConvertAlliedProjectileType(unsigned short id, void *byt
 
     std::string uuidStr(uuid);
     if (uuidStr != "" && id == 0) {
-        createNewAlliedProjectile(_ecsWorld, *(shooter.get()), uuid, _ecsWorld.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
+        createNewAlliedProjectile(_ecsWorld, *(shooter.get()), uuid,
+            _ecsWorld.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
     } else {
         std::size_t entityId;
         if (uuidStr == "") {
@@ -398,7 +399,6 @@ void Transisthor::entityConvertAlliedProjectileType(unsigned short id, void *byt
                 }
             }
         }
-
     }
 }
 
@@ -422,10 +422,8 @@ void Transisthor::entityConvertEnemyType(unsigned short id, void *byteCode)
     std::memcpy(&multiplierAbscissa, (void *)((char *)byteCode + sizeof(int) * 2), sizeof(double));
     std::memcpy(&multiplierOrdinate, (void *)((char *)byteCode + sizeof(int) * 2 + sizeof(double)), sizeof(double));
     std::memcpy(&weight, (void *)((char *)byteCode + sizeof(int) * 2 + sizeof(double) * 2), sizeof(short));
-    std::memcpy(
-        &sizeX, (void *)((char *)byteCode + sizeof(int) * 2 + sizeof(double) * 2 + sizeof(short)), sizeof(int));
-    std::memcpy(
-        &sizeY, (void *)((char *)byteCode + sizeof(int) * 3 + sizeof(double) * 2 + sizeof(short)), sizeof(int));
+    std::memcpy(&sizeX, (void *)((char *)byteCode + sizeof(int) * 2 + sizeof(double) * 2 + sizeof(short)), sizeof(int));
+    std::memcpy(&sizeY, (void *)((char *)byteCode + sizeof(int) * 3 + sizeof(double) * 2 + sizeof(short)), sizeof(int));
     std::memcpy(
         &life, (void *)((char *)byteCode + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short)), sizeof(short));
     std::memcpy(&damage, (void *)((char *)byteCode + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2),
@@ -436,12 +434,14 @@ void Transisthor::entityConvertEnemyType(unsigned short id, void *byteCode)
 
     std::string uuidStr(uuid);
     if (uuidStr != "" && id == 0) {
-        createNewEnemy(_ecsWorld, posX, posY, multiplierAbscissa, multiplierOrdinate, weight, sizeX, sizeY, life, damage, damageRadius, "", _ecsWorld.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
+        createNewEnemy(_ecsWorld, posX, posY, multiplierAbscissa, multiplierOrdinate, weight, sizeX, sizeY, life,
+            damage, damageRadius, "", _ecsWorld.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
     } else {
         std::size_t entityId;
 
         if (uuidStr == "") {
-            entityId = createNewEnemy(_ecsWorld, posX, posY, multiplierAbscissa, multiplierOrdinate, weight, sizeX, sizeY, life, damage, damageRadius);
+            entityId = createNewEnemy(_ecsWorld, posX, posY, multiplierAbscissa, multiplierOrdinate, weight, sizeX,
+                sizeY, life, damage, damageRadius);
         } else {
             std::vector<std::shared_ptr<Entity>> newlyCreated = _ecsWorld.joinEntities<NewlyCreated>();
 
@@ -482,7 +482,8 @@ void Transisthor::entityConvertEnemyProjectileType(unsigned short id, void *byte
 
     std::string uuidStr(uuid);
     if (uuidStr != "" && id == 0) {
-        createNewEnemyProjectile(_ecsWorld, *(shooter.get()), "", _ecsWorld.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
+        createNewEnemyProjectile(_ecsWorld, *(shooter.get()), "",
+            _ecsWorld.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
     } else {
         std::size_t entityId;
 
@@ -517,7 +518,8 @@ void Transisthor::entityConvertObstacleType(unsigned short id, void *byteCode)
     std::string uuidStr(uuid);
 
     if (uuidStr != "" && id == 0) {
-        createNewObstacle(_ecsWorld, posX, posY, damage, "", _ecsWorld.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
+        createNewObstacle(_ecsWorld, posX, posY, damage, "",
+            _ecsWorld.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
     } else {
         std::size_t entityId;
 
@@ -550,6 +552,7 @@ void Transisthor::entityConvertPlayerType(unsigned short id, void *byteCode)
     short life = 0;
     unsigned short damage = 0;
     unsigned short damageRadius = 0;
+    bool isPlayer = false; // Will be update in one hour
     char *uuid =
         (char *)byteCode + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2 + sizeof(unsigned short) * 2;
 
@@ -558,10 +561,8 @@ void Transisthor::entityConvertPlayerType(unsigned short id, void *byteCode)
     std::memcpy(&multiplierAbscissa, (void *)((char *)byteCode + sizeof(int) * 2), sizeof(double));
     std::memcpy(&multiplierOrdinate, (void *)((char *)byteCode + sizeof(int) * 2 + sizeof(double)), sizeof(double));
     std::memcpy(&weight, (void *)((char *)byteCode + sizeof(int) * 2 + sizeof(double) * 2), sizeof(short));
-    std::memcpy(
-        &sizeX, (void *)((char *)byteCode + sizeof(int) * 2 + sizeof(double) * 2 + sizeof(short)), sizeof(int));
-    std::memcpy(
-        &sizeY, (void *)((char *)byteCode + sizeof(int) * 3 + sizeof(double) * 2 + sizeof(short)), sizeof(int));
+    std::memcpy(&sizeX, (void *)((char *)byteCode + sizeof(int) * 2 + sizeof(double) * 2 + sizeof(short)), sizeof(int));
+    std::memcpy(&sizeY, (void *)((char *)byteCode + sizeof(int) * 3 + sizeof(double) * 2 + sizeof(short)), sizeof(int));
     std::memcpy(
         &life, (void *)((char *)byteCode + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short)), sizeof(short));
     std::memcpy(&damage, (void *)((char *)byteCode + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2),
@@ -573,12 +574,14 @@ void Transisthor::entityConvertPlayerType(unsigned short id, void *byteCode)
     std::string uuidStr(uuid);
 
     if (uuidStr != "" && id == 0) {
-        createNewPlayer(_ecsWorld, posX, posY, multiplierAbscissa, multiplierOrdinate, weight, sizeX, sizeY, life, damage, damageRadius, "", _ecsWorld.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
+        createNewPlayer(_ecsWorld, posX, posY, multiplierAbscissa, multiplierOrdinate, weight, sizeX, sizeY, life,
+            damage, damageRadius, isPlayer, "", _ecsWorld.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
     } else {
         std::size_t entityId;
 
         if (uuidStr == "") {
-            entityId = createNewPlayer(_ecsWorld, posX, posY, multiplierAbscissa, multiplierOrdinate, weight, sizeX, sizeY, life, damage, damageRadius);
+            entityId = createNewPlayer(_ecsWorld, posX, posY, multiplierAbscissa, multiplierOrdinate, weight, sizeX,
+                sizeY, life, damage, isPlayer, damageRadius);
         } else {
             std::vector<std::shared_ptr<Entity>> newlyCreated = _ecsWorld.joinEntities<NewlyCreated>();
 
@@ -612,8 +615,9 @@ void Transisthor::entityConvertProjectileType(unsigned short id, void *byteCode)
     std::string uuidStr(uuid);
 
     if (uuidStr != "" && id == 0) {
-        createNewProjectile(_ecsWorld, posX, posY, velAbsc, velOrd, damage, "", _ecsWorld.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
-        } else {
+        createNewProjectile(_ecsWorld, posX, posY, velAbsc, velOrd, damage, "",
+            _ecsWorld.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
+    } else {
         std::size_t entityId;
 
         if (uuidStr == "") {

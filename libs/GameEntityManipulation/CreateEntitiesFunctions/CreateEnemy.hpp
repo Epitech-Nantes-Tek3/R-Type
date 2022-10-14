@@ -38,8 +38,8 @@ namespace ecs
     /// @param multiplierAbscissa The Velocity multiplierAbscissa for the new Enemy
     /// @param multiplierOrdinate The Velocity multiplierOrdinate for the new Enemy
     /// @param weight Weight of the Enemy
-    /// @param size_x Size x of the Enemy
-    /// @param size_y Size y of the Enemy
+    /// @param sizeX Size x of the Enemy
+    /// @param sizeY Size y of the Enemy
     /// @param life Life of the Enemy
     /// @param damage Damage of projectiles fired by this Enemy
     /// @param damageRadius DamageRadius of projectiles fired by this Enemy
@@ -47,14 +47,14 @@ namespace ecs
     /// @param networkId The id of the Networkable Component. In the client instance, it MUST NOT be filled in.
     /// @return Id of the new Enemy in std::size_t
     inline std::size_t createNewEnemy(World &world, const int posX, const int posY, const double multiplierAbscissa,
-        const double multiplierOrdinate, const short weight, const int size_x, const int size_y,
+        const double multiplierOrdinate, const short weight, const int sizeX, const int sizeY,
         const unsigned short life, const unsigned short damage, const unsigned short damageRadius,
         const std::string uuid = "", const unsigned short networkId = 0)
     {
         Entity &entity = world.addEntity()
                              .addComponent<Position>(posX, posY)
                              .addComponent<Weight>(weight)
-                             .addComponent<Size>(size_x, size_y)
+                             .addComponent<Size>(sizeX, sizeY)
                              .addComponent<LifeTime>()
                              .addComponent<Life>(life)
                              .addComponent<Damage>(damage)
@@ -82,8 +82,8 @@ namespace ecs
     /// @param multiplierAbscissa The Velocity multiplierAbscissa for the new Enemy
     /// @param multiplierOrdinate The Velocity multiplierOrdinate for the new Enemy
     /// @param weight Weight of the Enemy
-    /// @param size_x Size x of the Enemy
-    /// @param size_y Size y of the Enemy
+    /// @param sizeX Size x of the Enemy
+    /// @param sizeY Size y of the Enemy
     /// @param life Life of the Enemy
     /// @param damage Damage of projectiles fired by this Enemy
     /// @param damageRadius DamageRadius of projectiles fired by this Enemy
@@ -91,13 +91,13 @@ namespace ecs
     /// @param networkId The id of the Networkable Component. In the client instance, it MUST NOT be filled in.
     /// @return Id of the new Enemy in std::size_t
     inline std::size_t createNewEnemyRandom(World &world, const double multiplierAbscissa,
-        const double multiplierOrdinate, const short weight, const int size_x, const int size_y,
+        const double multiplierOrdinate, const short weight, const int sizeX, const int sizeY,
         const unsigned short life, const unsigned short damage, const unsigned short damageRadius,
         const std::string uuid = "", const unsigned short networkId = 0)
     {
         return createNewEnemy(world, world.getResource<RandomDevice>().randInt(MINIMUM_WIDTH, MAXIMUM_WIDTH),
             world.getResource<RandomDevice>().randInt(MINIMUM_HEIGTH, MAXIMUM_HEIGTH), multiplierAbscissa,
-            multiplierOrdinate, weight, size_x, size_y, life, damage, damageRadius, uuid, networkId);
+            multiplierOrdinate, weight, sizeX, sizeY, life, damage, damageRadius, uuid, networkId);
     }
 
 } // namespace ecs
