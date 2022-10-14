@@ -67,7 +67,7 @@ namespace ecs
             // Case : Creation in a server instance
             entity.addComponent<NewlyCreated>(uuid, false);
             entity.addComponent<Networkable>(networkId);
-            entity.addComponent<Destination>();
+            entity.addComponent<Destination>(world.getResource<RandomDevice>().randInt(MINIMUM_WIDTH, MAXIMUM_WIDTH), world.getResource<RandomDevice>().randInt(MINIMUM_HEIGTH, MAXIMUM_HEIGTH));
         } else {
             // Case : Creation in a Client instance
             if (uuid != "") {

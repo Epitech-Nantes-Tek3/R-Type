@@ -6,7 +6,6 @@
 */
 
 #include <chrono>
-#include <iostream>
 #include <thread>
 #include <criterion/criterion.h>
 #include "Entity/Entity.hpp"
@@ -16,6 +15,7 @@
 #include "GameSystems/EnemiesGoRandom.hpp"
 #include "GameSystems/MovementSystem.hpp"
 #include "World/World.hpp"
+#include <iostream>
 
 using namespace ecs;
 
@@ -33,11 +33,12 @@ Test(EnemyGoRandom_System, move_randomly)
     int x = dest.x;
     int y = dest.y;
 
+
     world.runSystems();
     std::this_thread::sleep_for(std::chrono::duration<int>(1));
     world.addSystem<Movement>();
     world.runSystems();
 
-    cr_assert_eq(x, pos.x);
-    cr_assert_eq(pos.y, y);
+    cr_assert_eq(x - 1 <= pos.x && pos.x <= x + 1, true);
+    cr_assert_eq(y - 1 <= pos.y && pos.y <= y + 1, true);
 }

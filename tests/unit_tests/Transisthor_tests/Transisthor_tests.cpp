@@ -25,6 +25,7 @@
 #include "Transisthor/TransisthorECSLogic/Client/Systems/SendNewlyCreatedToServer.hpp"
 #include "Transisthor/TransisthorECSLogic/Server/Resources/NetworkableIdGenerator.hpp"
 #include "Transisthor/TransisthorECSLogic/Server/Systems/SendNewlyCreatedToClients.hpp"
+#include "GameSharedResources/Random.hpp"
 
 using namespace transisthor_lib;
 using namespace communicator_lib;
@@ -319,6 +320,8 @@ Test(transisthor_testing, transit_enemy_entity_without_uuid)
     Velocity newPos;
     Client temporaryClient = Client();
     communicator.addClientToList(temporaryClient);
+
+    world.addResource<RandomDevice>();
 
     std::size_t entityId = createNewEnemy(world, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, "", 1);
 
