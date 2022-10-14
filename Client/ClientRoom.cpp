@@ -8,10 +8,30 @@
 /// @file Client/ClientRoom.cpp
 
 #include "ClientRoom.hpp"
+#include "ActionQueueComponent.hpp"
+#include "ControllerButtonInputComponent.hpp"
+#include "ControllerJoystickInputComponent.hpp"
+#include "DrawComponents.hpp"
 #include "Error/Error.hpp"
 #include "GameComponents/PlayerComponent.hpp"
 #include "GameComponents/PositionComponent.hpp"
 #include "GameEntityManipulation/CreateEntitiesFunctions/CreateAlliedProjectile.hpp"
+#include "GameSharedResources/GameClock.hpp"
+#include "GameSharedResources/Random.hpp"
+#include "GameSystems/CollidableSystem.hpp"
+#include "GameSystems/DeathLifeSystem.hpp"
+#include "GameSystems/DeathSystem.hpp"
+#include "GameSystems/DecreaseLifeTimeSystem.hpp"
+#include "GameSystems/LifeTimeDeathSystem.hpp"
+#include "GameSystems/MovementSystem.hpp"
+#include "GameSystems/UpdateClockSystem.hpp"
+#include "GraphicsFontResource.hpp"
+#include "GraphicsRectangleComponent.hpp"
+#include "InputManagement.hpp"
+#include "KeyboardInputComponent.hpp"
+#include "LayerLvL.hpp"
+#include "MouseInputComponent.hpp"
+#include "RenderWindowResource.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Components/NetworkServer.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Systems/SendNewlyCreatedToServer.hpp"
@@ -46,17 +66,14 @@ ClientRoom::ClientRoom(std::string address, unsigned short port, std::string ser
     _state = ClientState::UNDEFINED;
 }
 
-struct Temp : public System {
-    /// @brief A useless system used for functional testing purpose
-    void run(World &world) { (void)world; }
-};
-
 void ClientRoom::initEcsGameData(void)
 {
     _worldInstance->addResource<RandomDevice>();
-    _worldInstance->addSystem<Temp>();
     _worldInstance->addSystem<SendToServer>();
     _worldInstance->addSystem<SendNewlyCreatedToServer>();
+    _initSharedResources();
+    _initSystems();
+    _initEntities();
 }
 
 void ClientRoom::startConnexionProtocol(void)
@@ -69,9 +86,9 @@ void ClientRoom::protocol12Answer(CommunicatorMessage connexionResponse)
 {
     _state = ClientState::IN_GAME;
     _worldInstance.get()->addEntity().addComponent<NetworkServer>(connexionResponse.message.clientInfo.getId());
-    std::vector<std::shared_ptr<Entity>> joined = _worldInstance.get()->joinEntities<Player>();
-    createNewAlliedProjectile(*_worldInstance.get(), *joined[0],
-        NewlyCreated().generate_uuid(_worldInstance.get()->getResource<RandomDevice>().getRandomDevice(), 16));
+    // std::vector<std::shared_ptr<Entity>> joined = _worldInstance.get()->joinEntities<Player>();
+    // createNewAlliedProjectile(*_worldInstance.get(), *joined[0],
+    //    NewlyCreated().generate_uuid(_worldInstance.get()->getResource<RandomDevice>().getRandomDevice(), 16));
 }
 
 void ClientRoom::startLobbyLoop(void)
@@ -95,4 +112,36 @@ void ClientRoom::startLobbyLoop(void)
         if (_state == ClientState::IN_GAME)
             _worldInstance.get()->runSystems(); /// WILL BE IMPROVED IN PART TWO (THREAD + CLOCK)
     }
+}
+
+void ClientRoom::_initSharedResources()
+{
+    _worldInstance->addResource<GameClock>();
+    // _worldInstance->addResource<RandomDevice>();
+    _worldInstance->addResource<RenderWindowResource>();
+    _worldInstance->addResource<GraphicsFontResource>("assets/arial.ttf");
+}
+
+void ClientRoom::_initSystems()
+{
+    _worldInstance->addSystem<Collide>();
+    _worldInstance->addSystem<DeathLife>();
+    _worldInstance->addSystem<DeathSystem>();
+    _worldInstance->addSystem<DecreaseLifeTime>();
+    _worldInstance->addSystem<LifeTimeDeath>();
+    _worldInstance->addSystem<Movement>();
+    _worldInstance->addSystem<UpdateClock>();
+    _worldInstance->addSystem<DrawComponents>();
+    _worldInstance->addSystem<InputManagement>();
+}
+
+void ClientRoom::_initEntities()
+{
+    _worldInstance->addEntity().addComponent<LayerLvL>().addComponent<GraphicsRectangleComponent>();
+    _worldInstance->addEntity()
+        .addComponent<MouseInputComponent>()
+        .addComponent<KeyboardInputComponent>()
+        .addComponent<ControllerButtonInputComponent>()
+        .addComponent<ControllerJoystickInputComponent>()
+        .addComponent<ActionQueueComponent>();
 }

@@ -44,6 +44,15 @@ namespace client_data
         void startLobbyLoop(void);
 
       private:
+        /// @brief Init all shared resources of the world.
+        void _initSharedResources();
+
+        /// @brief Init all systems of the world.
+        void _initSystems();
+
+        /// @brief Init some entities only created by the client.
+        void _initEntities();
+
         /// @brief Network informations of the room.
         Client _networkInformations;
 

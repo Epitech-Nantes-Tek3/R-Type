@@ -24,7 +24,11 @@ void InputManagement::run(World &world)
     std::vector<std::shared_ptr<Entity>> Inputs = world.joinEntities<MouseInputComponent, KeyboardInputComponent,
         ControllerButtonInputComponent, ControllerJoystickInputComponent, ActionQueueComponent>();
 
+    if (Inputs.empty())
+        return;
     while (world.getResource<RenderWindowResource>().window.pollEvent(event)) {
+        if (event.type == sf::Event::Closed)
+            world.getResource<RenderWindowResource>().window.close();
         if (event.type == sf::Event::KeyPressed) {
             auto keyPressed = [event](std::shared_ptr<ecs::Entity> entityPtr) {
                 if (entityPtr->getComponent<KeyboardInputComponent>().keyboardMapActions.contains(event.key.code)

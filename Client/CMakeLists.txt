@@ -22,4 +22,7 @@ set_target_properties(${TARGET}
 target_link_libraries(${TARGET}
     ${PROJECT_NAME}_transisthor
     ${PROJECT_NAME}_argumentHandler
+    ${PROJECT_NAME}_SFMLResource
+    ${PROJECT_NAME}_gameSystems
+    ${PROJECT_NAME}_SFMLSystems
 )
