@@ -57,7 +57,7 @@ namespace ecs
                              .addComponent<Collidable>()
                              .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate)
                              .addComponent<Player>()
-                            .addComponent<Controlable>();
+                             .addComponent<Controlable>();
         if (networkId) {
             // Case : Creation in a server instance
             entity.addComponent<NewlyCreated>(uuid, false);
