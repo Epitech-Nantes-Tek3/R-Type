@@ -7,13 +7,13 @@
 
 #include "DrawComponents.hpp"
 #include <algorithm>
+#include "GameComponents/PositionComponent.hpp"
+#include "GameComponents/SizeComponent.hpp"
 #include "GraphicsRectangleComponent.hpp"
 #include "GraphicsTextComponent.hpp"
 #include "GraphicsTextureResource.hpp"
 #include "LayerLvL.hpp"
 #include "SFMLResource/RenderWindowResource.hpp"
-#include "GameComponents/PositionComponent.hpp"
-#include "GameComponents/SizeComponent.hpp"
 #include "TextureName.hpp"
 
 using namespace ecs;

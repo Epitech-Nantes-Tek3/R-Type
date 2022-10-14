@@ -102,8 +102,8 @@ void InputManagement::shootAction(World &world, float action)
     (void)action;
 
     auto shoot = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
-        createNewAlliedProjectile(world, *entityPtr,
-            NewlyCreated().generate_uuid(world.getResource<RandomDevice>().getRandomDevice(), 16));
+        createNewAlliedProjectile(
+            world, *entityPtr, NewlyCreated().generate_uuid(world.getResource<RandomDevice>().getRandomDevice(), 16));
     };
     std::for_each(player.begin(), player.end(), shoot);
 }

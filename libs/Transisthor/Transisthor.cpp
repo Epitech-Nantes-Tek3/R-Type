@@ -575,7 +575,8 @@ void Transisthor::entityConvertPlayerType(unsigned short id, void *byteCode)
 
     if (uuidStr != "" && id == 0) {
         createNewPlayer(_ecsWorld, posX, posY, multiplierAbscissa, multiplierOrdinate, weight, sizeX, sizeY, life,
-            damage, damageRadius, isPlayer, "", _ecsWorld.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
+            damage, damageRadius, isPlayer, "",
+            _ecsWorld.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
     } else {
         std::size_t entityId;
 

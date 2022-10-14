@@ -21,11 +21,11 @@
 #include "GameEntityManipulation/CreateEntitiesFunctions/CreateObstacle.hpp"
 #include "GameEntityManipulation/CreateEntitiesFunctions/CreatePlayer.hpp"
 #include "GameEntityManipulation/CreateEntitiesFunctions/CreateProjectile.hpp"
+#include "GameSharedResources/Random.hpp"
 #include "Transisthor/Transisthor.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Systems/SendNewlyCreatedToServer.hpp"
 #include "Transisthor/TransisthorECSLogic/Server/Resources/NetworkableIdGenerator.hpp"
 #include "Transisthor/TransisthorECSLogic/Server/Systems/SendNewlyCreatedToClients.hpp"
-#include "GameSharedResources/Random.hpp"
 
 using namespace transisthor_lib;
 using namespace communicator_lib;

@@ -24,17 +24,17 @@ namespace ecs
 
         /// @brief This function is call when a player move his Abscissa with a input
         /// @param world The world in which the Player is
-        /// @param move Action velocity 
+        /// @param move Action velocity
         void movePlayerX(World &world, float move);
 
         /// @brief This function is call when a player move his Ordinate with a input
         /// @param world The world in which the Player is
-        /// @param move Action velocity 
+        /// @param move Action velocity
         void movePlayerY(World &world, float move);
 
         /// @brief This function is call when a player shoot with a input. It creates a Ally Projectile
         /// @param world The world in which the Player is
-        /// @param move Action Shoot 
+        /// @param move Action Shoot
         void shootAction(World &world, float action);
     };
 } // namespace ecs

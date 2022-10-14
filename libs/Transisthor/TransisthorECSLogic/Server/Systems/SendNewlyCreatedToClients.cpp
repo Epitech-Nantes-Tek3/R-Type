@@ -5,9 +5,9 @@
 ** SendNewlyCreatedToClients
 */
 
+#include "Transisthor/TransisthorECSLogic/Server/Systems/SendNewlyCreatedToClients.hpp"
 #include <chrono>
 #include <thread>
-#include "Transisthor/TransisthorECSLogic/Server/Systems/SendNewlyCreatedToClients.hpp"
 #include "GameComponents/AlliedProjectileComponent.hpp"
 #include "GameComponents/DamageComponent.hpp"
 #include "GameComponents/DamageRadiusComponent.hpp"
@@ -44,7 +44,8 @@ void SendNewlyCreatedToClients::runSystem(ecs::World &world)
             return;
         if (entityPtr->contains<ecs::AlliedProjectile>()) {
             world.getTransisthorBridge()->transitEcsDataToNetworkDataEntityAlliedProjectile(
-                entityPtr->getComponent<Networkable>().id, entityPtr->getComponent<AlliedProjectile>().parentNetworkId, newlyCreated.uuid, clientIdList);
+                entityPtr->getComponent<Networkable>().id, entityPtr->getComponent<AlliedProjectile>().parentNetworkId,
+                newlyCreated.uuid, clientIdList);
         }
         if (entityPtr->contains<ecs::Enemy>()) {
             Position &pos = entityPtr->getComponent<Position>();
@@ -59,7 +60,8 @@ void SendNewlyCreatedToClients::runSystem(ecs::World &world)
         }
         if (entityPtr->contains<ecs::EnemyProjectile>()) {
             world.getTransisthorBridge()->transitEcsDataToNetworkDataEntityEnemyProjectile(
-                entityPtr->getComponent<Networkable>().id, entityPtr->getComponent<AlliedProjectile>().parentNetworkId, newlyCreated.uuid, clientIdList);
+                entityPtr->getComponent<Networkable>().id, entityPtr->getComponent<AlliedProjectile>().parentNetworkId,
+                newlyCreated.uuid, clientIdList);
         }
         if (entityPtr->contains<ecs::Obstacle>()) {
             Position &pos = entityPtr->getComponent<Position>();

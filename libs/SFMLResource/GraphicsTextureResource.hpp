@@ -10,8 +10,8 @@
 
 #include <SFML/Graphics.hpp>
 #include <filesystem>
-#include <unordered_map>
 #include "Resource/Resource.hpp"
+#include <unordered_map>
 
 namespace ecs
 {

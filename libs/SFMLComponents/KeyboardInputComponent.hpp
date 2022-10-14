@@ -8,10 +8,10 @@
 #ifndef KEYBOARDINPUTCOMPONENT_HPP_
 #define KEYBOARDINPUTCOMPONENT_HPP_
 
-#include "Component/Component.hpp"
 #include <SFML/Graphics.hpp>
-#include <unordered_map>
 #include <functional>
+#include "Component/Component.hpp"
+#include <unordered_map>
 
 namespace ecs
 {
@@ -19,15 +19,15 @@ namespace ecs
     /// This class is created in order to find an action depending on a key pressed or released.
     /// It inherits from Component.
     class KeyboardInputComponent : public Component {
-        public:
-            /// @brief This unordered_map links SFML key input to an action/value pair enum.
-            std::unordered_map<sf::Keyboard::Key, std::pair<std::function<void()>, float>> keyboardMapActions;
+      public:
+        /// @brief This unordered_map links SFML key input to an action/value pair enum.
+        std::unordered_map<sf::Keyboard::Key, std::pair<std::function<void()>, float>> keyboardMapActions;
 
-            /// @brief Constructor of the class.
-            KeyboardInputComponent() = default;
+        /// @brief Constructor of the class.
+        KeyboardInputComponent() = default;
 
-            /// @brief Default destructor of the class.
-            ~KeyboardInputComponent() = default;
+        /// @brief Default destructor of the class.
+        ~KeyboardInputComponent() = default;
     };
 } // namespace ecs
 
