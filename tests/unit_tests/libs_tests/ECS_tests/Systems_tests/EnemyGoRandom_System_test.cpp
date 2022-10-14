@@ -15,7 +15,6 @@
 #include "GameSystems/EnemiesGoRandom.hpp"
 #include "GameSystems/MovementSystem.hpp"
 #include "World/World.hpp"
-#include <iostream>
 
 using namespace ecs;
 
@@ -32,7 +31,6 @@ Test(EnemyGoRandom_System, move_randomly)
     Destination dest = world.getEntity(id).getComponent<Destination>();
     int x = dest.x;
     int y = dest.y;
-
 
     world.runSystems();
     std::this_thread::sleep_for(std::chrono::duration<int>(1));
