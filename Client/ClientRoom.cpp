@@ -9,13 +9,13 @@
 
 #include "ClientRoom.hpp"
 #include "Error/Error.hpp"
-#include "GameComponents/PositionComponent.hpp"
 #include "GameComponents/PlayerComponent.hpp"
+#include "GameComponents/PositionComponent.hpp"
 #include "GameEntityManipulation/CreateEntitiesFunctions/CreateAlliedProjectile.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
-#include "Transisthor/TransisthorECSLogic/Client/Systems/SendToServer.hpp"
-#include "Transisthor/TransisthorECSLogic/Client/Systems/SendNewlyCreatedToServer.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Components/NetworkServer.hpp"
+#include "Transisthor/TransisthorECSLogic/Client/Systems/SendNewlyCreatedToServer.hpp"
+#include "Transisthor/TransisthorECSLogic/Client/Systems/SendToServer.hpp"
 
 using namespace error_lib;
 using namespace communicator_lib;
@@ -47,10 +47,8 @@ ClientRoom::ClientRoom(std::string address, unsigned short port, std::string ser
 }
 
 struct Temp : public System {
-    void run(World &world)
-    {
-        (void)world;
-    }
+    /// @brief A useless system used for functional testing purpose
+    void run(World &world) { (void)world; }
 };
 
 void ClientRoom::initEcsGameData(void)
@@ -72,7 +70,8 @@ void ClientRoom::protocol12Answer(CommunicatorMessage connexionResponse)
     _state = ClientState::IN_GAME;
     _worldInstance.get()->addEntity().addComponent<NetworkServer>(connexionResponse.message.clientInfo.getId());
     std::vector<std::shared_ptr<Entity>> joined = _worldInstance.get()->joinEntities<Player>();
-    createNewAlliedProjectile(*_worldInstance.get(), *joined[0], NewlyCreated().generate_uuid(_worldInstance.get()->getResource<RandomDevice>().getRandomDevice(), 16));
+    createNewAlliedProjectile(*_worldInstance.get(), *joined[0],
+        NewlyCreated().generate_uuid(_worldInstance.get()->getResource<RandomDevice>().getRandomDevice(), 16));
 }
 
 void ClientRoom::startLobbyLoop(void)

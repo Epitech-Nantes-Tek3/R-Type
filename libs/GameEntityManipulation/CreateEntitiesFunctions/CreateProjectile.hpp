@@ -27,20 +27,20 @@ namespace ecs
 {
     /// @brief This function can create a new Projectile Entity in the world passed as params
     /// @param world The world in which the Projectile must be created
-    /// @param pos_x The start position x of the new Projectile
-    /// @param pos_y The start position y of the new Projectile
+    /// @param posX The start position x of the new Projectile
+    /// @param posY The start position y of the new Projectile
     /// @param multiplierAbscissa The Velocity multiplierAbscissa of the new Projectile
     /// @param multiplierOrdinate The Velocity multiplierOrdinate of the new Projectile
     /// @param damage The Damage of the new Projectile
     /// @param uuid The uuid of the entity. Can be empty.
     /// @param networkId The id of the Networkable Component. In the client instance, it MUST NOT be filled in.
     /// @return  Id of the new Projectile in std::size_t
-    inline std::size_t createNewProjectile(World &world, const int pos_x, const int pos_y,
+    inline std::size_t createNewProjectile(World &world, const int posX, const int posY,
         const double multiplierAbscissa, const double multiplierOrdinate, const unsigned short damage,
         const std::string uuid = "", unsigned short networkId = 0)
     {
         Entity &entity = world.addEntity()
-                             .addComponent<Position>(pos_x, pos_y)
+                             .addComponent<Position>(posX, posY)
                              .addComponent<Weight>(1)
                              .addComponent<Size>(2, 1)
                              .addComponent<LifeTime>(100.0)

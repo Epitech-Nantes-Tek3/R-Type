@@ -55,6 +55,7 @@ Room::Room(unsigned short id, Client networkInformations)
     _remainingPlaces = 4;
 }
 
+/// @brief A useless system used for functional testing purpose
 struct Temp : public System {
     void run(World &world) { (void)world; }
 };
@@ -107,8 +108,8 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
     for (std::shared_ptr<Entity> entityPtr : joined) {
         if (entityPtr->contains<AlliedProjectile>()) {
             _worldInstance.get()->getTransisthorBridge()->transitEcsDataToNetworkDataEntityAlliedProjectile(
-                entityPtr->getComponent<Networkable>().id, entityPtr->getComponent<AlliedProjectile>().parentNetworkId, "",
-                {connexionDemand.message.clientInfo.getId()});
+                entityPtr->getComponent<Networkable>().id, entityPtr->getComponent<AlliedProjectile>().parentNetworkId,
+                "", {connexionDemand.message.clientInfo.getId()});
         }
         if (entityPtr->contains<Enemy>()) {
             Position &pos = entityPtr->getComponent<Position>();
@@ -123,8 +124,8 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
         }
         if (entityPtr->contains<EnemyProjectile>()) {
             _worldInstance.get()->getTransisthorBridge()->transitEcsDataToNetworkDataEntityEnemyProjectile(
-                entityPtr->getComponent<Networkable>().id, entityPtr->getComponent<AlliedProjectile>().parentNetworkId, "",
-                {connexionDemand.message.clientInfo.getId()});
+                entityPtr->getComponent<Networkable>().id, entityPtr->getComponent<AlliedProjectile>().parentNetworkId,
+                "", {connexionDemand.message.clientInfo.getId()});
         }
         if (entityPtr->contains<Obstacle>()) {
             Position &pos = entityPtr->getComponent<Position>();

@@ -33,8 +33,8 @@ namespace ecs
 
     /// @brief This function creates a new Enemy Entity with these parameters
     /// @param world The world in which the Enemy must be created
-    /// @param pos_x Position x of the Enemy
-    /// @param pos_y Position y of the Enemy
+    /// @param posX Position x of the Enemy
+    /// @param posY Position y of the Enemy
     /// @param multiplierAbscissa The Velocity multiplierAbscissa for the new Enemy
     /// @param multiplierOrdinate The Velocity multiplierOrdinate for the new Enemy
     /// @param weight Weight of the Enemy
@@ -46,13 +46,13 @@ namespace ecs
     /// @param uuid The uuid of the entity. Can be empty.
     /// @param networkId The id of the Networkable Component. In the client instance, it MUST NOT be filled in.
     /// @return Id of the new Enemy in std::size_t
-    inline std::size_t createNewEnemy(World &world, const int pos_x, const int pos_y, const double multiplierAbscissa,
+    inline std::size_t createNewEnemy(World &world, const int posX, const int posY, const double multiplierAbscissa,
         const double multiplierOrdinate, const short weight, const int size_x, const int size_y,
         const unsigned short life, const unsigned short damage, const unsigned short damageRadius,
         const std::string uuid = "", const unsigned short networkId = 0)
     {
         Entity &entity = world.addEntity()
-                             .addComponent<Position>(pos_x, pos_y)
+                             .addComponent<Position>(posX, posY)
                              .addComponent<Weight>(weight)
                              .addComponent<Size>(size_x, size_y)
                              .addComponent<LifeTime>()

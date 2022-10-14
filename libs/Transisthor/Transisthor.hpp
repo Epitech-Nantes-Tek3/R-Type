@@ -129,7 +129,7 @@ namespace transisthor_lib
 
         /// @brief Function called by the ECS to transfer an order of creation for an EnemyProjectile entity
         /// @param id Id of the new entity to create
-        /// @param enemyId If of the enemy who fired
+        /// @param enemyId Id of the enemy who fired
         /// @param uuid string representing the entity uuid (Used only for a first sync process in client side)
         /// @param destination of the message
         /// @return Return value his only used for testing (Unit and functional)
