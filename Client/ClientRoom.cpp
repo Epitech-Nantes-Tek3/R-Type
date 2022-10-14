@@ -23,6 +23,8 @@
 #include "LifeTimeDeathSystem.hpp"
 #include "MovementSystem.hpp"
 #include "UpdateClockSystem.hpp"
+#include "DrawComponents.hpp"
+#include "InputManagement.hpp"
 
 using namespace error_lib;
 using namespace communicator_lib;
@@ -96,4 +98,6 @@ void ClientRoom::_initSystems()
     _worldInstance->addSystem<LifeTimeDeath>();
     _worldInstance->addSystem<Movement>();
     _worldInstance->addSystem<UpdateClock>();
+    _worldInstance->addSystem<DrawComponents>();
+    _worldInstance->addSystem<InputManagement>();
 }
