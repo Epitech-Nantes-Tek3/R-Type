@@ -19,8 +19,8 @@ var classecs_1_1_graphics_texture_resource =
       [ "BUTTON", "classecs_1_1_graphics_texture_resource.html#af837603102b91ff4b94589320843fdf3ac360dbab6ba6eeebe16307445a3a2e80", null ],
       [ "NATURAL_PROJECTILE", "classecs_1_1_graphics_texture_resource.html#af837603102b91ff4b94589320843fdf3aaf97aeeae7eb80ca715fd71fa4edcfcb", null ]
     ] ],
-    [ "GraphicsTextureResource", "classecs_1_1_graphics_texture_resource.html#ab991906e40d4cbdc3c383ad593892af2", null ],
+    [ "GraphicsTextureResource", "classecs_1_1_graphics_texture_resource.html#a3823fafc34e94f714e95ca518d14ee84", null ],
     [ "~GraphicsTextureResource", "classecs_1_1_graphics_texture_resource.html#ab648befe51f2a0f3b5994e9675e3aeb2", null ],
-    [ "addTexture", "classecs_1_1_graphics_texture_resource.html#a8e5aafb052dcc6f6bc4d637eb616c2b6", null ],
+    [ "addTexture", "classecs_1_1_graphics_texture_resource.html#a97ac38e6f9b0bb08758438444e2b8d7b", null ],
     [ "_texturesList", "classecs_1_1_graphics_texture_resource.html#a61865f7d5a591079dc998b926a17d436", null ]
 ];
