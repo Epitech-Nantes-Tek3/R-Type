@@ -9,8 +9,9 @@
 
 #include "ClientRoom.hpp"
 #include "Error/Error.hpp"
+#include "GameComponents/PlayerComponent.hpp"
 #include "GameComponents/PositionComponent.hpp"
-#include "GameEntityManipulation/CreateEntitiesFunctions/CreateObstacle.hpp"
+#include "GameEntityManipulation/CreateEntitiesFunctions/CreateAlliedProjectile.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "GameSharedResources/GameClock.hpp"
 #include "GameSharedResources/Random.hpp"
@@ -25,6 +26,9 @@
 #include "GameSystems/UpdateClockSystem.hpp"
 #include "DrawComponents.hpp"
 #include "InputManagement.hpp"
+#include "Transisthor/TransisthorECSLogic/Client/Components/NetworkServer.hpp"
+#include "Transisthor/TransisthorECSLogic/Client/Systems/SendNewlyCreatedToServer.hpp"
+#include "Transisthor/TransisthorECSLogic/Client/Systems/SendToServer.hpp"
 
 using namespace error_lib;
 using namespace communicator_lib;
@@ -37,9 +41,6 @@ ClientRoom::ClientRoom()
     _serverEndpoint = Client();
     _communicatorInstance = std::make_shared<Communicator>(_networkInformations);
     _worldInstance = std::make_shared<World>(1);
-    _initSharedResources();
-    _initSystems();
-    _initEntities();
     _transisthorInstance = std::make_shared<Transisthor>(*(_communicatorInstance.get()), *(_worldInstance.get()));
     _communicatorInstance.get()->setTransisthorBridge(_transisthorInstance);
     _worldInstance.get()->setTransisthorBridge(_communicatorInstance.get()->getTransisthorBridge());
@@ -52,36 +53,57 @@ ClientRoom::ClientRoom(std::string address, unsigned short port, std::string ser
     _serverEndpoint = Client(serverAddress, serverPort);
     _communicatorInstance = std::make_shared<Communicator>(_networkInformations);
     _worldInstance = std::make_shared<World>(1);
-    _initSharedResources();
-    _initSystems();
-    _initEntities();
     _transisthorInstance = std::make_shared<Transisthor>(*(_communicatorInstance.get()), *(_worldInstance.get()));
     _communicatorInstance.get()->setTransisthorBridge(_transisthorInstance);
     _worldInstance.get()->setTransisthorBridge(_communicatorInstance.get()->getTransisthorBridge());
     _state = ClientState::UNDEFINED;
 }
 
+void ClientRoom::initEcsGameData(void)
+{
+    _worldInstance->addResource<RandomDevice>();
+    _worldInstance->addSystem<SendToServer>();
+    _worldInstance->addSystem<SendNewlyCreatedToServer>();
+    _initSharedResources();
+    _initSystems();
+    _initEntities();
+}
+
+void ClientRoom::startConnexionProtocol(void)
+{
+    _communicatorInstance.get()->startReceiverListening();
+    _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, nullptr, 0, 10);
+}
+
+void ClientRoom::protocol12Answer(CommunicatorMessage connexionResponse)
+{
+    _state = ClientState::IN_GAME;
+    _worldInstance.get()->addEntity().addComponent<NetworkServer>(connexionResponse.message.clientInfo.getId());
+    // std::vector<std::shared_ptr<Entity>> joined = _worldInstance.get()->joinEntities<Player>();
+    // createNewAlliedProjectile(*_worldInstance.get(), *joined[0],
+    //    NewlyCreated().generate_uuid(_worldInstance.get()->getResource<RandomDevice>().getRandomDevice(), 16));
+}
+
 void ClientRoom::startLobbyLoop(void)
 {
     CommunicatorMessage connexionResponse;
 
-    std::size_t entityId = createNewObstacle(*(_worldInstance.get()), 5, 60, 5);
-
-    _worldInstance.get()->getEntity(entityId).addComponent<Networkable>(10);
-
-    _communicatorInstance.get()->startReceiverListening();
-    _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, nullptr, 0, 10);
+    startConnexionProtocol();
+    initEcsGameData();
     _state = ClientState::LOBBY;
     while (_state != ClientState::ENDED && _state != ClientState::UNDEFINED) {
         try {
-            Position entityPosition = _worldInstance.get()->getEntity(entityId).getComponent<Position>();
-            std::cerr << "OBSTACLE POSITION : " << entityPosition.x << " , " << entityPosition.y << std::endl;
             connexionResponse = _communicatorInstance.get()->getLastMessage();
-            std::cerr << "ClientRoom received a connexion protocol answer."
-                      << std::endl; /// WILL BE DELETED WITH CONNEXION PROTOCOL ISSUE
+            if (connexionResponse.message.type == 11) {
+                std::cerr << "No places left inside the wanted room. Please retry later" << std::endl;
+                return;
+            }
+            if (connexionResponse.message.type == 12)
+                protocol12Answer(connexionResponse);
         } catch (NetworkError &error) {
         }
-        _worldInstance.get()->runSystems(); /// WILL BE IMPROVED IN PART TWO (THREAD + CLOCK)
+        if (_state == ClientState::IN_GAME)
+            _worldInstance.get()->runSystems(); /// WILL BE IMPROVED IN PART TWO (THREAD + CLOCK)
     }
 }
 

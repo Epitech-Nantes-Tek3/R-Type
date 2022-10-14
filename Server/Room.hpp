@@ -64,6 +64,20 @@ namespace server_data
 
         /// @brief Current state of the room
         RoomState _state;
+
+        /// @brief Number of remaining places inside the room
+        unsigned short _remainingPlaces;
+
+        /// @brief Trait a connexion request. If there is less than 3 players already in the room, send a protocol 22 to
+        /// the client. Otherwise, send a 21.
+        /// @param communicatorMessage actual message data
+        void holdANewConnexionRequest(CommunicatorMessage communicatorMessage);
+
+        /// @brief Init the Ressources and Systems of the ECS
+        void initEcsGameData(void);
+
+        /// @brief Start the connexion protocol and ask the server for a place inside the room
+        void startConnexionProtocol(void);
     };
 
     /// @brief Overload of the == operator to compare two rooms
