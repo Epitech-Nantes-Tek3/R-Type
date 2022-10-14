@@ -17,9 +17,9 @@ namespace ecs
     class Position : public Component {
       public:
         /// @brief The abscissa of the Position
-        int x;
+        double x;
         /// @brief The ordinate of the Position
-        int y;
+        double y;
         /// @brief The network status of the component. True if it has been modified since it was last sent.
         bool modified;
 

@@ -32,6 +32,7 @@
 #include "LayerLvL.hpp"
 #include "MouseInputComponent.hpp"
 #include "RenderWindowResource.hpp"
+#include "SFMLSystems/SfRectangleFollowEntitySystem.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Components/NetworkServer.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Systems/SendNewlyCreatedToServer.hpp"
@@ -114,18 +115,18 @@ void ClientRoom::_initSharedResources()
     _worldInstance->addResource<GameClock>();
     _worldInstance->addResource<RenderWindowResource>();
     _worldInstance->addResource<GraphicsFontResource>("assets/arial.ttf");
-    _worldInstance->addResource<NetworkableIdGenerator>();
 }
 
 void ClientRoom::_initSystems()
 {
-    _worldInstance->addSystem<SendToServer>();
-    _worldInstance->addSystem<SendNewlyCreatedToServer>();
     _worldInstance->addSystem<DeathSystem>();
-    _worldInstance->addSystem<Movement>();
     _worldInstance->addSystem<UpdateClock>();
     _worldInstance->addSystem<DrawComponents>();
     _worldInstance->addSystem<InputManagement>();
+    _worldInstance->addSystem<SendToServer>();
+    _worldInstance->addSystem<SendNewlyCreatedToServer>();
+    _worldInstance->addSystem<SfRectangleFollowEntitySystem>();
+    _worldInstance->addSystem<UpdateClock>();
 }
 
 void ClientRoom::_initEntities()

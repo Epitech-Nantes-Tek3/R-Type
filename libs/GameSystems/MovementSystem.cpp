@@ -22,6 +22,8 @@ void Movement::run(World &world)
         Position &pos = entityPtr.get()->getComponent<Position>();
         Velocity &vel = entityPtr.get()->getComponent<Velocity>();
 
+        if (vel.multiplierAbscissa == 0 && vel.multiplierOrdinate == 0)
+            return;
         pos.x += (vel.multiplierAbscissa * elapsedTimeInSeconds);
         pos.y += (vel.multiplierOrdinate * elapsedTimeInSeconds);
         pos.modified = true;
