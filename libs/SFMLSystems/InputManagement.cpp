@@ -69,3 +69,35 @@ void InputManagement::run(World &world)
         }
     }
 }
+
+void InputManagement::movePlayerX(World &world, float move)
+{
+    std::vector<std::shared_ptr<ecs::Entity>> player = world.joinEntities<Controlable>();
+    double move_d = double(move);
+
+    auto moveX = [move_d](std::shared_ptr<ecs::Entity> entityPtr) {
+        entityPtr->getComponent<Velocity>().multiplierAbscissa = move_d;
+    };
+    std::for_each(player.begin(), player.end(), moveX);
+}
+
+void InputManagement::movePlayerY(World &world, float move)
+{
+    std::vector<std::shared_ptr<ecs::Entity>> player = world.joinEntities<Controlable>();
+    double move_d = double(move);
+
+    auto moveY = [move_d](std::shared_ptr<ecs::Entity> entityPtr) {
+        entityPtr->getComponent<Velocity>().multiplierOrdinate = move_d;
+    };
+    std::for_each(player.begin(), player.end(), moveY);
+}
+
+void InputManagement::shootAction(World &world, float action)
+{
+    std::vector<std::shared_ptr<ecs::Entity>> player = world.joinEntities<Controlable>();
+    (void)action;
+
+    auto shoot = [&world](
+                     std::shared_ptr<ecs::Entity> entityPtr) { createNewAlliedProjectile(world, *entityPtr.get()); };
+    std::for_each(player.begin(), player.end(), shoot);
+}
