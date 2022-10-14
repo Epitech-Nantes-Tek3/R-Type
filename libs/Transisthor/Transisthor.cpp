@@ -368,7 +368,7 @@ void Transisthor::entityConvertAlliedProjectileType(unsigned short id, void *byt
             if (ptr->getComponent<Networkable>().id == allyId)
                 return ptr;
         }
-        throw NetworkError("The entity was not fouund");
+        throw NetworkError("The entity was not found");
     };
     std::shared_ptr<Entity> shooter;
     try {
