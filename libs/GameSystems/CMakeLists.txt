@@ -18,6 +18,8 @@ set(SRC
     ${SRC_ROOT}/CollidableSystem.cpp
     ${SRC_ROOT}/EnemiesGoRandom.cpp
     ${SRC_ROOT}/EnemiesGoRandom.hpp
+    ${SRC_ROOT}/EnemyShootSystem.cpp
+    ${SRC_ROOT}/EnemyShootSystem.hpp
 )
 
 add_library(${TARGET} SHARED ${SRC})
