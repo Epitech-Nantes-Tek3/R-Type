@@ -37,7 +37,7 @@ namespace ecs
             .addComponent<Velocity>(velocity.multiplierAbscissa, velocity.multiplierOrdinate)
             .addComponent<Weight>(1)
             .addComponent<Size>(2, 1)
-            .addComponent<LifeTime>()
+            .addComponent<LifeTime>(100)
             .addComponent<Life>(10)
             .addComponent<Damage>(damage)
             .addComponent<DamageRadius>(5)

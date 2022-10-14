@@ -18,6 +18,7 @@
 #include "GameComponents/SizeComponent.hpp"
 #include "GameComponents/VelocityComponent.hpp"
 #include "GameComponents/WeightComponent.hpp"
+#include "GameComponents/ControlableComponent.hpp"
 #include "World/World.hpp"
 
 namespace ecs
@@ -50,6 +51,7 @@ namespace ecs
             .addComponent<Collidable>()
             .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate)
             .addComponent<Player>()
+            .addComponent<Controlable>()
             .getId();
     }
 
