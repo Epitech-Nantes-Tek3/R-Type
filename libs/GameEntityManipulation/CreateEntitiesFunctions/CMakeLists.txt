@@ -9,6 +9,8 @@ set(SRC
     ${INC_ROOT}/CreateProjectile.hpp
     ${INC_ROOT}/CreateEnemy.hpp
     ${INC_ROOT}/CreateObstacle.hpp
+    ${INC_ROOT}/CreateBackground.hpp
+    ${INC_ROOT}/CreateButton.hpp
 )
 
 add_library(${TARGET} INTERFACE ${SRC})

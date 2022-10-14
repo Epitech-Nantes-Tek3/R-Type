@@ -6,12 +6,6 @@
 */
 
 #include <criterion/criterion.h>
-#include "GameEntityManipulation/CreateEntitiesFunctions/CreateAlliedProjectile.hpp"
-#include "GameEntityManipulation/CreateEntitiesFunctions/CreateEnemy.hpp"
-#include "GameEntityManipulation/CreateEntitiesFunctions/CreateEnemyProjectile.hpp"
-#include "GameEntityManipulation/CreateEntitiesFunctions/CreateObstacle.hpp"
-#include "GameEntityManipulation/CreateEntitiesFunctions/CreatePlayer.hpp"
-#include "GameEntityManipulation/CreateEntitiesFunctions/CreateProjectile.hpp"
 #include "Error/Error.hpp"
 #include "GameComponents/DestinationComponent.hpp"
 #include "GameComponents/EquipmentComponent.hpp"
@@ -21,6 +15,12 @@
 #include "GameComponents/PositionComponent.hpp"
 #include "GameComponents/VelocityComponent.hpp"
 #include "GameComponents/DeathComponent.hpp"
+#include "GameEntityManipulation/CreateEntitiesFunctions/CreateAlliedProjectile.hpp"
+#include "GameEntityManipulation/CreateEntitiesFunctions/CreateEnemy.hpp"
+#include "GameEntityManipulation/CreateEntitiesFunctions/CreateEnemyProjectile.hpp"
+#include "GameEntityManipulation/CreateEntitiesFunctions/CreateObstacle.hpp"
+#include "GameEntityManipulation/CreateEntitiesFunctions/CreatePlayer.hpp"
+#include "GameEntityManipulation/CreateEntitiesFunctions/CreateProjectile.hpp"
 #include "Transisthor/Transisthor.hpp"
 
 using namespace transisthor_lib;
@@ -253,20 +253,122 @@ Test(transisthor_testing, transit_enemy_entity)
     Client temporaryClient = Client();
     communicator.addClientToList(temporaryClient);
 
-    std::size_t entityId = createNewEnemy(world, 1, 2, 0, 0, 0, 1, 1, 1, 1, 1);
+    std::size_t entityId = createNewEnemy(world, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 
     Position entityPosition = world.getEntity(entityId).getComponent<Position>();
 
-    void *temp = transisthor.transitEcsDataToNetworkDataEntityEnemy(entityId, entityPosition.x, entityPosition.y, {1});
+    void *temp = transisthor.transitEcsDataToNetworkDataEntityEnemy(
+        entityId, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, std::string("UUID"), {1});
     void *networkAnswer = transisthor.transitNetworkDataToEcsDataEntity({Client(), temp, 1, 31});
 
     int posX = 0;
     int posY = 0;
+    double multiplierAbscissa = 0;
+    double multiplierOrdinate = 0;
+    short weight = 0;
+    int size_x = 0;
+    int size_y = 0;
+    short life = 0;
+    unsigned short damage = 0;
+    unsigned short damageRadius = 0;
+
+    char *uuid =
+        (char *)networkAnswer + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2 + sizeof(unsigned short) * 2;
 
     std::memcpy(&posX, networkAnswer, sizeof(int));
     std::memcpy(&posY, (void *)((char *)networkAnswer + sizeof(int)), sizeof(int));
+    std::memcpy(&multiplierAbscissa, (void *)((char *)networkAnswer + sizeof(int) * 2), sizeof(double));
+    std::memcpy(
+        &multiplierOrdinate, (void *)((char *)networkAnswer + sizeof(int) * 2 + sizeof(double)), sizeof(double));
+    std::memcpy(&weight, (void *)((char *)networkAnswer + sizeof(int) * 2 + sizeof(double) * 2), sizeof(short));
+    std::memcpy(
+        &size_x, (void *)((char *)networkAnswer + sizeof(int) * 2 + sizeof(double) * 2 + sizeof(short)), sizeof(int));
+    std::memcpy(
+        &size_y, (void *)((char *)networkAnswer + sizeof(int) * 3 + sizeof(double) * 2 + sizeof(short)), sizeof(int));
+    std::memcpy(
+        &life, (void *)((char *)networkAnswer + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short)), sizeof(short));
+    std::memcpy(&damage, (void *)((char *)networkAnswer + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2),
+        sizeof(unsigned short));
+    std::memcpy(&damageRadius,
+        (void *)((char *)networkAnswer + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2
+            + sizeof(unsigned short)),
+        sizeof(unsigned short));
+
     cr_assert_eq(posX, 1);
     cr_assert_eq(posY, 2);
+    cr_assert_eq(multiplierAbscissa, 3);
+    cr_assert_eq(multiplierOrdinate, 4);
+    cr_assert_eq(weight, 5);
+    cr_assert_eq(size_x, 6);
+    cr_assert_eq(size_y, 7);
+    cr_assert_eq(life, 8);
+    cr_assert_eq(damage, 9);
+    cr_assert_eq(damageRadius, 10);
+    cr_assert_str_eq("UUID", uuid);
+}
+
+Test(transisthor_testing, transit_enemy_entity_without_uuid)
+{
+    Communicator communicator = Communicator();
+    World world = World(2);
+    Transisthor transisthor = Transisthor(communicator, world);
+    Velocity pos = Velocity(10, 12);
+    Velocity newPos;
+    Client temporaryClient = Client();
+    communicator.addClientToList(temporaryClient);
+
+    std::size_t entityId = createNewEnemy(world, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+    Position entityPosition = world.getEntity(entityId).getComponent<Position>();
+
+    void *temp = transisthor.transitEcsDataToNetworkDataEntityEnemy(
+        entityId, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, std::string(""), {1});
+    void *networkAnswer = transisthor.transitNetworkDataToEcsDataEntity({Client(), temp, 1, 31});
+
+    int posX = 0;
+    int posY = 0;
+    double multiplierAbscissa = 0;
+    double multiplierOrdinate = 0;
+    short weight = 0;
+    int size_x = 0;
+    int size_y = 0;
+    short life = 0;
+    unsigned short damage = 0;
+    unsigned short damageRadius = 0;
+
+    char *uuid =
+        (char *)networkAnswer + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2 + sizeof(unsigned short) * 2;
+
+    std::memcpy(&posX, networkAnswer, sizeof(int));
+    std::memcpy(&posY, (void *)((char *)networkAnswer + sizeof(int)), sizeof(int));
+    std::memcpy(&multiplierAbscissa, (void *)((char *)networkAnswer + sizeof(int) * 2), sizeof(double));
+    std::memcpy(
+        &multiplierOrdinate, (void *)((char *)networkAnswer + sizeof(int) * 2 + sizeof(double)), sizeof(double));
+    std::memcpy(&weight, (void *)((char *)networkAnswer + sizeof(int) * 2 + sizeof(double) * 2), sizeof(short));
+    std::memcpy(
+        &size_x, (void *)((char *)networkAnswer + sizeof(int) * 2 + sizeof(double) * 2 + sizeof(short)), sizeof(int));
+    std::memcpy(
+        &size_y, (void *)((char *)networkAnswer + sizeof(int) * 3 + sizeof(double) * 2 + sizeof(short)), sizeof(int));
+    std::memcpy(
+        &life, (void *)((char *)networkAnswer + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short)), sizeof(short));
+    std::memcpy(&damage, (void *)((char *)networkAnswer + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2),
+        sizeof(unsigned short));
+    std::memcpy(&damageRadius,
+        (void *)((char *)networkAnswer + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2
+            + sizeof(unsigned short)),
+        sizeof(unsigned short));
+
+    cr_assert_eq(posX, 1);
+    cr_assert_eq(posY, 2);
+    cr_assert_eq(multiplierAbscissa, 3);
+    cr_assert_eq(multiplierOrdinate, 4);
+    cr_assert_eq(weight, 5);
+    cr_assert_eq(size_x, 6);
+    cr_assert_eq(size_y, 7);
+    cr_assert_eq(life, 8);
+    cr_assert_eq(damage, 9);
+    cr_assert_eq(damageRadius, 10);
+    cr_assert_str_eq("", uuid);
 }
 
 Test(transisthor_testing, transit_player_entity)
@@ -279,20 +381,118 @@ Test(transisthor_testing, transit_player_entity)
     Client temporaryClient = Client();
     communicator.addClientToList(temporaryClient);
 
-    std::size_t entityId = createNewPlayer(world, 4, 7, 1, 1, 1, 4, 4, 100, 10, 5);
+    std::size_t entityId = createNewPlayer(world, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 
-    Position entityPosition = world.getEntity(entityId).getComponent<Position>();
-
-    void *temp = transisthor.transitEcsDataToNetworkDataEntityPlayer(entityId, entityPosition.x, entityPosition.y, {1});
+    void *temp = transisthor.transitEcsDataToNetworkDataEntityPlayer(
+        entityId, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, std::string("UUID"), {1});
     void *networkAnswer = transisthor.transitNetworkDataToEcsDataEntity({Client(), temp, 1, 31});
 
     int posX = 0;
     int posY = 0;
+    double multiplierAbscissa = 0;
+    double multiplierOrdinate = 0;
+    short weight = 0;
+    int size_x = 0;
+    int size_y = 0;
+    short life = 0;
+    unsigned short damage = 0;
+    unsigned short damageRadius = 0;
+
+    char *uuid =
+        (char *)networkAnswer + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2 + sizeof(unsigned short) * 2;
 
     std::memcpy(&posX, networkAnswer, sizeof(int));
     std::memcpy(&posY, (void *)((char *)networkAnswer + sizeof(int)), sizeof(int));
-    cr_assert_eq(posX, 4);
-    cr_assert_eq(posY, 7);
+    std::memcpy(&multiplierAbscissa, (void *)((char *)networkAnswer + sizeof(int) * 2), sizeof(double));
+    std::memcpy(
+        &multiplierOrdinate, (void *)((char *)networkAnswer + sizeof(int) * 2 + sizeof(double)), sizeof(double));
+    std::memcpy(&weight, (void *)((char *)networkAnswer + sizeof(int) * 2 + sizeof(double) * 2), sizeof(short));
+    std::memcpy(
+        &size_x, (void *)((char *)networkAnswer + sizeof(int) * 2 + sizeof(double) * 2 + sizeof(short)), sizeof(int));
+    std::memcpy(
+        &size_y, (void *)((char *)networkAnswer + sizeof(int) * 3 + sizeof(double) * 2 + sizeof(short)), sizeof(int));
+    std::memcpy(
+        &life, (void *)((char *)networkAnswer + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short)), sizeof(short));
+    std::memcpy(&damage, (void *)((char *)networkAnswer + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2),
+        sizeof(unsigned short));
+    std::memcpy(&damageRadius,
+        (void *)((char *)networkAnswer + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2
+            + sizeof(unsigned short)),
+        sizeof(unsigned short));
+
+    cr_assert_eq(posX, 1);
+    cr_assert_eq(posY, 2);
+    cr_assert_eq(multiplierAbscissa, 3);
+    cr_assert_eq(multiplierOrdinate, 4);
+    cr_assert_eq(weight, 5);
+    cr_assert_eq(size_x, 6);
+    cr_assert_eq(size_y, 7);
+    cr_assert_eq(life, 8);
+    cr_assert_eq(damage, 9);
+    cr_assert_eq(damageRadius, 10);
+    cr_assert_str_eq("UUID", uuid);
+}
+
+Test(transisthor_testing, transit_player_entity_without_uuid)
+{
+    Communicator communicator = Communicator();
+    World world = World(2);
+    Transisthor transisthor = Transisthor(communicator, world);
+    Velocity pos = Velocity(10, 12);
+    Velocity newPos;
+    Client temporaryClient = Client();
+    communicator.addClientToList(temporaryClient);
+
+    std::size_t entityId = createNewPlayer(world, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+    void *temp = transisthor.transitEcsDataToNetworkDataEntityPlayer(
+        entityId, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, std::string(""), {1});
+    void *networkAnswer = transisthor.transitNetworkDataToEcsDataEntity({Client(), temp, 1, 31});
+
+    int posX = 0;
+    int posY = 0;
+    double multiplierAbscissa = 0;
+    double multiplierOrdinate = 0;
+    short weight = 0;
+    int size_x = 0;
+    int size_y = 0;
+    short life = 0;
+    unsigned short damage = 0;
+    unsigned short damageRadius = 0;
+
+    char *uuid =
+        (char *)networkAnswer + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2 + sizeof(unsigned short) * 2;
+
+    std::memcpy(&posX, networkAnswer, sizeof(int));
+    std::memcpy(&posY, (void *)((char *)networkAnswer + sizeof(int)), sizeof(int));
+    std::memcpy(&multiplierAbscissa, (void *)((char *)networkAnswer + sizeof(int) * 2), sizeof(double));
+    std::memcpy(
+        &multiplierOrdinate, (void *)((char *)networkAnswer + sizeof(int) * 2 + sizeof(double)), sizeof(double));
+    std::memcpy(&weight, (void *)((char *)networkAnswer + sizeof(int) * 2 + sizeof(double) * 2), sizeof(short));
+    std::memcpy(
+        &size_x, (void *)((char *)networkAnswer + sizeof(int) * 2 + sizeof(double) * 2 + sizeof(short)), sizeof(int));
+    std::memcpy(
+        &size_y, (void *)((char *)networkAnswer + sizeof(int) * 3 + sizeof(double) * 2 + sizeof(short)), sizeof(int));
+    std::memcpy(
+        &life, (void *)((char *)networkAnswer + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short)), sizeof(short));
+    std::memcpy(&damage, (void *)((char *)networkAnswer + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2),
+        sizeof(unsigned short));
+    std::memcpy(&damageRadius,
+        (void *)((char *)networkAnswer + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2
+            + sizeof(unsigned short)),
+        sizeof(unsigned short));
+
+    cr_assert_eq(posX, 1);
+    cr_assert_eq(posY, 2);
+    cr_assert_eq(multiplierAbscissa, 3);
+    cr_assert_eq(multiplierOrdinate, 4);
+    cr_assert_eq(weight, 5);
+    cr_assert_eq(size_x, 6);
+    cr_assert_eq(size_y, 7);
+    cr_assert_eq(life, 8);
+    cr_assert_eq(damage, 9);
+    cr_assert_eq(damageRadius, 10);
+    cr_assert_str_eq("", uuid);
 }
 
 Test(transisthor_testing, transit_alliedProjectile_entity)
@@ -308,21 +508,44 @@ Test(transisthor_testing, transit_alliedProjectile_entity)
     std::size_t allied =
         world.addEntity().addComponent<Position>(1, 2).addComponent<Damage>(10).addComponent<Velocity>(1, 1).getId();
 
-    std::size_t entityId = createNewAlliedProjectile(world, world.getEntity(allied));
+    unsigned short entityId = createNewAlliedProjectile(world, world.getEntity(allied));
 
-    Position entityPosition = world.getEntity(entityId).getComponent<Position>();
-
-    void *temp = transisthor.transitEcsDataToNetworkDataEntityAlliedProjectile(
-        entityId, entityPosition.x, entityPosition.y, {1});
+    void *temp =
+        transisthor.transitEcsDataToNetworkDataEntityAlliedProjectile(entityId, allied, std::string("UUID"), {1});
     void *networkAnswer = transisthor.transitNetworkDataToEcsDataEntity({Client(), temp, 1, 31});
 
-    int posX = 0;
-    int posY = 0;
+    unsigned short newAllied = 0;
+    char *uuid = (char *)networkAnswer + sizeof(unsigned short);
 
-    std::memcpy(&posX, networkAnswer, sizeof(int));
-    std::memcpy(&posY, (void *)((char *)networkAnswer + sizeof(int)), sizeof(int));
-    cr_assert_eq(posX, 1);
-    cr_assert_eq(posY, 2);
+    std::memcpy(&newAllied, networkAnswer, sizeof(unsigned short));
+    cr_assert_eq(newAllied, allied);
+    cr_assert_str_eq("UUID", uuid);
+}
+
+Test(transisthor_testing, transit_alliedProjectile_entity_empty_uuid)
+{
+    Communicator communicator = Communicator();
+    World world = World(2);
+    Transisthor transisthor = Transisthor(communicator, world);
+    Velocity pos = Velocity(10, 12);
+    Velocity newPos;
+    Client temporaryClient = Client();
+    communicator.addClientToList(temporaryClient);
+
+    std::size_t allied =
+        world.addEntity().addComponent<Position>(1, 2).addComponent<Damage>(10).addComponent<Velocity>(1, 1).getId();
+
+    unsigned short entityId = createNewAlliedProjectile(world, world.getEntity(allied));
+
+    void *temp = transisthor.transitEcsDataToNetworkDataEntityAlliedProjectile(entityId, allied, std::string(""), {1});
+    void *networkAnswer = transisthor.transitNetworkDataToEcsDataEntity({Client(), temp, 1, 31});
+
+    unsigned short newAllied = 0;
+    char *uuid = (char *)networkAnswer + sizeof(unsigned short);
+
+    std::memcpy(&newAllied, networkAnswer, sizeof(unsigned short));
+    cr_assert_eq(newAllied, allied);
+    cr_assert_str_eq("", uuid);
 }
 
 Test(transisthor_testing, transit_enemyProjectile_entity)
@@ -338,21 +561,46 @@ Test(transisthor_testing, transit_enemyProjectile_entity)
     std::size_t enemy =
         world.addEntity().addComponent<Position>(1, 2).addComponent<Damage>(10).addComponent<Velocity>(1, 1).getId();
 
-    std::size_t entityId = createNewEnemyProjectile(world, world.getEntity(enemy));
-
-    Position entityPosition = world.getEntity(entityId).getComponent<Position>();
+    unsigned short entityId = createNewEnemyProjectile(world, world.getEntity(enemy));
 
     void *temp =
-        transisthor.transitEcsDataToNetworkDataEntityEnemyProjectile(entityId, entityPosition.x, entityPosition.y, {1});
+        transisthor.transitEcsDataToNetworkDataEntityEnemyProjectile(entityId, enemy, std::string("UUID"), {1});
     void *networkAnswer = transisthor.transitNetworkDataToEcsDataEntity({Client(), temp, 1, 31});
 
-    int posX = 0;
-    int posY = 0;
+    unsigned short newEnemy = 0;
 
-    std::memcpy(&posX, networkAnswer, sizeof(int));
-    std::memcpy(&posY, (void *)((char *)networkAnswer + sizeof(int)), sizeof(int));
-    cr_assert_eq(posX, 1);
-    cr_assert_eq(posY, 2);
+    char *uuid = (char *)networkAnswer + sizeof(unsigned short);
+
+    std::memcpy(&newEnemy, networkAnswer, sizeof(unsigned short));
+    cr_assert_eq(newEnemy, enemy);
+    cr_assert_str_eq("UUID", uuid);
+}
+
+Test(transisthor_testing, transit_enemyProjectile_entity_without_uuid)
+{
+    Communicator communicator = Communicator();
+    World world = World(2);
+    Transisthor transisthor = Transisthor(communicator, world);
+    Velocity pos = Velocity(10, 12);
+    Velocity newPos;
+    Client temporaryClient = Client();
+    communicator.addClientToList(temporaryClient);
+
+    std::size_t enemy =
+        world.addEntity().addComponent<Position>(1, 2).addComponent<Damage>(10).addComponent<Velocity>(1, 1).getId();
+
+    unsigned short entityId = createNewEnemyProjectile(world, world.getEntity(enemy));
+
+    void *temp = transisthor.transitEcsDataToNetworkDataEntityEnemyProjectile(entityId, enemy, std::string(""), {1});
+    void *networkAnswer = transisthor.transitNetworkDataToEcsDataEntity({Client(), temp, 1, 31});
+
+    unsigned short newEnemy = 0;
+
+    char *uuid = (char *)networkAnswer + sizeof(unsigned short);
+
+    std::memcpy(&newEnemy, networkAnswer, sizeof(unsigned short));
+    cr_assert_eq(newEnemy, enemy);
+    cr_assert_str_eq("", uuid);
 }
 
 Test(transisthor_testing, transit_obstacle_entity)
@@ -369,17 +617,56 @@ Test(transisthor_testing, transit_obstacle_entity)
 
     Position entityPosition = world.getEntity(entityId).getComponent<Position>();
 
-    void *temp =
-        transisthor.transitEcsDataToNetworkDataEntityObstacle(entityId, entityPosition.x, entityPosition.y, {1});
+    void *temp = transisthor.transitEcsDataToNetworkDataEntityObstacle(
+        entityId, entityPosition.x, entityPosition.y, 5, std::string("UUID"), {1});
     void *networkAnswer = transisthor.transitNetworkDataToEcsDataEntity({Client(), temp, 1, 31});
 
     int posX = 0;
     int posY = 0;
+    unsigned short damage = 0;
+
+    char *uuid = (char *)networkAnswer + sizeof(int) * 2 + sizeof(unsigned short);
 
     std::memcpy(&posX, networkAnswer, sizeof(int));
     std::memcpy(&posY, (void *)((char *)networkAnswer + sizeof(int)), sizeof(int));
+    std::memcpy(&damage, (void *)((char *)networkAnswer + sizeof(int) * 2), sizeof(unsigned short));
     cr_assert_eq(posX, 10);
     cr_assert_eq(posY, 120);
+    cr_assert_eq(damage, 5);
+    cr_assert_str_eq("UUID", uuid);
+}
+
+Test(transisthor_testing, transit_obstacle_entity_without_uuid)
+{
+    Communicator communicator = Communicator();
+    World world = World(2);
+    Transisthor transisthor = Transisthor(communicator, world);
+    Velocity pos = Velocity(10, 12);
+    Velocity newPos;
+    Client temporaryClient = Client();
+    communicator.addClientToList(temporaryClient);
+
+    std::size_t entityId = createNewObstacle(world, 10, 120, 5);
+
+    Position entityPosition = world.getEntity(entityId).getComponent<Position>();
+
+    void *temp = transisthor.transitEcsDataToNetworkDataEntityObstacle(
+        entityId, entityPosition.x, entityPosition.y, 5, std::string(""), {1});
+    void *networkAnswer = transisthor.transitNetworkDataToEcsDataEntity({Client(), temp, 1, 31});
+
+    int posX = 0;
+    int posY = 0;
+    unsigned short damage = 0;
+
+    char *uuid = (char *)networkAnswer + sizeof(int) * 2 + sizeof(unsigned short);
+
+    std::memcpy(&posX, networkAnswer, sizeof(int));
+    std::memcpy(&posY, (void *)((char *)networkAnswer + sizeof(int)), sizeof(int));
+    std::memcpy(&damage, (void *)((char *)networkAnswer + sizeof(int) * 2), sizeof(unsigned short));
+    cr_assert_eq(posX, 10);
+    cr_assert_eq(posY, 120);
+    cr_assert_eq(damage, 5);
+    cr_assert_str_eq("", uuid);
 }
 
 Test(transisthor_testing, transit_projectile_entity)
@@ -397,21 +684,69 @@ Test(transisthor_testing, transit_projectile_entity)
     Position entityPosition = world.getEntity(entityId).getComponent<Position>();
     Velocity entityVel = world.getEntity(entityId).getComponent<Velocity>();
 
-    void *temp = transisthor.transitEcsDataToNetworkDataEntityProjectile(
-        entityId, entityPosition.x, entityPosition.y, entityVel.multiplierAbscissa, entityVel.multiplierOrdinate, {1});
+    void *temp = transisthor.transitEcsDataToNetworkDataEntityProjectile(entityId, entityPosition.x, entityPosition.y,
+        entityVel.multiplierAbscissa, entityVel.multiplierOrdinate, 1, std::string("UUID"), {1});
     void *networkAnswer = transisthor.transitNetworkDataToEcsDataEntity({Client(), temp, 1, 31});
 
     int posX = 0;
     int posY = 0;
     double velAbsc = 0;
     double velOrd = 0;
+    unsigned short damage = 0;
+
+    char *uuid = (char *)networkAnswer + sizeof(int) * 2 + sizeof(double) * 2 + sizeof(unsigned short);
 
     std::memcpy(&posX, networkAnswer, sizeof(int));
     std::memcpy(&posY, (void *)((char *)networkAnswer + sizeof(int)), sizeof(int));
     std::memcpy(&velAbsc, (void *)((char *)networkAnswer + sizeof(int) * 2), sizeof(double));
     std::memcpy(&velOrd, (void *)((char *)networkAnswer + sizeof(int) * 2 + sizeof(double)), sizeof(double));
+    std::memcpy(
+        &damage, (void *)((char *)networkAnswer + sizeof(int) * 2 + sizeof(double) * 2), sizeof(unsigned short));
     cr_assert_eq(posX, 10);
     cr_assert_eq(posY, 120);
     cr_assert_eq(velAbsc, 4);
     cr_assert_eq(velOrd, 5);
+    cr_assert_eq(damage, 1);
+    cr_assert_str_eq("UUID", uuid);
+}
+
+Test(transisthor_testing, transit_projectile_entity_without_uuid)
+{
+    Communicator communicator = Communicator();
+    World world = World(2);
+    Transisthor transisthor = Transisthor(communicator, world);
+    Velocity pos = Velocity(10, 12);
+    Velocity newPos;
+    Client temporaryClient = Client();
+    communicator.addClientToList(temporaryClient);
+
+    std::size_t entityId = createNewProjectile(world, 10, 120, 4, 5, 1);
+
+    Position entityPosition = world.getEntity(entityId).getComponent<Position>();
+    Velocity entityVel = world.getEntity(entityId).getComponent<Velocity>();
+
+    void *temp = transisthor.transitEcsDataToNetworkDataEntityProjectile(entityId, entityPosition.x, entityPosition.y,
+        entityVel.multiplierAbscissa, entityVel.multiplierOrdinate, 1, std::string(""), {1});
+    void *networkAnswer = transisthor.transitNetworkDataToEcsDataEntity({Client(), temp, 1, 31});
+
+    int posX = 0;
+    int posY = 0;
+    double velAbsc = 0;
+    double velOrd = 0;
+    unsigned short damage = 0;
+
+    char *uuid = (char *)networkAnswer + sizeof(int) * 2 + sizeof(double) * 2 + sizeof(unsigned short);
+
+    std::memcpy(&posX, networkAnswer, sizeof(int));
+    std::memcpy(&posY, (void *)((char *)networkAnswer + sizeof(int)), sizeof(int));
+    std::memcpy(&velAbsc, (void *)((char *)networkAnswer + sizeof(int) * 2), sizeof(double));
+    std::memcpy(&velOrd, (void *)((char *)networkAnswer + sizeof(int) * 2 + sizeof(double)), sizeof(double));
+    std::memcpy(
+        &damage, (void *)((char *)networkAnswer + sizeof(int) * 2 + sizeof(double) * 2), sizeof(unsigned short));
+    cr_assert_eq(posX, 10);
+    cr_assert_eq(posY, 120);
+    cr_assert_eq(velAbsc, 4);
+    cr_assert_eq(velOrd, 5);
+    cr_assert_eq(damage, 1);
+    cr_assert_str_eq("", uuid);
 }
