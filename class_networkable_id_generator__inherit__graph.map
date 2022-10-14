@@ -1,0 +1,4 @@
+<map id="NetworkableIdGenerator" name="NetworkableIdGenerator">
+<area shape="rect" id="node1" title="Shared resource networkable id generator for Networkable Component." alt="" coords="5,80,187,107"/>
+<area shape="rect" id="node2" href="$classecs_1_1_resource.html" title="This is the Resource Class for ECS The base Resource type, all Resources must inherit from Resource." alt="" coords="40,5,152,32"/>
+</map>

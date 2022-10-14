@@ -11,7 +11,7 @@ var searchData=
   ['enemy_5fup_134',['ENEMY_UP',['../classecs_1_1_graphics_texture_resource.html#af837603102b91ff4b94589320843fdf3a0be76190b9be5554cbe957795b621c1a',1,'ecs::GraphicsTextureResource']]],
   ['enemycollide_135',['enemyCollide',['../structecs_1_1_collide.html#a384ecee85bf7d508c2f4e4b64525d4e2',1,'ecs::Collide']]],
   ['enemycomponent_2ehpp_136',['EnemyComponent.hpp',['../_enemy_component_8hpp.html',1,'']]],
-  ['enemyprojectile_137',['EnemyProjectile',['../classecs_1_1_enemy_projectile.html',1,'ecs']]],
+  ['enemyprojectile_137',['EnemyProjectile',['../classecs_1_1_enemy_projectile.html',1,'ecs::EnemyProjectile'],['../classecs_1_1_enemy_projectile.html#a52c6e0ca5409e8d5551be4ff5aa413d8',1,'ecs::EnemyProjectile::EnemyProjectile()']]],
   ['enemyprojectilecomponent_2ehpp_138',['EnemyProjectileComponent.hpp',['../_enemy_projectile_component_8hpp.html',1,'']]],
   ['entitieslist_139',['EntitiesList',['../classecs_1_1_world.html#a937b406f7b772c2c946eef8afe1107d4',1,'ecs::World']]],
   ['entity_140',['Entity',['../classecs_1_1_entity.html',1,'ecs::Entity'],['../classecs_1_1_entity.html#a85d333504e88bca14709206285002f4a',1,'ecs::Entity::Entity()']]],

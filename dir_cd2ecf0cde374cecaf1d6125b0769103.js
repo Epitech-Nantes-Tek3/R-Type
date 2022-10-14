@@ -1,7 +1,7 @@
 var dir_cd2ecf0cde374cecaf1d6125b0769103 =
 [
     [ "AlliedProjectileComponent.hpp", "_allied_projectile_component_8hpp.html", [
-      [ "AlliedProjectile", "classecs_1_1_allied_projectile.html", null ]
+      [ "AlliedProjectile", "classecs_1_1_allied_projectile.html", "classecs_1_1_allied_projectile" ]
     ] ],
     [ "BackGroundComponent.hpp", "_back_ground_component_8hpp.html", [
       [ "BackGround", "classecs_1_1_back_ground.html", null ]
@@ -43,7 +43,7 @@ var dir_cd2ecf0cde374cecaf1d6125b0769103 =
       [ "Enemy", "classecs_1_1_enemy.html", null ]
     ] ],
     [ "EnemyProjectileComponent.hpp", "_enemy_projectile_component_8hpp.html", [
-      [ "EnemyProjectile", "classecs_1_1_enemy_projectile.html", null ]
+      [ "EnemyProjectile", "classecs_1_1_enemy_projectile.html", "classecs_1_1_enemy_projectile" ]
     ] ],
     [ "EquipmentComponent.hpp", "_equipment_component_8hpp.html", [
       [ "Equipment", "classecs_1_1_equipment.html", "classecs_1_1_equipment" ]
@@ -60,6 +60,7 @@ var dir_cd2ecf0cde374cecaf1d6125b0769103 =
     [ "LifeTimeComponent.hpp", "_life_time_component_8hpp.html", [
       [ "LifeTime", "classecs_1_1_life_time.html", "classecs_1_1_life_time" ]
     ] ],
+    [ "NewlyCreated.hpp", "_newly_created_8hpp.html", "_newly_created_8hpp" ],
     [ "ObstacleComponent.hpp", "_obstacle_component_8hpp.html", [
       [ "Obstacle", "classecs_1_1_obstacle.html", null ]
     ] ],

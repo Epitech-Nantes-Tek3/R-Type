@@ -142,7 +142,7 @@ $(document).ready(function(){initNavTree('hierarchy.html',''); initResizable(); 
 </td></tr>
 <tr><td><img src="inherit_graph_10.png" border="0" usemap="#ecs_1_1_component" alt=""/>
 <map name="ecs_1_1_component" id="ecs_1_1_component">
-<area shape="rect" href="classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone..." alt="" coords="5,1167,132,1193"/>
+<area shape="rect" href="classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone..." alt="" coords="5,1192,132,1219"/>
 <area shape="rect" href="classecs_1_1_action_queue_component.html" title="This component class stores a function queue. These functions will be added when an input occurs duri..." alt="" coords="199,5,410,32"/>
 <area shape="rect" href="classecs_1_1_allied_projectile.html" title="Allied Projectile Component allows an entity to be used as an Allied Projectile." alt="" coords="229,56,380,83"/>
 <area shape="rect" href="classecs_1_1_allow_controller_component.html" title="This component class allows controller usage in client." alt="" coords="191,107,418,133"/>
@@ -177,17 +177,18 @@ $(document).ready(function(){initNavTree('hierarchy.html',''); initResizable(); 
 <area shape="rect" href="classecs_1_1_networkable.html" title="This component is used to know which entities must be the same in the server and in client...." alt="" coords="237,1623,372,1649"/>
 <area shape="rect" href="classecs_1_1_network_client.html" title="The component which will be used to link the Communicator Client&#39;ID." alt="" coords="232,1673,377,1700"/>
 <area shape="rect" href="classecs_1_1_network_server.html" title="The component which will be used to link the Communicator Server&#39;ID." alt="" coords="230,1724,379,1751"/>
-<area shape="rect" href="classecs_1_1_obstacle.html" title="Obstacle Component allows an entity to be used as an Obstacle." alt="" coords="250,1775,359,1801"/>
-<area shape="rect" href="classecs_1_1_pattern.html" title="The Movement component, used for mobiles entities." alt="" coords="255,1825,354,1852"/>
-<area shape="rect" href="classecs_1_1_player.html" title="Player Component allows an entity to be used as a Player." alt="" coords="258,1876,351,1903"/>
-<area shape="rect" href="classecs_1_1_position.html" title="The Position component, almost used for every entities It&#39;s a networkable component." alt="" coords="253,1927,357,1953"/>
-<area shape="rect" href="classecs_1_1_projectile.html" title="This Component specifies if an entity is a Projectile. This component specifies whether an entity is ..." alt="" coords="248,1977,361,2004"/>
-<area shape="rect" href="classecs_1_1_shooting_frequency.html" title="The ShootingFrequency class, how many seconds will be between two projectiles." alt="" coords="217,2028,393,2055"/>
-<area shape="rect" href="classecs_1_1_size.html" title="The Size component, almost used for everything." alt="" coords="265,2079,344,2105"/>
-<area shape="rect" href="classecs_1_1_texture_name.html" title="TextureName store the key as enum to the corresponding texture stores in shared resource." alt="" coords="235,2129,374,2156"/>
-<area shape="rect" href="classecs_1_1_velocity.html" title="The velocity class, multiplying the movement of the entity It&#39;s a networkable component." alt="" coords="253,2180,357,2207"/>
-<area shape="rect" href="classecs_1_1_weakness.html" title="The Weakness component, to create a target for projectiles." alt="" coords="245,2231,364,2257"/>
-<area shape="rect" href="classecs_1_1_weight.html" title="The Weight class, almost used for everything, used in gravity system." alt="" coords="256,2281,353,2308"/>
+<area shape="rect" href="classecs_1_1_newly_created.html" title="This component is in order to give a unique id to an entity, it&#39;s used in the sending of the creation..." alt="" coords="233,1775,377,1801"/>
+<area shape="rect" href="classecs_1_1_obstacle.html" title="Obstacle Component allows an entity to be used as an Obstacle." alt="" coords="250,1825,359,1852"/>
+<area shape="rect" href="classecs_1_1_pattern.html" title="The Movement component, used for mobiles entities." alt="" coords="255,1876,354,1903"/>
+<area shape="rect" href="classecs_1_1_player.html" title="Player Component allows an entity to be used as a Player." alt="" coords="258,1927,351,1953"/>
+<area shape="rect" href="classecs_1_1_position.html" title="The Position component, almost used for every entities It&#39;s a networkable component." alt="" coords="253,1977,357,2004"/>
+<area shape="rect" href="classecs_1_1_projectile.html" title="This Component specifies if an entity is a Projectile. This component specifies whether an entity is ..." alt="" coords="248,2028,361,2055"/>
+<area shape="rect" href="classecs_1_1_shooting_frequency.html" title="The ShootingFrequency class, how many seconds will be between two projectiles." alt="" coords="217,2079,393,2105"/>
+<area shape="rect" href="classecs_1_1_size.html" title="The Size component, almost used for everything." alt="" coords="265,2129,344,2156"/>
+<area shape="rect" href="classecs_1_1_texture_name.html" title="TextureName store the key as enum to the corresponding texture stores in shared resource." alt="" coords="235,2180,374,2207"/>
+<area shape="rect" href="classecs_1_1_velocity.html" title="The velocity class, multiplying the movement of the entity It&#39;s a networkable component." alt="" coords="253,2231,357,2257"/>
+<area shape="rect" href="classecs_1_1_weakness.html" title="The Weakness component, to create a target for projectiles." alt="" coords="245,2281,364,2308"/>
+<area shape="rect" href="classecs_1_1_weight.html" title="The Weight class, almost used for everything, used in gravity system." alt="" coords="256,2332,353,2359"/>
 </map>
 </td></tr>
 <tr><td><img src="inherit_graph_11.png" border="0" usemap="#ecs_1_1_entity" alt=""/>
@@ -197,29 +198,32 @@ $(document).ready(function(){initNavTree('hierarchy.html',''); initResizable(); 
 </td></tr>
 <tr><td><img src="inherit_graph_12.png" border="0" usemap="#ecs_1_1_resource" alt=""/>
 <map name="ecs_1_1_resource" id="ecs_1_1_resource">
-<area shape="rect" href="classecs_1_1_resource.html" title="This is the Resource Class for ECS The base Resource type, all Resources must inherit from Resource." alt="" coords="5,107,117,133"/>
+<area shape="rect" href="classecs_1_1_resource.html" title="This is the Resource Class for ECS The base Resource type, all Resources must inherit from Resource." alt="" coords="5,132,117,159"/>
 <area shape="rect" href="classecs_1_1_game_clock.html" title="Shared Resource Clock for the Game." alt="" coords="211,5,337,32"/>
 <area shape="rect" href="classecs_1_1_graphics_font_resource.html" title="This resource class stores the font in order to draw a Graphical text resource. It justs exist for th..." alt="" coords="175,56,373,83"/>
 <area shape="rect" href="classecs_1_1_graphics_texture_resource.html" title="This resource class stores a map of Graphical SFML textures to be set on Shapes." alt="" coords="165,107,383,133"/>
 <area shape="rect" href="structecs_1_1_random_device.html" title="Random Shared Resource." alt="" coords="199,157,349,184"/>
 <area shape="rect" href="classecs_1_1_render_window_resource.html" title="This shared resource adds a window. It will used by graphics part to draw something on screen,..." alt="" coords="169,208,379,235"/>
+<area shape="rect" href="class_networkable_id_generator.html" title="Shared resource networkable id generator for Networkable Component." alt="" coords="183,259,365,285"/>
 </map>
 </td></tr>
 <tr><td><img src="inherit_graph_13.png" border="0" usemap="#ecs_1_1_system" alt=""/>
 <map name="ecs_1_1_system" id="ecs_1_1_system">
-<area shape="rect" href="classecs_1_1_system.html" title=" " alt="" coords="5,284,107,311"/>
-<area shape="rect" href="structecs_1_1_collide.html" title="This is the Collide System. This system will check every entities, see if they collide and apply dama..." alt="" coords="191,5,289,32"/>
-<area shape="rect" href="structecs_1_1_death_life.html" title="This is the DeathLife System. This System takes all entities that have a Life Component with 0 HP/lif..." alt="" coords="183,56,297,83"/>
-<area shape="rect" href="structecs_1_1_death_system.html" title="This is the Death System. This system takes all entities which have Dead Component and removes them f..." alt="" coords="170,107,310,133"/>
-<area shape="rect" href="structecs_1_1_decrease_life_time.html" title="This is the DecreaseLifeTime System. This System decrease LifeTime Component at every tick...." alt="" coords="155,157,325,184"/>
-<area shape="rect" href="structecs_1_1_draw_components.html" title="This class draw GraphicsComponents on window." alt="" coords="156,208,324,235"/>
-<area shape="rect" href="structecs_1_1_input_management.html" title="This system class manage SFML input to link them to an action." alt="" coords="155,259,325,285"/>
-<area shape="rect" href="structecs_1_1_life_time_death.html" title="This is the LifeTimeDeath System. This System takes all entities that have a LifeTime Component with ..." alt="" coords="166,309,314,336"/>
-<area shape="rect" href="structecs_1_1_movement.html" title="This is the Movement system. This system can move any entities which contains a Position and a Veloci..." alt="" coords="179,360,301,387"/>
-<area shape="rect" href="structecs_1_1_update_clock.html" title="UpdateClock System. Will be used to call the GameClock&#39;s reset." alt="" coords="173,411,307,437"/>
-<area shape="rect" href="struct_send_to_client.html" title="SendToClient is a system that sends Networkable Entities datas to clients" alt="" coords="187,461,293,488"/>
-<area shape="rect" href="struct_send_to_server.html" title=" " alt="" coords="185,512,295,539"/>
-<area shape="rect" href="struct_temp.html" title=" " alt="" coords="211,563,269,589"/>
+<area shape="rect" href="classecs_1_1_system.html" title=" " alt="" coords="5,335,107,361"/>
+<area shape="rect" href="structecs_1_1_collide.html" title="This is the Collide System. This system will check every entities, see if they collide and apply dama..." alt="" coords="209,5,306,32"/>
+<area shape="rect" href="structecs_1_1_death_life.html" title="This is the DeathLife System. This System takes all entities that have a Life Component with 0 HP/lif..." alt="" coords="200,56,315,83"/>
+<area shape="rect" href="structecs_1_1_death_system.html" title="This is the Death System. This system takes all entities which have Dead Component and removes them f..." alt="" coords="187,107,327,133"/>
+<area shape="rect" href="structecs_1_1_decrease_life_time.html" title="This is the DecreaseLifeTime System. This System decrease LifeTime Component at every tick...." alt="" coords="172,157,343,184"/>
+<area shape="rect" href="structecs_1_1_draw_components.html" title="This class draw GraphicsComponents on window." alt="" coords="173,208,341,235"/>
+<area shape="rect" href="structecs_1_1_input_management.html" title="This system class manage SFML input to link them to an action." alt="" coords="172,259,343,285"/>
+<area shape="rect" href="structecs_1_1_life_time_death.html" title="This is the LifeTimeDeath System. This System takes all entities that have a LifeTime Component with ..." alt="" coords="183,309,331,336"/>
+<area shape="rect" href="structecs_1_1_movement.html" title="This is the Movement system. This system can move any entities which contains a Position and a Veloci..." alt="" coords="196,360,319,387"/>
+<area shape="rect" href="structecs_1_1_update_clock.html" title="UpdateClock System. Will be used to call the GameClock&#39;s reset." alt="" coords="190,411,325,437"/>
+<area shape="rect" href="struct_send_newly_created_to_clients.html" title=" " alt="" coords="155,461,360,488"/>
+<area shape="rect" href="struct_send_newly_created_to_server.html" title=" " alt="" coords="156,512,359,539"/>
+<area shape="rect" href="struct_send_to_client.html" title="SendToClient is a system that sends Networkable Entities datas to clients" alt="" coords="204,563,311,589"/>
+<area shape="rect" href="struct_send_to_server.html" title=" " alt="" coords="202,613,313,640"/>
+<area shape="rect" href="struct_temp.html" title="A useless system used for functional testing purpose." alt="" coords="229,664,286,691"/>
 </map>
 </td></tr>
 <tr><td><img src="inherit_graph_14.png" border="0" usemap="#ecs_1_1_world" alt=""/>

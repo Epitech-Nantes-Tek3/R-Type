@@ -134,10 +134,16 @@ $(document).ready(function(){initNavTree('_client_room_8hpp_source.html',''); in
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        std::shared_ptr&lt;World&gt; _worldInstance;</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        ClientState _state;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    };</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;} <span class="comment">// namespace client_data</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !CLIENT_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordtype">void</span> initEcsGameData(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keywordtype">void</span> startConnexionProtocol(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordtype">void</span> protocol12Answer(<a class="code" href="structcommunicator__lib_1_1_communicator_message.html">CommunicatorMessage</a> connexionResponse);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    };</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;} <span class="comment">// namespace client_data</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !CLIENT_HPP_ */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="a_transisthor_8hpp_html"><div class="ttname"><a href="_transisthor_8hpp.html">Transisthor.hpp</a></div></div>
@@ -151,6 +157,7 @@ $(document).ready(function(){initNavTree('_client_room_8hpp_source.html',''); in
 <div class="ttc" id="anamespaceecs_html"><div class="ttname"><a href="namespaceecs.html">ecs</a></div><div class="ttdef"><b>Definition:</b> Component.hpp:12</div></div>
 <div class="ttc" id="anamespacecommunicator__lib_html"><div class="ttname"><a href="namespacecommunicator__lib.html">communicator_lib</a></div><div class="ttdef"><b>Definition:</b> Client.hpp:16</div></div>
 <div class="ttc" id="aclassclient__data_1_1_client_room_html"><div class="ttname"><a href="classclient__data_1_1_client_room.html">client_data::ClientRoom</a></div><div class="ttdoc">Place where the game run (Like a lobby). Hold all libraries instance,.</div><div class="ttdef"><b>Definition:</b> ClientRoom.hpp:26</div></div>
+<div class="ttc" id="astructcommunicator__lib_1_1_communicator_message_html"><div class="ttname"><a href="structcommunicator__lib_1_1_communicator_message.html">communicator_lib::CommunicatorMessage</a></div><div class="ttdoc">Bridge between communicator and server for message.</div><div class="ttdef"><b>Definition:</b> Communicator.hpp:30</div></div>
 <div class="ttc" id="aclassclient__data_1_1_client_room_html_a8e238231449feaa8357997ae01f9f2cea872ef4ab18181608d6a2db102ed5c884"><div class="ttname"><a href="classclient__data_1_1_client_room.html#a8e238231449feaa8357997ae01f9f2cea872ef4ab18181608d6a2db102ed5c884">client_data::ClientRoom::UNDEFINED</a></div><div class="ttdeci">@ UNDEFINED</div><div class="ttdef"><b>Definition:</b> ClientRoom.hpp:29</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

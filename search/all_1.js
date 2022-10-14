@@ -11,7 +11,7 @@ var searchData=
   ['address_9',['address',['../structargument__handler_1_1_argument_handler_1_1_server_information.html#ab359fc22fef0824cf134b1b4858e686e',1,'argument_handler::ArgumentHandler::ServerInformation']]],
   ['addsystem_10',['addSystem',['../classecs_1_1_world.html#aab0537eccec241d5b749a47937d091c5',1,'ecs::World']]],
   ['addtexture_11',['addTexture',['../classecs_1_1_graphics_texture_resource.html#a8e5aafb052dcc6f6bc4d637eb616c2b6',1,'ecs::GraphicsTextureResource']]],
-  ['alliedprojectile_12',['AlliedProjectile',['../classecs_1_1_allied_projectile.html',1,'ecs']]],
+  ['alliedprojectile_12',['AlliedProjectile',['../classecs_1_1_allied_projectile.html',1,'ecs::AlliedProjectile'],['../classecs_1_1_allied_projectile.html#ac3542a0f8f73a7077bb9ef71f18bf925',1,'ecs::AlliedProjectile::AlliedProjectile()']]],
   ['alliedprojectilecomponent_2ehpp_13',['AlliedProjectileComponent.hpp',['../_allied_projectile_component_8hpp.html',1,'']]],
   ['allowcontrollercomponent_14',['AllowControllerComponent',['../classecs_1_1_allow_controller_component.html',1,'ecs']]],
   ['allowcontrollercomponent_2ehpp_15',['AllowControllerComponent.hpp',['../_allow_controller_component_8hpp.html',1,'']]],

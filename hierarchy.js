@@ -41,6 +41,7 @@ var hierarchy =
       [ "ecs::Networkable", "classecs_1_1_networkable.html", null ],
       [ "ecs::NetworkClient", "classecs_1_1_network_client.html", null ],
       [ "ecs::NetworkServer", "classecs_1_1_network_server.html", null ],
+      [ "ecs::NewlyCreated", "classecs_1_1_newly_created.html", null ],
       [ "ecs::Obstacle", "classecs_1_1_obstacle.html", null ],
       [ "ecs::Pattern", "classecs_1_1_pattern.html", null ],
       [ "ecs::Player", "classecs_1_1_player.html", null ],
@@ -69,7 +70,8 @@ var hierarchy =
       [ "ecs::GraphicsFontResource", "classecs_1_1_graphics_font_resource.html", null ],
       [ "ecs::GraphicsTextureResource", "classecs_1_1_graphics_texture_resource.html", null ],
       [ "ecs::RandomDevice", "structecs_1_1_random_device.html", null ],
-      [ "ecs::RenderWindowResource", "classecs_1_1_render_window_resource.html", null ]
+      [ "ecs::RenderWindowResource", "classecs_1_1_render_window_resource.html", null ],
+      [ "NetworkableIdGenerator", "class_networkable_id_generator.html", null ]
     ] ],
     [ "server_data::Room", "classserver__data_1_1_room.html", null ],
     [ "communicator_lib::Sender", "classcommunicator__lib_1_1_sender.html", null ],
@@ -85,6 +87,8 @@ var hierarchy =
       [ "ecs::LifeTimeDeath", "structecs_1_1_life_time_death.html", null ],
       [ "ecs::Movement", "structecs_1_1_movement.html", null ],
       [ "ecs::UpdateClock", "structecs_1_1_update_clock.html", null ],
+      [ "SendNewlyCreatedToClients", "struct_send_newly_created_to_clients.html", null ],
+      [ "SendNewlyCreatedToServer", "struct_send_newly_created_to_server.html", null ],
       [ "SendToClient", "struct_send_to_client.html", null ],
       [ "SendToServer", "struct_send_to_server.html", null ],
       [ "Temp", "struct_temp.html", null ]

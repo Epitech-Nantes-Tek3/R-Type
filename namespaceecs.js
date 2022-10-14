@@ -1,7 +1,7 @@
 var namespaceecs =
 [
     [ "ActionQueueComponent", "classecs_1_1_action_queue_component.html", "classecs_1_1_action_queue_component" ],
-    [ "AlliedProjectile", "classecs_1_1_allied_projectile.html", null ],
+    [ "AlliedProjectile", "classecs_1_1_allied_projectile.html", "classecs_1_1_allied_projectile" ],
     [ "AllowControllerComponent", "classecs_1_1_allow_controller_component.html", null ],
     [ "AllowMouseAndKeyboardComponent", "classecs_1_1_allow_mouse_and_keyboard_component.html", null ],
     [ "BackGround", "classecs_1_1_back_ground.html", null ],
@@ -26,7 +26,7 @@ var namespaceecs =
     [ "Destination", "classecs_1_1_destination.html", "classecs_1_1_destination" ],
     [ "DrawComponents", "structecs_1_1_draw_components.html", "structecs_1_1_draw_components" ],
     [ "Enemy", "classecs_1_1_enemy.html", null ],
-    [ "EnemyProjectile", "classecs_1_1_enemy_projectile.html", null ],
+    [ "EnemyProjectile", "classecs_1_1_enemy_projectile.html", "classecs_1_1_enemy_projectile" ],
     [ "Entity", "classecs_1_1_entity.html", "classecs_1_1_entity" ],
     [ "Equipment", "classecs_1_1_equipment.html", "classecs_1_1_equipment" ],
     [ "GameClock", "classecs_1_1_game_clock.html", "classecs_1_1_game_clock" ],
@@ -47,6 +47,7 @@ var namespaceecs =
     [ "Networkable", "classecs_1_1_networkable.html", "classecs_1_1_networkable" ],
     [ "NetworkClient", "classecs_1_1_network_client.html", "classecs_1_1_network_client" ],
     [ "NetworkServer", "classecs_1_1_network_server.html", "classecs_1_1_network_server" ],
+    [ "NewlyCreated", "classecs_1_1_newly_created.html", "classecs_1_1_newly_created" ],
     [ "Obstacle", "classecs_1_1_obstacle.html", null ],
     [ "Pattern", "classecs_1_1_pattern.html", "classecs_1_1_pattern" ],
     [ "Player", "classecs_1_1_player.html", null ],
