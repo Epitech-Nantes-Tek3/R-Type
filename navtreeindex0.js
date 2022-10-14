@@ -123,8 +123,9 @@ var NAVTREEINDEX0 =
 "_graphics_text_component_8cpp.html":[5,0,1,8,8],
 "_graphics_text_component_8hpp.html":[5,0,1,8,9],
 "_graphics_text_component_8hpp_source.html":[5,0,1,8,9],
-"_graphics_texture_resource_8hpp.html":[5,0,1,9,1],
-"_graphics_texture_resource_8hpp_source.html":[5,0,1,9,1],
+"_graphics_texture_resource_8cpp.html":[5,0,1,9,1],
+"_graphics_texture_resource_8hpp.html":[5,0,1,9,2],
+"_graphics_texture_resource_8hpp_source.html":[5,0,1,9,2],
 "_input_management_8cpp.html":[5,0,1,10,2],
 "_input_management_8hpp.html":[5,0,1,10,3],
 "_input_management_8hpp_source.html":[5,0,1,10,3],
@@ -169,8 +170,8 @@ var NAVTREEINDEX0 =
 "_receiver_8cpp.html":[5,0,1,1,4],
 "_receiver_8hpp.html":[5,0,1,1,5],
 "_receiver_8hpp_source.html":[5,0,1,1,5],
-"_render_window_resource_8hpp.html":[5,0,1,9,2],
-"_render_window_resource_8hpp_source.html":[5,0,1,9,2],
+"_render_window_resource_8hpp.html":[5,0,1,9,3],
+"_render_window_resource_8hpp_source.html":[5,0,1,9,3],
 "_resource_8hpp.html":[5,0,1,2,2,0],
 "_resource_8hpp_source.html":[5,0,1,2,2,0],
 "_room_8cpp.html":[5,0,2,1],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "classcommunicator__lib_1_1_client.html#ae2ae7d37e1c20f9f140b9c481cc4f8a0":[4,0,2,0,6],
 "classcommunicator__lib_1_1_client.html#aead4161faa91392a6b2d1485a4b14fa7":[4,0,2,0,0],
 "classcommunicator__lib_1_1_communicator.html":[4,0,2,1],
-"classcommunicator__lib_1_1_communicator.html#a1ddf526a986ef4464e3da4ad3ee9fc9c":[4,0,2,1,1],
-"classcommunicator__lib_1_1_communicator.html#a43ee14303a99eff5a28cc17881e4e259":[4,0,2,1,3]
+"classcommunicator__lib_1_1_communicator.html#a1ddf526a986ef4464e3da4ad3ee9fc9c":[4,0,2,1,1]
 };

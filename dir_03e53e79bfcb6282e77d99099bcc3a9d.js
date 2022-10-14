@@ -3,6 +3,7 @@ var dir_03e53e79bfcb6282e77d99099bcc3a9d =
     [ "GraphicsFontResource.hpp", "_graphics_font_resource_8hpp.html", [
       [ "GraphicsFontResource", "classecs_1_1_graphics_font_resource.html", "classecs_1_1_graphics_font_resource" ]
     ] ],
+    [ "GraphicsTextureResource.cpp", "_graphics_texture_resource_8cpp.html", null ],
     [ "GraphicsTextureResource.hpp", "_graphics_texture_resource_8hpp.html", [
       [ "GraphicsTextureResource", "classecs_1_1_graphics_texture_resource.html", "classecs_1_1_graphics_texture_resource" ]
     ] ],

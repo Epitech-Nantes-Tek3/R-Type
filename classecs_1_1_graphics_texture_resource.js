@@ -21,6 +21,6 @@ var classecs_1_1_graphics_texture_resource =
     ] ],
     [ "GraphicsTextureResource", "classecs_1_1_graphics_texture_resource.html#ab991906e40d4cbdc3c383ad593892af2", null ],
     [ "~GraphicsTextureResource", "classecs_1_1_graphics_texture_resource.html#ab648befe51f2a0f3b5994e9675e3aeb2", null ],
-    [ "addTexture", "classecs_1_1_graphics_texture_resource.html#a7fb5e58411b29a5ac437e2dab62eb1d8", null ],
+    [ "addTexture", "classecs_1_1_graphics_texture_resource.html#a8e5aafb052dcc6f6bc4d637eb616c2b6", null ],
     [ "_texturesList", "classecs_1_1_graphics_texture_resource.html#a61865f7d5a591079dc998b926a17d436", null ]
 ];
