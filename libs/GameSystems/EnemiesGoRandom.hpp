@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2022
-** Project
+** Rt-Type
 ** File description:
 ** EnemiesGoRandom
 */
