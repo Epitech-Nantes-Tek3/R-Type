@@ -12,6 +12,17 @@
 #include "GameComponents/PositionComponent.hpp"
 #include "GameEntityManipulation/CreateEntitiesFunctions/CreateObstacle.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
+#include "GameClock.hpp"
+#include "Random.hpp"
+#include "RenderWindowResource.hpp"
+#include "GraphicsFontResource.hpp"
+#include "CollidableSystem.hpp"
+#include "DeathLifeSystem.hpp"
+#include "DeathSystem.hpp"
+#include "DecreaseLifeTimeSystem.hpp"
+#include "LifeTimeDeathSystem.hpp"
+#include "MovementSystem.hpp"
+#include "UpdateClockSystem.hpp"
 
 using namespace error_lib;
 using namespace communicator_lib;
@@ -78,5 +89,11 @@ void ClientRoom::_initSharedResources()
 
 void ClientRoom::_initSystems()
 {
-
+    _worldInstance->addSystem<Collide>();
+    _worldInstance->addSystem<DeathLife>();
+    _worldInstance->addSystem<DeathSystem>();
+    _worldInstance->addSystem<DecreaseLifeTime>();
+    _worldInstance->addSystem<LifeTimeDeath>();
+    _worldInstance->addSystem<Movement>();
+    _worldInstance->addSystem<UpdateClock>();
 }
