@@ -8,7 +8,7 @@ set(SRC
     ${INC_SFML_RESOURCE_ROOT}/GraphicsTextureResource.hpp
 )
 
-add_library(${TARGET} SHARED ${SRC})
+add_library(${TARGET} STATIC ${SRC})
 
 target_include_directories(${TARGET}
     PUBLIC ${INC_SFML_RESOURCE_ROOT}
