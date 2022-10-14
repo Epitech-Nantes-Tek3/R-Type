@@ -15,6 +15,8 @@ var searchData=
   ['movement_231',['Movement',['../structecs_1_1_movement.html',1,'ecs']]],
   ['movementsystem_2ecpp_232',['MovementSystem.cpp',['../_movement_system_8cpp.html',1,'']]],
   ['movementsystem_2ehpp_233',['MovementSystem.hpp',['../_movement_system_8hpp.html',1,'']]],
-  ['multiplierabscissa_234',['multiplierAbscissa',['../classecs_1_1_velocity.html#aba4d6362c6d263ac026720d6682266d9',1,'ecs::Velocity']]],
-  ['multiplierordinate_235',['multiplierOrdinate',['../classecs_1_1_velocity.html#a3602cdf01dded46412eff60c80753431',1,'ecs::Velocity']]]
+  ['moveplayerx_234',['movePlayerX',['../structecs_1_1_input_management.html#a1d0770f89b8ef05abc9735e0bc5af6d5',1,'ecs::InputManagement']]],
+  ['moveplayery_235',['movePlayerY',['../structecs_1_1_input_management.html#a2f2a11732441aa25dcd401cedbc0c8e6',1,'ecs::InputManagement']]],
+  ['multiplierabscissa_236',['multiplierAbscissa',['../classecs_1_1_velocity.html#aba4d6362c6d263ac026720d6682266d9',1,'ecs::Velocity']]],
+  ['multiplierordinate_237',['multiplierOrdinate',['../classecs_1_1_velocity.html#a3602cdf01dded46412eff60c80753431',1,'ecs::Velocity']]]
 ];

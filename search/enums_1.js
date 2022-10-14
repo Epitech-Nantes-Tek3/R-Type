@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['clientstate_905',['ClientState',['../classclient__data_1_1_client_room.html#a8e238231449feaa8357997ae01f9f2ce',1,'client_data::ClientRoom']]]
+  ['clientstate_911',['ClientState',['../classclient__data_1_1_client_room.html#a8e238231449feaa8357997ae01f9f2ce',1,'client_data::ClientRoom']]]
 ];
