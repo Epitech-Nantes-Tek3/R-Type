@@ -8,15 +8,16 @@
 /// @file Client/ClientRoom.cpp
 
 #include "ClientRoom.hpp"
+#include "ActionQueueComponent.hpp"
+#include "ControllerButtonInputComponent.hpp"
+#include "ControllerJoystickInputComponent.hpp"
+#include "DrawComponents.hpp"
 #include "Error/Error.hpp"
 #include "GameComponents/PlayerComponent.hpp"
 #include "GameComponents/PositionComponent.hpp"
 #include "GameEntityManipulation/CreateEntitiesFunctions/CreateAlliedProjectile.hpp"
-#include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "GameSharedResources/GameClock.hpp"
 #include "GameSharedResources/Random.hpp"
-#include "RenderWindowResource.hpp"
-#include "GraphicsFontResource.hpp"
 #include "GameSystems/CollidableSystem.hpp"
 #include "GameSystems/DeathLifeSystem.hpp"
 #include "GameSystems/DeathSystem.hpp"
@@ -24,18 +25,17 @@
 #include "GameSystems/LifeTimeDeathSystem.hpp"
 #include "GameSystems/MovementSystem.hpp"
 #include "GameSystems/UpdateClockSystem.hpp"
-#include "DrawComponents.hpp"
+#include "GraphicsFontResource.hpp"
+#include "GraphicsRectangleComponent.hpp"
 #include "InputManagement.hpp"
+#include "KeyboardInputComponent.hpp"
+#include "LayerLvL.hpp"
+#include "MouseInputComponent.hpp"
+#include "RenderWindowResource.hpp"
+#include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Components/NetworkServer.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Systems/SendNewlyCreatedToServer.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Systems/SendToServer.hpp"
-#include "LayerLvL.hpp"
-#include "GraphicsRectangleComponent.hpp"
-#include "MouseInputComponent.hpp"
-#include "KeyboardInputComponent.hpp"
-#include "ControllerButtonInputComponent.hpp"
-#include "ControllerJoystickInputComponent.hpp"
-#include "ActionQueueComponent.hpp"
 
 using namespace error_lib;
 using namespace communicator_lib;
@@ -138,5 +138,10 @@ void ClientRoom::_initSystems()
 void ClientRoom::_initEntities()
 {
     _worldInstance->addEntity().addComponent<LayerLvL>().addComponent<GraphicsRectangleComponent>();
-    _worldInstance->addEntity().addComponent<MouseInputComponent>().addComponent<KeyboardInputComponent>().addComponent<ControllerButtonInputComponent>().addComponent<ControllerJoystickInputComponent>().addComponent<ActionQueueComponent>();
+    _worldInstance->addEntity()
+        .addComponent<MouseInputComponent>()
+        .addComponent<KeyboardInputComponent>()
+        .addComponent<ControllerButtonInputComponent>()
+        .addComponent<ControllerJoystickInputComponent>()
+        .addComponent<ActionQueueComponent>();
 }
