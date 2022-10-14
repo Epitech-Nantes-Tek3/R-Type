@@ -21,9 +21,11 @@ using namespace ecs;
 void InputManagement::run(World &world)
 {
     sf::Event event;
-    std::vector<std::shared_ptr<Entity>> Inputs = world.joinEntities<MouseInputComponent, KeyboardInputComponent,
+    std::vector<std::shared_ptr<Entity>> Inputs =world.joinEntities<MouseInputComponent, KeyboardInputComponent,
         ControllerButtonInputComponent, ControllerJoystickInputComponent, ActionQueueComponent>();
 
+    if (Inputs.empty())
+        return;
     while (world.getResource<RenderWindowResource>().window.pollEvent(event)) {
         if (event.type == sf::Event::KeyPressed) {
             auto keyPressed = [event](std::shared_ptr<ecs::Entity> entityPtr) {

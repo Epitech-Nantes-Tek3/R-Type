@@ -110,7 +110,7 @@ void ClientRoom::startLobbyLoop(void)
 void ClientRoom::_initSharedResources()
 {
     _worldInstance->addResource<GameClock>();
-    _worldInstance->addResource<RandomDevice>();
+    // _worldInstance->addResource<RandomDevice>();
     _worldInstance->addResource<RenderWindowResource>();
     _worldInstance->addResource<GraphicsFontResource>("assets/arial.ttf");
 }
@@ -130,5 +130,5 @@ void ClientRoom::_initSystems()
 
 void ClientRoom::_initEntities()
 {
-    _worldInstance->addEntity().addComponent<>()
+    // _worldInstance->addEntity().addComponent<>()
 }
