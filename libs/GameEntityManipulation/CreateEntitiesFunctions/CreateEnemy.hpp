@@ -19,8 +19,8 @@
 #include "GameComponents/SizeComponent.hpp"
 #include "GameComponents/VelocityComponent.hpp"
 #include "GameComponents/WeightComponent.hpp"
-#include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "GameSharedResources/Random.hpp"
+#include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "World/World.hpp"
 
 #define MINIMUM_WIDTH  1400
@@ -87,14 +87,17 @@ namespace ecs
     /// @param life Life of the Enemy
     /// @param damage Damage of projectiles fired by this Enemy
     /// @param damageRadius DamageRadius of projectiles fired by this Enemy
+    /// @param uuid The uuid of the entity. Can be empty.
+    /// @param networkId The id of the Networkable Component. In the client instance, it MUST NOT be filled in.
     /// @return Id of the new Enemy in std::size_t
     inline std::size_t createNewEnemyRandom(World &world, const double multiplierAbscissa,
         const double multiplierOrdinate, const short weight, const int size_x, const int size_y,
-        const unsigned short life, const unsigned short damage, const unsigned short damageRadius)
+        const unsigned short life, const unsigned short damage, const unsigned short damageRadius,
+        const std::string uuid = "", const unsigned short networkId = 0)
     {
         return createNewEnemy(world, world.getResource<RandomDevice>().randInt(MINIMUM_WIDTH, MAXIMUM_WIDTH),
             world.getResource<RandomDevice>().randInt(MINIMUM_HEIGTH, MAXIMUM_HEIGTH), multiplierAbscissa,
-            multiplierOrdinate, weight, size_x, size_y, life, damage, damageRadius);
+            multiplierOrdinate, weight, size_x, size_y, life, damage, damageRadius, uuid, networkId);
     }
 
 } // namespace ecs
