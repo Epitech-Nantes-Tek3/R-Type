@@ -53,13 +53,7 @@ namespace ecs
         /// @brief Add a texture to the TexturesList
         /// @param texture_e Enum which give the name of the Texture
         /// @param texturePath Path of the Texture
-        inline void addTexture(const textureName_e texture_e, const std::filesystem::path &texturePath)
-        {
-            sf::Texture t;
-
-            t.loadFromFile(texturePath);
-            _texturesList.emplace(texture_e, std::make_shared<sf::Texture>(t));
-        }
+        void addTexture(const textureName_e texture_e, const std::filesystem::path &texturePath);
 
         /// @brief Default destructor of the class.
         ~GraphicsTextureResource() = default;
