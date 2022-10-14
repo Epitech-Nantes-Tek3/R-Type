@@ -9,6 +9,7 @@
 #define MOUSEINPUTCOMPONENT_HPP_
 
 #include "Component/Component.hpp"
+#include "World/World.hpp"
 #include <SFML/Graphics.hpp>
 #include <unordered_map>
 #include <functional>
@@ -21,7 +22,7 @@ namespace ecs
     class MouseInputComponent : public Component {
         public:
             /// @brief This unordered map links SFML mouse button input to an action/float pair enum.
-            std::unordered_map<sf::Mouse::Button, std::pair<std::function<void()>, float>> MouseMapActions;
+            std::unordered_map<sf::Mouse::Button, std::pair<std::function<void(World &, float)>, float>> MouseMapActions;
 
             /// @brief Constructor of the class.
             MouseInputComponent() = default;

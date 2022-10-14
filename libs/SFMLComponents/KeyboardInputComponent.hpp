@@ -9,6 +9,7 @@
 #define KEYBOARDINPUTCOMPONENT_HPP_
 
 #include "Component/Component.hpp"
+#include "World/World.hpp"
 #include <SFML/Graphics.hpp>
 #include <unordered_map>
 #include <functional>
@@ -21,7 +22,7 @@ namespace ecs
     class KeyboardInputComponent : public Component {
         public:
             /// @brief This unordered_map links SFML key input to an action/value pair enum.
-            std::unordered_map<sf::Keyboard::Key, std::pair<std::function<void()>, float>> keyboardMapActions;
+            std::unordered_map<sf::Keyboard::Key, std::pair<std::function<void(World &, float)>, float>> keyboardMapActions;
 
             /// @brief Constructor of the class.
             KeyboardInputComponent() = default;
