@@ -20,6 +20,7 @@
 #include "GameComponents/VelocityComponent.hpp"
 #include "GameComponents/WeightComponent.hpp"
 #include "GameComponents/ShootingFrequencyComponent.hpp"
+#include "GameComponents/DestinationComponent.hpp"
 #include "GameSharedResources/Random.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "World/World.hpp"
@@ -31,7 +32,6 @@
 
 namespace ecs
 {
-
     /// @brief This function creates a new Enemy Entity with these parameters
     /// @param world The world in which the Enemy must be created
     /// @param posX Position x of the Enemy
@@ -69,6 +69,7 @@ namespace ecs
             entity.addComponent<NewlyCreated>(uuid, false);
             entity.addComponent<Networkable>(networkId);
             entity.addComponent<ShootingFrequency>(1);
+            entity.addComponent<Destination>(world.getResource<RandomDevice>().randInt(MINIMUM_WIDTH, MAXIMUM_WIDTH), world.getResource<RandomDevice>().randInt(MINIMUM_HEIGTH, MAXIMUM_HEIGTH));
         } else {
             // Case : Creation in a Client instance
             if (uuid != "") {

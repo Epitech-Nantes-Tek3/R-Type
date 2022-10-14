@@ -16,6 +16,8 @@ set(SRC
     ${SRC_ROOT}/UpdateClockSystem.cpp
     ${SRC_ROOT}/CollidableSystem.hpp
     ${SRC_ROOT}/CollidableSystem.cpp
+    ${SRC_ROOT}/EnemiesGoRandom.cpp
+    ${SRC_ROOT}/EnemiesGoRandom.hpp
 )
 
 add_library(${TARGET} SHARED ${SRC})
