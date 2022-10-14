@@ -68,9 +68,6 @@ ClientRoom::ClientRoom(std::string address, unsigned short port, std::string ser
 
 void ClientRoom::initEcsGameData(void)
 {
-    _worldInstance->addResource<RandomDevice>();
-    _worldInstance->addSystem<SendToServer>();
-    _worldInstance->addSystem<SendNewlyCreatedToServer>();
     _initSharedResources();
     _initSystems();
     _initEntities();
@@ -88,7 +85,7 @@ void ClientRoom::protocol12Answer(CommunicatorMessage connexionResponse)
     _worldInstance.get()->addEntity().addComponent<NetworkServer>(connexionResponse.message.clientInfo.getId());
     // std::vector<std::shared_ptr<Entity>> joined = _worldInstance.get()->joinEntities<Player>();
     // createNewAlliedProjectile(*_worldInstance.get(), *joined[0],
-    //    NewlyCreated().generate_uuid(_worldInstance.get()->getResource<RandomDevice>().getRandomDevice(), 16));
+    // NewlyCreated().generate_uuid(_worldInstance.get()->getResource<RandomDevice>().getRandomDevice(), 16));
 }
 
 void ClientRoom::startLobbyLoop(void)
@@ -117,22 +114,21 @@ void ClientRoom::startLobbyLoop(void)
 void ClientRoom::_initSharedResources()
 {
     _worldInstance->addResource<GameClock>();
-    // _worldInstance->addResource<RandomDevice>();
+    _worldInstance->addResource<NetworkableIdGenerator>();
+    _worldInstance->addResource<RandomDevice>();
     _worldInstance->addResource<RenderWindowResource>();
     _worldInstance->addResource<GraphicsFontResource>("assets/arial.ttf");
 }
 
 void ClientRoom::_initSystems()
 {
-    _worldInstance->addSystem<Collide>();
-    _worldInstance->addSystem<DeathLife>();
     _worldInstance->addSystem<DeathSystem>();
-    _worldInstance->addSystem<DecreaseLifeTime>();
-    _worldInstance->addSystem<LifeTimeDeath>();
     _worldInstance->addSystem<Movement>();
     _worldInstance->addSystem<UpdateClock>();
     _worldInstance->addSystem<DrawComponents>();
     _worldInstance->addSystem<InputManagement>();
+    _worldInstance->addSystem<SendToServer>();
+    _worldInstance->addSystem<SendNewlyCreatedToServer>();
 }
 
 void ClientRoom::_initEntities()

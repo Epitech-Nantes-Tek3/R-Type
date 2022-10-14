@@ -10,6 +10,7 @@
 
 #include "GameComponents/DeathComponent.hpp"
 #include "GameEntityManipulation/CreateEntitiesFunctions/CreateEnemy.hpp"
+#include "Transisthor/TransisthorECSLogic/Server/Resources/NetworkableIdGenerator.hpp"
 #include "World/World.hpp"
 
 namespace ecs
@@ -24,7 +25,8 @@ namespace ecs
 
             auto death = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
                 if (entityPtr->contains<Enemy>() == true)
-                    createNewEnemyRandom(world, 1, 1, 1, 4, 4, 100, 10, 5);
+                    createNewEnemyRandom(world, 1, 1, 1, 4, 4, 100, 10, 5, "",
+                        world.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
                 world.removeEntity(entityPtr->getId());
             };
             std::for_each(joined.begin(), joined.end(), death);

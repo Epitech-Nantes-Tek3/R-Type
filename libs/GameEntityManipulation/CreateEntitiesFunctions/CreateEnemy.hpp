@@ -87,14 +87,17 @@ namespace ecs
     /// @param life Life of the Enemy
     /// @param damage Damage of projectiles fired by this Enemy
     /// @param damageRadius DamageRadius of projectiles fired by this Enemy
+    /// @param uuid The uuid of the entity. Can be empty.
+    /// @param networkId The id of the Networkable Component. In the client instance, it MUST NOT be filled in.
     /// @return Id of the new Enemy in std::size_t
     inline std::size_t createNewEnemyRandom(World &world, const double multiplierAbscissa,
         const double multiplierOrdinate, const short weight, const int sizeX, const int sizeY,
-        const unsigned short life, const unsigned short damage, const unsigned short damageRadius)
+        const unsigned short life, const unsigned short damage, const unsigned short damageRadius,
+        const std::string uuid = "", const unsigned short networkId = 0)
     {
         return createNewEnemy(world, world.getResource<RandomDevice>().randInt(MINIMUM_WIDTH, MAXIMUM_WIDTH),
             world.getResource<RandomDevice>().randInt(MINIMUM_HEIGTH, MAXIMUM_HEIGTH), multiplierAbscissa,
-            multiplierOrdinate, weight, sizeX, sizeY, life, damage, damageRadius);
+            multiplierOrdinate, weight, sizeX, sizeY, life, damage, damageRadius, uuid, networkId);
     }
 
 } // namespace ecs
