@@ -31,8 +31,8 @@ namespace ecs
     /// @param posX Position x of the Player
     /// @param posY Position y of the Player
     /// @param weight Weight of the Player
-    /// @param size_x Size x of the player
-    /// @param size_y Size y of the player
+    /// @param sizeX Size x of the player
+    /// @param sizeY Size y of the player
     /// @param multiplierAbscissa The Velocity multiplierAbscissa for the new Player
     /// @param multiplierOrdinate The Velocity multiplierOrdinate for the new Player
     /// @param life Life of the Player
@@ -42,14 +42,14 @@ namespace ecs
     /// @param networkId The id of the Networkable Component. In the client instance, it MUST NOT be filled in.
     /// @return Id of the new Player in std::size_t
     inline std::size_t createNewPlayer(World &world, const int posX, const int posY, const double multiplierAbscissa,
-        const double multiplierOrdinate, const short weight, const int size_x, const int size_y,
-        const unsigned short life, const unsigned short damage, const unsigned short damageRadius,
-        bool controlable, const std::string uuid = "", unsigned short networkId = 0)
+        const double multiplierOrdinate, const short weight, const int sizeX, const int sizeY,
+        const unsigned short life, const unsigned short damage, const unsigned short damageRadius, bool controlable,
+        const std::string uuid = "", unsigned short networkId = 0)
     {
         Entity &entity = world.addEntity()
                              .addComponent<Position>(posX, posY)
                              .addComponent<Weight>(weight)
-                             .addComponent<Size>(size_x, size_y)
+                             .addComponent<Size>(sizeX, sizeY)
                              .addComponent<LifeTime>()
                              .addComponent<Life>(life)
                              .addComponent<Damage>(damage)
@@ -58,7 +58,7 @@ namespace ecs
                              .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate)
                              .addComponent<Player>();
         if (controlable == true)
-            world.addEntity().addComponent<Controlable>();
+            entity.addComponent<Controlable>();
         if (networkId) {
             // Case : Creation in a server instance
             entity.addComponent<NewlyCreated>(uuid, false);

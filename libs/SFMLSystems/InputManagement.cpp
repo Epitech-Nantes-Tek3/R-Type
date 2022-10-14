@@ -73,10 +73,10 @@ void InputManagement::run(World &world)
 void InputManagement::movePlayerX(World &world, float move)
 {
     std::vector<std::shared_ptr<ecs::Entity>> player = world.joinEntities<Controlable>();
-    double move_d = double(move);
+    double moveD = double(move);
 
-    auto moveX = [move_d](std::shared_ptr<ecs::Entity> entityPtr) {
-        entityPtr->getComponent<Velocity>().multiplierAbscissa = move_d;
+    auto moveX = [moveD](std::shared_ptr<ecs::Entity> entityPtr) {
+        entityPtr->getComponent<Velocity>().multiplierAbscissa = moveD;
     };
     std::for_each(player.begin(), player.end(), moveX);
 }
@@ -84,10 +84,10 @@ void InputManagement::movePlayerX(World &world, float move)
 void InputManagement::movePlayerY(World &world, float move)
 {
     std::vector<std::shared_ptr<ecs::Entity>> player = world.joinEntities<Controlable>();
-    double move_d = double(move);
+    double moveD = double(move);
 
-    auto moveY = [move_d](std::shared_ptr<ecs::Entity> entityPtr) {
-        entityPtr->getComponent<Velocity>().multiplierOrdinate = move_d;
+    auto moveY = [moveD](std::shared_ptr<ecs::Entity> entityPtr) {
+        entityPtr->getComponent<Velocity>().multiplierOrdinate = moveD;
     };
     std::for_each(player.begin(), player.end(), moveY);
 }

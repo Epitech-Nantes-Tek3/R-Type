@@ -27,7 +27,6 @@ namespace ecs
         /// @param move Action velocity 
         void movePlayerX(World &world, float move);
 
-
         /// @brief This function is call when a player move his Ordinate with a input
         /// @param world The world in which the Player is
         /// @param move Action velocity 

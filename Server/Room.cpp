@@ -98,7 +98,7 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
     }
     _remainingPlaces -= 1;
     std::cerr << "Room " << _id << " received a connexion protocol." << std::endl;
-    std::size_t tempId = createNewPlayer(*_worldInstance.get(), 10, 10, 0, 0, 1, 5, 5, 45, 3, 4, "",
+    std::size_t tempId = createNewPlayer(*_worldInstance.get(), 10, 10, 0, 0, 1, 5, 5, 45, 3, 4, false, "",
         _worldInstance.get()
             ->getResource<NetworkableIdGenerator>()
             .generateNewNetworkableId()); /// CREATE A NEW ENTITY (INITIATED BY THE SERVER)
