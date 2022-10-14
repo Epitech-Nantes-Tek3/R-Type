@@ -50,6 +50,7 @@ namespace client_data
         /// @brief Init all systems of the world.
         void _initSystems();
 
+        void _initEntities();
         /// @brief Network informations of the room.
         Client _networkInformations;
 

@@ -39,6 +39,7 @@ ClientRoom::ClientRoom()
     _worldInstance = std::make_shared<World>(1);
     _initSharedResources();
     _initSystems();
+    _initEntities();
     _transisthorInstance = std::make_shared<Transisthor>(*(_communicatorInstance.get()), *(_worldInstance.get()));
     _communicatorInstance.get()->setTransisthorBridge(_transisthorInstance);
     _worldInstance.get()->setTransisthorBridge(_communicatorInstance.get()->getTransisthorBridge());
@@ -51,6 +52,9 @@ ClientRoom::ClientRoom(std::string address, unsigned short port, std::string ser
     _serverEndpoint = Client(serverAddress, serverPort);
     _communicatorInstance = std::make_shared<Communicator>(_networkInformations);
     _worldInstance = std::make_shared<World>(1);
+    _initSharedResources();
+    _initSystems();
+    _initEntities();
     _transisthorInstance = std::make_shared<Transisthor>(*(_communicatorInstance.get()), *(_worldInstance.get()));
     _communicatorInstance.get()->setTransisthorBridge(_transisthorInstance);
     _worldInstance.get()->setTransisthorBridge(_communicatorInstance.get()->getTransisthorBridge());
@@ -100,4 +104,9 @@ void ClientRoom::_initSystems()
     _worldInstance->addSystem<UpdateClock>();
     _worldInstance->addSystem<DrawComponents>();
     _worldInstance->addSystem<InputManagement>();
+}
+
+void ClientRoom::_initEntities()
+{
+    _worldInstance->addEntity().addComponent<>()
 }
