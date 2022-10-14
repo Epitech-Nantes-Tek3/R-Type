@@ -368,12 +368,13 @@ void Transisthor::entityConvertAlliedProjectileType(unsigned short id, void *byt
             if (ptr->getComponent<Networkable>().id == allyId)
                 return ptr;
         }
-        throw NetworkError("The entity was not find");
+        throw NetworkError("The entity was not fouund");
     };
     std::shared_ptr<Entity> shooter;
     try {
         shooter = findShooter(networkables);
     } catch (const NetworkError &e) {
+        std::cerr << "Parent entities cannot be founded." << std::endl;
         return;
     }
 
@@ -470,12 +471,13 @@ void Transisthor::entityConvertEnemyProjectileType(unsigned short id, void *byte
             if (ptr->getComponent<Networkable>().id == enemyId)
                 return ptr;
         }
-        throw NetworkError("The entity was not find");
+        throw NetworkError("The entity was not found");
     };
     std::shared_ptr<Entity> shooter;
     try {
         shooter = findShooter(networkables);
     } catch (const NetworkError &e) {
+        std::cerr << "Parent entities cannot be founded." << std::endl;
         return;
     }
 

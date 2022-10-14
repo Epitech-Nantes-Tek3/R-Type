@@ -139,7 +139,7 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
             Velocity &vel = entityPtr->getComponent<Velocity>();
             Size &size = entityPtr->getComponent<Size>();
 
-            // if (tempId != entityPtr->getId()) {
+            // if (tempId != entityPtr->getId()) { COMMENT WILL BE REMOVED IN REAL PROJECT DELIVERY. (HERE FOR FUNCTIONAL PURPOSE ONLY)
             _worldInstance.get()->getTransisthorBridge()->transitEcsDataToNetworkDataEntityPlayer(
                 entityPtr->getComponent<Networkable>().id, pos.x, pos.y, vel.multiplierAbscissa, vel.multiplierOrdinate,
                 entityPtr->getComponent<Weight>().weight, size.x, size.y, entityPtr->getComponent<Life>().lifePoint,
