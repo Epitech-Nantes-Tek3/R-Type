@@ -1,6 +1,7 @@
 <map id="libs/GameSharedResources/GameClock.hpp" name="libs/GameSharedResources/GameClock.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="239,5,439,47"/>
+<area shape="rect" id="node1" title=" " alt="" coords="363,5,563,47"/>
 <area shape="rect" id="node2" href="$_game_clock_8cpp.html" title=" " alt="" coords="5,95,205,136"/>
 <area shape="rect" id="node3" href="$_movement_system_8cpp.html" title=" " alt="" coords="229,95,448,136"/>
 <area shape="rect" id="node4" href="$_update_clock_system_8cpp.html" title=" " alt="" coords="473,95,703,136"/>
+<area shape="rect" id="node5" href="$_client_room_8cpp.html" title=" " alt="" coords="727,102,894,129"/>
 </map>

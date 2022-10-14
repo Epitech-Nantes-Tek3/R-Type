@@ -111,7 +111,7 @@ $(document).ready(function(){initNavTree('_graphics_font_resource_8hpp_source.ht
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
 <div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="classecs_1_1_graphics_font_resource.html#a63fde8d6e002ec71d68d0696e42e5e2d">   30</a></span>&#160;            <span class="keyword">inline</span> <a class="code" href="classecs_1_1_graphics_font_resource.html#a63fde8d6e002ec71d68d0696e42e5e2d">GraphicsFontResource</a>(<span class="keyword">const</span> std::filesystem::path &amp;fontPath)</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            {</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                <a class="code" href="classecs_1_1_graphics_font_resource.html#a7d5f97ed1eea5caa26297e2af13a8a43">font</a>.loadFromFile(fontPath);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                <a class="code" href="classecs_1_1_graphics_font_resource.html#a7d5f97ed1eea5caa26297e2af13a8a43">font</a>.loadFromFile(fontPath.string());</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            }</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            <a class="code" href="classecs_1_1_graphics_font_resource.html#a915c57f05ee878ee694be61a00058996">~GraphicsFontResource</a>() = <span class="keywordflow">default</span>;</div>
