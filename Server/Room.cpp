@@ -17,6 +17,7 @@
 #include "GameComponents/ObstacleComponent.hpp"
 #include "GameComponents/PositionComponent.hpp"
 #include "GameComponents/ProjectileComponent.hpp"
+#include "GameEntityManipulation/CreateEntitiesFunctions/CreateEnemy.hpp"
 #include "GameEntityManipulation/CreateEntitiesFunctions/CreatePlayer.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "Transisthor/TransisthorECSLogic/Server/Components/NetworkClient.hpp"
@@ -98,11 +99,15 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
     }
     _remainingPlaces -= 1;
     std::cerr << "Room " << _id << " received a connexion protocol." << std::endl;
-    std::size_t tempId = createNewPlayer(*_worldInstance.get(), 10, 10, 0, 0, 1, 5, 5, 45, 3, 4, "",
+    std::size_t playerId = createNewPlayer(*_worldInstance.get(), 10, 10, 0, 0, 1, 4, 4, 100, 10, 4, "",
         _worldInstance.get()
             ->getResource<NetworkableIdGenerator>()
             .generateNewNetworkableId()); /// CREATE A NEW ENTITY (INITIATED BY THE SERVER)
-    _worldInstance.get()->getEntity(tempId).addComponent<NetworkClient>(connexionDemand.message.clientInfo.getId());
+    std::size_t enemyId = createNewEnemyRandom(*_worldInstance.get(), 0, 0, 1, 4, 4, 100, 10, 5, "",
+        _worldInstance.get()
+            ->getResource<NetworkableIdGenerator>()
+            .generateNewNetworkableId()); /// CREATE A NEW ENTITY (INITIATED BY THE SERVER)
+    _worldInstance.get()->getEntity(playerId).addComponent<NetworkClient>(connexionDemand.message.clientInfo.getId());
     std::vector<std::shared_ptr<Entity>> joined = _worldInstance.get()->joinEntities<Networkable>();
 
     for (std::shared_ptr<Entity> entityPtr : joined) {
@@ -116,11 +121,13 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
             Velocity &vel = entityPtr->getComponent<Velocity>();
             Size &size = entityPtr->getComponent<Size>();
 
+            if (enemyId != entityPtr->getId()) {
             _worldInstance.get()->getTransisthorBridge()->transitEcsDataToNetworkDataEntityEnemy(
                 entityPtr->getComponent<Networkable>().id, pos.x, pos.y, vel.multiplierAbscissa, vel.multiplierOrdinate,
                 entityPtr->getComponent<Weight>().weight, size.x, size.y, entityPtr->getComponent<Life>().lifePoint,
                 entityPtr->getComponent<Damage>().damagePoint, entityPtr->getComponent<DamageRadius>().radius, "",
                 {connexionDemand.message.clientInfo.getId()});
+            }
         }
         if (entityPtr->contains<EnemyProjectile>()) {
             _worldInstance.get()->getTransisthorBridge()->transitEcsDataToNetworkDataEntityEnemyProjectile(
@@ -138,15 +145,13 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
             Position &pos = entityPtr->getComponent<Position>();
             Velocity &vel = entityPtr->getComponent<Velocity>();
             Size &size = entityPtr->getComponent<Size>();
-
-            // if (tempId != entityPtr->getId()) { COMMENT WILL BE REMOVED IN REAL PROJECT DELIVERY. (HERE FOR
-            // FUNCTIONAL PURPOSE ONLY)
-            _worldInstance.get()->getTransisthorBridge()->transitEcsDataToNetworkDataEntityPlayer(
-                entityPtr->getComponent<Networkable>().id, pos.x, pos.y, vel.multiplierAbscissa, vel.multiplierOrdinate,
-                entityPtr->getComponent<Weight>().weight, size.x, size.y, entityPtr->getComponent<Life>().lifePoint,
-                entityPtr->getComponent<Damage>().damagePoint, entityPtr->getComponent<DamageRadius>().radius, "",
-                {connexionDemand.message.clientInfo.getId()});
-            //}
+            if (playerId != entityPtr->getId()) {
+                _worldInstance.get()->getTransisthorBridge()->transitEcsDataToNetworkDataEntityPlayer(
+                    entityPtr->getComponent<Networkable>().id, pos.x, pos.y, vel.multiplierAbscissa,
+                    vel.multiplierOrdinate, entityPtr->getComponent<Weight>().weight, size.x, size.y,
+                    entityPtr->getComponent<Life>().lifePoint, entityPtr->getComponent<Damage>().damagePoint,
+                    entityPtr->getComponent<DamageRadius>().radius, "", {connexionDemand.message.clientInfo.getId()});
+            }
         }
         if (entityPtr->contains<Projectile>()) {
             Position &pos = entityPtr->getComponent<Position>();
