@@ -45,6 +45,8 @@ namespace ecs
         /// @brief Add a Texture from it's Texture Path passed as parameter
         /// @param texture_e Enum of the Texture
         /// @param texturePath The texture path to be used.
+        /// @param position The position of the image to start getting the texture
+        /// @param size The size on an image to get to create a texture
         inline GraphicsTextureResource(const textureName_e texture_e, const std::filesystem::path &texturePath,
             const sf::Vector2f &position = sf::Vector2f(0, 0), const sf::Vector2f &size = sf::Vector2f(0, 0))
         {
@@ -54,6 +56,8 @@ namespace ecs
         /// @brief Add a texture to the TexturesList
         /// @param texture_e Enum which give the name of the Texture
         /// @param texturePath Path of the Texture
+        /// @param position The position of the image to start getting the texture
+        /// @param size The size on an image to get to create a texture
         inline void addTexture(const textureName_e texture_e, const std::filesystem::path &texturePath,
             const sf::Vector2f &position = sf::Vector2f(0, 0), const sf::Vector2f &size = sf::Vector2f(0, 0))
         {
