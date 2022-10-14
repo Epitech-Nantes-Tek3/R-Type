@@ -6,12 +6,12 @@ var classtransisthor__lib_1_1_transisthor =
     [ "getServerEndpointId", "classtransisthor__lib_1_1_transisthor.html#a36b6abf6251ee755e4fbbfe78137134e", null ],
     [ "transitEcsDataToNetworkData", "classtransisthor__lib_1_1_transisthor.html#a94a0ac5ecec90ad113f65604403aa2cd", null ],
     [ "transitEcsDataToNetworkData", "classtransisthor__lib_1_1_transisthor.html#a9fe13e311dad7808e98bcf1f5516370a", null ],
-    [ "transitEcsDataToNetworkDataEntityAlliedProjectile", "classtransisthor__lib_1_1_transisthor.html#a4b6a2104625d80b50a31b36f05c7b0b6", null ],
-    [ "transitEcsDataToNetworkDataEntityEnemy", "classtransisthor__lib_1_1_transisthor.html#a306010e0e3af840a452474e5822fefe5", null ],
-    [ "transitEcsDataToNetworkDataEntityEnemyProjectile", "classtransisthor__lib_1_1_transisthor.html#a7441c5c90c2af342ccabb5283fa4dd17", null ],
-    [ "transitEcsDataToNetworkDataEntityObstacle", "classtransisthor__lib_1_1_transisthor.html#a50dfe3a1841dc8831777a3284b47cead", null ],
-    [ "transitEcsDataToNetworkDataEntityPlayer", "classtransisthor__lib_1_1_transisthor.html#aed33a82649027c045f7cb4810c4f21dc", null ],
-    [ "transitEcsDataToNetworkDataEntityProjectile", "classtransisthor__lib_1_1_transisthor.html#a27ede70d8d5a18abba0afd93cc9bcdfe", null ],
+    [ "transitEcsDataToNetworkDataEntityAlliedProjectile", "classtransisthor__lib_1_1_transisthor.html#a3da9082ddc11232a571f2ca5fbb445c0", null ],
+    [ "transitEcsDataToNetworkDataEntityEnemy", "classtransisthor__lib_1_1_transisthor.html#ac3bbae66bfc2708200be2db01e10d09a", null ],
+    [ "transitEcsDataToNetworkDataEntityEnemyProjectile", "classtransisthor__lib_1_1_transisthor.html#ae3a60a54e5e7e91d88c53d6e8575d104", null ],
+    [ "transitEcsDataToNetworkDataEntityObstacle", "classtransisthor__lib_1_1_transisthor.html#ae3c0bfb9bf70cd9ec65428d4aaaf4eed", null ],
+    [ "transitEcsDataToNetworkDataEntityPlayer", "classtransisthor__lib_1_1_transisthor.html#ac4a58e2a8e82279f4a1abe93de36758c", null ],
+    [ "transitEcsDataToNetworkDataEntityProjectile", "classtransisthor__lib_1_1_transisthor.html#aeb12dc1d95be66a046836e21814f50e4", null ],
     [ "transitNetworkDataToEcsDataComponent", "classtransisthor__lib_1_1_transisthor.html#ac62903f3426e50fa8c5f015bd97c0329", null ],
     [ "transitNetworkDataToEcsDataEntity", "classtransisthor__lib_1_1_transisthor.html#a7d284959eb3c953fa9c40b9dadfdff1c", null ]
 ];
