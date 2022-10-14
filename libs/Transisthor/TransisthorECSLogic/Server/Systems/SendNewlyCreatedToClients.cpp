@@ -5,6 +5,8 @@
 ** SendNewlyCreatedToClients
 */
 
+#include <chrono>
+#include <thread>
 #include "Transisthor/TransisthorECSLogic/Server/Systems/SendNewlyCreatedToClients.hpp"
 #include "GameComponents/AlliedProjectileComponent.hpp"
 #include "GameComponents/DamageComponent.hpp"
@@ -85,6 +87,7 @@ void SendNewlyCreatedToClients::runSystem(ecs::World &world)
                 entityPtr->getComponent<Networkable>().id, pos.x, pos.y, vel.multiplierAbscissa, vel.multiplierOrdinate,
                 entityPtr->getComponent<Damage>().damagePoint, newlyCreated.uuid, clientIdList);
         }
+        std::this_thread::sleep_for(std::chrono::duration<int, std::milli>(500));
         entityPtr->removeComponent<NewlyCreated>();
         return;
     };

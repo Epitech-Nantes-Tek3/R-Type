@@ -161,6 +161,7 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
                 entityPtr->getComponent<Networkable>().id, pos.x, pos.y, vel.multiplierAbscissa, vel.multiplierOrdinate,
                 entityPtr->getComponent<Damage>().damagePoint, "", {connexionDemand.message.clientInfo.getId()});
         }
+        std::this_thread::sleep_for(std::chrono::duration<int, std::milli>(500));
     }
     _communicatorInstance.get()->sendDataToAClient(connexionDemand.message.clientInfo, nullptr, 0, 12);
 }

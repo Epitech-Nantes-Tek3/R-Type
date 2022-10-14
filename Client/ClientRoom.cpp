@@ -83,9 +83,6 @@ void ClientRoom::protocol12Answer(CommunicatorMessage connexionResponse)
 {
     _state = ClientState::IN_GAME;
     _worldInstance.get()->addEntity().addComponent<NetworkServer>(connexionResponse.message.clientInfo.getId());
-    // std::vector<std::shared_ptr<Entity>> joined = _worldInstance.get()->joinEntities<Player>();
-    // createNewAlliedProjectile(*_worldInstance.get(), *joined[0],
-    //    NewlyCreated().generate_uuid(_worldInstance.get()->getResource<RandomDevice>().getRandomDevice(), 16));
 }
 
 void ClientRoom::startLobbyLoop(void)
@@ -133,7 +130,6 @@ void ClientRoom::_initSystems()
 
 void ClientRoom::_initEntities()
 {
-    _worldInstance->addEntity().addComponent<LayerLvL>().addComponent<GraphicsRectangleComponent>();
     _worldInstance->addEntity()
         .addComponent<MouseInputComponent>()
         .addComponent<KeyboardInputComponent>()

@@ -22,6 +22,7 @@
 #include "GameSharedResources/Random.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "World/World.hpp"
+#include "SFMLComponents/LayerLvL.hpp"
 
 #define MINIMUM_WIDTH  1400
 #define MAXIMUM_WIDTH  1920
@@ -73,6 +74,7 @@ namespace ecs
                 // Special case : the client created the entity and not the server
                 entity.addComponent<NewlyCreated>(uuid, true);
             }
+            entity.addComponent<LayerLvL>(LayerLvL::layer_e::ENEMY);
         }
         return entity.getId();
     }
