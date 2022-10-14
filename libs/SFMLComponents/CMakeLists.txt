@@ -14,20 +14,22 @@ set(SRC
     ${SFML_INPUT_INC_ROOT}/GraphicsRectangleComponent.cpp
     ${SFML_INPUT_INC_ROOT}/GraphicsTextComponent.hpp
     ${SFML_INPUT_INC_ROOT}/GraphicsTextComponent.cpp
+    ${SFML_INPUT_INC_ROOT}/TextureName.hpp
 )
 
-add_library(${TARGET} ${SRC})
+add_library(${TARGET} SHARED ${SRC})
 
 target_include_directories(${TARGET}
     PUBLIC ${SFML_INPUT_INC_ROOT}
-    PUBLIC ${PROJECT_NAME}_ecs
+    PRIVATE ${PROJECT_NAME}_ecs
+    PRIVATE ${PROJECT_NAME}_SFMLResource
 )
 
 target_link_libraries(${TARGET}
     ${PROJECT_NAME}_ecs
+    ${PROJECT_NAME}_SFMLResource
     CONAN_PKG::sfml
 )
 
-set_target_properties(${TARGET} PROPERTIES LINKER_LANGUAGE CXX)
 include(${PROJECT_SOURCE_DIR}/build/conanbuildinfo.cmake)
 conan_basic_setup(TARGETS)

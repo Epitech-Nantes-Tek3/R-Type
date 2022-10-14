@@ -11,9 +11,6 @@
 #include <concepts>
 #include <map>
 #include <typeindex>
-#include "../Components/Controllable.hpp"
-#include "../Components/NetworkServer.hpp"
-#include "../Components/Networkable.hpp"
 #include "GameComponents/DestinationComponent.hpp"
 #include "GameComponents/EquipmentComponent.hpp"
 #include "GameComponents/InvinsibleComponent.hpp"
@@ -21,12 +18,16 @@
 #include "GameComponents/LifeComponent.hpp"
 #include "GameComponents/PositionComponent.hpp"
 #include "GameComponents/VelocityComponent.hpp"
+#include "GameComponents/DeathComponent.hpp"
+#include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
+#include "Transisthor/TransisthorECSLogic/Client/Components/Controllable.hpp"
+#include "Transisthor/TransisthorECSLogic/Client/Components/NetworkServer.hpp"
 #include "World/World.hpp"
 
 ///@brief a static map which is used to know which ID is used for a component type for the RFC protocol
 static const std::map<std::type_index, unsigned short> componentRFCId = {{typeid(ecs::Destination), 1},
     {typeid(ecs::Equipment), 2}, {typeid(ecs::Invinsible), 3}, {typeid(ecs::Invisible), 4}, {typeid(ecs::Life), 5},
-    {typeid(ecs::Position), 6}, {typeid(ecs::Velocity), 7}};
+    {typeid(ecs::Position), 6}, {typeid(ecs::Velocity), 7}, {typeid(ecs::Death), 8}};
 
 struct SendToServer : public ecs::System {
     /// @brief A template function which is used when there is no component to send to the server.
@@ -42,6 +43,7 @@ struct SendToServer : public ecs::System {
         (void)networkId;
         (void)entity;
         (void)serverIdList;
+        (void)world;
         return;
     }
 
@@ -58,10 +60,15 @@ struct SendToServer : public ecs::System {
     {
         if (componentRFCId.find(typeid(C1)) != componentRFCId.end()) {
             if (entity->contains<C1>()) {
-                world.getTransisthorBridge().get()->transitEcsDataToNetworkData<C1>(
-                    networkId, componentRFCId.find(typeid(C1))->second, entity->getComponent<C1>(), serverIdList);
+                C1 &component = entity->getComponent<C1>();
+                if (component.modified) {
+                    component.modified = false;
+                    world.getTransisthorBridge().get()->transitEcsDataToNetworkData<C1>(
+                        networkId, componentRFCId.find(typeid(C1))->second, component, serverIdList);
+                }
             }
         }
+        sendToServer<C2...>(world, networkId, entity, serverIdList);
     }
 
     /// @brief For each player, send their velocity to the server

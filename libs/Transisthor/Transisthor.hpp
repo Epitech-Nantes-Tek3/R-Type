@@ -208,6 +208,11 @@ namespace transisthor_lib
         /// @param byteCode byte value of the Velocity component
         void componentConvertVelocityType(unsigned short id, void *byteCode);
 
+        /// @brief Convert a byteCode data into a Death component and send it to the ECS
+        /// @param id Entity ID attached to the component
+        /// @param byteCode byte value of the Death component
+        void componentConvertDeathType(unsigned short id, void *byteCode);
+
         /// @brief Convert a byteCode data into a AlliedProjectile entity and send it to the ECS
         /// @param id Entity ID attached to the entity
         /// @param byteCode byte value of the AlliedProjectile entity

@@ -9,15 +9,14 @@
 
 #include "ClientRoom.hpp"
 #include "Error/Error.hpp"
-#include "GameSharedResources/GameClock.hpp"
-#include "GameSharedResources/Random.hpp"
-#include "SFMLResource/GraphicsFontResource.hpp"
-#include "SFMLResource/GraphicsTextureResource.hpp"
-#include "SFMLResource/RenderWindowResource.hpp"
+#include "GameComponents/PositionComponent.hpp"
+#include "GameEntityManipulation/CreateEntitiesFunctions/CreateObstacle.hpp"
+#include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 
 using namespace error_lib;
 using namespace communicator_lib;
 using namespace client_data;
+using namespace ecs;
 
 ClientRoom::ClientRoom()
 {
@@ -49,11 +48,17 @@ void ClientRoom::startLobbyLoop(void)
 {
     CommunicatorMessage connexionResponse;
 
+    std::size_t entityId = createNewObstacle(*(_worldInstance.get()), 5, 60, 5);
+
+    _worldInstance.get()->getEntity(entityId).addComponent<Networkable>(10);
+
     _communicatorInstance.get()->startReceiverListening();
     _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, nullptr, 0, 10);
     _state = ClientState::LOBBY;
     while (_state != ClientState::ENDED && _state != ClientState::UNDEFINED) {
         try {
+            Position entityPosition = _worldInstance.get()->getEntity(entityId).getComponent<Position>();
+            std::cerr << "OBSTACLE POSITION : " << entityPosition.x << " , " << entityPosition.y << std::endl;
             connexionResponse = _communicatorInstance.get()->getLastMessage();
             std::cerr << "ClientRoom received a connexion protocol answer."
                       << std::endl; /// WILL BE DELETED WITH CONNEXION PROTOCOL ISSUE

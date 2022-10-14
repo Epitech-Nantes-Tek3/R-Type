@@ -6,13 +6,13 @@
 */
 
 #include <criterion/criterion.h>
-#include "World/World.hpp"
 #include "Entity/Entity.hpp"
-#include "GameSystems/LifeTimeDeathSystem.hpp"
-#include "GameEntityManipulation/CreateEntitiesFunctions/CreateProjectile.hpp"
 #include "GameComponents/DeathComponent.hpp"
-#include "GameComponents/ProjectileComponent.hpp"
 #include "GameComponents/LifeTimeComponent.hpp"
+#include "GameComponents/ProjectileComponent.hpp"
+#include "GameEntityManipulation/CreateEntitiesFunctions/CreateProjectile.hpp"
+#include "GameSystems/LifeTimeDeathSystem.hpp"
+#include "World/World.hpp"
 
 using namespace ecs;
 
@@ -24,8 +24,8 @@ Test(add_Death_component_system, lifeTime_death_entity)
     std::chrono::duration<double> time_0(0.0);
 
     createNewProjectile(world, 10, 10, 1, 1, 10);
-    
-    world.getEntity(1).getComponent<Lifetime>().timeLeft = time_0;
+
+    world.getEntity(1).getComponent<LifeTime>().timeLeft = time_0;
 
     std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Death>();
 
@@ -49,10 +49,10 @@ Test(add_Death_component_system, lifeTime_death_entities)
     createNewProjectile(world, 10, 10, 1, 1, 10);
     createNewProjectile(world, 10, 10, 1, 1, 10);
     createNewProjectile(world, 10, 10, 1, 1, 10);
-    
-    world.getEntity(1).getComponent<Lifetime>().timeLeft = time_1;
-    world.getEntity(2).getComponent<Lifetime>().timeLeft = time_0;
-    world.getEntity(3).getComponent<Lifetime>().timeLeft = time_0;
+
+    world.getEntity(1).getComponent<LifeTime>().timeLeft = time_1;
+    world.getEntity(2).getComponent<LifeTime>().timeLeft = time_0;
+    world.getEntity(3).getComponent<LifeTime>().timeLeft = time_0;
 
     std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Death>();
 

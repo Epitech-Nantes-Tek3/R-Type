@@ -11,6 +11,9 @@
 #include "Error/Error.hpp"
 #include "GameComponents/PositionComponent.hpp"
 #include "GameEntityManipulation/CreateEntitiesFunctions/CreateObstacle.hpp"
+#include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
+#include "Transisthor/TransisthorECSLogic/Server/Components/NetworkClient.hpp"
+#include "Transisthor/TransisthorECSLogic/Server/Systems/SendToClient.hpp"
 
 using namespace server_data;
 using namespace error_lib;
@@ -41,28 +44,42 @@ Room::Room(unsigned short id, Client networkInformations)
     _state = RoomState::UNDEFINED;
 }
 
+struct Temp : public System {
+    void run(World &world)
+    {
+        std::vector<std::shared_ptr<Entity>> joined = world.joinEntities<Position>();
+
+        for (std::shared_ptr<Entity> entityPtr : joined) {
+            Position &pos = entityPtr->getComponent<Position>();
+
+            pos.x = 60;
+            pos.y = 120;
+        }
+    }
+};
+
 void Room::startLobbyLoop(void)
 {
     CommunicatorMessage connexionDemand;
-    Position pos = Position(90, 90);
+
+    std::size_t entityId = createNewObstacle(*(_worldInstance.get()), 4, 50, 5);
+
+    _worldInstance.get()->getEntity(entityId).addComponent<Networkable>(10);
+
+    Position &entityPosition = _worldInstance.get()->getEntity(entityId).getComponent<Position>();
+
+    entityPosition.modified = true;
 
     _communicatorInstance.get()->startReceiverListening();
+    _worldInstance->addSystem<Temp>();
+    _worldInstance->addSystem<SendToClient>();
     _state = RoomState::LOBBY;
     while (_state != RoomState::ENDED && _state != RoomState::UNDEFINED) {
         try {
             connexionDemand = _communicatorInstance.get()->getLastMessage();
             std::cerr << "Room " << _id << " received a connexion protocol."
                       << std::endl; /// WILL BE DELETED WITH CONNEXION PROTOCOL ISSUE
-            _transisthorInstance.get()->transitEcsDataToNetworkData<Position>(1, 6, pos,
-                {connexionDemand.message.clientInfo.getId()}); /// USED FOR FUNCTIONNAL TESTING, WILL BE REMOVED LATER
-
-            std::size_t entityId = createNewObstacle(
-                *(_worldInstance.get()), 10, 120, 5); /// USED FOR FUNCTIONNAL TESTING, WILL BE REMOVED LATER
-            Position entityPosition =
-                _worldInstance.get()
-                    ->getEntity(entityId)
-                    .getComponent<Position>(); /// USED FOR FUNCTIONNAL TESTING, WILL BE REMOVED LATER
-
+            _worldInstance->addEntity().addComponent<NetworkClient>(connexionDemand.message.clientInfo.getId());
             _transisthorInstance.get()->transitEcsDataToNetworkDataEntityObstacle(entityId, entityPosition.x,
                 entityPosition.y,
                 {connexionDemand.message.clientInfo.getId()}); /// USED FOR FUNCTIONNAL TESTING, WILL BE REMOVED LATER
