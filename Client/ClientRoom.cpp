@@ -29,6 +29,13 @@
 #include "Transisthor/TransisthorECSLogic/Client/Components/NetworkServer.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Systems/SendNewlyCreatedToServer.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Systems/SendToServer.hpp"
+#include "LayerLvL.hpp"
+#include "GraphicsRectangleComponent.hpp"
+#include "MouseInputComponent.hpp"
+#include "KeyboardInputComponent.hpp"
+#include "ControllerButtonInputComponent.hpp"
+#include "ControllerJoystickInputComponent.hpp"
+#include "ActionQueueComponent.hpp"
 
 using namespace error_lib;
 using namespace communicator_lib;
@@ -130,5 +137,6 @@ void ClientRoom::_initSystems()
 
 void ClientRoom::_initEntities()
 {
-    // _worldInstance->addEntity().addComponent<>()
+    _worldInstance->addEntity().addComponent<LayerLvL>().addComponent<GraphicsRectangleComponent>();
+    _worldInstance->addEntity().addComponent<MouseInputComponent>().addComponent<KeyboardInputComponent>().addComponent<ControllerButtonInputComponent>().addComponent<ControllerJoystickInputComponent>().addComponent<ActionQueueComponent>();
 }

@@ -25,20 +25,28 @@ void DrawComponents::run(World &world)
 {
     std::vector<std::shared_ptr<Entity>> Inputs = world.joinEntities<LayerLvL>();
 
-    world.getResource<RenderWindowResource>().window.clear();
-    std::sort(Inputs.begin(), Inputs.end(), compareLayer);
-    auto layer = [&world](std::shared_ptr<Entity> entityPtr) {
-        if (entityPtr->contains<GraphicsRectangleComponent>())
-            entityPtr->getComponent<GraphicsRectangleComponent>().shape.setTexture(
-                world.getResource<GraphicsTextureResource>()
-                    ._texturesList[entityPtr->getComponent<TextureName>().textureName]
-                    .get());
-        world.getResource<RenderWindowResource>().window.draw(
-            entityPtr->getComponent<GraphicsRectangleComponent>().shape);
-        if (entityPtr->contains<GraphicsTextComponent>())
-            world.getResource<RenderWindowResource>().window.draw(
-                entityPtr->getComponent<GraphicsTextComponent>().text);
-    };
-    std::for_each(Inputs.begin(), Inputs.end(), layer);
-    world.getResource<RenderWindowResource>().window.display();
+    if (world.getResource<RenderWindowResource>().window.isOpen()) {
+        world.getResource<RenderWindowResource>().window.clear(sf::Color::Blue);
+        std::sort(Inputs.begin(), Inputs.end(), compareLayer);
+        auto layer = [&world](std::shared_ptr<Entity> entityPtr) {
+            if (entityPtr->contains<GraphicsRectangleComponent>()) {
+                if (world.containsResource<GraphicsTextureResource>()) {
+                    entityPtr->getComponent<GraphicsRectangleComponent>().shape.setTexture(
+                        world.getResource<GraphicsTextureResource>()
+                            ._texturesList[entityPtr->getComponent<TextureName>().textureName]
+                            .get());
+                } else {
+                    entityPtr->getComponent<GraphicsRectangleComponent>().shape.setFillColor(sf::Color(100, 250, 50));
+                }
+                world.getResource<RenderWindowResource>().window.draw(
+                    entityPtr->getComponent<GraphicsRectangleComponent>().shape);
+            }
+            if (entityPtr->contains<GraphicsTextComponent>()) {
+                world.getResource<RenderWindowResource>().window.draw(
+                    entityPtr->getComponent<GraphicsTextComponent>().text);
+            }
+        };
+        std::for_each(Inputs.begin(), Inputs.end(), layer);
+        world.getResource<RenderWindowResource>().window.display();
+    }
 }
