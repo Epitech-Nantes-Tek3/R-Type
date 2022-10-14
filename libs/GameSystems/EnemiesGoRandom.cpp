@@ -22,16 +22,15 @@ using namespace ecs;
 void EnemiesGoRandom::run(World &world)
 {
     std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Enemy, Position, Velocity, Destination>();
-    RandomDevice &random = world.getResource<RandomDevice>();
 
-    auto randomMove = [&random](std::shared_ptr<ecs::Entity> entityPtr) {
+    auto randomMove = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
         Position &pos = entityPtr.get()->getComponent<Position>();
         Velocity &vel = entityPtr.get()->getComponent<Velocity>();
         Destination &dest = entityPtr.get()->getComponent<Destination>();
 
         if (pos.x == dest.x && pos.y == dest.y) {
-            dest.x = random.randInt(MINIMUM_WIDTH, MAXIMUM_WIDTH);
-            dest.y = random.randInt(MAXIMUM_WIDTH, MAXIMUM_HEIGTH);
+            dest.x = world.getResource<RandomDevice>().randInt(MINIMUM_WIDTH, MAXIMUM_WIDTH);
+            dest.y = world.getResource<RandomDevice>().randInt(MINIMUM_HEIGTH, MAXIMUM_HEIGTH);
         }
         vel.multiplierAbscissa = dest.x - pos.x;
         vel.multiplierOrdinate = dest.y - pos.y;
