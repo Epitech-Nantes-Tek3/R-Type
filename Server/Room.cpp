@@ -62,6 +62,7 @@ struct Temp : public System {
 void Room::initEcsGameData(void)
 {
     _worldInstance->addResource<NetworkableIdGenerator>();
+    _worldInstance->addResource<RandomDevice>();
     _worldInstance->addSystem<Temp>();
     _worldInstance->addSystem<SendToClient>();
     _worldInstance->addSystem<SendNewlyCreatedToClients>();
@@ -106,7 +107,7 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
     for (std::shared_ptr<Entity> entityPtr : joined) {
         if (entityPtr->contains<AlliedProjectile>()) {
             _worldInstance.get()->getTransisthorBridge()->transitEcsDataToNetworkDataEntityAlliedProjectile(
-                entityPtr->getComponent<Networkable>().id, entityPtr->getId(), "",
+                entityPtr->getComponent<Networkable>().id, entityPtr->getComponent<AlliedProjectile>().parentNetworkId, "",
                 {connexionDemand.message.clientInfo.getId()});
         }
         if (entityPtr->contains<Enemy>()) {
@@ -122,7 +123,7 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
         }
         if (entityPtr->contains<EnemyProjectile>()) {
             _worldInstance.get()->getTransisthorBridge()->transitEcsDataToNetworkDataEntityEnemyProjectile(
-                entityPtr->getComponent<Networkable>().id, entityPtr->getId(), "",
+                entityPtr->getComponent<Networkable>().id, entityPtr->getComponent<AlliedProjectile>().parentNetworkId, "",
                 {connexionDemand.message.clientInfo.getId()});
         }
         if (entityPtr->contains<Obstacle>()) {
@@ -137,13 +138,13 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
             Velocity &vel = entityPtr->getComponent<Velocity>();
             Size &size = entityPtr->getComponent<Size>();
 
-            if (tempId != entityPtr->getId()) {
-                _worldInstance.get()->getTransisthorBridge()->transitEcsDataToNetworkDataEntityPlayer(
-                    entityPtr->getComponent<Networkable>().id, pos.x, pos.y, vel.multiplierAbscissa,
-                    vel.multiplierOrdinate, entityPtr->getComponent<Weight>().weight, size.x, size.y,
-                    entityPtr->getComponent<Life>().lifePoint, entityPtr->getComponent<Damage>().damagePoint,
-                    entityPtr->getComponent<DamageRadius>().radius, "", {connexionDemand.message.clientInfo.getId()});
-            }
+            // if (tempId != entityPtr->getId()) {
+            _worldInstance.get()->getTransisthorBridge()->transitEcsDataToNetworkDataEntityPlayer(
+                entityPtr->getComponent<Networkable>().id, pos.x, pos.y, vel.multiplierAbscissa, vel.multiplierOrdinate,
+                entityPtr->getComponent<Weight>().weight, size.x, size.y, entityPtr->getComponent<Life>().lifePoint,
+                entityPtr->getComponent<Damage>().damagePoint, entityPtr->getComponent<DamageRadius>().radius, "",
+                {connexionDemand.message.clientInfo.getId()});
+            //}
         }
         if (entityPtr->contains<Projectile>()) {
             Position &pos = entityPtr->getComponent<Position>();

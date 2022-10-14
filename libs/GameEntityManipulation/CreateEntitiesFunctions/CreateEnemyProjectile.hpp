@@ -48,7 +48,7 @@ namespace ecs
                              .addComponent<Damage>(damage)
                              .addComponent<DamageRadius>(5)
                              .addComponent<Collidable>()
-                             .addComponent<EnemyProjectile>();
+                             .addComponent<EnemyProjectile>(enemy.getComponent<Networkable>().id);
 
         if (networkId) {
             // Case : Creation in a server instance

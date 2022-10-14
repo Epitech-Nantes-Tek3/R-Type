@@ -48,13 +48,14 @@ namespace ecs
                              .addComponent<Damage>(damage)
                              .addComponent<DamageRadius>(5)
                              .addComponent<Collidable>()
-                             .addComponent<AlliedProjectile>();
+                             .addComponent<AlliedProjectile>(ally.getComponent<Networkable>().id);
 
         if (networkId) {
             // Case : Creation in a server instance
             entity.addComponent<NewlyCreated>(uuid, false);
             entity.addComponent<Networkable>(networkId);
         } else {
+            entity.addComponent<Networkable>(0);
             // Case : Creation in a Client instance
             if (uuid != "") {
                 // Special case : the client created the entity and not the server

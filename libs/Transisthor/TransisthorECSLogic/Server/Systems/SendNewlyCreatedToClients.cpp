@@ -42,7 +42,7 @@ void SendNewlyCreatedToClients::runSystem(ecs::World &world)
             return;
         if (entityPtr->contains<ecs::AlliedProjectile>()) {
             world.getTransisthorBridge()->transitEcsDataToNetworkDataEntityAlliedProjectile(
-                entityPtr->getComponent<Networkable>().id, entityPtr->getId(), newlyCreated.uuid, clientIdList);
+                entityPtr->getComponent<Networkable>().id, entityPtr->getComponent<AlliedProjectile>().parentNetworkId, newlyCreated.uuid, clientIdList);
         }
         if (entityPtr->contains<ecs::Enemy>()) {
             Position &pos = entityPtr->getComponent<Position>();
@@ -57,7 +57,7 @@ void SendNewlyCreatedToClients::runSystem(ecs::World &world)
         }
         if (entityPtr->contains<ecs::EnemyProjectile>()) {
             world.getTransisthorBridge()->transitEcsDataToNetworkDataEntityEnemyProjectile(
-                entityPtr->getComponent<Networkable>().id, entityPtr->getId(), newlyCreated.uuid, clientIdList);
+                entityPtr->getComponent<Networkable>().id, entityPtr->getComponent<AlliedProjectile>().parentNetworkId, newlyCreated.uuid, clientIdList);
         }
         if (entityPtr->contains<ecs::Obstacle>()) {
             Position &pos = entityPtr->getComponent<Position>();
@@ -85,9 +85,7 @@ void SendNewlyCreatedToClients::runSystem(ecs::World &world)
                 entityPtr->getComponent<Networkable>().id, pos.x, pos.y, vel.multiplierAbscissa, vel.multiplierOrdinate,
                 entityPtr->getComponent<Damage>().damagePoint, newlyCreated.uuid, clientIdList);
         }
-        if (newlyCreated.uuid == "") {
-            entityPtr->removeComponent<NewlyCreated>();
-        }
+        entityPtr->removeComponent<NewlyCreated>();
         return;
     };
 

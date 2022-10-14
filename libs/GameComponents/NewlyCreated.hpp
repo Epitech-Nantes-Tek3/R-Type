@@ -38,7 +38,7 @@ namespace ecs
         /// DISCLAIMER : It's not a RFC-4122-compliant UUID.
         /// @param len
         /// @return std::string
-        std::string generate_uuid(std::mt19937 gen, size_t len)
+        std::string generate_uuid(std::mt19937 gen, size_t len = 16)
         {
             const char hex_char[] = "0123456789ABCDEF";
 

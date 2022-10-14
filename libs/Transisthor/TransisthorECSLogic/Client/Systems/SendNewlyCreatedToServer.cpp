@@ -38,11 +38,12 @@ void SendNewlyCreatedToServer::runSystem(ecs::World &world)
     auto update = [this, &world, &serverIdList](std::shared_ptr<ecs::Entity> entityPtr) {
         NewlyCreated &newlyCreated = entityPtr->getComponent<NewlyCreated>();
 
-        if (newlyCreated.isClientInstance)
+        if (!newlyCreated.isClientInstance)
             return;
         if (entityPtr->contains<ecs::AlliedProjectile>()) {
+            std::cerr << newlyCreated.uuid << std::endl;
             world.getTransisthorBridge()->transitEcsDataToNetworkDataEntityAlliedProjectile(
-                entityPtr->getComponent<Networkable>().id, entityPtr->getId(), newlyCreated.uuid, serverIdList);
+                entityPtr->getComponent<Networkable>().id, entityPtr->getComponent<AlliedProjectile>().parentNetworkId, newlyCreated.uuid, serverIdList);
         }
         if (newlyCreated.uuid == "") {
             entityPtr->removeComponent<NewlyCreated>();

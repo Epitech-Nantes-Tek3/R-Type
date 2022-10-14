@@ -10,7 +10,8 @@
 #include "ClientRoom.hpp"
 #include "Error/Error.hpp"
 #include "GameComponents/PositionComponent.hpp"
-#include "GameEntityManipulation/CreateEntitiesFunctions/CreateObstacle.hpp"
+#include "GameComponents/PlayerComponent.hpp"
+#include "GameEntityManipulation/CreateEntitiesFunctions/CreateAlliedProjectile.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Systems/SendToServer.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Systems/SendNewlyCreatedToServer.hpp"
@@ -54,6 +55,7 @@ struct Temp : public System {
 
 void ClientRoom::initEcsGameData(void)
 {
+    _worldInstance->addResource<RandomDevice>();
     _worldInstance->addSystem<Temp>();
     _worldInstance->addSystem<SendToServer>();
     _worldInstance->addSystem<SendNewlyCreatedToServer>();
@@ -69,6 +71,8 @@ void ClientRoom::protocol12Answer(CommunicatorMessage connexionResponse)
 {
     _state = ClientState::IN_GAME;
     _worldInstance.get()->addEntity().addComponent<NetworkServer>(connexionResponse.message.clientInfo.getId());
+    std::vector<std::shared_ptr<Entity>> joined = _worldInstance.get()->joinEntities<Player>();
+    createNewAlliedProjectile(*_worldInstance.get(), *joined[0], NewlyCreated().generate_uuid(_worldInstance.get()->getResource<RandomDevice>().getRandomDevice(), 16));
 }
 
 void ClientRoom::startLobbyLoop(void)
