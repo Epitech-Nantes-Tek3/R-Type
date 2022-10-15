@@ -28,12 +28,23 @@ void EnemiesGoRandom::run(World &world)
         Velocity &vel = entityPtr.get()->getComponent<Velocity>();
         Destination &dest = entityPtr.get()->getComponent<Destination>();
 
-        if (pos.x == dest.x && pos.y == dest.y) {
+        if (pos.x == dest.x || pos.y == dest.y) {
+            int value = 0;
+            int newVelX = 0;
+            int newVelY = 0;
+
             dest.x = world.getResource<RandomDevice>().randInt(MINIMUM_WIDTH, MAXIMUM_WIDTH);
             dest.y = world.getResource<RandomDevice>().randInt(MINIMUM_HEIGTH, MAXIMUM_HEIGTH);
+            newVelX = dest.x - pos.x;
+            newVelY = dest.y - pos.y;
+            do {
+                /// That's some random values, just to make every enemy goes at a different speed
+                value = world.getResource<RandomDevice>().randInt(1, 5);
+            } while (newVelX % value != 0 && newVelY % value != 0);
+
+            vel.multiplierAbscissa = (newVelX  / value);
+            vel.multiplierOrdinate = (newVelY / value);
         }
-        vel.multiplierAbscissa = dest.x - pos.x;
-        vel.multiplierOrdinate = dest.y - pos.y;
     };
     std::for_each(joined.begin(), joined.end(), randomMove);
 }

@@ -16,6 +16,9 @@
 #include "GameSystems/MovementSystem.hpp"
 #include "World/World.hpp"
 
+
+#include <iostream>
+
 using namespace ecs;
 
 Test(EnemyGoRandom_System, move_randomly)
@@ -33,10 +36,9 @@ Test(EnemyGoRandom_System, move_randomly)
     int y = dest.y;
 
     world.runSystems();
-    std::this_thread::sleep_for(std::chrono::duration<int>(1));
+    std::this_thread::sleep_for(std::chrono::duration<int>(5));
     world.addSystem<Movement>();
     world.runSystems();
 
-    cr_assert_eq(x - 1 <= pos.x && pos.x <= x + 1, true);
-    cr_assert_eq(y - 1 <= pos.y && pos.y <= y + 1, true);
+    cr_assert_eq(x == pos.x || y == pos.y, true);
 }

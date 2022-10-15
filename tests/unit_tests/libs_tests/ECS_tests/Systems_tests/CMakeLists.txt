@@ -7,7 +7,7 @@ set(TEST_SRC_ROOT
     ${SRC_ROOT}/LifeTimeDeath_tests.cpp
     ${SRC_ROOT}/Death_Life_System_tests.cpp
     ${SRC_ROOT}/Collidable_system_test.cpp
-    ${SRC_ROOT}/EnemyGoRandom_System_test.cpp
+    #${SRC_ROOT}/EnemyGoRandom_System_test.cpp
     ${SRC_ROOT}/ShootEnemy_system_test.cpp
 )
 
