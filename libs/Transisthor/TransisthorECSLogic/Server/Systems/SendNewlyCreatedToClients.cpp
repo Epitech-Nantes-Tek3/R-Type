@@ -60,7 +60,7 @@ void SendNewlyCreatedToClients::runSystem(ecs::World &world)
         }
         if (entityPtr->contains<ecs::EnemyProjectile>()) {
             world.getTransisthorBridge()->transitEcsDataToNetworkDataEntityEnemyProjectile(
-                entityPtr->getComponent<Networkable>().id, entityPtr->getComponent<AlliedProjectile>().parentNetworkId,
+                entityPtr->getComponent<Networkable>().id, entityPtr->getComponent<EnemyProjectile>().parentNetworkId,
                 newlyCreated.uuid, clientIdList);
         }
         if (entityPtr->contains<ecs::Obstacle>()) {

@@ -63,7 +63,6 @@ void DrawComponents::run(World &world)
                 if (layerType.layer == LayerLvL::layer_e::ENEMY)
                     entityPtr->addComponent<TextureName>(GraphicsTextureResource::ENEMY_STATIC);
                 if (layerType.layer == LayerLvL::layer_e::PROJECTILE) {
-                    std::cout << "TOTO" << std::endl;
                     if (entityPtr->contains<EnemyProjectile>()) {
                          entityPtr->addComponent<TextureName>(GraphicsTextureResource::PROJECTILE_ENEMY);
                     }

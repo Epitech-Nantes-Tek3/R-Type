@@ -179,7 +179,7 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
     }
     for (std::shared_ptr<Entity> entityPtr : enemyProjectiles) {
         _worldInstance.get()->getTransisthorBridge()->transitEcsDataToNetworkDataEntityEnemyProjectile(
-            entityPtr->getComponent<Networkable>().id, entityPtr->getComponent<AlliedProjectile>().parentNetworkId, "",
+            entityPtr->getComponent<Networkable>().id, entityPtr->getComponent<EnemyProjectile>().parentNetworkId, "",
             {connexionDemand.message.clientInfo.getId()});
         std::this_thread::sleep_for(std::chrono::duration<int, std::milli>(500));
     }
