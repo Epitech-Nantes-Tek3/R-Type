@@ -9,6 +9,7 @@
 #define CONTROLLERBUTTONINPUTCOMPONENT_HPP_
 
 #include "Component/Component.hpp"
+#include "World/World.hpp"
 #include <SFML/Graphics.hpp>
 #include <unordered_map>
 #include <functional>
@@ -21,7 +22,7 @@ namespace ecs
     class ControllerButtonInputComponent : public Component {
         public:
             /// @brief This unordered_map links SFML controller button input to an action/value pair enum.
-            std::unordered_map<unsigned int, std::pair<std::function<void()>, float>> controllerButtonMapActions;
+            std::unordered_map<unsigned int, std::function<void(World &, float)>> controllerButtonMapActions;
 
             /// @brief Default constructor of the class.
             ControllerButtonInputComponent() = default;
