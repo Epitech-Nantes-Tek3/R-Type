@@ -11,8 +11,9 @@
 #include "Component/Component.hpp"
 #include "World/World.hpp"
 #include <SFML/Graphics.hpp>
-#include <unordered_map>
 #include <functional>
+#include "Component/Component.hpp"
+#include <unordered_map>
 
 namespace ecs
 {
@@ -24,11 +25,11 @@ namespace ecs
             /// @brief This unordered_map links SFML key input to an action/value pair enum.
             std::unordered_map<sf::Keyboard::Key, std::function<void(World &, float)>> keyboardMapActions;
 
-            /// @brief Constructor of the class.
-            KeyboardInputComponent() = default;
+        /// @brief Constructor of the class.
+        KeyboardInputComponent() = default;
 
-            /// @brief Default destructor of the class.
-            ~KeyboardInputComponent() = default;
+        /// @brief Default destructor of the class.
+        ~KeyboardInputComponent() = default;
     };
 } // namespace ecs
 

@@ -21,6 +21,7 @@
 #include "GameEntityManipulation/CreateEntitiesFunctions/CreateObstacle.hpp"
 #include "GameEntityManipulation/CreateEntitiesFunctions/CreatePlayer.hpp"
 #include "GameEntityManipulation/CreateEntitiesFunctions/CreateProjectile.hpp"
+#include "GameSharedResources/Random.hpp"
 #include "Transisthor/Transisthor.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Systems/SendNewlyCreatedToServer.hpp"
 #include "Transisthor/TransisthorECSLogic/Server/Resources/NetworkableIdGenerator.hpp"
@@ -320,6 +321,8 @@ Test(transisthor_testing, transit_enemy_entity_without_uuid)
     Client temporaryClient = Client();
     communicator.addClientToList(temporaryClient);
 
+    world.addResource<RandomDevice>();
+
     std::size_t entityId = createNewEnemy(world, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, "", 1);
 
     Position entityPosition = world.getEntity(entityId).getComponent<Position>();
@@ -387,7 +390,7 @@ Test(transisthor_testing, transit_player_entity)
     std::size_t entityId = createNewPlayer(world, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, false, "UUID");
 
     void *temp = transisthor.transitEcsDataToNetworkDataEntityPlayer(
-        entityId, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, std::string("UUID"), {1});
+        entityId, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, false, std::string("UUID"), {1});
     void *networkAnswer = transisthor.transitNetworkDataToEcsDataEntity({Client(), temp, 1, 31});
 
     int posX = 0;
@@ -400,9 +403,10 @@ Test(transisthor_testing, transit_player_entity)
     short life = 0;
     unsigned short damage = 0;
     unsigned short damageRadius = 0;
+    bool isControlable = true;
 
     char *uuid =
-        (char *)networkAnswer + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2 + sizeof(unsigned short) * 2;
+        (char *)networkAnswer + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2 + sizeof(unsigned short) * 2 + sizeof(bool);
 
     std::memcpy(&posX, networkAnswer, sizeof(int));
     std::memcpy(&posY, (void *)((char *)networkAnswer + sizeof(int)), sizeof(int));
@@ -422,6 +426,10 @@ Test(transisthor_testing, transit_player_entity)
         (void *)((char *)networkAnswer + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2
             + sizeof(unsigned short)),
         sizeof(unsigned short));
+    std::memcpy(&isControlable,
+        (void *)((char *)networkAnswer + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2
+            + sizeof(unsigned short) * 2),
+        sizeof(bool));
 
     cr_assert_eq(posX, 1);
     cr_assert_eq(posY, 2);
@@ -433,6 +441,7 @@ Test(transisthor_testing, transit_player_entity)
     cr_assert_eq(life, 8);
     cr_assert_eq(damage, 9);
     cr_assert_eq(damageRadius, 10);
+    cr_assert_eq(isControlable, false);
     cr_assert_str_eq("UUID", uuid);
 }
 
@@ -449,7 +458,7 @@ Test(transisthor_testing, transit_player_entity_without_uuid)
     std::size_t entityId = createNewPlayer(world, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, false, "", 1);
 
     void *temp = transisthor.transitEcsDataToNetworkDataEntityPlayer(
-        entityId, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, std::string(""), {1});
+        entityId, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, false, std::string(""), {1});
     void *networkAnswer = transisthor.transitNetworkDataToEcsDataEntity({Client(), temp, 1, 31});
 
     int posX = 0;
@@ -462,9 +471,10 @@ Test(transisthor_testing, transit_player_entity_without_uuid)
     short life = 0;
     unsigned short damage = 0;
     unsigned short damageRadius = 0;
+    bool isControlable = true;
 
     char *uuid =
-        (char *)networkAnswer + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2 + sizeof(unsigned short) * 2;
+        (char *)networkAnswer + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2 + sizeof(unsigned short) * 2 + sizeof(bool);
 
     std::memcpy(&posX, networkAnswer, sizeof(int));
     std::memcpy(&posY, (void *)((char *)networkAnswer + sizeof(int)), sizeof(int));
@@ -484,6 +494,10 @@ Test(transisthor_testing, transit_player_entity_without_uuid)
         (void *)((char *)networkAnswer + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2
             + sizeof(unsigned short)),
         sizeof(unsigned short));
+    std::memcpy(&isControlable,
+        (void *)((char *)networkAnswer + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2
+            + sizeof(unsigned short) * 2),
+        sizeof(bool));
 
     cr_assert_eq(posX, 1);
     cr_assert_eq(posY, 2);
@@ -495,6 +509,7 @@ Test(transisthor_testing, transit_player_entity_without_uuid)
     cr_assert_eq(life, 8);
     cr_assert_eq(damage, 9);
     cr_assert_eq(damageRadius, 10);
+    cr_assert_eq(isControlable, false);
     cr_assert_str_eq("", uuid);
 }
 

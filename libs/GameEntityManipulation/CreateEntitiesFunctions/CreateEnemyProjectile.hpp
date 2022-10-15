@@ -22,6 +22,7 @@
 #include "GameSharedResources/Random.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "World/World.hpp"
+#include "SFMLComponents/LayerLvL.hpp"
 
 namespace ecs
 {
@@ -36,11 +37,10 @@ namespace ecs
     {
         Position pos = enemy.getComponent<Position>();
         Damage damage = enemy.getComponent<Damage>();
-        Velocity velocity = enemy.getComponent<Velocity>();
 
         Entity &entity = world.addEntity()
                              .addComponent<Position>(pos.x, pos.y)
-                             .addComponent<Velocity>(velocity.multiplierAbscissa, velocity.multiplierOrdinate)
+                             .addComponent<Velocity>(-10, 0)
                              .addComponent<Weight>(1)
                              .addComponent<Size>(2, 1)
                              .addComponent<LifeTime>(100)
@@ -60,6 +60,7 @@ namespace ecs
                 // Special case : the client created the entity and not the server
                 entity.addComponent<NewlyCreated>(uuid, true);
             }
+            entity.addComponent<LayerLvL>(LayerLvL::layer_e::PROJECTILE);
         }
         return entity.getId();
     }

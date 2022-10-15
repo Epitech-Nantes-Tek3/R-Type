@@ -11,8 +11,9 @@
 #include "Component/Component.hpp"
 #include "World/World.hpp"
 #include <SFML/Graphics.hpp>
-#include <unordered_map>
 #include <functional>
+#include "Component/Component.hpp"
+#include <unordered_map>
 
 namespace ecs
 {
@@ -24,11 +25,11 @@ namespace ecs
             /// @brief This unordered map links SFML mouse button input to an action/float pair enum.
             std::unordered_map<sf::Mouse::Button, std::function<void(World &, float)>> MouseMapActions;
 
-            /// @brief Constructor of the class.
-            MouseInputComponent() = default;
+        /// @brief Constructor of the class.
+        MouseInputComponent() = default;
 
-            /// @brief Default destructor of the class.
-            ~MouseInputComponent() = default;
+        /// @brief Default destructor of the class.
+        ~MouseInputComponent() = default;
     };
 } // namespace ecs
 

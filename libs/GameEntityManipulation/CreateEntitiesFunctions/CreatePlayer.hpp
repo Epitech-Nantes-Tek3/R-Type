@@ -23,6 +23,7 @@
 #include "GameSharedResources/Random.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "World/World.hpp"
+#include "SFMLComponents/LayerLvL.hpp"
 
 namespace ecs
 {
@@ -57,8 +58,9 @@ namespace ecs
                              .addComponent<Collidable>()
                              .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate)
                              .addComponent<Player>();
-        if (controlable == true)
+        if (controlable == true) {
             entity.addComponent<Controlable>();
+        }
         if (networkId) {
             // Case : Creation in a server instance
             entity.addComponent<NewlyCreated>(uuid, false);
@@ -69,6 +71,7 @@ namespace ecs
                 // Special case : the client created the entity and not the server
                 entity.addComponent<NewlyCreated>(uuid, true);
             }
+            entity.addComponent<LayerLvL>(LayerLvL::layer_e::PLAYER);
         }
         return entity.getId();
     }
