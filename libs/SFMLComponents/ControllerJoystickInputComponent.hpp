@@ -10,6 +10,7 @@
 
 #include "Component/Component.hpp"
 #include "World/World.hpp"
+#include "ActionQueueComponent.hpp"
 #include <SFML/Graphics.hpp>
 #include <functional>
 #include <unordered_map>
@@ -22,7 +23,7 @@ namespace ecs
     class ControllerJoystickInputComponent : public Component {
       public:
         /// @brief This unordered_map links SFML controller joystick input to an action/value pair enum.
-        std::unordered_map<unsigned int, std::function<void(World &, float)>> controllerJoystickMapActions;
+        std::unordered_map<unsigned int, std::pair<ActionQueueComponent::inputAction_e, float>> controllerJoystickMapActions;
 
         /// @brief Constructor of the class.
         ControllerJoystickInputComponent() = default;

@@ -23,8 +23,9 @@ namespace ecs
       public:
         /// @brief This action queue stores function that will be called in a system and added by another one when
         /// inputs occur.
-        std::queue<std::function<void(World &, float)>> actions;
-
+        // std::queue<std::function<void(World &, float)>> actions;
+        enum inputAction_e {UNDEFINED, MOVEX, MOVEY, SHOOT, MAX_ACTION};
+        std::queue<std::pair<inputAction_e, float>> actions;
         /// @brief Default constructor.
         ActionQueueComponent() = default;
 
