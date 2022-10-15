@@ -577,14 +577,16 @@ Test(transisthor_testing, transit_enemyProjectile_entity)
     Client temporaryClient = Client();
     communicator.addClientToList(temporaryClient);
 
-    std::size_t enemy = world.addEntity()
-                            .addComponent<Networkable>(10)
-                            .addComponent<Position>(1, 2)
-                            .addComponent<Damage>(10)
-                            .addComponent<Velocity>(1, 1)
-                            .getId();
+    world.addEntity()
+        .addComponent<Networkable>(10)
+        .addComponent<Position>(1, 2)
+        .addComponent<Damage>(10)
+        .addComponent<Velocity>(1, 1)
+        .getId();
 
-    unsigned short entityId = createNewEnemyProjectile(world, world.getEntity(enemy), "UUID");
+    std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Damage>();
+
+    unsigned short entityId = createNewEnemyProjectile(world, joined.at(0), "UUID");
     void *temp = transisthor.transitEcsDataToNetworkDataEntityEnemyProjectile(entityId, 10, std::string("UUID"), {1});
     (void)temp;
     void *networkAnswer = transisthor.transitNetworkDataToEcsDataEntity({Client(), temp, 1, 31});
@@ -615,7 +617,9 @@ Test(transisthor_testing, transit_enemyProjectile_entity_without_uuid)
                             .addComponent<Velocity>(1, 1)
                             .getId();
 
-    unsigned short entityId = createNewEnemyProjectile(world, world.getEntity(enemy), "", 1);
+    std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Damage>();
+
+    unsigned short entityId = createNewEnemyProjectile(world, joined.at(0), "", 1);
 
     void *temp = transisthor.transitEcsDataToNetworkDataEntityEnemyProjectile(entityId, enemy, std::string(""), {1});
     (void)temp;

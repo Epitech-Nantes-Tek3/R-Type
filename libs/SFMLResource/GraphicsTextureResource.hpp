@@ -34,7 +34,8 @@ namespace ecs
             OBSTACLE_1,
             OBSTACLE_2,
             OBSTACLE_3,
-            PROJECTILE,
+            PROJECTILE_ALLY,
+            PROJECTILE_ENEMY,
             BUTTON,
             NATURAL_PROJECTILE
         };

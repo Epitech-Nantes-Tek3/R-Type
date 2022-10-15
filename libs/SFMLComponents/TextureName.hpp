@@ -9,7 +9,7 @@
 #define TEXTURENAME_HPP_
 
 #include "Component/Component.hpp"
-#include "GraphicsTextureResource.hpp"
+#include "SFMLResource/GraphicsTextureResource.hpp"
 
 namespace ecs
 {

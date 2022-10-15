@@ -53,6 +53,9 @@ namespace client_data
         /// @brief Init some entities only created by the client.
         void _initEntities();
 
+        /// @brief Init all the Sprites in the GameTextureResource
+        void _initSpritesForEntities();
+
         /// @brief Network informations of the room.
         Client _networkInformations;
 
