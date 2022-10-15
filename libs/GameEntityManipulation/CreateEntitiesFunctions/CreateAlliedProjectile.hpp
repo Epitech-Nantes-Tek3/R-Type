@@ -41,7 +41,7 @@ namespace ecs
 
         Entity &entity = world.addEntity()
                              .addComponent<Position>(pos.x, pos.y)
-                             .addComponent<Velocity>(velocity.multiplierAbscissa, velocity.multiplierOrdinate)
+                             .addComponent<Velocity>(10, 0)
                              .addComponent<Weight>(1)
                              .addComponent<Size>(2, 1)
                              .addComponent<LifeTime>(100)
