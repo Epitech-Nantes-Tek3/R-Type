@@ -16,9 +16,6 @@
 #include "GameSystems/MovementSystem.hpp"
 #include "World/World.hpp"
 
-
-#include <iostream>
-
 using namespace ecs;
 
 Test(EnemyGoRandom_System, move_randomly)
