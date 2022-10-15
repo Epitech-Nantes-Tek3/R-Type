@@ -132,25 +132,26 @@ $(document).ready(function(){initNavTree('_create_player_8hpp_source.html',''); 
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                             .addComponent&lt;Collidable&gt;()</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                             .addComponent&lt;<a class="code" href="classecs_1_1_velocity.html">Velocity</a>&gt;(multiplierAbscissa, multiplierOrdinate)</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                             .addComponent&lt;Player&gt;();</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keywordflow">if</span> (controlable == <span class="keyword">true</span>)</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keywordflow">if</span> (controlable == <span class="keyword">true</span>) {</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            entity.<a class="code" href="classecs_1_1_entity.html#aa7a1b23feaaffafe12e29435e9c41e46">addComponent</a>&lt;<a class="code" href="classecs_1_1_controlable.html">Controlable</a>&gt;();</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keywordflow">if</span> (networkId) {</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            <span class="comment">// Case : Creation in a server instance</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            entity.<a class="code" href="classecs_1_1_entity.html#aa7a1b23feaaffafe12e29435e9c41e46">addComponent</a>&lt;<a class="code" href="classecs_1_1_newly_created.html">NewlyCreated</a>&gt;(uuid, <span class="keyword">false</span>);</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            entity.<a class="code" href="classecs_1_1_entity.html#aa7a1b23feaaffafe12e29435e9c41e46">addComponent</a>&lt;<a class="code" href="classecs_1_1_networkable.html">Networkable</a>&gt;(networkId);</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            <span class="comment">// Case : Creation in a Client instance</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            <span class="keywordflow">if</span> (uuid != <span class="stringliteral">&quot;&quot;</span>) {</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                <span class="comment">// Special case : the client created the entity and not the server</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                entity.<a class="code" href="classecs_1_1_entity.html#aa7a1b23feaaffafe12e29435e9c41e46">addComponent</a>&lt;<a class="code" href="classecs_1_1_newly_created.html">NewlyCreated</a>&gt;(uuid, <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            }</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            entity.<a class="code" href="classecs_1_1_entity.html#aa7a1b23feaaffafe12e29435e9c41e46">addComponent</a>&lt;<a class="code" href="classecs_1_1_layer_lv_l.html">LayerLvL</a>&gt;(LayerLvL::layer_e::PLAYER);</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        }</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordflow">return</span> entity.<a class="code" href="classecs_1_1_entity.html#a58aef82e56c270dbd6c3845f88ee3ea2">getId</a>();</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    }</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;} <span class="comment">// namespace ecs</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !CREATEPLAYER_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        }</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keywordflow">if</span> (networkId) {</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            <span class="comment">// Case : Creation in a server instance</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            entity.<a class="code" href="classecs_1_1_entity.html#aa7a1b23feaaffafe12e29435e9c41e46">addComponent</a>&lt;<a class="code" href="classecs_1_1_newly_created.html">NewlyCreated</a>&gt;(uuid, <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            entity.<a class="code" href="classecs_1_1_entity.html#aa7a1b23feaaffafe12e29435e9c41e46">addComponent</a>&lt;<a class="code" href="classecs_1_1_networkable.html">Networkable</a>&gt;(networkId);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            <span class="comment">// Case : Creation in a Client instance</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            <span class="keywordflow">if</span> (uuid != <span class="stringliteral">&quot;&quot;</span>) {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                <span class="comment">// Special case : the client created the entity and not the server</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                entity.<a class="code" href="classecs_1_1_entity.html#aa7a1b23feaaffafe12e29435e9c41e46">addComponent</a>&lt;<a class="code" href="classecs_1_1_newly_created.html">NewlyCreated</a>&gt;(uuid, <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            }</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            entity.<a class="code" href="classecs_1_1_entity.html#aa7a1b23feaaffafe12e29435e9c41e46">addComponent</a>&lt;<a class="code" href="classecs_1_1_layer_lv_l.html">LayerLvL</a>&gt;(LayerLvL::layer_e::PLAYER);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        }</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keywordflow">return</span> entity.<a class="code" href="classecs_1_1_entity.html#a58aef82e56c270dbd6c3845f88ee3ea2">getId</a>();</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    }</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;} <span class="comment">// namespace ecs</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !CREATEPLAYER_HPP_ */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="aclassecs_1_1_newly_created_html"><div class="ttname"><a href="classecs_1_1_newly_created.html">ecs::NewlyCreated</a></div><div class="ttdoc">This component is in order to give a unique id to an entity, it's used in the sending of the creation...</div><div class="ttdef"><b>Definition:</b> NewlyCreated.hpp:20</div></div>
