@@ -84,6 +84,7 @@ var hierarchy =
       [ "ecs::DecreaseLifeTime", "structecs_1_1_decrease_life_time.html", null ],
       [ "ecs::DrawComponents", "structecs_1_1_draw_components.html", null ],
       [ "ecs::EnemiesGoRandom", "classecs_1_1_enemies_go_random.html", null ],
+      [ "ecs::EnemyShootSystem", "classecs_1_1_enemy_shoot_system.html", null ],
       [ "ecs::InputManagement", "structecs_1_1_input_management.html", null ],
       [ "ecs::LifeTimeDeath", "structecs_1_1_life_time_death.html", null ],
       [ "ecs::Movement", "structecs_1_1_movement.html", null ],

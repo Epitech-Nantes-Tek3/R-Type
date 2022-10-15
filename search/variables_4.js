@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['font_882',['font',['../classecs_1_1_graphics_font_resource.html#a7d5f97ed1eea5caa26297e2af13a8a43',1,'ecs::GraphicsFontResource']]],
-  ['frequency_883',['frequency',['../classecs_1_1_shooting_frequency.html#a7e740de3091edf4d0934e8c1f69d0144',1,'ecs::ShootingFrequency']]]
+  ['damagepoint_887',['damagePoint',['../classecs_1_1_damage.html#a5adc2a49b46638d48764580490007257',1,'ecs::Damage']]],
+  ['data_888',['data',['../structcommunicator__lib_1_1_message.html#a9e7d643b31248f511a3e6ea6939a59c2',1,'communicator_lib::Message']]],
+  ['deathdamagepoint_889',['deathDamagePoint',['../classecs_1_1_death_damage.html#ac37dcf3109f5efcbeac63893ddbf50c6',1,'ecs::DeathDamage']]]
 ];

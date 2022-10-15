@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['serveraddress_902',['serverAddress',['../structargument__handler_1_1_argument_handler_1_1_client_information.html#a7f538c995fbf1a264d4be62829e3b136',1,'argument_handler::ArgumentHandler::ClientInformation']]],
-  ['serverport_903',['serverPort',['../structargument__handler_1_1_argument_handler_1_1_client_information.html#ad1cef70c453efb9c76afb5b9cd96d512',1,'argument_handler::ArgumentHandler::ClientInformation']]],
-  ['shape_904',['shape',['../classecs_1_1_graphics_rectangle_component.html#a4f6286f320607369bd96fdb65775d0d2',1,'ecs::GraphicsRectangleComponent']]],
-  ['size_905',['size',['../structcommunicator__lib_1_1_message.html#a65ec56114ac2473b08432b51a45a8e2a',1,'communicator_lib::Message']]]
+  ['radius_908',['radius',['../classecs_1_1_damage_radius.html#a45e95e3a6d3c19f3e58c50e611949d68',1,'ecs::DamageRadius::radius()'],['../classecs_1_1_weakness.html#a4ff3023ae0bbe3940932db6a6038d566',1,'ecs::Weakness::radius()']]],
+  ['rechargingtime_909',['rechargingTime',['../classecs_1_1_charged_attack.html#a73b122eb42dd44bd1a04643498bbbfee',1,'ecs::ChargedAttack']]]
 ];
