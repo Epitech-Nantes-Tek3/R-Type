@@ -21,9 +21,15 @@ namespace ecs
         /// @brief The delay between two shoots
         duration<double> frequency;
 
+        /// @brief The base delay, only used to reset the frequency value
+        const duration<double> baseFrequency;
+
         /// @brief Constructor of the ShootingFrequency Component
         /// @param newfrequency the shooting's delay
-        ShootingFrequency(duration<double> newFrequency = duration<double>(0)) : frequency(newFrequency){};
+        ShootingFrequency(duration<double> newFrequency) : frequency(newFrequency), baseFrequency(frequency){};
+        /// @brief Default Constructor of the ShootingFrequency Component
+        /// @param newfrequency the shooting's delay
+        ShootingFrequency(double newFrequency = 0.0) : frequency(duration<double>(newFrequency)), baseFrequency(frequency){};
         /// @brief Default Destructor
         ~ShootingFrequency() = default;
     };
