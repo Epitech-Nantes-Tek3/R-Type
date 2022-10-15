@@ -208,6 +208,9 @@ var NAVTREEINDEX0 =
 "_sender_8cpp.html":[5,0,1,1,6],
 "_sender_8hpp.html":[5,0,1,1,7],
 "_sender_8hpp_source.html":[5,0,1,1,7],
+"_sending_frequency_8cpp.html":[5,0,1,11,0,0,1,0],
+"_sending_frequency_8hpp.html":[5,0,1,11,0,0,1,1],
+"_sending_frequency_8hpp_source.html":[5,0,1,11,0,0,1,1],
 "_server_2main_8cpp.html":[5,0,2,0],
 "_server_2main_8cpp.html#a0c99d968a34e803d378692bde2e3f18f":[5,0,2,0,0],
 "_server_8cpp.html":[5,0,2,3],
@@ -245,9 +248,6 @@ var NAVTREEINDEX0 =
 "class_networkable_id_generator.html#a04ef8f7002f4f9402ddf15b95e0ef3b9":[4,0,7,2],
 "class_networkable_id_generator.html#a1ddcf08f3c012eecc6ae219f2e9061ea":[4,0,7,1],
 "class_networkable_id_generator.html#a2ac573da05c54cede2596e207b8c4eb7":[4,0,7,0],
-"classargument__handler_1_1_argument_handler.html":[4,0,0,0],
-"classargument__handler_1_1_argument_handler.html#a1d834aa08e9550824428e1bfb3213848":[4,0,0,0,7],
-"classargument__handler_1_1_argument_handler.html#a557d671c8941fc6c612b7848e9612629":[4,0,0,0,3],
-"classargument__handler_1_1_argument_handler.html#a8753c47efcc2a52a4ec1aebdd64c5c63":[4,0,0,0,8],
-"classargument__handler_1_1_argument_handler.html#a8bacde25fda79caacfed3970d2b033d6":[4,0,0,0,6]
+"class_sending_frequency.html":[4,0,8],
+"class_sending_frequency.html#a0979ab6c5e53afaee4579af550a8d5ed":[4,0,8,0]
 };

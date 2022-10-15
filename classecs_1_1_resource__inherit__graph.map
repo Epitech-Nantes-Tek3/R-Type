@@ -1,9 +1,10 @@
 <map id="ecs::Resource" name="ecs::Resource">
-<area shape="rect" id="node1" title="This is the Resource Class for ECS The base Resource type, all Resources must inherit from Resource." alt="" coords="5,132,117,159"/>
+<area shape="rect" id="node1" title="This is the Resource Class for ECS The base Resource type, all Resources must inherit from Resource." alt="" coords="5,157,117,184"/>
 <area shape="rect" id="node2" href="$classecs_1_1_game_clock.html" title="Shared Resource Clock for the Game." alt="" coords="211,5,337,32"/>
 <area shape="rect" id="node3" href="$classecs_1_1_graphics_font_resource.html" title="This resource class stores the font in order to draw a Graphical text resource. It justs exist for th..." alt="" coords="175,56,373,83"/>
 <area shape="rect" id="node4" href="$classecs_1_1_graphics_texture_resource.html" title="This resource class stores a map of Graphical SFML textures to be set on Shapes." alt="" coords="165,107,383,133"/>
 <area shape="rect" id="node5" href="$structecs_1_1_random_device.html" title="Random Shared Resource." alt="" coords="199,157,349,184"/>
 <area shape="rect" id="node6" href="$classecs_1_1_render_window_resource.html" title="This shared resource adds a window. It will used by graphics part to draw something on screen,..." alt="" coords="169,208,379,235"/>
 <area shape="rect" id="node7" href="$class_networkable_id_generator.html" title="Shared resource networkable id generator for Networkable Component." alt="" coords="183,259,365,285"/>
+<area shape="rect" id="node8" href="$class_sending_frequency.html" title=" " alt="" coords="203,309,345,336"/>
 </map>

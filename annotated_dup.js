@@ -8,6 +8,7 @@ var annotated_dup =
     [ "server_data", "namespaceserver__data.html", "namespaceserver__data" ],
     [ "transisthor_lib", "namespacetransisthor__lib.html", "namespacetransisthor__lib" ],
     [ "NetworkableIdGenerator", "class_networkable_id_generator.html", "class_networkable_id_generator" ],
+    [ "SendingFrequency", "class_sending_frequency.html", "class_sending_frequency" ],
     [ "SendNewlyCreatedToClients", "struct_send_newly_created_to_clients.html", "struct_send_newly_created_to_clients" ],
     [ "SendNewlyCreatedToServer", "struct_send_newly_created_to_server.html", "struct_send_newly_created_to_server" ],
     [ "SendToClient", "struct_send_to_client.html", null ],

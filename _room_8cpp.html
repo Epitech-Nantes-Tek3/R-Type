@@ -107,6 +107,7 @@ $(document).ready(function(){initNavTree('_room_8cpp.html',''); initResizable();
 <code>#include &quot;<a class="el" href="_movement_system_8hpp_source.html">GameSystems/MovementSystem.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_update_clock_system_8hpp_source.html">GameSystems/UpdateClockSystem.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_networkable_8hpp_source.html">Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_sending_frequency_8hpp_source.html">Transisthor/TransisthorECSLogic/Both/Resources/SendingFrequency.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_network_client_8hpp_source.html">Transisthor/TransisthorECSLogic/Server/Components/NetworkClient.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_networkable_id_generator_8hpp_source.html">Transisthor/TransisthorECSLogic/Server/Resources/NetworkableIdGenerator.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_send_newly_created_to_clients_8hpp_source.html">Transisthor/TransisthorECSLogic/Server/Systems/SendNewlyCreatedToClients.hpp</a>&quot;</code><br />
@@ -116,56 +117,56 @@ Include dependency graph for Room.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="_room_8cpp__incl.png" border="0" usemap="#_server_2_room_8cpp" alt=""/></div>
 <map name="_server_2_room_8cpp" id="_server_2_room_8cpp">
-<area shape="rect" title=" " alt="" coords="3193,5,3327,32"/>
-<area shape="rect" href="_room_8hpp.html" title=" " alt="" coords="473,95,561,121"/>
+<area shape="rect" title=" " alt="" coords="2683,5,2816,32"/>
+<area shape="rect" href="_room_8hpp.html" title=" " alt="" coords="436,95,524,121"/>
 <area shape="rect" href="_error_8hpp.html" title=" " alt="" coords="5,385,120,411"/>
-<area shape="rect" href="_allied_projectile_component_8hpp.html" title=" " alt="" coords="7049,87,7295,129"/>
-<area shape="rect" href="_damage_component_8hpp.html" title=" " alt="" coords="6414,191,6719,218"/>
-<area shape="rect" href="_damage_radius_component_8hpp.html" title=" " alt="" coords="6743,184,6990,225"/>
-<area shape="rect" href="_enemy_component_8hpp.html" title=" " alt="" coords="2926,191,3221,218"/>
-<area shape="rect" href="_enemy_projectile_component_8hpp.html" title=" " alt="" coords="6336,87,6589,129"/>
-<area shape="rect" href="_obstacle_component_8hpp.html" title=" " alt="" coords="6684,95,6991,121"/>
-<area shape="rect" href="_position_component_8hpp.html" title=" " alt="" coords="2599,191,2902,218"/>
-<area shape="rect" href="_projectile_component_8hpp.html" title=" " alt="" coords="7328,87,7536,129"/>
-<area shape="rect" href="_create_enemy_8hpp.html" title=" " alt="" coords="4069,80,4253,136"/>
-<area shape="rect" href="_networkable_8hpp.html" title=" " alt="" coords="3245,184,3501,225"/>
-<area shape="rect" href="_create_player_8hpp.html" title=" " alt="" coords="5039,80,5223,136"/>
-<area shape="rect" href="_game_clock_8hpp.html" title=" " alt="" coords="7513,184,7687,225"/>
-<area shape="rect" href="_enemies_go_random_8hpp.html" title=" " alt="" coords="2605,95,2883,121"/>
-<area shape="rect" href="_enemy_shoot_system_8hpp.html" title=" " alt="" coords="716,288,996,315"/>
-<area shape="rect" href="_movement_system_8hpp.html" title=" " alt="" coords="2298,95,2566,121"/>
-<area shape="rect" href="_update_clock_system_8hpp.html" title=" " alt="" coords="1021,288,1302,315"/>
-<area shape="rect" href="_network_client_8hpp.html" title=" " alt="" coords="1361,184,1639,225"/>
-<area shape="rect" href="_networkable_id_generator_8hpp.html" title=" " alt="" coords="7486,377,7815,419"/>
-<area shape="rect" href="_send_newly_created_to_clients_8hpp.html" title=" " alt="" coords="1326,273,1597,329"/>
-<area shape="rect" href="_send_to_client_8hpp.html" title=" " alt="" coords="1891,87,2135,129"/>
-<area shape="rect" title=" " alt="" coords="371,467,448,493"/>
-<area shape="rect" href="_client_8hpp.html" title=" " alt="" coords="183,288,371,315"/>
-<area shape="rect" href="_communicator_8hpp.html" title=" " alt="" coords="315,191,560,218"/>
-<area shape="rect" href="_transisthor_8hpp.html" title=" " alt="" coords="447,288,641,315"/>
-<area shape="rect" href="_world_8hpp.html" title=" " alt="" coords="1596,385,1724,411"/>
-<area shape="rect" title=" " alt="" coords="187,467,245,493"/>
-<area shape="rect" title=" " alt="" coords="19,467,106,493"/>
-<area shape="rect" title=" " alt="" coords="1848,467,1928,493"/>
-<area shape="rect" title=" " alt="" coords="1661,467,1712,493"/>
-<area shape="rect" title=" " alt="" coords="1737,467,1823,493"/>
-<area shape="rect" href="_resource_8hpp.html" title=" " alt="" coords="6995,467,7170,493"/>
-<area shape="rect" href="_component_8hpp.html" title=" " alt="" coords="4783,288,4987,315"/>
-<area shape="rect" href="_collidable_component_8hpp.html" title=" " alt="" coords="4779,184,4991,225"/>
-<area shape="rect" href="_life_component_8hpp.html" title=" " alt="" coords="3576,191,3851,218"/>
-<area shape="rect" href="_life_time_component_8hpp.html" title=" " alt="" coords="5571,191,5877,218"/>
-<area shape="rect" href="_newly_created_8hpp.html" title=" " alt="" coords="3875,191,4141,218"/>
-<area shape="rect" href="_size_component_8hpp.html" title=" " alt="" coords="5269,191,5547,218"/>
-<area shape="rect" href="_velocity_component_8hpp.html" title=" " alt="" coords="2273,191,2575,218"/>
-<area shape="rect" href="_weight_component_8hpp.html" title=" " alt="" coords="4166,191,4461,218"/>
-<area shape="rect" href="_shooting_frequency_component_8hpp.html" title=" " alt="" coords="4485,184,4755,225"/>
-<area shape="rect" href="_destination_component_8hpp.html" title=" " alt="" coords="2026,184,2249,225"/>
-<area shape="rect" href="_random_8hpp.html" title=" " alt="" coords="5901,184,6075,225"/>
-<area shape="rect" href="_layer_lv_l_8hpp.html" title=" " alt="" coords="5016,191,5245,218"/>
-<area shape="rect" title=" " alt="" coords="5691,288,5757,315"/>
-<area shape="rect" href="_controlable_component_8hpp.html" title=" " alt="" coords="7014,184,7237,225"/>
-<area shape="rect" href="_player_component_8hpp.html" title=" " alt="" coords="6099,191,6389,218"/>
-<area shape="rect" title=" " alt="" coords="1765,191,1851,218"/>
+<area shape="rect" href="_allied_projectile_component_8hpp.html" title=" " alt="" coords="5576,87,5821,129"/>
+<area shape="rect" href="_damage_component_8hpp.html" title=" " alt="" coords="6342,191,6647,218"/>
+<area shape="rect" href="_damage_radius_component_8hpp.html" title=" " alt="" coords="6671,184,6918,225"/>
+<area shape="rect" href="_enemy_component_8hpp.html" title=" " alt="" coords="1901,191,2195,218"/>
+<area shape="rect" href="_enemy_projectile_component_8hpp.html" title=" " alt="" coords="5924,87,6177,129"/>
+<area shape="rect" href="_obstacle_component_8hpp.html" title=" " alt="" coords="6240,95,6547,121"/>
+<area shape="rect" href="_position_component_8hpp.html" title=" " alt="" coords="2598,191,2901,218"/>
+<area shape="rect" href="_projectile_component_8hpp.html" title=" " alt="" coords="1173,87,1381,129"/>
+<area shape="rect" href="_create_enemy_8hpp.html" title=" " alt="" coords="3751,80,3935,136"/>
+<area shape="rect" href="_networkable_8hpp.html" title=" " alt="" coords="2925,184,3181,225"/>
+<area shape="rect" href="_create_player_8hpp.html" title=" " alt="" coords="4776,80,4960,136"/>
+<area shape="rect" href="_game_clock_8hpp.html" title=" " alt="" coords="7144,184,7317,225"/>
+<area shape="rect" href="_enemies_go_random_8hpp.html" title=" " alt="" coords="2121,95,2399,121"/>
+<area shape="rect" href="_enemy_shoot_system_8hpp.html" title=" " alt="" coords="648,288,928,315"/>
+<area shape="rect" href="_movement_system_8hpp.html" title=" " alt="" coords="2437,95,2705,121"/>
+<area shape="rect" href="_update_clock_system_8hpp.html" title=" " alt="" coords="953,288,1234,315"/>
+<area shape="rect" href="_sending_frequency_8hpp.html" title=" " alt="" coords="7342,184,7618,225"/>
+<area shape="rect" href="_network_client_8hpp.html" title=" " alt="" coords="1090,184,1369,225"/>
+<area shape="rect" href="_networkable_id_generator_8hpp.html" title=" " alt="" coords="7453,377,7782,419"/>
+<area shape="rect" href="_send_newly_created_to_clients_8hpp.html" title=" " alt="" coords="1258,273,1529,329"/>
+<area shape="rect" href="_send_to_client_8hpp.html" title=" " alt="" coords="1643,87,1887,129"/>
+<area shape="rect" title=" " alt="" coords="303,467,380,493"/>
+<area shape="rect" href="_client_8hpp.html" title=" " alt="" coords="65,288,253,315"/>
+<area shape="rect" href="_communicator_8hpp.html" title=" " alt="" coords="277,191,523,218"/>
+<area shape="rect" href="_transisthor_8hpp.html" title=" " alt="" coords="379,288,573,315"/>
+<area shape="rect" href="_world_8hpp.html" title=" " alt="" coords="1503,385,1631,411"/>
+<area shape="rect" title=" " alt="" coords="129,467,188,493"/>
+<area shape="rect" title=" " alt="" coords="18,467,105,493"/>
+<area shape="rect" title=" " alt="" coords="2295,467,2375,493"/>
+<area shape="rect" title=" " alt="" coords="1592,467,1643,493"/>
+<area shape="rect" href="_resource_8hpp.html" title=" " alt="" coords="7161,467,7335,493"/>
+<area shape="rect" href="_component_8hpp.html" title=" " alt="" coords="4197,288,4401,315"/>
+<area shape="rect" href="_collidable_component_8hpp.html" title=" " alt="" coords="4762,184,4974,225"/>
+<area shape="rect" href="_life_component_8hpp.html" title=" " alt="" coords="3256,191,3531,218"/>
+<area shape="rect" href="_life_time_component_8hpp.html" title=" " alt="" coords="5567,191,5873,218"/>
+<area shape="rect" href="_newly_created_8hpp.html" title=" " alt="" coords="4471,191,4737,218"/>
+<area shape="rect" href="_size_component_8hpp.html" title=" " alt="" coords="3555,191,3832,218"/>
+<area shape="rect" href="_velocity_component_8hpp.html" title=" " alt="" coords="2271,191,2574,218"/>
+<area shape="rect" href="_weight_component_8hpp.html" title=" " alt="" coords="4151,191,4446,218"/>
+<area shape="rect" href="_shooting_frequency_component_8hpp.html" title=" " alt="" coords="3857,184,4127,225"/>
+<area shape="rect" href="_destination_component_8hpp.html" title=" " alt="" coords="1654,184,1877,225"/>
+<area shape="rect" href="_random_8hpp.html" title=" " alt="" coords="5897,184,6071,225"/>
+<area shape="rect" href="_layer_lv_l_8hpp.html" title=" " alt="" coords="4999,191,5228,218"/>
+<area shape="rect" title=" " alt="" coords="7144,288,7211,315"/>
+<area shape="rect" href="_controlable_component_8hpp.html" title=" " alt="" coords="6095,184,6318,225"/>
+<area shape="rect" href="_player_component_8hpp.html" title=" " alt="" coords="5252,191,5543,218"/>
+<area shape="rect" title=" " alt="" coords="1444,191,1529,218"/>
 </map>
 </div>
 </div><table class="memberdecls">

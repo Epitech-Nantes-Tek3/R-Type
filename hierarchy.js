@@ -71,7 +71,8 @@ var hierarchy =
       [ "ecs::GraphicsTextureResource", "classecs_1_1_graphics_texture_resource.html", null ],
       [ "ecs::RandomDevice", "structecs_1_1_random_device.html", null ],
       [ "ecs::RenderWindowResource", "classecs_1_1_render_window_resource.html", null ],
-      [ "NetworkableIdGenerator", "class_networkable_id_generator.html", null ]
+      [ "NetworkableIdGenerator", "class_networkable_id_generator.html", null ],
+      [ "SendingFrequency", "class_sending_frequency.html", null ]
     ] ],
     [ "server_data::Room", "classserver__data_1_1_room.html", null ],
     [ "communicator_lib::Sender", "classcommunicator__lib_1_1_sender.html", null ],
