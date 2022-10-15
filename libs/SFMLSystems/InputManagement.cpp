@@ -79,6 +79,8 @@ void InputManagement::movePlayerX(World &world, float move)
     std::vector<std::shared_ptr<ecs::Entity>> player = world.joinEntities<Controlable>();
     double moveD = double(move);
 
+    if (player.empty())
+        return;
     auto moveX = [moveD](std::shared_ptr<ecs::Entity> entityPtr) {
         entityPtr->getComponent<Velocity>().multiplierAbscissa = moveD;
     };
@@ -90,6 +92,8 @@ void InputManagement::movePlayerY(World &world, float move)
     std::vector<std::shared_ptr<ecs::Entity>> player = world.joinEntities<Controlable>();
     double moveD = double(move);
 
+    if (player.empty())
+        return;
     auto moveY = [moveD](std::shared_ptr<ecs::Entity> entityPtr) {
         entityPtr->getComponent<Velocity>().multiplierOrdinate = moveD;
     };
@@ -101,6 +105,8 @@ void InputManagement::shootAction(World &world, float action)
     std::vector<std::shared_ptr<ecs::Entity>> player = world.joinEntities<Controlable>();
     (void)action;
 
+    if (player.empty())
+        return;
     auto shoot = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
         createNewAlliedProjectile(
             world, *entityPtr, NewlyCreated().generate_uuid(world.getResource<RandomDevice>().getRandomDevice(), 16));
