@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['player_955',['PLAYER',['../classecs_1_1_layer_lv_l.html#a3d249124964fcfd2525e3ccc99313799a44419a19202de3a25c455f6c91fdd20f',1,'ecs::LayerLvL']]],
-  ['player_5fdown_956',['PLAYER_DOWN',['../classecs_1_1_graphics_texture_resource.html#af837603102b91ff4b94589320843fdf3aac1fe8522746f459d92da6ebc8cb86ad',1,'ecs::GraphicsTextureResource']]],
-  ['player_5fstatic_957',['PLAYER_STATIC',['../classecs_1_1_graphics_texture_resource.html#af837603102b91ff4b94589320843fdf3a7089d2b5c71de8539dbc81d7d902f2cb',1,'ecs::GraphicsTextureResource']]],
-  ['player_5fup_958',['PLAYER_UP',['../classecs_1_1_graphics_texture_resource.html#af837603102b91ff4b94589320843fdf3a2606b537e6f8be2e2d3083711b448e12',1,'ecs::GraphicsTextureResource']]],
-  ['projectile_959',['PROJECTILE',['../classecs_1_1_layer_lv_l.html#a3d249124964fcfd2525e3ccc99313799a1163826042e27f3e0535dc06548cc4ef',1,'ecs::LayerLvL::PROJECTILE()'],['../classecs_1_1_graphics_texture_resource.html#af837603102b91ff4b94589320843fdf3aacf5e534e57685159738032280dc245b',1,'ecs::GraphicsTextureResource::PROJECTILE()']]]
+  ['obstacle_960',['OBSTACLE',['../classecs_1_1_layer_lv_l.html#a3d249124964fcfd2525e3ccc99313799abc7d4b8de91005aa8194be1de7811393',1,'ecs::LayerLvL']]],
+  ['obstacle_5f1_961',['OBSTACLE_1',['../classecs_1_1_graphics_texture_resource.html#af837603102b91ff4b94589320843fdf3a8bdfd96567c7161cfe3e749009e1323e',1,'ecs::GraphicsTextureResource']]],
+  ['obstacle_5f2_962',['OBSTACLE_2',['../classecs_1_1_graphics_texture_resource.html#af837603102b91ff4b94589320843fdf3a6a6ac732b9702ff9edd257dc4a6f5966',1,'ecs::GraphicsTextureResource']]],
+  ['obstacle_5f3_963',['OBSTACLE_3',['../classecs_1_1_graphics_texture_resource.html#af837603102b91ff4b94589320843fdf3a55332ddd8503e85f443870ebcc86ae6d',1,'ecs::GraphicsTextureResource']]]
 ];

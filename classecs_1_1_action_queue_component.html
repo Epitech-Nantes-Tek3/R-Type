@@ -84,6 +84,7 @@ $(document).ready(function(){initNavTree('classecs_1_1_action_queue_component.ht
 
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="classecs_1_1_action_queue_component-members.html">List of all members</a>  </div>
@@ -115,6 +116,20 @@ Collaboration diagram for ecs::ActionQueueComponent:</div>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:afe3abecf24da33a37f7b891e98c29ef4"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_action_queue_component.html#afe3abecf24da33a37f7b891e98c29ef4">inputAction_e</a> { <br />
+&#160;&#160;<a class="el" href="classecs_1_1_action_queue_component.html#afe3abecf24da33a37f7b891e98c29ef4ae825237f0a5c47a916fea24c69b4ef7d">UNDEFINED</a>, 
+<a class="el" href="classecs_1_1_action_queue_component.html#afe3abecf24da33a37f7b891e98c29ef4abb3882eca9bf47009f58945f36646c7f">MOVEX</a>, 
+<a class="el" href="classecs_1_1_action_queue_component.html#afe3abecf24da33a37f7b891e98c29ef4a618bfac3cc3d6473d9fa760634bf1e02">MOVEY</a>, 
+<a class="el" href="classecs_1_1_action_queue_component.html#afe3abecf24da33a37f7b891e98c29ef4aa27ff3538e088b23cb5439ffeff00660">SHOOT</a>, 
+<br />
+&#160;&#160;<a class="el" href="classecs_1_1_action_queue_component.html#afe3abecf24da33a37f7b891e98c29ef4ac3aac534e8ba90832299f36e80efb905">MAX_ACTION</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:afe3abecf24da33a37f7b891e98c29ef4"><td class="mdescLeft">&#160;</td><td class="mdescRight">This action queue stores function that will be called in a system and added by another one when inputs occur.  <a href="classecs_1_1_action_queue_component.html#afe3abecf24da33a37f7b891e98c29ef4">More...</a><br /></td></tr>
+<tr class="separator:afe3abecf24da33a37f7b891e98c29ef4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a945a104bddbf72513b7e064c1064bb2f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_action_queue_component.html#a945a104bddbf72513b7e064c1064bb2f">ActionQueueComponent</a> ()=default</td></tr>
@@ -130,9 +145,8 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a6c1838bc9ce0149652dcfec006b64cd1"><td class="memItemLeft" align="right" valign="top">std::queue&lt; std::function&lt; void()&gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_action_queue_component.html#a6c1838bc9ce0149652dcfec006b64cd1">actions</a></td></tr>
-<tr class="memdesc:a6c1838bc9ce0149652dcfec006b64cd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">This action queue stores function that will be called in a system and added by another one when inputs occur.  <a href="classecs_1_1_action_queue_component.html#a6c1838bc9ce0149652dcfec006b64cd1">More...</a><br /></td></tr>
-<tr class="separator:a6c1838bc9ce0149652dcfec006b64cd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa581d5019306667c79c7f0080d31173b"><td class="memItemLeft" align="right" valign="top">std::queue&lt; std::pair&lt; <a class="el" href="classecs_1_1_action_queue_component.html#afe3abecf24da33a37f7b891e98c29ef4">inputAction_e</a>, float &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_action_queue_component.html#aa581d5019306667c79c7f0080d31173b">actions</a></td></tr>
+<tr class="separator:aa581d5019306667c79c7f0080d31173b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -143,7 +157,31 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This component class stores a function queue. These functions will be added when an input occurs during the game by a system. They will be used by another system. These function are stored in <a class="el" href="_e_c_s_actions_8hpp.html">ECSActions.hpp</a>. </p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+</div><h2 class="groupheader">Member Enumeration Documentation</h2>
+<a id="afe3abecf24da33a37f7b891e98c29ef4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe3abecf24da33a37f7b891e98c29ef4">&#9670;&nbsp;</a></span>inputAction_e</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="classecs_1_1_action_queue_component.html#afe3abecf24da33a37f7b891e98c29ef4">ecs::ActionQueueComponent::inputAction_e</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This action queue stores function that will be called in a system and added by another one when inputs occur. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="afe3abecf24da33a37f7b891e98c29ef4ae825237f0a5c47a916fea24c69b4ef7d"></a>UNDEFINED&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="afe3abecf24da33a37f7b891e98c29ef4abb3882eca9bf47009f58945f36646c7f"></a>MOVEX&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="afe3abecf24da33a37f7b891e98c29ef4a618bfac3cc3d6473d9fa760634bf1e02"></a>MOVEY&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="afe3abecf24da33a37f7b891e98c29ef4aa27ff3538e088b23cb5439ffeff00660"></a>SHOOT&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="afe3abecf24da33a37f7b891e98c29ef4ac3aac534e8ba90832299f36e80efb905"></a>MAX_ACTION&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a945a104bddbf72513b7e064c1064bb2f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a945a104bddbf72513b7e064c1064bb2f">&#9670;&nbsp;</a></span>ActionQueueComponent()</h2>
 
@@ -199,19 +237,17 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a6c1838bc9ce0149652dcfec006b64cd1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6c1838bc9ce0149652dcfec006b64cd1">&#9670;&nbsp;</a></span>actions</h2>
+<a id="aa581d5019306667c79c7f0080d31173b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa581d5019306667c79c7f0080d31173b">&#9670;&nbsp;</a></span>actions</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::queue&lt;std::function&lt;void()&gt; &gt; ecs::ActionQueueComponent::actions</td>
+          <td class="memname">std::queue&lt;std::pair&lt;<a class="el" href="classecs_1_1_action_queue_component.html#afe3abecf24da33a37f7b891e98c29ef4">inputAction_e</a>, float&gt; &gt; ecs::ActionQueueComponent::actions</td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>This action queue stores function that will be called in a system and added by another one when inputs occur. </p>
 
 </div>
 </div>

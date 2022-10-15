@@ -1,5 +1,11 @@
 var NAVTREEINDEX3 =
 {
+"struct_send_to_server.html":[4,0,11],
+"struct_temp.html":[4,0,12],
+"struct_temp.html#a63ea986866aa118495c2fc531bb6148d":[4,0,12,0],
+"structargument__handler_1_1_argument_handler_1_1_client_information.html":[4,0,0,0,0],
+"structargument__handler_1_1_argument_handler_1_1_client_information.html#a06e8da18ef7134ee456da2c66be2bbfa":[4,0,0,0,0,1],
+"structargument__handler_1_1_argument_handler_1_1_client_information.html#a7f538c995fbf1a264d4be62829e3b136":[4,0,0,0,0,2],
 "structargument__handler_1_1_argument_handler_1_1_client_information.html#a81c7ab47c3d8b8e7fd9ccbafea77c2d8":[4,0,0,0,0,0],
 "structargument__handler_1_1_argument_handler_1_1_client_information.html#ad1cef70c453efb9c76afb5b9cd96d512":[4,0,0,0,0,3],
 "structargument__handler_1_1_argument_handler_1_1_server_information.html":[4,0,0,0,1],
