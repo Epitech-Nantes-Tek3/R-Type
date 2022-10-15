@@ -38,6 +38,16 @@ void InputManagement::run(World &world)
             };
             std::for_each(Inputs.begin(), Inputs.end(), keyPressed);
         }
+        if (event.type == sf::Event::KeyReleased) {
+            auto keyReleased = [event](std::shared_ptr<ecs::Entity> entityPtr) {
+                if (entityPtr->getComponent<KeyboardInputComponent>().keyboardMapActions.contains(event.key.code)
+                    && entityPtr->contains<AllowMouseAndKeyboardComponent>()) {
+                    entityPtr->getComponent<ActionQueueComponent>().actions.push(
+                        std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::inputAction_e(entityPtr->getComponent<KeyboardInputComponent>().keyboardMapActions[event.key.code].first), 0));
+                }
+            };
+            std::for_each(Inputs.begin(), Inputs.end(), keyReleased);
+        }
         if (event.type == sf::Event::MouseButtonPressed) {
             auto mouseButtonPressed = [event](std::shared_ptr<ecs::Entity> entityPtr) {
                 if (entityPtr->getComponent<MouseInputComponent>().MouseMapActions.contains(event.mouseButton.button)
@@ -75,6 +85,10 @@ void InputManagement::run(World &world)
         while (actions.size() > 0) {
             if (actions.front().first == ActionQueueComponent::MOVEY)
                 movePlayerY(world, actions.front().second);
+            if (actions.front().first == ActionQueueComponent::MOVEX)
+                movePlayerX(world, actions.front().second);
+            if (actions.front().first == ActionQueueComponent::SHOOT)
+                shootAction(world, actions.front().second);
             actions.pop();
         }
     }
