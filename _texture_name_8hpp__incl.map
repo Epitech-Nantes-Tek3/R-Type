@@ -1,11 +1,11 @@
 <map id="libs/SFMLComponents/TextureName.hpp" name="libs/SFMLComponents/TextureName.hpp">
 <area shape="rect" id="node1" title=" " alt="" coords="193,5,359,47"/>
-<area shape="rect" id="node2" href="$_component_8hpp.html" title=" " alt="" coords="34,95,238,121"/>
-<area shape="rect" id="node5" href="$_graphics_texture_resource_8hpp.html" title=" " alt="" coords="309,95,523,121"/>
-<area shape="rect" id="node3" title=" " alt="" coords="5,169,72,196"/>
-<area shape="rect" id="node4" title=" " alt="" coords="96,169,176,196"/>
-<area shape="rect" id="node6" title=" " alt="" coords="200,169,347,196"/>
-<area shape="rect" id="node7" title=" " alt="" coords="371,169,461,196"/>
-<area shape="rect" id="node8" href="$_resource_8hpp.html" title=" " alt="" coords="486,169,661,196"/>
-<area shape="rect" id="node9" title=" " alt="" coords="685,169,809,196"/>
+<area shape="rect" id="node2" href="$_component_8hpp.html" title=" " alt="" coords="34,102,238,129"/>
+<area shape="rect" id="node5" href="$_graphics_texture_resource_8hpp.html" title=" " alt="" coords="303,95,529,136"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,184,72,211"/>
+<area shape="rect" id="node4" title=" " alt="" coords="96,184,176,211"/>
+<area shape="rect" id="node6" title=" " alt="" coords="200,184,347,211"/>
+<area shape="rect" id="node7" title=" " alt="" coords="371,184,461,211"/>
+<area shape="rect" id="node8" href="$_resource_8hpp.html" title=" " alt="" coords="486,184,661,211"/>
+<area shape="rect" id="node9" title=" " alt="" coords="685,184,809,211"/>
 </map>

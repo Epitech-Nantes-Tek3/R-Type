@@ -55,7 +55,7 @@ var searchData=
   ['createnewbackground_91',['createNewBackGround',['../namespaceecs.html#a761c48420b9ed05874533d36511531b6',1,'ecs']]],
   ['createnewbutton_92',['createNewButton',['../namespaceecs.html#a98d8b9400d06d3850a533e1e3c3c37be',1,'ecs']]],
   ['createnewenemy_93',['createNewEnemy',['../namespaceecs.html#afb2bd80efb6c107c31a7275bc8bf7a1d',1,'ecs']]],
-  ['createnewenemyprojectile_94',['createNewEnemyProjectile',['../namespaceecs.html#a097a18c70e6c7863c0e3b09d5fe1baac',1,'ecs']]],
+  ['createnewenemyprojectile_94',['createNewEnemyProjectile',['../namespaceecs.html#aa62e95c47f17c08d6077518fbf890fb9',1,'ecs']]],
   ['createnewenemyrandom_95',['createNewEnemyRandom',['../namespaceecs.html#a86973d2e864cb657a1b49f4c651aa880',1,'ecs']]],
   ['createnewobstacle_96',['createNewObstacle',['../namespaceecs.html#ab15d2c7f57a273e31cc406a0c1f1c2cb',1,'ecs']]],
   ['createnewplayer_97',['createNewPlayer',['../namespaceecs.html#a75d3cd3fca973c01e6a9f5e234d7efc0',1,'ecs']]],

@@ -1,5 +1,6 @@
 var NAVTREEINDEX3 =
 {
+"struct_send_to_client.html":[4,0,10],
 "struct_send_to_server.html":[4,0,11],
 "struct_temp.html":[4,0,12],
 "struct_temp.html#a63ea986866aa118495c2fc531bb6148d":[4,0,12,0],

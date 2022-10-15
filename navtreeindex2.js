@@ -1,5 +1,6 @@
 var NAVTREEINDEX2 =
 {
+"classecs_1_1_pattern.html#a3ea31d4c5d6d61d048a73866ac3f3ed8":[4,0,3,51,2],
 "classecs_1_1_pattern.html#a872fc016edc09afc8f34c983f1dfea05":[4,0,3,51,3],
 "classecs_1_1_pattern.html#a9728128e55a7cd0fd26c476bd365e9af":[4,0,3,51,0],
 "classecs_1_1_pattern.html#af5d43a3e74ce7ae108f3757d2dcc25f7":[4,0,3,51,1],
@@ -150,8 +151,8 @@ var NAVTREEINDEX2 =
 "dir_ee0526d395d6e0f4a61b0d3fd4728c02.html":[5,0,1,2],
 "dir_fee7b59d3a4f5f79bc3d4bfa3d8804c4.html":[5,0,1,11,0],
 "files.html":[5,0],
-"functions.html":[4,3,0],
 "functions.html":[4,3,0,0],
+"functions.html":[4,3,0],
 "functions_a.html":[4,3,0,1],
 "functions_b.html":[4,3,0,2],
 "functions_c.html":[4,3,0,3],
@@ -230,16 +231,16 @@ var NAVTREEINDEX2 =
 "namespaceclient__data.html":[4,0,1],
 "namespacecommunicator__lib.html":[4,0,2],
 "namespacecommunicator__lib.html":[3,0,9],
-"namespaceecs.html":[3,0,10],
 "namespaceecs.html":[4,0,3],
+"namespaceecs.html":[3,0,10],
 "namespaceecs_1_1_actions.html":[3,0,10,0],
 "namespaceerror__lib.html":[3,0,11],
 "namespaceerror__lib.html":[4,0,4],
 "namespacemembers.html":[3,1,0],
 "namespacemembers_func.html":[3,1,1],
 "namespaces.html":[3,0],
-"namespaceserver__data.html":[3,0,12],
 "namespaceserver__data.html":[4,0,5],
+"namespaceserver__data.html":[3,0,12],
 "namespacetransisthor__lib.html":[4,0,6],
 "namespacetransisthor__lib.html":[3,0,13],
 "pages.html":[],
@@ -248,6 +249,5 @@ var NAVTREEINDEX2 =
 "struct_send_newly_created_to_clients.html#a7397ceb9db66a8a264e1222b9f7dfc51":[4,0,8,1],
 "struct_send_newly_created_to_server.html":[4,0,9],
 "struct_send_newly_created_to_server.html#a5bc6681cc7ccfe51382e6d8db53e54b5":[4,0,9,1],
-"struct_send_newly_created_to_server.html#af3515753b0f8a7fae2e97e45f59236a0":[4,0,9,0],
-"struct_send_to_client.html":[4,0,10]
+"struct_send_newly_created_to_server.html#af3515753b0f8a7fae2e97e45f59236a0":[4,0,9,0]
 };
