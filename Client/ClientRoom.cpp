@@ -32,6 +32,7 @@
 #include "LayerLvL.hpp"
 #include "MouseInputComponent.hpp"
 #include "RenderWindowResource.hpp"
+#include "SFMLResource/GraphicsTextureResource.hpp"
 #include "SFMLSystems/SfRectangleFollowEntitySystem.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Components/NetworkServer.hpp"
@@ -114,7 +115,9 @@ void ClientRoom::_initSharedResources()
     _worldInstance->addResource<RandomDevice>();
     _worldInstance->addResource<GameClock>();
     _worldInstance->addResource<RenderWindowResource>();
-    _worldInstance->addResource<GraphicsFontResource>("assets/arial.ttf");
+    _worldInstance->addResource<GraphicsFontResource>("assets/fonts/arial.ttf");
+    _worldInstance->addResource<GraphicsTextureResource>(GraphicsTextureResource::ENEMY_STATIC, "assets/EpiSprite/BasicEnemySpriteSheet.gif", sf::Vector2f(0, 0),  sf::Vector2f(34, 34));
+    _worldInstance->getResource<GraphicsTextureResource>().addTexture(GraphicsTextureResource::PLAYER_STATIC, "assets/EpiSprite/BasicPlayerSpriteSheet.gif", sf::Vector2f(500, 0),  sf::Vector2f(34, 34));
 }
 
 void ClientRoom::_initSystems()

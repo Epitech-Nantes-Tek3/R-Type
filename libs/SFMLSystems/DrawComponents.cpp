@@ -57,6 +57,10 @@ void DrawComponents::run(World &world)
 
                 entityPtr->addComponent<GraphicsRectangleComponent>(
                     entityPos.x, entityPos.y, entitySize.x, entitySize.y);
+                if (layerType.layer == LayerLvL::layer_e::PLAYER)
+                    entityPtr->addComponent<TextureName>(GraphicsTextureResource::PLAYER_STATIC);
+                if (layerType.layer == LayerLvL::layer_e::ENEMY)
+                    entityPtr->addComponent<TextureName>(GraphicsTextureResource::ENEMY_STATIC);
             }
         };
         std::for_each(Inputs.begin(), Inputs.end(), layer);

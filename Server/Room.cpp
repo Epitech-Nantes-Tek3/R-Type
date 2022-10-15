@@ -107,10 +107,10 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
     }
     _remainingPlaces -= 1;
     std::cerr << "Room " << _id << " received a connexion protocol." << std::endl;
-    std::size_t playerId = createNewPlayer(*_worldInstance.get(), 10, 10, 0, 0, 1, 4, 4, 100, 10, 4, false, "",
+    std::size_t playerId = createNewPlayer(*_worldInstance.get(), 10, 10, 0, 0, 1, 34, 34, 100, 10, 4, false, "",
         _worldInstance->getResource<NetworkableIdGenerator>()
             .generateNewNetworkableId()); /// CREATE A NEW ENTITY (INITIATED BY THE SERVER)
-    std::size_t enemyId = createNewEnemyRandom(*_worldInstance.get(), 10, 4, 1, 4, 4, 100, 10, 5, "",
+    std::size_t enemyId = createNewEnemyRandom(*_worldInstance.get(), 10, 4, 1, 34, 34, 100, 10, 5, "",
         _worldInstance.get()
             ->getResource<NetworkableIdGenerator>()
             .generateNewNetworkableId()); /// CREATE A NEW ENTITY (INITIATED BY THE SERVER)
