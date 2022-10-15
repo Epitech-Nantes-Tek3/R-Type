@@ -97,20 +97,20 @@ $(document).ready(function(){initNavTree('_mouse_input_component_8hpp_source.htm
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef MOUSEINPUTCOMPONENT_HPP_</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define MOUSEINPUTCOMPONENT_HPP_</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_component_8hpp.html">Component/Component.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;SFML/Graphics.hpp&gt;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;unordered_map&gt;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;functional&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;SFML/Graphics.hpp&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;functional&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_component_8hpp.html">Component/Component.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;unordered_map&gt;</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceecs.html">ecs</a></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;{</div>
 <div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="classecs_1_1_mouse_input_component.html">   21</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classecs_1_1_mouse_input_component.html">MouseInputComponent</a> : <span class="keyword">public</span> <a class="code" href="classecs_1_1_component.html">Component</a> {</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="classecs_1_1_mouse_input_component.html#ab320ac124d86bda0ba804f38081216ec">   24</a></span>&#160;            std::unordered_map&lt;sf::Mouse::Button, std::pair&lt;std::function&lt;void()&gt;, <span class="keywordtype">float</span>&gt;&gt; <a class="code" href="classecs_1_1_mouse_input_component.html#ab320ac124d86bda0ba804f38081216ec">MouseMapActions</a>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;      <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="classecs_1_1_mouse_input_component.html#ab320ac124d86bda0ba804f38081216ec">   24</a></span>&#160;        std::unordered_map&lt;sf::Mouse::Button, std::pair&lt;std::function&lt;void()&gt;, <span class="keywordtype">float</span>&gt;&gt; <a class="code" href="classecs_1_1_mouse_input_component.html#ab320ac124d86bda0ba804f38081216ec">MouseMapActions</a>;</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            <a class="code" href="classecs_1_1_mouse_input_component.html#a66a88887a8186a4f5618cf6151f489db">MouseInputComponent</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <a class="code" href="classecs_1_1_mouse_input_component.html#a66a88887a8186a4f5618cf6151f489db">MouseInputComponent</a>() = <span class="keywordflow">default</span>;</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <a class="code" href="classecs_1_1_mouse_input_component.html#a28c4304bf654b4976da214de5d377f41">~MouseInputComponent</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <a class="code" href="classecs_1_1_mouse_input_component.html#a28c4304bf654b4976da214de5d377f41">~MouseInputComponent</a>() = <span class="keywordflow">default</span>;</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    };</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;} <span class="comment">// namespace ecs</span></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>

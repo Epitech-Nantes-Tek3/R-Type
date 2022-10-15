@@ -97,28 +97,28 @@ $(document).ready(function(){initNavTree('_action_queue_component_8hpp_source.ht
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef ACTIONQUEUECOMPONENT_HPP_</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define ACTIONQUEUECOMPONENT_HPP_</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_component_8hpp.html">Component/Component.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;functional&gt;</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;queue&gt;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;functional&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_component_8hpp.html">Component/Component.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceecs.html">ecs</a></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;{</div>
 <div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="classecs_1_1_action_queue_component.html">   21</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classecs_1_1_action_queue_component.html">ActionQueueComponent</a> : <span class="keyword">public</span> <a class="code" href="classecs_1_1_component.html">Component</a> {</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="classecs_1_1_action_queue_component.html#a6c1838bc9ce0149652dcfec006b64cd1">   24</a></span>&#160;            std::queue&lt;std::function&lt;void()&gt;&gt; <a class="code" href="classecs_1_1_action_queue_component.html#a6c1838bc9ce0149652dcfec006b64cd1">actions</a>;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            <a class="code" href="classecs_1_1_action_queue_component.html#a945a104bddbf72513b7e064c1064bb2f">ActionQueueComponent</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <a class="code" href="classecs_1_1_action_queue_component.html#a490df7f30489ab8e721668c4d30f6652">~ActionQueueComponent</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    };</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;} <span class="comment">// namespace ecs</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !ACTIONQUEUECOMPONENT_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;      <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="classecs_1_1_action_queue_component.html#a6c1838bc9ce0149652dcfec006b64cd1">   25</a></span>&#160;        std::queue&lt;std::function&lt;void()&gt;&gt; <a class="code" href="classecs_1_1_action_queue_component.html#a6c1838bc9ce0149652dcfec006b64cd1">actions</a>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <a class="code" href="classecs_1_1_action_queue_component.html#a945a104bddbf72513b7e064c1064bb2f">ActionQueueComponent</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <a class="code" href="classecs_1_1_action_queue_component.html#a490df7f30489ab8e721668c4d30f6652">~ActionQueueComponent</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    };</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;} <span class="comment">// namespace ecs</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !ACTIONQUEUECOMPONENT_HPP_ */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="aclassecs_1_1_action_queue_component_html"><div class="ttname"><a href="classecs_1_1_action_queue_component.html">ecs::ActionQueueComponent</a></div><div class="ttdoc">This component class stores a function queue. These functions will be added when an input occurs duri...</div><div class="ttdef"><b>Definition:</b> ActionQueueComponent.hpp:21</div></div>
 <div class="ttc" id="a_component_8hpp_html"><div class="ttname"><a href="_component_8hpp.html">Component.hpp</a></div></div>
-<div class="ttc" id="aclassecs_1_1_action_queue_component_html_a6c1838bc9ce0149652dcfec006b64cd1"><div class="ttname"><a href="classecs_1_1_action_queue_component.html#a6c1838bc9ce0149652dcfec006b64cd1">ecs::ActionQueueComponent::actions</a></div><div class="ttdeci">std::queue&lt; std::function&lt; void()&gt; &gt; actions</div><div class="ttdoc">This action queue stores function that will be called in a system and added by another one when input...</div><div class="ttdef"><b>Definition:</b> ActionQueueComponent.hpp:24</div></div>
+<div class="ttc" id="aclassecs_1_1_action_queue_component_html_a6c1838bc9ce0149652dcfec006b64cd1"><div class="ttname"><a href="classecs_1_1_action_queue_component.html#a6c1838bc9ce0149652dcfec006b64cd1">ecs::ActionQueueComponent::actions</a></div><div class="ttdeci">std::queue&lt; std::function&lt; void()&gt; &gt; actions</div><div class="ttdoc">This action queue stores function that will be called in a system and added by another one when input...</div><div class="ttdef"><b>Definition:</b> ActionQueueComponent.hpp:25</div></div>
 <div class="ttc" id="aclassecs_1_1_component_html"><div class="ttname"><a href="classecs_1_1_component.html">ecs::Component</a></div><div class="ttdoc">This is the Component Class for ECS The base component type, all components must inherit from Compone...</div><div class="ttdef"><b>Definition:</b> Component.hpp:16</div></div>
 <div class="ttc" id="aclassecs_1_1_action_queue_component_html_a490df7f30489ab8e721668c4d30f6652"><div class="ttname"><a href="classecs_1_1_action_queue_component.html#a490df7f30489ab8e721668c4d30f6652">ecs::ActionQueueComponent::~ActionQueueComponent</a></div><div class="ttdeci">~ActionQueueComponent()=default</div><div class="ttdoc">Default destructor.</div></div>
 <div class="ttc" id="aclassecs_1_1_action_queue_component_html_a945a104bddbf72513b7e064c1064bb2f"><div class="ttname"><a href="classecs_1_1_action_queue_component.html#a945a104bddbf72513b7e064c1064bb2f">ecs::ActionQueueComponent::ActionQueueComponent</a></div><div class="ttdeci">ActionQueueComponent()=default</div><div class="ttdoc">Default constructor.</div></div>
