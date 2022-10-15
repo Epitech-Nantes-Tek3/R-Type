@@ -41,9 +41,9 @@ void InputManagement::run(World &world)
         if (event.type == sf::Event::MouseButtonPressed) {
             auto mouseButtonPressed = [event](std::shared_ptr<ecs::Entity> entityPtr) {
                 if (entityPtr->getComponent<MouseInputComponent>().MouseMapActions.contains(event.mouseButton.button)
-                    && entityPtr->contains<AllowMouseAndKeyboardComponent>())
-                    entityPtr->getComponent<ActionQueueComponent>().actions.push(
-                        entityPtr->getComponent<MouseInputComponent>().MouseMapActions[event.mouseButton.button]);
+                    && entityPtr->contains<AllowMouseAndKeyboardComponent>()) {}
+                    // entityPtr->getComponent<ActionQueueComponent>().actions.push(
+                    //     entityPtr->getComponent<MouseInputComponent>().MouseMapActions[event.mouseButton.button]);
             };
             std::for_each(Inputs.begin(), Inputs.end(), mouseButtonPressed);
         }
@@ -51,10 +51,10 @@ void InputManagement::run(World &world)
             auto joyButtonPressed = [event](std::shared_ptr<ecs::Entity> entityPtr) {
                 if (entityPtr->getComponent<ControllerButtonInputComponent>().controllerButtonMapActions.contains(
                         event.joystickButton.button)
-                    && entityPtr->contains<AllowControllerComponent>())
-                    entityPtr->getComponent<ActionQueueComponent>().actions.push(
-                        entityPtr->getComponent<ControllerButtonInputComponent>()
-                            .controllerButtonMapActions[event.joystickButton.button]);
+                    && entityPtr->contains<AllowControllerComponent>()) {}
+                    // entityPtr->getComponent<ActionQueueComponent>().actions.push(
+                    //     entityPtr->getComponent<ControllerButtonInputComponent>()
+                    //         .controllerButtonMapActions[event.joystickButton.button]);
             };
             std::for_each(Inputs.begin(), Inputs.end(), joyButtonPressed);
         }
@@ -68,6 +68,14 @@ void InputManagement::run(World &world)
                             .controllerJoystickMapActions[event.joystickMove.axis]);
             };
             std::for_each(Inputs.begin(), Inputs.end(), joyMovePressed);
+        }
+    }
+    for (auto &entityPtr : Inputs) {
+        std::queue<std::pair<ecs::ActionQueueComponent::inputAction_e, float>> &actions = entityPtr->getComponent<ActionQueueComponent>().actions;
+        while (actions.size() > 0) {
+            if (actions.front().first == ActionQueueComponent::MOVEY)
+                movePlayerY(world, actions.front().second);
+            actions.pop();
         }
     }
 }
@@ -90,7 +98,9 @@ void InputManagement::movePlayerY(World &world, float move)
 
     auto moveY = [moveD](std::shared_ptr<ecs::Entity> entityPtr) {
         entityPtr->getComponent<Velocity>().multiplierOrdinate = moveD;
+        std::cout << "moooooooooooooooooooooooooooooooooooooooooooove   " << moveD << std::endl;
     };
+    std::cout << "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm   " << moveD << std::endl;
     std::for_each(player.begin(), player.end(), moveY);
 }
 

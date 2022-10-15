@@ -8,7 +8,10 @@
 /// @file Client/ClientRoom.cpp
 
 #include "ClientRoom.hpp"
+#include <functional>
 #include "ActionQueueComponent.hpp"
+#include "AllowControllerComponent.hpp"
+#include "AllowMouseAndKeyboardComponent.hpp"
 #include "ControllerButtonInputComponent.hpp"
 #include "ControllerJoystickInputComponent.hpp"
 #include "DrawComponents.hpp"
@@ -37,7 +40,6 @@
 #include "Transisthor/TransisthorECSLogic/Client/Components/NetworkServer.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Systems/SendNewlyCreatedToServer.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Systems/SendToServer.hpp"
-#include <functional>
 
 using namespace error_lib;
 using namespace communicator_lib;
@@ -137,10 +139,29 @@ void ClientRoom::_initEntities()
         .addComponent<KeyboardInputComponent>()
         .addComponent<ControllerButtonInputComponent>()
         .addComponent<ControllerJoystickInputComponent>()
-        .addComponent<ActionQueueComponent>();
+        .addComponent<ActionQueueComponent>()
+        .addComponent<AllowMouseAndKeyboardComponent>()
+        .addComponent<AllowControllerComponent>();
     auto entities = _worldInstance->joinEntities<KeyboardInputComponent>();
+
     for (auto &it : entities) {
-        it->getComponent<KeyboardInputComponent>().keyboardMapActions.emplace(sf::Keyboard::Z, std::bind(&InputManagement::movePlayerY, it->getComponent<KeyboardInputComponent>(), *_worldInstance, 1));
-        it->getComponent<KeyboardInputComponent>().keyboardMapActions.emplace(sf::Keyboard::S, std::bind(&InputManagement::movePlayerY, it->getComponent<KeyboardInputComponent>(), *_worldInstance, -1));
+        it->getComponent<KeyboardInputComponent>().keyboardMapActions.emplace(
+            std::make_pair<sf::Keyboard::Key, std::pair<ActionQueueComponent::inputAction_e, float>>(sf::Keyboard::Z,
+                std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEY, -10)));
+        it->getComponent<KeyboardInputComponent>().keyboardMapActions.emplace(
+            std::make_pair<sf::Keyboard::Key, std::pair<ActionQueueComponent::inputAction_e, float>>(sf::Keyboard::S,
+                std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEY, 10)));
+        it->getComponent<KeyboardInputComponent>().keyboardMapActions.emplace(
+            std::make_pair<sf::Keyboard::Key, std::pair<ActionQueueComponent::inputAction_e, float>>(sf::Keyboard::Q,
+                std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEX, -10)));
+        it->getComponent<KeyboardInputComponent>().keyboardMapActions.emplace(
+            std::make_pair<sf::Keyboard::Key, std::pair<ActionQueueComponent::inputAction_e, float>>(sf::Keyboard::D,
+                std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEX, 10)));
+        it->getComponent<KeyboardInputComponent>().keyboardMapActions.emplace(
+            std::make_pair<sf::Keyboard::Key, std::pair<ActionQueueComponent::inputAction_e, float>>(sf::Keyboard::Enter,
+                std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::SHOOT, 0)));
+        it->getComponent<ControllerJoystickInputComponent>().controllerJoystickMapActions.emplace(
+            std::make_pair<unsigned int, std::pair<ActionQueueComponent::inputAction_e, float>>(1,
+                std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEY, 0)));
     }
 }
