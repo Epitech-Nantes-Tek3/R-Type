@@ -10,6 +10,7 @@
 #include "GameComponents/PositionComponent.hpp"
 #include "GameComponents/SizeComponent.hpp"
 #include "GameComponents/EnemyProjectileComponent.hpp"
+#include "GameComponents/AlliedProjectileComponent.hpp"
 #include "GraphicsRectangleComponent.hpp"
 #include "GraphicsTextComponent.hpp"
 #include "GraphicsTextureResource.hpp"
@@ -64,10 +65,12 @@ void DrawComponents::run(World &world)
                     entityPtr->addComponent<TextureName>(GraphicsTextureResource::ENEMY_STATIC);
                 if (layerType.layer == LayerLvL::layer_e::PROJECTILE) {
                     if (entityPtr->contains<EnemyProjectile>()) {
-                         entityPtr->addComponent<TextureName>(GraphicsTextureResource::PROJECTILE_ENEMY);
+                        entityPtr->addComponent<TextureName>(GraphicsTextureResource::PROJECTILE_ENEMY);
+                    }
+                    if (entityPtr->contains<AlliedProjectile>()) {
+                        entityPtr->addComponent<TextureName>(GraphicsTextureResource::PROJECTILE_ALLY);
                     }
                 }
-
             }
         };
         std::for_each(Inputs.begin(), Inputs.end(), layer);
