@@ -24,11 +24,17 @@
 #include "GameComponents/WeightComponent.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "Transisthor/TransisthorECSLogic/Server/Components/NetworkClient.hpp"
+#include "Transisthor/TransisthorECSLogic/Both/Resources/SendingFrequency.hpp"
 
 using namespace ecs;
 
 void SendNewlyCreatedToClients::runSystem(ecs::World &world)
 {
+    SendingFrequency &clock = world.getResource<SendingFrequency>();
+    if (!clock.canBeRunNew())
+        return;
+    clock.resetNewClock();
+
     std::vector<std::shared_ptr<ecs::Entity>> clients = world.joinEntities<ecs::NetworkClient>();
     std::vector<std::shared_ptr<ecs::Entity>> joinedNewlyCreated = world.joinEntities<ecs::NewlyCreated>();
     std::vector<unsigned short> clientIdList;

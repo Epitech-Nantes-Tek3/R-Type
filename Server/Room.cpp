@@ -25,6 +25,7 @@
 #include "GameSystems/MovementSystem.hpp"
 #include "GameSystems/UpdateClockSystem.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
+#include "Transisthor/TransisthorECSLogic/Both/Resources/SendingFrequency.hpp"
 #include "Transisthor/TransisthorECSLogic/Server/Components/NetworkClient.hpp"
 #include "Transisthor/TransisthorECSLogic/Server/Resources/NetworkableIdGenerator.hpp"
 #include "Transisthor/TransisthorECSLogic/Server/Systems/SendNewlyCreatedToClients.hpp"
@@ -71,6 +72,7 @@ void Room::initEcsGameData(void)
     _worldInstance->addResource<NetworkableIdGenerator>();
     _worldInstance->addResource<RandomDevice>();
     _worldInstance->addResource<GameClock>();
+    _worldInstance->addResource<SendingFrequency>();
     _worldInstance->addSystem<Temp>();
     _worldInstance->addSystem<SendToClient>();
     _worldInstance->addSystem<SendNewlyCreatedToClients>();
