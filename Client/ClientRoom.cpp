@@ -32,6 +32,7 @@
 #include "LayerLvL.hpp"
 #include "MouseInputComponent.hpp"
 #include "RenderWindowResource.hpp"
+#include "SFMLSystems/SfRectangleFollowEntitySystem.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Components/NetworkServer.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Systems/SendNewlyCreatedToServer.hpp"
@@ -83,9 +84,6 @@ void ClientRoom::protocol12Answer(CommunicatorMessage connexionResponse)
 {
     _state = ClientState::IN_GAME;
     _worldInstance.get()->addEntity().addComponent<NetworkServer>(connexionResponse.message.clientInfo.getId());
-    // std::vector<std::shared_ptr<Entity>> joined = _worldInstance.get()->joinEntities<Player>();
-    // createNewAlliedProjectile(*_worldInstance.get(), *joined[0],
-    // NewlyCreated().generate_uuid(_worldInstance.get()->getResource<RandomDevice>().getRandomDevice(), 16));
 }
 
 void ClientRoom::startLobbyLoop(void)
@@ -113,9 +111,8 @@ void ClientRoom::startLobbyLoop(void)
 
 void ClientRoom::_initSharedResources()
 {
-    _worldInstance->addResource<GameClock>();
-    _worldInstance->addResource<NetworkableIdGenerator>();
     _worldInstance->addResource<RandomDevice>();
+    _worldInstance->addResource<GameClock>();
     _worldInstance->addResource<RenderWindowResource>();
     _worldInstance->addResource<GraphicsFontResource>("assets/arial.ttf");
 }
@@ -123,17 +120,17 @@ void ClientRoom::_initSharedResources()
 void ClientRoom::_initSystems()
 {
     _worldInstance->addSystem<DeathSystem>();
-    _worldInstance->addSystem<Movement>();
     _worldInstance->addSystem<UpdateClock>();
     _worldInstance->addSystem<DrawComponents>();
     _worldInstance->addSystem<InputManagement>();
     _worldInstance->addSystem<SendToServer>();
     _worldInstance->addSystem<SendNewlyCreatedToServer>();
+    _worldInstance->addSystem<SfRectangleFollowEntitySystem>();
+    _worldInstance->addSystem<UpdateClock>();
 }
 
 void ClientRoom::_initEntities()
 {
-    _worldInstance->addEntity().addComponent<LayerLvL>().addComponent<GraphicsRectangleComponent>();
     _worldInstance->addEntity()
         .addComponent<MouseInputComponent>()
         .addComponent<KeyboardInputComponent>()

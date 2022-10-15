@@ -19,7 +19,7 @@ namespace ecs
     /// @brief This is the GoRandom System for enemies.
     /// This system check if the enemy is at its destination, if so randomize a new one
     /// Otherwise compute a new velocity
-    class EnemiesGoRandom : public System{
+    class EnemiesGoRandom : public System {
       public:
         /// @brief Run the GoRandom system
         /// @param world The world where the enemy will randomly move

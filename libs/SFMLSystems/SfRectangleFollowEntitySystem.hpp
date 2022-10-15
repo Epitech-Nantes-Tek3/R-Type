@@ -17,7 +17,8 @@
 
 namespace ecs
 {
-    /// @brief This system class manage SFML Rectangle Shape to modify it's SfRectangleSahpePosition with the Position of the Entity
+    /// @brief This system class manage SFML Rectangle Shape to modify it's SfRectangleSahpePosition with the Position
+    /// of the Entity
     struct SfRectangleFollowEntitySystem : public System {
         /// @brief The run function of this system. It will be used by the world in the function runSystems.
         /// @param world The corresponding world on which run this system.

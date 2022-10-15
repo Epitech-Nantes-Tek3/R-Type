@@ -12,6 +12,5 @@
 namespace ecs
 {
     /// @brief A Component which is used to know which Entity the player control
-    class Controllable : public Component {
-    };
+    class Controllable : public Component {};
 } // namespace ecs
