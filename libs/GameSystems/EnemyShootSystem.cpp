@@ -5,8 +5,8 @@
 ** EnemyShootSystem
 */
 
-#include "EnemyShootSystem.hpp"
 #include <chrono>
+#include "EnemyShootSystem.hpp"
 #include "GameComponents/EnemyComponent.hpp"
 #include "GameComponents/ShootingFrequencyComponent.hpp"
 #include "GameEntityManipulation/CreateEntitiesFunctions/CreateEnemyProjectile.hpp"
