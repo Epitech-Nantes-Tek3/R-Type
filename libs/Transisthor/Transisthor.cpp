@@ -575,13 +575,14 @@ void Transisthor::entityConvertPlayerType(unsigned short id, void *byteCode)
 
     if (uuidStr != "" && id == 0) {
         createNewPlayer(_ecsWorld, posX, posY, multiplierAbscissa, multiplierOrdinate, weight, sizeX, sizeY, life,
-            damage, damageRadius, isPlayer, "", _ecsWorld.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
+            damage, damageRadius, isPlayer, "",
+            _ecsWorld.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
     } else {
         std::size_t entityId;
 
         if (uuidStr == "") {
             entityId = createNewPlayer(_ecsWorld, posX, posY, multiplierAbscissa, multiplierOrdinate, weight, sizeX,
-                sizeY, life, damage, isPlayer, damageRadius);
+                sizeY, life, damage, damageRadius, isPlayer);
         } else {
             std::vector<std::shared_ptr<Entity>> newlyCreated = _ecsWorld.joinEntities<NewlyCreated>();
 

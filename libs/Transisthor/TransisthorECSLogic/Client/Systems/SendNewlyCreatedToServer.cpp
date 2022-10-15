@@ -43,7 +43,8 @@ void SendNewlyCreatedToServer::runSystem(ecs::World &world)
         if (entityPtr->contains<ecs::AlliedProjectile>()) {
             std::cerr << newlyCreated.uuid << std::endl;
             world.getTransisthorBridge()->transitEcsDataToNetworkDataEntityAlliedProjectile(
-                entityPtr->getComponent<Networkable>().id, entityPtr->getComponent<AlliedProjectile>().parentNetworkId, newlyCreated.uuid, serverIdList);
+                entityPtr->getComponent<Networkable>().id, entityPtr->getComponent<AlliedProjectile>().parentNetworkId,
+                newlyCreated.uuid, serverIdList);
         }
         if (newlyCreated.uuid == "") {
             entityPtr->removeComponent<NewlyCreated>();
