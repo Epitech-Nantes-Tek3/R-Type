@@ -120,36 +120,35 @@ $(document).ready(function(){initNavTree('_create_enemy_projectile_8hpp_source.h
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    {</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <a class="code" href="classecs_1_1_position.html">Position</a> pos = enemy.<a class="code" href="classecs_1_1_entity.html#a51ed0ff4a6ef96194e0211e22c009a19">getComponent</a>&lt;<a class="code" href="classecs_1_1_position.html">Position</a>&gt;();</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <a class="code" href="classecs_1_1_damage.html">Damage</a> damage = enemy.<a class="code" href="classecs_1_1_entity.html#a51ed0ff4a6ef96194e0211e22c009a19">getComponent</a>&lt;<a class="code" href="classecs_1_1_damage.html">Damage</a>&gt;();</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <a class="code" href="classecs_1_1_velocity.html">Velocity</a> velocity = enemy.<a class="code" href="classecs_1_1_entity.html#a51ed0ff4a6ef96194e0211e22c009a19">getComponent</a>&lt;<a class="code" href="classecs_1_1_velocity.html">Velocity</a>&gt;();</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <a class="code" href="classecs_1_1_entity.html">Entity</a> &amp;entity = world.<a class="code" href="classecs_1_1_world.html#ac90fc7af5f923c23cbdf15d63f4c1f42">addEntity</a>()</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                             .<a class="code" href="classecs_1_1_entity.html#aa7a1b23feaaffafe12e29435e9c41e46">addComponent</a>&lt;<a class="code" href="classecs_1_1_position.html">Position</a>&gt;(pos.<a class="code" href="classecs_1_1_position.html#ae6bb0651aa0e21e2b60da341d254a07a">x</a>, pos.<a class="code" href="classecs_1_1_position.html#a239f75f73402dd685eb49062a5d73999">y</a>)</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                             .addComponent&lt;Velocity&gt;(velocity.multiplierAbscissa, velocity.multiplierOrdinate)</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                             .addComponent&lt;<a class="code" href="classecs_1_1_weight.html">Weight</a>&gt;(1)</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                             .addComponent&lt;Size&gt;(2, 1)</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                             .addComponent&lt;<a class="code" href="classecs_1_1_life_time.html">LifeTime</a>&gt;(100)</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                             .addComponent&lt;Life&gt;(10)</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                             .addComponent&lt;<a class="code" href="classecs_1_1_damage.html">Damage</a>&gt;(damage)</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                             .addComponent&lt;DamageRadius&gt;(5)</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                             .addComponent&lt;<a class="code" href="classecs_1_1_collidable.html">Collidable</a>&gt;()</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                             .addComponent&lt;EnemyProjectile&gt;(enemy.<a class="code" href="classecs_1_1_entity.html#a51ed0ff4a6ef96194e0211e22c009a19">getComponent</a>&lt;<a class="code" href="classecs_1_1_networkable.html">Networkable</a>&gt;().<a class="code" href="classecs_1_1_networkable.html#ae27ad133ebb6f887f7533fc4eaf56d36">id</a>);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keywordflow">if</span> (networkId) {</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            <span class="comment">// Case : Creation in a server instance</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            entity.addComponent&lt;<a class="code" href="classecs_1_1_newly_created.html">NewlyCreated</a>&gt;(uuid, <span class="keyword">false</span>);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            entity.addComponent&lt;<a class="code" href="classecs_1_1_networkable.html">Networkable</a>&gt;(networkId);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            <span class="comment">// Case : Creation in a Client instance</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            <span class="keywordflow">if</span> (uuid != <span class="stringliteral">&quot;&quot;</span>) {</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                <span class="comment">// Special case : the client created the entity and not the server</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                entity.addComponent&lt;<a class="code" href="classecs_1_1_newly_created.html">NewlyCreated</a>&gt;(uuid, <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            }</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            entity.addComponent&lt;<a class="code" href="classecs_1_1_layer_lv_l.html">LayerLvL</a>&gt;(LayerLvL::layer_e::PROJECTILE);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        }</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordflow">return</span> entity.getId();</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    }</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;} <span class="comment">// namespace ecs</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !CREATEENEMYPROJECTILE_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <a class="code" href="classecs_1_1_entity.html">Entity</a> &amp;entity = world.<a class="code" href="classecs_1_1_world.html#ac90fc7af5f923c23cbdf15d63f4c1f42">addEntity</a>()</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                             .<a class="code" href="classecs_1_1_entity.html#aa7a1b23feaaffafe12e29435e9c41e46">addComponent</a>&lt;<a class="code" href="classecs_1_1_position.html">Position</a>&gt;(pos.<a class="code" href="classecs_1_1_position.html#ae6bb0651aa0e21e2b60da341d254a07a">x</a>, pos.<a class="code" href="classecs_1_1_position.html#a239f75f73402dd685eb49062a5d73999">y</a>)</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                             .addComponent&lt;Velocity&gt;(-10, 0)</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                             .addComponent&lt;<a class="code" href="classecs_1_1_weight.html">Weight</a>&gt;(1)</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                             .addComponent&lt;Size&gt;(2, 1)</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                             .addComponent&lt;<a class="code" href="classecs_1_1_life_time.html">LifeTime</a>&gt;(100)</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                             .addComponent&lt;Life&gt;(10)</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                             .addComponent&lt;<a class="code" href="classecs_1_1_damage.html">Damage</a>&gt;(damage)</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                             .addComponent&lt;DamageRadius&gt;(5)</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                             .addComponent&lt;<a class="code" href="classecs_1_1_collidable.html">Collidable</a>&gt;()</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                             .addComponent&lt;EnemyProjectile&gt;(enemy.<a class="code" href="classecs_1_1_entity.html#a51ed0ff4a6ef96194e0211e22c009a19">getComponent</a>&lt;<a class="code" href="classecs_1_1_networkable.html">Networkable</a>&gt;().<a class="code" href="classecs_1_1_networkable.html#ae27ad133ebb6f887f7533fc4eaf56d36">id</a>);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordflow">if</span> (networkId) {</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            <span class="comment">// Case : Creation in a server instance</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            entity.addComponent&lt;<a class="code" href="classecs_1_1_newly_created.html">NewlyCreated</a>&gt;(uuid, <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            entity.addComponent&lt;<a class="code" href="classecs_1_1_networkable.html">Networkable</a>&gt;(networkId);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            <span class="comment">// Case : Creation in a Client instance</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            <span class="keywordflow">if</span> (uuid != <span class="stringliteral">&quot;&quot;</span>) {</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                <span class="comment">// Special case : the client created the entity and not the server</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                entity.addComponent&lt;<a class="code" href="classecs_1_1_newly_created.html">NewlyCreated</a>&gt;(uuid, <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            }</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            entity.addComponent&lt;<a class="code" href="classecs_1_1_layer_lv_l.html">LayerLvL</a>&gt;(LayerLvL::layer_e::PROJECTILE);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        }</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keywordflow">return</span> entity.getId();</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    }</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;} <span class="comment">// namespace ecs</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !CREATEENEMYPROJECTILE_HPP_ */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="aclassecs_1_1_newly_created_html"><div class="ttname"><a href="classecs_1_1_newly_created.html">ecs::NewlyCreated</a></div><div class="ttdoc">This component is in order to give a unique id to an entity, it's used in the sending of the creation...</div><div class="ttdef"><b>Definition:</b> NewlyCreated.hpp:20</div></div>
@@ -169,7 +168,6 @@ $(document).ready(function(){initNavTree('_create_enemy_projectile_8hpp_source.h
 <div class="ttc" id="a_layer_lv_l_8hpp_html"><div class="ttname"><a href="_layer_lv_l_8hpp.html">LayerLvL.hpp</a></div></div>
 <div class="ttc" id="aclassecs_1_1_weight_html"><div class="ttname"><a href="classecs_1_1_weight.html">ecs::Weight</a></div><div class="ttdoc">The Weight class, almost used for everything, used in gravity system.</div><div class="ttdef"><b>Definition:</b> WeightComponent.hpp:16</div></div>
 <div class="ttc" id="a_random_8hpp_html"><div class="ttname"><a href="_random_8hpp.html">Random.hpp</a></div></div>
-<div class="ttc" id="aclassecs_1_1_velocity_html"><div class="ttname"><a href="classecs_1_1_velocity.html">ecs::Velocity</a></div><div class="ttdoc">The velocity class, multiplying the movement of the entity It's a networkable component.</div><div class="ttdef"><b>Definition:</b> VelocityComponent.hpp:17</div></div>
 <div class="ttc" id="a_weight_component_8hpp_html"><div class="ttname"><a href="_weight_component_8hpp.html">WeightComponent.hpp</a></div></div>
 <div class="ttc" id="a_world_8hpp_html"><div class="ttname"><a href="_world_8hpp.html">World.hpp</a></div></div>
 <div class="ttc" id="aclassecs_1_1_damage_html"><div class="ttname"><a href="classecs_1_1_damage.html">ecs::Damage</a></div><div class="ttdoc">The Damage class, reducing the entity's life.</div><div class="ttdef"><b>Definition:</b> DamageComponent.hpp:16</div></div>
