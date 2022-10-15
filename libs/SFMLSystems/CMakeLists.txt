@@ -7,6 +7,8 @@ set(SRC
     ${INC_SFML_SYSTEM_ROOT}/InputManagement.hpp
     ${INC_SFML_SYSTEM_ROOT}/DrawComponents.cpp
     ${INC_SFML_SYSTEM_ROOT}/DrawComponents.hpp
+    ${INC_SFML_SYSTEM_ROOT}/SfRectangleFollowEntitySystem.cpp
+    ${INC_SFML_SYSTEM_ROOT}/SfRectangleFollowEntitySystem.hpp
 )
 
 add_library(${TARGET} SHARED ${SRC})
