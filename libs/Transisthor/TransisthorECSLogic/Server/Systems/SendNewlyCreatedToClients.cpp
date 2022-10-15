@@ -30,8 +30,10 @@ using namespace ecs;
 
 void SendNewlyCreatedToClients::runSystem(ecs::World &world)
 {
-    if (!world.getResource<SendingFrequency>().canBeRunNew())
+    SendingFrequency &clock = world.getResource<SendingFrequency>();
+    if (!clock.canBeRunNew())
         return;
+    clock.resetNewClock();
 
     std::vector<std::shared_ptr<ecs::Entity>> clients = world.joinEntities<ecs::NetworkClient>();
     std::vector<std::shared_ptr<ecs::Entity>> joinedNewlyCreated = world.joinEntities<ecs::NewlyCreated>();

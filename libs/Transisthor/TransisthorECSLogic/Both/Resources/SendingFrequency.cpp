@@ -16,20 +16,20 @@ SendingFrequency::SendingFrequency()
 
 bool SendingFrequency::canBeRunNew()
 {
-    std::chrono::steady_clock::time_point now = std::chrono::steady_clock::now();
-    if (now - this->_lastTimeNew > _frequency) {
-        this->_lastTimeNew = now;
-        return true;
-    }
-    return false;
+    return (std::chrono::steady_clock::now() - _lastTimeUpdate > _frequency);
 }
 
 bool SendingFrequency::canBeRunUpdate()
 {
-    std::chrono::steady_clock::time_point now = std::chrono::steady_clock::now();
-    if (now - this->_lastTimeUpdate > _frequency) {
-        this->_lastTimeUpdate = now;
-        return true;
-    }
-    return false;
+    return (std::chrono::steady_clock::now() - _lastTimeUpdate > _frequency);
+}
+
+void SendingFrequency::resetNewClock()
+{
+    _lastTimeNew = std::chrono::steady_clock::now();
+}
+
+void SendingFrequency::resetUpdateClock()
+{
+    _lastTimeUpdate = std::chrono::steady_clock::now();
 }

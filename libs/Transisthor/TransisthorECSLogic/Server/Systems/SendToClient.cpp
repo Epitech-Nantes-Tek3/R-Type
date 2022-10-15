@@ -10,8 +10,10 @@
 
 void SendToClient::runSystem(ecs::World &world)
 {
-    if (!world.getResource<SendingFrequency>().canBeRunUpdate())
+    SendingFrequency &clock = world.getResource<SendingFrequency>();
+    if (!clock.canBeRunUpdate())
         return;
+    clock.resetUpdateClock();
 
     std::vector<std::shared_ptr<ecs::Entity>> clients = world.joinEntities<ecs::NetworkClient>();
     std::vector<std::shared_ptr<ecs::Entity>> joinedNetworkable = world.joinEntities<ecs::Networkable>();
