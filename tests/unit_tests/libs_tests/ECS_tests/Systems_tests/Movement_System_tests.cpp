@@ -37,6 +37,6 @@ Test(Movement_System, moove_a_position)
 
     pos1 = world.getEntity(id).getComponent<Position>();
 
-    cr_assert_eq(11, pos1.x);
-    cr_assert_eq(11, pos1.y);
+    cr_assert_eq(11, (int)pos1.x);
+    cr_assert_eq(11, (int)pos1.y);
 }

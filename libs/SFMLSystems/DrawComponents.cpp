@@ -7,6 +7,8 @@
 
 #include "DrawComponents.hpp"
 #include <algorithm>
+#include "GameComponents/PositionComponent.hpp"
+#include "GameComponents/SizeComponent.hpp"
 #include "GraphicsRectangleComponent.hpp"
 #include "GraphicsTextComponent.hpp"
 #include "GraphicsTextureResource.hpp"
@@ -36,14 +38,25 @@ void DrawComponents::run(World &world)
                             ._texturesList[entityPtr->getComponent<TextureName>().textureName]
                             .get());
                 } else {
-                    entityPtr->getComponent<GraphicsRectangleComponent>().shape.setFillColor(sf::Color(100, 250, 50));
+                    entityPtr->getComponent<GraphicsRectangleComponent>().shape.setFillColor(sf::Color::White);
                 }
                 world.getResource<RenderWindowResource>().window.draw(
                     entityPtr->getComponent<GraphicsRectangleComponent>().shape);
+                return;
             }
             if (entityPtr->contains<GraphicsTextComponent>()) {
                 world.getResource<RenderWindowResource>().window.draw(
                     entityPtr->getComponent<GraphicsTextComponent>().text);
+                return;
+            }
+            auto layerType = entityPtr->getComponent<LayerLvL>();
+            if (layerType.layer == LayerLvL::layer_e::OBSTACLE || layerType.layer == LayerLvL::layer_e::ENEMY
+                || layerType.layer == LayerLvL::layer_e::PLAYER || layerType.layer == LayerLvL::layer_e::PROJECTILE) {
+                auto entityPos = entityPtr->getComponent<Position>();
+                auto entitySize = entityPtr->getComponent<Size>();
+
+                entityPtr->addComponent<GraphicsRectangleComponent>(
+                    entityPos.x, entityPos.y, entitySize.x, entitySize.y);
             }
         };
         std::for_each(Inputs.begin(), Inputs.end(), layer);

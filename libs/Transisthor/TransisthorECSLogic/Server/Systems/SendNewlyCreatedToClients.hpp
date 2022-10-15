@@ -10,7 +10,6 @@
 #include "World/World.hpp"
 
 struct SendNewlyCreatedToClients : public System {
-
     /// @brief It sends the data of all the newly created entities to all the clients
     /// @param world The world which the system is running in.
     void runSystem(ecs::World &world);
