@@ -21,6 +21,7 @@
 #include "GameEntityManipulation/CreateEntitiesFunctions/CreatePlayer.hpp"
 #include "GameSharedResources/GameClock.hpp"
 #include "GameSystems/EnemiesGoRandom.hpp"
+#include "GameSystems/EnemyShootSystem.hpp"
 #include "GameSystems/MovementSystem.hpp"
 #include "GameSystems/UpdateClockSystem.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
@@ -76,6 +77,7 @@ void Room::initEcsGameData(void)
     _worldInstance->addSystem<Movement>();
     _worldInstance->addSystem<UpdateClock>();
     _worldInstance->addSystem<EnemiesGoRandom>();
+    _worldInstance->addSystem<EnemyShootSystem>();
 }
 
 void Room::startConnexionProtocol(void) { _communicatorInstance.get()->startReceiverListening(); }

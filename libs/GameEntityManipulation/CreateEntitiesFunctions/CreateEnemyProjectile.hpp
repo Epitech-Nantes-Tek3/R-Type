@@ -33,22 +33,22 @@ namespace ecs
     /// @param networkId The id of the Networkable Component. In the client instance, it MUST NOT be filled in.
     /// @return Id in size_t of the new Entity
     inline std::size_t createNewEnemyProjectile(
-        World &world, Entity &enemy, const std::string uuid = "", unsigned short networkId = 0)
+        World &world, std::shared_ptr<ecs::Entity> enemy, const std::string uuid = "", unsigned short networkId = 0)
     {
-        Position pos = enemy.getComponent<Position>();
-        Damage damage = enemy.getComponent<Damage>();
+        Position pos = enemy.get()->getComponent<Position>();
+        Damage damage = enemy.get()->getComponent<Damage>();
 
         Entity &entity = world.addEntity()
                              .addComponent<Position>(pos.x, pos.y)
                              .addComponent<Velocity>(-10, 0)
                              .addComponent<Weight>(1)
-                             .addComponent<Size>(2, 1)
+                             .addComponent<Size>(20, 20)
                              .addComponent<LifeTime>(100)
                              .addComponent<Life>(10)
                              .addComponent<Damage>(damage)
                              .addComponent<DamageRadius>(5)
                              .addComponent<Collidable>()
-                             .addComponent<EnemyProjectile>(enemy.getComponent<Networkable>().id);
+                             .addComponent<EnemyProjectile>(enemy.get()->getComponent<Networkable>().id);
 
         if (networkId) {
             // Case : Creation in a server instance

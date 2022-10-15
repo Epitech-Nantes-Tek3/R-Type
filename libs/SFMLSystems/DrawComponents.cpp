@@ -9,6 +9,7 @@
 #include <algorithm>
 #include "GameComponents/PositionComponent.hpp"
 #include "GameComponents/SizeComponent.hpp"
+#include "GameComponents/EnemyProjectileComponent.hpp"
 #include "GraphicsRectangleComponent.hpp"
 #include "GraphicsTextComponent.hpp"
 #include "GraphicsTextureResource.hpp"
@@ -61,6 +62,13 @@ void DrawComponents::run(World &world)
                     entityPtr->addComponent<TextureName>(GraphicsTextureResource::PLAYER_STATIC);
                 if (layerType.layer == LayerLvL::layer_e::ENEMY)
                     entityPtr->addComponent<TextureName>(GraphicsTextureResource::ENEMY_STATIC);
+                if (layerType.layer == LayerLvL::layer_e::PROJECTILE) {
+                    std::cout << "TOTO" << std::endl;
+                    if (entityPtr->contains<EnemyProjectile>()) {
+                         entityPtr->addComponent<TextureName>(GraphicsTextureResource::PROJECTILE_ENEMY);
+                    }
+                }
+
             }
         };
         std::for_each(Inputs.begin(), Inputs.end(), layer);

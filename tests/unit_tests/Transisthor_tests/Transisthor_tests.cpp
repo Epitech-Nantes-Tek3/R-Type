@@ -572,7 +572,7 @@ Test(transisthor_testing, transit_enemyProjectile_entity)
                             .addComponent<Velocity>(1, 1)
                             .getId();
 
-    unsigned short entityId = createNewEnemyProjectile(world, world.getEntity(enemy), "UUID");
+    unsigned short entityId = createNewEnemyProjectile(world, std::make_shared<ecs::Entity>(world.getEntity(enemy)), "UUID");
     void *temp = transisthor.transitEcsDataToNetworkDataEntityEnemyProjectile(entityId, 10, std::string("UUID"), {1});
     (void)temp;
     void *networkAnswer = transisthor.transitNetworkDataToEcsDataEntity({Client(), temp, 1, 31});
@@ -603,7 +603,7 @@ Test(transisthor_testing, transit_enemyProjectile_entity_without_uuid)
                             .addComponent<Velocity>(1, 1)
                             .getId();
 
-    unsigned short entityId = createNewEnemyProjectile(world, world.getEntity(enemy), "", 1);
+    unsigned short entityId = createNewEnemyProjectile(world, std::make_shared<ecs::Entity>(world.getEntity(enemy)), "", 1);
 
     void *temp = transisthor.transitEcsDataToNetworkDataEntityEnemyProjectile(entityId, enemy, std::string(""), {1});
     (void)temp;

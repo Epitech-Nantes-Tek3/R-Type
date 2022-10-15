@@ -15,7 +15,7 @@ using namespace ecs;
 Test(CreateEnemyProjectile_test, CreateEnemyProjectile)
 {
     World world(1);
-    
+
     std::size_t enemy = world.addEntity()
                             .addComponent<Networkable>(10)
                             .addComponent<Position>(1, 1)
@@ -23,7 +23,7 @@ Test(CreateEnemyProjectile_test, CreateEnemyProjectile)
                             .addComponent<Velocity>(1, 1)
                             .getId();
 
-    std::size_t id_new_entity = createNewEnemyProjectile(world, world.getEntity(enemy));
-    
+    std::size_t id_new_entity = createNewEnemyProjectile(world, std::make_shared<ecs::Entity>(world.getEntity(enemy)));
+
     cr_assert_eq(2, id_new_entity);
 }

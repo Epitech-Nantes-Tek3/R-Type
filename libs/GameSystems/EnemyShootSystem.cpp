@@ -23,11 +23,11 @@ void EnemyShootSystem::run(World &world)
 
     auto enemiesMayShoot = [&world, &clock](std::shared_ptr<ecs::Entity> entityPtr) {
         ShootingFrequency &freq = entityPtr.get()->getComponent<ShootingFrequency>();
-        double delta = freq.baseFrequency.count() - clock.getElapsedTime();
+        double delta = freq.frequency.count() - clock.getElapsedTime();
 
         if (delta <= 0.0) {
             createNewEnemyProjectile(
-                world, *entityPtr.get(), "", world.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
+                world, entityPtr, "", world.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
             freq.frequency = freq.baseFrequency;
         } else {
             freq.frequency = duration<double>(delta);

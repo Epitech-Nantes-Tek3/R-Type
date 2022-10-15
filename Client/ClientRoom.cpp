@@ -110,14 +110,22 @@ void ClientRoom::startLobbyLoop(void)
     }
 }
 
+void ClientRoom::_initSpritesForEntities()
+{
+    _worldInstance->addResource<GraphicsTextureResource>(GraphicsTextureResource::ENEMY_STATIC, "assets/EpiSprite/BasicEnemySpriteSheet.gif", sf::Vector2f(0, 0),  sf::Vector2f(34, 34));
+    GraphicsTextureResource &spritesList = _worldInstance->getResource<GraphicsTextureResource>();
+
+    spritesList.addTexture(GraphicsTextureResource::PLAYER_STATIC, "assets/EpiSprite/BasicPlayerSpriteSheet.gif", sf::Vector2f(500, 0),  sf::Vector2f(34, 34));
+    spritesList.addTexture(GraphicsTextureResource::PROJECTILE_ENEMY, "assets/EpiSprite/BasicEnemyProjectileSpriteSheet.gif", sf::Vector2f(0, 0), sf::Vector2f(20, 20));
+}
+
 void ClientRoom::_initSharedResources()
 {
     _worldInstance->addResource<RandomDevice>();
     _worldInstance->addResource<GameClock>();
     _worldInstance->addResource<RenderWindowResource>();
     _worldInstance->addResource<GraphicsFontResource>("assets/fonts/arial.ttf");
-    _worldInstance->addResource<GraphicsTextureResource>(GraphicsTextureResource::ENEMY_STATIC, "assets/EpiSprite/BasicEnemySpriteSheet.gif", sf::Vector2f(0, 0),  sf::Vector2f(34, 34));
-    _worldInstance->getResource<GraphicsTextureResource>().addTexture(GraphicsTextureResource::PLAYER_STATIC, "assets/EpiSprite/BasicPlayerSpriteSheet.gif", sf::Vector2f(500, 0),  sf::Vector2f(34, 34));
+    _initSpritesForEntities();
 }
 
 void ClientRoom::_initSystems()
