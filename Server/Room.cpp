@@ -133,7 +133,7 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
             _worldInstance.get()->getTransisthorBridge()->transitEcsDataToNetworkDataEntityPlayer(
                 entityPtr->getComponent<Networkable>().id, pos.x, pos.y, vel.multiplierAbscissa, vel.multiplierOrdinate,
                 entityPtr->getComponent<Weight>().weight, size.x, size.y, entityPtr->getComponent<Life>().lifePoint,
-                entityPtr->getComponent<Damage>().damagePoint, entityPtr->getComponent<DamageRadius>().radius, "",
+                entityPtr->getComponent<Damage>().damagePoint, entityPtr->getComponent<DamageRadius>().radius, false, "",
                 {connexionDemand.message.clientInfo.getId()});
         }
         std::this_thread::sleep_for(std::chrono::duration<int, std::milli>(500));
