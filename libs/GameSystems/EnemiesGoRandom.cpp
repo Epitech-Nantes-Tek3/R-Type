@@ -13,9 +13,9 @@
 #include "GameSharedResources/Random.hpp"
 
 #define MINIMUM_WIDTH  1400
-#define MAXIMUM_WIDTH  1920
+#define MAXIMUM_WIDTH  1700
 #define MINIMUM_HEIGTH 0
-#define MAXIMUM_HEIGTH 1080
+#define MAXIMUM_HEIGTH 800
 
 using namespace ecs;
 
@@ -33,7 +33,7 @@ void EnemiesGoRandom::run(World &world)
             vel.multiplierOrdinate = dest.y - pos.y;
             return;
         }
-        if (pos.x == dest.x || pos.y == dest.y) {
+        if ((int)pos.x == (int)dest.x || (int)pos.y == (int)dest.y) {
             int value = 0;
             int newVelX = 0;
             int newVelY = 0;
@@ -47,7 +47,7 @@ void EnemiesGoRandom::run(World &world)
                 value = world.getResource<RandomDevice>().randInt(1, 5);
             } while (newVelX % value != 0 && newVelY % value != 0);
 
-            vel.multiplierAbscissa = (newVelX  / value);
+            vel.multiplierAbscissa = (newVelX / value);
             vel.multiplierOrdinate = (newVelY / value);
         }
     };

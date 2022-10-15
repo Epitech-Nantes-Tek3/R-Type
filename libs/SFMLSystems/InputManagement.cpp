@@ -6,6 +6,8 @@
 */
 
 #include "InputManagement.hpp"
+#include <random>
+#include <string.h>
 #include "ActionQueueComponent.hpp"
 #include "AllowControllerComponent.hpp"
 #include "AllowMouseAndKeyboardComponent.hpp"
@@ -43,7 +45,11 @@ void InputManagement::run(World &world)
                 if (entityPtr->getComponent<KeyboardInputComponent>().keyboardMapActions.contains(event.key.code)
                     && entityPtr->contains<AllowMouseAndKeyboardComponent>()) {
                     entityPtr->getComponent<ActionQueueComponent>().actions.push(
-                        std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::inputAction_e(entityPtr->getComponent<KeyboardInputComponent>().keyboardMapActions[event.key.code].first), 0));
+                        std::make_pair<ActionQueueComponent::inputAction_e, float>(
+                            ActionQueueComponent::inputAction_e(entityPtr->getComponent<KeyboardInputComponent>()
+                                                                    .keyboardMapActions[event.key.code]
+                                                                    .first),
+                            0));
                 }
             };
             std::for_each(Inputs.begin(), Inputs.end(), keyReleased);
@@ -52,8 +58,8 @@ void InputManagement::run(World &world)
             auto mouseButtonPressed = [event](std::shared_ptr<ecs::Entity> entityPtr) {
                 if (entityPtr->getComponent<MouseInputComponent>().MouseMapActions.contains(event.mouseButton.button)
                     && entityPtr->contains<AllowMouseAndKeyboardComponent>()) {}
-                    // entityPtr->getComponent<ActionQueueComponent>().actions.push(
-                    //     entityPtr->getComponent<MouseInputComponent>().MouseMapActions[event.mouseButton.button]);
+                // entityPtr->getComponent<ActionQueueComponent>().actions.push(
+                //     entityPtr->getComponent<MouseInputComponent>().MouseMapActions[event.mouseButton.button]);
             };
             std::for_each(Inputs.begin(), Inputs.end(), mouseButtonPressed);
         }
@@ -62,9 +68,9 @@ void InputManagement::run(World &world)
                 if (entityPtr->getComponent<ControllerButtonInputComponent>().controllerButtonMapActions.contains(
                         event.joystickButton.button)
                     && entityPtr->contains<AllowControllerComponent>()) {}
-                    // entityPtr->getComponent<ActionQueueComponent>().actions.push(
-                    //     entityPtr->getComponent<ControllerButtonInputComponent>()
-                    //         .controllerButtonMapActions[event.joystickButton.button]);
+                // entityPtr->getComponent<ActionQueueComponent>().actions.push(
+                //     entityPtr->getComponent<ControllerButtonInputComponent>()
+                //         .controllerButtonMapActions[event.joystickButton.button]);
             };
             std::for_each(Inputs.begin(), Inputs.end(), joyButtonPressed);
         }
@@ -81,7 +87,8 @@ void InputManagement::run(World &world)
         }
     }
     for (auto &entityPtr : Inputs) {
-        std::queue<std::pair<ecs::ActionQueueComponent::inputAction_e, float>> &actions = entityPtr->getComponent<ActionQueueComponent>().actions;
+        std::queue<std::pair<ecs::ActionQueueComponent::inputAction_e, float>> &actions =
+            entityPtr->getComponent<ActionQueueComponent>().actions;
         while (actions.size() > 0) {
             if (actions.front().first == ActionQueueComponent::MOVEY)
                 movePlayerY(world, actions.front().second);
@@ -128,8 +135,13 @@ void InputManagement::shootAction(World &world, float action)
     if (player.empty())
         return;
     auto shoot = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
-        createNewAlliedProjectile(
-            world, *entityPtr, NewlyCreated().generate_uuid(world.getResource<RandomDevice>().getRandomDevice(), 16));
+        const char hex_char[] = "0123456789ABCDEF";
+        auto &temp = world.getResource<RandomDevice>();
+
+        std::string uuid(16, '\0');
+        for (auto &c : uuid)
+            c = hex_char[temp.randInt<int>(0, 15)];
+        createNewAlliedProjectile(world, *entityPtr, uuid);
     };
     std::for_each(player.begin(), player.end(), shoot);
 }

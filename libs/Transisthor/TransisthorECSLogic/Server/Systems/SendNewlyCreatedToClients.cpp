@@ -23,18 +23,13 @@
 #include "GameComponents/VelocityComponent.hpp"
 #include "GameComponents/WeightComponent.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
-#include "Transisthor/TransisthorECSLogic/Server/Components/NetworkClient.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Resources/SendingFrequency.hpp"
+#include "Transisthor/TransisthorECSLogic/Server/Components/NetworkClient.hpp"
 
 using namespace ecs;
 
 void SendNewlyCreatedToClients::runSystem(ecs::World &world)
 {
-    SendingFrequency &clock = world.getResource<SendingFrequency>();
-    if (!clock.canBeRunNew())
-        return;
-    clock.resetNewClock();
-
     std::vector<std::shared_ptr<ecs::Entity>> clients = world.joinEntities<ecs::NetworkClient>();
     std::vector<std::shared_ptr<ecs::Entity>> joinedNewlyCreated = world.joinEntities<ecs::NewlyCreated>();
     std::vector<unsigned short> clientIdList;
@@ -46,7 +41,7 @@ void SendNewlyCreatedToClients::runSystem(ecs::World &world)
     auto update = [this, &world, &clientIdList](std::shared_ptr<ecs::Entity> entityPtr) {
         NewlyCreated &newlyCreated = entityPtr->getComponent<NewlyCreated>();
 
-        if (newlyCreated.isClientInstance)
+        if (newlyCreated.isClientInstance || newlyCreated.sended == true)
             return;
         if (entityPtr->contains<ecs::AlliedProjectile>()) {
             world.getTransisthorBridge()->transitEcsDataToNetworkDataEntityAlliedProjectile(
@@ -96,7 +91,8 @@ void SendNewlyCreatedToClients::runSystem(ecs::World &world)
                 entityPtr->getComponent<Damage>().damagePoint, newlyCreated.uuid, clientIdList);
         }
         std::this_thread::sleep_for(std::chrono::duration<int, std::milli>(500));
-        entityPtr->removeComponent<NewlyCreated>();
+        // entityPtr->removeComponent<NewlyCreated>();
+        newlyCreated.sended = true;
         return;
     };
 
