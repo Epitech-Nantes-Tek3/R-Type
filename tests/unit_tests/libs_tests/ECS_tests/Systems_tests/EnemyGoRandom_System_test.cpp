@@ -31,14 +31,15 @@ Test(EnemyGoRandom_System, move_randomly)
 
     std::size_t id = createNewEnemy(world, 1400, 540, 0, 0, 5, 100, 10, 5, 10, 10, "", 15);
     Position &pos = world.getEntity(id).getComponent<Position>();
-    Destination dest = world.getEntity(id).getComponent<Destination>();
-    int x = dest.x;
-    int y = dest.y;
+    int x = pos.x;
+    int y = pos.y;
 
     world.runSystems();
     std::this_thread::sleep_for(std::chrono::duration<int>(5));
     world.addSystem<Movement>();
     world.runSystems();
 
-    cr_assert_eq(x == pos.x || y == pos.y, true);
+    Position &newPos = world.getEntity(id).getComponent<Position>();
+
+    cr_assert_eq(x != newPos.x && y != newPos.y, true);
 }

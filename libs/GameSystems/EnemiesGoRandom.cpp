@@ -28,6 +28,11 @@ void EnemiesGoRandom::run(World &world)
         Velocity &vel = entityPtr.get()->getComponent<Velocity>();
         Destination &dest = entityPtr.get()->getComponent<Destination>();
 
+        if (vel.multiplierAbscissa == 0 && vel.multiplierOrdinate == 0) {
+            vel.multiplierAbscissa = dest.x - pos.x;
+            vel.multiplierOrdinate = dest.y - pos.y;
+            return;
+        }
         if (pos.x == dest.x || pos.y == dest.y) {
             int value = 0;
             int newVelX = 0;
