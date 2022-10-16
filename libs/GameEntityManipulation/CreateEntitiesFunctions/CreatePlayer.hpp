@@ -20,6 +20,7 @@
 #include "GameComponents/SizeComponent.hpp"
 #include "GameComponents/VelocityComponent.hpp"
 #include "GameComponents/WeightComponent.hpp"
+#include "GameComponents/ShootingFrequencyComponent.hpp"
 #include "GameSharedResources/Random.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "World/World.hpp"
@@ -56,6 +57,7 @@ namespace ecs
                              .addComponent<Damage>(damage)
                              .addComponent<DamageRadius>(damageRadius)
                              .addComponent<Collidable>()
+                             .addComponent<ShootingFrequency>(0.05)
                              .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate)
                              .addComponent<Player>();
         if (controlable == true) {

@@ -6,6 +6,7 @@
 */
 
 #include "InputManagement.hpp"
+#include <chrono>
 #include <random>
 #include <string.h>
 #include "ActionQueueComponent.hpp"
@@ -15,6 +16,8 @@
 #include "ControllerJoystickInputComponent.hpp"
 #include "KeyboardInputComponent.hpp"
 #include "MouseInputComponent.hpp"
+#include "GameComponents/ShootingFrequencyComponent.hpp"
+#include "GameSharedResources/GameClock.hpp"
 #include "SFMLResource/RenderWindowResource.hpp"
 #include "World/World.hpp"
 
@@ -139,13 +142,22 @@ void InputManagement::shootAction(World &world, float action)
     if (player.empty())
         return;
     auto shoot = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
-        const char hex_char[] = "0123456789ABCDEF";
-        auto &temp = world.getResource<RandomDevice>();
+        ShootingFrequency &freq = entityPtr.get()->getComponent<ShootingFrequency>();
+        GameClock &c = world.getResource<GameClock>();
 
-        std::string uuid(16, '\0');
-        for (auto &c : uuid)
-            c = hex_char[temp.randInt<int>(0, 15)];
-        createNewAlliedProjectile(world, *entityPtr, uuid);
+        double delta = freq.frequency.count() - c.getElapsedTime();
+        if (delta <= 0.0) {
+            const char hex_char[] = "0123456789ABCDEF";
+            auto &temp = world.getResource<RandomDevice>();
+
+            std::string uuid(16, '\0');
+            for (auto &c : uuid)
+                c = hex_char[temp.randInt<int>(0, 15)];
+            createNewAlliedProjectile(world, *entityPtr, uuid);
+            freq.frequency = freq.baseFrequency;
+        } else {
+            freq.frequency = duration<double>(delta);
+        }
     };
     std::for_each(player.begin(), player.end(), shoot);
 }
