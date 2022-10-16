@@ -162,14 +162,14 @@ void ClientRoom::_initBackgroundEntities()
         .addComponent<GraphicsRectangleComponent>(0, 0, 1920, 1080)
         .addComponent<Position>(0, 0)
         .addComponent<Velocity>(30, 30)
-        .addComponent<LayerLvL>(LayerLvL::layer_e::BACKGROUND)
+        .addComponent<LayerLvL>(LayerLvL::layer_e::DECORATION)
         .addComponent<TextureName>(GraphicsTextureResource::BACKGROUND_LAYER_1);
 
     _worldInstance->addEntity()
         .addComponent<GraphicsRectangleComponent>(0, 0, 1920, 1080)
         .addComponent<Position>(0, 0)
         .addComponent<Velocity>(60, 60)
-        .addComponent<LayerLvL>(LayerLvL::layer_e::BACKGROUND)
+        .addComponent<LayerLvL>(LayerLvL::layer_e::MIDDLE)
         .addComponent<TextureName>(GraphicsTextureResource::BACKGROUND_LAYER_2);
 
     _worldInstance->addEntity()
