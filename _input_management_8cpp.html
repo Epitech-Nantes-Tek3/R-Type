@@ -88,6 +88,7 @@ $(document).ready(function(){initNavTree('_input_management_8cpp.html',''); init
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="_input_management_8hpp_source.html">InputManagement.hpp</a>&quot;</code><br />
+<code>#include &lt;chrono&gt;</code><br />
 <code>#include &lt;random&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="_action_queue_component_8hpp_source.html">ActionQueueComponent.hpp</a>&quot;</code><br />
@@ -97,6 +98,8 @@ $(document).ready(function(){initNavTree('_input_management_8cpp.html',''); init
 <code>#include &quot;<a class="el" href="_controller_joystick_input_component_8hpp_source.html">ControllerJoystickInputComponent.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_keyboard_input_component_8hpp_source.html">KeyboardInputComponent.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_mouse_input_component_8hpp_source.html">MouseInputComponent.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_shooting_frequency_component_8hpp_source.html">GameComponents/ShootingFrequencyComponent.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_game_clock_8hpp_source.html">GameSharedResources/GameClock.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_render_window_resource_8hpp_source.html">SFMLResource/RenderWindowResource.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_world_8hpp_source.html">World/World.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -104,56 +107,56 @@ Include dependency graph for InputManagement.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="_input_management_8cpp__incl.png" border="0" usemap="#libs_2_s_f_m_l_systems_2_input_management_8cpp" alt=""/></div>
 <map name="libs_2_s_f_m_l_systems_2_input_management_8cpp" id="libs_2_s_f_m_l_systems_2_input_management_8cpp">
-<area shape="rect" title=" " alt="" coords="3068,5,3358,32"/>
-<area shape="rect" href="_input_management_8hpp.html" title=" " alt="" coords="2898,80,3067,107"/>
-<area shape="rect" title=" " alt="" coords="2498,355,2570,382"/>
-<area shape="rect" title=" " alt="" coords="2092,355,2163,382"/>
-<area shape="rect" href="_world_8hpp.html" title=" " alt="" coords="3629,266,3757,293"/>
-<area shape="rect" href="_action_queue_component_8hpp.html" title=" " alt="" coords="3169,169,3377,196"/>
-<area shape="rect" href="_allow_controller_component_8hpp.html" title=" " alt="" coords="108,80,334,107"/>
-<area shape="rect" href="_allow_mouse_and_keyboard_component_8hpp.html" title=" " alt="" coords="894,80,1185,107"/>
-<area shape="rect" href="_controller_button_input_component_8hpp.html" title=" " alt="" coords="3756,169,4022,196"/>
-<area shape="rect" href="_controller_joystick_input_component_8hpp.html" title=" " alt="" coords="3164,80,3438,107"/>
-<area shape="rect" href="_keyboard_input_component_8hpp.html" title=" " alt="" coords="3462,80,3681,107"/>
-<area shape="rect" href="_mouse_input_component_8hpp.html" title=" " alt="" coords="4046,169,4247,196"/>
-<area shape="rect" href="_render_window_resource_8hpp.html" title=" " alt="" coords="4528,162,4746,203"/>
-<area shape="rect" href="_controlable_component_8hpp.html" title=" " alt="" coords="2707,162,2930,203"/>
-<area shape="rect" href="_velocity_component_8hpp.html" title=" " alt="" coords="2747,266,3050,293"/>
-<area shape="rect" href="_create_allied_projectile_8hpp.html" title=" " alt="" coords="1106,155,1301,211"/>
-<area shape="rect" href="_system_8hpp.html" title=" " alt="" coords="3224,355,3376,382"/>
-<area shape="rect" href="_component_8hpp.html" title=" " alt="" coords="2099,437,2303,464"/>
-<area shape="rect" title=" " alt="" coords="2168,512,2234,539"/>
-<area shape="rect" title=" " alt="" coords="3436,512,3516,539"/>
-<area shape="rect" href="_allied_projectile_component_8hpp.html" title=" " alt="" coords="545,348,790,389"/>
-<area shape="rect" href="_collidable_component_8hpp.html" title=" " alt="" coords="815,348,1027,389"/>
-<area shape="rect" href="_damage_component_8hpp.html" title=" " alt="" coords="1051,355,1356,382"/>
-<area shape="rect" href="_damage_radius_component_8hpp.html" title=" " alt="" coords="1380,348,1627,389"/>
-<area shape="rect" href="_life_component_8hpp.html" title=" " alt="" coords="1652,355,1926,382"/>
-<area shape="rect" href="_life_time_component_8hpp.html" title=" " alt="" coords="1146,266,1453,293"/>
-<area shape="rect" href="_newly_created_8hpp.html" title=" " alt="" coords="1528,266,1794,293"/>
-<area shape="rect" href="_position_component_8hpp.html" title=" " alt="" coords="1819,266,2122,293"/>
-<area shape="rect" href="_size_component_8hpp.html" title=" " alt="" coords="2146,266,2424,293"/>
-<area shape="rect" href="_weight_component_8hpp.html" title=" " alt="" coords="40,266,335,293"/>
-<area shape="rect" href="_random_8hpp.html" title=" " alt="" coords="2448,259,2621,300"/>
-<area shape="rect" href="_layer_lv_l_8hpp.html" title=" " alt="" coords="360,266,589,293"/>
-<area shape="rect" href="_networkable_8hpp.html" title=" " alt="" coords="613,259,869,300"/>
-<area shape="rect" title=" " alt="" coords="2001,355,2068,382"/>
-<area shape="rect" href="_resource_8hpp.html" title=" " alt="" coords="3728,355,3903,382"/>
-<area shape="rect" title=" " alt="" coords="3514,437,3584,464"/>
-<area shape="rect" title=" " alt="" coords="3400,355,3450,382"/>
-<area shape="rect" title=" " alt="" coords="3901,512,3978,539"/>
-<area shape="rect" title=" " alt="" coords="3815,437,3902,464"/>
-<area shape="rect" title=" " alt="" coords="4211,512,4274,539"/>
-<area shape="rect" href="_entity_8hpp.html" title=" " alt="" coords="3576,355,3704,382"/>
-<area shape="rect" title=" " alt="" coords="4436,437,4560,464"/>
-<area shape="rect" href="_transisthor_8hpp.html" title=" " alt="" coords="4029,355,4224,382"/>
-<area shape="rect" title=" " alt="" coords="3710,437,3790,464"/>
-<area shape="rect" href="_communicator_8hpp.html" title=" " alt="" coords="3977,437,4222,464"/>
-<area shape="rect" href="_error_8hpp.html" title=" " alt="" coords="4246,437,4361,464"/>
-<area shape="rect" title=" " alt="" coords="4441,512,4500,539"/>
-<area shape="rect" title=" " alt="" coords="3366,266,3452,293"/>
-<area shape="rect" title=" " alt="" coords="3227,266,3290,293"/>
-<area shape="rect" title=" " alt="" coords="4352,266,4498,293"/>
+<area shape="rect" title=" " alt="" coords="3219,5,3509,32"/>
+<area shape="rect" href="_input_management_8hpp.html" title=" " alt="" coords="1822,80,1991,107"/>
+<area shape="rect" title=" " alt="" coords="2691,355,2757,382"/>
+<area shape="rect" title=" " alt="" coords="880,355,952,382"/>
+<area shape="rect" title=" " alt="" coords="51,355,122,382"/>
+<area shape="rect" href="_world_8hpp.html" title=" " alt="" coords="3999,266,4127,293"/>
+<area shape="rect" href="_action_queue_component_8hpp.html" title=" " alt="" coords="3368,169,3576,196"/>
+<area shape="rect" href="_allow_controller_component_8hpp.html" title=" " alt="" coords="2786,80,3011,107"/>
+<area shape="rect" href="_allow_mouse_and_keyboard_component_8hpp.html" title=" " alt="" coords="3036,80,3327,107"/>
+<area shape="rect" href="_controller_button_input_component_8hpp.html" title=" " alt="" coords="3905,169,4170,196"/>
+<area shape="rect" href="_controller_joystick_input_component_8hpp.html" title=" " alt="" coords="3458,80,3731,107"/>
+<area shape="rect" href="_keyboard_input_component_8hpp.html" title=" " alt="" coords="3756,80,3975,107"/>
+<area shape="rect" href="_mouse_input_component_8hpp.html" title=" " alt="" coords="4246,169,4447,196"/>
+<area shape="rect" href="_shooting_frequency_component_8hpp.html" title=" " alt="" coords="2735,259,3006,300"/>
+<area shape="rect" href="_game_clock_8hpp.html" title=" " alt="" coords="3132,259,3305,300"/>
+<area shape="rect" href="_render_window_resource_8hpp.html" title=" " alt="" coords="4573,162,4792,203"/>
+<area shape="rect" href="_controlable_component_8hpp.html" title=" " alt="" coords="810,162,1033,203"/>
+<area shape="rect" href="_velocity_component_8hpp.html" title=" " alt="" coords="29,266,331,293"/>
+<area shape="rect" href="_create_allied_projectile_8hpp.html" title=" " alt="" coords="1143,155,1337,211"/>
+<area shape="rect" href="_system_8hpp.html" title=" " alt="" coords="3701,355,3853,382"/>
+<area shape="rect" href="_component_8hpp.html" title=" " alt="" coords="2134,437,2338,464"/>
+<area shape="rect" title=" " alt="" coords="2203,512,2269,539"/>
+<area shape="rect" title=" " alt="" coords="4225,512,4305,539"/>
+<area shape="rect" href="_allied_projectile_component_8hpp.html" title=" " alt="" coords="2193,348,2439,389"/>
+<area shape="rect" href="_collidable_component_8hpp.html" title=" " alt="" coords="263,348,475,389"/>
+<area shape="rect" href="_damage_component_8hpp.html" title=" " alt="" coords="499,355,805,382"/>
+<area shape="rect" href="_damage_radius_component_8hpp.html" title=" " alt="" coords="978,348,1225,389"/>
+<area shape="rect" href="_life_component_8hpp.html" title=" " alt="" coords="1307,355,1581,382"/>
+<area shape="rect" href="_life_time_component_8hpp.html" title=" " alt="" coords="2353,266,2660,293"/>
+<area shape="rect" href="_newly_created_8hpp.html" title=" " alt="" coords="457,266,724,293"/>
+<area shape="rect" href="_position_component_8hpp.html" title=" " alt="" coords="1635,355,1938,382"/>
+<area shape="rect" href="_size_component_8hpp.html" title=" " alt="" coords="1148,266,1425,293"/>
+<area shape="rect" href="_weight_component_8hpp.html" title=" " alt="" coords="1450,266,1745,293"/>
+<area shape="rect" href="_random_8hpp.html" title=" " alt="" coords="951,259,1124,300"/>
+<area shape="rect" href="_layer_lv_l_8hpp.html" title=" " alt="" coords="1769,266,1999,293"/>
+<area shape="rect" href="_networkable_8hpp.html" title=" " alt="" coords="2023,259,2279,300"/>
+<area shape="rect" href="_resource_8hpp.html" title=" " alt="" coords="3451,355,3626,382"/>
+<area shape="rect" title=" " alt="" coords="4518,437,4589,464"/>
+<area shape="rect" title=" " alt="" coords="4235,355,4285,382"/>
+<area shape="rect" title=" " alt="" coords="4151,437,4228,464"/>
+<area shape="rect" title=" " alt="" coords="4407,437,4494,464"/>
+<area shape="rect" title=" " alt="" coords="3878,355,3941,382"/>
+<area shape="rect" href="_entity_8hpp.html" title=" " alt="" coords="4360,355,4488,382"/>
+<area shape="rect" title=" " alt="" coords="4691,437,4815,464"/>
+<area shape="rect" href="_transisthor_8hpp.html" title=" " alt="" coords="3965,355,4160,382"/>
+<area shape="rect" title=" " alt="" coords="4303,437,4383,464"/>
+<area shape="rect" title=" " alt="" coords="3621,266,3707,293"/>
+<area shape="rect" title=" " alt="" coords="3482,266,3545,293"/>
+<area shape="rect" title=" " alt="" coords="4473,266,4620,293"/>
+<area shape="rect" title=" " alt="" coords="4653,266,4712,293"/>
 </map>
 </div>
 </div></div><!-- contents -->

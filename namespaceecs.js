@@ -51,6 +51,8 @@ var namespaceecs =
     [ "NetworkServer", "classecs_1_1_network_server.html", "classecs_1_1_network_server" ],
     [ "NewlyCreated", "classecs_1_1_newly_created.html", "classecs_1_1_newly_created" ],
     [ "Obstacle", "classecs_1_1_obstacle.html", null ],
+    [ "Parallax", "structecs_1_1_parallax.html", "structecs_1_1_parallax" ],
+    [ "ParallaxBackground", "classecs_1_1_parallax_background.html", null ],
     [ "Pattern", "classecs_1_1_pattern.html", "classecs_1_1_pattern" ],
     [ "Player", "classecs_1_1_player.html", null ],
     [ "Position", "classecs_1_1_position.html", "classecs_1_1_position" ],

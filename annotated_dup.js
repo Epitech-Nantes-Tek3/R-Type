@@ -12,6 +12,5 @@ var annotated_dup =
     [ "SendNewlyCreatedToClients", "struct_send_newly_created_to_clients.html", "struct_send_newly_created_to_clients" ],
     [ "SendNewlyCreatedToServer", "struct_send_newly_created_to_server.html", "struct_send_newly_created_to_server" ],
     [ "SendToClient", "struct_send_to_client.html", null ],
-    [ "SendToServer", "struct_send_to_server.html", null ],
-    [ "Temp", "struct_temp.html", "struct_temp" ]
+    [ "SendToServer", "struct_send_to_server.html", null ]
 ];

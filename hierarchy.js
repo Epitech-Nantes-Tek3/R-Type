@@ -43,6 +43,7 @@ var hierarchy =
       [ "ecs::NetworkServer", "classecs_1_1_network_server.html", null ],
       [ "ecs::NewlyCreated", "classecs_1_1_newly_created.html", null ],
       [ "ecs::Obstacle", "classecs_1_1_obstacle.html", null ],
+      [ "ecs::ParallaxBackground", "classecs_1_1_parallax_background.html", null ],
       [ "ecs::Pattern", "classecs_1_1_pattern.html", null ],
       [ "ecs::Player", "classecs_1_1_player.html", null ],
       [ "ecs::Position", "classecs_1_1_position.html", null ],
@@ -89,13 +90,13 @@ var hierarchy =
       [ "ecs::InputManagement", "structecs_1_1_input_management.html", null ],
       [ "ecs::LifeTimeDeath", "structecs_1_1_life_time_death.html", null ],
       [ "ecs::Movement", "structecs_1_1_movement.html", null ],
+      [ "ecs::Parallax", "structecs_1_1_parallax.html", null ],
       [ "ecs::SfRectangleFollowEntitySystem", "structecs_1_1_sf_rectangle_follow_entity_system.html", null ],
       [ "ecs::UpdateClock", "structecs_1_1_update_clock.html", null ],
       [ "SendNewlyCreatedToClients", "struct_send_newly_created_to_clients.html", null ],
       [ "SendNewlyCreatedToServer", "struct_send_newly_created_to_server.html", null ],
       [ "SendToClient", "struct_send_to_client.html", null ],
-      [ "SendToServer", "struct_send_to_server.html", null ],
-      [ "Temp", "struct_temp.html", null ]
+      [ "SendToServer", "struct_send_to_server.html", null ]
     ] ],
     [ "transisthor_lib::Transisthor", "classtransisthor__lib_1_1_transisthor.html", null ],
     [ "ecs::World", "classecs_1_1_world.html", null ]

@@ -111,11 +111,13 @@ $(document).ready(function(){initNavTree('_game_clock_8hpp_source.html',''); ini
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keywordtype">double</span> <a class="code" href="classecs_1_1_game_clock.html#a631dfb91707d62b703f7423fc3ef9ca4">getElapsedTime</a>();</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;      <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        std::chrono::steady_clock::time_point _lastTime;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    };</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;} <span class="comment">// namespace ecs</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !GAMECLOCK_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        std::chrono::steady_clock::time_point _lastResetTime;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="keywordtype">double</span> _lastElapsedTime;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    };</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;} <span class="comment">// namespace ecs</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !GAMECLOCK_HPP_ */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="aclassecs_1_1_game_clock_html_a631dfb91707d62b703f7423fc3ef9ca4"><div class="ttname"><a href="classecs_1_1_game_clock.html#a631dfb91707d62b703f7423fc3ef9ca4">ecs::GameClock::getElapsedTime</a></div><div class="ttdeci">double getElapsedTime()</div><div class="ttdoc">This function do the difference between now and the last time the clock was reset.</div><div class="ttdef"><b>Definition:</b> GameClock.cpp:15</div></div>
@@ -123,7 +125,7 @@ $(document).ready(function(){initNavTree('_game_clock_8hpp_source.html',''); ini
 <div class="ttc" id="aclassecs_1_1_resource_html"><div class="ttname"><a href="classecs_1_1_resource.html">ecs::Resource</a></div><div class="ttdoc">This is the Resource Class for ECS The base Resource type, all Resources must inherit from Resource.</div><div class="ttdef"><b>Definition:</b> Resource.hpp:15</div></div>
 <div class="ttc" id="aclassecs_1_1_game_clock_html"><div class="ttname"><a href="classecs_1_1_game_clock.html">ecs::GameClock</a></div><div class="ttdoc">Shared Resource Clock for the Game.</div><div class="ttdef"><b>Definition:</b> GameClock.hpp:17</div></div>
 <div class="ttc" id="anamespaceecs_html"><div class="ttname"><a href="namespaceecs.html">ecs</a></div><div class="ttdef"><b>Definition:</b> Component.hpp:12</div></div>
-<div class="ttc" id="aclassecs_1_1_game_clock_html_af91c8f685ae69d44166acd7e356758fb"><div class="ttname"><a href="classecs_1_1_game_clock.html#af91c8f685ae69d44166acd7e356758fb">ecs::GameClock::resetClock</a></div><div class="ttdeci">void resetClock()</div><div class="ttdoc">This function reinitialize the clock to the actual time.</div><div class="ttdef"><b>Definition:</b> GameClock.cpp:22</div></div>
+<div class="ttc" id="aclassecs_1_1_game_clock_html_af91c8f685ae69d44166acd7e356758fb"><div class="ttname"><a href="classecs_1_1_game_clock.html#af91c8f685ae69d44166acd7e356758fb">ecs::GameClock::resetClock</a></div><div class="ttdeci">void resetClock()</div><div class="ttdoc">This function reinitialize the clock to the actual time.</div><div class="ttdef"><b>Definition:</b> GameClock.cpp:20</div></div>
 <div class="ttc" id="a_resource_8hpp_html"><div class="ttname"><a href="_resource_8hpp.html">Resource.hpp</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

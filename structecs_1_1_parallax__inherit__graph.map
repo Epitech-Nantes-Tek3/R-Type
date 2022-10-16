@@ -1,0 +1,4 @@
+<map id="ecs::Parallax" name="ecs::Parallax">
+<area shape="rect" id="node1" title="Parallax System. Make a moving background to make an &quot;infinite map&quot;." alt="" coords="5,80,109,107"/>
+<area shape="rect" id="node2" href="$classecs_1_1_system.html" title=" " alt="" coords="7,5,108,32"/>
+</map>

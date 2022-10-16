@@ -138,18 +138,19 @@ $(document).ready(function(){initNavTree('_send_to_server_8hpp_source.html','');
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                C1 &amp;component = entity-&gt;getComponent&lt;C1&gt;();</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                <span class="keywordflow">if</span> (component.modified) {</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                    component.modified = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                    world.<a class="code" href="classecs_1_1_world.html#a2ea940d773ebdb916f49d89c43ba174d">getTransisthorBridge</a>().get()-&gt;transitEcsDataToNetworkData&lt;C1&gt;(</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                        networkId, componentRFCId.find(<span class="keyword">typeid</span>(C1))-&gt;second, component, serverIdList);</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                }</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            }</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        }</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        sendToServer&lt;C2...&gt;(world, networkId, entity, serverIdList);</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    }</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordtype">void</span> runSystem(<a class="code" href="classecs_1_1_world.html">ecs::World</a> &amp;world);</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="classecs_1_1_system.html#ace40d0fa9fb6fb054036b0d96cf94cae">run</a>(<a class="code" href="classecs_1_1_world.html">ecs::World</a> &amp;world) <span class="keyword">override</span> <span class="keyword">final</span> { runSystem(world); }</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;};</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                    component.sendToEveryone = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                    world.<a class="code" href="classecs_1_1_world.html#a2ea940d773ebdb916f49d89c43ba174d">getTransisthorBridge</a>().get()-&gt;transitEcsDataToNetworkData&lt;C1&gt;(</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                        networkId, componentRFCId.find(<span class="keyword">typeid</span>(C1))-&gt;second, component, serverIdList);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                }</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            }</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        }</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        sendToServer&lt;C2...&gt;(world, networkId, entity, serverIdList);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    }</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordtype">void</span> runSystem(<a class="code" href="classecs_1_1_world.html">ecs::World</a> &amp;world);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="classecs_1_1_system.html#ace40d0fa9fb6fb054036b0d96cf94cae">run</a>(<a class="code" href="classecs_1_1_world.html">ecs::World</a> &amp;world) <span class="keyword">override</span> <span class="keyword">final</span> { runSystem(world); }</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;};</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="a_invisible_component_8hpp_html"><div class="ttname"><a href="_invisible_component_8hpp.html">InvisibleComponent.hpp</a></div></div>

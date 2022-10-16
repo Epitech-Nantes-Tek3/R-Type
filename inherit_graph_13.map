@@ -10,11 +10,11 @@
 <area shape="rect" id="node9" href="$structecs_1_1_input_management.html" title="This system class manage SFML input to link them to an action." alt="" coords="175,360,345,387"/>
 <area shape="rect" id="node10" href="$structecs_1_1_life_time_death.html" title="This is the LifeTimeDeath System. This System takes all entities that have a LifeTime Component with ..." alt="" coords="186,411,334,437"/>
 <area shape="rect" id="node11" href="$structecs_1_1_movement.html" title="This is the Movement system. This system can move any entities which contains a Position and a Veloci..." alt="" coords="199,461,321,488"/>
-<area shape="rect" id="node12" href="$structecs_1_1_sf_rectangle_follow_entity_system.html" title="This system class manage SFML Rectangle Shape to modify it&#39;s SfRectangleSahpePosition with the Positi..." alt="" coords="155,513,365,554"/>
-<area shape="rect" id="node13" href="$structecs_1_1_update_clock.html" title="UpdateClock System. Will be used to call the GameClock&#39;s reset." alt="" coords="193,579,327,605"/>
-<area shape="rect" id="node14" href="$struct_send_newly_created_to_clients.html" title=" " alt="" coords="157,629,363,656"/>
-<area shape="rect" id="node15" href="$struct_send_newly_created_to_server.html" title=" " alt="" coords="159,680,361,707"/>
-<area shape="rect" id="node16" href="$struct_send_to_client.html" title="SendToClient is a system that sends Networkable Entities datas to clients" alt="" coords="207,731,313,757"/>
-<area shape="rect" id="node17" href="$struct_send_to_server.html" title=" " alt="" coords="205,781,315,808"/>
-<area shape="rect" id="node18" href="$struct_temp.html" title="A useless system used for functional testing purpose." alt="" coords="231,832,289,859"/>
+<area shape="rect" id="node12" href="$structecs_1_1_parallax.html" title="Parallax System. Make a moving background to make an &quot;infinite map&quot;." alt="" coords="208,512,312,539"/>
+<area shape="rect" id="node13" href="$structecs_1_1_sf_rectangle_follow_entity_system.html" title="This system class manage SFML Rectangle Shape to modify it&#39;s SfRectangleSahpePosition with the Positi..." alt="" coords="155,563,365,605"/>
+<area shape="rect" id="node14" href="$structecs_1_1_update_clock.html" title="UpdateClock System. Will be used to call the GameClock&#39;s reset." alt="" coords="193,629,327,656"/>
+<area shape="rect" id="node15" href="$struct_send_newly_created_to_clients.html" title=" " alt="" coords="157,680,363,707"/>
+<area shape="rect" id="node16" href="$struct_send_newly_created_to_server.html" title=" " alt="" coords="159,731,361,757"/>
+<area shape="rect" id="node17" href="$struct_send_to_client.html" title="SendToClient is a system that sends Networkable Entities datas to clients" alt="" coords="207,781,313,808"/>
+<area shape="rect" id="node18" href="$struct_send_to_server.html" title=" " alt="" coords="205,832,315,859"/>
 </map>
