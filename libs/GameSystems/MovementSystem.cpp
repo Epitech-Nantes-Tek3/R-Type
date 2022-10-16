@@ -24,7 +24,7 @@ void Movement::run(World &world)
         double elapsedTimeInSeconds = clock.getElapsedTime();
         Position &pos = entityPtr.get()->getComponent<Position>();
         Velocity &vel = entityPtr.get()->getComponent<Velocity>();
-    
+
         if (vel.multiplierAbscissa == 0 && vel.multiplierOrdinate == 0)
             return;
         if (entityPtr->contains<Player>() == true) {
