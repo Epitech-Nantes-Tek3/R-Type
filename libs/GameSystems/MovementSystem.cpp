@@ -38,24 +38,6 @@ void Movement::run(World &world)
             if ((pos.y >= 1072 && vel.multiplierOrdinate > 0))
                 return;
         }
-        // Don't remove, it's for check if enemy arrived to the window border
-        // if (entityPtr->contains<Enemy>() == true) {
-        //     if ((pos.x <= 4 && vel.multiplierAbscissa < 0))
-        //         change_dest_enemy++;
-        //     if ((pos.x >= 1912 && vel.multiplierAbscissa > 0))
-        //         change_dest_enemy++;
-        //     if ((pos.y <= 4 && vel.multiplierOrdinate < 0))
-        //         change_dest_enemy++;
-        //     if ((pos.y >= 1072 && vel.multiplierOrdinate > 0))
-        //         change_dest_enemy++;
-        //     if (change_dest_enemy > 0) {
-        //         entityPtr->getComponent<Destination>().x = pos.x;
-        //         entityPtr->getComponent<Destination>().y = pos.y;
-        //     }
-
-        //}
-        // pos.modified = true;
-
         pos.x += (vel.multiplierAbscissa * (((double((int)(elapsedTimeInSeconds * 100000000)))) / 100000000));
         pos.y += (vel.multiplierOrdinate * (((double((int)(elapsedTimeInSeconds * 100000000)))) / 100000000));
     };
