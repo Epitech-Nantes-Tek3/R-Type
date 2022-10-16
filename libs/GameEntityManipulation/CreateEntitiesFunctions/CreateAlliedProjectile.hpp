@@ -20,9 +20,9 @@
 #include "GameComponents/VelocityComponent.hpp"
 #include "GameComponents/WeightComponent.hpp"
 #include "GameSharedResources/Random.hpp"
+#include "SFMLComponents/LayerLvL.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "World/World.hpp"
-#include "SFMLComponents/LayerLvL.hpp"
 
 namespace ecs
 {
@@ -40,10 +40,10 @@ namespace ecs
         Velocity velocity = ally.getComponent<Velocity>();
 
         Entity &entity = world.addEntity()
-                             .addComponent<Position>(pos.x, pos.y)
+                             .addComponent<Position>(pos.x + 34, pos.y + 12)
                              .addComponent<Velocity>(10, 0)
                              .addComponent<Weight>(1)
-                             .addComponent<Size>(2, 1)
+                             .addComponent<Size>(20, 20)
                              .addComponent<LifeTime>(100)
                              .addComponent<Life>(10)
                              .addComponent<Damage>(damage)

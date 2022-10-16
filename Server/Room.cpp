@@ -147,7 +147,7 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
                 entityPtr->getComponent<Damage>().damagePoint, entityPtr->getComponent<DamageRadius>().radius, true, "",
                 {connexionDemand.message.clientInfo.getId()});
             std::this_thread::sleep_for(std::chrono::duration<int, std::milli>(500));
-            // entityPtr->removeComponent<NewlyCreated>(); WILL BE FIXED THIS NIGHT
+            entityPtr->getComponent<NewlyCreated>().sended = true;
         }
     }
     for (std::shared_ptr<Entity> entityPtr : enemies) {
