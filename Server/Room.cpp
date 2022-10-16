@@ -78,7 +78,7 @@ void Room::initEcsGameData(void)
     _worldInstance->addSystem<SendNewlyCreatedToClients>();
     _worldInstance->addSystem<Movement>();
     _worldInstance->addSystem<UpdateClock>();
-    _worldInstance->addSystem<EnemiesGoRandom>();
+    //_worldInstance->addSystem<EnemiesGoRandom>();
     _worldInstance->addSystem<EnemyShootSystem>();
 }
 
