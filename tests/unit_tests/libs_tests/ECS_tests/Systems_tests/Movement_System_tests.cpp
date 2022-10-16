@@ -12,6 +12,7 @@
 #include "GameComponents/PositionComponent.hpp"
 #include "GameComponents/SizeComponent.hpp"
 #include "GameSystems/MovementSystem.hpp"
+#include "GameSystems/UpdateClockSystem.hpp"
 #include "GameComponents/VelocityComponent.hpp"
 #include "GameSharedResources/GameClock.hpp"
 #include "World/World.hpp"
@@ -25,6 +26,7 @@ Test(Movement_System, moove_a_position)
     std::size_t id = world.addEntity().addComponent<Position>(10, 10).addComponent<Velocity>(1, 1).getId();
 
     world.addSystem<Movement>();
+    world.addSystem<UpdateClock>();
     world.addResource<GameClock>();
 
     Position pos1 = world.getEntity(id).getComponent<Position>();

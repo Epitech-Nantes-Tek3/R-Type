@@ -13,6 +13,7 @@
 #include "GameSharedResources/GameClock.hpp"
 #include "GameSharedResources/Random.hpp"
 #include "GameSystems/EnemyShootSystem.hpp"
+#include "GameSystems/UpdateClockSystem.hpp"
 #include "Transisthor/TransisthorECSLogic/Server/Resources/NetworkableIdGenerator.hpp"
 #include "World/World.hpp"
 
@@ -26,6 +27,7 @@ Test(EnemyShootSystem, shoot_one)
     world.addResource<GameClock>();
     world.addResource<NetworkableIdGenerator>();
     world.addSystem<EnemyShootSystem>();
+    world.addSystem<UpdateClock>();
 
     createNewEnemy(world, 1400, 540, 0, 0, 5, 100, 10, 5, 10, 10, "", 15);
 

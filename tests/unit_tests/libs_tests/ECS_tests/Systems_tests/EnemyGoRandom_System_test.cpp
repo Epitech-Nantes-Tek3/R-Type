@@ -13,6 +13,7 @@
 #include "GameSharedResources/GameClock.hpp"
 #include "GameSharedResources/Random.hpp"
 #include "GameSystems/EnemiesGoRandom.hpp"
+#include "GameSystems/UpdateClockSystem.hpp"
 #include "GameSystems/MovementSystem.hpp"
 #include "World/World.hpp"
 
@@ -25,6 +26,7 @@ Test(EnemyGoRandom_System, move_randomly)
     world.addResource<RandomDevice>();
     world.addResource<GameClock>();
     world.addSystem<EnemiesGoRandom>();
+    world.addSystem<UpdateClock>();
 
     std::size_t id = createNewEnemy(world, 1400, 540, 0, 0, 5, 100, 10, 5, 10, 10, "", 15);
     Position &pos = world.getEntity(id).getComponent<Position>();

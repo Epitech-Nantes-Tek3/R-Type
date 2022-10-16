@@ -44,7 +44,7 @@ namespace ecs
                              .addComponent<Position>(posX, posY)
                              .addComponent<Weight>(1)
                              .addComponent<Size>(2, 1)
-                             .addComponent<LifeTime>(100.0)
+                             .addComponent<LifeTime>(4.0)
                              .addComponent<Life>(10)
                              .addComponent<Damage>(damage)
                              .addComponent<DamageRadius>(5)

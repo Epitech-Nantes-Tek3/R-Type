@@ -19,7 +19,7 @@ Test(GameClock, reset_clock_test)
     GameClock &clock = world.getResource<GameClock>();
     std::this_thread::sleep_for(std::chrono::duration<int>(1));
     clock.resetClock();
-    cr_assert_eq(clock.getElapsedTime() < 1.0, true);
+    cr_assert_eq(clock.getElapsedTime() < 1.1, true);
 }
 
 Test(GameClock, elapsedTime_test)
@@ -29,6 +29,7 @@ Test(GameClock, elapsedTime_test)
     world.addResource<GameClock>();
     GameClock &clock = world.getResource<GameClock>();
     std::this_thread::sleep_for(std::chrono::duration<int>(7));
+    clock.resetClock();
     cr_assert_eq(clock.getElapsedTime() < 8.0, true);
     cr_assert_eq(6.0 < clock.getElapsedTime(), true);
 }
