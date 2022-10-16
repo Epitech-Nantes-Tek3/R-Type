@@ -13,9 +13,9 @@
 #include "GameSharedResources/Random.hpp"
 
 #define MINIMUM_WIDTH  1400
-#define MAXIMUM_WIDTH  1700
-#define MINIMUM_HEIGTH 0
-#define MAXIMUM_HEIGTH 800
+#define MAXIMUM_WIDTH  1500
+#define MINIMUM_HEIGTH 200
+#define MAXIMUM_HEIGTH 600
 
 using namespace ecs;
 
@@ -46,7 +46,6 @@ void EnemiesGoRandom::run(World &world)
                 /// That's some random values, just to make every enemy goes at a different speed
                 value = world.getResource<RandomDevice>().randInt(1, 5);
             } while (newVelX % value != 0 && newVelY % value != 0);
-
             vel.multiplierAbscissa = (newVelX / value);
             vel.multiplierOrdinate = (newVelY / value);
         }
