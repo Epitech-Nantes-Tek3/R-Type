@@ -24,6 +24,10 @@
 #include "GameSystems/EnemyShootSystem.hpp"
 #include "GameSystems/MovementSystem.hpp"
 #include "GameSystems/UpdateClockSystem.hpp"
+#include "GameSystems/DeathLifeSystem.hpp"
+#include "GameSystems/DeathSystem.hpp"
+#include "GameSystems/LifeTimeDeathSystem.hpp"
+#include "GameSystems/CollidableSystem.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Resources/SendingFrequency.hpp"
 #include "Transisthor/TransisthorECSLogic/Server/Components/NetworkClient.hpp"
@@ -74,6 +78,10 @@ void Room::initEcsGameData(void)
     _worldInstance->addSystem<Movement>();
     _worldInstance->addSystem<EnemiesGoRandom>();
     _worldInstance->addSystem<EnemyShootSystem>();
+    _worldInstance->addSystem<Collide>();
+    _worldInstance->addSystem<DeathLife>();
+    _worldInstance->addSystem<DeathSystem>();
+    _worldInstance->addSystem<LifeTimeDeath>();
 }
 
 void Room::startConnexionProtocol(void) { _communicatorInstance.get()->startReceiverListening(); }
