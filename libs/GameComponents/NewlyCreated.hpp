@@ -24,11 +24,14 @@ namespace ecs
         /// @brief It says if the entity has been created in the server (false) or in the client (true)
         bool isClientInstance;
 
+        /// @brief It says if the entity have been sended
+        bool sended;
+
         /// @brief Construct a new NewlyCreated object
         /// @param newUuid The UUID
         /// @param inClient Must be true if it's in the Client instance. False otherwise.
         inline NewlyCreated(std::string newUuid = "", bool inClient = false)
-            : uuid(newUuid), isClientInstance(inClient){};
+            : uuid(newUuid), isClientInstance(inClient), sended(false){};
 
         ///@brief Destroy the NewlyCreated object
         ///
