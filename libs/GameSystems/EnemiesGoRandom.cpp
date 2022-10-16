@@ -36,10 +36,7 @@ void EnemiesGoRandom::run(World &world)
             std::cerr << "Vel set : " << vel.multiplierAbscissa << " " << vel.multiplierOrdinate << std::endl;
             return;
         }
-        std::cerr << pos.x << " " << pos.y << " -> " << dest.x << " " << dest.y << std::endl;
-        //std::cerr << "Actual Vel : " << vel.multiplierAbscissa << " " << vel.multiplierOrdinate << std::endl;
         if (pos.x >= dest.x - 50 && pos.x <= dest.x + 50 && pos.y >= dest.y - 50 && pos.y <= dest.y + 50) {
-            //std::cerr << "Changed" << std::endl;
             double newVelX = 0;
             double newVelY = 0;
 
@@ -47,11 +44,6 @@ void EnemiesGoRandom::run(World &world)
             dest.y = world.getResource<RandomDevice>().randInt(MINIMUM_HEIGTH, MAXIMUM_HEIGTH);
             newVelX = dest.x - (int)pos.x;
             newVelY = dest.y - (int)pos.y;
-            // do {
-            /// That's some random values, just to make every enemy goes at a different speed
-            // value = world.getResource<RandomDevice>().randInt(1, 5);
-            //} while (newVelX % value != 0 && newVelY % value != 0);
-
             vel.multiplierAbscissa = (newVelX);
             vel.multiplierOrdinate = (newVelY);
             vel.modified = true;

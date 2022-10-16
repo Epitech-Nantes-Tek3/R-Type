@@ -40,12 +40,12 @@ namespace ecs
         Velocity velocity = ally.getComponent<Velocity>();
 
         Entity &entity = world.addEntity()
-                             .addComponent<Position>(pos.x + 34, pos.y + 12)
-                             .addComponent<Velocity>(10, 0)
+                             .addComponent<Position>(pos.x + 102, pos.y + 45)
+                             .addComponent<Velocity>(300, 0)
                              .addComponent<Weight>(1)
-                             .addComponent<Size>(20, 20)
+                             .addComponent<Size>(40, 40)
                              .addComponent<LifeTime>(100)
-                             .addComponent<Life>(10)
+                             .addComponent<Life>(1)
                              .addComponent<Damage>(damage)
                              .addComponent<DamageRadius>(5)
                              .addComponent<Collidable>()
