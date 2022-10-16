@@ -78,10 +78,10 @@ void Room::initEcsGameData(void)
     _worldInstance->addSystem<Movement>();
     _worldInstance->addSystem<EnemiesGoRandom>();
     _worldInstance->addSystem<EnemyShootSystem>();
-    _worldInstance->addSystem<Collide>();
-    _worldInstance->addSystem<DeathLife>();
-    _worldInstance->addSystem<DeathSystem>();
-    _worldInstance->addSystem<LifeTimeDeath>();
+    //_worldInstance->addSystem<Collide>();
+    //_worldInstance->addSystem<DeathLife>();
+    //_worldInstance->addSystem<DeathSystem>();
+    //_worldInstance->addSystem<LifeTimeDeath>();
 }
 
 void Room::startConnexionProtocol(void) { _communicatorInstance.get()->startReceiverListening(); }
