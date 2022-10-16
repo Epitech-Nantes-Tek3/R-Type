@@ -83,18 +83,22 @@ void Receiver::startListening(void)
 void Receiver::handleReceive(const boost::system::error_code &error, size_t bytesTransferred)
 {
     std::vector<unsigned short> dataHeader;
+    void *temp = std::malloc(bytesTransferred);
 
+    if (temp == nullptr)
+        throw std::logic_error("Malloc failed.");
+    std::memcpy(temp, _tempData.data(), bytesTransferred);
     if (error) {
         std::cerr << "Receive failed: " << error.message() << std::endl;
         wait();
         return;
     }
     std::cerr << "Receiving data. " << bytesTransferred << "bytes used." << std::endl;
-    dataHeader = getDataHeader(_tempData.data());
+    dataHeader = getDataHeader(temp);
     if (_dataTraitment.find(dataHeader[1]) == _dataTraitment.end())
         return;
     _dataTraitment[dataHeader[1]](
-        {Client(_tempRemoteEndpoint.address().to_string(), dataHeader[0]), _tempData.data(), bytesTransferred, 0});
+        {Client(_tempRemoteEndpoint.address().to_string(), dataHeader[0]), temp, bytesTransferred, 0});
     wait();
 }
 

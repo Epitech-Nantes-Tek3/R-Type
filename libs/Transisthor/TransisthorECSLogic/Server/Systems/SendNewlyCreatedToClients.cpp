@@ -44,9 +44,20 @@ void SendNewlyCreatedToClients::runSystem(ecs::World &world)
         if (newlyCreated.isClientInstance || newlyCreated.sended == true)
             return;
         if (entityPtr->contains<ecs::AlliedProjectile>()) {
+            std::cerr << entityPtr->getComponent<AlliedProjectile>().parentNetworkId << std::endl;
             world.getTransisthorBridge()->transitEcsDataToNetworkDataEntityAlliedProjectile(
                 entityPtr->getComponent<Networkable>().id, entityPtr->getComponent<AlliedProjectile>().parentNetworkId,
-                newlyCreated.uuid, clientIdList);
+                newlyCreated.uuid, {world.getEntity(entityPtr->getComponent<AlliedProjectile>().parentNetworkId).getComponent<ecs::NetworkClient>().id});
+            std::vector<unsigned short> clientIdListWithoutParent;
+            for (auto i : clientIdList) {
+                if (i != world.getEntity(entityPtr->getComponent<AlliedProjectile>().parentNetworkId).getComponent<ecs::NetworkClient>().id) {
+                    clientIdListWithoutParent.emplace_back(i);
+                }
+            }
+            if (!clientIdListWithoutParent.empty())
+                world.getTransisthorBridge()->transitEcsDataToNetworkDataEntityAlliedProjectile(
+                    entityPtr->getComponent<Networkable>().id,
+                    entityPtr->getComponent<AlliedProjectile>().parentNetworkId, "", clientIdListWithoutParent);
         }
         if (entityPtr->contains<ecs::Enemy>()) {
             Position &pos = entityPtr->getComponent<Position>();

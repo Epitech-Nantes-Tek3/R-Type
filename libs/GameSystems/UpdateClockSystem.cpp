@@ -7,6 +7,7 @@
 
 #include "UpdateClockSystem.hpp"
 #include "GameSharedResources/GameClock.hpp"
+#include <chrono>
 
 using namespace ecs;
 

@@ -23,7 +23,7 @@ namespace ecs
             std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<LifeTime>();
 
             auto deathLifeTime = [](std::shared_ptr<ecs::Entity> entityPtr) {
-                if (entityPtr.get()->getComponent<LifeTime>().timeLeft <= std::chrono::duration<double>(0.0))
+                if (entityPtr.get()->getComponent<LifeTime>().timeLeft <= std::chrono::duration<double>(0.0) && !entityPtr.get()->contains<Death>())
                     entityPtr.get()->addComponent<Death>();
             };
             std::for_each(joined.begin(), joined.end(), deathLifeTime);

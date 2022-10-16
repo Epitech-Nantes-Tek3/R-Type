@@ -11,6 +11,7 @@
 #include "GameComponents/DeathComponent.hpp"
 #include "GameComponents/LifeTimeComponent.hpp"
 #include "World/World.hpp"
+#include "GameSharedResources/GameClock.hpp"
 
 namespace ecs
 {
@@ -21,9 +22,9 @@ namespace ecs
         {
             std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<LifeTime>();
 
-            auto decreaseLifeTime = [](std::shared_ptr<ecs::Entity> entityPtr) {
+            auto decreaseLifeTime = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
                 entityPtr.get()->getComponent<LifeTime>() =
-                    entityPtr.get()->getComponent<LifeTime>().timeLeft - std::chrono::duration<double>(1);
+                    entityPtr.get()->getComponent<LifeTime>().timeLeft - std::chrono::duration<double>(world.getResource<GameClock>().getElapsedTime());
             };
             std::for_each(joined.begin(), joined.end(), decreaseLifeTime);
         }

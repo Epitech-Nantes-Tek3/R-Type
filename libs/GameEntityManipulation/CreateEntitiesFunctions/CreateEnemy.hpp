@@ -57,7 +57,6 @@ namespace ecs
                              .addComponent<Position>(posX, posY)
                              .addComponent<Weight>(weight)
                              .addComponent<Size>(sizeX, sizeY)
-                             .addComponent<LifeTime>()
                              .addComponent<Life>(life)
                              .addComponent<Damage>(damage)
                              .addComponent<DamageRadius>(damageRadius)
@@ -69,7 +68,7 @@ namespace ecs
             // Case : Creation in a server instance
             entity.addComponent<NewlyCreated>(uuid, false);
             entity.addComponent<Networkable>(networkId);
-            entity.addComponent<ShootingFrequency>(2);
+            entity.addComponent<ShootingFrequency>(1.3);
             entity.addComponent<Destination>(world.getResource<RandomDevice>().randInt(MINIMUM_WIDTH, MAXIMUM_WIDTH),
                 world.getResource<RandomDevice>().randInt(MINIMUM_HEIGTH, MAXIMUM_HEIGTH));
         } else {

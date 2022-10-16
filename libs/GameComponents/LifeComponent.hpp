@@ -21,9 +21,12 @@ namespace ecs
         /// @brief The network status of the component. True if it has been modified since it was last sent.
         bool modified;
 
+        /// @brief If the server need to resend it to everyone
+        bool sendToEveryone;
+
         /// @brief Constructor of the Life Component
         /// @param newLifePoint the life given to the entity
-        Life(unsigned short newLifePoint = 0) : lifePoint(newLifePoint), modified(false){};
+        Life(unsigned short newLifePoint = 0) : lifePoint(newLifePoint), modified(false), sendToEveryone(false){};
         /// @brief Default Destructor
         ~Life() = default;
     };

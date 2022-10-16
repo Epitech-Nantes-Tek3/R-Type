@@ -22,11 +22,13 @@ namespace ecs
         double y;
         /// @brief The network status of the component. True if it has been modified since it was last sent.
         bool modified;
+        /// @brief If the server need to resend it to everyone
+        bool sendToEveryone;
 
         /// @brief Constructor of the Position component
         /// @param X the abscissa
         /// @param Y the ordinate
-        Position(const int &X = 0, const int &Y = 0) : x(X), y(Y), modified(false){};
+        Position(const int &X = 0, const int &Y = 0) : x(X), y(Y), modified(false), sendToEveryone(false){};
         /// @brief Default Destructor
         ~Position() = default;
     };
