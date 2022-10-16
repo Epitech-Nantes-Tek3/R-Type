@@ -92,6 +92,7 @@ void ClientRoom::protocol12Answer(CommunicatorMessage connexionResponse)
     _state = ClientState::IN_GAME;
     _worldInstance.get()->addEntity().addComponent<NetworkServer>(connexionResponse.message.clientInfo.getId());
     _worldInstance.get()->getResource<GameClock>().resetClock();
+    _worldInstance.get()->getResource<GameClock>().resetClock();
 }
 
 void ClientRoom::startLobbyLoop(void)

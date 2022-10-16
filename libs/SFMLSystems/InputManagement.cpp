@@ -110,6 +110,8 @@ void InputManagement::movePlayerX(World &world, float move)
         return;
     auto moveX = [moveD](std::shared_ptr<ecs::Entity> entityPtr) {
         entityPtr->getComponent<Velocity>().multiplierAbscissa = moveD;
+        entityPtr->getComponent<Velocity>().modified = true;
+        entityPtr->getComponent<Position>().modified = true;
     };
     std::for_each(player.begin(), player.end(), moveX);
 }
@@ -123,6 +125,8 @@ void InputManagement::movePlayerY(World &world, float move)
         return;
     auto moveY = [moveD](std::shared_ptr<ecs::Entity> entityPtr) {
         entityPtr->getComponent<Velocity>().multiplierOrdinate = moveD;
+        entityPtr->getComponent<Velocity>().modified = true;
+        entityPtr->getComponent<Position>().modified = true;
     };
     std::for_each(player.begin(), player.end(), moveY);
 }
