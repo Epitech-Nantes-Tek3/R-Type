@@ -22,12 +22,14 @@ namespace ecs
         double multiplierOrdinate;
         /// @brief The network status of the component. True if it has been modified since it was last sent.
         bool modified;
+        /// @brief If the server need to resend it to everyone
+        bool sendToEveryone;
 
         /// @brief Constructor of the Velocity Component
         /// @param newMultiplierX the movement's multiplier of abscissa
         /// @param newMultiplierY the movement's multiplier of ordinate
         Velocity(double newMultiplierX = 0, double newMultiplierY = 0)
-            : multiplierAbscissa(newMultiplierX), multiplierOrdinate(newMultiplierY), modified(false){};
+            : multiplierAbscissa(newMultiplierX), multiplierOrdinate(newMultiplierY), modified(false), sendToEveryone(false){};
         /// @brief Default Destructor
         ~Velocity() = default;
     };

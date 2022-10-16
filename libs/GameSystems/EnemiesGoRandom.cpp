@@ -33,7 +33,6 @@ void EnemiesGoRandom::run(World &world)
             vel.multiplierOrdinate = dest.y - (int)pos.y;
             vel.modified = true;
             pos.modified = true;
-            std::cerr << "Vel set : " << vel.multiplierAbscissa << " " << vel.multiplierOrdinate << std::endl;
             return;
         }
         if (pos.x >= dest.x - 50 && pos.x <= dest.x + 50 && pos.y >= dest.y - 50 && pos.y <= dest.y + 50) {
