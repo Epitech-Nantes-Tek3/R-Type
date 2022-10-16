@@ -9,6 +9,8 @@ set(SRC
     ${INC_SFML_SYSTEM_ROOT}/DrawComponents.hpp
     ${INC_SFML_SYSTEM_ROOT}/SfRectangleFollowEntitySystem.cpp
     ${INC_SFML_SYSTEM_ROOT}/SfRectangleFollowEntitySystem.hpp
+    ${INC_SFML_SYSTEM_ROOT}/ParallaxSystem.cpp
+    ${INC_SFML_SYSTEM_ROOT}/ParallaxSystem.hpp
 )
 
 add_library(${TARGET} SHARED ${SRC})

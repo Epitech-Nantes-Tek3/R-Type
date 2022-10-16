@@ -36,6 +36,7 @@
 #include "MouseInputComponent.hpp"
 #include "RenderWindowResource.hpp"
 #include "SFMLComponents/TextureName.hpp"
+#include "SFMLComponents/ParallaxComponent.hpp"
 #include "SFMLResource/GraphicsTextureResource.hpp"
 #include "SFMLSystems/SfRectangleFollowEntitySystem.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
@@ -153,12 +154,21 @@ void ClientRoom::_initSystems()
     _worldInstance->addSystem<SendNewlyCreatedToServer>();
     _worldInstance->addSystem<SfRectangleFollowEntitySystem>();
     _worldInstance->addSystem<UpdateClock>();
-    // _worldInstance->addSystem<Movement>();
+    //_worldInstance->addSystem<Movement>();
 }
 
 void ClientRoom::_initBackgroundEntities()
 {
     _worldInstance->addEntity()
+        .addComponent<ParallaxBackground>()
+        .addComponent<GraphicsRectangleComponent>(0, 0, 1920, 1080)
+        .addComponent<Position>(1920, 0)
+        .addComponent<Velocity>(30, 30)
+        .addComponent<LayerLvL>(LayerLvL::layer_e::DECORATION)
+        .addComponent<TextureName>(GraphicsTextureResource::BACKGROUND_LAYER_1);
+
+    _worldInstance->addEntity()
+        .addComponent<ParallaxBackground>()
         .addComponent<GraphicsRectangleComponent>(0, 0, 1920, 1080)
         .addComponent<Position>(0, 0)
         .addComponent<Velocity>(30, 30)
@@ -166,6 +176,15 @@ void ClientRoom::_initBackgroundEntities()
         .addComponent<TextureName>(GraphicsTextureResource::BACKGROUND_LAYER_1);
 
     _worldInstance->addEntity()
+        .addComponent<ParallaxBackground>()
+        .addComponent<GraphicsRectangleComponent>(0, 0, 1920, 1080)
+        .addComponent<Position>(1920, 0)
+        .addComponent<Velocity>(60, 60)
+        .addComponent<LayerLvL>(LayerLvL::layer_e::MIDDLE)
+        .addComponent<TextureName>(GraphicsTextureResource::BACKGROUND_LAYER_2);
+
+    _worldInstance->addEntity()
+        .addComponent<ParallaxBackground>()
         .addComponent<GraphicsRectangleComponent>(0, 0, 1920, 1080)
         .addComponent<Position>(0, 0)
         .addComponent<Velocity>(60, 60)
@@ -173,6 +192,15 @@ void ClientRoom::_initBackgroundEntities()
         .addComponent<TextureName>(GraphicsTextureResource::BACKGROUND_LAYER_2);
 
     _worldInstance->addEntity()
+        .addComponent<ParallaxBackground>()
+        .addComponent<GraphicsRectangleComponent>(0, 0, 1920, 1080)
+        .addComponent<Position>(1920, 0)
+        .addComponent<Velocity>(100, 100)
+        .addComponent<LayerLvL>(LayerLvL::layer_e::BACKGROUND)
+        .addComponent<TextureName>(GraphicsTextureResource::BACKGROUND_LAYER_3);
+
+    _worldInstance->addEntity()
+        .addComponent<ParallaxBackground>()
         .addComponent<GraphicsRectangleComponent>(0, 0, 1920, 1080)
         .addComponent<Position>(0, 0)
         .addComponent<Velocity>(100, 100)
