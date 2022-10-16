@@ -112,6 +112,12 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
         _worldInstance.get()
             ->getResource<NetworkableIdGenerator>()
             .generateNewNetworkableId());
+    std::vector<std::shared_ptr<ecs::Entity>> clients = _worldInstance.get()->joinEntities<ecs::NetworkClient>();
+    std::vector<unsigned short> clientIdList;
+    auto addToClientList = [&clientIdList](std::shared_ptr<ecs::Entity> entityPtr) {
+        clientIdList.emplace_back(entityPtr.get()->getComponent<ecs::NetworkClient>().id);
+    };
+    std::for_each(clients.begin(), clients.end(), addToClientList);
     _worldInstance.get()->getEntity(playerId).addComponent<NetworkClient>(connexionDemand.message.clientInfo.getId());
     std::vector<std::shared_ptr<Entity>> alliedProjectiles =
         _worldInstance.get()->joinEntities<Networkable, AlliedProjectile>();
@@ -139,6 +145,11 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
                 entityPtr->getComponent<Weight>().weight, size.x, size.y, entityPtr->getComponent<Life>().lifePoint,
                 entityPtr->getComponent<Damage>().damagePoint, entityPtr->getComponent<DamageRadius>().radius, true, "",
                 {connexionDemand.message.clientInfo.getId()});
+            _worldInstance.get()->getTransisthorBridge()->transitEcsDataToNetworkDataEntityPlayer(
+                entityPtr->getComponent<Networkable>().id, pos.x, pos.y, vel.multiplierAbscissa, vel.multiplierOrdinate,
+                entityPtr->getComponent<Weight>().weight, size.x, size.y, entityPtr->getComponent<Life>().lifePoint,
+                entityPtr->getComponent<Damage>().damagePoint, entityPtr->getComponent<DamageRadius>().radius, false,
+                "", clientIdList);
             entityPtr->getComponent<NewlyCreated>().sended = true;
         }
     }
