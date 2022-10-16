@@ -39,6 +39,7 @@
 #include "SFMLComponents/ParallaxComponent.hpp"
 #include "SFMLResource/GraphicsTextureResource.hpp"
 #include "SFMLSystems/SfRectangleFollowEntitySystem.hpp"
+#include "SFMLSystems/ParallaxSystem.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Components/NetworkServer.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Systems/SendNewlyCreatedToServer.hpp"
@@ -154,7 +155,8 @@ void ClientRoom::_initSystems()
     _worldInstance->addSystem<SendNewlyCreatedToServer>();
     _worldInstance->addSystem<SfRectangleFollowEntitySystem>();
     _worldInstance->addSystem<UpdateClock>();
-    //_worldInstance->addSystem<Movement>();
+    _worldInstance->addSystem<Parallax>();
+    _worldInstance->addSystem<Movement>();
 }
 
 void ClientRoom::_initBackgroundEntities()
