@@ -25,7 +25,7 @@ namespace ecs
 
             auto death = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
                 if (entityPtr->contains<Enemy>() == true)
-                    createNewEnemyRandom(world, 1, 1, 1, 4, 4, 100, 10, 5, "",
+                    createNewEnemyRandom(world, 0, 0, 1, 4, 4, 100, 10, 5, "",
                         world.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
                 world.removeEntity(entityPtr->getId());
             };
