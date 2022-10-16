@@ -19,8 +19,11 @@ namespace ecs
         /// @brief The network status of the component. True if it has been modified since it was last sent.
         bool modified;
 
+        /// @brief If the server need to resend it to everyone
+        bool sendToEveryone;
+
         ///@brief Construct a new Invinsible object
-        Invinsible() : modified(false){};
+        Invinsible() : modified(false), sendToEveryone(false){};
         ///@brief Destroy the Invinsible object
         ~Invinsible() = default;
     };

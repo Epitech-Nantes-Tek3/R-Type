@@ -21,9 +21,12 @@ namespace ecs
         /// @brief The network status of the component. True if it has been modified since it was last sent.
         bool modified;
 
+        /// @brief If the server need to resend it to everyone
+        bool sendToEveryone;
+
         /// @brief Constructor of the Equipment
         /// @param EquipId the id of the equipment (defined in the corresponding system)
-        Equipment(unsigned short EquipId = 0) : typeId(EquipId), modified(false){};
+        Equipment(unsigned short EquipId = 0) : typeId(EquipId), modified(false), sendToEveryone(false){};
         /// @brief Default Constructor
         ~Equipment() = default;
     };
