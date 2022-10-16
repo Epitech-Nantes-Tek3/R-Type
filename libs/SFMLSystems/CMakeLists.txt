@@ -19,10 +19,12 @@ target_include_directories(${TARGET}
     PUBLIC ${INC_SFML_SYSTEM_ROOT}
     PRIVATE ${PROJECT_NAME}_ecs
     INTERFACE ${PROJECT_NAME}_SFMLResource
+    PRIVATE ${PROJECT_NAME}_gameSharedResources
 )
 
 target_link_libraries(${TARGET}
     ${PROJECT_NAME}_ecs
     ${PROJECT_NAME}_SFMLResource
     ${PROJECT_NAME}_SFMLComponents
+    ${PROJECT_NAME}_gameSharedResources
 )
