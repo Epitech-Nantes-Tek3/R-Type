@@ -24,7 +24,6 @@ void Movement::run(World &world)
         double elapsedTimeInSeconds = clock.getElapsedTime();
         Position &pos = entityPtr.get()->getComponent<Position>();
         Velocity &vel = entityPtr.get()->getComponent<Velocity>();
-        //int change_dest_enemy = 0;
     
         if (vel.multiplierAbscissa == 0 && vel.multiplierOrdinate == 0)
             return;
