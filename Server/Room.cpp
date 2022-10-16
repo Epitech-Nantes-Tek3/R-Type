@@ -110,6 +110,8 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
         return;
     }
     _remainingPlaces -= 1;
+    if (_remainingPlaces == 3)
+        _worldInstance.get()->getResource<GameClock>().resetClock();
     std::cerr << "Room " << _id << " received a connexion protocol." << std::endl;
     std::size_t playerId = createNewPlayer(*_worldInstance.get(), 10, 10, 0, 0, 1, 34, 34, 100, 10, 4, false, "",
         _worldInstance->getResource<NetworkableIdGenerator>()

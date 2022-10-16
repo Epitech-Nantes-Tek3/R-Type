@@ -148,14 +148,13 @@ void ClientRoom::_initSharedResources()
 
 void ClientRoom::_initSystems()
 {
-    _worldInstance->addSystem<DeathSystem>();
     _worldInstance->addSystem<UpdateClock>();
+    _worldInstance->addSystem<DeathSystem>();
     _worldInstance->addSystem<DrawComponents>();
     _worldInstance->addSystem<InputManagement>();
     _worldInstance->addSystem<SendToServer>();
     _worldInstance->addSystem<SendNewlyCreatedToServer>();
     _worldInstance->addSystem<SfRectangleFollowEntitySystem>();
-    _worldInstance->addSystem<UpdateClock>();
     _worldInstance->addSystem<Parallax>();
     _worldInstance->addSystem<Movement>();
 }
@@ -182,7 +181,7 @@ void ClientRoom::_initBackgroundEntities()
         .addComponent<ParallaxBackground>()
         .addComponent<GraphicsRectangleComponent>(-1920, 0, 1920, 1080)
         .addComponent<Position>(1920, 0)
-        .addComponent<Velocity>(-600, 0)
+        .addComponent<Velocity>(-200, 0)
         .addComponent<LayerLvL>(LayerLvL::layer_e::MIDDLE)
         .addComponent<TextureName>(GraphicsTextureResource::BACKGROUND_LAYER_2);
 
@@ -190,7 +189,7 @@ void ClientRoom::_initBackgroundEntities()
         .addComponent<ParallaxBackground>()
         .addComponent<GraphicsRectangleComponent>(0, 0, 1920, 1080)
         .addComponent<Position>(0, 0)
-        .addComponent<Velocity>(-600, 0)
+        .addComponent<Velocity>(-200, 0)
         .addComponent<LayerLvL>(LayerLvL::layer_e::MIDDLE)
         .addComponent<TextureName>(GraphicsTextureResource::BACKGROUND_LAYER_2);
 
@@ -198,7 +197,7 @@ void ClientRoom::_initBackgroundEntities()
         .addComponent<ParallaxBackground>()
         .addComponent<GraphicsRectangleComponent>(-1920, 0, 1920, 1080)
         .addComponent<Position>(1920, 0)
-        .addComponent<Velocity>(-1000, 0)
+        .addComponent<Velocity>(-100, 0)
         .addComponent<LayerLvL>(LayerLvL::layer_e::BACKGROUND)
         .addComponent<TextureName>(GraphicsTextureResource::BACKGROUND_LAYER_3);
 
@@ -206,7 +205,7 @@ void ClientRoom::_initBackgroundEntities()
         .addComponent<ParallaxBackground>()
         .addComponent<GraphicsRectangleComponent>(0, 0, 1920, 1080)
         .addComponent<Position>(0, 0)
-        .addComponent<Velocity>(-1000, 0)
+        .addComponent<Velocity>(-100, 0)
         .addComponent<LayerLvL>(LayerLvL::layer_e::BACKGROUND)
         .addComponent<TextureName>(GraphicsTextureResource::BACKGROUND_LAYER_3);
 }
