@@ -72,7 +72,7 @@ var NAVTREEINDEX =
 "_action_queue_component_8hpp.html",
 "class_sending_frequency.html#a3c6071af8c1f7c9818d5e89e9e44fe6c",
 "classecs_1_1_networkable.html#a1585ae31151e8da839243d6db6a2c13a",
-"namespaceserver__data.html"
+"namespaces.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
