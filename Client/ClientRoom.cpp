@@ -91,6 +91,7 @@ void ClientRoom::protocol12Answer(CommunicatorMessage connexionResponse)
 {
     _state = ClientState::IN_GAME;
     _worldInstance.get()->addEntity().addComponent<NetworkServer>(connexionResponse.message.clientInfo.getId());
+    _worldInstance.get()->getResource<GameClock>().resetClock();
 }
 
 void ClientRoom::startLobbyLoop(void)
@@ -163,9 +164,9 @@ void ClientRoom::_initBackgroundEntities()
 {
     _worldInstance->addEntity()
         .addComponent<ParallaxBackground>()
-        .addComponent<GraphicsRectangleComponent>(0, 0, 1920, 1080)
+        .addComponent<GraphicsRectangleComponent>(-1920, 0, 1920, 1080)
         .addComponent<Position>(1920, 0)
-        .addComponent<Velocity>(30, 30)
+        .addComponent<Velocity>(-300, 0)
         .addComponent<LayerLvL>(LayerLvL::layer_e::DECORATION)
         .addComponent<TextureName>(GraphicsTextureResource::BACKGROUND_LAYER_1);
 
@@ -173,15 +174,15 @@ void ClientRoom::_initBackgroundEntities()
         .addComponent<ParallaxBackground>()
         .addComponent<GraphicsRectangleComponent>(0, 0, 1920, 1080)
         .addComponent<Position>(0, 0)
-        .addComponent<Velocity>(30, 30)
+        .addComponent<Velocity>(-300, 0)
         .addComponent<LayerLvL>(LayerLvL::layer_e::DECORATION)
         .addComponent<TextureName>(GraphicsTextureResource::BACKGROUND_LAYER_1);
 
     _worldInstance->addEntity()
         .addComponent<ParallaxBackground>()
-        .addComponent<GraphicsRectangleComponent>(0, 0, 1920, 1080)
+        .addComponent<GraphicsRectangleComponent>(-1920, 0, 1920, 1080)
         .addComponent<Position>(1920, 0)
-        .addComponent<Velocity>(60, 60)
+        .addComponent<Velocity>(-600, 0)
         .addComponent<LayerLvL>(LayerLvL::layer_e::MIDDLE)
         .addComponent<TextureName>(GraphicsTextureResource::BACKGROUND_LAYER_2);
 
@@ -189,15 +190,15 @@ void ClientRoom::_initBackgroundEntities()
         .addComponent<ParallaxBackground>()
         .addComponent<GraphicsRectangleComponent>(0, 0, 1920, 1080)
         .addComponent<Position>(0, 0)
-        .addComponent<Velocity>(60, 60)
+        .addComponent<Velocity>(-600, 0)
         .addComponent<LayerLvL>(LayerLvL::layer_e::MIDDLE)
         .addComponent<TextureName>(GraphicsTextureResource::BACKGROUND_LAYER_2);
 
     _worldInstance->addEntity()
         .addComponent<ParallaxBackground>()
-        .addComponent<GraphicsRectangleComponent>(0, 0, 1920, 1080)
+        .addComponent<GraphicsRectangleComponent>(-1920, 0, 1920, 1080)
         .addComponent<Position>(1920, 0)
-        .addComponent<Velocity>(100, 100)
+        .addComponent<Velocity>(-1000, 0)
         .addComponent<LayerLvL>(LayerLvL::layer_e::BACKGROUND)
         .addComponent<TextureName>(GraphicsTextureResource::BACKGROUND_LAYER_3);
 
@@ -205,7 +206,7 @@ void ClientRoom::_initBackgroundEntities()
         .addComponent<ParallaxBackground>()
         .addComponent<GraphicsRectangleComponent>(0, 0, 1920, 1080)
         .addComponent<Position>(0, 0)
-        .addComponent<Velocity>(100, 100)
+        .addComponent<Velocity>(-1000, 0)
         .addComponent<LayerLvL>(LayerLvL::layer_e::BACKGROUND)
         .addComponent<TextureName>(GraphicsTextureResource::BACKGROUND_LAYER_3);
 }

@@ -18,8 +18,9 @@ void Parallax::run(World &world)
     auto makeParallax = [](std::shared_ptr<ecs::Entity> entityPtr) {
         Position &pos = entityPtr.get()->getComponent<Position>();
 
-        if (pos.x <= MAXIMUM_WIDTH * -1)
-            pos.x = 1920;
+        if (pos.x <= MAXIMUM_WIDTH * -1) {
+            pos.x = MAXIMUM_WIDTH;
+        }
     };
 
     std::for_each(joined.begin(), joined.end(), makeParallax);

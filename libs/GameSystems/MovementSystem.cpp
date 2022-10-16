@@ -24,8 +24,8 @@ void Movement::run(World &world)
 
         if (vel.multiplierAbscissa == 0 && vel.multiplierOrdinate == 0)
             return;
-        pos.x += (vel.multiplierAbscissa * elapsedTimeInSeconds) * 1000;
-        pos.y += (vel.multiplierOrdinate * elapsedTimeInSeconds) * 1000;
+        pos.x += (vel.multiplierAbscissa * elapsedTimeInSeconds) * 100;
+        pos.y += (vel.multiplierOrdinate * elapsedTimeInSeconds) * 100;
         // pos.modified = true;
     };
     std::for_each(joined.begin(), joined.end(), move);
