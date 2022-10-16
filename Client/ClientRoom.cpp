@@ -124,7 +124,7 @@ void ClientRoom::_initSpritesForEntities()
     GraphicsTextureResource &spritesList = _worldInstance->getResource<GraphicsTextureResource>();
 
     spritesList.addTexture(GraphicsTextureResource::PLAYER_STATIC, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
-        sf::Vector2f(500, 0), sf::Vector2f(34, 34));
+        sf::Vector2f(500, 0), sf::Vector2f(102, 102));
     spritesList.addTexture(GraphicsTextureResource::PROJECTILE_ENEMY,
         "assets/EpiSprite/BasicEnemyProjectileSpriteSheet.gif", sf::Vector2f(0, 0), sf::Vector2f(20, 20));
     spritesList.addTexture(GraphicsTextureResource::PROJECTILE_ALLY,
@@ -225,16 +225,16 @@ void ClientRoom::_initEntities()
     for (auto &it : entities) {
         it->getComponent<KeyboardInputComponent>().keyboardMapActions.emplace(
             std::make_pair<sf::Keyboard::Key, std::pair<ActionQueueComponent::inputAction_e, float>>(sf::Keyboard::Z,
-                std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEY, -9)));
+                std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEY, -200)));
         it->getComponent<KeyboardInputComponent>().keyboardMapActions.emplace(
             std::make_pair<sf::Keyboard::Key, std::pair<ActionQueueComponent::inputAction_e, float>>(sf::Keyboard::S,
-                std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEY, 9)));
+                std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEY, 200)));
         it->getComponent<KeyboardInputComponent>().keyboardMapActions.emplace(
             std::make_pair<sf::Keyboard::Key, std::pair<ActionQueueComponent::inputAction_e, float>>(sf::Keyboard::Q,
-                std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEX, -9)));
+                std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEX, -200)));
         it->getComponent<KeyboardInputComponent>().keyboardMapActions.emplace(
             std::make_pair<sf::Keyboard::Key, std::pair<ActionQueueComponent::inputAction_e, float>>(sf::Keyboard::D,
-                std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEX, 9)));
+                std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEX, 200)));
         it->getComponent<KeyboardInputComponent>().keyboardMapActions.emplace(
             std::make_pair<sf::Keyboard::Key, std::pair<ActionQueueComponent::inputAction_e, float>>(
                 sf::Keyboard::Enter,
