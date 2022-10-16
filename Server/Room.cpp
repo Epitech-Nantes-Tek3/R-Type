@@ -79,7 +79,7 @@ void Room::initEcsGameData(void)
     _worldInstance->addSystem<Movement>();
     _worldInstance->addSystem<UpdateClock>();
     _worldInstance->addSystem<EnemiesGoRandom>();
-    _worldInstance->addSystem<EnemyShootSystem>();
+    // _worldInstance->addSystem<EnemyShootSystem>();
 }
 
 void Room::startConnexionProtocol(void) { _communicatorInstance.get()->startReceiverListening(); }
