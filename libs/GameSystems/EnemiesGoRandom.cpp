@@ -13,9 +13,9 @@
 #include "GameSharedResources/Random.hpp"
 
 #define MINIMUM_WIDTH  1400
-#define MAXIMUM_WIDTH  1500
+#define MAXIMUM_WIDTH  1700
 #define MINIMUM_HEIGTH 200
-#define MAXIMUM_HEIGTH 600
+#define MAXIMUM_HEIGTH 800
 
 using namespace ecs;
 
