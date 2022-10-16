@@ -12,7 +12,7 @@
 
 namespace ecs
 {
-    /// @brief This component class allows mouse and keyboard usage in client.
+    /// @brief This component class create a sprite wich travel in the background
     class ParallaxBackground : public Component {};
 } // namespace ecs
 

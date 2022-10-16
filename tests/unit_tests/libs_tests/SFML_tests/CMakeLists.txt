@@ -5,7 +5,6 @@ set(TEST_SRC_ROOT
     ${SRC_ROOT}/AllowMouseAndKeyboardComponentTests.cpp
     ${SRC_ROOT}/GraphicsRectangleComponentTests.cpp
     ${SRC_ROOT}/GraphicsTextComponentTests.cpp
-    ${SRC_ROOT}/Input_functions_tests.cpp
 )
 
 create_test(
