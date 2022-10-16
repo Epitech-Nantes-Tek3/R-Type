@@ -20,6 +20,7 @@ namespace ecs
         /// @param e2 Value 2 to be compared.
         /// @return return true if value 1 is greater than value 2, false otherwise
         static bool compareLayer(std::shared_ptr<Entity> e1, std::shared_ptr<Entity> e2);
+
         /// @brief The run function of this system. It will be used by the world in the function runSystems.
         /// @param world The corresponding world on which run this system.
         void run(World &world) override final;

@@ -20,8 +20,12 @@
 #include "GameEntityManipulation/CreateEntitiesFunctions/CreateEnemy.hpp"
 #include "GameEntityManipulation/CreateEntitiesFunctions/CreatePlayer.hpp"
 #include "GameSharedResources/GameClock.hpp"
+#include "GameSystems/CollidableSystem.hpp"
+#include "GameSystems/DeathLifeSystem.hpp"
+#include "GameSystems/DeathSystem.hpp"
 #include "GameSystems/EnemiesGoRandom.hpp"
 #include "GameSystems/EnemyShootSystem.hpp"
+#include "GameSystems/LifeTimeDeathSystem.hpp"
 #include "GameSystems/MovementSystem.hpp"
 #include "GameSystems/UpdateClockSystem.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
@@ -62,24 +66,22 @@ Room::Room(unsigned short id, Client networkInformations)
     _remainingPlaces = 4;
 }
 
-/// @brief A useless system used for functional testing purpose
-struct Temp : public System {
-    void run(World &world) { (void)world; }
-};
-
 void Room::initEcsGameData(void)
 {
+    _worldInstance->addSystem<UpdateClock>();
     _worldInstance->addResource<NetworkableIdGenerator>();
     _worldInstance->addResource<RandomDevice>();
     _worldInstance->addResource<GameClock>();
     _worldInstance->addResource<SendingFrequency>();
-    _worldInstance->addSystem<Temp>();
     _worldInstance->addSystem<SendToClient>();
     _worldInstance->addSystem<SendNewlyCreatedToClients>();
     _worldInstance->addSystem<Movement>();
-    _worldInstance->addSystem<UpdateClock>();
     _worldInstance->addSystem<EnemiesGoRandom>();
     _worldInstance->addSystem<EnemyShootSystem>();
+    //_worldInstance->addSystem<Collide>();
+    //_worldInstance->addSystem<DeathLife>();
+    //_worldInstance->addSystem<DeathSystem>();
+    //_worldInstance->addSystem<LifeTimeDeath>();
 }
 
 void Room::startConnexionProtocol(void) { _communicatorInstance.get()->startReceiverListening(); }
@@ -111,13 +113,16 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
     }
     _remainingPlaces -= 1;
     std::cerr << "Room " << _id << " received a connexion protocol." << std::endl;
-    std::size_t playerId = createNewPlayer(*_worldInstance.get(), 10, 10, 0, 0, 1, 34, 34, 100, 10, 4, false, "",
-        _worldInstance->getResource<NetworkableIdGenerator>()
-            .generateNewNetworkableId()); /// CREATE A NEW ENTITY (INITIATED BY THE SERVER)
-    std::size_t enemyId = createNewEnemyRandom(*_worldInstance.get(), 10, 0, 0, 34, 34, 100, 10, 5, "",
-        _worldInstance.get()
-            ->getResource<NetworkableIdGenerator>()
-            .generateNewNetworkableId()); /// CREATE A NEW ENTITY (INITIATED BY THE SERVER)
+    std::size_t playerId = createNewPlayer(*_worldInstance.get(), 20, 500, 0, 0, 1, 102, 102, 100, 10, 4, false, "",
+        _worldInstance->getResource<NetworkableIdGenerator>().generateNewNetworkableId());
+    std::size_t enemyId = createNewEnemyRandom(*_worldInstance.get(), 0, 0, 1, 85, 85, 50, 10, 5, "",
+        _worldInstance.get()->getResource<NetworkableIdGenerator>().generateNewNetworkableId());
+    std::vector<std::shared_ptr<ecs::Entity>> clients = _worldInstance.get()->joinEntities<ecs::NetworkClient>();
+    std::vector<unsigned short> clientIdList;
+    auto addToClientList = [&clientIdList](std::shared_ptr<ecs::Entity> entityPtr) {
+        clientIdList.emplace_back(entityPtr.get()->getComponent<ecs::NetworkClient>().id);
+    };
+    std::for_each(clients.begin(), clients.end(), addToClientList);
     _worldInstance.get()->getEntity(playerId).addComponent<NetworkClient>(connexionDemand.message.clientInfo.getId());
     std::vector<std::shared_ptr<Entity>> alliedProjectiles =
         _worldInstance.get()->joinEntities<Networkable, AlliedProjectile>();
@@ -139,14 +144,17 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
                 entityPtr->getComponent<Weight>().weight, size.x, size.y, entityPtr->getComponent<Life>().lifePoint,
                 entityPtr->getComponent<Damage>().damagePoint, entityPtr->getComponent<DamageRadius>().radius, false,
                 "", {connexionDemand.message.clientInfo.getId()});
-            std::this_thread::sleep_for(std::chrono::duration<int, std::milli>(500));
         } else {
             _worldInstance.get()->getTransisthorBridge()->transitEcsDataToNetworkDataEntityPlayer(
                 entityPtr->getComponent<Networkable>().id, pos.x, pos.y, vel.multiplierAbscissa, vel.multiplierOrdinate,
                 entityPtr->getComponent<Weight>().weight, size.x, size.y, entityPtr->getComponent<Life>().lifePoint,
                 entityPtr->getComponent<Damage>().damagePoint, entityPtr->getComponent<DamageRadius>().radius, true, "",
                 {connexionDemand.message.clientInfo.getId()});
-            std::this_thread::sleep_for(std::chrono::duration<int, std::milli>(500));
+            _worldInstance.get()->getTransisthorBridge()->transitEcsDataToNetworkDataEntityPlayer(
+                entityPtr->getComponent<Networkable>().id, pos.x, pos.y, vel.multiplierAbscissa, vel.multiplierOrdinate,
+                entityPtr->getComponent<Weight>().weight, size.x, size.y, entityPtr->getComponent<Life>().lifePoint,
+                entityPtr->getComponent<Damage>().damagePoint, entityPtr->getComponent<DamageRadius>().radius, false,
+                "", clientIdList);
             entityPtr->getComponent<NewlyCreated>().sended = true;
         }
     }
@@ -162,7 +170,6 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
                 entityPtr->getComponent<Damage>().damagePoint, entityPtr->getComponent<DamageRadius>().radius, "",
                 {connexionDemand.message.clientInfo.getId()});
         }
-        std::this_thread::sleep_for(std::chrono::duration<int, std::milli>(500));
     }
     for (std::shared_ptr<Entity> entityPtr : obstacles) {
         Position &pos = entityPtr->getComponent<Position>();
@@ -170,7 +177,6 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
         _worldInstance.get()->getTransisthorBridge()->transitEcsDataToNetworkDataEntityObstacle(
             entityPtr->getComponent<Networkable>().id, pos.x, pos.y, entityPtr->getComponent<Damage>().damagePoint, "",
             {connexionDemand.message.clientInfo.getId()});
-        std::this_thread::sleep_for(std::chrono::duration<int, std::milli>(500));
     }
     for (std::shared_ptr<Entity> entityPtr : projectiles) {
         Position &pos = entityPtr->getComponent<Position>();
@@ -179,20 +185,20 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
         _worldInstance.get()->getTransisthorBridge()->transitEcsDataToNetworkDataEntityProjectile(
             entityPtr->getComponent<Networkable>().id, pos.x, pos.y, vel.multiplierAbscissa, vel.multiplierOrdinate,
             entityPtr->getComponent<Damage>().damagePoint, "", {connexionDemand.message.clientInfo.getId()});
-        std::this_thread::sleep_for(std::chrono::duration<int, std::milli>(500));
     }
     for (std::shared_ptr<Entity> entityPtr : alliedProjectiles) {
         _worldInstance.get()->getTransisthorBridge()->transitEcsDataToNetworkDataEntityAlliedProjectile(
             entityPtr->getComponent<Networkable>().id, entityPtr->getComponent<AlliedProjectile>().parentNetworkId, "",
             {connexionDemand.message.clientInfo.getId()});
-        std::this_thread::sleep_for(std::chrono::duration<int, std::milli>(500));
     }
     for (std::shared_ptr<Entity> entityPtr : enemyProjectiles) {
         _worldInstance.get()->getTransisthorBridge()->transitEcsDataToNetworkDataEntityEnemyProjectile(
             entityPtr->getComponent<Networkable>().id, entityPtr->getComponent<EnemyProjectile>().parentNetworkId, "",
             {connexionDemand.message.clientInfo.getId()});
-        std::this_thread::sleep_for(std::chrono::duration<int, std::milli>(500));
     }
-
     _communicatorInstance.get()->sendDataToAClient(connexionDemand.message.clientInfo, nullptr, 0, 12);
+    if (_remainingPlaces == 3) {
+        _worldInstance.get()->getResource<GameClock>().resetClock();
+        _worldInstance.get()->getResource<GameClock>().resetClock();
+    }
 }

@@ -10,13 +10,16 @@
 using namespace std::chrono;
 using namespace ecs;
 
-GameClock::GameClock() : _lastTime(steady_clock::now()) {}
+GameClock::GameClock() : _lastResetTime(steady_clock::now()), _lastElapsedTime(0) {}
 
 double GameClock::getElapsedTime()
 {
-    duration<double> elapsedTime = steady_clock::now() - this->_lastTime;
-
-    return elapsedTime.count();
+    return _lastElapsedTime;
 }
 
-void GameClock::resetClock() { this->_lastTime = std::chrono::steady_clock::now(); };
+void GameClock::resetClock()
+{
+    std::chrono::duration<double> tmp = steady_clock::now() - _lastResetTime;
+    _lastElapsedTime = tmp.count();
+    _lastResetTime = std::chrono::steady_clock::now();
+};

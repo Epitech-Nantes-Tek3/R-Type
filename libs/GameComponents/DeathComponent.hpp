@@ -19,8 +19,11 @@ namespace ecs
         /// @brief The network status of the component. True if it has been modified since it was last sent.
         bool modified;
 
+        /// @brief If the server need to resend it to everyone
+        bool sendToEveryone;
+
         ///@brief Construct a new Death object
-        Death() : modified(true){};
+        Death() : modified(true), sendToEveryone(false){};
         ///@brief Destroy the Death object
         ~Death() = default;
     };

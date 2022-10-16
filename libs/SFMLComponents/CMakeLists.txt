@@ -15,6 +15,7 @@ set(SRC
     ${SFML_INPUT_INC_ROOT}/GraphicsTextComponent.hpp
     ${SFML_INPUT_INC_ROOT}/GraphicsTextComponent.cpp
     ${SFML_INPUT_INC_ROOT}/TextureName.hpp
+    ${SFML_INPUT_INC_ROOT}/ParallaxComponent.hpp
 )
 
 add_library(${TARGET} SHARED ${SRC})

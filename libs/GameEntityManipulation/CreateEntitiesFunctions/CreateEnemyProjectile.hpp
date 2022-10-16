@@ -39,12 +39,12 @@ namespace ecs
         Damage damage = enemy.get()->getComponent<Damage>();
 
         Entity &entity = world.addEntity()
-                             .addComponent<Position>(pos.x, pos.y)
-                             .addComponent<Velocity>(-10, 0)
+                             .addComponent<Position>(pos.x, pos.y + 20)
+                             .addComponent<Velocity>(-400, 0)
                              .addComponent<Weight>(1)
-                             .addComponent<Size>(20, 20)
+                             .addComponent<Size>(40, 40)
                              .addComponent<LifeTime>(100)
-                             .addComponent<Life>(10)
+                             .addComponent<Life>(1)
                              .addComponent<Damage>(damage)
                              .addComponent<DamageRadius>(5)
                              .addComponent<Collidable>()

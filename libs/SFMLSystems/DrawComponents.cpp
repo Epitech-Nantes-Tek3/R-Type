@@ -7,10 +7,10 @@
 
 #include "DrawComponents.hpp"
 #include <algorithm>
+#include "GameComponents/AlliedProjectileComponent.hpp"
+#include "GameComponents/EnemyProjectileComponent.hpp"
 #include "GameComponents/PositionComponent.hpp"
 #include "GameComponents/SizeComponent.hpp"
-#include "GameComponents/EnemyProjectileComponent.hpp"
-#include "GameComponents/AlliedProjectileComponent.hpp"
 #include "GraphicsRectangleComponent.hpp"
 #include "GraphicsTextComponent.hpp"
 #include "GraphicsTextureResource.hpp"

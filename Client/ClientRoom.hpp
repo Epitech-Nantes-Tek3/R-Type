@@ -56,6 +56,9 @@ namespace client_data
         /// @brief Init all the Sprites in the GameTextureResource
         void _initSpritesForEntities();
 
+        /// @brief Init all the Entities for the parallax (background)
+        void _initBackgroundEntities();
+
         /// @brief Network informations of the room.
         Client _networkInformations;
 

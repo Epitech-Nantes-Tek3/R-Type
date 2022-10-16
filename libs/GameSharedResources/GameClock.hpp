@@ -28,7 +28,10 @@ namespace ecs
 
       private:
         /// @brief The last time the clock was reset
-        std::chrono::steady_clock::time_point _lastTime;
+        std::chrono::steady_clock::time_point _lastResetTime;
+
+        /// @brief The Last elapsed time, to have the same elapsedTime for every system
+        double _lastElapsedTime;
     };
 } // namespace ecs
 
