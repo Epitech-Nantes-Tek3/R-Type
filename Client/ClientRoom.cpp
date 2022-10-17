@@ -163,26 +163,28 @@ void ClientRoom::_initSystems()
 void ClientRoom::_initBackgroundEntities()
 {
     size_t firstID = _worldInstance->addEntity()
-        .addComponent<ParallaxBackground>()
-        .addComponent<GraphicsRectangleComponent>(-1920, 0, 1920, 1080)
-        .addComponent<Position>(1920, 0)
-        .addComponent<Velocity>(-300, 0)
-        .addComponent<LayerLvL>(LayerLvL::layer_e::DECORATION)
-        .addComponent<TextureName>(GraphicsTextureResource::BACKGROUND_LAYER_1)
-        .getId();
+                         .addComponent<ParallaxBackground>()
+                         .addComponent<GraphicsRectangleComponent>(-1920, 0, 1920, 1080)
+                         .addComponent<Position>(1920, 0)
+                         .addComponent<Velocity>(-300, 0)
+                         .addComponent<LayerLvL>(LayerLvL::layer_e::DECORATION)
+                         .addComponent<TextureName>(GraphicsTextureResource::BACKGROUND_LAYER_1)
+                         .getId();
 
-    _worldInstance.get()->getEntity(firstID).getComponent<GraphicsRectangleComponent>().shape.setFillColor(sf::Color(0xA0A0A0ff));
+    _worldInstance.get()->getEntity(firstID).getComponent<GraphicsRectangleComponent>().shape.setFillColor(
+        sf::Color(0xA0A0A0ff));
 
     size_t secondID = _worldInstance->addEntity()
-        .addComponent<ParallaxBackground>()
-        .addComponent<GraphicsRectangleComponent>(0, 0, 1920, 1080)
-        .addComponent<Position>(0, 0)
-        .addComponent<Velocity>(-300, 0)
-        .addComponent<LayerLvL>(LayerLvL::layer_e::DECORATION)
-        .addComponent<TextureName>(GraphicsTextureResource::BACKGROUND_LAYER_1)
-        .getId();
+                          .addComponent<ParallaxBackground>()
+                          .addComponent<GraphicsRectangleComponent>(0, 0, 1920, 1080)
+                          .addComponent<Position>(0, 0)
+                          .addComponent<Velocity>(-300, 0)
+                          .addComponent<LayerLvL>(LayerLvL::layer_e::DECORATION)
+                          .addComponent<TextureName>(GraphicsTextureResource::BACKGROUND_LAYER_1)
+                          .getId();
 
-    _worldInstance.get()->getEntity(secondID).getComponent<GraphicsRectangleComponent>().shape.setFillColor(sf::Color(0xA0A0A0ff));
+    _worldInstance.get()->getEntity(secondID).getComponent<GraphicsRectangleComponent>().shape.setFillColor(
+        sf::Color(0xA0A0A0ff));
 
     _worldInstance->addEntity()
         .addComponent<ParallaxBackground>()
