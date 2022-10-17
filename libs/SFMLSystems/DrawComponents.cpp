@@ -30,7 +30,7 @@ void DrawComponents::run(World &world)
     std::vector<std::shared_ptr<Entity>> Inputs = world.joinEntities<LayerLvL>();
 
     if (world.getResource<RenderWindowResource>().window.isOpen()) {
-        world.getResource<RenderWindowResource>().window.clear(sf::Color::Blue);
+        world.getResource<RenderWindowResource>().window.clear(sf::Color(0x151123));
         std::sort(Inputs.begin(), Inputs.end(), compareLayer);
         auto layer = [&world](std::shared_ptr<Entity> entityPtr) {
             if (entityPtr->contains<GraphicsRectangleComponent>()) {
