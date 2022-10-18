@@ -63,8 +63,7 @@ jobs:
       run: ./build.bat
 
   coverage:
-    if: github.event_name == 'push'
-    needs: [build-linux, build-windows]
+    needs: [build-linux]
     runs-on: ubuntu-latest
     container:
       image: epitechcontent/epitest-docker
