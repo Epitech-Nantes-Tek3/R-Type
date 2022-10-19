@@ -12,5 +12,7 @@ sfml:shared=True
 
 [generators]
 cmake
+CMakeDeps
+CMakeToolchain
 
 [imports]
