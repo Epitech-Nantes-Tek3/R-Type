@@ -52,7 +52,7 @@ jobs:
       with:
         path: |
          ~/.conan
-         /.conan
+         C:\.conan
         key: ${{ runner.os }}-${{ hashFiles('**/conanfile.txt') }}
 
     - name: Install Conan
