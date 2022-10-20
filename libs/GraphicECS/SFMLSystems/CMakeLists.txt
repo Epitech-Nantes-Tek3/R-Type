@@ -1,30 +1,13 @@
-set(INC_SFML_SYSTEM_ROOT ${PROJECT_SOURCE_DIR}/libs/SFMLSystems)
+set(GRAPHIC_SRC_SYSTEM_ROOT ${PROJECT_SOURCE_DIR}/libs/GraphicECS/SFMLSystems)
 
-set(TARGET ${PROJECT_NAME}_SFMLSystems)
-
-set(SRC
-    ${INC_SFML_SYSTEM_ROOT}/InputManagement.cpp
-    ${INC_SFML_SYSTEM_ROOT}/InputManagement.hpp
-    ${INC_SFML_SYSTEM_ROOT}/DrawComponents.cpp
-    ${INC_SFML_SYSTEM_ROOT}/DrawComponents.hpp
-    ${INC_SFML_SYSTEM_ROOT}/SfRectangleFollowEntitySystem.cpp
-    ${INC_SFML_SYSTEM_ROOT}/SfRectangleFollowEntitySystem.hpp
-    ${INC_SFML_SYSTEM_ROOT}/ParallaxSystem.cpp
-    ${INC_SFML_SYSTEM_ROOT}/ParallaxSystem.hpp
-)
-
-add_library(${TARGET} SHARED ${SRC})
-
-target_include_directories(${TARGET}
-    PUBLIC ${INC_SFML_SYSTEM_ROOT}
-    PRIVATE ${PROJECT_NAME}_ecs
-    INTERFACE ${PROJECT_NAME}_SFMLResource
-    PRIVATE ${PROJECT_NAME}_gameSharedResources
-)
-
-target_link_libraries(${TARGET}
-    ${PROJECT_NAME}_ecs
-    ${PROJECT_NAME}_SFMLResource
-    ${PROJECT_NAME}_SFMLComponents
-    ${PROJECT_NAME}_gameSharedResources
+set(SRC_GRAPHIC_SYSTEM
+    ${GRAPHIC_SRC_SYSTEM_ROOT}/InputManagement.cpp
+    ${GRAPHIC_SRC_SYSTEM_ROOT}/InputManagement.hpp
+    ${GRAPHIC_SRC_SYSTEM_ROOT}/DrawComponents.cpp
+    ${GRAPHIC_SRC_SYSTEM_ROOT}/DrawComponents.hpp
+    ${GRAPHIC_SRC_SYSTEM_ROOT}/SfRectangleFollowEntitySystem.cpp
+    ${GRAPHIC_SRC_SYSTEM_ROOT}/SfRectangleFollowEntitySystem.hpp
+    ${GRAPHIC_SRC_SYSTEM_ROOT}/ParallaxSystem.cpp
+    ${GRAPHIC_SRC_SYSTEM_ROOT}/ParallaxSystem.hpp
+    PARENT_SCOPE
 )
