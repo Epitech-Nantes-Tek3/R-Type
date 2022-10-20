@@ -1,36 +1,18 @@
-set(SFML_INPUT_INC_ROOT ${PROJECT_SOURCE_DIR}/libs/SFMLComponents)
+set(GRAPHIC_SRC_COMPONENT_ROOT ${PROJECT_SOURCE_DIR}/libs/GraphicECS/SFMLComponents)
 
-set(TARGET ${PROJECT_NAME}_SFMLComponents)
-
-set(SRC
-    ${SFML_INPUT_INC_ROOT}/AllowControllerComponent.hpp
-    ${SFML_INPUT_INC_ROOT}/AllowMouseAndKeyboardComponent.hpp
-    ${SFML_INPUT_INC_ROOT}/ControllerButtonInputComponent.hpp
-    ${SFML_INPUT_INC_ROOT}/ControllerJoystickInputComponent.hpp
-    ${SFML_INPUT_INC_ROOT}/KeyboardInputComponent.hpp
-    ${SFML_INPUT_INC_ROOT}/MouseInputComponent.hpp
-    ${SFML_INPUT_INC_ROOT}/ECSActions.hpp
-    ${SFML_INPUT_INC_ROOT}/GraphicsRectangleComponent.hpp
-    ${SFML_INPUT_INC_ROOT}/GraphicsRectangleComponent.cpp
-    ${SFML_INPUT_INC_ROOT}/GraphicsTextComponent.hpp
-    ${SFML_INPUT_INC_ROOT}/GraphicsTextComponent.cpp
-    ${SFML_INPUT_INC_ROOT}/TextureName.hpp
-    ${SFML_INPUT_INC_ROOT}/ParallaxComponent.hpp
+set(SRC_GRAPHIC_COMPONENT
+    ${GRAPHIC_SRC_COMPONENT_ROOT}/AllowControllerComponent.hpp
+    ${GRAPHIC_SRC_COMPONENT_ROOT}/AllowMouseAndKeyboardComponent.hpp
+    ${GRAPHIC_SRC_COMPONENT_ROOT}/ControllerButtonInputComponent.hpp
+    ${GRAPHIC_SRC_COMPONENT_ROOT}/ControllerJoystickInputComponent.hpp
+    ${GRAPHIC_SRC_COMPONENT_ROOT}/KeyboardInputComponent.hpp
+    ${GRAPHIC_SRC_COMPONENT_ROOT}/MouseInputComponent.hpp
+    ${GRAPHIC_SRC_COMPONENT_ROOT}/ECSActions.hpp
+    ${GRAPHIC_SRC_COMPONENT_ROOT}/GraphicsRectangleComponent.hpp
+    ${GRAPHIC_SRC_COMPONENT_ROOT}/GraphicsRectangleComponent.cpp
+    ${GRAPHIC_SRC_COMPONENT_ROOT}/GraphicsTextComponent.hpp
+    ${GRAPHIC_SRC_COMPONENT_ROOT}/GraphicsTextComponent.cpp
+    ${GRAPHIC_SRC_COMPONENT_ROOT}/TextureName.hpp
+    ${GRAPHIC_SRC_COMPONENT_ROOT}/ParallaxComponent.hpp
+    PARENT_SCOPE
 )
-
-add_library(${TARGET} SHARED ${SRC})
-
-target_include_directories(${TARGET}
-    PUBLIC ${SFML_INPUT_INC_ROOT}
-    PRIVATE ${PROJECT_NAME}_ecs
-    PRIVATE ${PROJECT_NAME}_SFMLResource
-)
-
-target_link_libraries(${TARGET}
-    ${PROJECT_NAME}_ecs
-    ${PROJECT_NAME}_SFMLResource
-    CONAN_PKG::sfml
-)
-
-include(${PROJECT_SOURCE_DIR}/build/conanbuildinfo.cmake)
-conan_basic_setup(TARGETS)
