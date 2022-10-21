@@ -22,7 +22,7 @@
 #include "GameSharedResources/Random.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "World/World.hpp"
-#include "SFMLComponents/LayerLvL.hpp"
+#include "GameComponents/LayerLvL.hpp"
 
 namespace ecs
 {

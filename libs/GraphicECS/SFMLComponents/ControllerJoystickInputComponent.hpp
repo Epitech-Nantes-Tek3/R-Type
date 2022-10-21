@@ -11,7 +11,6 @@
 #include "Component/Component.hpp"
 #include "World/World.hpp"
 #include "ActionQueueComponent.hpp"
-#include <SFML/Graphics.hpp>
 #include <functional>
 #include <unordered_map>
 

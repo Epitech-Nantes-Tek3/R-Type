@@ -7,7 +7,7 @@
 
 #include "ParallaxSystem.hpp"
 #include "GameComponents/PositionComponent.hpp"
-#include "SFMLComponents/ParallaxComponent.hpp"
+#include "GraphicECS/SFMLComponents/ParallaxComponent.hpp"
 
 #define MAXIMUM_WIDTH 1920
 
