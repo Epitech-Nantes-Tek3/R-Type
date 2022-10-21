@@ -17,10 +17,11 @@ set(SRC
 add_library(${TARGET} SHARED ${SRC})
 
 target_include_directories(${TARGET}
-    PRIVATE ${PROJECT_NAME}_ecs
+    PRIVATE ${CONAN_INCLUDE_DIRS_SFML}
     PUBLIC ${GRAPHIC_SRC_COMPONENT_ROOT}
     PUBLIC ${GRAPHIC_SRC_RESOURCE_ROOT}
     PUBLIC ${GRAPHIC_SRC_SYSTEM_ROOT}
+    PRIVATE ${PROJECT_NAME}_ecs
 )
 
 target_link_libraries(${TARGET}

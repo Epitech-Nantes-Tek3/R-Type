@@ -34,6 +34,7 @@ set(SRC
     ${INC_ROOT}/EnemyComponent.hpp
     ${INC_ROOT}/ObstacleComponent.hpp
     ${INC_ROOT}/NewlyCreated.hpp
+    ${INC_ROOT}/LayerLvL.hpp
 )
 
 add_library(${TARGET} INTERFACE ${SRC})
