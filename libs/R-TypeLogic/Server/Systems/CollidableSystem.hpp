@@ -9,8 +9,8 @@
 #define COLLIDABLESYSTEM_HPP_
 
 #include "World/World.hpp"
-#include "R-TypeLogic/Components/PositionComponent.hpp"
-#include "R-TypeLogic/Components/SizeComponent.hpp"
+#include "R-TypeLogic/Global/Components/PositionComponent.hpp"
+#include "R-TypeLogic/Global/Components/SizeComponent.hpp"
 
 namespace ecs
 {

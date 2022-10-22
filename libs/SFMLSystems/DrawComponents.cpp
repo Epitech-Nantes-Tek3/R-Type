@@ -13,10 +13,10 @@
 #include "LayerLvL.hpp"
 #include "SFMLResource/RenderWindowResource.hpp"
 #include "TextureName.hpp"
-#include "R-TypeLogic/Components/AlliedProjectileComponent.hpp"
-#include "R-TypeLogic/Components/EnemyProjectileComponent.hpp"
-#include "R-TypeLogic/Components/PositionComponent.hpp"
-#include "R-TypeLogic/Components/SizeComponent.hpp"
+#include "R-TypeLogic/Global/Components/AlliedProjectileComponent.hpp"
+#include "R-TypeLogic/Global/Components/EnemyProjectileComponent.hpp"
+#include "R-TypeLogic/Global/Components/PositionComponent.hpp"
+#include "R-TypeLogic/Global/Components/SizeComponent.hpp"
 
 using namespace ecs;
 

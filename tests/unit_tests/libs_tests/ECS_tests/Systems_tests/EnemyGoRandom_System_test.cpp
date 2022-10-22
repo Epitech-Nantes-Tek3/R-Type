@@ -11,11 +11,11 @@
 #include "Entity/Entity.hpp"
 #include "World/World.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateEnemy.hpp"
-#include "R-TypeLogic/SharedResources/GameClock.hpp"
-#include "R-TypeLogic/SharedResources/Random.hpp"
-#include "R-TypeLogic/Systems/EnemiesGoRandom.hpp"
-#include "R-TypeLogic/Systems/MovementSystem.hpp"
-#include "R-TypeLogic/Systems/UpdateClockSystem.hpp"
+#include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
+#include "R-TypeLogic/Global/SharedResources/Random.hpp"
+#include "R-TypeLogic/Server/Systems/EnemiesGoRandom.hpp"
+#include "R-TypeLogic/Global/Systems/MovementSystem.hpp"
+#include "R-TypeLogic/Global/Systems/UpdateClockSystem.hpp"
 
 using namespace ecs;
 

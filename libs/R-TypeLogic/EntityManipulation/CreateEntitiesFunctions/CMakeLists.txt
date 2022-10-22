@@ -1,6 +1,6 @@
 set(SRC_RL_ENTITY_CREATION_ROOT ${PROJECT_SOURCE_DIR}/libs/R-TypeLogic/EntityManipulation/CreateEntitiesFunctions)
 
-set(TARGET ${PROJECT_NAME}_rlCreateEntitiesFunctions)
+set(TARGET ${PROJECT_NAME}_RTypeLogicCreateEntitiesFunctions)
 
 set(SRC
     ${SRC_RL_ENTITY_CREATION_ROOT}/CreateEnemyProjectile.hpp

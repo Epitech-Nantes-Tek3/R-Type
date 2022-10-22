@@ -11,11 +11,11 @@
 #include "Entity/Entity.hpp"
 #include "SFMLSystems/InputManagement.hpp"
 #include "World/World.hpp"
-#include "R-TypeLogic/Components/PositionComponent.hpp"
-#include "R-TypeLogic/Components/SizeComponent.hpp"
-#include "R-TypeLogic/Components/VelocityComponent.hpp"
-#include "R-TypeLogic/SharedResources/GameClock.hpp"
-#include "R-TypeLogic/Systems/MovementSystem.hpp"
+#include "R-TypeLogic/Global/Components/PositionComponent.hpp"
+#include "R-TypeLogic/Global/Components/SizeComponent.hpp"
+#include "R-TypeLogic/Global/Components/VelocityComponent.hpp"
+#include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
+#include "R-TypeLogic/Global/Systems/MovementSystem.hpp"
 
 using namespace ecs;
 

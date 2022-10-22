@@ -8,10 +8,10 @@
 #include "EnemyShootSystem.hpp"
 #include <chrono>
 #include "Transisthor/TransisthorECSLogic/Server/Resources/NetworkableIdGenerator.hpp"
-#include "R-TypeLogic/Components/EnemyComponent.hpp"
-#include "R-TypeLogic/Components/ShootingFrequencyComponent.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateEnemyProjectile.hpp"
-#include "R-TypeLogic/SharedResources/GameClock.hpp"
+#include "R-TypeLogic/Global/Components/EnemyComponent.hpp"
+#include "R-TypeLogic/Global/Components/ShootingFrequencyComponent.hpp"
+#include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
 
 using namespace ecs;
 using namespace std::chrono;

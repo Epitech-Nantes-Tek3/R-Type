@@ -9,9 +9,9 @@
 #define DECREASELIFETIMESYSTEM_HPP_
 
 #include "World/World.hpp"
-#include "R-TypeLogic/Components/DeathComponent.hpp"
-#include "R-TypeLogic/Components/LifeTimeComponent.hpp"
-#include "R-TypeLogic/SharedResources/GameClock.hpp"
+#include "R-TypeLogic/Global/Components/DeathComponent.hpp"
+#include "R-TypeLogic/Global/Components/LifeTimeComponent.hpp"
+#include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
 
 namespace ecs
 {

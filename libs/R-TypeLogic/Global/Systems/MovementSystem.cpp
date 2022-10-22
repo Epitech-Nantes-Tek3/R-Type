@@ -6,12 +6,12 @@
 */
 
 #include "MovementSystem.hpp"
-#include "R-TypeLogic/Components/DestinationComponent.hpp"
-#include "R-TypeLogic/Components/EnemyComponent.hpp"
-#include "R-TypeLogic/Components/PlayerComponent.hpp"
-#include "R-TypeLogic/Components/PositionComponent.hpp"
-#include "R-TypeLogic/Components/VelocityComponent.hpp"
-#include "R-TypeLogic/SharedResources/GameClock.hpp"
+#include "R-TypeLogic/Global/Components/DestinationComponent.hpp"
+#include "R-TypeLogic/Global/Components/EnemyComponent.hpp"
+#include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
+#include "R-TypeLogic/Global/Components/PositionComponent.hpp"
+#include "R-TypeLogic/Global/Components/VelocityComponent.hpp"
+#include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
 
 using namespace ecs;
 

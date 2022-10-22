@@ -24,5 +24,4 @@ target_link_libraries(${TARGET}
     ${PROJECT_NAME}_argumentHandler
     ${PROJECT_NAME}_SFMLResource
     ${PROJECT_NAME}_SFMLSystems
-    ${PROJECT_NAME}_rl
 )

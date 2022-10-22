@@ -1,4 +1,4 @@
-set(SRC_RL_COMPONENTS_ROOT ${PROJECT_SOURCE_DIR}/libs/R-TypeLogic/Components)
+set(SRC_RL_COMPONENTS_ROOT ${PROJECT_SOURCE_DIR}/libs/R-TypeLogic/Global/Components)
 
 set(SRC_RL_COMPONENTS
     ${SRC_RL_COMPONENTS_ROOT}/SizeComponent.hpp

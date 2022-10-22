@@ -9,8 +9,8 @@
 #define LIFETIMEDEATH_SYSTEM_HPP_
 
 #include "World/World.hpp"
-#include "R-TypeLogic/Components/DeathComponent.hpp"
-#include "R-TypeLogic/Components/LifeTimeComponent.hpp"
+#include "R-TypeLogic/Global/Components/DeathComponent.hpp"
+#include "R-TypeLogic/Global/Components/LifeTimeComponent.hpp"
 
 namespace ecs
 {

@@ -10,12 +10,12 @@
 #include <criterion/criterion.h>
 #include "Transisthor/TransisthorECSLogic/Server/Resources/NetworkableIdGenerator.hpp"
 #include "World/World.hpp"
-#include "R-TypeLogic/Components/EnemyProjectileComponent.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateEnemy.hpp"
-#include "R-TypeLogic/SharedResources/GameClock.hpp"
-#include "R-TypeLogic/SharedResources/Random.hpp"
-#include "R-TypeLogic/Systems/EnemyShootSystem.hpp"
-#include "R-TypeLogic/Systems/UpdateClockSystem.hpp"
+#include "R-TypeLogic/Global/Components/EnemyProjectileComponent.hpp"
+#include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
+#include "R-TypeLogic/Global/SharedResources/Random.hpp"
+#include "R-TypeLogic/Server/Systems/EnemyShootSystem.hpp"
+#include "R-TypeLogic/Global/Systems/UpdateClockSystem.hpp"
 
 using namespace ecs;
 

@@ -13,7 +13,7 @@
 #include "SFMLComponents/GraphicsRectangleComponent.hpp"
 #include "System/System.hpp"
 #include "World/World.hpp"
-#include "R-TypeLogic/Components/PositionComponent.hpp"
+#include "R-TypeLogic/Global/Components/PositionComponent.hpp"
 
 namespace ecs
 {

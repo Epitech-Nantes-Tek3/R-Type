@@ -9,8 +9,8 @@
 #define MOUVEMENT_HPP_
 
 #include "World/World.hpp"
-#include "R-TypeLogic/Components/PositionComponent.hpp"
-#include "R-TypeLogic/Components/VelocityComponent.hpp"
+#include "R-TypeLogic/Global/Components/PositionComponent.hpp"
+#include "R-TypeLogic/Global/Components/VelocityComponent.hpp"
 
 namespace ecs
 {

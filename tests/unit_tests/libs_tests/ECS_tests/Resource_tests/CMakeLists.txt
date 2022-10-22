@@ -8,5 +8,5 @@ set(TEST_SRC_ROOT
 create_test(
     TEST_NAME Resource_class_tests
     TEST_SRC ${TEST_SRC_ROOT}
-    TEST_DEPS ${PROJECT_NAME}_ecs ${PROJECT_NAME}_rl
+    TEST_DEPS ${PROJECT_NAME}_ecs ${PROJECT_NAME}_RTypeLogicGlobal
 )

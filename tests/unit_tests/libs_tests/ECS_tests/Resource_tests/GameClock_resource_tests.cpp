@@ -9,7 +9,7 @@
 #include <thread>
 #include <criterion/criterion.h>
 #include "World/World.hpp"
-#include "R-TypeLogic/SharedResources/GameClock.hpp"
+#include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
 
 Test(GameClock, reset_clock_test)
 {

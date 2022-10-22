@@ -11,17 +11,17 @@
 #include <concepts>
 #include <map>
 #include <typeindex>
-#include "R-TypeLogic/Components/DeathComponent.hpp"
-#include "R-TypeLogic/Components/DestinationComponent.hpp"
-#include "R-TypeLogic/Components/EquipmentComponent.hpp"
-#include "R-TypeLogic/Components/InvinsibleComponent.hpp"
-#include "R-TypeLogic/Components/InvisibleComponent.hpp"
-#include "R-TypeLogic/Components/LifeComponent.hpp"
-#include "R-TypeLogic/Components/PositionComponent.hpp"
-#include "R-TypeLogic/Components/VelocityComponent.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "Transisthor/TransisthorECSLogic/Server/Components/NetworkClient.hpp"
 #include "World/World.hpp"
+#include "R-TypeLogic/Global/Components/DeathComponent.hpp"
+#include "R-TypeLogic/Global/Components/DestinationComponent.hpp"
+#include "R-TypeLogic/Global/Components/EquipmentComponent.hpp"
+#include "R-TypeLogic/Global/Components/InvinsibleComponent.hpp"
+#include "R-TypeLogic/Global/Components/InvisibleComponent.hpp"
+#include "R-TypeLogic/Global/Components/LifeComponent.hpp"
+#include "R-TypeLogic/Global/Components/PositionComponent.hpp"
+#include "R-TypeLogic/Global/Components/VelocityComponent.hpp"
 
 ///@brief a static map which is used to know which ID is used for a component type for the RFC protocol
 static const std::map<std::type_index, unsigned short> componentRFCId = {{typeid(ecs::Destination), 1},

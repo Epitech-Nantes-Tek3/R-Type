@@ -18,8 +18,8 @@
 #include "MouseInputComponent.hpp"
 #include "SFMLResource/RenderWindowResource.hpp"
 #include "World/World.hpp"
-#include "R-TypeLogic/Components/ShootingFrequencyComponent.hpp"
-#include "R-TypeLogic/SharedResources/GameClock.hpp"
+#include "R-TypeLogic/Global/Components/ShootingFrequencyComponent.hpp"
+#include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
 
 using namespace ecs;
 

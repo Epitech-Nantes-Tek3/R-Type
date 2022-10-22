@@ -6,7 +6,7 @@
 */
 
 #include "SendToServer.hpp"
-#include "R-TypeLogic/Components/ControlableComponent.hpp"
+#include "R-TypeLogic/Global/Components/ControlableComponent.hpp"
 
 void SendToServer::runSystem(ecs::World &world)
 {

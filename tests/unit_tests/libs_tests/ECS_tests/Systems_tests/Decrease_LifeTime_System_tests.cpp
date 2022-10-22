@@ -8,10 +8,10 @@
 #include <criterion/criterion.h>
 #include "Entity/Entity.hpp"
 #include "World/World.hpp"
-#include "R-TypeLogic/Components/DeathComponent.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateProjectile.hpp"
-#include "R-TypeLogic/Systems/DecreaseLifeTimeSystem.hpp"
-#include "R-TypeLogic/Systems/UpdateClockSystem.hpp"
+#include "R-TypeLogic/Global/Components/DeathComponent.hpp"
+#include "R-TypeLogic/Server/Systems/DecreaseLifeTimeSystem.hpp"
+#include "R-TypeLogic/Global/Systems/UpdateClockSystem.hpp"
 
 using namespace ecs;
 

@@ -9,8 +9,8 @@
 #define DEATHLIFESYSTEM_HPP_
 
 #include "World/World.hpp"
-#include "R-TypeLogic/Components/DeathComponent.hpp"
-#include "R-TypeLogic/Components/LifeComponent.hpp"
+#include "R-TypeLogic/Global/Components/DeathComponent.hpp"
+#include "R-TypeLogic/Global/Components/LifeComponent.hpp"
 
 namespace ecs
 {

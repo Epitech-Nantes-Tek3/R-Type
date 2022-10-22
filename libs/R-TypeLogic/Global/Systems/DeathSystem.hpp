@@ -10,8 +10,8 @@
 
 #include "Transisthor/TransisthorECSLogic/Server/Resources/NetworkableIdGenerator.hpp"
 #include "World/World.hpp"
-#include "R-TypeLogic/Components/DeathComponent.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateEnemy.hpp"
+#include "R-TypeLogic/Global/Components/DeathComponent.hpp"
 
 namespace ecs
 {

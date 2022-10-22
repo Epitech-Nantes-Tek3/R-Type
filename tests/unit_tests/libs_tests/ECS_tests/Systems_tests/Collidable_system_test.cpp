@@ -8,17 +8,17 @@
 #include <criterion/criterion.h>
 #include "Entity/Entity.hpp"
 #include "World/World.hpp"
-#include "R-TypeLogic/Components/AlliedProjectileComponent.hpp"
-#include "R-TypeLogic/Components/CollidableComponent.hpp"
-#include "R-TypeLogic/Components/DamageComponent.hpp"
-#include "R-TypeLogic/Components/EnemyComponent.hpp"
-#include "R-TypeLogic/Components/EnemyProjectileComponent.hpp"
-#include "R-TypeLogic/Components/LifeComponent.hpp"
-#include "R-TypeLogic/Components/ObstacleComponent.hpp"
-#include "R-TypeLogic/Components/PlayerComponent.hpp"
-#include "R-TypeLogic/Components/PositionComponent.hpp"
-#include "R-TypeLogic/Components/SizeComponent.hpp"
-#include "R-TypeLogic/Systems/CollidableSystem.hpp"
+#include "R-TypeLogic/Global/Components/AlliedProjectileComponent.hpp"
+#include "R-TypeLogic/Global/Components/CollidableComponent.hpp"
+#include "R-TypeLogic/Global/Components/DamageComponent.hpp"
+#include "R-TypeLogic/Global/Components/EnemyComponent.hpp"
+#include "R-TypeLogic/Global/Components/EnemyProjectileComponent.hpp"
+#include "R-TypeLogic/Global/Components/LifeComponent.hpp"
+#include "R-TypeLogic/Global/Components/ObstacleComponent.hpp"
+#include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
+#include "R-TypeLogic/Global/Components/PositionComponent.hpp"
+#include "R-TypeLogic/Global/Components/SizeComponent.hpp"
+#include "R-TypeLogic/Server/Systems/CollidableSystem.hpp"
 
 using namespace ecs;
 

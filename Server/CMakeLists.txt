@@ -21,6 +21,6 @@ set_target_properties(${TARGET}
 
 target_link_libraries(${TARGET}
     ${PROJECT_NAME}_transisthor
-    ${PROJECT_NAME}_rlServerSystem
+    ${PROJECT_NAME}_RTypeLogicServer
     ${PROJECT_NAME}_argumentHandler
 )

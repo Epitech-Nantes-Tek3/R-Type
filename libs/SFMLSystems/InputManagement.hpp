@@ -10,9 +10,9 @@
 
 #include "System/System.hpp"
 #include "World/World.hpp"
-#include "R-TypeLogic/Components/ControlableComponent.hpp"
-#include "R-TypeLogic/Components/VelocityComponent.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateAlliedProjectile.hpp"
+#include "R-TypeLogic/Global/Components/ControlableComponent.hpp"
+#include "R-TypeLogic/Global/Components/VelocityComponent.hpp"
 
 namespace ecs
 {
