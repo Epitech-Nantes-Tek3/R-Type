@@ -18,7 +18,7 @@ target_include_directories(${TARGET}
     PRIVATE ${PROJECT_NAME}_communicator
     PRIVATE ${PROJECT_NAME}_ecs
     INTERFACE ${PROJECT_NAME}_rlCreateEntitiesFunctions
-    INTERFACE ${PROJECT_NAME}_gameComponents
+    PRIVATE ${PROJECT_NAME}_rl
     INTERFACE ${PROJECT_NAME}_error
     PRIVATE ${SRC_ROOT}
 )
@@ -27,6 +27,6 @@ target_link_libraries(${TARGET}
     ${PROJECT_NAME}_error
     ${PROJECT_NAME}_communicator
     ${PROJECT_NAME}_ecs
-    ${PROJECT_NAME}_gameComponents
+    ${PROJECT_NAME}_rl
     ${PROJECT_NAME}_rlCreateEntitiesFunctions
 )

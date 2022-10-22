@@ -8,10 +8,10 @@
 #ifndef DECREASELIFETIMESYSTEM_HPP_
 #define DECREASELIFETIMESYSTEM_HPP_
 
-#include "GameComponents/DeathComponent.hpp"
-#include "GameComponents/LifeTimeComponent.hpp"
 #include "World/World.hpp"
-#include "GameSharedResources/GameClock.hpp"
+#include "R-TypeLogic/Components/DeathComponent.hpp"
+#include "R-TypeLogic/Components/LifeTimeComponent.hpp"
+#include "R-TypeLogic/SharedResources/GameClock.hpp"
 
 namespace ecs
 {
@@ -23,8 +23,8 @@ namespace ecs
             std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<LifeTime>();
 
             auto decreaseLifeTime = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
-                entityPtr.get()->getComponent<LifeTime>() =
-                    entityPtr.get()->getComponent<LifeTime>().timeLeft - std::chrono::duration<double>(world.getResource<GameClock>().getElapsedTime());
+                entityPtr.get()->getComponent<LifeTime>() = entityPtr.get()->getComponent<LifeTime>().timeLeft
+                    - std::chrono::duration<double>(world.getResource<GameClock>().getElapsedTime());
             };
             std::for_each(joined.begin(), joined.end(), decreaseLifeTime);
         }

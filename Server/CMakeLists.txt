@@ -1,4 +1,4 @@
-set (TARGET r-type_server)
+set(TARGET r-type_server)
 
 set(SRC_ROOT ${PROJECT_SOURCE_DIR}/Server)
 set(INC_ROOT ${PROJECT_SOURCE_DIR}/Server)
@@ -21,6 +21,6 @@ set_target_properties(${TARGET}
 
 target_link_libraries(${TARGET}
     ${PROJECT_NAME}_transisthor
+    ${PROJECT_NAME}_rlServerSystem
     ${PROJECT_NAME}_argumentHandler
-    ${PROJECT_NAME}_gameSystems
 )

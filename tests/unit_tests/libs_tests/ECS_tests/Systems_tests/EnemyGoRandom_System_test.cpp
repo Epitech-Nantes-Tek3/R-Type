@@ -9,13 +9,13 @@
 #include <thread>
 #include <criterion/criterion.h>
 #include "Entity/Entity.hpp"
-#include "GameEntityManipulation/CreateEntitiesFunctions/CreateEnemy.hpp"
-#include "GameSharedResources/GameClock.hpp"
-#include "GameSharedResources/Random.hpp"
-#include "GameSystems/EnemiesGoRandom.hpp"
-#include "GameSystems/UpdateClockSystem.hpp"
-#include "GameSystems/MovementSystem.hpp"
 #include "World/World.hpp"
+#include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateEnemy.hpp"
+#include "R-TypeLogic/SharedResources/GameClock.hpp"
+#include "R-TypeLogic/SharedResources/Random.hpp"
+#include "R-TypeLogic/Systems/EnemiesGoRandom.hpp"
+#include "R-TypeLogic/Systems/MovementSystem.hpp"
+#include "R-TypeLogic/Systems/UpdateClockSystem.hpp"
 
 using namespace ecs;
 

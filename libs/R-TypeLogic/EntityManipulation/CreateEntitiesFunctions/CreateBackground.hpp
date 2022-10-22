@@ -8,14 +8,14 @@
 #ifndef CREATEBACKGROUND_HPP_
 #define CREATEBACKGROUND_HPP_
 
-#include "GameComponents/BackGroundComponent.hpp"
-#include "GameComponents/CollidableComponent.hpp"
-#include "GameComponents/DamageComponent.hpp"
-#include "GameComponents/PositionComponent.hpp"
-#include "GameComponents/SizeComponent.hpp"
-#include "GameComponents/VelocityComponent.hpp"
-#include "GameComponents/WeightComponent.hpp"
 #include "World/World.hpp"
+#include "R-TypeLogic/Components/BackGroundComponent.hpp"
+#include "R-TypeLogic/Components/CollidableComponent.hpp"
+#include "R-TypeLogic/Components/DamageComponent.hpp"
+#include "R-TypeLogic/Components/PositionComponent.hpp"
+#include "R-TypeLogic/Components/SizeComponent.hpp"
+#include "R-TypeLogic/Components/VelocityComponent.hpp"
+#include "R-TypeLogic/Components/WeightComponent.hpp"
 
 namespace ecs
 {

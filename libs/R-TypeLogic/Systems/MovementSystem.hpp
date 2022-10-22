@@ -8,9 +8,9 @@
 #ifndef MOUVEMENT_HPP_
 #define MOUVEMENT_HPP_
 
-#include "GameComponents/PositionComponent.hpp"
-#include "GameComponents/VelocityComponent.hpp"
 #include "World/World.hpp"
+#include "R-TypeLogic/Components/PositionComponent.hpp"
+#include "R-TypeLogic/Components/VelocityComponent.hpp"
 
 namespace ecs
 {

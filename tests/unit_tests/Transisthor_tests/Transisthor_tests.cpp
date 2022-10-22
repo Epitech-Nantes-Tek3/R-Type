@@ -7,25 +7,25 @@
 
 #include <criterion/criterion.h>
 #include "Error/Error.hpp"
-#include "GameComponents/DeathComponent.hpp"
-#include "GameComponents/DestinationComponent.hpp"
-#include "GameComponents/EquipmentComponent.hpp"
-#include "GameComponents/InvinsibleComponent.hpp"
-#include "GameComponents/InvisibleComponent.hpp"
-#include "GameComponents/LifeComponent.hpp"
-#include "GameComponents/PositionComponent.hpp"
-#include "GameComponents/VelocityComponent.hpp"
-#include "GameEntityManipulation/CreateEntitiesFunctions/CreateAlliedProjectile.hpp"
-#include "GameEntityManipulation/CreateEntitiesFunctions/CreateEnemy.hpp"
-#include "GameEntityManipulation/CreateEntitiesFunctions/CreateEnemyProjectile.hpp"
-#include "GameEntityManipulation/CreateEntitiesFunctions/CreateObstacle.hpp"
-#include "GameEntityManipulation/CreateEntitiesFunctions/CreatePlayer.hpp"
-#include "GameEntityManipulation/CreateEntitiesFunctions/CreateProjectile.hpp"
-#include "GameSharedResources/Random.hpp"
 #include "Transisthor/Transisthor.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Systems/SendNewlyCreatedToServer.hpp"
 #include "Transisthor/TransisthorECSLogic/Server/Resources/NetworkableIdGenerator.hpp"
 #include "Transisthor/TransisthorECSLogic/Server/Systems/SendNewlyCreatedToClients.hpp"
+#include "R-TypeLogic/Components/DeathComponent.hpp"
+#include "R-TypeLogic/Components/DestinationComponent.hpp"
+#include "R-TypeLogic/Components/EquipmentComponent.hpp"
+#include "R-TypeLogic/Components/InvinsibleComponent.hpp"
+#include "R-TypeLogic/Components/InvisibleComponent.hpp"
+#include "R-TypeLogic/Components/LifeComponent.hpp"
+#include "R-TypeLogic/Components/PositionComponent.hpp"
+#include "R-TypeLogic/Components/VelocityComponent.hpp"
+#include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateAlliedProjectile.hpp"
+#include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateEnemy.hpp"
+#include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateEnemyProjectile.hpp"
+#include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateObstacle.hpp"
+#include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreatePlayer.hpp"
+#include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateProjectile.hpp"
+#include "R-TypeLogic/SharedResources/Random.hpp"
 
 using namespace transisthor_lib;
 using namespace communicator_lib;
@@ -405,8 +405,8 @@ Test(transisthor_testing, transit_player_entity)
     unsigned short damageRadius = 0;
     bool isControlable = true;
 
-    char *uuid =
-        (char *)networkAnswer + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2 + sizeof(unsigned short) * 2 + sizeof(bool);
+    char *uuid = (char *)networkAnswer + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2
+        + sizeof(unsigned short) * 2 + sizeof(bool);
 
     std::memcpy(&posX, networkAnswer, sizeof(int));
     std::memcpy(&posY, (void *)((char *)networkAnswer + sizeof(int)), sizeof(int));
@@ -473,8 +473,8 @@ Test(transisthor_testing, transit_player_entity_without_uuid)
     unsigned short damageRadius = 0;
     bool isControlable = true;
 
-    char *uuid =
-        (char *)networkAnswer + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2 + sizeof(unsigned short) * 2 + sizeof(bool);
+    char *uuid = (char *)networkAnswer + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2
+        + sizeof(unsigned short) * 2 + sizeof(bool);
 
     std::memcpy(&posX, networkAnswer, sizeof(int));
     std::memcpy(&posY, (void *)((char *)networkAnswer + sizeof(int)), sizeof(int));

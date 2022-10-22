@@ -8,9 +8,9 @@
 #ifndef DEATHLIFESYSTEM_HPP_
 #define DEATHLIFESYSTEM_HPP_
 
-#include "GameComponents/DeathComponent.hpp"
-#include "GameComponents/LifeComponent.hpp"
 #include "World/World.hpp"
+#include "R-TypeLogic/Components/DeathComponent.hpp"
+#include "R-TypeLogic/Components/LifeComponent.hpp"
 
 namespace ecs
 {

@@ -6,12 +6,12 @@
 */
 
 #include "MovementSystem.hpp"
-#include "GameComponents/PositionComponent.hpp"
-#include "GameComponents/VelocityComponent.hpp"
-#include "GameComponents/PlayerComponent.hpp"
-#include "GameComponents/EnemyComponent.hpp"
-#include "GameComponents/DestinationComponent.hpp"
-#include "GameSharedResources/GameClock.hpp"
+#include "R-TypeLogic/Components/DestinationComponent.hpp"
+#include "R-TypeLogic/Components/EnemyComponent.hpp"
+#include "R-TypeLogic/Components/PlayerComponent.hpp"
+#include "R-TypeLogic/Components/PositionComponent.hpp"
+#include "R-TypeLogic/Components/VelocityComponent.hpp"
+#include "R-TypeLogic/SharedResources/GameClock.hpp"
 
 using namespace ecs;
 

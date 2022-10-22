@@ -6,10 +6,9 @@ add_subdirectory(Systems)
 set(TARGET ${PROJECT_NAME}_rl)
 
 add_library(${TARGET}
-    SHARED
-    ${SRC_RL_GLOBAL_SYSTEMS}
     ${SRC_RL_COMPONENTS}
     ${SRC_RL_RESOURCES}
+    ${SRC_RL_GLOBAL_SYSTEMS}
 )
 
 target_include_directories(${TARGET}

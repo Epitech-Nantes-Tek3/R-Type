@@ -8,8 +8,8 @@
 #include <chrono>
 #include <thread>
 #include <criterion/criterion.h>
-#include "GameSharedResources/GameClock.hpp"
 #include "World/World.hpp"
+#include "R-TypeLogic/SharedResources/GameClock.hpp"
 
 Test(GameClock, reset_clock_test)
 {

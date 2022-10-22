@@ -8,11 +8,11 @@
 #ifndef ENEMIESGORANDOM_HPP_
 #define ENEMIESGORANDOM_HPP_
 
-#include "GameComponents/DestinationComponent.hpp"
-#include "GameComponents/EnemyComponent.hpp"
-#include "GameComponents/PositionComponent.hpp"
-#include "GameComponents/VelocityComponent.hpp"
 #include "World/World.hpp"
+#include "R-TypeLogic/Components/DestinationComponent.hpp"
+#include "R-TypeLogic/Components/EnemyComponent.hpp"
+#include "R-TypeLogic/Components/PositionComponent.hpp"
+#include "R-TypeLogic/Components/VelocityComponent.hpp"
 
 namespace ecs
 {

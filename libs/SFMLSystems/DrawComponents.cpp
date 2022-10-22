@@ -7,16 +7,16 @@
 
 #include "DrawComponents.hpp"
 #include <algorithm>
-#include "GameComponents/AlliedProjectileComponent.hpp"
-#include "GameComponents/EnemyProjectileComponent.hpp"
-#include "GameComponents/PositionComponent.hpp"
-#include "GameComponents/SizeComponent.hpp"
 #include "GraphicsRectangleComponent.hpp"
 #include "GraphicsTextComponent.hpp"
 #include "GraphicsTextureResource.hpp"
 #include "LayerLvL.hpp"
 #include "SFMLResource/RenderWindowResource.hpp"
 #include "TextureName.hpp"
+#include "R-TypeLogic/Components/AlliedProjectileComponent.hpp"
+#include "R-TypeLogic/Components/EnemyProjectileComponent.hpp"
+#include "R-TypeLogic/Components/PositionComponent.hpp"
+#include "R-TypeLogic/Components/SizeComponent.hpp"
 
 using namespace ecs;
 

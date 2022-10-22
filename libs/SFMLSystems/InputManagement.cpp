@@ -16,10 +16,10 @@
 #include "ControllerJoystickInputComponent.hpp"
 #include "KeyboardInputComponent.hpp"
 #include "MouseInputComponent.hpp"
-#include "GameComponents/ShootingFrequencyComponent.hpp"
-#include "GameSharedResources/GameClock.hpp"
 #include "SFMLResource/RenderWindowResource.hpp"
 #include "World/World.hpp"
+#include "R-TypeLogic/Components/ShootingFrequencyComponent.hpp"
+#include "R-TypeLogic/SharedResources/GameClock.hpp"
 
 using namespace ecs;
 

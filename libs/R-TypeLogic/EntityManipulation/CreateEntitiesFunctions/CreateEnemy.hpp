@@ -8,23 +8,23 @@
 #ifndef CREATEENEMY_HPP_
 #define CREATEENEMY_HPP_
 
-#include "GameComponents/CollidableComponent.hpp"
-#include "GameComponents/DamageComponent.hpp"
-#include "GameComponents/DamageRadiusComponent.hpp"
-#include "GameComponents/DestinationComponent.hpp"
-#include "GameComponents/EnemyComponent.hpp"
-#include "GameComponents/LifeComponent.hpp"
-#include "GameComponents/LifeTimeComponent.hpp"
-#include "GameComponents/NewlyCreated.hpp"
-#include "GameComponents/PositionComponent.hpp"
-#include "GameComponents/ShootingFrequencyComponent.hpp"
-#include "GameComponents/SizeComponent.hpp"
-#include "GameComponents/VelocityComponent.hpp"
-#include "GameComponents/WeightComponent.hpp"
-#include "GameSharedResources/Random.hpp"
 #include "SFMLComponents/LayerLvL.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "World/World.hpp"
+#include "R-TypeLogic/Components/CollidableComponent.hpp"
+#include "R-TypeLogic/Components/DamageComponent.hpp"
+#include "R-TypeLogic/Components/DamageRadiusComponent.hpp"
+#include "R-TypeLogic/Components/DestinationComponent.hpp"
+#include "R-TypeLogic/Components/EnemyComponent.hpp"
+#include "R-TypeLogic/Components/LifeComponent.hpp"
+#include "R-TypeLogic/Components/LifeTimeComponent.hpp"
+#include "R-TypeLogic/Components/NewlyCreated.hpp"
+#include "R-TypeLogic/Components/PositionComponent.hpp"
+#include "R-TypeLogic/Components/ShootingFrequencyComponent.hpp"
+#include "R-TypeLogic/Components/SizeComponent.hpp"
+#include "R-TypeLogic/Components/VelocityComponent.hpp"
+#include "R-TypeLogic/Components/WeightComponent.hpp"
+#include "R-TypeLogic/SharedResources/Random.hpp"
 
 #define MINIMUM_WIDTH  1400
 #define MAXIMUM_WIDTH  1700

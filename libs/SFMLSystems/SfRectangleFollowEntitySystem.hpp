@@ -10,10 +10,10 @@
 
 #include <SFML/Graphics.hpp>
 #include "Component/Component.hpp"
-#include "GameComponents/PositionComponent.hpp"
 #include "SFMLComponents/GraphicsRectangleComponent.hpp"
 #include "System/System.hpp"
 #include "World/World.hpp"
+#include "R-TypeLogic/Components/PositionComponent.hpp"
 
 namespace ecs
 {

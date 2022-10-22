@@ -6,11 +6,11 @@
 */
 
 #include "EnemiesGoRandom.hpp"
-#include "GameComponents/DestinationComponent.hpp"
-#include "GameComponents/EnemyComponent.hpp"
-#include "GameComponents/PositionComponent.hpp"
-#include "GameComponents/VelocityComponent.hpp"
-#include "GameSharedResources/Random.hpp"
+#include "R-TypeLogic/Components/DestinationComponent.hpp"
+#include "R-TypeLogic/Components/EnemyComponent.hpp"
+#include "R-TypeLogic/Components/PositionComponent.hpp"
+#include "R-TypeLogic/Components/VelocityComponent.hpp"
+#include "R-TypeLogic/SharedResources/Random.hpp"
 
 #define MINIMUM_WIDTH  1400
 #define MAXIMUM_WIDTH  1700

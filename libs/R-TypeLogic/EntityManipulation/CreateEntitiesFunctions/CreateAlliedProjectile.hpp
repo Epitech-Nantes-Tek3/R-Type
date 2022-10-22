@@ -8,21 +8,21 @@
 #ifndef CREATEALLYPROJECTILE_HPP_
 #define CREATEALLYPROJECTILE_HPP_
 
-#include "GameComponents/AlliedProjectileComponent.hpp"
-#include "GameComponents/CollidableComponent.hpp"
-#include "GameComponents/DamageComponent.hpp"
-#include "GameComponents/DamageRadiusComponent.hpp"
-#include "GameComponents/LifeComponent.hpp"
-#include "GameComponents/LifeTimeComponent.hpp"
-#include "GameComponents/NewlyCreated.hpp"
-#include "GameComponents/PositionComponent.hpp"
-#include "GameComponents/SizeComponent.hpp"
-#include "GameComponents/VelocityComponent.hpp"
-#include "GameComponents/WeightComponent.hpp"
-#include "GameSharedResources/Random.hpp"
 #include "SFMLComponents/LayerLvL.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "World/World.hpp"
+#include "R-TypeLogic/Components/AlliedProjectileComponent.hpp"
+#include "R-TypeLogic/Components/CollidableComponent.hpp"
+#include "R-TypeLogic/Components/DamageComponent.hpp"
+#include "R-TypeLogic/Components/DamageRadiusComponent.hpp"
+#include "R-TypeLogic/Components/LifeComponent.hpp"
+#include "R-TypeLogic/Components/LifeTimeComponent.hpp"
+#include "R-TypeLogic/Components/NewlyCreated.hpp"
+#include "R-TypeLogic/Components/PositionComponent.hpp"
+#include "R-TypeLogic/Components/SizeComponent.hpp"
+#include "R-TypeLogic/Components/VelocityComponent.hpp"
+#include "R-TypeLogic/Components/WeightComponent.hpp"
+#include "R-TypeLogic/SharedResources/Random.hpp"
 
 namespace ecs
 {

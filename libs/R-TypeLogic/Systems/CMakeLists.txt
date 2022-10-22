@@ -1,27 +1,27 @@
-set(SRC_RL_SYSTEMS_ROOT ${PROJECT_SOURCE_DIR}/libs/R-TypeLogic/Systems)
+set(SRC_RL_SYSTEMS_ROOT ${PROJECT_SOURCE_DIR}/libs/R-TypeLogic/Systems/)
 set(INC_RL_SYSTEMS_ROOT ${PROJECT_SOURCE_DIR}/libs/R-TypeLogic)
 
-############################################
+# ###########################################
 # Create the Global R-Type Systems Library #
-############################################
-set (SRC_RL_GLOBAL_SYSTEMS
+# ###########################################
+set(SRC_RL_GLOBAL_SYSTEMS
     ${SRC_RL_SYSTEMS_ROOT}/MovementSystem.hpp
     ${SRC_RL_SYSTEMS_ROOT}/DeathSystem.hpp
     ${SRC_RL_SYSTEMS_ROOT}/MovementSystem.cpp
+    ${SRC_RL_SYSTEMS_ROOT}/UpdateClockSystem.hpp
+    ${SRC_RL_SYSTEMS_ROOT}/UpdateClockSystem.cpp
     PARENT_SCOPE
 )
 
-############################################
+# ###########################################
 # Create the Server R-Type Systems Library #
-############################################
-set(TARGET_SERVER ${PROJECT_NAME}_RTypeServerSystems)
+# ###########################################
+set(TARGET_SERVER ${PROJECT_NAME}_rlServerSystem)
 
 set(SRC_RL_SERVER_SYSTEMS
     ${SRC_RL_SYSTEMS_ROOT}/DeathLifeSystem.hpp
     ${SRC_RL_SYSTEMS_ROOT}/LifeTimeDeathSystem.hpp
     ${SRC_RL_SYSTEMS_ROOT}/DecreaseLifeTimeSystem.hpp
-    ${SRC_RL_SYSTEMS_ROOT}/UpdateClockSystem.hpp
-    ${SRC_RL_SYSTEMS_ROOT}/UpdateClockSystem.cpp
     ${SRC_RL_SYSTEMS_ROOT}/CollidableSystem.hpp
     ${SRC_RL_SYSTEMS_ROOT}/CollidableSystem.cpp
     ${SRC_RL_SYSTEMS_ROOT}/EnemiesGoRandom.cpp

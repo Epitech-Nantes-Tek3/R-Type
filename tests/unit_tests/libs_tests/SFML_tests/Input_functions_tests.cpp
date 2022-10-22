@@ -9,13 +9,13 @@
 #include <thread>
 #include <criterion/criterion.h>
 #include "Entity/Entity.hpp"
-#include "GameComponents/PositionComponent.hpp"
-#include "GameComponents/SizeComponent.hpp"
-#include "GameSystems/MovementSystem.hpp"
-#include "GameComponents/VelocityComponent.hpp"
-#include "GameSharedResources/GameClock.hpp"
 #include "SFMLSystems/InputManagement.hpp"
 #include "World/World.hpp"
+#include "R-TypeLogic/Components/PositionComponent.hpp"
+#include "R-TypeLogic/Components/SizeComponent.hpp"
+#include "R-TypeLogic/Components/VelocityComponent.hpp"
+#include "R-TypeLogic/SharedResources/GameClock.hpp"
+#include "R-TypeLogic/Systems/MovementSystem.hpp"
 
 using namespace ecs;
 

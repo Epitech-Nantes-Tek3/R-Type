@@ -6,8 +6,8 @@
 */
 
 #include "ParallaxSystem.hpp"
-#include "GameComponents/PositionComponent.hpp"
 #include "SFMLComponents/ParallaxComponent.hpp"
+#include "R-TypeLogic/Components/PositionComponent.hpp"
 
 #define MAXIMUM_WIDTH 1920
 
