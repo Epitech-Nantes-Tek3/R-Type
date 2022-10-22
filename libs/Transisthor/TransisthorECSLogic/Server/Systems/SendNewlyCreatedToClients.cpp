@@ -8,23 +8,23 @@
 #include "Transisthor/TransisthorECSLogic/Server/Systems/SendNewlyCreatedToClients.hpp"
 #include <chrono>
 #include <thread>
-#include "GameComponents/AlliedProjectileComponent.hpp"
-#include "GameComponents/DamageComponent.hpp"
-#include "GameComponents/DamageRadiusComponent.hpp"
-#include "GameComponents/EnemyComponent.hpp"
-#include "GameComponents/EnemyProjectileComponent.hpp"
-#include "GameComponents/LifeComponent.hpp"
-#include "GameComponents/NewlyCreated.hpp"
-#include "GameComponents/ObstacleComponent.hpp"
-#include "GameComponents/PlayerComponent.hpp"
-#include "GameComponents/PositionComponent.hpp"
-#include "GameComponents/ProjectileComponent.hpp"
-#include "GameComponents/SizeComponent.hpp"
-#include "GameComponents/VelocityComponent.hpp"
-#include "GameComponents/WeightComponent.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Resources/SendingFrequency.hpp"
 #include "Transisthor/TransisthorECSLogic/Server/Components/NetworkClient.hpp"
+#include "R-TypeLogic/Global/Components/AlliedProjectileComponent.hpp"
+#include "R-TypeLogic/Global/Components/DamageComponent.hpp"
+#include "R-TypeLogic/Global/Components/DamageRadiusComponent.hpp"
+#include "R-TypeLogic/Global/Components/EnemyComponent.hpp"
+#include "R-TypeLogic/Global/Components/EnemyProjectileComponent.hpp"
+#include "R-TypeLogic/Global/Components/LifeComponent.hpp"
+#include "R-TypeLogic/Global/Components/NewlyCreated.hpp"
+#include "R-TypeLogic/Global/Components/ObstacleComponent.hpp"
+#include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
+#include "R-TypeLogic/Global/Components/PositionComponent.hpp"
+#include "R-TypeLogic/Global/Components/ProjectileComponent.hpp"
+#include "R-TypeLogic/Global/Components/SizeComponent.hpp"
+#include "R-TypeLogic/Global/Components/VelocityComponent.hpp"
+#include "R-TypeLogic/Global/Components/WeightComponent.hpp"
 
 using namespace ecs;
 
@@ -47,10 +47,16 @@ void SendNewlyCreatedToClients::runSystem(ecs::World &world)
             std::cerr << entityPtr->getComponent<AlliedProjectile>().parentNetworkId << std::endl;
             world.getTransisthorBridge()->transitEcsDataToNetworkDataEntityAlliedProjectile(
                 entityPtr->getComponent<Networkable>().id, entityPtr->getComponent<AlliedProjectile>().parentNetworkId,
-                newlyCreated.uuid, {world.getEntity(entityPtr->getComponent<AlliedProjectile>().parentNetworkId).getComponent<ecs::NetworkClient>().id});
+                newlyCreated.uuid,
+                {world.getEntity(entityPtr->getComponent<AlliedProjectile>().parentNetworkId)
+                        .getComponent<ecs::NetworkClient>()
+                        .id});
             std::vector<unsigned short> clientIdListWithoutParent;
             for (auto i : clientIdList) {
-                if (i != world.getEntity(entityPtr->getComponent<AlliedProjectile>().parentNetworkId).getComponent<ecs::NetworkClient>().id) {
+                if (i
+                    != world.getEntity(entityPtr->getComponent<AlliedProjectile>().parentNetworkId)
+                           .getComponent<ecs::NetworkClient>()
+                           .id) {
                     clientIdListWithoutParent.emplace_back(i);
                 }
             }

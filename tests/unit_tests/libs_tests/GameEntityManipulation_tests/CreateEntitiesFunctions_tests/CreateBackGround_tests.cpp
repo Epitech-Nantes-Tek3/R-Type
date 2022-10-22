@@ -7,7 +7,7 @@
 
 #include <criterion/criterion.h>
 #include "World/World.hpp"
-#include "GameEntityManipulation/CreateEntitiesFunctions/CreateBackground.hpp"
+#include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateBackground.hpp"
 
 using namespace ecs;
 

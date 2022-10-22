@@ -21,12 +21,12 @@ target_include_directories(${TARGET}
     PUBLIC ${GRAPHIC_SRC_COMPONENT_ROOT}
     PUBLIC ${GRAPHIC_SRC_RESOURCE_ROOT}
     PUBLIC ${GRAPHIC_SRC_SYSTEM_ROOT}
-    PRIVATE ${PROJECT_NAME}_gameSharedResources
+    PRIVATE ${PROJECT_NAME}_RTypeLogicGlobal
     PRIVATE ${PROJECT_NAME}_ecs
 )
 
 target_link_libraries(${TARGET}
-    ${PROJECT_NAME}_gameSharedResources
+    ${PROJECT_NAME}_RTypeLogicGlobal
     ${PROJECT_NAME}_ecs
     CONAN_PKG::sfml
 )
