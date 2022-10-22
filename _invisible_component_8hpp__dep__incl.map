@@ -1,5 +1,5 @@
-<map id="libs/GameComponents/InvisibleComponent.hpp" name="libs/GameComponents/InvisibleComponent.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="256,5,440,47"/>
+<map id="libs/R&#45;TypeLogic/Global/Components/InvisibleComponent.hpp" name="libs/R&#45;TypeLogic/Global/Components/InvisibleComponent.hpp">
+<area shape="rect" id="node1" title=" " alt="" coords="213,5,483,47"/>
 <area shape="rect" id="node2" href="$_transisthor_8cpp.html" title=" " alt="" coords="5,109,227,136"/>
 <area shape="rect" id="node3" href="$_send_to_server_8hpp.html" title=" " alt="" coords="251,95,445,151"/>
 <area shape="rect" id="node6" href="$_send_to_client_8hpp.html" title=" " alt="" coords="469,95,664,151"/>

@@ -1,6 +1,6 @@
-<map id="libs/GameComponents/LifeComponent.hpp" name="libs/GameComponents/LifeComponent.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="22,5,193,47"/>
-<area shape="rect" id="node2" href="$_component_8hpp.html" title=" " alt="" coords="5,95,209,121"/>
-<area shape="rect" id="node3" title=" " alt="" coords="26,169,93,196"/>
-<area shape="rect" id="node4" title=" " alt="" coords="117,169,197,196"/>
+<map id="libs/R&#45;TypeLogic/Global/Components/LifeComponent.hpp" name="libs/R&#45;TypeLogic/Global/Components/LifeComponent.hpp">
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,244,47"/>
+<area shape="rect" id="node2" href="$_component_8hpp.html" title=" " alt="" coords="23,95,227,121"/>
+<area shape="rect" id="node3" title=" " alt="" coords="43,169,110,196"/>
+<area shape="rect" id="node4" title=" " alt="" coords="134,169,214,196"/>
 </map>

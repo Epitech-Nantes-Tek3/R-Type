@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>R-Type: libs/GameEntityManipulation/CreateEntitiesFunctions/CreatePlayer.hpp File Reference</title>
+<title>R-Type: libs/R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreatePlayer.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -90,82 +90,82 @@ $(document).ready(function(){initNavTree('_create_player_8hpp.html',''); initRes
 <div class="title">CreatePlayer.hpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="_collidable_component_8hpp_source.html">GameComponents/CollidableComponent.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_controlable_component_8hpp_source.html">GameComponents/ControlableComponent.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_damage_component_8hpp_source.html">GameComponents/DamageComponent.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_damage_radius_component_8hpp_source.html">GameComponents/DamageRadiusComponent.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_life_component_8hpp_source.html">GameComponents/LifeComponent.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_life_time_component_8hpp_source.html">GameComponents/LifeTimeComponent.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_newly_created_8hpp_source.html">GameComponents/NewlyCreated.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_player_component_8hpp_source.html">GameComponents/PlayerComponent.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_position_component_8hpp_source.html">GameComponents/PositionComponent.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_size_component_8hpp_source.html">GameComponents/SizeComponent.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_velocity_component_8hpp_source.html">GameComponents/VelocityComponent.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_weight_component_8hpp_source.html">GameComponents/WeightComponent.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_shooting_frequency_component_8hpp_source.html">GameComponents/ShootingFrequencyComponent.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_random_8hpp_source.html">GameSharedResources/Random.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_networkable_8hpp_source.html">Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="_networkable_8hpp_source.html">Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_world_8hpp_source.html">World/World.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_layer_lv_l_8hpp_source.html">GameComponents/LayerLvL.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_collidable_component_8hpp_source.html">R-TypeLogic/Global/Components/CollidableComponent.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_controlable_component_8hpp_source.html">R-TypeLogic/Global/Components/ControlableComponent.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_damage_component_8hpp_source.html">R-TypeLogic/Global/Components/DamageComponent.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_damage_radius_component_8hpp_source.html">R-TypeLogic/Global/Components/DamageRadiusComponent.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_life_component_8hpp_source.html">R-TypeLogic/Global/Components/LifeComponent.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_life_time_component_8hpp_source.html">R-TypeLogic/Global/Components/LifeTimeComponent.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_newly_created_8hpp_source.html">R-TypeLogic/Global/Components/NewlyCreated.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_player_component_8hpp_source.html">R-TypeLogic/Global/Components/PlayerComponent.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_position_component_8hpp_source.html">R-TypeLogic/Global/Components/PositionComponent.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_shooting_frequency_component_8hpp_source.html">R-TypeLogic/Global/Components/ShootingFrequencyComponent.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_size_component_8hpp_source.html">R-TypeLogic/Global/Components/SizeComponent.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_velocity_component_8hpp_source.html">R-TypeLogic/Global/Components/VelocityComponent.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_weight_component_8hpp_source.html">R-TypeLogic/Global/Components/WeightComponent.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_random_8hpp_source.html">R-TypeLogic/Global/SharedResources/Random.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_layer_lv_l_8hpp_source.html">R-TypeLogic/Global/Components/LayerLvL.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for CreatePlayer.hpp:</div>
 <div class="dyncontent">
-<div class="center"><img src="_create_player_8hpp__incl.png" border="0" usemap="#libs_2_game_entity_manipulation_2_create_entities_functions_2_create_player_8hpp" alt=""/></div>
-<map name="libs_2_game_entity_manipulation_2_create_entities_functions_2_create_player_8hpp" id="libs_2_game_entity_manipulation_2_create_entities_functions_2_create_player_8hpp">
-<area shape="rect" title=" " alt="" coords="1159,5,1369,61"/>
-<area shape="rect" href="_collidable_component_8hpp.html" title=" " alt="" coords="347,199,559,240"/>
-<area shape="rect" href="_controlable_component_8hpp.html" title=" " alt="" coords="583,199,806,240"/>
-<area shape="rect" href="_damage_component_8hpp.html" title=" " alt="" coords="830,206,1135,233"/>
-<area shape="rect" href="_damage_radius_component_8hpp.html" title=" " alt="" coords="1159,199,1406,240"/>
-<area shape="rect" href="_life_component_8hpp.html" title=" " alt="" coords="1431,206,1705,233"/>
-<area shape="rect" href="_life_time_component_8hpp.html" title=" " alt="" coords="1741,117,2048,143"/>
-<area shape="rect" href="_newly_created_8hpp.html" title=" " alt="" coords="3013,117,3280,143"/>
-<area shape="rect" href="_player_component_8hpp.html" title=" " alt="" coords="797,117,1088,143"/>
-<area shape="rect" href="_position_component_8hpp.html" title=" " alt="" coords="1113,117,1415,143"/>
-<area shape="rect" href="_size_component_8hpp.html" title=" " alt="" coords="1440,117,1717,143"/>
-<area shape="rect" href="_velocity_component_8hpp.html" title=" " alt="" coords="2367,117,2670,143"/>
-<area shape="rect" href="_weight_component_8hpp.html" title=" " alt="" coords="2694,117,2989,143"/>
-<area shape="rect" href="_shooting_frequency_component_8hpp.html" title=" " alt="" coords="2073,109,2343,151"/>
-<area shape="rect" href="_random_8hpp.html" title=" " alt="" coords="3304,109,3477,151"/>
-<area shape="rect" href="_networkable_8hpp.html" title=" " alt="" coords="5,109,261,151"/>
-<area shape="rect" href="_world_8hpp.html" title=" " alt="" coords="3735,117,3863,143"/>
-<area shape="rect" href="_layer_lv_l_8hpp.html" title=" " alt="" coords="286,117,519,143"/>
-<area shape="rect" href="_component_8hpp.html" title=" " alt="" coords="1691,288,1895,315"/>
-<area shape="rect" title=" " alt="" coords="1760,363,1827,389"/>
-<area shape="rect" title=" " alt="" coords="3457,363,3537,389"/>
-<area shape="rect" title=" " alt="" coords="2017,206,2084,233"/>
-<area shape="rect" title=" " alt="" coords="3111,206,3183,233"/>
-<area shape="rect" title=" " alt="" coords="3015,206,3086,233"/>
-<area shape="rect" href="_resource_8hpp.html" title=" " alt="" coords="3207,206,3382,233"/>
-<area shape="rect" title=" " alt="" coords="3509,288,3579,315"/>
-<area shape="rect" title=" " alt="" coords="3595,437,3645,464"/>
-<area shape="rect" title=" " alt="" coords="3912,363,3989,389"/>
-<area shape="rect" title=" " alt="" coords="3810,288,3897,315"/>
-<area shape="rect" title=" " alt="" coords="4279,437,4342,464"/>
-<area shape="rect" href="_entity_8hpp.html" title=" " alt="" coords="3735,206,3863,233"/>
-<area shape="rect" title=" " alt="" coords="3921,288,4045,315"/>
-<area shape="rect" href="_system_8hpp.html" title=" " alt="" coords="3508,206,3660,233"/>
-<area shape="rect" href="_transisthor_8hpp.html" title=" " alt="" coords="4145,206,4340,233"/>
-<area shape="rect" title=" " alt="" coords="3655,288,3735,315"/>
-<area shape="rect" href="_communicator_8hpp.html" title=" " alt="" coords="4120,288,4365,315"/>
-<area shape="rect" href="_error_8hpp.html" title=" " alt="" coords="4389,288,4504,315"/>
-<area shape="rect" href="_client_8hpp.html" title=" " alt="" coords="4159,437,4247,464"/>
-<area shape="rect" href="_receiver_8hpp.html" title=" " alt="" coords="4013,363,4120,389"/>
-<area shape="rect" href="_sender_8hpp.html" title=" " alt="" coords="4195,363,4290,389"/>
-<area shape="rect" title=" " alt="" coords="4304,512,4363,539"/>
-<area shape="rect" title=" " alt="" coords="3865,437,3988,464"/>
-<area shape="rect" title=" " alt="" coords="4012,437,4129,464"/>
-<area shape="rect" title=" " alt="" coords="4366,363,4453,389"/>
+<div class="center"><img src="_create_player_8hpp__incl.png" border="0" usemap="#libs_2_r-_type_logic_2_entity_manipulation_2_create_entities_functions_2_create_player_8hpp" alt=""/></div>
+<map name="libs_2_r-_type_logic_2_entity_manipulation_2_create_entities_functions_2_create_player_8hpp" id="libs_2_r-_type_logic_2_entity_manipulation_2_create_entities_functions_2_create_player_8hpp">
+<area shape="rect" title=" " alt="" coords="2477,5,2771,47"/>
+<area shape="rect" href="_networkable_8hpp.html" title=" " alt="" coords="1575,199,1831,240"/>
+<area shape="rect" href="_world_8hpp.html" title=" " alt="" coords="793,109,921,136"/>
+<area shape="rect" href="_collidable_component_8hpp.html" title=" " alt="" coords="1855,199,2135,240"/>
+<area shape="rect" href="_controlable_component_8hpp.html" title=" " alt="" coords="2255,199,2545,240"/>
+<area shape="rect" href="_damage_component_8hpp.html" title=" " alt="" coords="2570,199,2841,240"/>
+<area shape="rect" href="_damage_radius_component_8hpp.html" title=" " alt="" coords="2865,199,3180,240"/>
+<area shape="rect" href="_life_component_8hpp.html" title=" " alt="" coords="2505,102,2743,143"/>
+<area shape="rect" href="_life_time_component_8hpp.html" title=" " alt="" coords="3024,102,3296,143"/>
+<area shape="rect" href="_newly_created_8hpp.html" title=" " alt="" coords="2768,102,3000,143"/>
+<area shape="rect" href="_player_component_8hpp.html" title=" " alt="" coords="3580,102,3836,143"/>
+<area shape="rect" href="_position_component_8hpp.html" title=" " alt="" coords="3860,102,4127,143"/>
+<area shape="rect" href="_shooting_frequency_component_8hpp.html" title=" " alt="" coords="3319,95,3555,151"/>
+<area shape="rect" href="_size_component_8hpp.html" title=" " alt="" coords="4151,102,4393,143"/>
+<area shape="rect" href="_velocity_component_8hpp.html" title=" " alt="" coords="4417,102,4684,143"/>
+<area shape="rect" href="_weight_component_8hpp.html" title=" " alt="" coords="4709,102,4969,143"/>
+<area shape="rect" href="_random_8hpp.html" title=" " alt="" coords="2003,102,2227,143"/>
+<area shape="rect" href="_layer_lv_l_8hpp.html" title=" " alt="" coords="1493,102,1691,143"/>
+<area shape="rect" href="_component_8hpp.html" title=" " alt="" coords="3115,288,3319,315"/>
+<area shape="rect" title=" " alt="" coords="3184,363,3251,389"/>
+<area shape="rect" title=" " alt="" coords="1273,363,1353,389"/>
+<area shape="rect" title=" " alt="" coords="739,288,810,315"/>
+<area shape="rect" title=" " alt="" coords="5,437,56,464"/>
+<area shape="rect" title=" " alt="" coords="663,363,740,389"/>
+<area shape="rect" title=" " alt="" coords="834,288,921,315"/>
+<area shape="rect" title=" " alt="" coords="419,437,482,464"/>
+<area shape="rect" href="_entity_8hpp.html" title=" " alt="" coords="895,206,1023,233"/>
+<area shape="rect" title=" " alt="" coords="1151,288,1275,315"/>
+<area shape="rect" href="_resource_8hpp.html" title=" " alt="" coords="1375,206,1550,233"/>
+<area shape="rect" href="_system_8hpp.html" title=" " alt="" coords="1148,206,1300,233"/>
+<area shape="rect" href="_transisthor_8hpp.html" title=" " alt="" coords="444,206,639,233"/>
+<area shape="rect" title=" " alt="" coords="1047,288,1127,315"/>
+<area shape="rect" href="_communicator_8hpp.html" title=" " alt="" coords="419,288,664,315"/>
+<area shape="rect" href="_error_8hpp.html" title=" " alt="" coords="117,288,232,315"/>
+<area shape="rect" href="_client_8hpp.html" title=" " alt="" coords="507,437,595,464"/>
+<area shape="rect" href="_receiver_8hpp.html" title=" " alt="" coords="243,363,349,389"/>
+<area shape="rect" href="_sender_8hpp.html" title=" " alt="" coords="489,363,583,389"/>
+<area shape="rect" title=" " alt="" coords="292,512,351,539"/>
+<area shape="rect" title=" " alt="" coords="272,437,395,464"/>
+<area shape="rect" title=" " alt="" coords="131,437,248,464"/>
+<area shape="rect" title=" " alt="" coords="131,363,218,389"/>
+<area shape="rect" title=" " alt="" coords="3452,206,3519,233"/>
+<area shape="rect" title=" " alt="" coords="2159,206,2231,233"/>
+<area shape="rect" title=" " alt="" coords="3255,206,3326,233"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><img src="_create_player_8hpp__dep__incl.png" border="0" usemap="#libs_2_game_entity_manipulation_2_create_entities_functions_2_create_player_8hppdep" alt=""/></div>
-<map name="libs_2_game_entity_manipulation_2_create_entities_functions_2_create_player_8hppdep" id="libs_2_game_entity_manipulation_2_create_entities_functions_2_create_player_8hppdep">
-<area shape="rect" title=" " alt="" coords="111,5,321,61"/>
-<area shape="rect" href="_transisthor_8cpp.html" title=" " alt="" coords="5,109,227,136"/>
-<area shape="rect" href="_room_8cpp.html" title=" " alt="" coords="251,109,384,136"/>
+<div class="center"><img src="_create_player_8hpp__dep__incl.png" border="0" usemap="#libs_2_r-_type_logic_2_entity_manipulation_2_create_entities_functions_2_create_player_8hppdep" alt=""/></div>
+<map name="libs_2_r-_type_logic_2_entity_manipulation_2_create_entities_functions_2_create_player_8hppdep" id="libs_2_r-_type_logic_2_entity_manipulation_2_create_entities_functions_2_create_player_8hppdep">
+<area shape="rect" title=" " alt="" coords="69,5,363,47"/>
+<area shape="rect" href="_transisthor_8cpp.html" title=" " alt="" coords="5,95,227,121"/>
+<area shape="rect" href="_room_8cpp.html" title=" " alt="" coords="251,95,384,121"/>
 </map>
 </div>
 </div>
@@ -187,7 +187,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_6719ab1f1f7655efc2fa43f7eb574fd1.html">libs</a></li><li class="navelem"><a class="el" href="dir_95f5c87b548473d5a6fa253149f86c32.html">GameEntityManipulation</a></li><li class="navelem"><a class="el" href="dir_9b73f854ca2f47ff8177eb7e5935b045.html">CreateEntitiesFunctions</a></li><li class="navelem"><a class="el" href="_create_player_8hpp.html">CreatePlayer.hpp</a></li>
+    <li class="navelem"><a class="el" href="dir_6719ab1f1f7655efc2fa43f7eb574fd1.html">libs</a></li><li class="navelem"><a class="el" href="dir_549241b8e115e6634b5bc294a113a1b8.html">R-TypeLogic</a></li><li class="navelem"><a class="el" href="dir_689cc7405b831181d94d9b261ff1b9c4.html">EntityManipulation</a></li><li class="navelem"><a class="el" href="dir_d58d1756592902a6f2a860fa6a22a602.html">CreateEntitiesFunctions</a></li><li class="navelem"><a class="el" href="_create_player_8hpp.html">CreatePlayer.hpp</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
