@@ -5,9 +5,9 @@ add_subdirectory(Systems)
 set(TARGET ${PROJECT_NAME}_RTypeLogicGlobal)
 
 add_library(${TARGET}
-    ${SRC_RType_Logic_COMPONENTS}
-    ${SRC_RType_Logic_RESOURCES}
-    ${SRC_RType_Logic_GLOBAL_SYSTEMS}
+    ${SRC_RTYPE_LOGIC_COMPONENTS}
+    ${SRC_RTYPE_LOGIC_RESOURCES}
+    ${SRC_RTYPE_LOGIC_GLOBAL_SYSTEMS}
 )
 
 target_include_directories(${TARGET}
