@@ -53,6 +53,9 @@ namespace client_data
         /// @brief Init some entities only created by the client.
         void _initEntities();
 
+        /// @brief Check if the player still alive and update the gamestate if his dead
+        void _holdGameOver(void);
+
         /// @brief Init all the Sprites in the GameTextureResource
         void _initSpritesForEntities();
 
