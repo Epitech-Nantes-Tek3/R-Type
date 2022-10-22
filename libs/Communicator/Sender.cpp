@@ -26,7 +26,7 @@ void Sender::sendDataToAClient(Client &client, void *data, size_t size, unsigned
     udp::endpoint socket_endpoint =
         udp::endpoint(boost::asio::ip::address::from_string(client.getAddress()), client.getPort());
     boost::system::error_code error;
-    void *newData = std::malloc(sizeof(void *) * (size + NETWORK_HEADER_SIZE));
+    void *newData = std::malloc((size + NETWORK_HEADER_SIZE));
     void *dataHeader = generateDataHeader(type);
 
     if (newData == nullptr)
@@ -50,7 +50,7 @@ void Sender::sendDataToMultipleClients(std::vector<Client> clients, void *data, 
 
 void *Sender::generateDataHeader(unsigned short communicationType)
 {
-    void *dataHeader = std::malloc(sizeof(void *) * (NETWORK_HEADER_SIZE));
+    void *dataHeader = std::malloc((NETWORK_HEADER_SIZE));
 
     if (dataHeader == nullptr)
         throw error_lib::MallocError("Malloc failed.");
