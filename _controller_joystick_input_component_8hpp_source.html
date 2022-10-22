@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>R-Type: libs/SFMLComponents/ControllerJoystickInputComponent.hpp Source File</title>
+<title>R-Type: libs/GraphicECS/SFML/Components/ControllerJoystickInputComponent.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -100,38 +100,37 @@ $(document).ready(function(){initNavTree('_controller_joystick_input_component_8
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_component_8hpp.html">Component/Component.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_world_8hpp.html">World/World.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_action_queue_component_8hpp.html">ActionQueueComponent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;SFML/Graphics.hpp&gt;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;functional&gt;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;unordered_map&gt;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceecs.html">ecs</a></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;{</div>
-<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classecs_1_1_controller_joystick_input_component.html">   23</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classecs_1_1_controller_joystick_input_component.html">ControllerJoystickInputComponent</a> : <span class="keyword">public</span> <a class="code" href="classecs_1_1_component.html">Component</a> {</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;      <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classecs_1_1_controller_joystick_input_component.html#a4acbef9c9d3cc41f5e21d984954062de">   26</a></span>&#160;        std::unordered_map&lt;unsigned int, std::pair&lt;ActionQueueComponent::inputAction_e, float&gt;&gt; <a class="code" href="classecs_1_1_controller_joystick_input_component.html#a4acbef9c9d3cc41f5e21d984954062de">controllerJoystickMapActions</a>;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <a class="code" href="classecs_1_1_controller_joystick_input_component.html#aa077f104af6ef940d4a6b36387ad690c">ControllerJoystickInputComponent</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <a class="code" href="classecs_1_1_controller_joystick_input_component.html#ac814d15a9cd29214de2bbc095cf74440">~ControllerJoystickInputComponent</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    };</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;} <span class="comment">// namespace ecs</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !CONTROLLERJOYSTICKINPUTCOMPONENT_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;functional&gt;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;unordered_map&gt;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceecs.html">ecs</a></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="classecs_1_1_controller_joystick_input_component.html">   22</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classecs_1_1_controller_joystick_input_component.html">ControllerJoystickInputComponent</a> : <span class="keyword">public</span> <a class="code" href="classecs_1_1_component.html">Component</a> {</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;      <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="classecs_1_1_controller_joystick_input_component.html#a4acbef9c9d3cc41f5e21d984954062de">   25</a></span>&#160;        std::unordered_map&lt;unsigned int, std::pair&lt;ActionQueueComponent::inputAction_e, float&gt;&gt; <a class="code" href="classecs_1_1_controller_joystick_input_component.html#a4acbef9c9d3cc41f5e21d984954062de">controllerJoystickMapActions</a>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <a class="code" href="classecs_1_1_controller_joystick_input_component.html#aa077f104af6ef940d4a6b36387ad690c">ControllerJoystickInputComponent</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <a class="code" href="classecs_1_1_controller_joystick_input_component.html#ac814d15a9cd29214de2bbc095cf74440">~ControllerJoystickInputComponent</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    };</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;} <span class="comment">// namespace ecs</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !CONTROLLERJOYSTICKINPUTCOMPONENT_HPP_ */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aclassecs_1_1_controller_joystick_input_component_html"><div class="ttname"><a href="classecs_1_1_controller_joystick_input_component.html">ecs::ControllerJoystickInputComponent</a></div><div class="ttdoc">This component class stores an unsorted map of action/value pair. This class is created in order to f...</div><div class="ttdef"><b>Definition:</b> ControllerJoystickInputComponent.hpp:23</div></div>
+<div class="ttc" id="aclassecs_1_1_controller_joystick_input_component_html"><div class="ttname"><a href="classecs_1_1_controller_joystick_input_component.html">ecs::ControllerJoystickInputComponent</a></div><div class="ttdoc">This component class stores an unsorted map of action/value pair. This class is created in order to f...</div><div class="ttdef"><b>Definition:</b> ControllerJoystickInputComponent.hpp:22</div></div>
 <div class="ttc" id="aclassecs_1_1_controller_joystick_input_component_html_ac814d15a9cd29214de2bbc095cf74440"><div class="ttname"><a href="classecs_1_1_controller_joystick_input_component.html#ac814d15a9cd29214de2bbc095cf74440">ecs::ControllerJoystickInputComponent::~ControllerJoystickInputComponent</a></div><div class="ttdeci">~ControllerJoystickInputComponent()=default</div><div class="ttdoc">Default destructor of the class.</div></div>
 <div class="ttc" id="a_component_8hpp_html"><div class="ttname"><a href="_component_8hpp.html">Component.hpp</a></div></div>
 <div class="ttc" id="a_world_8hpp_html"><div class="ttname"><a href="_world_8hpp.html">World.hpp</a></div></div>
 <div class="ttc" id="aclassecs_1_1_controller_joystick_input_component_html_aa077f104af6ef940d4a6b36387ad690c"><div class="ttname"><a href="classecs_1_1_controller_joystick_input_component.html#aa077f104af6ef940d4a6b36387ad690c">ecs::ControllerJoystickInputComponent::ControllerJoystickInputComponent</a></div><div class="ttdeci">ControllerJoystickInputComponent()=default</div><div class="ttdoc">Constructor of the class.</div></div>
 <div class="ttc" id="aclassecs_1_1_component_html"><div class="ttname"><a href="classecs_1_1_component.html">ecs::Component</a></div><div class="ttdoc">This is the Component Class for ECS The base component type, all components must inherit from Compone...</div><div class="ttdef"><b>Definition:</b> Component.hpp:16</div></div>
-<div class="ttc" id="aclassecs_1_1_controller_joystick_input_component_html_a4acbef9c9d3cc41f5e21d984954062de"><div class="ttname"><a href="classecs_1_1_controller_joystick_input_component.html#a4acbef9c9d3cc41f5e21d984954062de">ecs::ControllerJoystickInputComponent::controllerJoystickMapActions</a></div><div class="ttdeci">std::unordered_map&lt; unsigned int, std::pair&lt; ActionQueueComponent::inputAction_e, float &gt; &gt; controllerJoystickMapActions</div><div class="ttdoc">This unordered_map links SFML controller joystick input to an action/value pair enum.</div><div class="ttdef"><b>Definition:</b> ControllerJoystickInputComponent.hpp:26</div></div>
+<div class="ttc" id="aclassecs_1_1_controller_joystick_input_component_html_a4acbef9c9d3cc41f5e21d984954062de"><div class="ttname"><a href="classecs_1_1_controller_joystick_input_component.html#a4acbef9c9d3cc41f5e21d984954062de">ecs::ControllerJoystickInputComponent::controllerJoystickMapActions</a></div><div class="ttdeci">std::unordered_map&lt; unsigned int, std::pair&lt; ActionQueueComponent::inputAction_e, float &gt; &gt; controllerJoystickMapActions</div><div class="ttdoc">This unordered_map links SFML controller joystick input to an action/value pair enum.</div><div class="ttdef"><b>Definition:</b> ControllerJoystickInputComponent.hpp:25</div></div>
 <div class="ttc" id="anamespaceecs_html"><div class="ttname"><a href="namespaceecs.html">ecs</a></div><div class="ttdef"><b>Definition:</b> Component.hpp:12</div></div>
 <div class="ttc" id="a_action_queue_component_8hpp_html"><div class="ttname"><a href="_action_queue_component_8hpp.html">ActionQueueComponent.hpp</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_6719ab1f1f7655efc2fa43f7eb574fd1.html">libs</a></li><li class="navelem"><a class="el" href="dir_0943bb3b04e949be25f9c894a9313a68.html">SFMLComponents</a></li><li class="navelem"><a class="el" href="_controller_joystick_input_component_8hpp.html">ControllerJoystickInputComponent.hpp</a></li>
+    <li class="navelem"><a class="el" href="dir_6719ab1f1f7655efc2fa43f7eb574fd1.html">libs</a></li><li class="navelem"><a class="el" href="dir_fbdccee0f25d54ed050b3dfc8daf83af.html">GraphicECS</a></li><li class="navelem"><a class="el" href="dir_1dde4ce7c8ef5019cfcd1a59b754ba0c.html">SFML</a></li><li class="navelem"><a class="el" href="dir_7da7d94555b70b51b390ae84941ad419.html">Components</a></li><li class="navelem"><a class="el" href="_controller_joystick_input_component_8hpp.html">ControllerJoystickInputComponent.hpp</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>

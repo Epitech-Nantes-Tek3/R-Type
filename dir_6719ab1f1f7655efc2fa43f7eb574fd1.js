@@ -8,8 +8,6 @@ var dir_6719ab1f1f7655efc2fa43f7eb574fd1 =
     [ "GameEntityManipulation", "dir_95f5c87b548473d5a6fa253149f86c32.html", "dir_95f5c87b548473d5a6fa253149f86c32" ],
     [ "GameSharedResources", "dir_c08c1cb438cabecb5ea7c9779f63ac3b.html", "dir_c08c1cb438cabecb5ea7c9779f63ac3b" ],
     [ "GameSystems", "dir_667f9d03eae627cf53194c8a15b5bcd6.html", "dir_667f9d03eae627cf53194c8a15b5bcd6" ],
-    [ "SFMLComponents", "dir_0943bb3b04e949be25f9c894a9313a68.html", "dir_0943bb3b04e949be25f9c894a9313a68" ],
-    [ "SFMLResource", "dir_03e53e79bfcb6282e77d99099bcc3a9d.html", "dir_03e53e79bfcb6282e77d99099bcc3a9d" ],
-    [ "SFMLSystems", "dir_260390a1018d7c3dee6b315240e44f9a.html", "dir_260390a1018d7c3dee6b315240e44f9a" ],
+    [ "GraphicECS", "dir_fbdccee0f25d54ed050b3dfc8daf83af.html", "dir_fbdccee0f25d54ed050b3dfc8daf83af" ],
     [ "Transisthor", "dir_489dc0c656b07a9a8c5c61e6a7fb7777.html", "dir_489dc0c656b07a9a8c5c61e6a7fb7777" ]
 ];

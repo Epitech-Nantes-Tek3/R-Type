@@ -1,6 +1,6 @@
-<map id="libs/SFMLComponents/AllowControllerComponent.hpp" name="libs/SFMLComponents/AllowControllerComponent.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,235,47"/>
-<area shape="rect" id="node2" href="$_component_8hpp.html" title=" " alt="" coords="18,95,222,121"/>
-<area shape="rect" id="node3" title=" " alt="" coords="39,169,105,196"/>
-<area shape="rect" id="node4" title=" " alt="" coords="129,169,209,196"/>
+<map id="libs/GraphicECS/SFML/Components/AllowControllerComponent.hpp" name="libs/GraphicECS/SFML/Components/AllowControllerComponent.hpp">
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,217,61"/>
+<area shape="rect" id="node2" href="$_component_8hpp.html" title=" " alt="" coords="9,109,213,136"/>
+<area shape="rect" id="node3" title=" " alt="" coords="30,184,97,211"/>
+<area shape="rect" id="node4" title=" " alt="" coords="121,184,201,211"/>
 </map>

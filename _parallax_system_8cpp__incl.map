@@ -1,30 +1,30 @@
-<map id="libs/SFMLSystems/ParallaxSystem.cpp" name="libs/SFMLSystems/ParallaxSystem.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="1230,5,1426,47"/>
-<area shape="rect" id="node2" href="$_parallax_system_8hpp.html" title=" " alt="" coords="705,95,856,121"/>
-<area shape="rect" id="node27" href="$_position_component_8hpp.html" title=" " alt="" coords="1177,169,1480,196"/>
-<area shape="rect" id="node28" href="$_parallax_component_8hpp.html" title=" " alt="" coords="1367,95,1666,121"/>
-<area shape="rect" id="node3" href="$_system_8hpp.html" title=" " alt="" coords="95,244,247,271"/>
-<area shape="rect" id="node4" href="$_world_8hpp.html" title=" " alt="" coords="716,169,844,196"/>
-<area shape="rect" id="node5" title=" " alt="" coords="1203,393,1283,420"/>
-<area shape="rect" id="node6" title=" " alt="" coords="541,319,612,345"/>
-<area shape="rect" id="node7" title=" " alt="" coords="850,468,900,495"/>
-<area shape="rect" id="node8" title=" " alt="" coords="826,393,903,420"/>
-<area shape="rect" id="node9" title=" " alt="" coords="636,319,722,345"/>
-<area shape="rect" id="node10" title=" " alt="" coords="458,468,521,495"/>
-<area shape="rect" id="node11" href="$_entity_8hpp.html" title=" " alt="" coords="783,244,911,271"/>
-<area shape="rect" id="node13" title=" " alt="" coords="953,319,1077,345"/>
-<area shape="rect" id="node16" href="$_resource_8hpp.html" title=" " alt="" coords="1254,244,1429,271"/>
-<area shape="rect" id="node17" href="$_transisthor_8hpp.html" title=" " alt="" coords="271,244,466,271"/>
-<area shape="rect" id="node12" title=" " alt="" coords="747,319,827,345"/>
-<area shape="rect" id="node14" href="$_component_8hpp.html" title=" " alt="" coords="1309,319,1513,345"/>
-<area shape="rect" id="node15" title=" " alt="" coords="1378,393,1444,420"/>
-<area shape="rect" id="node18" href="$_communicator_8hpp.html" title=" " alt="" coords="220,319,466,345"/>
-<area shape="rect" id="node25" href="$_error_8hpp.html" title=" " alt="" coords="12,319,127,345"/>
-<area shape="rect" id="node19" href="$_client_8hpp.html" title=" " alt="" coords="58,468,146,495"/>
-<area shape="rect" id="node21" href="$_receiver_8hpp.html" title=" " alt="" coords="308,393,415,420"/>
-<area shape="rect" id="node24" href="$_sender_8hpp.html" title=" " alt="" coords="189,393,284,420"/>
-<area shape="rect" id="node20" title=" " alt="" coords="8,543,67,569"/>
-<area shape="rect" id="node22" title=" " alt="" coords="170,468,292,495"/>
-<area shape="rect" id="node23" title=" " alt="" coords="316,468,434,495"/>
-<area shape="rect" id="node26" title=" " alt="" coords="26,393,113,420"/>
+<map id="libs/GraphicECS/SFML/Systems/ParallaxSystem.cpp" name="libs/GraphicECS/SFML/Systems/ParallaxSystem.cpp">
+<area shape="rect" id="node1" title=" " alt="" coords="1221,5,1436,47"/>
+<area shape="rect" id="node2" href="$_parallax_system_8hpp.html" title=" " alt="" coords="705,102,856,129"/>
+<area shape="rect" id="node27" href="$_position_component_8hpp.html" title=" " alt="" coords="1177,184,1480,211"/>
+<area shape="rect" id="node28" href="$_parallax_component_8hpp.html" title=" " alt="" coords="1385,95,1608,136"/>
+<area shape="rect" id="node3" href="$_system_8hpp.html" title=" " alt="" coords="95,259,247,285"/>
+<area shape="rect" id="node4" href="$_world_8hpp.html" title=" " alt="" coords="716,184,844,211"/>
+<area shape="rect" id="node5" title=" " alt="" coords="1203,408,1283,435"/>
+<area shape="rect" id="node6" title=" " alt="" coords="541,333,612,360"/>
+<area shape="rect" id="node7" title=" " alt="" coords="850,483,900,509"/>
+<area shape="rect" id="node8" title=" " alt="" coords="826,408,903,435"/>
+<area shape="rect" id="node9" title=" " alt="" coords="636,333,722,360"/>
+<area shape="rect" id="node10" title=" " alt="" coords="458,483,521,509"/>
+<area shape="rect" id="node11" href="$_entity_8hpp.html" title=" " alt="" coords="783,259,911,285"/>
+<area shape="rect" id="node13" title=" " alt="" coords="953,333,1077,360"/>
+<area shape="rect" id="node16" href="$_resource_8hpp.html" title=" " alt="" coords="1254,259,1429,285"/>
+<area shape="rect" id="node17" href="$_transisthor_8hpp.html" title=" " alt="" coords="271,259,466,285"/>
+<area shape="rect" id="node12" title=" " alt="" coords="747,333,827,360"/>
+<area shape="rect" id="node14" href="$_component_8hpp.html" title=" " alt="" coords="1309,333,1513,360"/>
+<area shape="rect" id="node15" title=" " alt="" coords="1378,408,1444,435"/>
+<area shape="rect" id="node18" href="$_communicator_8hpp.html" title=" " alt="" coords="220,333,466,360"/>
+<area shape="rect" id="node25" href="$_error_8hpp.html" title=" " alt="" coords="12,333,127,360"/>
+<area shape="rect" id="node19" href="$_client_8hpp.html" title=" " alt="" coords="58,483,146,509"/>
+<area shape="rect" id="node21" href="$_receiver_8hpp.html" title=" " alt="" coords="308,408,415,435"/>
+<area shape="rect" id="node24" href="$_sender_8hpp.html" title=" " alt="" coords="189,408,284,435"/>
+<area shape="rect" id="node20" title=" " alt="" coords="8,557,67,584"/>
+<area shape="rect" id="node22" title=" " alt="" coords="170,483,292,509"/>
+<area shape="rect" id="node23" title=" " alt="" coords="316,483,434,509"/>
+<area shape="rect" id="node26" title=" " alt="" coords="26,408,113,435"/>
 </map>

@@ -1,5 +1,5 @@
-<map id="libs/SFMLComponents/KeyboardInputComponent.hpp" name="libs/SFMLComponents/KeyboardInputComponent.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="720,5,943,47"/>
+<map id="libs/GraphicECS/SFML/Components/KeyboardInputComponent.hpp" name="libs/GraphicECS/SFML/Components/KeyboardInputComponent.hpp">
+<area shape="rect" id="node1" title=" " alt="" coords="677,5,986,47"/>
 <area shape="rect" id="node2" href="$_component_8hpp.html" title=" " alt="" coords="5,319,209,345"/>
 <area shape="rect" id="node5" href="$_world_8hpp.html" title=" " alt="" coords="587,169,715,196"/>
 <area shape="rect" id="node13" title=" " alt="" coords="748,319,872,345"/>

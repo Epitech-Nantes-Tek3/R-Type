@@ -1,5 +1,5 @@
-<map id="libs/SFMLComponents/GraphicsTextComponent.cpp" name="libs/SFMLComponents/GraphicsTextComponent.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="73,5,285,47"/>
+<map id="libs/GraphicECS/SFML/Components/GraphicsTextComponent.cpp" name="libs/GraphicECS/SFML/Components/GraphicsTextComponent.cpp">
+<area shape="rect" id="node1" title=" " alt="" coords="29,5,328,47"/>
 <area shape="rect" id="node2" href="$_graphics_text_component_8hpp.html" title=" " alt="" coords="74,95,283,121"/>
 <area shape="rect" id="node3" title=" " alt="" coords="5,169,152,196"/>
 <area shape="rect" id="node4" href="$_component_8hpp.html" title=" " alt="" coords="177,169,381,196"/>

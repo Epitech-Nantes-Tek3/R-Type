@@ -1,5 +1,5 @@
-<map id="libs/SFMLComponents/MouseInputComponent.hpp" name="libs/SFMLComponents/MouseInputComponent.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="1409,5,1614,47"/>
+<map id="libs/GraphicECS/SFML/Components/MouseInputComponent.hpp" name="libs/GraphicECS/SFML/Components/MouseInputComponent.hpp">
+<area shape="rect" id="node1" title=" " alt="" coords="1366,5,1657,47"/>
 <area shape="rect" id="node2" href="$_component_8hpp.html" title=" " alt="" coords="1359,244,1563,271"/>
 <area shape="rect" id="node5" href="$_world_8hpp.html" title=" " alt="" coords="690,95,818,121"/>
 <area shape="rect" id="node13" title=" " alt="" coords="1587,244,1711,271"/>

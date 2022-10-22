@@ -1,5 +1,5 @@
-<map id="libs/SFMLSystems/InputManagement.hpp" name="libs/SFMLSystems/InputManagement.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="132,5,423,32"/>
-<area shape="rect" id="node2" href="$_input_management_8cpp.html" title=" " alt="" coords="5,80,296,107"/>
-<area shape="rect" id="node3" href="$_client_room_8cpp.html" title=" " alt="" coords="321,80,487,107"/>
+<map id="libs/GraphicECS/SFML/Systems/InputManagement.hpp" name="libs/GraphicECS/SFML/Systems/InputManagement.hpp">
+<area shape="rect" id="node1" title=" " alt="" coords="117,5,350,47"/>
+<area shape="rect" id="node2" href="$_input_management_8cpp.html" title=" " alt="" coords="5,95,237,136"/>
+<area shape="rect" id="node3" href="$_client_room_8cpp.html" title=" " alt="" coords="262,102,429,129"/>
 </map>
