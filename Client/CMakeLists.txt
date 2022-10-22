@@ -23,5 +23,5 @@ target_link_libraries(${TARGET}
     ${PROJECT_NAME}_transisthor
     ${PROJECT_NAME}_argumentHandler
     ${PROJECT_NAME}_gameSystems
-    ${PROJECT_NAME}_GraphicECS
+    ${PROJECT_NAME}_SFMLGraphicECS
 )

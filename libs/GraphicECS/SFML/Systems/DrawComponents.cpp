@@ -15,7 +15,7 @@
 #include "GraphicsTextComponent.hpp"
 #include "GraphicsTextureResource.hpp"
 #include "GameComponents/LayerLvL.hpp"
-#include "GraphicECS/SFMLResource/RenderWindowResource.hpp"
+#include "GraphicECS/SFML/Resources/RenderWindowResource.hpp"
 #include "TextureName.hpp"
 
 using namespace ecs;

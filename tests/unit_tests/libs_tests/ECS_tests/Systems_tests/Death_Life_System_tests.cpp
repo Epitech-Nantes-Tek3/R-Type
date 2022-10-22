@@ -13,6 +13,7 @@
 #include "GameComponents/DeathComponent.hpp"
 #include "GameComponents/ProjectileComponent.hpp"
 #include "GameComponents/LifeComponent.hpp"
+#include "GameComponents/LayerLvL.hpp"
 
 using namespace ecs;
 

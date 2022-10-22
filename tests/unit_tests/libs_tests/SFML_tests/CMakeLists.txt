@@ -10,5 +10,5 @@ set(TEST_SRC_ROOT
 create_test(
     TEST_NAME SFML_tests
     TEST_SRC ${TEST_SRC_ROOT}
-    TEST_DEPS ${PROJECT_NAME}_SFMLComponents
+    TEST_DEPS ${PROJECT_NAME}_SFMLGraphicECS
 )
