@@ -18,7 +18,7 @@
 #include "MouseInputComponent.hpp"
 #include "GameComponents/ShootingFrequencyComponent.hpp"
 #include "GameSharedResources/GameClock.hpp"
-#include "SFMLResource/RenderWindowResource.hpp"
+#include "GraphicECS/SFML/Resources/RenderWindowResource.hpp"
 #include "World/World.hpp"
 
 using namespace ecs;

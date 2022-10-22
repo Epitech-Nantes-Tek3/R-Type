@@ -8,11 +8,10 @@
 #ifndef CONTROLLERBUTTONINPUTCOMPONENT_HPP_
 #define CONTROLLERBUTTONINPUTCOMPONENT_HPP_
 
-#include "Component/Component.hpp"
-#include "World/World.hpp"
-#include <SFML/Graphics.hpp>
 #include <unordered_map>
 #include <functional>
+#include "Component/Component.hpp"
+#include "World/World.hpp"
 
 namespace ecs
 {
