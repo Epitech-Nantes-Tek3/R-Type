@@ -12,6 +12,7 @@
 #include "GameComponents/DamageComponent.hpp"
 #include "GameComponents/DamageRadiusComponent.hpp"
 #include "GameComponents/EnemyProjectileComponent.hpp"
+#include "GameComponents/LayerLvL.hpp"
 #include "GameComponents/LifeComponent.hpp"
 #include "GameComponents/LifeTimeComponent.hpp"
 #include "GameComponents/NewlyCreated.hpp"
@@ -22,7 +23,6 @@
 #include "GameSharedResources/Random.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "World/World.hpp"
-#include "GameComponents/LayerLvL.hpp"
 
 namespace ecs
 {
@@ -32,37 +32,7 @@ namespace ecs
     /// @param uuid The uuid of the entity. Can be empty.
     /// @param networkId The id of the Networkable Component. In the client instance, it MUST NOT be filled in.
     /// @return Id in size_t of the new Entity
-    inline std::size_t createNewEnemyProjectile(
-        World &world, std::shared_ptr<ecs::Entity> enemy, const std::string uuid = "", unsigned short networkId = 0)
-    {
-        Position pos = enemy.get()->getComponent<Position>();
-        Damage damage = enemy.get()->getComponent<Damage>();
-
-        Entity &entity = world.addEntity()
-                             .addComponent<Position>(pos.x, pos.y + 20)
-                             .addComponent<Velocity>(-400, 0)
-                             .addComponent<Weight>(1)
-                             .addComponent<Size>(40, 40)
-                             .addComponent<LifeTime>(100)
-                             .addComponent<Life>(1)
-                             .addComponent<Damage>(damage)
-                             .addComponent<DamageRadius>(5)
-                             .addComponent<Collidable>()
-                             .addComponent<EnemyProjectile>(enemy.get()->getComponent<Networkable>().id);
-
-        if (networkId) {
-            // Case : Creation in a server instance
-            entity.addComponent<NewlyCreated>(uuid, false);
-            entity.addComponent<Networkable>(networkId);
-        } else {
-            // Case : Creation in a Client instance
-            if (uuid != "") {
-                // Special case : the client created the entity and not the server
-                entity.addComponent<NewlyCreated>(uuid, true);
-            }
-            entity.addComponent<LayerLvL>(LayerLvL::layer_e::PROJECTILE);
-        }
-        return entity.getId();
-    }
+    std::size_t createNewEnemyProjectile(
+        World &world, std::shared_ptr<ecs::Entity> enemy, const std::string uuid = "", unsigned short networkId = 0);
 } // namespace ecs
 #endif /* !CREATEENEMYPROJECTILE_HPP_ */
