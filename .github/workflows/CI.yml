@@ -50,8 +50,10 @@ jobs:
       id: cache_windows
       uses: actions/cache@v3
       with:
-        path: ~/.conan
-        key: ${{ runner.os }}-build-${{ hashFiles('**/conanfile.txt') }}
+        path: |
+         ~/.conan
+         C:\.conan
+        key: ${{ runner.os }}-${{ hashFiles('**/conanfile.txt') }}
 
     - name: Install Conan
       id: conan
@@ -63,8 +65,7 @@ jobs:
       run: ./build.bat
 
   coverage:
-    if: github.event_name == 'push'
-    needs: [build-linux, build-windows]
+    needs: [build-linux]
     runs-on: ubuntu-latest
     container:
       image: epitechcontent/epitest-docker
