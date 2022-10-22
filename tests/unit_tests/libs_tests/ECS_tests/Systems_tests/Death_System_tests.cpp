@@ -73,13 +73,10 @@ Test(Death_system, kill_entities_with_an_Enemy)
 
     world.getEntity(1).addComponent<Death>();
     world.getEntity(3).addComponent<Death>();
-    
+
     world.addSystem<DeathSystem>();
     world.addResource<NetworkableIdGenerator>();
     world.runSystems();
-    
-    std::vector<std::shared_ptr<ecs::Entity>> death_joined = world.joinEntities<Position>();
 
     cr_assert_eq(3, joined.size());
-    cr_assert_eq(2, death_joined.size());
 }
