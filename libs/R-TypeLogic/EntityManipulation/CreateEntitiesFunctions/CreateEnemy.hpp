@@ -8,7 +8,6 @@
 #ifndef CREATEENEMY_HPP_
 #define CREATEENEMY_HPP_
 
-#include "SFMLComponents/LayerLvL.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "World/World.hpp"
 #include "R-TypeLogic/Global/Components/CollidableComponent.hpp"
@@ -16,6 +15,7 @@
 #include "R-TypeLogic/Global/Components/DamageRadiusComponent.hpp"
 #include "R-TypeLogic/Global/Components/DestinationComponent.hpp"
 #include "R-TypeLogic/Global/Components/EnemyComponent.hpp"
+#include "R-TypeLogic/Global/Components/LayerLvL.hpp"
 #include "R-TypeLogic/Global/Components/LifeComponent.hpp"
 #include "R-TypeLogic/Global/Components/LifeTimeComponent.hpp"
 #include "R-TypeLogic/Global/Components/NewlyCreated.hpp"

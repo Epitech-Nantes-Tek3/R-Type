@@ -8,12 +8,12 @@
 #ifndef CREATEOBSTACLE_HPP_
 #define CREATEOBSTACLE_HPP_
 
-#include "SFMLComponents/LayerLvL.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "World/World.hpp"
 #include "R-TypeLogic/Global/Components/CollidableComponent.hpp"
 #include "R-TypeLogic/Global/Components/DamageComponent.hpp"
 #include "R-TypeLogic/Global/Components/DamageRadiusComponent.hpp"
+#include "R-TypeLogic/Global/Components/LayerLvL.hpp"
 #include "R-TypeLogic/Global/Components/LifeComponent.hpp"
 #include "R-TypeLogic/Global/Components/LifeTimeComponent.hpp"
 #include "R-TypeLogic/Global/Components/NewlyCreated.hpp"

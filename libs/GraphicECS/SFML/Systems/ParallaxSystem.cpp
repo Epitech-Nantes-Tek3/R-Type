@@ -6,7 +6,7 @@
 */
 
 #include "ParallaxSystem.hpp"
-#include "SFMLComponents/ParallaxComponent.hpp"
+#include "GraphicECS/SFML/Components/ParallaxComponent.hpp"
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
 
 #define MAXIMUM_WIDTH 1920

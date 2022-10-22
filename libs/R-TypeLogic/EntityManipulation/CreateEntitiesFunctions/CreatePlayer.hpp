@@ -8,7 +8,7 @@
 #ifndef CREATEPLAYER_HPP_
 #define CREATEPLAYER_HPP_
 
-#include "SFMLComponents/LayerLvL.hpp"
+
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "World/World.hpp"
 #include "R-TypeLogic/Global/Components/CollidableComponent.hpp"
@@ -25,6 +25,7 @@
 #include "R-TypeLogic/Global/Components/VelocityComponent.hpp"
 #include "R-TypeLogic/Global/Components/WeightComponent.hpp"
 #include "R-TypeLogic/Global/SharedResources/Random.hpp"
+#include "R-TypeLogic/Global/Components/LayerLvL.hpp"
 
 namespace ecs
 {

@@ -10,7 +10,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "Component/Component.hpp"
-#include "SFMLComponents/GraphicsRectangleComponent.hpp"
+#include "GraphicECS/SFML/Components/GraphicsRectangleComponent.hpp"
 #include "System/System.hpp"
 #include "World/World.hpp"
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
