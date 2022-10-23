@@ -51,17 +51,17 @@ void Collide::collide(
             if (isSameHeight(fstPos, sndPos, fstSize, sndSize) && isSameWidth(fstPos, sndPos, fstSize, sndSize)) {
                 Damage &fstDamage = fstEntity->getComponent<Damage>();
                 Damage &sndDamage = sndEntity->getComponent<Damage>();
-                Life &fstLife = fstEntity->getComponent<Life>();
-                Life &sndLife = sndEntity->getComponent<Life>();
 
-                if (fstEntity->contains<Life>() && fstLife.lifePoint > 0) {
+                if (fstEntity->contains<Life>() && fstEntity->getComponent<Life>().lifePoint > 0) {
+                    Life &fstLife = fstEntity->getComponent<Life>();
                     if (sndDamage.damagePoint >= fstLife.lifePoint)
                         fstLife.lifePoint = sndDamage.damagePoint;
                     fstLife.lifePoint -= sndDamage.damagePoint;
                     fstLife.modified = true;
                 }
 
-                if (sndEntity->contains<Life>() && sndLife.lifePoint > 0) {
+                if (sndEntity->contains<Life>() && sndEntity->getComponent<Life>().lifePoint > 0) {
+                    Life &sndLife = sndEntity->getComponent<Life>();
                     if (fstDamage.damagePoint >= sndLife.lifePoint)
                         sndLife.lifePoint = fstDamage.damagePoint;
                     sndLife.lifePoint -= fstDamage.damagePoint;
