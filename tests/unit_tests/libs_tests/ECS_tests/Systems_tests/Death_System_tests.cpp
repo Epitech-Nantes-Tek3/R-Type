@@ -6,14 +6,14 @@
 */
 
 #include <criterion/criterion.h>
-#include "World/World.hpp"
 #include "Entity/Entity.hpp"
-#include "GameSystems/DeathSystem.hpp"
-#include "GameEntityManipulation/CreateEntitiesFunctions/CreateProjectile.hpp"
-#include "GameEntityManipulation/CreateEntitiesFunctions/CreateEnemy.hpp"
-#include "GameComponents/DeathComponent.hpp"
-#include "GameComponents/ProjectileComponent.hpp"
-#include "GameComponents/PositionComponent.hpp"
+#include "World/World.hpp"
+#include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateEnemy.hpp"
+#include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateProjectile.hpp"
+#include "R-TypeLogic/Global/Components/DeathComponent.hpp"
+#include "R-TypeLogic/Global/Components/PositionComponent.hpp"
+#include "R-TypeLogic/Global/Components/ProjectileComponent.hpp"
+#include "R-TypeLogic/Global/Systems/DeathSystem.hpp"
 
 using namespace ecs;
 

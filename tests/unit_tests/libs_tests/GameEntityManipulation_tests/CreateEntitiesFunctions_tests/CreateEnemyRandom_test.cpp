@@ -7,8 +7,8 @@
 
 #include <criterion/criterion.h>
 #include "World/World.hpp"
-#include "GameSharedResources/Random.hpp"
-#include "GameEntityManipulation/CreateEntitiesFunctions/CreateEnemy.hpp"
+#include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateEnemy.hpp"
+#include "R-TypeLogic/Global/SharedResources/Random.hpp"
 
 using namespace ecs;
 
