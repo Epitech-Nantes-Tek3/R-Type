@@ -54,7 +54,7 @@ namespace client_data
         void _initEntities();
 
         /// @brief Check if the player still alive and update the gamestate if it is dead
-        void _holdGameOver(void);
+        void _holdGameOver();
 
         /// @brief Init all the Sprites in the GameTextureResource
         void _initSpritesForEntities();

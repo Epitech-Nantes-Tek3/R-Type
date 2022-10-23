@@ -116,7 +116,7 @@ void ClientRoom::startLobbyLoop(void)
     }
 }
 
-void ClientRoom::_holdGameOver(void)
+void ClientRoom::_holdGameOver()
 {
     std::vector<std::shared_ptr<ecs::Entity>> player = _worldInstance->joinEntities<Controlable>();
 
