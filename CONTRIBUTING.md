@@ -1,7 +1,7 @@
 ## Development Rules
 
 The rules to contribute to the R-Type project are described below.
-Please follow the indicated rules to contribute in the most efficient way ! 
+Please follow the indicated rules to contribute in the most efficient way !
 
 
 ### Issue Rules
@@ -11,10 +11,10 @@ When creating an issue, you must follow the given format :
 * The name of the issue must have an action verb and a title
 
 ```bash
-    Name : Create the Contributing.md
+    Create the Contributing.md
 ```
 
-* Describing the issue is mandatory. Try to be concise with the features which will be added on the project.
+* Describing the issue is mandatory and usefull for everyone. Try to be concise with the features which will be added on the project. Using a template for your issue is recommended.
 
 * Add a label to clarify the issue. If there is no label existing or corresponding to your issue, create one and describe it.
 
