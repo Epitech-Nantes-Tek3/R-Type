@@ -59,9 +59,9 @@ We use Doxygen for documentation, and in order to allow the proper deployment of
 
 ```bash
     /// @brief Print a string
-    ///
     /// @param str I am the first param and i am the string who will be printed
     /// @return int The success value
+    /// @throw an Exception if the given string is empty
 ```
 
 * No functions should have documentation within .cpp files except static functions.
