@@ -9,12 +9,12 @@
 
 #include "Room.hpp"
 #include "Error/Error.hpp"
-#include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
-#include "Transisthor/TransisthorECSLogic/Both/Resources/SendingFrequency.hpp"
-#include "Transisthor/TransisthorECSLogic/Server/Components/NetworkClient.hpp"
-#include "Transisthor/TransisthorECSLogic/Server/Resources/NetworkableIdGenerator.hpp"
-#include "Transisthor/TransisthorECSLogic/Server/Systems/SendNewlyCreatedToClients.hpp"
-#include "Transisthor/TransisthorECSLogic/Server/Systems/SendToClient.hpp"
+#include "Transisthor/ECSLogic/Both/Components/Networkable.hpp"
+#include "Transisthor/ECSLogic/Both/Resources/SendingFrequency.hpp"
+#include "Transisthor/ECSLogic/Server/Components/NetworkClient.hpp"
+#include "Transisthor/ECSLogic/Server/Resources/NetworkableIdGenerator.hpp"
+#include "Transisthor/ECSLogic/Server/Systems/SendNewlyCreatedToClients.hpp"
+#include "Transisthor/ECSLogic/Server/Systems/SendToClient.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateEnemy.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreatePlayer.hpp"
 #include "R-TypeLogic/Global/Components/AlliedProjectileComponent.hpp"
@@ -39,6 +39,7 @@ using namespace server_data;
 using namespace error_lib;
 using namespace communicator_lib;
 using namespace ecs;
+using namespace transisthor::ecslogic;
 
 Room::Room()
 {
@@ -117,10 +118,10 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
         _worldInstance->getResource<NetworkableIdGenerator>().generateNewNetworkableId());
     std::size_t enemyId = createNewEnemyRandom(*_worldInstance.get(), 0, 0, 1, 85, 85, 50, 10, 5, "",
         _worldInstance.get()->getResource<NetworkableIdGenerator>().generateNewNetworkableId());
-    std::vector<std::shared_ptr<ecs::Entity>> clients = _worldInstance.get()->joinEntities<ecs::NetworkClient>();
+    std::vector<std::shared_ptr<ecs::Entity>> clients = _worldInstance.get()->joinEntities<NetworkClient>();
     std::vector<unsigned short> clientIdList;
     auto addToClientList = [&clientIdList](std::shared_ptr<ecs::Entity> entityPtr) {
-        clientIdList.emplace_back(entityPtr.get()->getComponent<ecs::NetworkClient>().id);
+        clientIdList.emplace_back(entityPtr.get()->getComponent<NetworkClient>().id);
     };
     std::for_each(clients.begin(), clients.end(), addToClientList);
     _worldInstance.get()->getEntity(playerId).addComponent<NetworkClient>(connexionDemand.message.clientInfo.getId());

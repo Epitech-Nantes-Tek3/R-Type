@@ -17,12 +17,12 @@
 #include "Sender.hpp"
 #include "Transisthor/Transisthor.hpp"
 
-namespace transisthor_lib
+namespace transisthor
 {
     class Transisthor;
 }
 
-using namespace transisthor_lib;
+using namespace transisthor;
 
 namespace communicator_lib
 {

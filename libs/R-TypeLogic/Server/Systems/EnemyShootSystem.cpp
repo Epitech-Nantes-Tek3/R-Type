@@ -7,7 +7,7 @@
 
 #include "EnemyShootSystem.hpp"
 #include <chrono>
-#include "Transisthor/TransisthorECSLogic/Server/Resources/NetworkableIdGenerator.hpp"
+#include "Transisthor/ECSLogic/Server/Resources/NetworkableIdGenerator.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateEnemyProjectile.hpp"
 #include "R-TypeLogic/Global/Components/EnemyComponent.hpp"
 #include "R-TypeLogic/Global/Components/ShootingFrequencyComponent.hpp"

@@ -19,12 +19,12 @@
 #include "Transisthor/Transisthor.hpp"
 #include <unordered_map>
 
-namespace transisthor_lib
+namespace transisthor
 {
     class Transisthor;
 }
 
-using namespace transisthor_lib;
+using namespace transisthor;
 
 namespace ecs
 {

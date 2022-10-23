@@ -8,7 +8,7 @@
 #ifndef CREATEOBSTACLE_HPP_
 #define CREATEOBSTACLE_HPP_
 
-#include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
+#include "Transisthor/ECSLogic/Both/Components/Networkable.hpp"
 #include "World/World.hpp"
 #include "R-TypeLogic/Global/Components/CollidableComponent.hpp"
 #include "R-TypeLogic/Global/Components/DamageComponent.hpp"

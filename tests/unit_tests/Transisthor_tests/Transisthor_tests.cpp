@@ -7,10 +7,10 @@
 
 #include <criterion/criterion.h>
 #include "Error/Error.hpp"
+#include "Transisthor/ECSLogic/Client/Systems/SendNewlyCreatedToServer.hpp"
+#include "Transisthor/ECSLogic/Server/Resources/NetworkableIdGenerator.hpp"
+#include "Transisthor/ECSLogic/Server/Systems/SendNewlyCreatedToClients.hpp"
 #include "Transisthor/Transisthor.hpp"
-#include "Transisthor/TransisthorECSLogic/Client/Systems/SendNewlyCreatedToServer.hpp"
-#include "Transisthor/TransisthorECSLogic/Server/Resources/NetworkableIdGenerator.hpp"
-#include "Transisthor/TransisthorECSLogic/Server/Systems/SendNewlyCreatedToClients.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateAlliedProjectile.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateEnemy.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateEnemyProjectile.hpp"
@@ -27,7 +27,7 @@
 #include "R-TypeLogic/Global/Components/VelocityComponent.hpp"
 #include "R-TypeLogic/Global/SharedResources/Random.hpp"
 
-using namespace transisthor_lib;
+using namespace transisthor;
 using namespace communicator_lib;
 using namespace ecs;
 using namespace error_lib;
@@ -774,7 +774,7 @@ Test(transisthor_testing, transit_projectile_entity_without_uuid)
     cr_assert_str_eq("", uuid);
 }
 
-Test(transisthor_lib, test_networkable_id_generator_resource)
+Test(transisthor, test_networkable_id_generator_resource)
 {
     World world = World(2);
 

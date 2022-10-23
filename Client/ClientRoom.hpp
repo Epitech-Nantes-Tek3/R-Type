@@ -18,7 +18,7 @@
 
 using namespace communicator_lib;
 using namespace ecs;
-using namespace transisthor_lib;
+using namespace transisthor;
 
 namespace client_data
 {

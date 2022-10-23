@@ -8,7 +8,7 @@
 #ifndef CREATEENEMY_HPP_
 #define CREATEENEMY_HPP_
 
-#include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
+#include "Transisthor/ECSLogic/Both/Components/Networkable.hpp"
 #include "World/World.hpp"
 #include "R-TypeLogic/Global/Components/CollidableComponent.hpp"
 #include "R-TypeLogic/Global/Components/DamageComponent.hpp"
@@ -30,6 +30,8 @@
 #define MAXIMUM_WIDTH  1700
 #define MINIMUM_HEIGTH 0
 #define MAXIMUM_HEIGTH 600
+
+using namespace transisthor::ecslogic;
 
 namespace ecs
 {

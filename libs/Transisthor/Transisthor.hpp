@@ -22,7 +22,7 @@ namespace communicator_lib
     class Communicator;
 }
 
-namespace transisthor_lib
+namespace transisthor
 {
     /// @brief Wrapper function to call sendDataToAClient in this file.
     /// @param communicator Instance of the communicator
@@ -78,7 +78,7 @@ namespace transisthor_lib
             std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 2), &component, sizeof(C));
             for (auto it : destination) {
                 temporaryClient = getClientByHisId(it);
-                transisthor_lib::sendDataToAClientWithoutCommunicator(
+                transisthor::sendDataToAClientWithoutCommunicator(
                     _communicator, temporaryClient, networkObject, ((sizeof(C)) + sizeof(unsigned short) * 2), 30);
             }
             return networkObject;
@@ -276,6 +276,6 @@ namespace transisthor_lib
         /// informations)
         std::map<unsigned short, std::function<void(unsigned short, void *)>> _entityConvertFunctionList;
     };
-} // namespace transisthor_lib
+} // namespace transisthor
 
 #endif /* !TRANSISTHOR_HPP_ */

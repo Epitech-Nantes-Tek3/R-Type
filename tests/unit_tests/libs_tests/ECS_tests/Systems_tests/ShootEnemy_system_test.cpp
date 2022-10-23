@@ -8,14 +8,14 @@
 #include <chrono>
 #include <thread>
 #include <criterion/criterion.h>
-#include "Transisthor/TransisthorECSLogic/Server/Resources/NetworkableIdGenerator.hpp"
+#include "Transisthor/ECSLogic/Server/Resources/NetworkableIdGenerator.hpp"
 #include "World/World.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateEnemy.hpp"
 #include "R-TypeLogic/Global/Components/EnemyProjectileComponent.hpp"
 #include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
 #include "R-TypeLogic/Global/SharedResources/Random.hpp"
-#include "R-TypeLogic/Server/Systems/EnemyShootSystem.hpp"
 #include "R-TypeLogic/Global/Systems/UpdateClockSystem.hpp"
+#include "R-TypeLogic/Server/Systems/EnemyShootSystem.hpp"
 
 using namespace ecs;
 

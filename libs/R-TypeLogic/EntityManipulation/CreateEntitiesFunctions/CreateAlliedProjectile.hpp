@@ -8,7 +8,7 @@
 #ifndef CREATEALLYPROJECTILE_HPP_
 #define CREATEALLYPROJECTILE_HPP_
 
-#include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
+#include "Transisthor/ECSLogic/Both/Components/Networkable.hpp"
 #include "World/World.hpp"
 #include "R-TypeLogic/Global/Components/AlliedProjectileComponent.hpp"
 #include "R-TypeLogic/Global/Components/CollidableComponent.hpp"
@@ -23,6 +23,8 @@
 #include "R-TypeLogic/Global/Components/VelocityComponent.hpp"
 #include "R-TypeLogic/Global/Components/WeightComponent.hpp"
 #include "R-TypeLogic/Global/SharedResources/Random.hpp"
+
+using namespace transisthor::ecslogic;
 
 namespace ecs
 {

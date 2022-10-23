@@ -8,9 +8,9 @@
 /// @file libs/Transisthor/Transisthor.cpp
 
 #include "Transisthor.hpp"
+#include "ECSLogic/Both/Components/Networkable.hpp"
+#include "ECSLogic/Server/Resources/NetworkableIdGenerator.hpp"
 #include "Error/Error.hpp"
-#include "TransisthorECSLogic/Both/Components/Networkable.hpp"
-#include "TransisthorECSLogic/Server/Resources/NetworkableIdGenerator.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateAlliedProjectile.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateEnemy.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateEnemyProjectile.hpp"
@@ -26,9 +26,10 @@
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
 #include "R-TypeLogic/Global/Components/VelocityComponent.hpp"
 
-using namespace transisthor_lib;
+using namespace transisthor;
 using namespace error_lib;
 using namespace ecs;
+using namespace transisthor::ecslogic;
 
 Transisthor::Transisthor(Communicator &communicator, World &ecsWorld) : _communicator(communicator), _ecsWorld(ecsWorld)
 {
@@ -109,7 +110,7 @@ void *Transisthor::transitEcsDataToNetworkDataEntityAlliedProjectile(
     std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 3), uuid.c_str(), sizeof(char) * uuid.size());
     for (auto it : destination) {
         temporaryClient = getClientByHisId(it);
-        transisthor_lib::sendDataToAClientWithoutCommunicator(_communicator, temporaryClient, networkObject,
+        transisthor::sendDataToAClientWithoutCommunicator(_communicator, temporaryClient, networkObject,
             (sizeof(unsigned short) * 3 + sizeof(char) * uuid.size()), 31);
     }
     return networkObject;
@@ -156,7 +157,7 @@ void *Transisthor::transitEcsDataToNetworkDataEntityEnemy(unsigned short id, int
         uuid.c_str(), sizeof(char) * uuid.size());
     for (auto it : destination) {
         temporaryClient = getClientByHisId(it);
-        transisthor_lib::sendDataToAClientWithoutCommunicator(_communicator, temporaryClient, networkObject,
+        transisthor::sendDataToAClientWithoutCommunicator(_communicator, temporaryClient, networkObject,
             (sizeof(unsigned short) * 4 + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2
                 + sizeof(char) * uuid.size()),
             31);
@@ -179,7 +180,7 @@ void *Transisthor::transitEcsDataToNetworkDataEntityEnemyProjectile(
     std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 3), uuid.c_str(), sizeof(char) * uuid.size());
     for (auto it : destination) {
         temporaryClient = getClientByHisId(it);
-        transisthor_lib::sendDataToAClientWithoutCommunicator(_communicator, temporaryClient, networkObject,
+        transisthor::sendDataToAClientWithoutCommunicator(_communicator, temporaryClient, networkObject,
             (sizeof(unsigned short) * 3 + sizeof(char) * uuid.size()), 31);
     }
     return networkObject;
@@ -204,7 +205,7 @@ void *Transisthor::transitEcsDataToNetworkDataEntityObstacle(unsigned short id, 
         sizeof(char) * uuid.size());
     for (auto it : destination) {
         temporaryClient = getClientByHisId(it);
-        transisthor_lib::sendDataToAClientWithoutCommunicator(_communicator, temporaryClient, networkObject,
+        transisthor::sendDataToAClientWithoutCommunicator(_communicator, temporaryClient, networkObject,
             (sizeof(unsigned short) * 3 + sizeof(int) * 2 + sizeof(char) * uuid.size()), 31);
     }
     return networkObject;
@@ -255,7 +256,7 @@ void *Transisthor::transitEcsDataToNetworkDataEntityPlayer(unsigned short id, in
         uuid.c_str(), sizeof(char) * uuid.size());
     for (auto it : destination) {
         temporaryClient = getClientByHisId(it);
-        transisthor_lib::sendDataToAClientWithoutCommunicator(_communicator, temporaryClient, networkObject,
+        transisthor::sendDataToAClientWithoutCommunicator(_communicator, temporaryClient, networkObject,
             (sizeof(unsigned short) * 4 + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2
                 + sizeof(char) * uuid.size() + sizeof(bool)),
             31);
@@ -287,7 +288,7 @@ void *Transisthor::transitEcsDataToNetworkDataEntityProjectile(unsigned short id
         uuid.c_str(), sizeof(char) * uuid.size());
     for (auto it : destination) {
         temporaryClient = getClientByHisId(it);
-        transisthor_lib::sendDataToAClientWithoutCommunicator(_communicator, temporaryClient, networkObject,
+        transisthor::sendDataToAClientWithoutCommunicator(_communicator, temporaryClient, networkObject,
             (sizeof(unsigned short) * 3 + sizeof(int) * 2 + sizeof(double) * 2 + sizeof(char) * uuid.size()), 31);
     }
     return networkObject;
@@ -585,7 +586,7 @@ void Transisthor::entityConvertProjectileType(unsigned short id, void *byteCode)
     }
 }
 
-void transisthor_lib::sendDataToAClientWithoutCommunicator(
+void transisthor::sendDataToAClientWithoutCommunicator(
     Communicator &communicator, Client &client, void *data, size_t size, unsigned short type)
 {
     communicator.sendDataToAClient(client, data, size, type);
