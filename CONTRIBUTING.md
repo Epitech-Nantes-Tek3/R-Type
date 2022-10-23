@@ -1,6 +1,7 @@
 ## Development Rules
 
 The rules to contribute to the R-Type project are described below.
+Please follow the indicated rules to contribute in the most efficient way ! 
 
 
 ### Issue Rules
