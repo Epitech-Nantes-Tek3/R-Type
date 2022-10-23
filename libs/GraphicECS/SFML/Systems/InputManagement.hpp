@@ -14,10 +14,10 @@
 #include "R-TypeLogic/Global/Components/ControlableComponent.hpp"
 #include "R-TypeLogic/Global/Components/VelocityComponent.hpp"
 
-namespace ecs
+namespace graphic::sfml
 {
     /// @brief This system class manage SFML input to link them to an action.
-    struct InputManagement : public System {
+    struct InputManagement : public ecs::System {
         /// @brief The run function of this system. It will be used by the world in the function runSystems.
         /// @param world The corresponding world on which run this system.
         void run(World &world) override final;
@@ -37,6 +37,6 @@ namespace ecs
         /// @param move Action Shoot
         void shootAction(World &world, float action);
     };
-} // namespace ecs
+} // namespace graphic::sfml
 
 #endif /* !INPUTMANAGEMENT_HPP_ */

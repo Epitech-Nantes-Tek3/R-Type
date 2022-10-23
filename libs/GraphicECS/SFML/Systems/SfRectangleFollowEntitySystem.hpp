@@ -15,15 +15,15 @@
 #include "World/World.hpp"
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
 
-namespace ecs
+namespace graphic::sfml
 {
     /// @brief This system class manage SFML Rectangle Shape to modify it's SfRectangleSahpePosition with the Position
     /// of the Entity
-    struct SfRectangleFollowEntitySystem : public System {
+    struct SfRectangleFollowEntitySystem : public ecs::System {
         /// @brief The run function of this system. It will be used by the world in the function runSystems.
         /// @param world The corresponding world on which run this system.
         void run(World &world) override final;
     };
-} // namespace ecs
+} // namespace graphic::sfml
 
 #endif /* !SFRECTANGLEFOLLOWENTITYSYSTEM_HPP_ */

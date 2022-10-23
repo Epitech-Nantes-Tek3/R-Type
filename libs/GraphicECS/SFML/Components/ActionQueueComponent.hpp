@@ -13,18 +13,18 @@
 #include "Component/Component.hpp"
 #include "World/World.hpp"
 
-namespace ecs
+namespace graphic::sfml
 {
     /// @brief This component class stores a function queue.
     /// These functions will be added when an input occurs during the game by a system.
     /// They will be used by another system.
     /// These function are stored in ECSActions.hpp
-    class ActionQueueComponent : public Component {
+    class ActionQueueComponent : public ecs::Component {
       public:
         /// @brief This action queue stores function that will be called in a system and added by another one when
         /// inputs occur.
         // std::queue<std::function<void(World &, float)>> actions;
-        enum inputAction_e {UNDEFINED, MOVEX, MOVEY, SHOOT, MAX_ACTION};
+        enum inputAction_e { UNDEFINED, MOVEX, MOVEY, SHOOT, MAX_ACTION };
         std::queue<std::pair<inputAction_e, float>> actions;
         /// @brief Default constructor.
         ActionQueueComponent() = default;
@@ -32,6 +32,6 @@ namespace ecs
         /// @brief Default destructor.
         ~ActionQueueComponent() = default;
     };
-} // namespace ecs
+} // namespace graphic::sfml
 
 #endif /* !ACTIONQUEUECOMPONENT_HPP_ */

@@ -11,10 +11,10 @@
 #include "System/System.hpp"
 #include "World/World.hpp"
 
-namespace ecs
+namespace graphic::sfml
 {
     /// @brief This class draw GraphicsComponents on window.
-    struct DrawComponents : public System {
+    struct DrawComponents : public ecs::System {
         /// @brief Compare layer value to be sorted in run function.
         /// @param e1 Value 1 to be compared.
         /// @param e2 Value 2 to be compared.
@@ -25,6 +25,6 @@ namespace ecs
         /// @param world The corresponding world on which run this system.
         void run(World &world) override final;
     };
-} // namespace ecs
+} // namespace graphic::sfml
 
 #endif /* !DRAWCOMPONENTS_HPP_ */

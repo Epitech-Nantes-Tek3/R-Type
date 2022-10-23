@@ -10,10 +10,10 @@
 
 #include "Component/Component.hpp"
 
-namespace ecs
+namespace graphic::sfml
 {
     /// @brief This component class allows controller usage in client.
-    class AllowControllerComponent : public Component {};
-} // namespace ecs
+    class AllowControllerComponent : public ecs::Component {};
+} // namespace graphic::sfml
 
 #endif /* !ALLOWCONTROLLERCOMPONENT_HPP_ */

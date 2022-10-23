@@ -45,6 +45,7 @@ using namespace error_lib;
 using namespace communicator_lib;
 using namespace client_data;
 using namespace ecs;
+using namespace graphic::sfml;
 
 ClientRoom::ClientRoom()
 {

@@ -7,18 +7,18 @@
 
 #include "DrawComponents.hpp"
 #include <algorithm>
+#include "GraphicECS/SFML/Components/GraphicsRectangleComponent.hpp"
+#include "GraphicECS/SFML/Components/GraphicsTextComponent.hpp"
+#include "GraphicECS/SFML/Components/TextureName.hpp"
+#include "GraphicECS/SFML/Resources/GraphicsTextureResource.hpp"
 #include "GraphicECS/SFML/Resources/RenderWindowResource.hpp"
-#include "GraphicsRectangleComponent.hpp"
-#include "GraphicsTextComponent.hpp"
-#include "GraphicsTextureResource.hpp"
-#include "TextureName.hpp"
 #include "R-TypeLogic/Global/Components/AlliedProjectileComponent.hpp"
 #include "R-TypeLogic/Global/Components/EnemyProjectileComponent.hpp"
 #include "R-TypeLogic/Global/Components/LayerLvL.hpp"
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
 #include "R-TypeLogic/Global/Components/SizeComponent.hpp"
 
-using namespace ecs;
+using namespace graphic::sfml;
 
 bool DrawComponents::compareLayer(std::shared_ptr<Entity> e1, std::shared_ptr<Entity> e2)
 {

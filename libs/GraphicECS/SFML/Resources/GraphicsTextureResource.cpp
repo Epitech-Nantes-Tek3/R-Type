@@ -7,7 +7,7 @@
 
 #include "GraphicsTextureResource.hpp"
 
-using namespace ecs;
+using namespace graphic::sfml;
 
 void GraphicsTextureResource::addTexture(const textureName_e texture_e, const std::filesystem::path &texturePath,
     const sf::Vector2f &position, const sf::Vector2f &size)

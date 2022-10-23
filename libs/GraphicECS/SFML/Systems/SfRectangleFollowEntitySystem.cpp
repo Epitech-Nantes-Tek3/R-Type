@@ -7,6 +7,8 @@
 
 #include "SfRectangleFollowEntitySystem.hpp"
 
+using namespace graphic::sfml;
+
 void SfRectangleFollowEntitySystem::run(World &world)
 {
     std::vector<std::shared_ptr<Entity>> entities = world.joinEntities<GraphicsRectangleComponent, Position>();

@@ -8,12 +8,12 @@
 #ifndef ECSACTION_HPP_
 #define ECSACTION_HPP_
 
-namespace ecs
+namespace graphic::sfml
 {
     namespace Actions
     {
         /// Action funtion have to be added. They will be add in issue #93.
     }
-}
+} // namespace graphic::sfml
 
 #endif /* !ECSACTION_HPP_ */
