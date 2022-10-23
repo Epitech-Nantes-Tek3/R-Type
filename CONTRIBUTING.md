@@ -93,6 +93,40 @@ If possible, please certify your commits (-S).
 
 When something can be verified by a test, we will be looking for tests in your PR.
 
+To compile your tests, the corresponding CMakeLists.txt should look like this:
+```bash
+    set (SRC_ROOT ${PROJECT_SOURCE_DIR}/tests/unit_tests)
+
+    set(TEST_SRC_ROOT
+        ${SRC_ROOT}/very_basic_test.cpp
+    )
+
+    ## Documented Example ##
+    create_test(
+        ## First, the name of the test ##
+        TEST_NAME very_basic_test
+        ## Second, the sources for the test ##
+        TEST_SRC ${TEST_SRC_ROOT}
+        ## Last, the depenancies (necessary libraries) ##
+        ## In this case none, otherwise add TEST_DEPS ${DEPENDANCY_NAME}
+    )
+```
+
+And the file with all the unit tests will look like this:
+```bash
+    #include <criterion/criterion.h>
+
+    /// @brief Very Basic Test
+    Test(Basic, some_basics_tests)
+    {
+        cr_assert_eq(42, 42);
+    }
+```
+
+For more details, you can go from the project's root to tests/unit_tests directory.
+
+If you're in functionnal tests, please add a bash/bat script to execute them.
+
 The lack of test in your code can be one of the reasons of refusing a PR.
 
 
