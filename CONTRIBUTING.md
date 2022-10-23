@@ -52,7 +52,8 @@ We use Doxygen for documentation, and in order to allow the proper deployment of
 * Please document your defines and typedefs as follows :
 
 ```bash
-    /// @brief I am a basic function
+    /// @brief The maximum height of the displayed window
+    #define MAXIMUM_HEIGTH 600
 ```
 
 * Please document your functions in the header as follows:
