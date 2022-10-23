@@ -87,43 +87,47 @@ $(document).ready(function(){initNavTree('md__c_o_n_t_r_i_b_u_t_i_n_g.html','');
 <div class="title">Development Rules </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>The rules to contribute to the R-Type project are described below.</p>
+<div class="textblock"><p>The rules to contribute to the R-Type project are described below. Please follow the indicated rules to contribute in the most efficient way !</p>
 <h2><a class="anchor" id="autotoc_md9"></a>
 Issue Rules</h2>
 <p>When creating an issue, you must follow the given format :</p>
 <ul>
 <li>The name of the issue must have an action verb and a title</li>
 </ul>
-<div class="fragment"><div class="line">Name : Create the Contributing.md</div>
+<div class="fragment"><div class="line">Create the Contributing.md</div>
 </div><!-- fragment --><ul>
-<li>Describing the issue is mandatory. Try to be concise with the features which will be added on the project.</li>
+<li>Describing the issue is mandatory and usefull for everyone. Try to be concise with the features which will be added on the project. Using a template for your issue is recommended.</li>
 <li>Add a label to clarify the issue. If there is no label existing or corresponding to your issue, create one and describe it.</li>
 <li>Take a moment to link the issue with the project, if it hasn't been done automatically.</li>
 </ul>
 <h2><a class="anchor" id="autotoc_md10"></a>
 Branch Rules</h2>
-<p>The branch name should consider the issue title and the issue number in its name</p>
+<p>The branch name should consider the issue title and the issue number in its name. The issue's number must come first.</p>
 <p>Example:</p>
 <div class="fragment"><div class="line">git checkout -b 2-Create-The-Contributing.md</div>
 </div><!-- fragment --><p>You must make one branch per issue.</p>
 <p>Try to push as regularly as possible so everyone can see where you are at. When first committing on a branch, it is recommended to open a PR draft, so it will be easier for your mates to see where you are at.</p>
 <h2><a class="anchor" id="autotoc_md11"></a>
 Coding Style</h2>
-<p>For the coding style, there is no proper rules except one : Everybody working on the project with you must be able to understand on what you are working within minutes. If you can split a function in two, you must do it !</p>
+<p>For the coding style, there are some rules you need to follow:</p><ul>
+<li>Everybody working on the project with you must be able to understand on what you are working within minutes. If you can split a function in two, you must do it !</li>
+<li>Your code must respect the Clang format. It's necessary to be able to compile on Windows. While coding, press at the same time CTRL+MAJ+I to apply the format !</li>
+</ul>
 <h2><a class="anchor" id="autotoc_md12"></a>
 Documentation Rules</h2>
 <p>We use Doxygen for documentation, and in order to allow the proper deployment of the documentation, please respect the following rules:</p>
 <ul>
 <li>Please document your defines and typedefs as follows :</li>
 </ul>
-<div class="fragment"><div class="line">/// @brief I am a basic function</div>
+<div class="fragment"><div class="line">/// @brief The maximum height of the displayed window</div>
+<div class="line">#define MAXIMUM_HEIGTH 600</div>
 </div><!-- fragment --><ul>
 <li>Please document your functions in the header as follows:</li>
 </ul>
 <div class="fragment"><div class="line">/// @brief Print a string</div>
-<div class="line">///</div>
 <div class="line">/// @param str I am the first param and i am the string who will be printed</div>
 <div class="line">/// @return int The success value</div>
+<div class="line">/// @throw an Exception if the given string is empty</div>
 </div><!-- fragment --><ul>
 <li>No functions should have documentation within .cpp files except static functions.</li>
 </ul>
@@ -141,6 +145,30 @@ Committing Rules</h2>
 <h2><a class="anchor" id="autotoc_md14"></a>
 Testing Rules</h2>
 <p>When something can be verified by a test, we will be looking for tests in your PR.</p>
+<p>To compile your tests, the corresponding CMakeLists.txt should look like this: </p><div class="fragment"><div class="line">set (SRC_ROOT ${PROJECT_SOURCE_DIR}/tests/unit_tests)</div>
+<div class="line"> </div>
+<div class="line">set(TEST_SRC_ROOT</div>
+<div class="line">    ${SRC_ROOT}/very_basic_test.cpp</div>
+<div class="line">)</div>
+<div class="line"> </div>
+<div class="line">## Documented Example ##</div>
+<div class="line">create_test(</div>
+<div class="line">    ## First, the name of the test ##</div>
+<div class="line">    TEST_NAME very_basic_test</div>
+<div class="line">    ## Second, the sources for the test ##</div>
+<div class="line">    TEST_SRC ${TEST_SRC_ROOT}</div>
+<div class="line">    ## Last, the depenancies (necessary libraries) ##</div>
+<div class="line">    ## In this case none, otherwise add TEST_DEPS ${DEPENDANCY_NAME}</div>
+<div class="line">)</div>
+</div><!-- fragment --><p>And the file with all the unit tests will look like this: </p><div class="fragment"><div class="line">#include &lt;criterion/criterion.h&gt;</div>
+<div class="line"> </div>
+<div class="line">/// @brief Very Basic Test</div>
+<div class="line">Test(Basic, some_basics_tests)</div>
+<div class="line">{</div>
+<div class="line">    cr_assert_eq(42, 42);</div>
+<div class="line">}</div>
+</div><!-- fragment --><p>For more details, you can go from the project's root to tests/unit_tests directory.</p>
+<p>If you're in functionnal tests, please add a bash/bat script to execute them.</p>
 <p>The lack of test in your code can be one of the reasons of refusing a PR.</p>
 <h2><a class="anchor" id="autotoc_md15"></a>
 Pull Request Rules</h2>
