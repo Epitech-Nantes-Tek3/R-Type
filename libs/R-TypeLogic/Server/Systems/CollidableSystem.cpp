@@ -6,14 +6,14 @@
 */
 
 #include "CollidableSystem.hpp"
-#include "GameComponents/AlliedProjectileComponent.hpp"
-#include "GameComponents/CollidableComponent.hpp"
-#include "GameComponents/DamageComponent.hpp"
-#include "GameComponents/EnemyComponent.hpp"
-#include "GameComponents/EnemyProjectileComponent.hpp"
-#include "GameComponents/LifeComponent.hpp"
-#include "GameComponents/ObstacleComponent.hpp"
-#include "GameComponents/PlayerComponent.hpp"
+#include "R-TypeLogic/Global/Components/AlliedProjectileComponent.hpp"
+#include "R-TypeLogic/Global/Components/CollidableComponent.hpp"
+#include "R-TypeLogic/Global/Components/DamageComponent.hpp"
+#include "R-TypeLogic/Global/Components/EnemyComponent.hpp"
+#include "R-TypeLogic/Global/Components/EnemyProjectileComponent.hpp"
+#include "R-TypeLogic/Global/Components/LifeComponent.hpp"
+#include "R-TypeLogic/Global/Components/ObstacleComponent.hpp"
+#include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
 
 using namespace ecs;
 

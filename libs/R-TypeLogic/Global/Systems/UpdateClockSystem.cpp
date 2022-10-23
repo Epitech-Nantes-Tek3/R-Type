@@ -6,8 +6,8 @@
 */
 
 #include "UpdateClockSystem.hpp"
-#include "GameSharedResources/GameClock.hpp"
 #include <chrono>
+#include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
 
 using namespace ecs;
 

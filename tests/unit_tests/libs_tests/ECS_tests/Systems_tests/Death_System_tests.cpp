@@ -6,14 +6,14 @@
 */
 
 #include <criterion/criterion.h>
-#include "World/World.hpp"
 #include "Entity/Entity.hpp"
-#include "GameSystems/DeathSystem.hpp"
-#include "GameEntityManipulation/CreateEntitiesFunctions/CreateProjectile.hpp"
-#include "GameEntityManipulation/CreateEntitiesFunctions/CreateEnemy.hpp"
-#include "GameComponents/DeathComponent.hpp"
-#include "GameComponents/ProjectileComponent.hpp"
-#include "GameComponents/PositionComponent.hpp"
+#include "World/World.hpp"
+#include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateEnemy.hpp"
+#include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateProjectile.hpp"
+#include "R-TypeLogic/Global/Components/DeathComponent.hpp"
+#include "R-TypeLogic/Global/Components/PositionComponent.hpp"
+#include "R-TypeLogic/Global/Components/ProjectileComponent.hpp"
+#include "R-TypeLogic/Global/Systems/DeathSystem.hpp"
 
 using namespace ecs;
 
@@ -73,11 +73,11 @@ Test(Death_system, kill_entities_with_an_Enemy)
 
     world.getEntity(1).addComponent<Death>();
     world.getEntity(3).addComponent<Death>();
-    
+
     world.addSystem<DeathSystem>();
     world.addResource<NetworkableIdGenerator>();
     world.runSystems();
-    
+
     std::vector<std::shared_ptr<ecs::Entity>> death_joined = world.joinEntities<Position>();
 
     cr_assert_eq(3, joined.size());

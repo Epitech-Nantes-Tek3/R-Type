@@ -8,14 +8,14 @@
 #ifndef CREATEBUTTON_HPP_
 #define CREATEBUTTON_HPP_
 
-#include "GameComponents/ButtonComponent.hpp"
-#include "GameComponents/CollidableComponent.hpp"
-#include "GameComponents/DamageComponent.hpp"
-#include "GameComponents/PositionComponent.hpp"
-#include "GameComponents/SizeComponent.hpp"
-#include "GameComponents/VelocityComponent.hpp"
-#include "GameComponents/WeightComponent.hpp"
 #include "World/World.hpp"
+#include "R-TypeLogic/Global/Components/ButtonComponent.hpp"
+#include "R-TypeLogic/Global/Components/CollidableComponent.hpp"
+#include "R-TypeLogic/Global/Components/DamageComponent.hpp"
+#include "R-TypeLogic/Global/Components/PositionComponent.hpp"
+#include "R-TypeLogic/Global/Components/SizeComponent.hpp"
+#include "R-TypeLogic/Global/Components/VelocityComponent.hpp"
+#include "R-TypeLogic/Global/Components/WeightComponent.hpp"
 
 namespace ecs
 {

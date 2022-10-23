@@ -7,7 +7,7 @@
 
 #include <criterion/criterion.h>
 #include "World/World.hpp"
-#include "GameEntityManipulation/CreateEntitiesFunctions/CreateButton.hpp"
+#include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateButton.hpp"
 
 using namespace ecs;
 

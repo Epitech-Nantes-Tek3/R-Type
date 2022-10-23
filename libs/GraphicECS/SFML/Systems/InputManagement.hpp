@@ -8,11 +8,11 @@
 #ifndef INPUTMANAGEMENT_HPP_
 #define INPUTMANAGEMENT_HPP_
 
-#include "GameComponents/ControlableComponent.hpp"
-#include "GameComponents/VelocityComponent.hpp"
-#include "GameEntityManipulation/CreateEntitiesFunctions/CreateAlliedProjectile.hpp"
 #include "System/System.hpp"
 #include "World/World.hpp"
+#include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateAlliedProjectile.hpp"
+#include "R-TypeLogic/Global/Components/ControlableComponent.hpp"
+#include "R-TypeLogic/Global/Components/VelocityComponent.hpp"
 
 namespace ecs
 {

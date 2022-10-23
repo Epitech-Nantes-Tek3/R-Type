@@ -8,9 +8,9 @@
 #ifndef LIFETIMEDEATH_SYSTEM_HPP_
 #define LIFETIMEDEATH_SYSTEM_HPP_
 
-#include "GameComponents/DeathComponent.hpp"
-#include "GameComponents/LifeTimeComponent.hpp"
 #include "World/World.hpp"
+#include "R-TypeLogic/Global/Components/DeathComponent.hpp"
+#include "R-TypeLogic/Global/Components/LifeTimeComponent.hpp"
 
 namespace ecs
 {
@@ -23,7 +23,8 @@ namespace ecs
             std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<LifeTime>();
 
             auto deathLifeTime = [](std::shared_ptr<ecs::Entity> entityPtr) {
-                if (entityPtr.get()->getComponent<LifeTime>().timeLeft <= std::chrono::duration<double>(0.0) && !entityPtr.get()->contains<Death>())
+                if (entityPtr.get()->getComponent<LifeTime>().timeLeft <= std::chrono::duration<double>(0.0)
+                    && !entityPtr.get()->contains<Death>())
                     entityPtr.get()->addComponent<Death>();
             };
             std::for_each(joined.begin(), joined.end(), deathLifeTime);
