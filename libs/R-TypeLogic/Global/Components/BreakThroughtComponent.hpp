@@ -10,10 +10,10 @@
 
 #include "Component/Component.hpp"
 
-namespace ecs
+namespace rtypelogic::global
 {
     /// @brief The BreakThrought component, to add the piercing ability to projectiles
-    class BreakThrought : public Component {};
-} // namespace ecs
+    class BreakThrought : public ecs::Component {};
+} // namespace rtypelogic::global
 
 #endif /* !BREAKTHROUGHT_HPP_ */

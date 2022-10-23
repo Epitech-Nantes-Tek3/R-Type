@@ -10,11 +10,11 @@
 
 #include "Component/Component.hpp"
 
-namespace ecs
+namespace rtypelogic::global
 {
     /// @brief The Life class, needed for every ennemies, bosses or players
     /// It's a networkable component.
-    class Life : public Component {
+    class Life : public ecs::Component {
       public:
         /// @brief The life's point of the entity at the beginning
         unsigned short lifePoint;
@@ -30,6 +30,6 @@ namespace ecs
         /// @brief Default Destructor
         ~Life() = default;
     };
-} // namespace ecs
+} // namespace rtypelogic::global
 
 #endif /* !LIFECOMPONENT_HPP_ */

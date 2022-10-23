@@ -19,6 +19,7 @@
 #include "R-TypeLogic/Global/Components/SizeComponent.hpp"
 
 using namespace graphic::sfml;
+using namespace rtypelogic::global;
 
 bool DrawComponents::compareLayer(std::shared_ptr<Entity> e1, std::shared_ptr<Entity> e2)
 {

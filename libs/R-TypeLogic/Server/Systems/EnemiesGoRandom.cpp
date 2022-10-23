@@ -18,6 +18,8 @@
 #define MAXIMUM_HEIGTH 800
 
 using namespace ecs;
+using namespace rtypelogic::server;
+using namespace rtypelogic::global;
 
 void EnemiesGoRandom::run(World &world)
 {

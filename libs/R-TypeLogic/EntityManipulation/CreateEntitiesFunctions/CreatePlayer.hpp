@@ -26,7 +26,10 @@
 #include "R-TypeLogic/Global/Components/WeightComponent.hpp"
 #include "R-TypeLogic/Global/SharedResources/Random.hpp"
 
-namespace ecs
+using namespace rtypelogic::global;
+using namespace ecs;
+
+namespace rtypelogic::entitymanipulation
 {
     /// @brief This function creates a new Player Entity with these parameters
     /// @param world The world in which the Player must be created

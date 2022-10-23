@@ -12,6 +12,7 @@
 #define MAXIMUM_WIDTH 1920
 
 using namespace graphic::sfml;
+using namespace rtypelogic::global;
 
 void Parallax::run(World &world)
 {

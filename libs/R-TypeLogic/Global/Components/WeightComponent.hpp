@@ -10,10 +10,10 @@
 
 #include "Component/Component.hpp"
 
-namespace ecs
+namespace rtypelogic::global
 {
     /// @brief The Weight class, almost used for everything, used in gravity system
-    class Weight : public Component {
+    class Weight : public ecs::Component {
       public:
         /// @brief weight of the entity
         short weight;
@@ -24,6 +24,6 @@ namespace ecs
         /// @brief Default Destructor
         ~Weight() = default;
     };
-} // namespace ecs
+} // namespace rtypelogic::global
 
 #endif /* !WEIGHTCOMPONENT_HPP_ */

@@ -10,11 +10,11 @@
 
 #include "Component/Component.hpp"
 
-namespace ecs
+namespace rtypelogic::global
 {
     /// @brief This class LayerLvL is created in order to know the layer level of display.
     /// It will be used to order graphicals component to know in which order they will be displayed.
-    class LayerLvL : public Component {
+    class LayerLvL : public ecs::Component {
       public:
         /// @brief Enumeration of the different layers can be used
         enum layer_e { UNKNOWN, BACKGROUND, MIDDLE, DECORATION, OBSTACLE, ENEMY, PLAYER, PROJECTILE, LAYER_NUMBER };
@@ -29,6 +29,6 @@ namespace ecs
         /// @brief Default destructor of this component.
         ~LayerLvL() = default;
     };
-} // namespace ecs
+} // namespace rtypelogic::global
 
 #endif /* !LAYERLVL_HPP_ */

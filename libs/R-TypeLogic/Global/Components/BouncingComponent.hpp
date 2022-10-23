@@ -10,10 +10,10 @@
 
 #include "Component/Component.hpp"
 
-namespace ecs
+namespace rtypelogic::global
 {
     /// @brief The Bouncing component, to bounce projectiles after hitting one enemy
-    class Bouncing : public Component {};
-} // namespace ecs
+    class Bouncing : public ecs::Component {};
+} // namespace rtypelogic::global
 
 #endif /* !BOUNCINGCOMPONENT_HPP_ */

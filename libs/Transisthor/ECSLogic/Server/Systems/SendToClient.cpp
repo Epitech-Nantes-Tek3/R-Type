@@ -9,21 +9,23 @@
 #include "Transisthor/ECSLogic/Both/Resources/SendingFrequency.hpp"
 
 using namespace transisthor::ecslogic;
+using namespace rtypelogic::global;
+using namespace ecs;
 
-void SendToClient::runSystem(ecs::World &world)
+void SendToClient::runSystem(World &world)
 {
-    std::vector<std::shared_ptr<ecs::Entity>> clients = world.joinEntities<NetworkClient>();
-    std::vector<std::shared_ptr<ecs::Entity>> joinedNetworkable = world.joinEntities<Networkable>();
+    std::vector<std::shared_ptr<Entity>> clients = world.joinEntities<NetworkClient>();
+    std::vector<std::shared_ptr<Entity>> joinedNetworkable = world.joinEntities<Networkable>();
     std::vector<unsigned short> clientIdList;
 
-    auto addToClientList = [&clientIdList](std::shared_ptr<ecs::Entity> entityPtr) {
+    auto addToClientList = [&clientIdList](std::shared_ptr<Entity> entityPtr) {
         clientIdList.emplace_back(entityPtr.get()->getComponent<NetworkClient>().id);
     };
 
-    auto update = [this, &world, &clientIdList](std::shared_ptr<ecs::Entity> entityPtr) {
+    auto update = [this, &world, &clientIdList](std::shared_ptr<Entity> entityPtr) {
         unsigned short networkId = entityPtr->getComponent<Networkable>().id;
-        sendToClients<ecs::Destination, ecs::Equipment, ecs::Invinsible, ecs::Invisible, ecs::Life, ecs::Position,
-            ecs::Velocity, ecs::Death>(world, networkId, entityPtr, clientIdList);
+        sendToClients<Destination, Equipment, Invinsible, Invisible, Life, Position,
+            Velocity, Death>(world, networkId, entityPtr, clientIdList);
         return;
     };
 

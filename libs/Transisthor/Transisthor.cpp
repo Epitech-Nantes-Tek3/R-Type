@@ -30,6 +30,7 @@ using namespace transisthor;
 using namespace error_lib;
 using namespace ecs;
 using namespace transisthor::ecslogic;
+using namespace rtypelogic::entitymanipulation;
 
 Transisthor::Transisthor(Communicator &communicator, World &ecsWorld) : _communicator(communicator), _ecsWorld(ecsWorld)
 {

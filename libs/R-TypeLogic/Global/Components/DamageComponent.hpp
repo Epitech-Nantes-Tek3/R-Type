@@ -10,10 +10,10 @@
 
 #include "Component/Component.hpp"
 
-namespace ecs
+namespace rtypelogic::global
 {
     /// @brief The Damage class, reducing the entity's life
-    class Damage : public Component {
+    class Damage : public ecs::Component {
       public:
         /// @brief The number of damage, to be substract to the Life Point
         unsigned short damagePoint;
@@ -24,6 +24,6 @@ namespace ecs
         /// @brief Default Destructor
         ~Damage() = default;
     };
-} // namespace ecs
+} // namespace rtypelogic::global
 
 #endif /* !DAMAGECOMPONENT_HPP_ */

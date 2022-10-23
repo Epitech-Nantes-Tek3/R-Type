@@ -10,11 +10,11 @@
 
 #include "Component/Component.hpp"
 
-namespace ecs
+namespace rtypelogic::global
 {
     /// @brief The Destination component, used for mobiles entities
     /// It's a networkable component.
-    class Destination : public Component {
+    class Destination : public ecs::Component {
       public:
         /// @brief The abscissa of the Destination
         int x;
@@ -33,6 +33,6 @@ namespace ecs
         /// @brief Default Destructor
         ~Destination() = default;
     };
-} // namespace ecs
+} // namespace rtypelogic::global
 
 #endif /* !DirectionCOMPONENT_HPP_ */

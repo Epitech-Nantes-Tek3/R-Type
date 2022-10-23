@@ -10,11 +10,10 @@
 
 #include "Component/Component.hpp"
 
-namespace ecs
+namespace rtypelogic::global
 {
     /// @brief Enemy Component allows an entity to be used as an Enemy
-    class Enemy : public Component {};
-} // namespace ecs
+    class Enemy : public ecs::Component {};
+} // namespace rtypelogic::global
 
 #endif /* !ENEMYCOMPONENT_HPP_ */
-

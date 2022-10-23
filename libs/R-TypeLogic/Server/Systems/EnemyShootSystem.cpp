@@ -15,6 +15,9 @@
 
 using namespace ecs;
 using namespace std::chrono;
+using namespace rtypelogic::server;
+using namespace rtypelogic::global;
+using namespace rtypelogic::entitymanipulation;
 
 void EnemyShootSystem::run(World &world)
 {

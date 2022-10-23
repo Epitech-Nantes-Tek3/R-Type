@@ -10,10 +10,10 @@
 
 #include "Component/Component.hpp"
 
-namespace ecs
+namespace rtypelogic::global
 {
     /// @brief The Damage Radius class, defining the damage zone
-    class DamageRadius : public Component {
+    class DamageRadius : public ecs::Component {
       public:
         /// @brief The range of the projectile's explosion
         unsigned short radius;
@@ -24,6 +24,6 @@ namespace ecs
         /// @brief Default Destructor
         ~DamageRadius() = default;
     };
-} // namespace ecs
+} // namespace rtypelogic::global
 
 #endif /* !DAMAGERADIUSCOMPONENT_HPP_ */

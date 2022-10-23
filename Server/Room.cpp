@@ -40,6 +40,8 @@ using namespace error_lib;
 using namespace communicator_lib;
 using namespace ecs;
 using namespace transisthor::ecslogic;
+using namespace rtypelogic::entitymanipulation;
+using namespace rtypelogic::server;
 
 Room::Room()
 {

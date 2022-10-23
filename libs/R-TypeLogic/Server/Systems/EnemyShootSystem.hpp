@@ -10,15 +10,18 @@
 
 #include "World/World.hpp"
 
-namespace ecs
+namespace rtypelogic
 {
-    /// @brief The Enemy shoot system
-    /// This system create a enemyProjectile each time the cooldown is equal to zero
-    class EnemyShootSystem : public System {
-      /// @brief Run the system Enemy shoot
-      /// @param world The world where the enemies will shoot
-      void run(World &world) override final;
-    };
-} // namespace ecs
+    namespace server
+    {
+        /// @brief The Enemy shoot system
+        /// This system create a enemyProjectile each time the cooldown is equal to zero
+        class EnemyShootSystem : public ecs::System {
+            /// @brief Run the system Enemy shoot
+            /// @param world The world where the enemies will shoot
+            void run(ecs::World &world) override final;
+        };
+    } // namespace server
+} // namespace rtypelogic
 
 #endif /* !ENEMYSHOOTSYSTEM_HPP_ */

@@ -10,11 +10,11 @@
 
 #include "Component/Component.hpp"
 
-namespace ecs
+namespace rtypelogic::global
 {
     /// @brief The Death Component which defines that an entity is dead and will be deleted by Death System
     /// It's a networkable component.
-    class Death : public Component {
+    class Death : public ecs::Component {
       public:
         /// @brief The network status of the component. True if it has been modified since it was last sent.
         bool modified;
@@ -27,6 +27,6 @@ namespace ecs
         ///@brief Destroy the Death object
         ~Death() = default;
     };
-} // namespace ecs
+} // namespace rtypelogic::global
 
 #endif /* !DEATHCOMPONENT_HPP_ */

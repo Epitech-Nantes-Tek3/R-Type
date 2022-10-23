@@ -11,10 +11,10 @@
 #include <random>
 #include "Resource/Resource.hpp"
 
-namespace ecs
+namespace rtypelogic::global
 {
     /// Random Shared Resource.
-    struct RandomDevice : public Resource {
+    struct RandomDevice : public ecs::Resource {
       public:
         /// Construct a new Random Device Shared Resource
         RandomDevice() : _generation(_device()) {}
@@ -41,6 +41,6 @@ namespace ecs
         /// @brief Standard generation seeded with rd()
         std::mt19937 _generation;
     };
-} // namespace ecs
+} // namespace rtypelogic::global
 
 #endif /* !RANDOM_HPP_ */

@@ -8,14 +8,11 @@
 #include "GameClock.hpp"
 
 using namespace std::chrono;
-using namespace ecs;
+using namespace rtypelogic::global;
 
 GameClock::GameClock() : _lastResetTime(steady_clock::now()), _lastElapsedTime(0) {}
 
-double GameClock::getElapsedTime()
-{
-    return _lastElapsedTime;
-}
+double GameClock::getElapsedTime() { return _lastElapsedTime; }
 
 void GameClock::resetClock()
 {

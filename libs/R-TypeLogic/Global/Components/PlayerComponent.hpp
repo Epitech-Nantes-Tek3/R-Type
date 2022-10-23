@@ -10,10 +10,10 @@
 
 #include "Component/Component.hpp"
 
-namespace ecs
+namespace rtypelogic::global
 {
     /// @brief Player Component allows an entity to be used as a Player
-    class Player : public Component {};
-} // namespace ecs
+    class Player : public ecs::Component {};
+} // namespace rtypelogic::global
 
 #endif /* !PLAYERCOMPONENT_HPP_ */

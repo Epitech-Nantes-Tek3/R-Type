@@ -10,14 +10,14 @@
 
 #include "World/World.hpp"
 
-namespace ecs
+namespace rtypelogic::global
 {
     /// @brief UpdateClock System. Will be used to call the GameClock's reset
-    struct UpdateClock : public System {
+    struct UpdateClock : public ecs::System {
         /// @brief Run the UpdateClock System
         /// @param world The world where the clock will run
         void run(World &world) override final;
     };
-}; // namespace ecs
+}; // namespace rtypelogic::global
 
 #endif /* !UPDATECLOCKSYSTEM_HPP_ */

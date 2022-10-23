@@ -15,10 +15,10 @@
 
 using namespace std::chrono;
 
-namespace ecs
+namespace rtypelogic::global
 {
     /// @brief The Movement component, used for mobiles entities
-    class Pattern : public Component {
+    class Pattern : public ecs::Component {
       public:
         /// @brief Vector of movements to execute
         std::vector<std::tuple<int, int>> pattern;
@@ -34,6 +34,6 @@ namespace ecs
         /// @brief Default Destructor
         ~Pattern() = default;
     };
-} // namespace ecs
+} // namespace rtypelogic::global
 
 #endif /* !PATERNCOMPONENT_HPP_ */

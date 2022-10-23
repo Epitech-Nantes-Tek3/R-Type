@@ -7,6 +7,7 @@
 
 #include "SfRectangleFollowEntitySystem.hpp"
 
+using namespace rtypelogic::global;
 using namespace graphic::sfml;
 
 void SfRectangleFollowEntitySystem::run(World &world)

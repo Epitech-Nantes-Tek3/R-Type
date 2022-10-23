@@ -10,10 +10,10 @@
 
 #include "Component/Component.hpp"
 
-namespace ecs
+namespace rtypelogic::global
 {
     /// @brief BackGround Component allows an entity to be used as a BackGround
-    class BackGround : public Component {};
-} // namespace ecs
+    class BackGround : public ecs::Component {};
+} // namespace rtypelogic::global
 
 #endif /* !BACKGROUNDCOMPONENT_HPP_ */

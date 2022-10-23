@@ -25,7 +25,10 @@
 #include "R-TypeLogic/Global/SharedResources/Random.hpp"
 
 using namespace transisthor::ecslogic;
-namespace ecs
+using namespace rtypelogic::global;
+using namespace ecs;
+
+namespace rtypelogic::entitymanipulation
 {
     /// @brief This function can create a new Projectile Entity in the world passed as params
     /// @param world The world in which the Projectile must be created

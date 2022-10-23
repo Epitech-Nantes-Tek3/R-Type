@@ -10,10 +10,10 @@
 
 #include "Component/Component.hpp"
 
-namespace ecs
+namespace rtypelogic::global
 {
     /// @brief The Collidable component, almost used for every entities
-    class Collidable : public Component {};
-} // namespace ecs
+    class Collidable : public ecs::Component {};
+} // namespace rtypelogic::global
 
 #endif /* !COLLIDABLECOMPONENT_HPP_ */

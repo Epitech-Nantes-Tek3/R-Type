@@ -24,10 +24,12 @@
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
 #include "R-TypeLogic/Global/Components/VelocityComponent.hpp"
 
+using namespace rtypelogic::global;
+
 ///@brief a static map which is used to know which ID is used for a component type for the RFC protocol
-static const std::map<std::type_index, unsigned short> componentRFCId = {{typeid(ecs::Destination), 1},
-    {typeid(ecs::Equipment), 2}, {typeid(ecs::Invinsible), 3}, {typeid(ecs::Invisible), 4}, {typeid(ecs::Life), 5},
-    {typeid(ecs::Position), 6}, {typeid(ecs::Velocity), 7}, {typeid(ecs::Death), 8}};
+static const std::map<std::type_index, unsigned short> componentRFCId = {{typeid(Destination), 1},
+    {typeid(Equipment), 2}, {typeid(Invinsible), 3}, {typeid(Invisible), 4}, {typeid(Life), 5},
+    {typeid(Position), 6}, {typeid(Velocity), 7}, {typeid(Death), 8}};
 
 namespace transisthor::ecslogic
 {

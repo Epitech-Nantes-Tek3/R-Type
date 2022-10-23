@@ -9,7 +9,7 @@
 #include <chrono>
 #include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
 
-using namespace ecs;
+using namespace rtypelogic::global;
 
 void UpdateClock::run(World &world)
 {

@@ -10,10 +10,10 @@
 
 #include "Component/Component.hpp"
 
-namespace ecs
+namespace rtypelogic::global
 {
     /// @brief The controlable class, defining if an entity is affected by the player's input
-    class Controlable : public Component {};
-} // namespace ecs
+    class Controlable : public ecs::Component {};
+} // namespace rtypelogic::global
 
 #endif /* !CONTROLABLECOMPONENT_HPP_ */

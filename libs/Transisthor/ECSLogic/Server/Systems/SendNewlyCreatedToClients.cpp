@@ -27,23 +27,25 @@
 #include "R-TypeLogic/Global/Components/WeightComponent.hpp"
 
 using namespace transisthor::ecslogic;
+using namespace rtypelogic::global;
+using namespace ecs;
 
-void SendNewlyCreatedToClients::runSystem(ecs::World &world)
+void SendNewlyCreatedToClients::runSystem(World &world)
 {
-    std::vector<std::shared_ptr<ecs::Entity>> clients = world.joinEntities<NetworkClient>();
-    std::vector<std::shared_ptr<ecs::Entity>> joinedNewlyCreated = world.joinEntities<NewlyCreated>();
+    std::vector<std::shared_ptr<Entity>> clients = world.joinEntities<NetworkClient>();
+    std::vector<std::shared_ptr<Entity>> joinedNewlyCreated = world.joinEntities<NewlyCreated>();
     std::vector<unsigned short> clientIdList;
 
-    auto addToClientList = [&clientIdList](std::shared_ptr<ecs::Entity> entityPtr) {
+    auto addToClientList = [&clientIdList](std::shared_ptr<Entity> entityPtr) {
         clientIdList.emplace_back(entityPtr.get()->getComponent<NetworkClient>().id);
     };
 
-    auto update = [this, &world, &clientIdList](std::shared_ptr<ecs::Entity> entityPtr) {
+    auto update = [this, &world, &clientIdList](std::shared_ptr<Entity> entityPtr) {
         NewlyCreated &newlyCreated = entityPtr->getComponent<NewlyCreated>();
 
         if (newlyCreated.isClientInstance || newlyCreated.sended == true)
             return;
-        if (entityPtr->contains<ecs::AlliedProjectile>()) {
+        if (entityPtr->contains<AlliedProjectile>()) {
             std::cerr << entityPtr->getComponent<AlliedProjectile>().parentNetworkId << std::endl;
             world.getTransisthorBridge()->transitEcsDataToNetworkDataEntityAlliedProjectile(
                 entityPtr->getComponent<Networkable>().id, entityPtr->getComponent<AlliedProjectile>().parentNetworkId,
@@ -65,7 +67,7 @@ void SendNewlyCreatedToClients::runSystem(ecs::World &world)
                     entityPtr->getComponent<Networkable>().id,
                     entityPtr->getComponent<AlliedProjectile>().parentNetworkId, "", clientIdListWithoutParent);
         }
-        if (entityPtr->contains<ecs::Enemy>()) {
+        if (entityPtr->contains<Enemy>()) {
             Position &pos = entityPtr->getComponent<Position>();
             Velocity &vel = entityPtr->getComponent<Velocity>();
             Size &size = entityPtr->getComponent<Size>();
@@ -76,19 +78,19 @@ void SendNewlyCreatedToClients::runSystem(ecs::World &world)
                 entityPtr->getComponent<Damage>().damagePoint, entityPtr->getComponent<DamageRadius>().radius,
                 newlyCreated.uuid, clientIdList);
         }
-        if (entityPtr->contains<ecs::EnemyProjectile>()) {
+        if (entityPtr->contains<EnemyProjectile>()) {
             world.getTransisthorBridge()->transitEcsDataToNetworkDataEntityEnemyProjectile(
                 entityPtr->getComponent<Networkable>().id, entityPtr->getComponent<EnemyProjectile>().parentNetworkId,
                 newlyCreated.uuid, clientIdList);
         }
-        if (entityPtr->contains<ecs::Obstacle>()) {
+        if (entityPtr->contains<Obstacle>()) {
             Position &pos = entityPtr->getComponent<Position>();
 
             world.getTransisthorBridge()->transitEcsDataToNetworkDataEntityObstacle(
                 entityPtr->getComponent<Networkable>().id, pos.x, pos.y, entityPtr->getComponent<Damage>().damagePoint,
                 newlyCreated.uuid, clientIdList);
         }
-        if (entityPtr->contains<ecs::Player>()) {
+        if (entityPtr->contains<Player>()) {
             Position &pos = entityPtr->getComponent<Position>();
             Velocity &vel = entityPtr->getComponent<Velocity>();
             Size &size = entityPtr->getComponent<Size>();
@@ -99,7 +101,7 @@ void SendNewlyCreatedToClients::runSystem(ecs::World &world)
                 entityPtr->getComponent<Damage>().damagePoint, entityPtr->getComponent<DamageRadius>().radius, false,
                 newlyCreated.uuid, clientIdList);
         }
-        if (entityPtr->contains<ecs::Projectile>()) {
+        if (entityPtr->contains<Projectile>()) {
             Position &pos = entityPtr->getComponent<Position>();
             Velocity &vel = entityPtr->getComponent<Velocity>();
 

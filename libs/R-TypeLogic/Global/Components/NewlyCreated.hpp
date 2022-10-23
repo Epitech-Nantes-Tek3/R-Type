@@ -12,12 +12,12 @@
 #include <string.h>
 #include "Component/Component.hpp"
 
-namespace ecs
+namespace rtypelogic::global
 {
     /// @brief This component is in order to give a unique id to an entity, it's used in the sending of the creation of
     /// a entity in the client This Component is a distinctive one (used by the function
     /// updateComponentOfAnEntityFromGivenDistinctiveComponent in the world) so it must have a operator== overload
-    class NewlyCreated : public Component {
+    class NewlyCreated : public ecs::Component {
       public:
         /// @brief The Entity’s unique identifier
         std::string uuid;
@@ -56,5 +56,5 @@ namespace ecs
     };
 
     inline bool operator==(const NewlyCreated &one, const NewlyCreated &two) { return one.uuid == two.uuid; }
-} // namespace ecs
+} // namespace rtypelogic::global
 #endif /* !NEWLYCREATED_HPP_ */

@@ -16,6 +16,8 @@
 #include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
 
 using namespace ecs;
+using namespace rtypelogic::server;
+using namespace rtypelogic::global;
 
 bool Collide::isSameWidth(Position &fstPos, Position &sndPos, Size &fstSize, Size &sndSize)
 {

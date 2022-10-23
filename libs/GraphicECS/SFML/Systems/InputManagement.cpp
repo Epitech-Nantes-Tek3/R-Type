@@ -22,6 +22,8 @@
 #include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
 
 using namespace graphic::sfml;
+using namespace rtypelogic::global;
+using namespace rtypelogic::entitymanipulation;
 
 void InputManagement::run(World &world)
 {

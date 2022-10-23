@@ -24,18 +24,20 @@
 #include "R-TypeLogic/Global/Components/WeightComponent.hpp"
 
 using namespace transisthor::ecslogic;
+using namespace rtypelogic::global;
+using namespace ecs;
 
-void SendNewlyCreatedToServer::runSystem(ecs::World &world)
+void SendNewlyCreatedToServer::runSystem(World &world)
 {
-    std::vector<std::shared_ptr<ecs::Entity>> servers = world.joinEntities<NetworkServer>();
-    std::vector<std::shared_ptr<ecs::Entity>> joinedNewlyCreated = world.joinEntities<ecs::NewlyCreated>();
+    std::vector<std::shared_ptr<Entity>> servers = world.joinEntities<NetworkServer>();
+    std::vector<std::shared_ptr<Entity>> joinedNewlyCreated = world.joinEntities<NewlyCreated>();
     std::vector<unsigned short> serverIdList;
 
-    auto addToClientList = [&serverIdList](std::shared_ptr<ecs::Entity> entityPtr) {
+    auto addToClientList = [&serverIdList](std::shared_ptr<Entity> entityPtr) {
         serverIdList.emplace_back(entityPtr.get()->getComponent<NetworkServer>().id);
     };
 
-    auto update = [this, &world, &serverIdList](std::shared_ptr<ecs::Entity> entityPtr) {
+    auto update = [this, &world, &serverIdList](std::shared_ptr<Entity> entityPtr) {
         NewlyCreated &newlyCreated = entityPtr->getComponent<NewlyCreated>();
 
         if (!newlyCreated.isClientInstance)
@@ -44,7 +46,7 @@ void SendNewlyCreatedToServer::runSystem(ecs::World &world)
             entityPtr->removeComponent<NewlyCreated>();
             return;
         }
-        if (entityPtr->contains<ecs::AlliedProjectile>() && newlyCreated.sended == false) {
+        if (entityPtr->contains<AlliedProjectile>() && newlyCreated.sended == false) {
             std::cerr << newlyCreated.uuid << std::endl;
             world.getTransisthorBridge()->transitEcsDataToNetworkDataEntityAlliedProjectile(
                 entityPtr->getComponent<Networkable>().id, entityPtr->getComponent<AlliedProjectile>().parentNetworkId,

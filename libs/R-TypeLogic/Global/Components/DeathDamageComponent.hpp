@@ -10,10 +10,10 @@
 
 #include "Component/Component.hpp"
 
-namespace ecs
+namespace rtypelogic::global
 {
     /// @brief The DeathDamage class, inflicting damage after the owner's death
-    class DeathDamage : public Component {
+    class DeathDamage : public ecs::Component {
       public:
         /// @brief The number of DeathDamage, to be substract to the Life Point
         unsigned short deathDamagePoint;
@@ -24,6 +24,6 @@ namespace ecs
         /// @brief Default Destructor
         ~DeathDamage() = default;
     };
-} // namespace ecs
+} // namespace rtypelogic::global
 
 #endif /* !DEATHDAMAGECOMPONENT_HPP_ */

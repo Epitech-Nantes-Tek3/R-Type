@@ -13,10 +13,10 @@
 
 using namespace std::chrono;
 
-namespace ecs
+namespace rtypelogic::global
 {
     /// @brief The LifeTime class, telling how long an entity is going to live
-    class LifeTime : public Component {
+    class LifeTime : public ecs::Component {
       public:
         /// @brief the life time of the entity
         duration<double> timeLeft;
@@ -31,6 +31,6 @@ namespace ecs
         /// @brief Default destructor
         ~LifeTime() = default;
     };
-} // namespace ecs
+} // namespace rtypelogic::global
 
 #endif /* !LIFETIMECOMPONENT_HPP_ */

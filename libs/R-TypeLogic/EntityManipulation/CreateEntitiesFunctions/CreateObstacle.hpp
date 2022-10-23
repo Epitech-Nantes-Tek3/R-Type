@@ -24,7 +24,10 @@
 #include "R-TypeLogic/Global/Components/WeightComponent.hpp"
 #include "R-TypeLogic/Global/SharedResources/Random.hpp"
 
-namespace ecs
+using namespace rtypelogic::global;
+using namespace ecs;
+
+namespace rtypelogic::entitymanipulation
 {
 
     /// @brief This function can create a new Obstacle Entity in the world passed as params

@@ -10,11 +10,11 @@
 
 #include "Component/Component.hpp"
 
-namespace ecs
+namespace rtypelogic::global
 {
     /// @brief The Equipment component, giving bonuses to entities
     /// It's a networkable component.
-    class Equipment : public Component {
+    class Equipment : public ecs::Component {
       public:
         /// @brief The equipment type
         unsigned short typeId;
@@ -30,6 +30,6 @@ namespace ecs
         /// @brief Default Constructor
         ~Equipment() = default;
     };
-} // namespace ecs
+} // namespace rtypelogic::global
 
 #endif /* !EQUIPABLECOMPONENT_HPP_ */

@@ -11,10 +11,10 @@
 #include <chrono>
 #include "Resource/Resource.hpp"
 
-namespace ecs
+namespace rtypelogic::global
 {
     /// @brief Shared Resource Clock for the Game
-    class GameClock : public Resource {
+    class GameClock : public ecs::Resource {
       public:
         /// @brief Create the Clock (Basic constructor)
         GameClock();
@@ -33,6 +33,6 @@ namespace ecs
         /// @brief The Last elapsed time, to have the same elapsedTime for every system
         double _lastElapsedTime;
     };
-} // namespace ecs
+} // namespace rtypelogic::global
 
 #endif /* !GAMECLOCK_HPP_ */

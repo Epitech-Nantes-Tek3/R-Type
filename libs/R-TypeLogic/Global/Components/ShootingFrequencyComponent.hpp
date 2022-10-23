@@ -13,10 +13,10 @@
 
 using namespace std::chrono;
 
-namespace ecs
+namespace rtypelogic::global
 {
     /// @brief The ShootingFrequency class, how many seconds will be between two projectiles
-    class ShootingFrequency : public Component {
+    class ShootingFrequency : public ecs::Component {
       public:
         /// @brief The delay between two shoots
         duration<double> frequency;
@@ -29,10 +29,11 @@ namespace ecs
         ShootingFrequency(duration<double> newFrequency) : frequency(newFrequency), baseFrequency(frequency){};
         /// @brief Default Constructor of the ShootingFrequency Component
         /// @param newfrequency the shooting's delay
-        ShootingFrequency(double newFrequency = 0.0) : frequency(duration<double>(newFrequency)), baseFrequency(frequency){};
+        ShootingFrequency(double newFrequency = 0.0)
+            : frequency(duration<double>(newFrequency)), baseFrequency(frequency){};
         /// @brief Default Destructor
         ~ShootingFrequency() = default;
     };
-} // namespace ecs
+} // namespace rtypelogic::global
 
 #endif /* !SHOOTINGFREQUENCYCOMPONENT_HPP_ */

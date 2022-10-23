@@ -10,11 +10,10 @@
 
 #include "Component/Component.hpp"
 
-namespace ecs
+namespace rtypelogic::global
 {
-   /// @brief Obstacle Component allows an entity to be used as an Obstacle
-   class Obstacle : public Component {};
-} // namespace ecs
-
+    /// @brief Obstacle Component allows an entity to be used as an Obstacle
+    class Obstacle : public ecs::Component {};
+} // namespace rtypelogic::global
 
 #endif /* !OBSTACLECOMPONENT_HPP_ */

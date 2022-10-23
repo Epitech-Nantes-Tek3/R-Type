@@ -11,10 +11,10 @@
 #include <array>
 #include "Component/Component.hpp"
 
-namespace ecs
+namespace rtypelogic::global
 {
     /// @brief The Weakness component, to create a target for projectiles
-    class Weakness : public Component {
+    class Weakness : public ecs::Component {
       public:
         /// @brief The center of the Weakness's circle (with abscissa and ordinate)
         std::array<double, 2> center;
@@ -29,6 +29,6 @@ namespace ecs
         /// @brief Default Destructor
         ~Weakness() = default;
     };
-} // namespace ecs
+} // namespace rtypelogic::global
 
 #endif /* !WEAKNESSCOMPONENT_HPP_ */

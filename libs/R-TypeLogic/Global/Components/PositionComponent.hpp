@@ -10,11 +10,11 @@
 
 #include "Component/Component.hpp"
 
-namespace ecs
+namespace rtypelogic::global
 {
     /// @brief The Position component, almost used for every entities
     /// It's a networkable component.
-    class Position : public Component {
+    class Position : public ecs::Component {
       public:
         /// @brief The abscissa of the Position
         double x;
@@ -32,6 +32,6 @@ namespace ecs
         /// @brief Default Destructor
         ~Position() = default;
     };
-} // namespace ecs
+} // namespace rtypelogic::global
 
 #endif /* !POSITIONCOMPONENT_HPP_ */

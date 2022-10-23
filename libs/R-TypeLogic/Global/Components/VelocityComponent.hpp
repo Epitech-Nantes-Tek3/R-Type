@@ -10,11 +10,11 @@
 
 #include "Component/Component.hpp"
 
-namespace ecs
+namespace rtypelogic::global
 {
     /// @brief The velocity class, multiplying the movement of the entity
     /// It's a networkable component.
-    class Velocity : public Component {
+    class Velocity : public ecs::Component {
       public:
         /// @brief The multiplier of the abscissa movement (between 0.1 and 10)
         double multiplierAbscissa;
@@ -29,10 +29,11 @@ namespace ecs
         /// @param newMultiplierX the movement's multiplier of abscissa
         /// @param newMultiplierY the movement's multiplier of ordinate
         Velocity(double newMultiplierX = 0, double newMultiplierY = 0)
-            : multiplierAbscissa(newMultiplierX), multiplierOrdinate(newMultiplierY), modified(false), sendToEveryone(false){};
+            : multiplierAbscissa(newMultiplierX), multiplierOrdinate(newMultiplierY), modified(false),
+              sendToEveryone(false){};
         /// @brief Default Destructor
         ~Velocity() = default;
     };
-} // namespace ecs
+} // namespace rtypelogic::global
 
 #endif /* !VELOCITYCOMPONENT_HPP_ */

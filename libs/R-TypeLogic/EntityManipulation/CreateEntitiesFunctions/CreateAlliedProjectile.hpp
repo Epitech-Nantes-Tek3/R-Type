@@ -25,8 +25,10 @@
 #include "R-TypeLogic/Global/SharedResources/Random.hpp"
 
 using namespace transisthor::ecslogic;
+using namespace rtypelogic::global;
+using namespace ecs;
 
-namespace ecs
+namespace rtypelogic::entitymanipulation
 {
     /// @brief This function creates a new Entity projectile_ally when an ally shoot
     /// @param world The world in which the Enemy must be created

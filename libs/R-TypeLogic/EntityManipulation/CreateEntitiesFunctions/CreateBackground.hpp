@@ -17,7 +17,10 @@
 #include "R-TypeLogic/Global/Components/VelocityComponent.hpp"
 #include "R-TypeLogic/Global/Components/WeightComponent.hpp"
 
-namespace ecs
+using namespace rtypelogic::global;
+using namespace ecs;
+
+namespace rtypelogic::entitymanipulation
 {
     /// @brief This function creates a new BackGround Entity with these parameters
     /// @param world The world in which the BackGround must be created

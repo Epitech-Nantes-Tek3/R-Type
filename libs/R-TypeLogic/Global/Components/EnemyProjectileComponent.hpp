@@ -10,11 +10,11 @@
 
 #include "Component/Component.hpp"
 
-namespace ecs
+namespace rtypelogic::global
 {
     /// @brief Enemy Projectile Component allows an entity to be used as an Enemy Projectile
-    class EnemyProjectile : public Component {
-        public:
+    class EnemyProjectile : public ecs::Component {
+      public:
         /// @brief Network id of the parent
         unsigned short parentNetworkId;
 
@@ -25,5 +25,5 @@ namespace ecs
         /// @brief Destroy the Enemy Projectile object
         ~EnemyProjectile() = default;
     };
-} // namespace ecs
+} // namespace rtypelogic::global
 #endif /* !EnemyProjectileCOMPONENT_HPP_ */

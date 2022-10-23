@@ -10,11 +10,11 @@
 
 #include "Component/Component.hpp"
 
-namespace ecs
+namespace rtypelogic::global
 {
     /// @brief The Invinsible component, to nullify all damages
     /// It's a networkable component.
-    class Invinsible : public Component {
+    class Invinsible : public ecs::Component {
       public:
         /// @brief The network status of the component. True if it has been modified since it was last sent.
         bool modified;
@@ -27,6 +27,6 @@ namespace ecs
         ///@brief Destroy the Invinsible object
         ~Invinsible() = default;
     };
-} // namespace ecs
+} // namespace rtypelogic::global
 
 #endif /* !INVINSIBLECOMPONENT_HPP_ */

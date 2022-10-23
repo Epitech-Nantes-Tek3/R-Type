@@ -13,7 +13,7 @@
 #include "R-TypeLogic/Global/Components/VelocityComponent.hpp"
 #include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
 
-using namespace ecs;
+using namespace rtypelogic::global;
 
 void Movement::run(World &world)
 {

@@ -10,10 +10,10 @@
 
 #include "Component/Component.hpp"
 
-namespace ecs
+namespace rtypelogic::global
 {
     /// @brief The Size component, almost used for everything
-    class Size : public Component {
+    class Size : public ecs::Component {
       public:
         /// @brief The size's length
         int x;
@@ -27,6 +27,6 @@ namespace ecs
         /// @brief Default Destructor
         ~Size() = default;
     };
-} // namespace ecs
+} // namespace rtypelogic::global
 
 #endif /* !SIZECOMPONENT_HPP_ */

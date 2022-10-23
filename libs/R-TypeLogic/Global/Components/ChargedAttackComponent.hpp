@@ -13,10 +13,10 @@
 
 using namespace std::chrono;
 
-namespace ecs
+namespace rtypelogic::global
 {
     /// @brief The Charged attack class, adding a cooldown before making huge damage
-    class ChargedAttack : public Component {
+    class ChargedAttack : public ecs::Component {
       public:
         /// @brief Time before making a charged attack, will be refreshed by a system
         duration<double> rechargingTime;
@@ -27,6 +27,6 @@ namespace ecs
         /// @brief Default Destructor
         ~ChargedAttack() = default;
     };
-} // namespace ecs
+} // namespace rtypelogic::global
 
 #endif /* !CHARGEDATTACK_HPP_ */

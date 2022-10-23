@@ -32,8 +32,10 @@
 #define MAXIMUM_HEIGTH 600
 
 using namespace transisthor::ecslogic;
+using namespace rtypelogic::global;
+using namespace ecs;
 
-namespace ecs
+namespace rtypelogic::entitymanipulation
 {
     /// @brief This function creates a new Enemy Entity with these parameters
     /// @param world The world in which the Enemy must be created

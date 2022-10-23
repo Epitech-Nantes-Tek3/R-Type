@@ -10,10 +10,10 @@
 
 #include "Component/Component.hpp"
 
-namespace ecs
+namespace rtypelogic::global
 {
     /// @brief The Button Component, used to make the difference between the component
-    class Button : public Component {
+    class Button : public ecs::Component {
       public:
         /// @brief If the component is hovered, the value will be set to true
         bool IsHovered;
@@ -27,6 +27,6 @@ namespace ecs
         /// @brief Default Destructor
         ~Button() = default;
     };
-} // namespace ecs
+} // namespace rtypelogic::global
 
 #endif /* !BUTTONCOMPONENT_HPP_ */
