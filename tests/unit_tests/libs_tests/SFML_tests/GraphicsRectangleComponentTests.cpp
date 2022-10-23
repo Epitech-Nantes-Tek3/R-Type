@@ -6,9 +6,10 @@
 */
 
 #include <criterion/criterion.h>
-#include "GraphicsRectangleComponent.hpp"
+#include "GraphicECS/SFML/Components/GraphicsRectangleComponent.hpp"
 
 using namespace ecs;
+using namespace graphic::sfml;
 
 Test(GraphicsRectangleComponent, test_create_class)
 {

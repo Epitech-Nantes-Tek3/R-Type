@@ -18,6 +18,7 @@
 #include "R-TypeLogic/Global/Systems/UpdateClockSystem.hpp"
 
 using namespace ecs;
+using namespace rtypelogic::global;
 
 Test(Movement_System, moove_a_position)
 {

@@ -25,6 +25,7 @@
 #include "R-TypeLogic/Global/SharedResources/Random.hpp"
 
 using namespace rtypelogic::global;
+using namespace transisthor::ecslogic;
 using namespace ecs;
 
 namespace rtypelogic::entitymanipulation

@@ -6,9 +6,10 @@
 */
 
 #include <criterion/criterion.h>
-#include <GraphicsTextComponent.hpp>
+#include <GraphicECS/SFML/Components/GraphicsTextComponent.hpp>
 
 using namespace ecs;
+using namespace graphic::sfml;
 
 Test(GraphicsTextComponent, test_create_function)
 {

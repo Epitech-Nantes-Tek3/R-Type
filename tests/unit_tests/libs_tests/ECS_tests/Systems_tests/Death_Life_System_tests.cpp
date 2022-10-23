@@ -15,6 +15,9 @@
 #include "R-TypeLogic/Server/Systems/DeathLifeSystem.hpp"
 
 using namespace ecs;
+using namespace rtypelogic::global;
+using namespace rtypelogic::server;
+using namespace rtypelogic::entitymanipulation;
 
 Test(add_Death_component_system, life_death_entity)
 {

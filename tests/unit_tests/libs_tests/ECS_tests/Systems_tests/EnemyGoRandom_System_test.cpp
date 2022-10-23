@@ -13,11 +13,14 @@
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateEnemy.hpp"
 #include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
 #include "R-TypeLogic/Global/SharedResources/Random.hpp"
-#include "R-TypeLogic/Server/Systems/EnemiesGoRandom.hpp"
 #include "R-TypeLogic/Global/Systems/MovementSystem.hpp"
 #include "R-TypeLogic/Global/Systems/UpdateClockSystem.hpp"
+#include "R-TypeLogic/Server/Systems/EnemiesGoRandom.hpp"
 
 using namespace ecs;
+using namespace rtypelogic::global;
+using namespace rtypelogic::server;
+using namespace rtypelogic::entitymanipulation;
 
 Test(EnemyGoRandom_System, move_randomly)
 {

@@ -6,9 +6,10 @@
 */
 
 #include <criterion/criterion.h>
-#include "AllowMouseAndKeyboardComponent.hpp"
+#include "GraphicECS/SFML/Components/AllowMouseAndKeyboardComponent.hpp"
 
 using namespace ecs;
+using namespace graphic::sfml;
 
 Test(AllowMouseAndKeyboardComponent, test_class_constructor)
 {

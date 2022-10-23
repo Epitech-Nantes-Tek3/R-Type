@@ -6,9 +6,10 @@
 */
 
 #include <criterion/criterion.h>
-#include "AllowControllerComponent.hpp"
+#include "GraphicECS/SFML/Components/AllowControllerComponent.hpp"
 
 using namespace ecs;
+using namespace graphic::sfml;
 
 Test(AllowControllerComponent, test_class_constructor)
 {

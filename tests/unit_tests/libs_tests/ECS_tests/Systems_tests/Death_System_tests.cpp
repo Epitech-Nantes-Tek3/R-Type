@@ -16,6 +16,8 @@
 #include "R-TypeLogic/Global/Systems/DeathSystem.hpp"
 
 using namespace ecs;
+using namespace rtypelogic::global;
+using namespace rtypelogic::entitymanipulation;
 
 Test(Death_system, kill_entity)
 {

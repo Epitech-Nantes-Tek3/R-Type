@@ -31,6 +31,8 @@ using namespace transisthor;
 using namespace communicator_lib;
 using namespace ecs;
 using namespace error_lib;
+using namespace rtypelogic::entitymanipulation;
+using namespace rtypelogic::global;
 
 Test(transisthor_testing, basic_init)
 {

@@ -21,6 +21,8 @@
 #include "R-TypeLogic/Server/Systems/CollidableSystem.hpp"
 
 using namespace ecs;
+using namespace rtypelogic::global;
+using namespace rtypelogic::server;
 
 Test(Collidable_Test, entities_do_not_collide)
 {

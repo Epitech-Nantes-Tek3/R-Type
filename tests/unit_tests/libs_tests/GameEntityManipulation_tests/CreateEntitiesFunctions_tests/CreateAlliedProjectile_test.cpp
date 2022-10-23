@@ -9,6 +9,7 @@
 #include "World/World.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateAlliedProjectile.hpp"
 
+using namespace rtypelogic::entitymanipulation;
 using namespace ecs;
 
 Test(CreateAlliedProjectile_test, CreateAlliedProjectile)

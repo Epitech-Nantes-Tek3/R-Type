@@ -14,14 +14,14 @@ class Timer : public ecs::Resource {
   public:
     int _timer;
 
-    Timer(const int x) : _timer(x) {};
+    Timer(const int x) : _timer(x){};
 };
 
 class Texture : public ecs::Resource {
   public:
     std::filesystem::path _path;
 
-    Texture(const std::filesystem::path path) : _path(path) {};
+    Texture(const std::filesystem::path path) : _path(path){};
 };
 
 /// @brief Create a World and add and get resource in the World

@@ -18,6 +18,9 @@
 #include "R-TypeLogic/Server/Systems/EnemyShootSystem.hpp"
 
 using namespace ecs;
+using namespace rtypelogic::global;
+using namespace rtypelogic::server;
+using namespace rtypelogic::entitymanipulation;
 
 Test(EnemyShootSystem, shoot_one)
 {

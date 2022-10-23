@@ -10,6 +10,7 @@
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateProjectile.hpp"
 
 using namespace ecs;
+using namespace rtypelogic::entitymanipulation;
 
 Test(CreateProjectile_test, CreateAlliedProjectile)
 {

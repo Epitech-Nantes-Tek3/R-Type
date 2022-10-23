@@ -11,6 +11,9 @@
 #include "World/World.hpp"
 #include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
 
+using namespace ecs;
+using namespace rtypelogic::global;
+
 Test(GameClock, reset_clock_test)
 {
     World world(1);

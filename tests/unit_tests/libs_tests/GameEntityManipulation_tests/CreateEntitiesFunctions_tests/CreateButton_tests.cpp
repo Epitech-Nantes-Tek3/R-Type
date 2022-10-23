@@ -10,6 +10,7 @@
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateButton.hpp"
 
 using namespace ecs;
+using namespace rtypelogic::entitymanipulation;
 
 Test(CreateButton_test, CreateButton)
 {

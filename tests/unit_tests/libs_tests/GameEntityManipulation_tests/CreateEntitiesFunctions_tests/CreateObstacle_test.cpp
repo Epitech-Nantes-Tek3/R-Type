@@ -10,6 +10,7 @@
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateObstacle.hpp"
 
 using namespace ecs;
+using namespace rtypelogic::entitymanipulation;
 
 Test(CreateObstacle_test, CreateObstacle)
 {

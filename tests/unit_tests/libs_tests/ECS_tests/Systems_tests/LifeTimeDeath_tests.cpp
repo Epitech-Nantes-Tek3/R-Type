@@ -14,6 +14,9 @@
 #include "R-TypeLogic/Global/Components/ProjectileComponent.hpp"
 #include "R-TypeLogic/Server/Systems/LifeTimeDeathSystem.hpp"
 
+using namespace rtypelogic::entitymanipulation;
+using namespace rtypelogic::global;
+using namespace rtypelogic::server;
 using namespace ecs;
 
 Test(add_Death_component_system, lifeTime_death_entity)

@@ -10,6 +10,7 @@
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreatePlayer.hpp"
 
 using namespace ecs;
+using namespace rtypelogic::entitymanipulation;
 
 Test(CreatePlayer_test, CreatePlayer)
 {

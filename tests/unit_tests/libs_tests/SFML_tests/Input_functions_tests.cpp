@@ -9,7 +9,7 @@
 #include <thread>
 #include <criterion/criterion.h>
 #include "Entity/Entity.hpp"
-#include "SFMLSystems/InputManagement.hpp"
+#include "GraphicECS/SFML/Systems/InputManagement.hpp"
 #include "World/World.hpp"
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
 #include "R-TypeLogic/Global/Components/SizeComponent.hpp"
@@ -18,6 +18,7 @@
 #include "R-TypeLogic/Global/Systems/MovementSystem.hpp"
 
 using namespace ecs;
+using namespace graphic::sfml;
 
 Test(movePlayerX, Move_x_of_a_player)
 {

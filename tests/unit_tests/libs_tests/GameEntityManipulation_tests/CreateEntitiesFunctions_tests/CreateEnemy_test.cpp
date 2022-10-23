@@ -10,6 +10,7 @@
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateEnemy.hpp"
 
 using namespace ecs;
+using namespace rtypelogic::entitymanipulation;
 
 Test(CreateEnemy_test, CreateEnemy)
 {

@@ -11,6 +11,7 @@
 #include "R-TypeLogic/Global/SharedResources/Random.hpp"
 
 using namespace ecs;
+using namespace rtypelogic::entitymanipulation;
 
 Test(CreateEnemyRandom_test, CreateEnemy)
 {

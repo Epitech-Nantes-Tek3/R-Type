@@ -10,10 +10,13 @@
 #include "World/World.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateProjectile.hpp"
 #include "R-TypeLogic/Global/Components/DeathComponent.hpp"
-#include "R-TypeLogic/Server/Systems/DecreaseLifeTimeSystem.hpp"
 #include "R-TypeLogic/Global/Systems/UpdateClockSystem.hpp"
+#include "R-TypeLogic/Server/Systems/DecreaseLifeTimeSystem.hpp"
 
 using namespace ecs;
+using namespace rtypelogic::global;
+using namespace rtypelogic::server;
+using namespace rtypelogic::entitymanipulation;
 
 Test(Decrease_LifeTime_System, decrease_all_life_time)
 {
