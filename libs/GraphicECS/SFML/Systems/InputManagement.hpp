@@ -18,6 +18,7 @@ namespace ecs
 {
     /// @brief This system class manage SFML input to link them to an action.
     struct InputManagement : public System {
+      public:
         /// @brief The run function of this system. It will be used by the world in the function runSystems.
         /// @param world The corresponding world on which run this system.
         void run(World &world) override final;
@@ -36,6 +37,11 @@ namespace ecs
         /// @param world The world in which the Player is
         /// @param move Action Shoot
         void shootAction(World &world, float action);
+
+      private:
+        void _closeWindow(sf::Event &event, World &world);
+        void _keyPressedEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> &Inputs);
+        void _keyReleasedEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> &Inputs);
     };
 } // namespace ecs
 

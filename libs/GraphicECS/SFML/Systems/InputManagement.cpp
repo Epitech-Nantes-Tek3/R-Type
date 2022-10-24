@@ -23,13 +23,13 @@
 
 namespace ecs
 {
-    static void closeWindow(sf::Event &event, World &world)
+    void InputManagement::_closeWindow(sf::Event &event, World &world)
     {
         if (event.type == sf::Event::Closed)
             world.getResource<RenderWindowResource>().window.close();
     }
 
-    static void keyPressedEvents(sf::Event &event, World &world, std::vector<std::shared_ptr<Entity>> &Inputs)
+    void InputManagement::_keyPressedEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> &Inputs)
     {
         if (event.type == sf::Event::KeyPressed) {
             auto keyPressed = [event](std::shared_ptr<ecs::Entity> entityPtr) {
@@ -42,7 +42,7 @@ namespace ecs
         }
     }
 
-    static void keyReleasedEvents(sf::Event &event, World &world, std::vector<std::shared_ptr<Entity>> &Inputs)
+    void InputManagement::_keyReleasedEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> &Inputs)
     {
         if (event.type == sf::Event::KeyReleased) {
             auto keyReleased = [event](std::shared_ptr<ecs::Entity> entityPtr) {
@@ -70,8 +70,8 @@ namespace ecs
             return;
         while (world.getResource<RenderWindowResource>().window.pollEvent(event)) {
             closeWindow(event, world);
-            keyPressedEvents(event, world, Inputs);
-            keyReleasedEvents(event, world, Inputs);
+            keyPressedEvents(event, Inputs);
+            keyReleasedEvents(event, Inputs);
         }
         for (auto &entityPtr : Inputs) {
             std::queue<std::pair<ecs::ActionQueueComponent::inputAction_e, float>> &actions =
