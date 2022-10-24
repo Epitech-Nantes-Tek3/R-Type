@@ -52,14 +52,18 @@ void Collide::collide(
                 Damage &fstDamage = fstEntity->getComponent<Damage>();
                 Damage &sndDamage = sndEntity->getComponent<Damage>();
 
-                if (fstEntity->contains<Life>()) {
+                if (fstEntity->contains<Life>() && fstEntity->getComponent<Life>().lifePoint > 0) {
                     Life &fstLife = fstEntity->getComponent<Life>();
+                    if (sndDamage.damagePoint >= fstLife.lifePoint)
+                        fstLife.lifePoint = sndDamage.damagePoint;
                     fstLife.lifePoint -= sndDamage.damagePoint;
                     fstLife.modified = true;
                 }
 
-                if (sndEntity->contains<Life>()) {
+                if (sndEntity->contains<Life>() && sndEntity->getComponent<Life>().lifePoint > 0) {
                     Life &sndLife = sndEntity->getComponent<Life>();
+                    if (fstDamage.damagePoint >= sndLife.lifePoint)
+                        sndLife.lifePoint = fstDamage.damagePoint;
                     sndLife.lifePoint -= fstDamage.damagePoint;
                     sndLife.modified = true;
                 }
