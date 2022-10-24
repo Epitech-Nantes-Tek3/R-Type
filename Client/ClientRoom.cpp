@@ -109,9 +109,19 @@ void ClientRoom::startLobbyLoop(void)
                 protocol12Answer(connexionResponse);
         } catch (NetworkError &error) {
         }
-        if (_state == ClientState::IN_GAME)
+        if (_state == ClientState::IN_GAME) {
             _worldInstance.get()->runSystems(); /// WILL BE IMPROVED IN PART TWO (THREAD + CLOCK)
+            _holdGameOver();
+        }
     }
+}
+
+void ClientRoom::_holdGameOver()
+{
+    std::vector<std::shared_ptr<ecs::Entity>> player = _worldInstance->joinEntities<Controlable>();
+
+    if (player.empty())
+        this->_state = ClientState::ENDED;
 }
 
 void ClientRoom::_initSpritesForEntities()
