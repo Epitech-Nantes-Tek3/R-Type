@@ -28,7 +28,6 @@
 
 using namespace rtypelogic::global;
 using namespace transisthor::ecslogic;
-using namespace ecs;
 
 namespace rtypelogic::entitymanipulation
 {
@@ -47,23 +46,23 @@ namespace rtypelogic::entitymanipulation
     /// @param uuid The uuid of the entity. Can be empty.
     /// @param networkId The id of the Networkable Component. In the client instance, it MUST NOT be filled in.
     /// @return Id of the new Player in std::size_t
-    inline std::size_t createNewPlayer(World &world, const int posX, const int posY, const double multiplierAbscissa,
-        const double multiplierOrdinate, const short weight, const int sizeX, const int sizeY,
-        const unsigned short life, const unsigned short damage, const unsigned short damageRadius, bool controlable,
-        const std::string uuid = "", unsigned short networkId = 0)
+    inline std::size_t createNewPlayer(ecs::World &world, const int posX, const int posY,
+        const double multiplierAbscissa, const double multiplierOrdinate, const short weight, const int sizeX,
+        const int sizeY, const unsigned short life, const unsigned short damage, const unsigned short damageRadius,
+        bool controlable, const std::string uuid = "", unsigned short networkId = 0)
     {
-        Entity &entity = world.addEntity()
-                             .addComponent<Position>(posX, posY)
-                             .addComponent<Weight>(weight)
-                             .addComponent<Size>(sizeX, sizeY)
-                             .addComponent<LifeTime>()
-                             .addComponent<Life>(life)
-                             .addComponent<Damage>(damage)
-                             .addComponent<DamageRadius>(damageRadius)
-                             .addComponent<Collidable>()
-                             .addComponent<ShootingFrequency>(0.05)
-                             .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate)
-                             .addComponent<Player>();
+        ecs::Entity &entity = world.addEntity()
+                                  .addComponent<Position>(posX, posY)
+                                  .addComponent<Weight>(weight)
+                                  .addComponent<Size>(sizeX, sizeY)
+                                  .addComponent<LifeTime>()
+                                  .addComponent<Life>(life)
+                                  .addComponent<Damage>(damage)
+                                  .addComponent<DamageRadius>(damageRadius)
+                                  .addComponent<Collidable>()
+                                  .addComponent<ShootingFrequency>(0.05)
+                                  .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate)
+                                  .addComponent<Player>();
         if (controlable == true) {
             entity.addComponent<Controlable>();
         }
@@ -82,5 +81,5 @@ namespace rtypelogic::entitymanipulation
         return entity.getId();
     }
 
-} // namespace ecs
+} // namespace rtypelogic::entitymanipulation
 #endif /* !CREATEPLAYER_HPP_ */

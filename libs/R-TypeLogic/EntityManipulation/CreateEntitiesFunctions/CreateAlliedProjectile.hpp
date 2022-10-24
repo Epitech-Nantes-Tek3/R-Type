@@ -26,7 +26,6 @@
 
 using namespace transisthor::ecslogic;
 using namespace rtypelogic::global;
-using namespace ecs;
 
 namespace rtypelogic::entitymanipulation
 {
@@ -37,13 +36,13 @@ namespace rtypelogic::entitymanipulation
     /// @param networkId The id of the Networkable Component. In the client instance, it MUST NOT be filled in.
     /// @return Id in size_t of the new Entity
     inline std::size_t createNewAlliedProjectile(
-        World &world, Entity &ally, const std::string uuid = "", unsigned short networkId = 0)
+        ecs::World &world, Entity &ally, const std::string uuid = "", unsigned short networkId = 0)
     {
         Position pos = ally.getComponent<Position>();
         Damage damage = ally.getComponent<Damage>();
         Velocity velocity = ally.getComponent<Velocity>();
 
-        Entity &entity = world.addEntity()
+        ecs::Entity &entity = world.addEntity()
                              .addComponent<Position>(pos.x + 102, pos.y + 45)
                              .addComponent<Velocity>(300, 0)
                              .addComponent<Weight>(1)
@@ -70,5 +69,5 @@ namespace rtypelogic::entitymanipulation
         }
         return entity.getId();
     }
-} // namespace ecs
+} // namespace rtypelogic::entitymanipulation
 #endif /* !CREATEALLYPROJECTILE_HPP_ */

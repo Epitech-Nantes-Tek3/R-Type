@@ -26,7 +26,6 @@
 
 using namespace rtypelogic::global;
 using namespace transisthor::ecslogic;
-using namespace ecs;
 
 namespace rtypelogic::entitymanipulation
 {
@@ -39,19 +38,19 @@ namespace rtypelogic::entitymanipulation
     /// @param uuid The uuid of the entity. Can be empty.
     /// @param networkId The id of the Networkable Component. In the client instance, it MUST NOT be filled in.
     /// @return Id of the new Obstacle in std::size_t
-    inline std::size_t createNewObstacle(World &world, const int posX, const int posY, const unsigned short damage,
+    inline std::size_t createNewObstacle(ecs::World &world, const int posX, const int posY, const unsigned short damage,
         const std::string uuid = "", unsigned short networkId = 0)
     {
-        Entity &entity = world.addEntity()
-                             .addComponent<Position>(posX, posY)
-                             .addComponent<Weight>(1)
-                             .addComponent<Size>(1, 1)
-                             .addComponent<LifeTime>()
-                             .addComponent<Life>(10)
-                             .addComponent<Damage>(damage)
-                             .addComponent<DamageRadius>(5)
-                             .addComponent<Collidable>()
-                             .addComponent<Obstacle>();
+        ecs::Entity &entity = world.addEntity()
+                                  .addComponent<Position>(posX, posY)
+                                  .addComponent<Weight>(1)
+                                  .addComponent<Size>(1, 1)
+                                  .addComponent<LifeTime>()
+                                  .addComponent<Life>(10)
+                                  .addComponent<Damage>(damage)
+                                  .addComponent<DamageRadius>(5)
+                                  .addComponent<Collidable>()
+                                  .addComponent<Obstacle>();
 
         if (networkId) {
             // Case : Creation in a server instance
@@ -67,5 +66,5 @@ namespace rtypelogic::entitymanipulation
         }
         return entity.getId();
     }
-} // namespace ecs
+} // namespace rtypelogic::entitymanipulation
 #endif /* !CREATEOBSTACLE_HPP_ */

@@ -8,6 +8,7 @@
 #pragma once
 
 #include "World/World.hpp"
+
 namespace transisthor::ecslogic
 {
     struct SendNewlyCreatedToServer : public ecs::System {

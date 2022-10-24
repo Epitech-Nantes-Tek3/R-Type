@@ -27,7 +27,6 @@
 using namespace transisthor::ecslogic;
 using namespace rtypelogic::global;
 using namespace transisthor::ecslogic;
-using namespace ecs;
 
 namespace rtypelogic::entitymanipulation
 {
@@ -37,23 +36,23 @@ namespace rtypelogic::entitymanipulation
     /// @param uuid The uuid of the entity. Can be empty.
     /// @param networkId The id of the Networkable Component. In the client instance, it MUST NOT be filled in.
     /// @return Id in size_t of the new Entity
-    inline std::size_t createNewEnemyProjectile(
-        World &world, std::shared_ptr<ecs::Entity> enemy, const std::string uuid = "", unsigned short networkId = 0)
+    inline std::size_t createNewEnemyProjectile(ecs::World &world, std::shared_ptr<ecs::Entity> enemy,
+        const std::string uuid = "", unsigned short networkId = 0)
     {
         Position pos = enemy.get()->getComponent<Position>();
         Damage damage = enemy.get()->getComponent<Damage>();
 
-        Entity &entity = world.addEntity()
-                             .addComponent<Position>(pos.x, pos.y + 20)
-                             .addComponent<Velocity>(-400, 0)
-                             .addComponent<Weight>(1)
-                             .addComponent<Size>(40, 40)
-                             .addComponent<LifeTime>(100)
-                             .addComponent<Life>(1)
-                             .addComponent<Damage>(damage)
-                             .addComponent<DamageRadius>(5)
-                             .addComponent<Collidable>()
-                             .addComponent<EnemyProjectile>(enemy.get()->getComponent<Networkable>().id);
+        ecs::Entity &entity = world.addEntity()
+                                  .addComponent<Position>(pos.x, pos.y + 20)
+                                  .addComponent<Velocity>(-400, 0)
+                                  .addComponent<Weight>(1)
+                                  .addComponent<Size>(40, 40)
+                                  .addComponent<LifeTime>(100)
+                                  .addComponent<Life>(1)
+                                  .addComponent<Damage>(damage)
+                                  .addComponent<DamageRadius>(5)
+                                  .addComponent<Collidable>()
+                                  .addComponent<EnemyProjectile>(enemy.get()->getComponent<Networkable>().id);
 
         if (networkId) {
             // Case : Creation in a server instance
@@ -69,5 +68,5 @@ namespace rtypelogic::entitymanipulation
         }
         return entity.getId();
     }
-} // namespace ecs
+} // namespace rtypelogic::entitymanipulation
 #endif /* !CREATEENEMYPROJECTILE_HPP_ */

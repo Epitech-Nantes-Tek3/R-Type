@@ -18,7 +18,6 @@
 #include "R-TypeLogic/Global/Components/WeightComponent.hpp"
 
 using namespace rtypelogic::global;
-using namespace ecs;
 
 namespace rtypelogic::entitymanipulation
 {
@@ -32,8 +31,9 @@ namespace rtypelogic::entitymanipulation
     /// @param multiplierAbscissa The Velocity multiplierAbscissa for the new Button
     /// @param multiplierOrdinate The Velocity multiplierOrdinate for the new Button
     /// @return Id of the new Button in std::size_t
-    inline std::size_t createNewButton(World &world, const int posX, const int posY, const double multiplierAbscissa,
-        const double multiplierOrdinate, const short weight, const int sizeX, const int sizeY)
+    inline std::size_t createNewButton(ecs::World &world, const int posX, const int posY,
+        const double multiplierAbscissa, const double multiplierOrdinate, const short weight, const int sizeX,
+        const int sizeY)
     {
         return world.addEntity()
             .addComponent<Position>(posX, posY)
@@ -45,6 +45,6 @@ namespace rtypelogic::entitymanipulation
             .getId();
     }
 
-} // namespace ecs
+} // namespace rtypelogic::entitymanipulation
 
 #endif /* !CREATEBUTTON_HPP_ */

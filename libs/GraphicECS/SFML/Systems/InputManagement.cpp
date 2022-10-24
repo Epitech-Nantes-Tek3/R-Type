@@ -92,7 +92,7 @@ void InputManagement::run(World &world)
         }
     }
     for (auto &entityPtr : Inputs) {
-        std::queue<std::pair<graphic::sfml::ActionQueueComponent::inputAction_e, float>> &actions =
+        std::queue<std::pair<ActionQueueComponent::inputAction_e, float>> &actions =
             entityPtr->getComponent<ActionQueueComponent>().actions;
         while (actions.size() > 0) {
             if (actions.front().first == ActionQueueComponent::MOVEY)

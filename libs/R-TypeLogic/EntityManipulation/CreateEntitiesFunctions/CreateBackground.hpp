@@ -18,7 +18,6 @@
 #include "R-TypeLogic/Global/Components/WeightComponent.hpp"
 
 using namespace rtypelogic::global;
-using namespace ecs;
 
 namespace rtypelogic::entitymanipulation
 {
@@ -32,7 +31,7 @@ namespace rtypelogic::entitymanipulation
     /// @param multiplierAbscissa The Velocity multiplierAbscissa for the new BackGround
     /// @param multiplierOrdinate The Velocity multiplierOrdinate for the new BackGround
     /// @return Id of the new BackGround in std::size_t
-    inline std::size_t createNewBackGround(World &world, const int posX, const int posY,
+    inline std::size_t createNewBackGround(ecs::World &world, const int posX, const int posY,
         const double multiplierAbscissa, const double multiplierOrdinate, const short weight, const int sizeX,
         const int sizeY)
     {
@@ -46,6 +45,6 @@ namespace rtypelogic::entitymanipulation
             .getId();
     }
 
-} // namespace ecs
+} // namespace rtypelogic::entitymanipulation
 
 #endif /* !CREATEBACKGROUND_HPP_ */
