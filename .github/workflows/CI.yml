@@ -65,7 +65,7 @@ jobs:
       run: ./build.bat
 
   coverage:
-    needs: [build-linux]
+    # needs: [build-linux]
     runs-on: ubuntu-latest
     steps:
       - name: Cache Conan packages
@@ -82,6 +82,7 @@ jobs:
 
       - name: Install criterion
         run: |
+          sudo apt-get install meson
           git clone --recursive https://github.com/Snaipe/Criterion Criterion
           cd Criterion
           meson build
