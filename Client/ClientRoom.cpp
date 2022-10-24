@@ -253,7 +253,7 @@ void ClientRoom::_initEntities()
         it->getComponent<KeyboardInputComponent>().keyboardMapActions.emplace(
             std::make_pair<sf::Keyboard::Key, std::pair<ActionQueueComponent::inputAction_e, float>>(
                 sf::Keyboard::Enter,
-                std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::SHOOT, 0)));
+                std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::SHOOT, 10)));
         it->getComponent<ControllerJoystickInputComponent>().controllerJoystickMapActions.emplace(
             std::make_pair<unsigned int, std::pair<ActionQueueComponent::inputAction_e, float>>(
                 1, std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEY, 0)));
