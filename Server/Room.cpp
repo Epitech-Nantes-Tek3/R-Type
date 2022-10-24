@@ -34,6 +34,7 @@
 #include "R-TypeLogic/Server/Systems/EnemiesGoRandom.hpp"
 #include "R-TypeLogic/Server/Systems/EnemyShootSystem.hpp"
 #include "R-TypeLogic/Server/Systems/LifeTimeDeathSystem.hpp"
+#include "R-TypeLogic/Server/Systems/DecreaseLifeTimeSystem.hpp"
 
 using namespace server_data;
 using namespace error_lib;
@@ -82,6 +83,7 @@ void Room::initEcsGameData(void)
     _worldInstance->addSystem<DeathLife>();
     _worldInstance->addSystem<DeathSystem>();
     _worldInstance->addSystem<LifeTimeDeath>();
+    _worldInstance->addSystem<DecreaseLifeTime>();
 }
 
 void Room::startConnexionProtocol(void) { _communicatorInstance.get()->startReceiverListening(); }
