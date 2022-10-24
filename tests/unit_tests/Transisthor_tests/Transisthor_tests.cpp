@@ -404,9 +404,10 @@ Test(transisthor_testing, transit_player_entity)
     unsigned short damage = 0;
     unsigned short damageRadius = 0;
     bool isControlable = true;
+    unsigned short playerIdentifier = 0;
 
     char *uuid = (char *)networkAnswer + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2
-        + sizeof(unsigned short) * 2 + sizeof(bool);
+        + sizeof(unsigned short) * 3 + sizeof(bool);
 
     std::memcpy(&posX, networkAnswer, sizeof(int));
     std::memcpy(&posY, (void *)((char *)networkAnswer + sizeof(int)), sizeof(int));
@@ -430,6 +431,10 @@ Test(transisthor_testing, transit_player_entity)
         (void *)((char *)networkAnswer + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2
             + sizeof(unsigned short) * 2),
         sizeof(bool));
+    std::memcpy(&playerIdentifier,
+        (void *)((char *)networkAnswer + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2
+            + sizeof(unsigned short) * 2 + sizeof(bool)),
+        sizeof(unsigned short));
 
     cr_assert_eq(posX, 1);
     cr_assert_eq(posY, 2);
@@ -442,6 +447,7 @@ Test(transisthor_testing, transit_player_entity)
     cr_assert_eq(damage, 9);
     cr_assert_eq(damageRadius, 10);
     cr_assert_eq(isControlable, false);
+    cr_assert_eq(playerIdentifier, 2);
     cr_assert_str_eq("UUID", uuid);
 }
 
@@ -472,9 +478,10 @@ Test(transisthor_testing, transit_player_entity_without_uuid)
     unsigned short damage = 0;
     unsigned short damageRadius = 0;
     bool isControlable = true;
+    unsigned short playerIdentifier = 0;
 
     char *uuid = (char *)networkAnswer + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2
-        + sizeof(unsigned short) * 2 + sizeof(bool);
+        + sizeof(unsigned short) * 3 + sizeof(bool);
 
     std::memcpy(&posX, networkAnswer, sizeof(int));
     std::memcpy(&posY, (void *)((char *)networkAnswer + sizeof(int)), sizeof(int));
@@ -498,6 +505,10 @@ Test(transisthor_testing, transit_player_entity_without_uuid)
         (void *)((char *)networkAnswer + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2
             + sizeof(unsigned short) * 2),
         sizeof(bool));
+    std::memcpy(&playerIdentifier,
+        (void *)((char *)networkAnswer + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2
+            + sizeof(unsigned short) * 2 + sizeof(bool)),
+        sizeof(unsigned short));
 
     cr_assert_eq(posX, 1);
     cr_assert_eq(posY, 2);
@@ -510,6 +521,7 @@ Test(transisthor_testing, transit_player_entity_without_uuid)
     cr_assert_eq(damage, 9);
     cr_assert_eq(damageRadius, 10);
     cr_assert_eq(isControlable, false);
+    cr_assert_eq(playerIdentifier, 2);
     cr_assert_str_eq("", uuid);
 }
 
