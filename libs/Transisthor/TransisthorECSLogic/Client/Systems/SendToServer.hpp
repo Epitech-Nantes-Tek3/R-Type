@@ -64,8 +64,8 @@ struct SendToServer : public ecs::System {
                 if (component.modified) {
                     component.modified = false;
                     component.sendToEveryone = true;
-                    world.getTransisthorBridge().get()->transitEcsDataToNetworkData<C1>(
-                        networkId, componentRFCId.find(typeid(C1))->second, component, serverIdList);
+                    std::free(world.getTransisthorBridge().get()->transitEcsDataToNetworkData<C1>(
+                        networkId, componentRFCId.find(typeid(C1))->second, component, serverIdList));
                 }
             }
         }
