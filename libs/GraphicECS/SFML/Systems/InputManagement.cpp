@@ -102,6 +102,13 @@ void InputManagement::run(World &world)
             actions.pop();
         }
     }
+    std::vector<std::shared_ptr<ecs::Entity>> players = world.joinEntities<Controlable>();
+    for (auto &player : players) {
+        ShootingFrequency &freq = player->getComponent<ShootingFrequency>();
+        GameClock &clock = world.getResource<GameClock>();
+        double delta = freq.frequency.count() - clock.getElapsedTime();
+        freq.frequency = duration<double>(delta);
+    }
 }
 
 void InputManagement::movePlayerX(World &world, float move)
@@ -142,20 +149,15 @@ void InputManagement::shootAction(World &world, float action)
         return;
     auto shoot = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
         ShootingFrequency &freq = entityPtr.get()->getComponent<ShootingFrequency>();
-        GameClock &clock = world.getResource<GameClock>();
+        const char hex_char[] = "0123456789ABCDEF";
+        ecs::RandomDevice &random = world.getResource<RandomDevice>();
+        std::string uuid(16, '\0');
 
-        double delta = freq.frequency.count() - clock.getElapsedTime();
-        if (delta <= 0.0) {
-            const char hex_char[] = "0123456789ABCDEF";
-            auto &temp = world.getResource<RandomDevice>();
-
-            std::string uuid(16, '\0');
+        if (freq.frequency.count() <= 0.0) {
             for (auto &c : uuid)
-                c = hex_char[temp.randInt<int>(0, 15)];
+                c = hex_char[random.randInt<int>(0, 15)];
             createNewAlliedProjectile(world, *entityPtr, uuid);
             freq.frequency = freq.baseFrequency;
-        } else {
-            freq.frequency = duration<double>(delta);
         }
     };
     std::for_each(player.begin(), player.end(), shoot);
