@@ -29,8 +29,19 @@ namespace ecs
     /// @param multiplierAbscissa The Velocity multiplierAbscissa for the new Button
     /// @param multiplierOrdinate The Velocity multiplierOrdinate for the new Button
     /// @return Id of the new Button in std::size_t
-    std::size_t createNewButton(World &world, const int posX, const int posY, const double multiplierAbscissa,
-        const double multiplierOrdinate, const short weight, const int sizeX, const int sizeY);
+    inline std::size_t createNewButton(World &world, const int posX, const int posY, const double multiplierAbscissa,
+        const double multiplierOrdinate, const short weight, const int sizeX, const int sizeY)
+    {
+        return world.addEntity()
+            .addComponent<Position>(posX, posY)
+            .addComponent<Weight>(weight)
+            .addComponent<Size>(sizeX, sizeY)
+            .addComponent<Collidable>()
+            .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate)
+            .addComponent<Button>()
+            .getId();
+    }
+
 } // namespace ecs
 
 #endif /* !CREATEBUTTON_HPP_ */

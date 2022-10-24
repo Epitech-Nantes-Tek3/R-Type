@@ -36,8 +36,35 @@ namespace ecs
     /// @param uuid The uuid of the entity. Can be empty.
     /// @param networkId The id of the Networkable Component. In the client instance, it MUST NOT be filled in.
     /// @return  Id of the new Projectile in std::size_t
-    std::size_t createNewProjectile(World &world, const int posX, const int posY, const double multiplierAbscissa,
-        const double multiplierOrdinate, const unsigned short damage, const std::string uuid = "",
-        unsigned short networkId = 0);
+    inline std::size_t createNewProjectile(World &world, const int posX, const int posY,
+        const double multiplierAbscissa, const double multiplierOrdinate, const unsigned short damage,
+        const std::string uuid = "", unsigned short networkId = 0)
+    {
+        Entity &entity = world.addEntity()
+                             .addComponent<Position>(posX, posY)
+                             .addComponent<Weight>(1)
+                             .addComponent<Size>(2, 1)
+                             .addComponent<LifeTime>(4.0)
+                             .addComponent<Life>(10)
+                             .addComponent<Damage>(damage)
+                             .addComponent<DamageRadius>(5)
+                             .addComponent<Collidable>()
+                             .addComponent<Projectile>()
+                             .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate);
+
+        if (networkId) {
+            // Case : Creation in a server instance
+            entity.addComponent<NewlyCreated>(uuid, false);
+            entity.addComponent<Networkable>(networkId);
+        } else {
+            // Case : Creation in a Client instance
+            if (uuid != "") {
+                // Special case : the client created the entity and not the server
+                entity.addComponent<NewlyCreated>(uuid, true);
+            }
+            entity.addComponent<LayerLvL>(LayerLvL::layer_e::PROJECTILE);
+        }
+        return entity.getId();
+    }
 } // namespace ecs
 #endif /* !CREATEPROJECTILE_HPP_ */

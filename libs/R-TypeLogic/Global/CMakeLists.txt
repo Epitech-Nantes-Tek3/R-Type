@@ -16,5 +16,4 @@ target_include_directories(${TARGET}
 
 target_link_libraries(${TARGET}
     ${PROJECT_NAME}_ecs
-    ${PROJECT_NAME}_RTypeLogicCreateEntitiesFunctions
 )
