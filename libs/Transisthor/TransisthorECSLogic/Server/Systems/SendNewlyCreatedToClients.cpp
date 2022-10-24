@@ -45,12 +45,12 @@ void SendNewlyCreatedToClients::runSystem(ecs::World &world)
             return;
         if (entityPtr->contains<ecs::AlliedProjectile>()) {
             std::cerr << entityPtr->getComponent<AlliedProjectile>().parentNetworkId << std::endl;
-            std::free(world.getTransisthorBridge()->transitEcsDataToNetworkDataEntityAlliedProjectile(
+            world.getTransisthorBridge()->transitEcsDataToNetworkDataEntityAlliedProjectile(
                 entityPtr->getComponent<Networkable>().id, entityPtr->getComponent<AlliedProjectile>().parentNetworkId,
                 newlyCreated.uuid,
                 {world.getEntity(entityPtr->getComponent<AlliedProjectile>().parentNetworkId)
                         .getComponent<ecs::NetworkClient>()
-                        .id}));
+                        .id});
             std::vector<unsigned short> clientIdListWithoutParent;
             for (auto i : clientIdList) {
                 if (i
@@ -61,51 +61,51 @@ void SendNewlyCreatedToClients::runSystem(ecs::World &world)
                 }
             }
             if (!clientIdListWithoutParent.empty())
-                std::free(world.getTransisthorBridge()->transitEcsDataToNetworkDataEntityAlliedProjectile(
+                world.getTransisthorBridge()->transitEcsDataToNetworkDataEntityAlliedProjectile(
                     entityPtr->getComponent<Networkable>().id,
-                    entityPtr->getComponent<AlliedProjectile>().parentNetworkId, "", clientIdListWithoutParent));
+                    entityPtr->getComponent<AlliedProjectile>().parentNetworkId, "", clientIdListWithoutParent);
         }
         if (entityPtr->contains<ecs::Enemy>()) {
             Position &pos = entityPtr->getComponent<Position>();
             Velocity &vel = entityPtr->getComponent<Velocity>();
             Size &size = entityPtr->getComponent<Size>();
 
-            std::free(world.getTransisthorBridge()->transitEcsDataToNetworkDataEntityEnemy(
+            world.getTransisthorBridge()->transitEcsDataToNetworkDataEntityEnemy(
                 entityPtr->getComponent<Networkable>().id, pos.x, pos.y, vel.multiplierAbscissa, vel.multiplierOrdinate,
                 entityPtr->getComponent<Weight>().weight, size.x, size.y, entityPtr->getComponent<Life>().lifePoint,
                 entityPtr->getComponent<Damage>().damagePoint, entityPtr->getComponent<DamageRadius>().radius,
-                newlyCreated.uuid, clientIdList));
+                newlyCreated.uuid, clientIdList);
         }
         if (entityPtr->contains<ecs::EnemyProjectile>()) {
-            std::free(world.getTransisthorBridge()->transitEcsDataToNetworkDataEntityEnemyProjectile(
+            world.getTransisthorBridge()->transitEcsDataToNetworkDataEntityEnemyProjectile(
                 entityPtr->getComponent<Networkable>().id, entityPtr->getComponent<EnemyProjectile>().parentNetworkId,
-                newlyCreated.uuid, clientIdList));
+                newlyCreated.uuid, clientIdList);
         }
         if (entityPtr->contains<ecs::Obstacle>()) {
             Position &pos = entityPtr->getComponent<Position>();
 
-            std::free(world.getTransisthorBridge()->transitEcsDataToNetworkDataEntityObstacle(
+            world.getTransisthorBridge()->transitEcsDataToNetworkDataEntityObstacle(
                 entityPtr->getComponent<Networkable>().id, pos.x, pos.y, entityPtr->getComponent<Damage>().damagePoint,
-                newlyCreated.uuid, clientIdList));
+                newlyCreated.uuid, clientIdList);
         }
         if (entityPtr->contains<ecs::Player>()) {
             Position &pos = entityPtr->getComponent<Position>();
             Velocity &vel = entityPtr->getComponent<Velocity>();
             Size &size = entityPtr->getComponent<Size>();
 
-            std::free(world.getTransisthorBridge()->transitEcsDataToNetworkDataEntityPlayer(
+            world.getTransisthorBridge()->transitEcsDataToNetworkDataEntityPlayer(
                 entityPtr->getComponent<Networkable>().id, pos.x, pos.y, vel.multiplierAbscissa, vel.multiplierOrdinate,
                 entityPtr->getComponent<Weight>().weight, size.x, size.y, entityPtr->getComponent<Life>().lifePoint,
                 entityPtr->getComponent<Damage>().damagePoint, entityPtr->getComponent<DamageRadius>().radius, false,
-                newlyCreated.uuid, clientIdList));
+                newlyCreated.uuid, clientIdList);
         }
         if (entityPtr->contains<ecs::Projectile>()) {
             Position &pos = entityPtr->getComponent<Position>();
             Velocity &vel = entityPtr->getComponent<Velocity>();
 
-            std::free(world.getTransisthorBridge()->transitEcsDataToNetworkDataEntityProjectile(
+            world.getTransisthorBridge()->transitEcsDataToNetworkDataEntityProjectile(
                 entityPtr->getComponent<Networkable>().id, pos.x, pos.y, vel.multiplierAbscissa, vel.multiplierOrdinate,
-                entityPtr->getComponent<Damage>().damagePoint, newlyCreated.uuid, clientIdList));
+                entityPtr->getComponent<Damage>().damagePoint, newlyCreated.uuid, clientIdList);
         }
         newlyCreated.sended = true;
         return;
