@@ -137,15 +137,14 @@ void InputManagement::movePlayerY(World &world, float move)
 void InputManagement::shootAction(World &world, float action)
 {
     std::vector<std::shared_ptr<ecs::Entity>> player = world.joinEntities<Controlable>();
-    (void)action;
 
-    if (player.empty())
+    if (player.empty() || action < 1)
         return;
     auto shoot = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
         ShootingFrequency &freq = entityPtr.get()->getComponent<ShootingFrequency>();
-        GameClock &c = world.getResource<GameClock>();
+        GameClock &clock = world.getResource<GameClock>();
 
-        double delta = freq.frequency.count() - c.getElapsedTime();
+        double delta = freq.frequency.count() - clock.getElapsedTime();
         if (delta <= 0.0) {
             const char hex_char[] = "0123456789ABCDEF";
             auto &temp = world.getResource<RandomDevice>();
