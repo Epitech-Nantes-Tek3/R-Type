@@ -139,8 +139,8 @@ $(document).ready(function(){initNavTree('_send_to_server_8hpp_source.html','');
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                <span class="keywordflow">if</span> (component.modified) {</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                    component.modified = <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                    component.sendToEveryone = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                    world.<a class="code" href="classecs_1_1_world.html#a2ea940d773ebdb916f49d89c43ba174d">getTransisthorBridge</a>().get()-&gt;transitEcsDataToNetworkData&lt;C1&gt;(</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                        networkId, componentRFCId.find(<span class="keyword">typeid</span>(C1))-&gt;second, component, serverIdList);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                    std::free(world.<a class="code" href="classecs_1_1_world.html#a2ea940d773ebdb916f49d89c43ba174d">getTransisthorBridge</a>().get()-&gt;transitEcsDataToNetworkData&lt;C1&gt;(</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                        networkId, componentRFCId.find(<span class="keyword">typeid</span>(C1))-&gt;second, component, serverIdList));</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                }</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            }</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        }</div>
