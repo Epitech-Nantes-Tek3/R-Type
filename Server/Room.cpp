@@ -31,10 +31,10 @@
 #include "R-TypeLogic/Global/Systems/UpdateClockSystem.hpp"
 #include "R-TypeLogic/Server/Systems/CollidableSystem.hpp"
 #include "R-TypeLogic/Server/Systems/DeathLifeSystem.hpp"
+#include "R-TypeLogic/Server/Systems/DecreaseLifeTimeSystem.hpp"
 #include "R-TypeLogic/Server/Systems/EnemiesGoRandom.hpp"
 #include "R-TypeLogic/Server/Systems/EnemyShootSystem.hpp"
 #include "R-TypeLogic/Server/Systems/LifeTimeDeathSystem.hpp"
-#include "R-TypeLogic/Server/Systems/DecreaseLifeTimeSystem.hpp"
 
 using namespace server_data;
 using namespace error_lib;
