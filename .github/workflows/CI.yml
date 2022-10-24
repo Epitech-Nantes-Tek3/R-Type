@@ -14,7 +14,7 @@ jobs:
   lint-format:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - uses: DoozyX/clang-format-lint-action@v0.13
       with:
         source: 'Client Server'
@@ -35,7 +35,7 @@ jobs:
       uses: turtlebrowser/get-conan@main
 
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Build
       run: |
@@ -59,7 +59,7 @@ jobs:
       id: conan
       uses: turtlebrowser/get-conan@main
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Launch build script
       run: ./build.bat
@@ -74,7 +74,7 @@ jobs:
         id: conan
         uses: turtlebrowser/get-conan@main
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Build tests
         run: ./build_tests.sh
@@ -93,7 +93,7 @@ jobs:
     needs: coverage
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - uses: pixta-dev/repository-mirroring-action@v1
