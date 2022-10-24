@@ -20,7 +20,7 @@ namespace ecs
                              .addComponent<Velocity>(-400, 0)
                              .addComponent<Weight>(1)
                              .addComponent<Size>(40, 40)
-                             .addComponent<LifeTime>(100)
+                             .addComponent<LifeTime>(3)
                              .addComponent<Life>(1)
                              .addComponent<Damage>(damage)
                              .addComponent<DamageRadius>(5)
