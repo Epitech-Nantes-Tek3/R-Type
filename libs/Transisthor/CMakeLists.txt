@@ -17,7 +17,6 @@ target_include_directories(${TARGET}
     PUBLIC ${INC_ROOT}
     PRIVATE ${PROJECT_NAME}_communicator
     PRIVATE ${PROJECT_NAME}_ecs
-    INTERFACE ${PROJECT_NAME}_RTypeLogicCreateEntitiesFunctions
     PRIVATE ${PROJECT_NAME}_RTypeLogicGlobal
     INTERFACE ${PROJECT_NAME}_error
     PRIVATE ${SRC_ROOT}
@@ -28,5 +27,4 @@ target_link_libraries(${TARGET}
     ${PROJECT_NAME}_communicator
     ${PROJECT_NAME}_ecs
     ${PROJECT_NAME}_RTypeLogicGlobal
-    ${PROJECT_NAME}_RTypeLogicCreateEntitiesFunctions
 )
