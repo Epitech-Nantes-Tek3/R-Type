@@ -67,14 +67,30 @@ jobs:
   coverage:
     needs: [build-linux]
     runs-on: ubuntu-latest
-    container:
-      image: epitechcontent/epitest-docker
     steps:
+      - name: Cache Conan packages
+        id: cache_coverage
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.conan
+          key: ${{ runner.os }}-coverage
+
       - name: Install Conan
         id: conan
         uses: turtlebrowser/get-conan@main
 
-      - uses: actions/checkout@v2
+      - name: Install criterion
+        run: |
+          git clone --recursive https://github.com/Snaipe/Criterion Criterion
+          cd Criterion
+          meson build
+          ninja -C build
+          sudo ninja -C build install
+          ldconfig
+
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
       - name: Build tests
         run: ./build_tests.sh
