@@ -8,6 +8,7 @@
 #ifndef INPUTMANAGEMENT_HPP_
 #define INPUTMANAGEMENT_HPP_
 
+#include <SFML/Graphics.hpp>
 #include "System/System.hpp"
 #include "World/World.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateAlliedProjectile.hpp"

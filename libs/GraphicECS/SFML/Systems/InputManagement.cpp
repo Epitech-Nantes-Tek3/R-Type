@@ -5,10 +5,10 @@
 ** InputManagement
 */
 
-#include "InputManagement.hpp"
 #include <chrono>
 #include <random>
 #include <string.h>
+#include "InputManagement.hpp"
 #include "ActionQueueComponent.hpp"
 #include "AllowControllerComponent.hpp"
 #include "AllowMouseAndKeyboardComponent.hpp"
