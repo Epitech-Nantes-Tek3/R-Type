@@ -29,6 +29,8 @@ Test(Death_system, kill_entity)
 
     world.addSystem<DeathSystem>();
 
+    world.getEntity(1).getComponent<Death>().modified = false;
+
     world.runSystems();
 
     std::vector<std::shared_ptr<ecs::Entity>> death_joined = world.joinEntities<Projectile>();
@@ -50,6 +52,8 @@ Test(Death_system, kill_entities)
     world.getEntity(2).addComponent<Death>();
 
     world.addSystem<DeathSystem>();
+
+    world.getEntity(2).getComponent<Death>().modified = false;
 
     world.runSystems();
 
@@ -74,9 +78,14 @@ Test(Death_system, kill_entities_with_an_Enemy)
     world.getEntity(1).addComponent<Death>();
     world.getEntity(3).addComponent<Death>();
 
+    world.getEntity(1).getComponent<Death>().modified = false;
+    world.getEntity(3).getComponent<Death>().modified = false;
+
     world.addSystem<DeathSystem>();
     world.addResource<NetworkableIdGenerator>();
     world.runSystems();
 
-    cr_assert_eq(3, joined.size());
+    std::vector<std::shared_ptr<ecs::Entity>> aliveJoined = world.joinEntities<Position>();
+
+    cr_assert_eq(1, aliveJoined.size());
 }
