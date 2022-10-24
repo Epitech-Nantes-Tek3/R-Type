@@ -72,38 +72,6 @@ namespace ecs
             closeWindow(event, world);
             keyPressedEvents(event, world, Inputs);
             keyReleasedEvents(event, world, Inputs);
-            if (event.type == sf::Event::MouseButtonPressed) {
-                auto mouseButtonPressed = [event](std::shared_ptr<ecs::Entity> entityPtr) {
-                    if (entityPtr->getComponent<MouseInputComponent>().MouseMapActions.contains(
-                            event.mouseButton.button)
-                        && entityPtr->contains<AllowMouseAndKeyboardComponent>()) {}
-                    // entityPtr->getComponent<ActionQueueComponent>().actions.push(
-                    //     entityPtr->getComponent<MouseInputComponent>().MouseMapActions[event.mouseButton.button]);
-                };
-                std::for_each(Inputs.begin(), Inputs.end(), mouseButtonPressed);
-            }
-            if (event.type == sf::Event::JoystickButtonPressed) {
-                auto joyButtonPressed = [event](std::shared_ptr<ecs::Entity> entityPtr) {
-                    if (entityPtr->getComponent<ControllerButtonInputComponent>().controllerButtonMapActions.contains(
-                            event.joystickButton.button)
-                        && entityPtr->contains<AllowControllerComponent>()) {}
-                    // entityPtr->getComponent<ActionQueueComponent>().actions.push(
-                    //     entityPtr->getComponent<ControllerButtonInputComponent>()
-                    //         .controllerButtonMapActions[event.joystickButton.button]);
-                };
-                std::for_each(Inputs.begin(), Inputs.end(), joyButtonPressed);
-            }
-            if (event.type == sf::Event::JoystickMoved) {
-                auto joyMovePressed = [event](std::shared_ptr<ecs::Entity> entityPtr) {
-                    if (entityPtr->getComponent<ControllerJoystickInputComponent>()
-                            .controllerJoystickMapActions.contains(event.joystickMove.axis)
-                        && entityPtr->contains<AllowControllerComponent>())
-                        entityPtr->getComponent<ActionQueueComponent>().actions.push(
-                            entityPtr->getComponent<ControllerJoystickInputComponent>()
-                                .controllerJoystickMapActions[event.joystickMove.axis]);
-                };
-                std::for_each(Inputs.begin(), Inputs.end(), joyMovePressed);
-            }
         }
         for (auto &entityPtr : Inputs) {
             std::queue<std::pair<ecs::ActionQueueComponent::inputAction_e, float>> &actions =
