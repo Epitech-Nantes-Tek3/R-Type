@@ -19,13 +19,8 @@ set_target_properties(${TARGET}
     RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/
 )
 
-target_include_directories(${TARGET}
-    INTERFACE ${PROJECT_NAME}_RTypeLogicCreateEntitiesFunctions
-)
-
 target_link_libraries(${TARGET}
     ${PROJECT_NAME}_transisthor
     ${PROJECT_NAME}_RTypeLogicServer
     ${PROJECT_NAME}_argumentHandler
-    ${PROJECT_NAME}_RTypeLogicCreateEntitiesFunctions
 )
