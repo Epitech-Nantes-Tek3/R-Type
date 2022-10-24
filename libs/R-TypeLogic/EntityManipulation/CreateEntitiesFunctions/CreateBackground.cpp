@@ -7,17 +7,18 @@
 
 #include "CreateBackground.hpp"
 
-using namespace ecs;
-
-std::size_t createNewBackGround(World &world, const int posX, const int posY, const double multiplierAbscissa,
-    const double multiplierOrdinate, const short weight, const int sizeX, const int sizeY)
+namespace ecs
 {
-    return world.addEntity()
-        .addComponent<Position>(posX, posY)
-        .addComponent<Weight>(weight)
-        .addComponent<Size>(sizeX, sizeY)
-        .addComponent<Collidable>()
-        .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate)
-        .addComponent<BackGround>()
-        .getId();
-}
+    std::size_t createNewBackGround(World &world, const int posX, const int posY, const double multiplierAbscissa,
+        const double multiplierOrdinate, const short weight, const int sizeX, const int sizeY)
+    {
+        return world.addEntity()
+            .addComponent<Position>(posX, posY)
+            .addComponent<Weight>(weight)
+            .addComponent<Size>(sizeX, sizeY)
+            .addComponent<Collidable>()
+            .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate)
+            .addComponent<BackGround>()
+            .getId();
+    }
+} // namespace ecs

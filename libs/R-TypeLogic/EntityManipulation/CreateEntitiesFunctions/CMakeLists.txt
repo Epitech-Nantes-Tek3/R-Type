@@ -21,7 +21,7 @@ set(SRC
     ${SRC_RTYPE_LOGIC_ENTITY_CREATION_ROOT}/CreateButton.cpp
 )
 
-add_library(${TARGET} SHARED ${SRC})
+add_library(${TARGET} ${SRC})
 
 target_include_directories(${TARGET}
     PUBLIC ${SRC_RTYPE_LOGIC_ENTITY_CREATION_ROOT}
