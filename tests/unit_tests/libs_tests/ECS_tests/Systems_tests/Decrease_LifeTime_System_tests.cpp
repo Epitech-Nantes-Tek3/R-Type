@@ -7,11 +7,11 @@
 
 #include <criterion/criterion.h>
 #include "Entity/Entity.hpp"
-#include "GameComponents/DeathComponent.hpp"
-#include "GameEntityManipulation/CreateEntitiesFunctions/CreateProjectile.hpp"
-#include "GameSystems/DecreaseLifeTimeSystem.hpp"
-#include "GameSystems/UpdateClockSystem.hpp"
 #include "World/World.hpp"
+#include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateProjectile.hpp"
+#include "R-TypeLogic/Global/Components/DeathComponent.hpp"
+#include "R-TypeLogic/Server/Systems/DecreaseLifeTimeSystem.hpp"
+#include "R-TypeLogic/Global/Systems/UpdateClockSystem.hpp"
 
 using namespace ecs;
 

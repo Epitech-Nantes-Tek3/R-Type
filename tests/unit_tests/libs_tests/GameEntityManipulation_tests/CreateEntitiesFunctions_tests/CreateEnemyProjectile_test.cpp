@@ -5,10 +5,9 @@
 ** CreateEnemyProjectile_test
 */
 
-
 #include <criterion/criterion.h>
 #include "World/World.hpp"
-#include "GameEntityManipulation/CreateEntitiesFunctions/CreateEnemyProjectile.hpp"
+#include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateEnemyProjectile.hpp"
 
 using namespace ecs;
 

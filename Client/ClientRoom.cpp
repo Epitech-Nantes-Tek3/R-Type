@@ -9,41 +9,37 @@
 
 #include "ClientRoom.hpp"
 #include <functional>
-#include "ActionQueueComponent.hpp"
-#include "AllowControllerComponent.hpp"
-#include "AllowMouseAndKeyboardComponent.hpp"
-#include "ControllerButtonInputComponent.hpp"
-#include "ControllerJoystickInputComponent.hpp"
-#include "DrawComponents.hpp"
 #include "Error/Error.hpp"
-#include "GameComponents/PlayerComponent.hpp"
-#include "GameComponents/PositionComponent.hpp"
-#include "GameEntityManipulation/CreateEntitiesFunctions/CreateAlliedProjectile.hpp"
-#include "GameSharedResources/GameClock.hpp"
-#include "GameSharedResources/Random.hpp"
-#include "GameSystems/CollidableSystem.hpp"
-#include "GameSystems/DeathLifeSystem.hpp"
-#include "GameSystems/DeathSystem.hpp"
-#include "GameSystems/DecreaseLifeTimeSystem.hpp"
-#include "GameSystems/LifeTimeDeathSystem.hpp"
-#include "GameSystems/MovementSystem.hpp"
-#include "GameSystems/UpdateClockSystem.hpp"
-#include "GraphicsFontResource.hpp"
-#include "GraphicsRectangleComponent.hpp"
-#include "InputManagement.hpp"
-#include "KeyboardInputComponent.hpp"
-#include "LayerLvL.hpp"
-#include "MouseInputComponent.hpp"
-#include "RenderWindowResource.hpp"
-#include "SFMLComponents/ParallaxComponent.hpp"
-#include "SFMLComponents/TextureName.hpp"
-#include "SFMLResource/GraphicsTextureResource.hpp"
-#include "SFMLSystems/ParallaxSystem.hpp"
-#include "SFMLSystems/SfRectangleFollowEntitySystem.hpp"
+#include "GraphicECS/SFML/Components/ActionQueueComponent.hpp"
+#include "GraphicECS/SFML/Components/AllowControllerComponent.hpp"
+#include "GraphicECS/SFML/Components/AllowMouseAndKeyboardComponent.hpp"
+#include "GraphicECS/SFML/Components/ControllerButtonInputComponent.hpp"
+#include "GraphicECS/SFML/Components/ControllerJoystickInputComponent.hpp"
+#include "GraphicECS/SFML/Components/GraphicsRectangleComponent.hpp"
+#include "GraphicECS/SFML/Components/KeyboardInputComponent.hpp"
+#include "GraphicECS/SFML/Components/MouseInputComponent.hpp"
+#include "GraphicECS/SFML/Components/ParallaxComponent.hpp"
+#include "GraphicECS/SFML/Components/TextureName.hpp"
+#include "GraphicECS/SFML/Resources/GraphicsFontResource.hpp"
+#include "GraphicECS/SFML/Resources/GraphicsTextureResource.hpp"
+#include "GraphicECS/SFML/Resources/RenderWindowResource.hpp"
+#include "GraphicECS/SFML/Systems/DrawComponents.hpp"
+#include "GraphicECS/SFML/Systems/InputManagement.hpp"
+#include "GraphicECS/SFML/Systems/ParallaxSystem.hpp"
+#include "GraphicECS/SFML/Systems/SfRectangleFollowEntitySystem.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Components/NetworkServer.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Systems/SendNewlyCreatedToServer.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Systems/SendToServer.hpp"
+#include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateAlliedProjectile.hpp"
+#include "R-TypeLogic/Global/Components/LayerLvL.hpp"
+#include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
+#include "R-TypeLogic/Global/Components/PositionComponent.hpp"
+#include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
+#include "R-TypeLogic/Global/SharedResources/Random.hpp"
+#include "R-TypeLogic/Global/Systems/DeathSystem.hpp"
+#include "R-TypeLogic/Global/Systems/MovementSystem.hpp"
+#include "R-TypeLogic/Global/Systems/UpdateClockSystem.hpp"
 
 using namespace error_lib;
 using namespace communicator_lib;
@@ -120,7 +116,7 @@ void ClientRoom::startLobbyLoop(void)
     }
 }
 
-void ClientRoom::_holdGameOver(void)
+void ClientRoom::_holdGameOver()
 {
     std::vector<std::shared_ptr<ecs::Entity>> player = _worldInstance->joinEntities<Controlable>();
 

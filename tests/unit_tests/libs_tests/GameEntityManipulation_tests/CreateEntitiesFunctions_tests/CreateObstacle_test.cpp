@@ -5,10 +5,9 @@
 ** CreateObstacle_test
 */
 
-
 #include <criterion/criterion.h>
 #include "World/World.hpp"
-#include "GameEntityManipulation/CreateEntitiesFunctions/CreateObstacle.hpp"
+#include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateObstacle.hpp"
 
 using namespace ecs;
 
