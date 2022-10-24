@@ -545,13 +545,13 @@ void Transisthor::entityConvertPlayerType(unsigned short id, void *byteCode)
 
     if (uuidStr != "" && id == 0) {
         createNewPlayer(_ecsWorld, posX, posY, multiplierAbscissa, multiplierOrdinate, weight, sizeX, sizeY, life,
-            damage, damageRadius, false, "",
+            damage, damageRadius, false, 0, "",
             _ecsWorld.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
     } else {
         std::size_t entityId;
 
         entityId = createNewPlayer(_ecsWorld, posX, posY, multiplierAbscissa, multiplierOrdinate, weight, sizeX, sizeY,
-            life, damage, damageRadius, isPlayer);
+            life, damage, damageRadius, isPlayer, 0);
         _ecsWorld.getEntity(entityId).addComponent<Networkable>(id);
     }
 }

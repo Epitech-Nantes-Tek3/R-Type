@@ -387,7 +387,7 @@ Test(transisthor_testing, transit_player_entity)
     Client temporaryClient = Client();
     communicator.addClientToList(temporaryClient);
 
-    std::size_t entityId = createNewPlayer(world, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, false, "UUID");
+    std::size_t entityId = createNewPlayer(world, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, false, 0, "UUID");
 
     void *temp = transisthor.transitEcsDataToNetworkDataEntityPlayer(
         entityId, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, false, std::string("UUID"), {1});
@@ -455,7 +455,7 @@ Test(transisthor_testing, transit_player_entity_without_uuid)
     Client temporaryClient = Client();
     communicator.addClientToList(temporaryClient);
 
-    std::size_t entityId = createNewPlayer(world, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, false, "", 1);
+    std::size_t entityId = createNewPlayer(world, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, false, 0, "", 1);
 
     void *temp = transisthor.transitEcsDataToNetworkDataEntityPlayer(
         entityId, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, false, std::string(""), {1});
