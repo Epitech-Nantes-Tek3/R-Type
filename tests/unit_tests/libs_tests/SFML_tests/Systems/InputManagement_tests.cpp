@@ -109,8 +109,8 @@ Test(InputManagement, keyPressedEvents)
     InputManagement inputs;
     sf::Event event;
     World world(1);
-    Entity::ID id =
-        world.addEntity().addComponent<Controlable>().addComponent<Velocity>(0, 0).addComponent<Position>(0, 0).getId();
+    world.addEntity().addComponent<Controlable>().addComponent<Velocity>(0, 0).addComponent<Position>(0, 0).getId();
+    world.addEntity().addComponent<MouseInputComponent>().addComponent<KeyboardInputComponent>().addComponent<ControllerButtonInputComponent>().addComponent<ControllerJoystickInputComponent>().addComponent<ActionQueueComponent>().addComponent<AllowMouseAndKeyboardComponent>();
     std::vector<std::shared_ptr<Entity>> Inputs = world.joinEntities<MouseInputComponent, KeyboardInputComponent,
         ControllerButtonInputComponent, ControllerJoystickInputComponent, ActionQueueComponent>();
 
