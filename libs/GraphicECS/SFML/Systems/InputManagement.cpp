@@ -69,9 +69,9 @@ namespace ecs
         if (Inputs.empty())
             return;
         while (world.getResource<RenderWindowResource>().window.pollEvent(event)) {
-            closeWindow(event, world);
-            keyPressedEvents(event, Inputs);
-            keyReleasedEvents(event, Inputs);
+            _closeWindow(event, world);
+            _keyPressedEvents(event, Inputs);
+            _keyReleasedEvents(event, Inputs);
         }
         for (auto &entityPtr : Inputs) {
             std::queue<std::pair<ecs::ActionQueueComponent::inputAction_e, float>> &actions =
