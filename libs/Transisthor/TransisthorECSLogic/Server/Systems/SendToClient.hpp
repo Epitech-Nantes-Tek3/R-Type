@@ -63,12 +63,12 @@ struct SendToClient : public ecs::System {
                 C1 &component = entity->getComponent<C1>();
                 if (component.modified) {
                     component.modified = false;
-                    world.getTransisthorBridge().get()->transitEcsDataToNetworkData<C1>(
-                        networkId, componentRFCId.find(typeid(C1))->second, component, clientIdList);
+                    std::free(world.getTransisthorBridge().get()->transitEcsDataToNetworkData<C1>(
+                        networkId, componentRFCId.find(typeid(C1))->second, component, clientIdList));
                 } else if (component.sendToEveryone) {
                     component.sendToEveryone = false;
-                    world.getTransisthorBridge().get()->transitEcsDataToNetworkData<C1>(
-                        networkId, componentRFCId.find(typeid(C1))->second, component, clientIdList);
+                    std::free(world.getTransisthorBridge().get()->transitEcsDataToNetworkData<C1>(
+                        networkId, componentRFCId.find(typeid(C1))->second, component, clientIdList));
                 }
             }
         }

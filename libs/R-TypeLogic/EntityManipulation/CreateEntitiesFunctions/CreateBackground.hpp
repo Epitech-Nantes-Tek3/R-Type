@@ -29,20 +29,8 @@ namespace ecs
     /// @param multiplierAbscissa The Velocity multiplierAbscissa for the new BackGround
     /// @param multiplierOrdinate The Velocity multiplierOrdinate for the new BackGround
     /// @return Id of the new BackGround in std::size_t
-    inline std::size_t createNewBackGround(World &world, const int posX, const int posY,
-        const double multiplierAbscissa, const double multiplierOrdinate, const short weight, const int sizeX,
-        const int sizeY)
-    {
-        return world.addEntity()
-            .addComponent<Position>(posX, posY)
-            .addComponent<Weight>(weight)
-            .addComponent<Size>(sizeX, sizeY)
-            .addComponent<Collidable>()
-            .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate)
-            .addComponent<BackGround>()
-            .getId();
-    }
-
+    std::size_t createNewBackGround(World &world, const int posX, const int posY, const double multiplierAbscissa,
+        const double multiplierOrdinate, const short weight, const int sizeX, const int sizeY);
 } // namespace ecs
 
 #endif /* !CREATEBACKGROUND_HPP_ */
