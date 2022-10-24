@@ -110,15 +110,16 @@ $(document).ready(function(){initNavTree('_life_time_death_system_8hpp_source.ht
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            <span class="keyword">auto</span> deathLifeTime = [](std::shared_ptr&lt;ecs::Entity&gt; entityPtr) {</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                <span class="keywordflow">if</span> (entityPtr.get()-&gt;getComponent&lt;<a class="code" href="classecs_1_1_life_time.html">LifeTime</a>&gt;().timeLeft &lt;= std::chrono::duration&lt;double&gt;(0.0)</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                    &amp;&amp; !entityPtr.get()-&gt;contains&lt;<a class="code" href="classecs_1_1_death.html">Death</a>&gt;())</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                    &amp;&amp; !entityPtr.get()-&gt;contains&lt;<a class="code" href="classecs_1_1_death.html">Death</a>&gt;()) {</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                    entityPtr.get()-&gt;addComponent&lt;<a class="code" href="classecs_1_1_death.html">Death</a>&gt;();</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            };</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            std::for_each(joined.begin(), joined.end(), deathLifeTime);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        }</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    };</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;} <span class="comment">// namespace ecs</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !LifeTimeDeathSYSTEM_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                }</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            };</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            std::for_each(joined.begin(), joined.end(), deathLifeTime);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        }</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    };</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;} <span class="comment">// namespace ecs</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !LifeTimeDeathSYSTEM_HPP_ */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="a_life_time_component_8hpp_html"><div class="ttname"><a href="_life_time_component_8hpp.html">LifeTimeComponent.hpp</a></div></div>
