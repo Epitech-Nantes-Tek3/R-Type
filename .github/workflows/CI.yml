@@ -82,6 +82,7 @@ jobs:
 
       - name: Install criterion
         run: |
+          sudo apt-get install gcovr
           sudo apt-get install meson
           git clone --recursive https://github.com/Snaipe/Criterion Criterion
           cd Criterion
