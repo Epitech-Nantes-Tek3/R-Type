@@ -387,10 +387,10 @@ Test(transisthor_testing, transit_player_entity)
     Client temporaryClient = Client();
     communicator.addClientToList(temporaryClient);
 
-    std::size_t entityId = createNewPlayer(world, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, false, "UUID");
+    std::size_t entityId = createNewPlayer(world, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, false, 2, "UUID");
 
     void *temp = transisthor.transitEcsDataToNetworkDataEntityPlayer(
-        entityId, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, false, std::string("UUID"), {1});
+        entityId, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, false, 2, std::string("UUID"), {1});
     void *networkAnswer = transisthor.transitNetworkDataToEcsDataEntity({Client(), temp, 1, 31});
 
     int posX = 0;
@@ -404,9 +404,10 @@ Test(transisthor_testing, transit_player_entity)
     unsigned short damage = 0;
     unsigned short damageRadius = 0;
     bool isControlable = true;
+    unsigned short playerIdentifier = 0;
 
     char *uuid = (char *)networkAnswer + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2
-        + sizeof(unsigned short) * 2 + sizeof(bool);
+        + sizeof(unsigned short) * 3 + sizeof(bool);
 
     std::memcpy(&posX, networkAnswer, sizeof(int));
     std::memcpy(&posY, (void *)((char *)networkAnswer + sizeof(int)), sizeof(int));
@@ -430,6 +431,10 @@ Test(transisthor_testing, transit_player_entity)
         (void *)((char *)networkAnswer + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2
             + sizeof(unsigned short) * 2),
         sizeof(bool));
+    std::memcpy(&playerIdentifier,
+        (void *)((char *)networkAnswer + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2
+            + sizeof(unsigned short) * 2 + sizeof(bool)),
+        sizeof(unsigned short));
 
     cr_assert_eq(posX, 1);
     cr_assert_eq(posY, 2);
@@ -442,6 +447,7 @@ Test(transisthor_testing, transit_player_entity)
     cr_assert_eq(damage, 9);
     cr_assert_eq(damageRadius, 10);
     cr_assert_eq(isControlable, false);
+    cr_assert_eq(playerIdentifier, 2);
     cr_assert_str_eq("UUID", uuid);
 }
 
@@ -455,10 +461,10 @@ Test(transisthor_testing, transit_player_entity_without_uuid)
     Client temporaryClient = Client();
     communicator.addClientToList(temporaryClient);
 
-    std::size_t entityId = createNewPlayer(world, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, false, "", 1);
+    std::size_t entityId = createNewPlayer(world, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, false, 2, "", 1);
 
     void *temp = transisthor.transitEcsDataToNetworkDataEntityPlayer(
-        entityId, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, false, std::string(""), {1});
+        entityId, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, false, 2, std::string(""), {1});
     void *networkAnswer = transisthor.transitNetworkDataToEcsDataEntity({Client(), temp, 1, 31});
 
     int posX = 0;
@@ -472,9 +478,10 @@ Test(transisthor_testing, transit_player_entity_without_uuid)
     unsigned short damage = 0;
     unsigned short damageRadius = 0;
     bool isControlable = true;
+    unsigned short playerIdentifier = 0;
 
     char *uuid = (char *)networkAnswer + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2
-        + sizeof(unsigned short) * 2 + sizeof(bool);
+        + sizeof(unsigned short) * 3 + sizeof(bool);
 
     std::memcpy(&posX, networkAnswer, sizeof(int));
     std::memcpy(&posY, (void *)((char *)networkAnswer + sizeof(int)), sizeof(int));
@@ -498,6 +505,10 @@ Test(transisthor_testing, transit_player_entity_without_uuid)
         (void *)((char *)networkAnswer + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2
             + sizeof(unsigned short) * 2),
         sizeof(bool));
+    std::memcpy(&playerIdentifier,
+        (void *)((char *)networkAnswer + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2
+            + sizeof(unsigned short) * 2 + sizeof(bool)),
+        sizeof(unsigned short));
 
     cr_assert_eq(posX, 1);
     cr_assert_eq(posY, 2);
@@ -510,6 +521,7 @@ Test(transisthor_testing, transit_player_entity_without_uuid)
     cr_assert_eq(damage, 9);
     cr_assert_eq(damageRadius, 10);
     cr_assert_eq(isControlable, false);
+    cr_assert_eq(playerIdentifier, 2);
     cr_assert_str_eq("", uuid);
 }
 
