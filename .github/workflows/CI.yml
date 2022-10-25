@@ -65,7 +65,7 @@ jobs:
       run: ./build.bat
 
   coverage:
-    # needs: [build-linux]
+    needs: [build-linux]
     runs-on: ubuntu-22.04
     steps:
       - name: Cache Conan packages
