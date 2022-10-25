@@ -20,6 +20,7 @@
 #include "R-TypeLogic/Global/Components/AlliedProjectileComponent.hpp"
 #include "R-TypeLogic/Global/Components/DamageComponent.hpp"
 #include "R-TypeLogic/Global/Components/DamageRadiusComponent.hpp"
+#include "R-TypeLogic/Global/Components/DisconnectableComponent.hpp"
 #include "R-TypeLogic/Global/Components/EnemyComponent.hpp"
 #include "R-TypeLogic/Global/Components/EnemyProjectileComponent.hpp"
 #include "R-TypeLogic/Global/Components/ObstacleComponent.hpp"
@@ -121,7 +122,7 @@ void Room::_holdADisconnectionRequest(CommunicatorMessage disconnectionDemand)
         (void)error;
         return;
     }
-    /// ADD A DISCONNECTION COMPONENT TO THE PLAYER
+    _worldInstance->getEntity(clientId).addComponent<Disconnectable>();
     std::cerr << "Player succesfully disconnected." << std::endl;
     (void)clientId;
 }
