@@ -54,6 +54,9 @@ namespace client_data
         /// @brief Init some entities only created by the client.
         void _initEntities();
 
+        /// @brief Send to the server the disconnection signal
+        void _disconectionProcess();
+
         /// @brief Check if the player still alive and update the gamestate if it is dead
         void _holdGameOver();
 

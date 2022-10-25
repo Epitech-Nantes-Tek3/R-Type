@@ -128,6 +128,12 @@ void ClientRoom::startLobbyLoop(void)
             _holdGameOver();
         }
     }
+    _disconectionProcess();
+}
+
+void ClientRoom::_disconectionProcess()
+{
+    _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, nullptr, 0, 13);
 }
 
 void ClientRoom::_holdGameOver()
