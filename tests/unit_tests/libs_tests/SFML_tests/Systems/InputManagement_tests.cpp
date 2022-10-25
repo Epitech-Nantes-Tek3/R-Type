@@ -34,23 +34,6 @@ Test(InputManagement, run_system_without_input_entity)
     cr_assert_eq(1, 1);
 }
 
-Test(InputManagement, run_system_with_input_entity)
-{
-    InputManagement inputs;
-    World world(1);
-
-    world.addResource<GameClock>();
-    world.addResource<RenderWindowResource>();
-    world.addEntity()
-        .addComponent<MouseInputComponent>()
-        .addComponent<KeyboardInputComponent>()
-        .addComponent<ControllerButtonInputComponent>()
-        .addComponent<ControllerJoystickInputComponent>()
-        .addComponent<ActionQueueComponent>();
-    inputs.run(world);
-    cr_assert_eq(1, 1);
-}
-
 Test(InputManagement, movePlayerX_without_player)
 {
     InputManagement inputs;
@@ -89,19 +72,6 @@ Test(InputManagement, movePlayerY_with_player)
 
     inputs.movePlayerY(world, 10);
     cr_assert_eq(world.getEntity(id).getComponent<Velocity>().multiplierOrdinate, 10);
-}
-
-Test(InputManagement, closeWindow)
-{
-    InputManagement inputs;
-    sf::Event event;
-    World world(1);
-
-    event.type = sf::Event::Closed;
-    world.addResource<RenderWindowResource>();
-    cr_assert_eq(world.getResource<RenderWindowResource>().window.isOpen(), true);
-    inputs._closeWindow(event, world);
-    cr_assert_eq(world.getResource<RenderWindowResource>().window.isOpen(), false);
 }
 
 Test(InputManagement, keyPressedEvents)
