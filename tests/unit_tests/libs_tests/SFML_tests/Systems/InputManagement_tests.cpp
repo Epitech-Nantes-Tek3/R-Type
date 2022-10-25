@@ -107,13 +107,13 @@ Test(InputManagement, keyReleasedEvents)
 
     Inputs[0]->getComponent<KeyboardInputComponent>().keyboardMapActions.emplace(
         std::make_pair<sf::Keyboard::Key, std::pair<ActionQueueComponent::inputAction_e, float>>(sf::Keyboard::Z,
-            std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEY, -200)));
+            std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEX, -200)));
     event.type = sf::Event::KeyReleased;
     event.key.code = sf::Keyboard::Z;
     inputs._keyReleasedEvents(event, Inputs);
     cr_assert_eq(Inputs[0]->getComponent<ActionQueueComponent>().actions.size(), 1);
-    cr_assert_eq(Inputs[0]->getComponent<ActionQueueComponent>().actions.back().first, ActionQueueComponent::MOVEY);
-    cr_assert_eq(Inputs[0]->getComponent<ActionQueueComponent>().actions.back().second, -200);
+    cr_assert_eq(Inputs[0]->getComponent<ActionQueueComponent>().actions.back().first, ActionQueueComponent::MOVEX);
+    cr_assert_eq(Inputs[0]->getComponent<ActionQueueComponent>().actions.back().second, 0);
 }
 
 Test(InputManagement, actionsLists)
