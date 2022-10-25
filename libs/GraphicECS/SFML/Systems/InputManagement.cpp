@@ -68,7 +68,7 @@ namespace ecs
 
         if (Inputs.empty())
             return;
-        while (world.getResource<RenderWindowResource>().window.pollEvent(event)) {
+        while (world.containsResource<RenderWindowResource>() && world.getResource<RenderWindowResource>().window.pollEvent(event)) {
             _closeWindow(event, world);
             _keyPressedEvents(event, Inputs);
             _keyReleasedEvents(event, Inputs);
