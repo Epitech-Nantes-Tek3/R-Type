@@ -160,12 +160,13 @@ namespace transisthor_lib
         /// @param damage Damage of projectiles fired by this Enemy
         /// @param damageRadius DamageRadius of projectiles fired by this Enemy
         /// @param isControlable Controlable component value
+        /// @param playerIdentifier Identification number used for player identification
         /// @param uuid string representing the entity uuid (Used only for a first sync process in client side)
         /// @param destination of the message
         /// @return Return value his only used for testing (Unit and functional)
         void *transitEcsDataToNetworkDataEntityPlayer(unsigned short id, int posX, int posY, double multiplierAbscissa,
             double multiplierOrdinate, short weight, int sizeX, int sizeY, short life, unsigned short damage,
-            unsigned short damageRadius, bool isControlable, std::string uuid, std::vector<unsigned short> destination);
+            unsigned short damageRadius, bool isControlable, unsigned short playerIdentifier, std::string uuid, std::vector<unsigned short> destination);
 
         /// @brief Function called by the ECS to transfer an order of creation for an Projectile entity
         /// @param id Id of the new entity to create
