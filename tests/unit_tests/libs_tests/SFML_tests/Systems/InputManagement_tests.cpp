@@ -110,7 +110,7 @@ Test(InputManagement, keyReleasedEvents)
             std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEY, -200)));
     event.type = sf::Event::KeyReleased;
     event.key.code = sf::Keyboard::Z;
-    inputs._keyPressedEvents(event, Inputs);
+    inputs._keyReleasedEvents(event, Inputs);
     cr_assert_eq(Inputs[0]->getComponent<ActionQueueComponent>().actions.size(), 1);
     cr_assert_eq(Inputs[0]->getComponent<ActionQueueComponent>().actions.back().first, ActionQueueComponent::MOVEY);
     cr_assert_eq(Inputs[0]->getComponent<ActionQueueComponent>().actions.back().second, -200);
