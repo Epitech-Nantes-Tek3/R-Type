@@ -15,5 +15,5 @@ set(TEST_SRC_ROOT
 create_test(
     TEST_NAME create_entities_tests
     TEST_SRC ${TEST_SRC_ROOT}
-    TEST_DEPS ${PROJECT_NAME}_RTypeLogicCreateEntitiesFunctions ${PROJECT_NAME}_RTypeLogicGlobal
+    TEST_DEPS ${PROJECT_NAME}_RTypeLogicCreateEntitiesFunctions ${PROJECT_NAME}_RTypeLogicGlobal ${PROJECT_NAME}_SFMLGraphicECS
 )
