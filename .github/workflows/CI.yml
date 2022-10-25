@@ -66,7 +66,7 @@ jobs:
 
   coverage:
     # needs: [build-linux]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: Cache Conan packages
         id: cache_coverage
