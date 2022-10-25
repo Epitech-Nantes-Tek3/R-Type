@@ -36,6 +36,7 @@
 #include "R-TypeLogic/Server/Systems/EnemiesGoRandom.hpp"
 #include "R-TypeLogic/Server/Systems/EnemyShootSystem.hpp"
 #include "R-TypeLogic/Server/Systems/LifeTimeDeathSystem.hpp"
+#include "R-TypeLogic/Server/Systems/DisconnectableSystem.hpp"
 
 using namespace server_data;
 using namespace error_lib;
@@ -85,6 +86,7 @@ void Room::initEcsGameData(void)
     _worldInstance->addSystem<DeathSystem>();
     _worldInstance->addSystem<LifeTimeDeath>();
     _worldInstance->addSystem<DecreaseLifeTime>();
+    _worldInstance->addSystem<DisconnectableSystem>();
 }
 
 void Room::startConnexionProtocol(void) { _communicatorInstance.get()->startReceiverListening(); }
@@ -129,11 +131,11 @@ void Room::_holdADisconnectionRequest(CommunicatorMessage disconnectionDemand)
 
 size_t Room::getEntityPlayerByHisNetworkId(unsigned short networkId)
 {
-    std::vector<std::shared_ptr<ecs::Entity>> joined = _worldInstance->joinEntities<Networkable>();
+    std::vector<std::shared_ptr<ecs::Entity>> joined = _worldInstance->joinEntities<NetworkClient>();
     size_t temporary = 0;
 
     auto crossAllPlayer = [&networkId, &temporary](std::shared_ptr<ecs::Entity> entityPtr) {
-        if (entityPtr->getComponent<Networkable>().id == networkId)
+        if (entityPtr->getComponent<NetworkClient>().id == networkId)
             temporary = entityPtr->getId();
     };
     std::for_each(joined.begin(), joined.end(), crossAllPlayer);

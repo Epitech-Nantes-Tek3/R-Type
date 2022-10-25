@@ -10,5 +10,7 @@ set(SRC_RTYPE_LOGIC_SERVER_SYSTEMS
     ${SRC_RTYPE_LOGIC_SYSTEMS_ROOT}/EnemiesGoRandom.hpp
     ${SRC_RTYPE_LOGIC_SYSTEMS_ROOT}/EnemyShootSystem.cpp
     ${SRC_RTYPE_LOGIC_SYSTEMS_ROOT}/EnemyShootSystem.hpp
+    ${SRC_RTYPE_LOGIC_SYSTEMS_ROOT}/DisconnectableSystem.cpp
+    ${SRC_RTYPE_LOGIC_SYSTEMS_ROOT}/DisconnectableSystem.hpp
     PARENT_SCOPE
 )
