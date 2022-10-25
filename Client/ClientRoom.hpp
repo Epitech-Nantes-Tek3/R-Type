@@ -41,7 +41,8 @@ namespace client_data
         /// @brief Destroy the ClientRoom object
         ~ClientRoom() = default;
 
-        void startLobbyLoop(void);
+        /// @brief Launch the lobby global loop
+        void startLobbyLoop();
 
       private:
         /// @brief Init all shared resources of the world.
@@ -68,6 +69,9 @@ namespace client_data
         /// @brief Network informations of the server
         Client _serverEndpoint;
 
+        /// @brief Current state of the client
+        ClientState _state;
+
         /// @brief Instance of the communicator library
         std::shared_ptr<Communicator> _communicatorInstance;
 
@@ -76,9 +80,6 @@ namespace client_data
 
         /// @brief Instance of the ECS library
         std::shared_ptr<World> _worldInstance;
-
-        /// @brief Current state of the client
-        ClientState _state;
 
         /// @brief Init the Ressources and Systems of the ECS
         void initEcsGameData(void);
