@@ -90,21 +90,33 @@ void Room::startConnexionProtocol(void) { _communicatorInstance.get()->startRece
 
 void Room::startLobbyLoop(void)
 {
-    CommunicatorMessage connexionDemand;
+    CommunicatorMessage connexionOperation;
 
     startConnexionProtocol();
     initEcsGameData();
     _state = RoomState::LOBBY;
     while (_state != RoomState::ENDED && _state != RoomState::UNDEFINED) {
         try {
-            connexionDemand = _communicatorInstance.get()->getLastMessage();
-            if (connexionDemand.message.type == 10)
-                holdANewConnexionRequest(connexionDemand);
+            connexionOperation = _communicatorInstance.get()->getLastMessage();
+            if (connexionOperation.message.type == 10)
+                holdANewConnexionRequest(connexionOperation);
+            if (connexionOperation.message.type == 13)
+                _holdADisconnectionRequest(connexionOperation);
         } catch (NetworkError &error) {
         }
         if (_remainingPlaces != 4)
             _worldInstance.get()->runSystems(); /// WILL BE IMPROVED IN PART TWO (THREAD + CLOCK)
     }
+}
+
+void Room::_holdADisconnectionRequest(CommunicatorMessage disconnectionDemand)
+{
+    Client &client = _communicatorInstance->getClientFromList(disconnectionDemand.message.clientInfo.getAddress(), disconnectionDemand.message.clientInfo.getPort());
+
+    /// FIND A CLIENT BY HIS ID ECS
+    /// UPDATE ALL THE CLIENT COMPONENT TO DEATH
+    std::cerr << "Player succesfully disconnected." << std::endl;
+    (void)client;
 }
 
 void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
