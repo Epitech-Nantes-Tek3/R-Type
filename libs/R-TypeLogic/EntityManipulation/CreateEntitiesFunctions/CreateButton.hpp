@@ -8,10 +8,10 @@
 #ifndef CREATEBUTTON_HPP_
 #define CREATEBUTTON_HPP_
 
+#include "GraphicECS/SFML/Components/GraphicsRectangleComponent.hpp"
+#include "GraphicECS/SFML/Components/TextureName.hpp"
 #include "World/World.hpp"
 #include "R-TypeLogic/Global/Components/ButtonComponent.hpp"
-#include "R-TypeLogic/Global/Components/PositionComponent.hpp"
-#include "R-TypeLogic/Global/Components/SizeComponent.hpp"
 
 namespace ecs
 {
@@ -22,7 +22,7 @@ namespace ecs
     /// @param sizeX Size x of the Button
     /// @param sizeY Size y of the Button
     /// @return Id of the new Button in std::size_t
-    std::size_t createNewButton(World &world, const int posX, const int posY, const int sizeX, const int sizeY);
+    std::size_t createNewButton(World &world, const int posX, const int posY, const int sizeX, const int sizeY, GraphicsTextureResource::textureName_e textureName);
 } // namespace ecs
 
 #endif /* !CREATEBUTTON_HPP_ */
