@@ -121,7 +121,7 @@ void Room::_holdADisconnectionRequest(CommunicatorMessage disconnectionDemand)
         (void)error;
         return;
     }
-    /// UPDATE ALL THE CLIENT COMPONENT TO DEATH
+    /// ADD A DISCONNECTION COMPONENT TO THE PLAYER
     std::cerr << "Player succesfully disconnected." << std::endl;
     (void)clientId;
 }
