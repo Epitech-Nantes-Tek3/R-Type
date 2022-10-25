@@ -101,13 +101,20 @@ $(document).ready(function(){initNavTree('_player_component_8hpp_source.html',''
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceecs.html">ecs</a></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{</div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="classecs_1_1_player.html">   16</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classecs_1_1_player.html">Player</a> : <span class="keyword">public</span> <a class="code" href="classecs_1_1_component.html">Component</a> {};</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;} <span class="comment">// namespace ecs</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !PLAYERCOMPONENT_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="classecs_1_1_player.html">   16</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classecs_1_1_player.html">Player</a> : <span class="keyword">public</span> <a class="code" href="classecs_1_1_component.html">Component</a> {</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;      <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="classecs_1_1_player.html#a71f00cbcc98c4b9b2c3f57ab05cc3bc8">   19</a></span>&#160;        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <a class="code" href="classecs_1_1_player.html#a71f00cbcc98c4b9b2c3f57ab05cc3bc8">playerIdentifier</a>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classecs_1_1_player.html#aa1227d830e19a28082a755de07b60bc1">   23</a></span>&#160;        <a class="code" href="classecs_1_1_player.html#aa1227d830e19a28082a755de07b60bc1">Player</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> playerIdentity = 0) : <a class="code" href="classecs_1_1_player.html#a71f00cbcc98c4b9b2c3f57ab05cc3bc8">playerIdentifier</a>(playerIdentity){};</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    };</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;} <span class="comment">// namespace ecs</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !PLAYERCOMPONENT_HPP_ */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="a_component_8hpp_html"><div class="ttname"><a href="_component_8hpp.html">Component.hpp</a></div></div>
+<div class="ttc" id="aclassecs_1_1_player_html_aa1227d830e19a28082a755de07b60bc1"><div class="ttname"><a href="classecs_1_1_player.html#aa1227d830e19a28082a755de07b60bc1">ecs::Player::Player</a></div><div class="ttdeci">Player(unsigned short playerIdentity=0)</div><div class="ttdoc">Construct a new player object.</div><div class="ttdef"><b>Definition:</b> PlayerComponent.hpp:23</div></div>
+<div class="ttc" id="aclassecs_1_1_player_html_a71f00cbcc98c4b9b2c3f57ab05cc3bc8"><div class="ttname"><a href="classecs_1_1_player.html#a71f00cbcc98c4b9b2c3f57ab05cc3bc8">ecs::Player::playerIdentifier</a></div><div class="ttdeci">unsigned short playerIdentifier</div><div class="ttdoc">Identification number for knowing wich player is.</div><div class="ttdef"><b>Definition:</b> PlayerComponent.hpp:19</div></div>
 <div class="ttc" id="aclassecs_1_1_component_html"><div class="ttname"><a href="classecs_1_1_component.html">ecs::Component</a></div><div class="ttdoc">This is the Component Class for ECS The base component type, all components must inherit from Compone...</div><div class="ttdef"><b>Definition:</b> Component.hpp:16</div></div>
 <div class="ttc" id="aclassecs_1_1_player_html"><div class="ttname"><a href="classecs_1_1_player.html">ecs::Player</a></div><div class="ttdoc">Player Component allows an entity to be used as a Player.</div><div class="ttdef"><b>Definition:</b> PlayerComponent.hpp:16</div></div>
 <div class="ttc" id="anamespaceecs_html"><div class="ttname"><a href="namespaceecs.html">ecs</a></div><div class="ttdef"><b>Definition:</b> Component.hpp:12</div></div>

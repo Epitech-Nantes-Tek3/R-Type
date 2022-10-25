@@ -54,7 +54,7 @@ var namespaceecs =
     [ "Parallax", "structecs_1_1_parallax.html", "structecs_1_1_parallax" ],
     [ "ParallaxBackground", "classecs_1_1_parallax_background.html", null ],
     [ "Pattern", "classecs_1_1_pattern.html", "classecs_1_1_pattern" ],
-    [ "Player", "classecs_1_1_player.html", null ],
+    [ "Player", "classecs_1_1_player.html", "classecs_1_1_player" ],
     [ "Position", "classecs_1_1_position.html", "classecs_1_1_position" ],
     [ "Projectile", "classecs_1_1_projectile.html", null ],
     [ "RandomDevice", "structecs_1_1_random_device.html", "structecs_1_1_random_device" ],

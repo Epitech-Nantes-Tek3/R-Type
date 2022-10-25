@@ -47,6 +47,8 @@ var NAVTREEINDEX2 =
 "classecs_1_1_pattern.html#a9728128e55a7cd0fd26c476bd365e9af":[4,0,3,53,0],
 "classecs_1_1_pattern.html#af5d43a3e74ce7ae108f3757d2dcc25f7":[4,0,3,53,1],
 "classecs_1_1_player.html":[4,0,3,54],
+"classecs_1_1_player.html#a71f00cbcc98c4b9b2c3f57ab05cc3bc8":[4,0,3,54,1],
+"classecs_1_1_player.html#aa1227d830e19a28082a755de07b60bc1":[4,0,3,54,0],
 "classecs_1_1_position.html":[4,0,3,55],
 "classecs_1_1_position.html#a0cec2a54dc69b416d36cbcad16c87c3b":[4,0,3,55,2],
 "classecs_1_1_position.html#a239f75f73402dd685eb49062a5d73999":[4,0,3,55,5],
@@ -153,7 +155,6 @@ var NAVTREEINDEX2 =
 "classtransisthor__lib_1_1_transisthor.html#a382a702783fb59668f2df55375ec1847":[4,0,6,0,0],
 "classtransisthor__lib_1_1_transisthor.html#a3b92de4f82573d2bacbaee005de7a2b2":[4,0,6,0,1],
 "classtransisthor__lib_1_1_transisthor.html#a3da9082ddc11232a571f2ca5fbb445c0":[4,0,6,0,6],
-"classtransisthor__lib_1_1_transisthor.html#a65a0de482e535c3bd0372beb98f22148":[4,0,6,0,10],
 "classtransisthor__lib_1_1_transisthor.html#a6c14b0a42bc10e57d82db9487eb30d5e":[4,0,6,0,7],
 "classtransisthor__lib_1_1_transisthor.html#a7d284959eb3c953fa9c40b9dadfdff1c":[4,0,6,0,13],
 "classtransisthor__lib_1_1_transisthor.html#a94a0ac5ecec90ad113f65604403aa2cd":[4,0,6,0,4],
@@ -162,6 +163,7 @@ var NAVTREEINDEX2 =
 "classtransisthor__lib_1_1_transisthor.html#ae3a60a54e5e7e91d88c53d6e8575d104":[4,0,6,0,8],
 "classtransisthor__lib_1_1_transisthor.html#ae3c0bfb9bf70cd9ec65428d4aaaf4eed":[4,0,6,0,9],
 "classtransisthor__lib_1_1_transisthor.html#aeb12dc1d95be66a046836e21814f50e4":[4,0,6,0,11],
+"classtransisthor__lib_1_1_transisthor.html#af38d9b392bb0c51fea30dcd8ed57628d":[4,0,6,0,10],
 "classtransisthor__lib_1_1_transisthor.html#af5295e46f2a62bb88c3086dedd94b7d4":[4,0,6,0,2],
 "dir_0325269b1c60154b358cfe869a6b8a14.html":[5,0,1,2,4],
 "dir_07ebbef8f395fd0519d0c43a49ba0263.html":[5,0,1,6,0,2,2],
@@ -247,7 +249,5 @@ var NAVTREEINDEX2 =
 "functions_t.html":[4,3,0,18],
 "functions_type.html":[4,3,3],
 "functions_u.html":[4,3,0,19],
-"functions_v.html":[4,3,0,20],
-"functions_vars.html":[4,3,2],
-"functions_w.html":[4,3,0,21]
+"functions_v.html":[4,3,0,20]
 };

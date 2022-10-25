@@ -71,7 +71,7 @@ var dir_a0945030c89cff447dc82302d04eb87b =
       [ "Pattern", "classecs_1_1_pattern.html", "classecs_1_1_pattern" ]
     ] ],
     [ "PlayerComponent.hpp", "_player_component_8hpp.html", [
-      [ "Player", "classecs_1_1_player.html", null ]
+      [ "Player", "classecs_1_1_player.html", "classecs_1_1_player" ]
     ] ],
     [ "PositionComponent.hpp", "_position_component_8hpp.html", [
       [ "Position", "classecs_1_1_position.html", "classecs_1_1_position" ]
