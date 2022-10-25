@@ -259,6 +259,10 @@ void ClientRoom::_initEntities()
         it->getComponent<ControllerJoystickInputComponent>().controllerJoystickMapActions.emplace(
             std::make_pair<unsigned int, std::pair<ActionQueueComponent::inputAction_e, float>>(
                 1, std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEY, 0)));
+        it->getComponent<MouseInputComponent>().MouseMapActions.emplace(
+            std::make_pair<sf::Mouse::Button, std::pair<ActionQueueComponent::inputAction_e, float>>(
+                sf::Mouse::Button::Left, std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::BUTTON_CLICK, 0)));
+
     }
     createNewButton(*(_worldInstance.get()), 0, 0, 34, 34, GraphicsTextureResource::EXIT_BUTTON);
     _initBackgroundEntities();
