@@ -111,12 +111,34 @@ void Room::startLobbyLoop(void)
 
 void Room::_holdADisconnectionRequest(CommunicatorMessage disconnectionDemand)
 {
-    Client &client = _communicatorInstance->getClientFromList(disconnectionDemand.message.clientInfo.getAddress(), disconnectionDemand.message.clientInfo.getPort());
+    Client &client = _communicatorInstance->getClientFromList(
+        disconnectionDemand.message.clientInfo.getAddress(), disconnectionDemand.message.clientInfo.getPort());
+    size_t clientId = 0;
 
-    /// FIND A CLIENT BY HIS ID ECS
+    try {
+        clientId = getEntityPlayerByHisNetworkId(client.getId());
+    } catch (EcsError &error) {
+        (void)error;
+        return;
+    }
     /// UPDATE ALL THE CLIENT COMPONENT TO DEATH
     std::cerr << "Player succesfully disconnected." << std::endl;
-    (void)client;
+    (void)clientId;
+}
+
+size_t Room::getEntityPlayerByHisNetworkId(unsigned short networkId)
+{
+    std::vector<std::shared_ptr<ecs::Entity>> joined = _worldInstance->joinEntities<Networkable>();
+    size_t temporary = 0;
+
+    auto crossAllPlayer = [&networkId, &temporary](std::shared_ptr<ecs::Entity> entityPtr) {
+        if (entityPtr->getComponent<Networkable>().id == networkId)
+            temporary = entityPtr->getId();
+    };
+    std::for_each(joined.begin(), joined.end(), crossAllPlayer);
+    if (temporary == 0)
+        throw EcsError("No matching player founded.", "World.cpp -> getEntityPlayerByHisNetworkId");
+    return temporary;
 }
 
 void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)

@@ -72,6 +72,12 @@ namespace server_data
         /// @param communicatorMessage actual message data
         void _holdADisconnectionRequest(CommunicatorMessage disconectionDemand);
 
+        /// @brief Cross all the player entity and return the matched one
+        /// @param networkId networkId of the player to match
+        /// @return founded entity id
+        /// @throw a ECSError if no player was found.
+        size_t getEntityPlayerByHisNetworkId(unsigned short networkId);
+
         /// @brief Trait a connexion request. If there is less than 3 players already in the room, send a protocol 22 to
         /// the client. Otherwise, send a 21.
         /// @param communicatorMessage actual message data
