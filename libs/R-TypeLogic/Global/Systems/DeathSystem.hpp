@@ -24,7 +24,9 @@ namespace ecs
             std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Death>();
 
             auto death = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
-                world.removeEntity(entityPtr->getId());
+                if (entityPtr.get()->getComponent<Death>().modified != true) {
+                    world.removeEntity(entityPtr->getId());
+                }
             };
             std::for_each(joined.begin(), joined.end(), death);
         }

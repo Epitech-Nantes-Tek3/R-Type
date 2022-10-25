@@ -41,42 +41,15 @@ namespace ecs
     /// @param life Life of the Player
     /// @param damage Damage of projectiles fired by this Player
     /// @param damageRadius DamageRadius of projectiles fired by this Player
+    /// @param playerIdentifier Identification number used for player identification
+    /// @param controlable Used to know if a player is controllable
     /// @param uuid The uuid of the entity. Can be empty.
     /// @param networkId The id of the Networkable Component. In the client instance, it MUST NOT be filled in.
     /// @return Id of the new Player in std::size_t
-    inline std::size_t createNewPlayer(World &world, const int posX, const int posY, const double multiplierAbscissa,
+    std::size_t createNewPlayer(World &world, const int posX, const int posY, const double multiplierAbscissa,
         const double multiplierOrdinate, const short weight, const int sizeX, const int sizeY,
         const unsigned short life, const unsigned short damage, const unsigned short damageRadius, bool controlable,
-        const std::string uuid = "", unsigned short networkId = 0)
-    {
-        Entity &entity = world.addEntity()
-                             .addComponent<Position>(posX, posY)
-                             .addComponent<Weight>(weight)
-                             .addComponent<Size>(sizeX, sizeY)
-                             .addComponent<Life>(life)
-                             .addComponent<Damage>(damage)
-                             .addComponent<DamageRadius>(damageRadius)
-                             .addComponent<Collidable>()
-                             .addComponent<ShootingFrequency>(0.05)
-                             .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate)
-                             .addComponent<Player>();
-        if (controlable == true) {
-            entity.addComponent<Controlable>();
-        }
-        if (networkId) {
-            // Case : Creation in a server instance
-            entity.addComponent<NewlyCreated>(uuid, false);
-            entity.addComponent<Networkable>(networkId);
-        } else {
-            // Case : Creation in a Client instance
-            if (uuid != "") {
-                // Special case : the client created the entity and not the server
-                entity.addComponent<NewlyCreated>(uuid, true);
-            }
-            entity.addComponent<LayerLvL>(LayerLvL::layer_e::PLAYER);
-        }
-        return entity.getId();
-    }
+        unsigned short playerIdentifier, const std::string uuid = "", unsigned short networkId = 0);
 
 } // namespace ecs
 #endif /* !CREATEPLAYER_HPP_ */

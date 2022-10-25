@@ -212,10 +212,10 @@ void *Transisthor::transitEcsDataToNetworkDataEntityObstacle(unsigned short id, 
 
 void *Transisthor::transitEcsDataToNetworkDataEntityPlayer(unsigned short id, int posX, int posY,
     double multiplierAbscissa, double multiplierOrdinate, short weight, int sizeX, int sizeY, short life,
-    unsigned short damage, unsigned short damageRadius, bool isControlable, std::string uuid,
+    unsigned short damage, unsigned short damageRadius, bool isControlable, unsigned short playerIdentifier, std::string uuid,
     std::vector<unsigned short> destination)
 {
-    void *networkObject = std::malloc((sizeof(unsigned short) * 4 + sizeof(int) * 4 + sizeof(double) * 2
+    void *networkObject = std::malloc((sizeof(unsigned short) * 5 + sizeof(int) * 4 + sizeof(double) * 2
         + sizeof(short) * 2 + sizeof(char) * uuid.size() + sizeof(bool)));
     unsigned short typeId = 5;
     Client temporaryClient;
@@ -252,11 +252,14 @@ void *Transisthor::transitEcsDataToNetworkDataEntityPlayer(unsigned short id, in
         &isControlable, sizeof(bool));
     std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 4 + sizeof(int) * 4 + sizeof(double) * 2
                     + sizeof(short) * 2 + sizeof(bool)),
+        &playerIdentifier, sizeof(unsigned short));
+    std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * 5 + sizeof(int) * 4 + sizeof(double) * 2
+                    + sizeof(short) * 2 + sizeof(bool)),
         uuid.c_str(), sizeof(char) * uuid.size());
     for (auto it : destination) {
         temporaryClient = getClientByHisId(it);
         transisthor_lib::sendDataToAClientWithoutCommunicator(_communicator, temporaryClient, networkObject,
-            (sizeof(unsigned short) * 4 + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2
+            (sizeof(unsigned short) * 5 + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2
                 + sizeof(char) * uuid.size() + sizeof(bool)),
             31);
     }
@@ -382,20 +385,19 @@ void Transisthor::entityConvertAlliedProjectileType(unsigned short id, void *byt
         return;
     }
 
-    std::string uuidStr(uuid);
-    if (uuidStr != "" && id == 0) {
+    if (uuid != nullptr && id == 0) {
         createNewAlliedProjectile(_ecsWorld, *(shooter.get()), uuid,
             _ecsWorld.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
     } else {
         std::size_t entityId;
-        if (uuidStr == "") {
+        if (uuid == nullptr) {
             entityId = createNewAlliedProjectile(_ecsWorld, *(shooter.get()));
             _ecsWorld.getEntity(entityId).getComponent<Networkable>() = id;
         } else {
             std::vector<std::shared_ptr<Entity>> newlyCreated = _ecsWorld.joinEntities<NewlyCreated>();
 
             for (std::shared_ptr<Entity> ptr : newlyCreated) {
-                if (ptr->getComponent<NewlyCreated>().uuid == uuidStr) {
+                if (ptr->getComponent<NewlyCreated>().uuid == uuid) {
                     ptr->getComponent<NewlyCreated>().uuid = "";
                     ptr->getComponent<Networkable>().id = id;
                     entityId = ptr->getId();
@@ -520,8 +522,9 @@ void Transisthor::entityConvertPlayerType(unsigned short id, void *byteCode)
     unsigned short damage = 0;
     unsigned short damageRadius = 0;
     bool isPlayer = false;
+    unsigned short playerIdentifier = 0;
     char *uuid = (char *)byteCode + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2
-        + sizeof(unsigned short) * 2 + sizeof(bool);
+        + sizeof(unsigned short) * 3 + sizeof(bool);
 
     std::memcpy(&posX, byteCode, sizeof(int));
     std::memcpy(&posY, (void *)((char *)byteCode + sizeof(int)), sizeof(int));
@@ -541,18 +544,22 @@ void Transisthor::entityConvertPlayerType(unsigned short id, void *byteCode)
         (void *)((char *)byteCode + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2
             + sizeof(unsigned short) * 2),
         sizeof(bool));
+    std::memcpy(&playerIdentifier,
+        (void *)((char *)byteCode + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2
+            + sizeof(unsigned short) * 2 + sizeof(bool)),
+        sizeof(unsigned short));
 
     std::string uuidStr(uuid);
 
     if (uuidStr != "" && id == 0) {
         createNewPlayer(_ecsWorld, posX, posY, multiplierAbscissa, multiplierOrdinate, weight, sizeX, sizeY, life,
-            damage, damageRadius, false, "",
+            damage, damageRadius, false, playerIdentifier, "",
             _ecsWorld.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
     } else {
         std::size_t entityId;
 
         entityId = createNewPlayer(_ecsWorld, posX, posY, multiplierAbscissa, multiplierOrdinate, weight, sizeX, sizeY,
-            life, damage, damageRadius, isPlayer);
+            life, damage, damageRadius, isPlayer, playerIdentifier);
         _ecsWorld.getEntity(entityId).addComponent<Networkable>(id);
     }
 }
