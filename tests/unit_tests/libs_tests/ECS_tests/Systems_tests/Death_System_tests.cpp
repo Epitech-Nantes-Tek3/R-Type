@@ -89,3 +89,27 @@ Test(Death_system, kill_entities_with_an_Enemy)
 
     cr_assert_eq(1, aliveJoined.size());
 }
+
+Test(Death_system, kill_entities_without_update)
+{
+    World world(1);
+
+    world.addResource<RandomDevice>();
+
+    createNewEnemy(world, 10, 10, 1, 1, 1, 4, 4, 100, 10, 5);
+    createNewEnemy(world, 10, 10, 1, 1, 1, 4, 4, 100, 10, 5);
+    createNewEnemy(world, 10, 10, 1, 1, 1, 4, 4, 100, 10, 5);
+
+    std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Position>();
+
+    world.getEntity(1).addComponent<Death>();
+
+    world.addSystem<DeathSystem>();
+    world.addResource<NetworkableIdGenerator>();
+    world.runSystems();
+
+    std::vector<std::shared_ptr<ecs::Entity>> allJoined = world.joinEntities<Position>();
+
+    cr_assert_eq(3, joined.size());
+    cr_assert_eq(3, allJoined.size());
+}
