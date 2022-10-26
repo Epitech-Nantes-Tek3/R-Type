@@ -15,7 +15,7 @@
 
 namespace ecs
 {
-    /// @brief This resource class store a map of button action to be executed on click
+    /// @brief This resource class stores a map of button action to be executed on click
     class ButtonActionMap : public Resource {
       public:
         /// @brief Enumeration of all the available actions
@@ -25,9 +25,10 @@ namespace ecs
         using ActionList = std::unordered_map<buttonAction_e, std::function<void(World &)>>;
 
         /// @brief Constructor of the map, calling the addAction Method
+        /// PLEASE DO NOT USE THE DEFAULT CONSTRUCTOR
         /// @param action Enum of the Action
         /// @param fctPtr The fonction to be executed
-        ButtonActionMap(const buttonAction_e &action, std::function<void(World &)> fctPtr);
+        ButtonActionMap(const buttonAction_e &action = ButtonActionMap::UNDEFINED, std::function<void(World &)> fctPtr = std::function<void(World &)>());
 
         /// @brief Add a action to the ActionList
         /// @param action Enum of the Action

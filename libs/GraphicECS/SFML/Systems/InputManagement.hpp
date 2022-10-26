@@ -66,7 +66,7 @@ namespace ecs
         /// @param Inputs Entity which contains inputs entity like mouse, keyboard and controller
         void _keyReleasedEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> &Inputs);
 
-        /// @brief This function manages mouse button released events. It adds an action to do in a queue depending on
+        /// @brief This function manages mouse button pressed events. It adds an action to do in a queue depending on
         /// the mouse button type.
         /// @param event Class event use to know SFML events
         /// @param Inputs Entity which contains inputs entity like mouse, keyboard and controller

@@ -13,7 +13,8 @@
 
 namespace ecs
 {
-    /// @brief Action Name store the key as enum to the corresponding action
+    /// @brief Action Name stores the key as enum to the corresponding action
+    /// It can be an exit action, an opening menu action, a close menu action...
     class ActionName : public Component {
       public:
         /// @brief The Texture name stored to find the action
