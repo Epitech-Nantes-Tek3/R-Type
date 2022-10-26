@@ -269,9 +269,14 @@ void ClientRoom::_initEntities()
     _initButtons();
 }
 
+void exitWindow(World &world)
+{
+    world.getResource<RenderWindowResource>().window.close();
+}
+
 void ClientRoom::_initButtons()
 {
-    _worldInstance->addResource<ButtonActionMap>(ButtonActionMap::EXIT, std::function<void(World &)>());
+    _worldInstance->addResource<ButtonActionMap>(ButtonActionMap::EXIT, std::function<void(World &)>(exitWindow));
     createNewButton(*(_worldInstance.get()), 0, 0, 34, 34, GraphicsTextureResource::BUTTON, ButtonActionMap::EXIT);
 }
 
