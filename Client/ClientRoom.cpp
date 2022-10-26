@@ -144,7 +144,7 @@ void ClientRoom::_initSpritesForEntities()
         sf::Vector2f(0, 0), sf::Vector2f(1920, 1080));
     spritesList.addTexture(GraphicsTextureResource::BACKGROUND_LAYER_1, "assets/Backgrounds/middle.png",
         sf::Vector2f(0, 0), sf::Vector2f(1920, 1080));
-    spritesList.addTexture(GraphicsTextureResource::BUTTON, "assets/EpiSprite/r-typesheet11.gif", sf::Vector2f(34, 0),
+    spritesList.addTexture(GraphicsTextureResource::EXIT_BUTTON, "assets/EpiSprite/r-typesheet11.gif", sf::Vector2f(34, 0),
         sf::Vector2f(34, 34));
 }
 
@@ -273,5 +273,5 @@ void ClientRoom::_initEntities()
 void ClientRoom::_initButtons()
 {
     _worldInstance->addResource<ButtonActionMap>(ButtonActionMap::EXIT, std::function<void(World &)>(exitWindow));
-    createNewButton(*(_worldInstance.get()), 0, 0, 34, 34, GraphicsTextureResource::BUTTON, ButtonActionMap::EXIT);
+    createNewButton(*(_worldInstance.get()), 0, 0, 34, 34, ButtonActionMap::EXIT, LayerLvL::EXIT_BUTTON);
 }
