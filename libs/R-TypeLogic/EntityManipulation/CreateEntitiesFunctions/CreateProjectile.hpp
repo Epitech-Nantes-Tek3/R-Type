@@ -26,7 +26,6 @@
 
 using namespace transisthor::ecslogic;
 using namespace rtypelogic::global;
-using namespace ecs;
 
 namespace rtypelogic::entitymanipulation
 {
@@ -40,11 +39,11 @@ namespace rtypelogic::entitymanipulation
     /// @param uuid The uuid of the entity. Can be empty.
     /// @param networkId The id of the Networkable Component. In the client instance, it MUST NOT be filled in.
     /// @return  Id of the new Projectile in std::size_t
-    inline std::size_t createNewProjectile(World &world, const int posX, const int posY,
+    inline std::size_t createNewProjectile(ecs::World &world, const int posX, const int posY,
         const double multiplierAbscissa, const double multiplierOrdinate, const unsigned short damage,
         const std::string uuid = "", unsigned short networkId = 0)
     {
-        Entity &entity = world.addEntity()
+        ecs::Entity &entity = world.addEntity()
                              .addComponent<Position>(posX, posY)
                              .addComponent<Weight>(1)
                              .addComponent<Size>(2, 1)

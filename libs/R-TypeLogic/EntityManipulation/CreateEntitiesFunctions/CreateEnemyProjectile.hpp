@@ -26,7 +26,6 @@
 
 using namespace transisthor::ecslogic;
 using namespace rtypelogic::global;
-using namespace transisthor::ecslogic;
 
 namespace rtypelogic::entitymanipulation
 {
