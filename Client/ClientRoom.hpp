@@ -91,6 +91,9 @@ namespace client_data
 
         /// @brief Answer the reception of a protocol 12
         void protocol12Answer(CommunicatorMessage connexionResponse);
+
+        /// @brief Exit the game by deconecting the client
+        void _exitButtonAction(ecs::World &world);
     };
 } // namespace client_data
 

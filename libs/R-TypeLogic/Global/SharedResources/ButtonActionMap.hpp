@@ -40,9 +40,8 @@ namespace ecs
         /// @brief Default Constructor of the class
         ~ButtonActionMap() = default;
 
-      private:
         /// @brief The map where the actions are stored
-        ActionList _actionList;
+        ActionList actionList;
     };
 } // namespace ecs
 

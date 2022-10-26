@@ -21,6 +21,8 @@
 #include "R-TypeLogic/Global/Components/ShootingFrequencyComponent.hpp"
 #include "R-TypeLogic/Global/Components/ButtonComponent.hpp"
 #include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
+#include "R-TypeLogic/Global/Components/ActionName.hpp"
+#include "R-TypeLogic/Global/SharedResources/ButtonActionMap.hpp"
 
 namespace ecs
 {
@@ -169,20 +171,22 @@ namespace ecs
     void InputManagement::clickHandle(World &world, float action)
     {
         (void)action;
-        std::cout << "First" << std::endl;
         std::vector<std::shared_ptr<Entity>> joined = world.joinEntities<Button, Position, Size>();
         sf::Vector2i mousePos = sf::Mouse::getPosition(world.getResource<RenderWindowResource>().window);
 
         auto clickInButton = [this, &world, &mousePos](std::shared_ptr<Entity> entityPtr) {
             Position &pos = entityPtr.get()->getComponent<Position>();
             Size &size = entityPtr.get()->getComponent<Size>();
-            std::cout << "Second" << std::endl;
             bool sameWidth = pos.y <= mousePos.y && mousePos.y <= pos.y + size.y;
             bool sameHeigth = pos.x <= mousePos.x && mousePos.x <= pos.x + size.x;
 
             if (sameHeigth && sameWidth) {
-                std::cout << "Third" << std::endl;
-                this->exit(world);
+                ActionName &name = entityPtr.get()->getComponent<ActionName>();
+                ButtonActionMap &map = world.getResource<ButtonActionMap>();
+
+                std::function<void(World &)> fct = map.actionList.find(name.actionName)->second;
+
+                fct(world);
             }
         };
         std::for_each(joined.begin(), joined.end(), clickInButton);

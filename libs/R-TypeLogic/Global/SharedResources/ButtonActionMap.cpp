@@ -16,5 +16,5 @@ ButtonActionMap::ButtonActionMap(const buttonAction_e &action, std::function<voi
 
 void ButtonActionMap::addAction(const buttonAction_e newAction, std::function<void(World &)> fctPtr)
 {
-    _actionList.emplace(newAction, fctPtr);
+    actionList.emplace(newAction, fctPtr);
 }
