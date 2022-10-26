@@ -33,10 +33,10 @@
 #include "R-TypeLogic/Server/Systems/CollidableSystem.hpp"
 #include "R-TypeLogic/Server/Systems/DeathLifeSystem.hpp"
 #include "R-TypeLogic/Server/Systems/DecreaseLifeTimeSystem.hpp"
+#include "R-TypeLogic/Server/Systems/DisconnectableSystem.hpp"
 #include "R-TypeLogic/Server/Systems/EnemiesGoRandom.hpp"
 #include "R-TypeLogic/Server/Systems/EnemyShootSystem.hpp"
 #include "R-TypeLogic/Server/Systems/LifeTimeDeathSystem.hpp"
-#include "R-TypeLogic/Server/Systems/DisconnectableSystem.hpp"
 
 using namespace server_data;
 using namespace error_lib;
@@ -126,7 +126,6 @@ void Room::_holdADisconnectionRequest(CommunicatorMessage disconnectionDemand)
     }
     _worldInstance->getEntity(clientId).addComponent<Disconnectable>();
     std::cerr << "Player succesfully disconnected." << std::endl;
-    (void)clientId;
 }
 
 size_t Room::getEntityPlayerByHisNetworkId(unsigned short networkId)

@@ -24,9 +24,12 @@ namespace ecs
         /// @brief If the server need to resend it to everyone
         bool sendToEveryone;
 
+        /// @brief Id of the client to delete from the Database after sending the death component. 0 if no client needed to be deleted
+        unsigned short clientToDelete;
+
         /// @brief Constructor of the Equipment
         /// @param EquipId the id of the equipment (defined in the corresponding system)
-        Equipment(unsigned short EquipId = 0) : typeId(EquipId), modified(false), sendToEveryone(false){};
+        Equipment(unsigned short EquipId = 0) : typeId(EquipId), modified(false), sendToEveryone(false), clientToDelete(0){};
         /// @brief Default Constructor
         ~Equipment() = default;
     };
