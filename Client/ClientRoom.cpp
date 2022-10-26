@@ -9,6 +9,7 @@
 
 #include "ClientRoom.hpp"
 #include <functional>
+#include "ButtonAction.hpp"
 #include "Error/Error.hpp"
 #include "GraphicECS/SFML/Components/ActionQueueComponent.hpp"
 #include "GraphicECS/SFML/Components/AllowControllerComponent.hpp"
@@ -269,18 +270,8 @@ void ClientRoom::_initEntities()
     _initButtons();
 }
 
-void exitWindow(World &world)
-{
-    world.getResource<RenderWindowResource>().window.close();
-}
-
 void ClientRoom::_initButtons()
 {
     _worldInstance->addResource<ButtonActionMap>(ButtonActionMap::EXIT, std::function<void(World &)>(exitWindow));
     createNewButton(*(_worldInstance.get()), 0, 0, 34, 34, GraphicsTextureResource::BUTTON, ButtonActionMap::EXIT);
-}
-
-void ClientRoom::_exitButtonAction(World &world)
-{
-    world.getResource<RenderWindowResource>().window.close();
 }

@@ -3,6 +3,11 @@ set(TARGET r-type_client)
 set(SRC_ROOT ${PROJECT_SOURCE_DIR}/Client)
 set(INC_ROOT ${PROJECT_SOURCE_DIR}/Client)
 
+set(BUTTON_ACTION_SRC
+    ${SRC_ROOT}/ButtonAction.hpp
+    ${INC_ROOT}/ButtonAction.cpp
+)
+
 set(SRC
     ${SRC_ROOT}/main.cpp
     ${SRC_ROOT}/ClientRoom.cpp
@@ -10,7 +15,7 @@ set(SRC
     ${SRC_ROOT}/ClientRoom.hpp
 )
 
-add_executable(${TARGET} ${SRC})
+add_executable(${TARGET} ${SRC} ${BUTTON_ACTION_SRC})
 
 set_property(TARGET ${TARGET} PROPERTY MSVC_RUNTIME_LIBRARY "")
 
