@@ -12,20 +12,19 @@ namespace ecs
     std::size_t createNewPlayer(World &world, const int posX, const int posY, const double multiplierAbscissa,
         const double multiplierOrdinate, const short weight, const int sizeX, const int sizeY,
         const unsigned short life, const unsigned short damage, const unsigned short damageRadius, bool controlable,
-        const std::string uuid, unsigned short networkId)
+        unsigned short playerIdentifier, const std::string uuid, unsigned short networkId)
     {
         Entity &entity = world.addEntity()
                              .addComponent<Position>(posX, posY)
                              .addComponent<Weight>(weight)
                              .addComponent<Size>(sizeX, sizeY)
-                             .addComponent<LifeTime>()
                              .addComponent<Life>(life)
                              .addComponent<Damage>(damage)
                              .addComponent<DamageRadius>(damageRadius)
                              .addComponent<Collidable>()
                              .addComponent<ShootingFrequency>(0.05)
                              .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate)
-                             .addComponent<Player>();
+                             .addComponent<Player>(playerIdentifier);
         if (controlable == true) {
             entity.addComponent<Controlable>();
         }

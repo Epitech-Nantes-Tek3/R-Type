@@ -5,10 +5,10 @@
 ** InputManagement
 */
 
-#include "InputManagement.hpp"
 #include <chrono>
 #include <random>
 #include <string.h>
+#include "InputManagement.hpp"
 #include "ActionQueueComponent.hpp"
 #include "AllowControllerComponent.hpp"
 #include "AllowMouseAndKeyboardComponent.hpp"
@@ -22,19 +22,16 @@
 #include "R-TypeLogic/Global/Components/ButtonComponent.hpp"
 #include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
 
-using namespace ecs;
-
-void InputManagement::run(World &world)
+namespace ecs
 {
-    sf::Event event;
-    std::vector<std::shared_ptr<Entity>> Inputs = world.joinEntities<MouseInputComponent, KeyboardInputComponent,
-        ControllerButtonInputComponent, ControllerJoystickInputComponent, ActionQueueComponent>();
-
-    if (Inputs.empty())
-        return;
-    while (world.getResource<RenderWindowResource>().window.pollEvent(event)) {
+    void InputManagement::_closeWindow(sf::Event &event, World &world)
+    {
         if (event.type == sf::Event::Closed)
             world.getResource<RenderWindowResource>().window.close();
+    }
+
+    void InputManagement::_keyPressedEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> &Inputs)
+    {
         if (event.type == sf::Event::KeyPressed) {
             auto keyPressed = [event](std::shared_ptr<ecs::Entity> entityPtr) {
                 if (entityPtr->getComponent<KeyboardInputComponent>().keyboardMapActions.contains(event.key.code)
@@ -44,6 +41,10 @@ void InputManagement::run(World &world)
             };
             std::for_each(Inputs.begin(), Inputs.end(), keyPressed);
         }
+    }
+
+    void InputManagement::_keyReleasedEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> &Inputs)
+    {
         if (event.type == sf::Event::KeyReleased) {
             auto keyReleased = [event](std::shared_ptr<ecs::Entity> entityPtr) {
                 if (entityPtr->getComponent<KeyboardInputComponent>().keyboardMapActions.contains(event.key.code)
@@ -58,6 +59,10 @@ void InputManagement::run(World &world)
             };
             std::for_each(Inputs.begin(), Inputs.end(), keyReleased);
         }
+    }
+
+    void InputManagement::_mouseEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> &Inputs)
+    {
         if (event.type == sf::Event::MouseButtonPressed) {
             auto mouseButtonPressed = [event](std::shared_ptr<ecs::Entity> entityPtr) {
                 if (entityPtr->getComponent<MouseInputComponent>().MouseMapActions.contains(event.mouseButton.button)
@@ -68,123 +73,124 @@ void InputManagement::run(World &world)
             };
             std::for_each(Inputs.begin(), Inputs.end(), mouseButtonPressed);
         }
-        if (event.type == sf::Event::JoystickButtonPressed) {
-            auto joyButtonPressed = [event](std::shared_ptr<ecs::Entity> entityPtr) {
-                if (entityPtr->getComponent<ControllerButtonInputComponent>().controllerButtonMapActions.contains(
-                        event.joystickButton.button)
-                    && entityPtr->contains<AllowControllerComponent>()) {}
-                // entityPtr->getComponent<ActionQueueComponent>().actions.push(
-                //     entityPtr->getComponent<ControllerButtonInputComponent>()
-                //         .controllerButtonMapActions[event.joystickButton.button]);
-            };
-            std::for_each(Inputs.begin(), Inputs.end(), joyButtonPressed);
-        }
-        if (event.type == sf::Event::JoystickMoved) {
-            auto joyMovePressed = [event](std::shared_ptr<ecs::Entity> entityPtr) {
-                if (entityPtr->getComponent<ControllerJoystickInputComponent>().controllerJoystickMapActions.contains(
-                        event.joystickMove.axis)
-                    && entityPtr->contains<AllowControllerComponent>())
-                    entityPtr->getComponent<ActionQueueComponent>().actions.push(
-                        entityPtr->getComponent<ControllerJoystickInputComponent>()
-                            .controllerJoystickMapActions[event.joystickMove.axis]);
-            };
-            std::for_each(Inputs.begin(), Inputs.end(), joyMovePressed);
-        }
     }
-    for (auto &entityPtr : Inputs) {
-        std::queue<std::pair<ecs::ActionQueueComponent::inputAction_e, float>> &actions =
-            entityPtr->getComponent<ActionQueueComponent>().actions;
-        while (actions.size() > 0) {
-            if (actions.front().first == ActionQueueComponent::MOVEY)
-                movePlayerY(world, actions.front().second);
-            if (actions.front().first == ActionQueueComponent::MOVEX)
-                movePlayerX(world, actions.front().second);
-            if (actions.front().first == ActionQueueComponent::SHOOT)
-                shootAction(world, actions.front().second);
-            if (actions.front().first == ActionQueueComponent::BUTTON_CLICK)
-                clickHandle(world, actions.front().second);
-            actions.pop();
+
+    void InputManagement::run(World &world)
+    {
+        sf::Event event;
+        std::vector<std::shared_ptr<Entity>> Inputs = world.joinEntities<MouseInputComponent, KeyboardInputComponent,
+            ControllerButtonInputComponent, ControllerJoystickInputComponent, ActionQueueComponent>();
+
+        if (Inputs.empty())
+            return;
+        while (world.containsResource<RenderWindowResource>() && world.getResource<RenderWindowResource>().window.pollEvent(event)) {
+            _closeWindow(event, world);
+            _keyPressedEvents(event, Inputs);
+            _keyReleasedEvents(event, Inputs);
+            _mouseEvents(event, Inputs);
         }
-    }
-}
-
-void InputManagement::movePlayerX(World &world, float move)
-{
-    std::vector<std::shared_ptr<ecs::Entity>> player = world.joinEntities<Controlable>();
-    double moveD = double(move);
-
-    if (player.empty())
-        return;
-    auto moveX = [moveD](std::shared_ptr<ecs::Entity> entityPtr) {
-        entityPtr->getComponent<Velocity>().multiplierAbscissa = moveD;
-        entityPtr->getComponent<Velocity>().modified = true;
-        entityPtr->getComponent<Position>().modified = true;
-    };
-    std::for_each(player.begin(), player.end(), moveX);
-}
-
-void InputManagement::clickHandle(World &world, float action)
-{
-    (void)action;
-    std::vector<std::shared_ptr<Entity>> joined = world.joinEntities<Button, Position, Size>();
-    sf::Vector2i mousePos = sf::Mouse::getPosition(world.getResource<RenderWindowResource>().window);
-
-    auto clickInButton = [this, &world, &mousePos](std::shared_ptr<Entity> entityPtr) {
-        Position &pos = entityPtr.get()->getComponent<Position>();
-        Size &size = entityPtr.get()->getComponent<Size>();
-        bool sameWidth = pos.y <= mousePos.y && mousePos.y <= pos.y + size.y;
-        bool sameHeigth = pos.x <= mousePos.x && mousePos.x <= pos.x + size.x;
-
-        if (sameHeigth && sameWidth)
-            this->exit(world);
-    };
-    std::for_each(joined.begin(), joined.end(), clickInButton);
-}
-
-void InputManagement::movePlayerY(World &world, float move)
-{
-    std::vector<std::shared_ptr<ecs::Entity>> player = world.joinEntities<Controlable>();
-    double moveD = double(move);
-
-    if (player.empty())
-        return;
-    auto moveY = [moveD](std::shared_ptr<ecs::Entity> entityPtr) {
-        entityPtr->getComponent<Velocity>().multiplierOrdinate = moveD;
-        entityPtr->getComponent<Velocity>().modified = true;
-        entityPtr->getComponent<Position>().modified = true;
-    };
-    std::for_each(player.begin(), player.end(), moveY);
-}
-
-void InputManagement::shootAction(World &world, float action)
-{
-    std::vector<std::shared_ptr<ecs::Entity>> player = world.joinEntities<Controlable>();
-    (void)action;
-
-    if (player.empty())
-        return;
-    auto shoot = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
-        ShootingFrequency &freq = entityPtr.get()->getComponent<ShootingFrequency>();
-        GameClock &c = world.getResource<GameClock>();
-
-        double delta = freq.frequency.count() - c.getElapsedTime();
-        if (delta <= 0.0) {
-            const char hex_char[] = "0123456789ABCDEF";
-            auto &temp = world.getResource<RandomDevice>();
-
-            std::string uuid(16, '\0');
-            for (auto &c : uuid)
-                c = hex_char[temp.randInt<int>(0, 15)];
-            createNewAlliedProjectile(world, *entityPtr, uuid);
-            freq.frequency = freq.baseFrequency;
-        } else {
+        for (auto &entityPtr : Inputs) {
+            std::queue<std::pair<ecs::ActionQueueComponent::inputAction_e, float>> &actions =
+                entityPtr->getComponent<ActionQueueComponent>().actions;
+            while (actions.size() > 0) {
+                if (actions.front().first == ActionQueueComponent::MOVEY)
+                    movePlayerY(world, actions.front().second);
+                if (actions.front().first == ActionQueueComponent::MOVEX)
+                    movePlayerX(world, actions.front().second);
+                if (actions.front().first == ActionQueueComponent::SHOOT)
+                    shootAction(world, actions.front().second);
+                if (actions.front().first == ActionQueueComponent::BUTTON_CLICK) {
+                    clickHandle(world, actions.front().second);
+                }
+                actions.pop();
+            }
+        }
+        std::vector<std::shared_ptr<ecs::Entity>> players = world.joinEntities<Controlable>();
+        for (auto &player : players) {
+            ShootingFrequency &freq = player->getComponent<ShootingFrequency>();
+            GameClock &clock = world.getResource<GameClock>();
+            double delta = freq.frequency.count() - clock.getElapsedTime();
             freq.frequency = duration<double>(delta);
         }
-    };
-    std::for_each(player.begin(), player.end(), shoot);
-}
+    }
 
-void InputManagement::exit(World &world)
-{
-    world.getResource<RenderWindowResource>().window.close();
-}
+    void InputManagement::movePlayerX(World &world, float move)
+    {
+        std::vector<std::shared_ptr<ecs::Entity>> player = world.joinEntities<Controlable>();
+        double moveD = double(move);
+
+        if (player.empty())
+            return;
+        auto moveX = [moveD](std::shared_ptr<ecs::Entity> entityPtr) {
+            entityPtr->getComponent<Velocity>().multiplierAbscissa = moveD;
+            entityPtr->getComponent<Velocity>().modified = true;
+            entityPtr->getComponent<Position>().modified = true;
+        };
+        std::for_each(player.begin(), player.end(), moveX);
+    }
+
+    void InputManagement::movePlayerY(World &world, float move)
+    {
+        std::vector<std::shared_ptr<ecs::Entity>> player = world.joinEntities<Controlable>();
+        double moveD = double(move);
+
+        if (player.empty())
+            return;
+        auto moveY = [moveD](std::shared_ptr<ecs::Entity> entityPtr) {
+            entityPtr->getComponent<Velocity>().multiplierOrdinate = moveD;
+            entityPtr->getComponent<Velocity>().modified = true;
+            entityPtr->getComponent<Position>().modified = true;
+        };
+        std::for_each(player.begin(), player.end(), moveY);
+    }
+
+    void InputManagement::shootAction(World &world, float action)
+    {
+        std::vector<std::shared_ptr<ecs::Entity>> player = world.joinEntities<Controlable>();
+
+        if (player.empty() || action < 1)
+            return;
+        auto shoot = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
+            ShootingFrequency &freq = entityPtr.get()->getComponent<ShootingFrequency>();
+            const char hex_char[] = "0123456789ABCDEF";
+            ecs::RandomDevice &random = world.getResource<RandomDevice>();
+            std::string uuid(16, '\0');
+
+            if (freq.frequency.count() <= 0.0) {
+                for (auto &c : uuid)
+                    c = hex_char[random.randInt<int>(0, 15)];
+                createNewAlliedProjectile(world, *entityPtr, uuid);
+                freq.frequency = freq.baseFrequency;
+            }
+        };
+        std::for_each(player.begin(), player.end(), shoot);
+    }
+
+    void InputManagement::clickHandle(World &world, float action)
+    {
+        (void)action;
+        std::cout << "First" << std::endl;
+        std::vector<std::shared_ptr<Entity>> joined = world.joinEntities<Button, Position, Size>();
+        sf::Vector2i mousePos = sf::Mouse::getPosition(world.getResource<RenderWindowResource>().window);
+
+        auto clickInButton = [this, &world, &mousePos](std::shared_ptr<Entity> entityPtr) {
+            Position &pos = entityPtr.get()->getComponent<Position>();
+            Size &size = entityPtr.get()->getComponent<Size>();
+            std::cout << "Second" << std::endl;
+            bool sameWidth = pos.y <= mousePos.y && mousePos.y <= pos.y + size.y;
+            bool sameHeigth = pos.x <= mousePos.x && mousePos.x <= pos.x + size.x;
+
+            if (sameHeigth && sameWidth) {
+                std::cout << "Third" << std::endl;
+                this->exit(world);
+            }
+        };
+        std::for_each(joined.begin(), joined.end(), clickInButton);
+    }
+
+    void InputManagement::exit(World &world)
+    {
+        world.getResource<RenderWindowResource>().window.close();
+    }
+
+} // namespace ecs

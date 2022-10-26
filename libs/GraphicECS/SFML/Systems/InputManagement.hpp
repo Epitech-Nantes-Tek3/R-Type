@@ -8,6 +8,7 @@
 #ifndef INPUTMANAGEMENT_HPP_
 #define INPUTMANAGEMENT_HPP_
 
+#include <SFML/Graphics.hpp>
 #include "System/System.hpp"
 #include "World/World.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateAlliedProjectile.hpp"
@@ -18,6 +19,7 @@ namespace ecs
 {
     /// @brief This system class manage SFML input to link them to an action.
     struct InputManagement : public System {
+      public:
         /// @brief The run function of this system. It will be used by the world in the function runSystems.
         /// @param world The corresponding world on which run this system.
         void run(World &world) override final;
@@ -45,6 +47,26 @@ namespace ecs
         /// @param world The world where the click occurs
         /// @param action The click action
         void clickHandle(World &world, float action);
+      private:
+        /// @brief This function closes the window when event type is sf::Event::Closed
+        /// @param event Class event use to know SFML events
+        /// @param world The world on which get the shared resource renderWindow
+        void _closeWindow(sf::Event &event, World &world);
+
+        /// @brief This function manages key pressed events. It adds an action to do in a queue depending on the key pressed type.
+        /// @param event Class event use to know SFML events
+        /// @param Inputs Entity which contains inputs entity like mouse, keyboard and controller
+        void _keyPressedEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> &Inputs);
+
+        /// @brief This function manages key released events. It adds an action to do in a queue depending on the key released type.
+        /// @param event Class event use to know SFML events
+        /// @param Inputs Entity which contains inputs entity like mouse, keyboard and controller
+        void _keyReleasedEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> &Inputs);
+
+        /// @brief This function manages mouse button released events. It adds an action to do in a queue depending on the mouse button type.
+        /// @param event Class event use to know SFML events
+        /// @param Inputs Entity which contains inputs entity like mouse, keyboard and controller
+        void _mouseEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> &Inputs);
     };
 } // namespace ecs
 

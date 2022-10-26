@@ -38,5 +38,5 @@ ctest --output-on-failure
 testExitStatus $? "run ctest"
 
 # Create coverage html graph
-cd .. && gcovr --html coverage.html
+cd ..; mkdir -p coverage; gcovr --html-details coverage/coverage.html --exclude tests
 testExitStatus $? "create html coverage"
