@@ -13,4 +13,3 @@ void exitWindow(World &world)
     // TO CHANGE WHEN PROPER HANDLE OF SIGINT WILL BE IMPLEMENTED
     world.getResource<RenderWindowResource>().window.close();
 }
-

@@ -5,10 +5,10 @@
 ** InputManagement
 */
 
+#include "InputManagement.hpp"
 #include <chrono>
 #include <random>
 #include <string.h>
-#include "InputManagement.hpp"
 #include "ActionQueueComponent.hpp"
 #include "AllowControllerComponent.hpp"
 #include "AllowMouseAndKeyboardComponent.hpp"
@@ -18,11 +18,11 @@
 #include "KeyboardInputComponent.hpp"
 #include "MouseInputComponent.hpp"
 #include "World/World.hpp"
-#include "R-TypeLogic/Global/Components/ShootingFrequencyComponent.hpp"
-#include "R-TypeLogic/Global/Components/ButtonComponent.hpp"
-#include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
 #include "R-TypeLogic/Global/Components/ActionName.hpp"
+#include "R-TypeLogic/Global/Components/ButtonComponent.hpp"
+#include "R-TypeLogic/Global/Components/ShootingFrequencyComponent.hpp"
 #include "R-TypeLogic/Global/SharedResources/ButtonActionMap.hpp"
+#include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
 
 namespace ecs
 {
@@ -85,7 +85,8 @@ namespace ecs
 
         if (Inputs.empty())
             return;
-        while (world.containsResource<RenderWindowResource>() && world.getResource<RenderWindowResource>().window.pollEvent(event)) {
+        while (world.containsResource<RenderWindowResource>()
+            && world.getResource<RenderWindowResource>().window.pollEvent(event)) {
             _closeWindow(event, world);
             _keyPressedEvents(event, Inputs);
             _keyReleasedEvents(event, Inputs);
@@ -191,10 +192,4 @@ namespace ecs
         };
         std::for_each(joined.begin(), joined.end(), clickInButton);
     }
-
-    void InputManagement::exit(World &world)
-    {
-        world.getResource<RenderWindowResource>().window.close();
-    }
-
 } // namespace ecs

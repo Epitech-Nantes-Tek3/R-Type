@@ -19,13 +19,10 @@ namespace ecs
     class ButtonActionMap : public Resource {
       public:
         /// @brief Enumeration of all the available actions
-        enum buttonAction_e {
-          UNDEFINED,
-          EXIT
-        };
+        enum buttonAction_e { UNDEFINED, EXIT };
 
         /// @brief Map's name which contains the actions
-        using ActionList = std::unordered_map <buttonAction_e, std::function<void(World &)>>;
+        using ActionList = std::unordered_map<buttonAction_e, std::function<void(World &)>>;
 
         /// @brief Constructor of the map, calling the addAction Method
         /// @param action Enum of the Action

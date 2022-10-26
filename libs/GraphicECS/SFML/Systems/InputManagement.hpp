@@ -47,23 +47,27 @@ namespace ecs
         /// @param world The world where the click occurs
         /// @param action The click action
         void clickHandle(World &world, float action);
+
       private:
         /// @brief This function closes the window when event type is sf::Event::Closed
         /// @param event Class event use to know SFML events
         /// @param world The world on which get the shared resource renderWindow
         void _closeWindow(sf::Event &event, World &world);
 
-        /// @brief This function manages key pressed events. It adds an action to do in a queue depending on the key pressed type.
+        /// @brief This function manages key pressed events. It adds an action to do in a queue depending on the key
+        /// pressed type.
         /// @param event Class event use to know SFML events
         /// @param Inputs Entity which contains inputs entity like mouse, keyboard and controller
         void _keyPressedEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> &Inputs);
 
-        /// @brief This function manages key released events. It adds an action to do in a queue depending on the key released type.
+        /// @brief This function manages key released events. It adds an action to do in a queue depending on the key
+        /// released type.
         /// @param event Class event use to know SFML events
         /// @param Inputs Entity which contains inputs entity like mouse, keyboard and controller
         void _keyReleasedEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> &Inputs);
 
-        /// @brief This function manages mouse button released events. It adds an action to do in a queue depending on the mouse button type.
+        /// @brief This function manages mouse button released events. It adds an action to do in a queue depending on
+        /// the mouse button type.
         /// @param event Class event use to know SFML events
         /// @param Inputs Entity which contains inputs entity like mouse, keyboard and controller
         void _mouseEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> &Inputs);
