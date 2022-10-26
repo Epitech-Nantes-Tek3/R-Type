@@ -144,8 +144,8 @@ void ClientRoom::_initSpritesForEntities()
         sf::Vector2f(0, 0), sf::Vector2f(1920, 1080));
     spritesList.addTexture(GraphicsTextureResource::BACKGROUND_LAYER_1, "assets/Backgrounds/middle.png",
         sf::Vector2f(0, 0), sf::Vector2f(1920, 1080));
-    spritesList.addTexture(GraphicsTextureResource::EXIT_BUTTON, "assets/EpiSprite/r-typesheet11.gif", sf::Vector2f(34, 0),
-        sf::Vector2f(34, 34));
+    spritesList.addTexture(GraphicsTextureResource::EXIT_BUTTON, "assets/EpiSprite/r-typesheet11.gif",
+        sf::Vector2f(34, 0), sf::Vector2f(34, 34));
 }
 
 void ClientRoom::_initSharedResources()
