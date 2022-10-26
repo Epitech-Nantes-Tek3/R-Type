@@ -29,4 +29,8 @@ target_include_directories(${TARGET}
 
 target_link_libraries(${TARGET}
     ${PROJECT_NAME}_transisthor
+    CONAN_PKG::sfml
 )
+
+include(${PROJECT_SOURCE_DIR}/build/conanbuildinfo.cmake)
+conan_basic_setup(TARGETS)
