@@ -35,6 +35,7 @@
 #include "R-TypeLogic/Global/Components/LayerLvL.hpp"
 #include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
+#include "R-TypeLogic/Global/SharedResources/ButtonActionMap.hpp"
 #include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
 #include "R-TypeLogic/Global/SharedResources/Random.hpp"
 #include "R-TypeLogic/Global/Systems/DeathSystem.hpp"
@@ -142,8 +143,8 @@ void ClientRoom::_initSpritesForEntities()
         sf::Vector2f(0, 0), sf::Vector2f(1920, 1080));
     spritesList.addTexture(GraphicsTextureResource::BACKGROUND_LAYER_1, "assets/Backgrounds/middle.png",
         sf::Vector2f(0, 0), sf::Vector2f(1920, 1080));
-    spritesList.addTexture(GraphicsTextureResource::BUTTON, "assets/EpiSprite/r-typesheet11.gif",
-        sf::Vector2f(34, 0), sf::Vector2f(34, 34));
+    spritesList.addTexture(GraphicsTextureResource::BUTTON, "assets/EpiSprite/r-typesheet11.gif", sf::Vector2f(34, 0),
+        sf::Vector2f(34, 34));
 }
 
 void ClientRoom::_initSharedResources()
@@ -261,8 +262,8 @@ void ClientRoom::_initEntities()
                 1, std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEY, 0)));
         it->getComponent<MouseInputComponent>().MouseMapActions.emplace(
             std::make_pair<sf::Mouse::Button, std::pair<ActionQueueComponent::inputAction_e, float>>(
-                sf::Mouse::Button::Left, std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::BUTTON_CLICK, 0)));
-
+                sf::Mouse::Button::Left,
+                std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::BUTTON_CLICK, 0)));
     }
     _initBackgroundEntities();
     _initButtons();
@@ -270,7 +271,5 @@ void ClientRoom::_initEntities()
 
 void ClientRoom::_initButtons()
 {
-    //Create shared resources for the map with enum Comme Texture
-    //Create Component qui stocke l'enum de shared resource
-    createNewButton(*(_worldInstance.get()), 0, 0, 34, 34, GraphicsTextureResource::BUTTON);
+    createNewButton(*(_worldInstance.get()), 0, 0, 34, 34, GraphicsTextureResource::BUTTON, ButtonActionMap::EXIT);
 }

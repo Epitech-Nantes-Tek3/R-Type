@@ -13,7 +13,7 @@
 namespace ecs
 {
     std::size_t createNewButton(World &world, const int posX, const int posY, const int sizeX, const int sizeY,
-        GraphicsTextureResource::textureName_e textureName)
+        GraphicsTextureResource::textureName_e textureName, ButtonActionMap::buttonAction_e actionName)
     {
         return world.addEntity()
             .addComponent<Button>()
@@ -22,6 +22,7 @@ namespace ecs
             .addComponent<GraphicsRectangleComponent>(posX, posY, sizeX, sizeY)
             .addComponent<LayerLvL>(LayerLvL::layer_e::BUTTON)
             .addComponent<TextureName>(textureName)
+            .addComponent<ActionName>(actionName)
             .getId();
     }
 } // namespace ecs
