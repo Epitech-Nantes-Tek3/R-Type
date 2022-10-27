@@ -12,7 +12,7 @@
 
 namespace ecs
 {
-    /// @brief This component allow to know the delay between each frame of an animation.
+    /// @brief This component allows to know the delay between each frame of an animation.
     class AnimationDelayComponent : public Component {
         public:
             /// @brief The delay between each frame of an animation as milliseconds.
