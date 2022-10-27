@@ -93,18 +93,18 @@ void Room::startConnexionProtocol(void) { _communicatorInstance.get()->startRece
 
 void Room::startLobbyLoop(void)
 {
-    CommunicatorMessage connexionOperation;
+    CommunicatorMessage connectionOperation;
 
     startConnexionProtocol();
     initEcsGameData();
     _state = RoomState::LOBBY;
     while (_state != RoomState::ENDED && _state != RoomState::UNDEFINED) {
         try {
-            connexionOperation = _communicatorInstance.get()->getLastMessage();
-            if (connexionOperation.message.type == 10)
-                holdANewConnexionRequest(connexionOperation);
-            if (connexionOperation.message.type == 13)
-                _holdADisconnectionRequest(connexionOperation);
+            connectionOperation = _communicatorInstance.get()->getLastMessage();
+            if (connectionOperation.message.type == 10)
+                holdANewConnexionRequest(connectionOperation);
+            if (connectionOperation.message.type == 13)
+                _holdADisconnectionRequest(connectionOperation);
         } catch (NetworkError &error) {
         }
         if (_remainingPlaces != 4)
