@@ -8,6 +8,7 @@
 /// @file Client/ClientRoom.cpp
 
 #include "ClientRoom.hpp"
+#include <csignal>
 #include <functional>
 #include "Error/Error.hpp"
 #include "GraphicECS/SFML/Components/ActionQueueComponent.hpp"
@@ -46,6 +47,17 @@ using namespace communicator_lib;
 using namespace client_data;
 using namespace ecs;
 
+static ClientRoom::ClientState *clientRoomState(nullptr);
+
+/// @brief Useful function called when a sigint received.
+/// @param signum Value of the received signal
+void signalCallbackHandler(int signum)
+{
+    (void)signum;
+    std::cerr << "Client Room wanted to be closed." << std::endl;
+    *clientRoomState = ClientRoom::ENDED;
+}
+
 ClientRoom::ClientRoom()
 {
     _networkInformations = Client();
@@ -56,6 +68,7 @@ ClientRoom::ClientRoom()
     _communicatorInstance.get()->setTransisthorBridge(_transisthorInstance);
     _worldInstance.get()->setTransisthorBridge(_communicatorInstance.get()->getTransisthorBridge());
     _state = ClientState::UNDEFINED;
+    clientRoomState = &_state;
 }
 
 ClientRoom::ClientRoom(std::string address, unsigned short port, std::string serverAddress, unsigned short serverPort)
@@ -68,6 +81,7 @@ ClientRoom::ClientRoom(std::string address, unsigned short port, std::string ser
     _communicatorInstance.get()->setTransisthorBridge(_transisthorInstance);
     _worldInstance.get()->setTransisthorBridge(_communicatorInstance.get()->getTransisthorBridge());
     _state = ClientState::UNDEFINED;
+    clientRoomState = &_state;
 }
 
 void ClientRoom::initEcsGameData(void)
@@ -95,6 +109,7 @@ void ClientRoom::startLobbyLoop(void)
 {
     CommunicatorMessage connexionResponse;
 
+    std::signal(SIGINT, signalCallbackHandler);
     startConnexionProtocol();
     initEcsGameData();
     _state = ClientState::LOBBY;
@@ -114,6 +129,12 @@ void ClientRoom::startLobbyLoop(void)
             _holdGameOver();
         }
     }
+    _disconectionProcess();
+}
+
+void ClientRoom::_disconectionProcess()
+{
+    _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, nullptr, 0, 13);
 }
 
 void ClientRoom::_holdGameOver()

@@ -20,6 +20,7 @@
 #include "R-TypeLogic/Global/Components/AlliedProjectileComponent.hpp"
 #include "R-TypeLogic/Global/Components/DamageComponent.hpp"
 #include "R-TypeLogic/Global/Components/DamageRadiusComponent.hpp"
+#include "R-TypeLogic/Global/Components/DisconnectableComponent.hpp"
 #include "R-TypeLogic/Global/Components/EnemyComponent.hpp"
 #include "R-TypeLogic/Global/Components/EnemyProjectileComponent.hpp"
 #include "R-TypeLogic/Global/Components/ObstacleComponent.hpp"
@@ -32,6 +33,7 @@
 #include "R-TypeLogic/Server/Systems/CollidableSystem.hpp"
 #include "R-TypeLogic/Server/Systems/DeathLifeSystem.hpp"
 #include "R-TypeLogic/Server/Systems/DecreaseLifeTimeSystem.hpp"
+#include "R-TypeLogic/Server/Systems/DisconnectableSystem.hpp"
 #include "R-TypeLogic/Server/Systems/EnemiesGoRandom.hpp"
 #include "R-TypeLogic/Server/Systems/EnemyShootSystem.hpp"
 #include "R-TypeLogic/Server/Systems/LifeTimeDeathSystem.hpp"
@@ -84,27 +86,61 @@ void Room::initEcsGameData(void)
     _worldInstance->addSystem<DeathSystem>();
     _worldInstance->addSystem<LifeTimeDeath>();
     _worldInstance->addSystem<DecreaseLifeTime>();
+    _worldInstance->addSystem<DisconnectableSystem>();
 }
 
 void Room::startConnexionProtocol(void) { _communicatorInstance.get()->startReceiverListening(); }
 
 void Room::startLobbyLoop(void)
 {
-    CommunicatorMessage connexionDemand;
+    CommunicatorMessage connectionOperation;
 
     startConnexionProtocol();
     initEcsGameData();
     _state = RoomState::LOBBY;
     while (_state != RoomState::ENDED && _state != RoomState::UNDEFINED) {
         try {
-            connexionDemand = _communicatorInstance.get()->getLastMessage();
-            if (connexionDemand.message.type == 10)
-                holdANewConnexionRequest(connexionDemand);
+            connectionOperation = _communicatorInstance.get()->getLastMessage();
+            if (connectionOperation.message.type == 10)
+                holdANewConnexionRequest(connectionOperation);
+            if (connectionOperation.message.type == 13)
+                _holdADisconnectionRequest(connectionOperation);
         } catch (NetworkError &error) {
         }
         if (_remainingPlaces != 4)
             _worldInstance.get()->runSystems(); /// WILL BE IMPROVED IN PART TWO (THREAD + CLOCK)
     }
+}
+
+void Room::_holdADisconnectionRequest(CommunicatorMessage disconnectionDemand)
+{
+    Client &client = _communicatorInstance->getClientFromList(
+        disconnectionDemand.message.clientInfo.getAddress(), disconnectionDemand.message.clientInfo.getPort());
+    size_t clientId = 0;
+
+    try {
+        clientId = getEntityPlayerByHisNetworkId(client.getId());
+    } catch (EcsError &error) {
+        (void)error;
+        return;
+    }
+    _worldInstance->getEntity(clientId).addComponent<Disconnectable>();
+    std::cerr << "Player succesfully disconnected." << std::endl;
+}
+
+size_t Room::getEntityPlayerByHisNetworkId(unsigned short networkId)
+{
+    std::vector<std::shared_ptr<ecs::Entity>> joined = _worldInstance->joinEntities<NetworkClient>();
+    size_t temporary = 0;
+
+    auto crossAllPlayer = [&networkId, &temporary](std::shared_ptr<ecs::Entity> entityPtr) {
+        if (entityPtr->getComponent<NetworkClient>().id == networkId)
+            temporary = entityPtr->getId();
+    };
+    std::for_each(joined.begin(), joined.end(), crossAllPlayer);
+    if (temporary == 0)
+        throw EcsError("No matching player founded.", "World.cpp -> getEntityPlayerByHisNetworkId");
+    return temporary;
 }
 
 void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)

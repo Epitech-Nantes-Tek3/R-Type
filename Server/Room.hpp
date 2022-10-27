@@ -68,6 +68,16 @@ namespace server_data
         /// @brief Number of remaining places inside the room
         unsigned short _remainingPlaces;
 
+        /// @brief Trait a disconnection request. Identify the player and add to it a disconnection component
+        /// @param communicatorMessage actual message data
+        void _holdADisconnectionRequest(CommunicatorMessage disconectionDemand);
+
+        /// @brief Cross all the player entity and return the matched one
+        /// @param networkId networkId of the player to match
+        /// @return founded entity id
+        /// @throw an ECSError if no player was found.
+        size_t getEntityPlayerByHisNetworkId(unsigned short networkId);
+
         /// @brief Trait a connexion request. If there is less than 3 players already in the room, send a protocol 22 to
         /// the client. Otherwise, send a 21.
         /// @param communicatorMessage actual message data

@@ -65,6 +65,12 @@ struct SendToClient : public ecs::System {
                     component.modified = false;
                     std::free(world.getTransisthorBridge().get()->transitEcsDataToNetworkData<C1>(
                         networkId, componentRFCId.find(typeid(C1))->second, component, clientIdList));
+                    if (component.clientToDelete != 0) {
+                        Client clientToBeDeleted =
+                            world.getTransisthorBridge()->getCommunicatorInstance().getClientByHisId(
+                                component.clientToDelete);
+                        world.getTransisthorBridge()->getCommunicatorInstance().removeClientFromList(clientToBeDeleted);
+                    }
                 } else if (component.sendToEveryone) {
                     component.sendToEveryone = false;
                     std::free(world.getTransisthorBridge().get()->transitEcsDataToNetworkData<C1>(
