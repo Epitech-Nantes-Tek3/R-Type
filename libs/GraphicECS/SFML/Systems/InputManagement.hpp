@@ -24,20 +24,29 @@ namespace ecs
         /// @param world The corresponding world on which run this system.
         void run(World &world) override final;
 
-        /// @brief This function is call when a player move his Abscissa with a input
+        /// @brief This function is called when a player move his Abscissa with a input
         /// @param world The world in which the Player is
         /// @param move Action velocity
         void movePlayerX(World &world, float move);
 
-        /// @brief This function is call when a player move his Ordinate with a input
+        /// @brief This function is called when a player move his Ordinate with a input
         /// @param world The world in which the Player is
         /// @param move Action velocity
         void movePlayerY(World &world, float move);
 
-        /// @brief This function is call when a player shoot with a input. It creates a Ally Projectile
+        /// @brief This function is called when a player shoot with a input. It creates a Ally Projectile
         /// @param world The world in which the Player is
         /// @param move Action Shoot
         void shootAction(World &world, float action);
+
+        /// @brief This function is called when a player wants to exit the game. It closes the window of the client
+        /// @param world The world where the window exists
+        void exit(World &world);
+
+        /// @brief This function is called when a left click occurs
+        /// @param world The world where the click occurs
+        /// @param action The click action
+        void clickHandle(World &world, float action);
 
       private:
         /// @brief This function closes the window when event type is sf::Event::Closed
@@ -45,15 +54,23 @@ namespace ecs
         /// @param world The world on which get the shared resource renderWindow
         void _closeWindow(sf::Event &event, World &world);
 
-        /// @brief This function manages key pressed events. It adds an action to do in a queue depending on the key pressed type.
+        /// @brief This function manages key pressed events. It adds an action to do in a queue depending on the key
+        /// pressed type.
         /// @param event Class event use to know SFML events
         /// @param Inputs Entity which contains inputs entity like mouse, keyboard and controller
         void _keyPressedEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> &Inputs);
 
-        /// @brief This function manages key released events. It adds an action to do in a queue depending on the key released type.
+        /// @brief This function manages key released events. It adds an action to do in a queue depending on the key
+        /// released type.
         /// @param event Class event use to know SFML events
         /// @param Inputs Entity which contains inputs entity like mouse, keyboard and controller
         void _keyReleasedEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> &Inputs);
+
+        /// @brief This function manages mouse button pressed events. It adds an action to do in a queue depending on
+        /// the mouse button type.
+        /// @param event Class event use to know SFML events
+        /// @param Inputs Entity which contains inputs entity like mouse, keyboard and controller
+        void _mouseEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> &Inputs);
     };
 } // namespace ecs
 

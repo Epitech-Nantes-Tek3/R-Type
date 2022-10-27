@@ -23,7 +23,7 @@ namespace ecs
     class MouseInputComponent : public Component {
         public:
             /// @brief This unordered map links SFML mouse button input to an action/float pair enum.
-            std::unordered_map<sf::Mouse::Button, std::function<void(World &, float)>> MouseMapActions;
+            std::unordered_map<sf::Mouse::Button, std::pair<ActionQueueComponent::inputAction_e, float>> MouseMapActions;
 
         /// @brief Constructor of the class.
         MouseInputComponent() = default;

@@ -5,10 +5,10 @@
 ** InputManagement
 */
 
+#include "InputManagement.hpp"
 #include <chrono>
 #include <random>
 #include <string.h>
-#include "InputManagement.hpp"
 #include "ActionQueueComponent.hpp"
 #include "AllowControllerComponent.hpp"
 #include "AllowMouseAndKeyboardComponent.hpp"
@@ -18,7 +18,10 @@
 #include "KeyboardInputComponent.hpp"
 #include "MouseInputComponent.hpp"
 #include "World/World.hpp"
+#include "R-TypeLogic/EntityManipulation/ButtonManipulation/Components/ActionName.hpp"
+#include "R-TypeLogic/Global/Components/ButtonComponent.hpp"
 #include "R-TypeLogic/Global/Components/ShootingFrequencyComponent.hpp"
+#include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/ButtonActionMap.hpp"
 #include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
 
 namespace ecs
@@ -60,6 +63,20 @@ namespace ecs
         }
     }
 
+    void InputManagement::_mouseEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> &Inputs)
+    {
+        if (event.type == sf::Event::MouseButtonPressed) {
+            auto mouseButtonPressed = [event](std::shared_ptr<ecs::Entity> entityPtr) {
+                if (entityPtr->getComponent<MouseInputComponent>().MouseMapActions.contains(event.mouseButton.button)
+                    && entityPtr->contains<AllowMouseAndKeyboardComponent>()) {
+                    entityPtr->getComponent<ActionQueueComponent>().actions.push(
+                        entityPtr->getComponent<MouseInputComponent>().MouseMapActions[event.mouseButton.button]);
+                }
+            };
+            std::for_each(Inputs.begin(), Inputs.end(), mouseButtonPressed);
+        }
+    }
+
     void InputManagement::run(World &world)
     {
         sf::Event event;
@@ -68,10 +85,12 @@ namespace ecs
 
         if (Inputs.empty())
             return;
-        while (world.containsResource<RenderWindowResource>() && world.getResource<RenderWindowResource>().window.pollEvent(event)) {
+        while (world.containsResource<RenderWindowResource>()
+            && world.getResource<RenderWindowResource>().window.pollEvent(event)) {
             _closeWindow(event, world);
             _keyPressedEvents(event, Inputs);
             _keyReleasedEvents(event, Inputs);
+            _mouseEvents(event, Inputs);
         }
         for (auto &entityPtr : Inputs) {
             std::queue<std::pair<ecs::ActionQueueComponent::inputAction_e, float>> &actions =
@@ -83,6 +102,9 @@ namespace ecs
                     movePlayerX(world, actions.front().second);
                 if (actions.front().first == ActionQueueComponent::SHOOT)
                     shootAction(world, actions.front().second);
+                if (actions.front().first == ActionQueueComponent::BUTTON_CLICK) {
+                    clickHandle(world, actions.front().second);
+                }
                 actions.pop();
             }
         }
@@ -145,5 +167,29 @@ namespace ecs
             }
         };
         std::for_each(player.begin(), player.end(), shoot);
+    }
+
+    void InputManagement::clickHandle(World &world, float action)
+    {
+        (void)action;
+        std::vector<std::shared_ptr<Entity>> joined = world.joinEntities<Button, Position, Size>();
+        sf::Vector2i mousePos = sf::Mouse::getPosition(world.getResource<RenderWindowResource>().window);
+
+        auto clickInButton = [this, &world, &mousePos](std::shared_ptr<Entity> entityPtr) {
+            Position &pos = entityPtr.get()->getComponent<Position>();
+            Size &size = entityPtr.get()->getComponent<Size>();
+            bool sameWidth = pos.y <= mousePos.y && mousePos.y <= pos.y + size.y;
+            bool sameHeigth = pos.x <= mousePos.x && mousePos.x <= pos.x + size.x;
+
+            if (sameHeigth && sameWidth) {
+                ActionName &name = entityPtr.get()->getComponent<ActionName>();
+                ButtonActionMap &map = world.getResource<ButtonActionMap>();
+
+                std::function<void(World &)> fct = map.actionList.find(name.actionName)->second;
+
+                fct(world);
+            }
+        };
+        std::for_each(joined.begin(), joined.end(), clickInButton);
     }
 } // namespace ecs

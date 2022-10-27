@@ -10,6 +10,7 @@
 #include "ClientRoom.hpp"
 #include <csignal>
 #include <functional>
+#include "ButtonAction.hpp"
 #include "Error/Error.hpp"
 #include "GraphicECS/SFML/Components/ActionQueueComponent.hpp"
 #include "GraphicECS/SFML/Components/AllowControllerComponent.hpp"
@@ -32,7 +33,8 @@
 #include "Transisthor/TransisthorECSLogic/Client/Components/NetworkServer.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Systems/SendNewlyCreatedToServer.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Systems/SendToServer.hpp"
-#include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateAlliedProjectile.hpp"
+#include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/ButtonActionMap.hpp"
+#include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateButton.hpp"
 #include "R-TypeLogic/Global/Components/LayerLvL.hpp"
 #include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
@@ -163,6 +165,8 @@ void ClientRoom::_initSpritesForEntities()
         sf::Vector2f(0, 0), sf::Vector2f(1920, 1080));
     spritesList.addTexture(GraphicsTextureResource::BACKGROUND_LAYER_1, "assets/Backgrounds/middle.png",
         sf::Vector2f(0, 0), sf::Vector2f(1920, 1080));
+    spritesList.addTexture(GraphicsTextureResource::EXIT_BUTTON, "assets/EpiSprite/r-typesheet11.gif",
+        sf::Vector2f(34, 0), sf::Vector2f(34, 34));
 }
 
 void ClientRoom::_initSharedResources()
@@ -278,6 +282,17 @@ void ClientRoom::_initEntities()
         it->getComponent<ControllerJoystickInputComponent>().controllerJoystickMapActions.emplace(
             std::make_pair<unsigned int, std::pair<ActionQueueComponent::inputAction_e, float>>(
                 1, std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEY, 0)));
+        it->getComponent<MouseInputComponent>().MouseMapActions.emplace(
+            std::make_pair<sf::Mouse::Button, std::pair<ActionQueueComponent::inputAction_e, float>>(
+                sf::Mouse::Button::Left,
+                std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::BUTTON_CLICK, 0)));
     }
     _initBackgroundEntities();
+    _initButtons();
+}
+
+void ClientRoom::_initButtons()
+{
+    _worldInstance->addResource<ButtonActionMap>(ButtonActionMap::EXIT, std::function<void(World &)>(exitWindow));
+    createNewButton(*(_worldInstance.get()), 0, 0, 34, 34, ButtonActionMap::EXIT, LayerLvL::EXIT_BUTTON);
 }
