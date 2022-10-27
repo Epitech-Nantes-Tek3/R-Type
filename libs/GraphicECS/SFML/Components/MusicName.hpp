@@ -13,14 +13,14 @@
 
 namespace ecs
 {
-    /// @brief MusicName store the key as enum to the corresponding music stores in shared resource MusicResource.
+    /// @brief MusicName stores the key as enum to the corresponding music stored in shared resource MusicResource.
     class MusicName : public Component {
       public:
         /// @brief Enumeration of all status available for a Music.
         /// Status STOPED specify that a music is STOP but at it's begin
         enum status_e { STOPED, PAUSED, PLAYING };
 
-        /// @brief The music name stores to find the corresponding musicName.
+        /// @brief The music name stores an enum to find which music it needs in MusicResources shared resource
         MusicResource::musicName_e musicName;
 
         /// @brief Constructor of the MusicName component
