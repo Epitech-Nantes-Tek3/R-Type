@@ -15,6 +15,7 @@
 
 namespace ecs
 {
+    /// @brief This resource class stores a map of Sounds SFML.
     class SoundResource : public Resource {
       public:
         /// @brief Enumeration of all available Sounds
