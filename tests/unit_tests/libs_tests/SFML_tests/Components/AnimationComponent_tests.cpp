@@ -8,9 +8,11 @@
 #include <criterion/criterion.h>
 #include "AnimationComponent.hpp"
 
+using namespace graphicECS::SFML::Components;
+
 Test(AnimationComponent, create_class)
 {
-    ecs::AnimationComponent a;
+    AnimationComponent a;
 
     cr_assert_eq(1, 1);
 }

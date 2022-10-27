@@ -9,6 +9,7 @@
 #include <GraphicsTextComponent.hpp>
 
 using namespace ecs;
+using namespace graphicECS::SFML::Components;
 
 Test(GraphicsTextComponent, test_create_function)
 {
