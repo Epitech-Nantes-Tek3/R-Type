@@ -21,8 +21,9 @@ namespace ecs
             /// @brief The default delay of the animation as milliseconds.
             const double baseDelay;
 
-            /// @brief Default constructor.
-            AnimationDelayComponent() = default;
+            /// @brief Construct the class to set default values.
+            /// @param d Delay to set the baseDelay of the animation. Default value is 500.0 milliseconds.
+            AnimationDelayComponent(const double &d = 500.0) : baseDelay(d), delay(d) {};
 
             /// @brief Default destructor.
             ~AnimationDelayComponent() = default;
