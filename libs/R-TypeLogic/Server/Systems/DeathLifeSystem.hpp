@@ -11,6 +11,8 @@
 #include "World/World.hpp"
 #include "R-TypeLogic/Global/Components/DeathComponent.hpp"
 #include "R-TypeLogic/Global/Components/LifeComponent.hpp"
+#include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
+#include "Transisthor/TransisthorECSLogic/Server/Components/NetworkClient.hpp"
 
 namespace ecs
 {
