@@ -49,7 +49,7 @@ using namespace ecs;
 
 static ClientRoom::ClientState *clientRoomState(nullptr);
 
-/// @brief Usefull function called when a sigint received.
+/// @brief Useful function called when a sigint received.
 /// @param signum Value of the received signal
 void signalCallbackHandler(int signum)
 {
