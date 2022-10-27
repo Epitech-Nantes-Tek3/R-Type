@@ -11,7 +11,7 @@
 #include <SFML/Graphics.hpp>
 #include "Component/Component.hpp"
 
-namespace ecs
+namespace graphicECS::SFML::Components
 {
     /// @brief This component class stores a Graphical SFML text.
     /// This class is created in order to draw a text on a screen, specified in shared resource as a window.
@@ -32,6 +32,6 @@ namespace ecs
         /// @brief Default destructor of the class.
         ~GraphicsTextComponent() = default;
     };
-} // namespace ecs
+} // namespace graphicECS::SFML::Components
 
 #endif /* !GRAPHICSTEXTCOMPONENT_HPP_ */

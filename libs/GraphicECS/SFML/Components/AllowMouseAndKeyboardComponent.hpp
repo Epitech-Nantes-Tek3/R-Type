@@ -10,10 +10,10 @@
 
 #include "Component/Component.hpp"
 
-namespace ecs
+namespace graphicECS::SFML::Components
 {
     /// @brief This component class allows mouse and keyboard usage in client.
     class AllowMouseAndKeyboardComponent : public Component {};
-} // namespace ecs
+} // namespace graphicECS::SFML::Components
 
 #endif /* !ALLOWMOUSEANDKEYBOARDCOMPONENT_HPP_ */
