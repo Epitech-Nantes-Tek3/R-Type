@@ -8,13 +8,15 @@
 #ifndef ANIMATIONDELAYCOMPONENT_HPP_
 #define ANIMATIONDELAYCOMPONENT_HPP_
 
-class AnimationDelayComponent {
-    public:
-        AnimationDelayComponent();
-        ~AnimationDelayComponent();
+#include "Component/Component.hpp"
 
-    protected:
-    private:
-};
+namespace ecs
+{
+    class AnimationDelayComponent : public Component {
+        public:
+            AnimationDelayComponent() = default;
+            ~AnimationDelayComponent() = default;
+    };
+} // namespace ecs
 
 #endif /* !ANIMATIONDELAYCOMPONENT_HPP_ */
