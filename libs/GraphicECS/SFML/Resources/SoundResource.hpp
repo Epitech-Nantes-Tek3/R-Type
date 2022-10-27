@@ -18,7 +18,7 @@ namespace ecs
     class SoundResource : public Resource {
       public:
         /// @brief Enumeration of all available Sounds
-        enum soundName_e { UNDEFINED };
+        enum soundName_e { UNDEFINED, SHOOT, DEATH, EXPLOSION };
 
         /// @brief Name of map which contains Sounds.
         using SoundsList = std::unordered_map<soundName_e, std::shared_ptr<sf::Sound>>;
