@@ -18,10 +18,10 @@
 #include "KeyboardInputComponent.hpp"
 #include "MouseInputComponent.hpp"
 #include "World/World.hpp"
-#include "R-TypeLogic/Global/Components/ActionName.hpp"
+#include "R-TypeLogic/EntityManipulation/ButtonManipulation/Components/ActionName.hpp"
 #include "R-TypeLogic/Global/Components/ButtonComponent.hpp"
 #include "R-TypeLogic/Global/Components/ShootingFrequencyComponent.hpp"
-#include "R-TypeLogic/Global/SharedResources/ButtonActionMap.hpp"
+#include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/ButtonActionMap.hpp"
 #include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
 
 namespace ecs

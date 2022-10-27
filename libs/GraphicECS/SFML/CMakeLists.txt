@@ -28,6 +28,7 @@ target_include_directories(${TARGET}
 target_link_libraries(${TARGET}
     ${PROJECT_NAME}_RTypeLogicGlobal
     ${PROJECT_NAME}_ecs
+    ${PROJECT_NAME}_buttonManip
     CONAN_PKG::sfml
 )
 

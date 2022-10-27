@@ -29,4 +29,5 @@ target_include_directories(${TARGET}
 
 target_link_libraries(${TARGET}
     ${PROJECT_NAME}_transisthor
+    ${PROJECT_NAME}_buttonManip
 )

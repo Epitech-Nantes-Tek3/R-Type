@@ -9,7 +9,7 @@
 #define ACTIONNAME_HPP_
 
 #include "Component/Component.hpp"
-#include "R-TypeLogic/Global/SharedResources/ButtonActionMap.hpp"
+#include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/ButtonActionMap.hpp"
 
 namespace ecs
 {

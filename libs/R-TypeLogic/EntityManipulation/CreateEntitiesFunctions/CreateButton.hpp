@@ -9,7 +9,7 @@
 #define CREATEBUTTON_HPP_
 
 #include "World/World.hpp"
-#include "R-TypeLogic/Global/Components/ActionName.hpp"
+#include "R-TypeLogic/EntityManipulation/ButtonManipulation/Components/ActionName.hpp"
 #include "R-TypeLogic/Global/Components/ButtonComponent.hpp"
 #include "R-TypeLogic/Global/Components/LayerLvL.hpp"
 

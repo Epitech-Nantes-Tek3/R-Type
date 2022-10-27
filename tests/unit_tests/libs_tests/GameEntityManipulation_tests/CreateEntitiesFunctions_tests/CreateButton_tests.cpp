@@ -8,7 +8,7 @@
 #include <criterion/criterion.h>
 #include "World/World.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateButton.hpp"
-#include "R-TypeLogic/Global/SharedResources/ButtonActionMap.hpp"
+#include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/ButtonActionMap.hpp"
 #include "R-TypeLogic/Global/Components/LayerLvL.hpp"
 
 using namespace ecs;
