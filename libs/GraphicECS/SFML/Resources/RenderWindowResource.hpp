@@ -12,7 +12,7 @@
 #include <string>
 #include "Resource/Resource.hpp"
 
-namespace ecs
+namespace graphicECS::SFML::Resources
 {
     /// @brief This shared resource adds a window.
     /// It will used by graphics part to draw something on screen, and get inputs on client part.
@@ -38,6 +38,6 @@ namespace ecs
         /// @brief The window to draw on or get inputs from it.
         sf::RenderWindow window;
     };
-} // namespace ecs
+} // namespace graphicECS::SFML::Resources
 
 #endif /* !RENDERWINDOWRESOURCE_HPP_ */

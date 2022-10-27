@@ -13,7 +13,7 @@
 #include "Resource/Resource.hpp"
 #include <unordered_map>
 
-namespace ecs
+namespace graphicECS::SFML::Resources
 {
 
     /// @brief This resource class stores a map of Graphical SFML textures to be set on Shapes.
@@ -65,6 +65,6 @@ namespace ecs
 
         TexturesList _texturesList;
     };
-} // namespace ecs
+} // namespace graphicECS::SFML::Resources
 
 #endif /* !GRAPHICSTEXTURERESOURCE_HPP_ */
