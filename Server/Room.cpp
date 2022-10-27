@@ -123,6 +123,7 @@ void Room::startLobbyLoop(void)
         if (_state == RoomState::IN_GAME) {
             _worldInstance.get()->runSystems();
         } /// WILL BE IMPROVED IN PART TWO (THREAD + CLOCK)
+        _activePlayerGestion();
     }
     _disconectionProcess();
 }
@@ -149,6 +150,19 @@ void Room::_holdADisconnectionRequest(CommunicatorMessage disconnectionDemand)
     }
     _worldInstance->getEntity(clientId).addComponent<Disconnectable>();
     std::cerr << "Player succesfully disconnected." << std::endl;
+}
+
+void Room::_activePlayerGestion()
+{
+    std::vector<std::shared_ptr<ecs::Entity>> joined = _worldInstance->joinEntities<Player>();
+    size_t activePlayer = joined.size();
+
+    if (activePlayer != 0)
+        return;
+    if (_remainingPlaces == 0)
+        _state = RoomState::ENDED;
+    else
+        _state = RoomState::LOBBY;
 }
 
 size_t Room::getEntityPlayerByHisNetworkId(unsigned short networkId)

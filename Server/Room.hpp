@@ -75,6 +75,11 @@ namespace server_data
         /// @brief Send to the server the disconnection signal
         void _disconectionProcess();
 
+        /// @brief Check the number of active player.
+        /// If there is no active player and 0 remainingPlaces, put the room in ended mode.
+        /// If there is no active player and X remainingPlaces, put the room in lobby mode.
+        void _activePlayerGestion();
+
         /// @brief Cross all the player entity and return the matched one
         /// @param networkId networkId of the player to match
         /// @return founded entity id

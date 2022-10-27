@@ -37,6 +37,8 @@ void Movement::run(World &world)
             if ((pos.y >= 1072 && vel.multiplierOrdinate > 0))
                 return;
         }
+        if (elapsedTimeInSeconds >= 1)
+            return;
         pos.x += (vel.multiplierAbscissa * (((double((int)(elapsedTimeInSeconds * 100000000)))) / 100000000));
         pos.y += (vel.multiplierOrdinate * (((double((int)(elapsedTimeInSeconds * 100000000)))) / 100000000));
     };
