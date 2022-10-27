@@ -1,0 +1,4 @@
+<map id="ecs::ActionName" name="ecs::ActionName">
+<area shape="rect" id="node1" title="Action Name stores the key as enum to the corresponding action It can be an exit action,..." alt="" coords="5,80,137,107"/>
+<area shape="rect" id="node2" href="$classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone..." alt="" coords="8,5,135,32"/>
+</map>

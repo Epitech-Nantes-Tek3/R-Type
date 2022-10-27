@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['texturename_5fe_1007',['textureName_e',['../classecs_1_1_graphics_texture_resource.html#af837603102b91ff4b94589320843fdf3',1,'ecs::GraphicsTextureResource']]]
+  ['roomstate_1042',['RoomState',['../classserver__data_1_1_room.html#a1af48f2f03799721c8ea726182e05786',1,'server_data::Room']]]
 ];

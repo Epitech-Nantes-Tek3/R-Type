@@ -6,6 +6,7 @@ var classecs_1_1_layer_lv_l =
       [ "MIDDLE", "classecs_1_1_layer_lv_l.html#a3d249124964fcfd2525e3ccc99313799a60bfd7cb7ee02d44d1cddcf7ab0b2bc2", null ],
       [ "DECORATION", "classecs_1_1_layer_lv_l.html#a3d249124964fcfd2525e3ccc99313799a78790fd64f48d503547b1cc57044f838", null ],
       [ "OBSTACLE", "classecs_1_1_layer_lv_l.html#a3d249124964fcfd2525e3ccc99313799abc7d4b8de91005aa8194be1de7811393", null ],
+      [ "EXIT_BUTTON", "classecs_1_1_layer_lv_l.html#a3d249124964fcfd2525e3ccc99313799acbce60231c2ce8cb1a308f037ac482ea", null ],
       [ "ENEMY", "classecs_1_1_layer_lv_l.html#a3d249124964fcfd2525e3ccc99313799a44b3c00aea6e4bca7e6baa0d9ee63037", null ],
       [ "PLAYER", "classecs_1_1_layer_lv_l.html#a3d249124964fcfd2525e3ccc99313799a44419a19202de3a25c455f6c91fdd20f", null ],
       [ "PROJECTILE", "classecs_1_1_layer_lv_l.html#a3d249124964fcfd2525e3ccc99313799a1163826042e27f3e0535dc06548cc4ef", null ],

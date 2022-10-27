@@ -1,5 +1,6 @@
 var namespaceecs =
 [
+    [ "ActionName", "classecs_1_1_action_name.html", "classecs_1_1_action_name" ],
     [ "ActionQueueComponent", "classecs_1_1_action_queue_component.html", "classecs_1_1_action_queue_component" ],
     [ "AlliedProjectile", "classecs_1_1_allied_projectile.html", "classecs_1_1_allied_projectile" ],
     [ "AllowControllerComponent", "classecs_1_1_allow_controller_component.html", null ],
@@ -8,6 +9,7 @@ var namespaceecs =
     [ "Bouncing", "classecs_1_1_bouncing.html", null ],
     [ "BreakThrought", "classecs_1_1_break_throught.html", null ],
     [ "Button", "classecs_1_1_button.html", "classecs_1_1_button" ],
+    [ "ButtonActionMap", "classecs_1_1_button_action_map.html", "classecs_1_1_button_action_map" ],
     [ "ChargedAttack", "classecs_1_1_charged_attack.html", "classecs_1_1_charged_attack" ],
     [ "Collidable", "classecs_1_1_collidable.html", null ],
     [ "Collide", "structecs_1_1_collide.html", "structecs_1_1_collide" ],

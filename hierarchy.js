@@ -7,6 +7,7 @@ var hierarchy =
     [ "communicator_lib::Communicator", "classcommunicator__lib_1_1_communicator.html", null ],
     [ "communicator_lib::CommunicatorMessage", "structcommunicator__lib_1_1_communicator_message.html", null ],
     [ "ecs::Component", "classecs_1_1_component.html", [
+      [ "ecs::ActionName", "classecs_1_1_action_name.html", null ],
       [ "ecs::ActionQueueComponent", "classecs_1_1_action_queue_component.html", null ],
       [ "ecs::AlliedProjectile", "classecs_1_1_allied_projectile.html", null ],
       [ "ecs::AllowControllerComponent", "classecs_1_1_allow_controller_component.html", null ],
@@ -68,6 +69,7 @@ var hierarchy =
     [ "communicator_lib::Message", "structcommunicator__lib_1_1_message.html", null ],
     [ "communicator_lib::Receiver", "classcommunicator__lib_1_1_receiver.html", null ],
     [ "ecs::Resource", "classecs_1_1_resource.html", [
+      [ "ecs::ButtonActionMap", "classecs_1_1_button_action_map.html", null ],
       [ "ecs::GameClock", "classecs_1_1_game_clock.html", null ],
       [ "ecs::GraphicsFontResource", "classecs_1_1_graphics_font_resource.html", null ],
       [ "ecs::GraphicsTextureResource", "classecs_1_1_graphics_texture_resource.html", null ],

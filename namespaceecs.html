@@ -99,6 +99,9 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_action_name.html">ActionName</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Action Name stores the key as enum to the corresponding action It can be an exit action, an opening menu action, a close menu action...  <a href="classecs_1_1_action_name.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_action_queue_component.html">ActionQueueComponent</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This component class stores a function queue. These functions will be added when an input occurs during the game by a system. They will be used by another system. These function are stored in <a class="el" href="_e_c_s_actions_8hpp.html">ECSActions.hpp</a>.  <a href="classecs_1_1_action_queue_component.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -122,6 +125,9 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_button.html">Button</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="classecs_1_1_button.html" title="The Button Component, used to make the difference between the component.">Button</a> <a class="el" href="classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone...">Component</a>, used to make the difference between the component.  <a href="classecs_1_1_button.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_button_action_map.html">ButtonActionMap</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This resource class stores a map of button action to be executed on click.  <a href="classecs_1_1_button_action_map.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_charged_attack.html">ChargedAttack</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Charged attack class, adding a cooldown before making huge damage.  <a href="classecs_1_1_charged_attack.html#details">More...</a><br /></td></tr>
@@ -332,9 +338,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a761c48420b9ed05874533d36511531b6"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceecs.html#a761c48420b9ed05874533d36511531b6">createNewBackGround</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, const int posX, const int posY, const double multiplierAbscissa, const double multiplierOrdinate, const short weight, const int sizeX, const int sizeY)</td></tr>
 <tr class="memdesc:a761c48420b9ed05874533d36511531b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function creates a new <a class="el" href="classecs_1_1_back_ground.html" title="BackGround Component allows an entity to be used as a BackGround.">BackGround</a> <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components.">Entity</a> with these parameters.  <a href="namespaceecs.html#a761c48420b9ed05874533d36511531b6">More...</a><br /></td></tr>
 <tr class="separator:a761c48420b9ed05874533d36511531b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a98d8b9400d06d3850a533e1e3c3c37be"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceecs.html#a98d8b9400d06d3850a533e1e3c3c37be">createNewButton</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, const int posX, const int posY, const double multiplierAbscissa, const double multiplierOrdinate, const short weight, const int sizeX, const int sizeY)</td></tr>
-<tr class="memdesc:a98d8b9400d06d3850a533e1e3c3c37be"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function creates a new <a class="el" href="classecs_1_1_button.html" title="The Button Component, used to make the difference between the component.">Button</a> <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components.">Entity</a> with these parameters.  <a href="namespaceecs.html#a98d8b9400d06d3850a533e1e3c3c37be">More...</a><br /></td></tr>
-<tr class="separator:a98d8b9400d06d3850a533e1e3c3c37be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc2ef5982bdc45484ae1ebff0c5578dc"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceecs.html#adc2ef5982bdc45484ae1ebff0c5578dc">createNewButton</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, const int posX, const int posY, const int sizeX, const int sizeY, <a class="el" href="classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90">ButtonActionMap::buttonAction_e</a> actionName, <a class="el" href="classecs_1_1_layer_lv_l.html#a3d249124964fcfd2525e3ccc99313799">LayerLvL::layer_e</a> layerLvl)</td></tr>
+<tr class="memdesc:adc2ef5982bdc45484ae1ebff0c5578dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function creates a new <a class="el" href="classecs_1_1_button.html" title="The Button Component, used to make the difference between the component.">Button</a> <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components.">Entity</a> with these parameters.  <a href="namespaceecs.html#adc2ef5982bdc45484ae1ebff0c5578dc">More...</a><br /></td></tr>
+<tr class="separator:adc2ef5982bdc45484ae1ebff0c5578dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afb2bd80efb6c107c31a7275bc8bf7a1d"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceecs.html#afb2bd80efb6c107c31a7275bc8bf7a1d">createNewEnemy</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, const int posX, const int posY, const double multiplierAbscissa, const double multiplierOrdinate, const short weight, const int sizeX, const int sizeY, const unsigned short life, const unsigned short damage, const unsigned short damageRadius, const std::string uuid=&quot;&quot;, const unsigned short networkId=0)</td></tr>
 <tr class="memdesc:afb2bd80efb6c107c31a7275bc8bf7a1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function creates a new <a class="el" href="classecs_1_1_enemy.html" title="Enemy Component allows an entity to be used as an Enemy.">Enemy</a> <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components.">Entity</a> with these parameters.  <a href="namespaceecs.html#afb2bd80efb6c107c31a7275bc8bf7a1d">More...</a><br /></td></tr>
 <tr class="separator:afb2bd80efb6c107c31a7275bc8bf7a1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -526,8 +532,8 @@ template&lt;std::derived_from&lt; Component &gt; C&gt; </div>
 
 </div>
 </div>
-<a id="a98d8b9400d06d3850a533e1e3c3c37be"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a98d8b9400d06d3850a533e1e3c3c37be">&#9670;&nbsp;</a></span>createNewButton()</h2>
+<a id="adc2ef5982bdc45484ae1ebff0c5578dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc2ef5982bdc45484ae1ebff0c5578dc">&#9670;&nbsp;</a></span>createNewButton()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -553,24 +559,6 @@ template&lt;std::derived_from&lt; Component &gt; C&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const double&#160;</td>
-          <td class="paramname"><em>multiplierAbscissa</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const double&#160;</td>
-          <td class="paramname"><em>multiplierOrdinate</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const short&#160;</td>
-          <td class="paramname"><em>weight</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">const int&#160;</td>
           <td class="paramname"><em>sizeX</em>, </td>
         </tr>
@@ -578,7 +566,19 @@ template&lt;std::derived_from&lt; Component &gt; C&gt; </div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>sizeY</em>&#160;</td>
+          <td class="paramname"><em>sizeY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90">ButtonActionMap::buttonAction_e</a>&#160;</td>
+          <td class="paramname"><em>actionName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classecs_1_1_layer_lv_l.html#a3d249124964fcfd2525e3ccc99313799">LayerLvL::layer_e</a>&#160;</td>
+          <td class="paramname"><em>layerLvl</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -594,11 +594,10 @@ template&lt;std::derived_from&lt; Component &gt; C&gt; </div>
     <tr><td class="paramname">world</td><td>The world in which the <a class="el" href="classecs_1_1_button.html" title="The Button Component, used to make the difference between the component.">Button</a> must be created </td></tr>
     <tr><td class="paramname">posX</td><td><a class="el" href="classecs_1_1_position.html" title="The Position component, almost used for every entities It&#39;s a networkable component.">Position</a> x of the <a class="el" href="classecs_1_1_button.html" title="The Button Component, used to make the difference between the component.">Button</a> </td></tr>
     <tr><td class="paramname">posY</td><td><a class="el" href="classecs_1_1_position.html" title="The Position component, almost used for every entities It&#39;s a networkable component.">Position</a> y of the <a class="el" href="classecs_1_1_button.html" title="The Button Component, used to make the difference between the component.">Button</a> </td></tr>
-    <tr><td class="paramname">weight</td><td><a class="el" href="classecs_1_1_weight.html" title="The Weight class, almost used for everything, used in gravity system.">Weight</a> of the <a class="el" href="classecs_1_1_button.html" title="The Button Component, used to make the difference between the component.">Button</a> </td></tr>
     <tr><td class="paramname">sizeX</td><td><a class="el" href="classecs_1_1_size.html" title="The Size component, almost used for everything.">Size</a> x of the <a class="el" href="classecs_1_1_button.html" title="The Button Component, used to make the difference between the component.">Button</a> </td></tr>
     <tr><td class="paramname">sizeY</td><td><a class="el" href="classecs_1_1_size.html" title="The Size component, almost used for everything.">Size</a> y of the <a class="el" href="classecs_1_1_button.html" title="The Button Component, used to make the difference between the component.">Button</a> </td></tr>
-    <tr><td class="paramname">multiplierAbscissa</td><td>The <a class="el" href="classecs_1_1_velocity.html" title="The velocity class, multiplying the movement of the entity It&#39;s a networkable component.">Velocity</a> multiplierAbscissa for the new <a class="el" href="classecs_1_1_button.html" title="The Button Component, used to make the difference between the component.">Button</a> </td></tr>
-    <tr><td class="paramname">multiplierOrdinate</td><td>The <a class="el" href="classecs_1_1_velocity.html" title="The velocity class, multiplying the movement of the entity It&#39;s a networkable component.">Velocity</a> multiplierOrdinate for the new <a class="el" href="classecs_1_1_button.html" title="The Button Component, used to make the difference between the component.">Button</a> </td></tr>
+    <tr><td class="paramname">actionName</td><td>The action name to be set for the <a class="el" href="classecs_1_1_button.html" title="The Button Component, used to make the difference between the component.">Button</a> </td></tr>
+    <tr><td class="paramname">layerLvl</td><td>The button layer level, useful for graphical part </td></tr>
   </table>
   </dd>
 </dl>
