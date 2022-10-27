@@ -8,13 +8,18 @@
 #ifndef ANIMATIONSYSTEM_HPP_
 #define ANIMATIONSYSTEM_HPP_
 
-class AnimationSystem {
-    public:
+#include "System/System.hpp"
+
+namespace ecs
+{
+    class AnimationSystem : public System {
+      public:
         AnimationSystem();
         ~AnimationSystem();
 
-    protected:
-    private:
-};
+      protected:
+      private:
+    };
+} // namespace ecs
 
 #endif /* !ANIMATIONSYSTEM_HPP_ */
