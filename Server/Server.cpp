@@ -8,6 +8,7 @@
 /// @file Server/Server.cpp
 
 #include "Server.hpp"
+#include <csignal>
 #include "Error/Error.hpp"
 
 using namespace server_data;
@@ -18,6 +19,12 @@ Server::Server(std::string address, unsigned short port) : _communicatorInstance
 {
     _activeRoomList = {};
     _networkInformations = Client(address, port);
+}
+
+Server::Server()
+{
+    _activeRoomList = {};
+    _networkInformations = Client();
 }
 
 unsigned short Server::createANewRoom(void)
@@ -39,10 +46,4 @@ void Server::deleteARoom(unsigned short id)
             _activeRoomList.erase(_activeRoomList.begin() + pos);
         pos++;
     }
-}
-
-Server::Server()
-{
-    _activeRoomList = {};
-    _networkInformations = Client();
 }
