@@ -9,6 +9,9 @@ var dir_7da7d94555b70b51b390ae84941ad419 =
     [ "AllowMouseAndKeyboardComponent.hpp", "_allow_mouse_and_keyboard_component_8hpp.html", [
       [ "AllowMouseAndKeyboardComponent", "classecs_1_1_allow_mouse_and_keyboard_component.html", null ]
     ] ],
+    [ "AnimationComponent.hpp", "_animation_component_8hpp.html", [
+      [ "AnimationComponent", "classecs_1_1_animation_component.html", "classecs_1_1_animation_component" ]
+    ] ],
     [ "ControllerButtonInputComponent.hpp", "_controller_button_input_component_8hpp.html", [
       [ "ControllerButtonInputComponent", "classecs_1_1_controller_button_input_component.html", "classecs_1_1_controller_button_input_component" ]
     ] ],

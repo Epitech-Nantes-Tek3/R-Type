@@ -12,6 +12,7 @@ var hierarchy =
       [ "ecs::AlliedProjectile", "classecs_1_1_allied_projectile.html", null ],
       [ "ecs::AllowControllerComponent", "classecs_1_1_allow_controller_component.html", null ],
       [ "ecs::AllowMouseAndKeyboardComponent", "classecs_1_1_allow_mouse_and_keyboard_component.html", null ],
+      [ "ecs::AnimationComponent", "classecs_1_1_animation_component.html", null ],
       [ "ecs::BackGround", "classecs_1_1_back_ground.html", null ],
       [ "ecs::Bouncing", "classecs_1_1_bouncing.html", null ],
       [ "ecs::BreakThrought", "classecs_1_1_break_throught.html", null ],

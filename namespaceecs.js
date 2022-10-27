@@ -5,6 +5,7 @@ var namespaceecs =
     [ "AlliedProjectile", "classecs_1_1_allied_projectile.html", "classecs_1_1_allied_projectile" ],
     [ "AllowControllerComponent", "classecs_1_1_allow_controller_component.html", null ],
     [ "AllowMouseAndKeyboardComponent", "classecs_1_1_allow_mouse_and_keyboard_component.html", null ],
+    [ "AnimationComponent", "classecs_1_1_animation_component.html", "classecs_1_1_animation_component" ],
     [ "BackGround", "classecs_1_1_back_ground.html", null ],
     [ "Bouncing", "classecs_1_1_bouncing.html", null ],
     [ "BreakThrought", "classecs_1_1_break_throught.html", null ],

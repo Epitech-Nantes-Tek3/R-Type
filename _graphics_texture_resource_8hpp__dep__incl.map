@@ -1,7 +1,8 @@
 <map id="libs/GraphicECS/SFML/Resources/GraphicsTextureResource.hpp" name="libs/GraphicECS/SFML/Resources/GraphicsTextureResource.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="161,5,452,47"/>
-<area shape="rect" id="node2" href="$_texture_name_8hpp.html" title=" " alt="" coords="119,95,345,136"/>
-<area shape="rect" id="node3" href="$_draw_components_8cpp.html" title=" " alt="" coords="5,184,235,225"/>
-<area shape="rect" id="node4" href="$_client_room_8cpp.html" title=" " alt="" coords="279,191,446,218"/>
-<area shape="rect" id="node5" href="$_graphics_texture_resource_8cpp.html" title=" " alt="" coords="421,95,710,136"/>
+<area shape="rect" id="node1" title=" " alt="" coords="331,5,621,47"/>
+<area shape="rect" id="node2" href="$_animation_component_8hpp.html" title=" " alt="" coords="5,95,288,136"/>
+<area shape="rect" id="node3" href="$_texture_name_8hpp.html" title=" " alt="" coords="363,95,589,136"/>
+<area shape="rect" id="node4" href="$_draw_components_8cpp.html" title=" " alt="" coords="249,184,479,225"/>
+<area shape="rect" id="node5" href="$_client_room_8cpp.html" title=" " alt="" coords="523,191,690,218"/>
+<area shape="rect" id="node6" href="$_graphics_texture_resource_8cpp.html" title=" " alt="" coords="665,95,954,136"/>
 </map>
