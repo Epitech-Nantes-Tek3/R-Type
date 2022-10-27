@@ -66,6 +66,9 @@ namespace client_data
         /// @brief Init all the Entities for the parallax (background)
         void _initBackgroundEntities();
 
+        /// @brief Init all the Buttons and the linked actions
+        void _initButtons();
+
         /// @brief Network informations of the room.
         Client _networkInformations;
 
