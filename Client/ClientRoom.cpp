@@ -8,6 +8,7 @@
 /// @file Client/ClientRoom.cpp
 
 #include "ClientRoom.hpp"
+#include <csignal>
 #include <functional>
 #include "Error/Error.hpp"
 #include "GraphicECS/SFML/Components/ActionQueueComponent.hpp"
