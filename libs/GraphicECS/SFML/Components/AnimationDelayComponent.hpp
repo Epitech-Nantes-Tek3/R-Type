@@ -14,6 +14,7 @@ namespace ecs
 {
     class AnimationDelayComponent : public Component {
         public:
+            double delay;
             AnimationDelayComponent() = default;
             ~AnimationDelayComponent() = default;
     };
