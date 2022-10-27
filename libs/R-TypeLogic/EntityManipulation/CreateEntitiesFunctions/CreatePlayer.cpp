@@ -22,7 +22,7 @@ namespace ecs
                              .addComponent<Damage>(damage)
                              .addComponent<DamageRadius>(damageRadius)
                              .addComponent<Collidable>()
-                             .addComponent<ShootingFrequency>(0.05)
+                             .addComponent<ShootingFrequency>(0.5)
                              .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate)
                              .addComponent<Player>(playerIdentifier);
         if (controlable == true) {
