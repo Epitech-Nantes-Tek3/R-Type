@@ -22,5 +22,5 @@ Test(SoundName, create_sound_shoot)
 {
     SoundName sound(SoundResource::SHOOT);
 
-    cr_assert_eq(1, sound.soundName);
+    cr_assert_eq(SoundResource::SHOOT, sound.soundName);
 }

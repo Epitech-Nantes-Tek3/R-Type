@@ -13,10 +13,10 @@
 
 namespace ecs
 {
-    /// @brief SoundName store the key as enum to the corresponding sound stores in shared resource SoundResource.
+    /// @brief SoundName stores the key as enum to the corresponding sound stored in shared resource SoundResource.
     class SoundName : public Component {
       public:
-        /// @brief The sound name stores to find the corresponding soundName.
+        /// @brief The sound name stores an enum to find which sound it needs in SoundResources shared resource.
         SoundResource::soundName_e soundName;
 
         /// @brief Constructor of the SoundName component
