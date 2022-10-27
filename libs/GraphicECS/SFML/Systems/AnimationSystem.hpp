@@ -9,6 +9,7 @@
 #define ANIMATIONSYSTEM_HPP_
 
 #include "System/System.hpp"
+#include "World/World.hpp"
 
 namespace ecs
 {
