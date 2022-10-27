@@ -20,6 +20,9 @@ namespace ecs
             /// @brief A vector of textureName to store textures used for the animation.
             std::vector<GraphicsTextureResource::textureName_e> textures;
 
+            /// @brief Index of the current texture in use.
+            std::size_t currentTexture;
+
             /// @brief Default constructor of AnimationComponent.
             AnimationComponent() = default;
 
