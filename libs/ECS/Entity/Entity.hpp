@@ -11,6 +11,7 @@
 #include <cstddef>
 #include <iostream>
 #include <memory>
+#include <mutex>
 #include <typeindex>
 #include <unordered_map>
 
@@ -20,7 +21,8 @@ namespace ecs
 {
     /// @brief This is the Entity Class for E.C.S.
     /// It stores the related Components
-    class Entity final {
+    /// The std::mutex inheritance is in order to allows to lock a Entity when something wants to used/modified it
+    class Entity final : public std::mutex {
       public:
         /// @brief The id type
         using ID = std::size_t;
@@ -85,6 +87,9 @@ namespace ecs
         /// @brief This is the constructor of the Entity Class
         /// @param id The id of the Entity
         inline Entity(ID id) : _id(id), _componentList() {}
+
+        ///@brief Delete the copy constructor because a mutex can't be copied
+        Entity(const Entity &) = delete;
 
       private:
         /// @brief Id of the Entity Class
