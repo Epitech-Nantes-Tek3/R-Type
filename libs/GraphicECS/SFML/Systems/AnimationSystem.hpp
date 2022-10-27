@@ -12,13 +12,8 @@
 
 namespace ecs
 {
-    class AnimationSystem : public System {
-      public:
-        AnimationSystem();
-        ~AnimationSystem();
-
-      protected:
-      private:
+    struct AnimationSystem : public System {
+        void run(World &world) override final;
     };
 } // namespace ecs
 
