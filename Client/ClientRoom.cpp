@@ -138,10 +138,7 @@ void ClientRoom::_disconectionProcess()
     _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, nullptr, 0, 13);
 }
 
-void ClientRoom::_holdADisconnectionRequest()
-{
-    _state = ClientState::ENDED;
-}
+void ClientRoom::_holdADisconnectionRequest() { _state = ClientState::ENDED; }
 
 void ClientRoom::_initSpritesForEntities()
 {
