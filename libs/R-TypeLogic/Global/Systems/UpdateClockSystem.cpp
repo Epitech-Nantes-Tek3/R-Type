@@ -9,7 +9,6 @@
 #include <chrono>
 #include "R-TypeLogic/Global/Components/ShootingFrequencyComponent.hpp"
 #include "R-TypeLogic/Server/Components/AfkFrequencyComponent.hpp"
-#include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
 
 using namespace ecs;
 
