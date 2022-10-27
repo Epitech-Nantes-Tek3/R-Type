@@ -18,6 +18,8 @@
 #define private public
 #include "InputManagement.hpp"
 
+using namespace graphicECS::SFML::Systems;
+
 Test(InputManagement, create_system)
 {
     InputManagement inputs;
