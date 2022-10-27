@@ -15,7 +15,7 @@ using namespace std::chrono;
 
 namespace ecs
 {
-    /// @brief The AfkFrequency class, how many seconds will be before the entity will be consided has inactive
+    /// @brief The AfkFrequency class, how many seconds will pass before the entity will be consided has inactive
     class AfkFrequency : public Component {
       public:
         /// @brief The delay before inactivity detection
