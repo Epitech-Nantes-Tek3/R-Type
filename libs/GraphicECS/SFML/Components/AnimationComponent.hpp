@@ -14,6 +14,7 @@
 
 namespace ecs
 {
+    /// @brief This component stores a vector of textures to make an animation with them.
     class AnimationComponent : public Component {
         public:
             /// @brief A vector of textureName to store textures used for the animation.
