@@ -15,7 +15,7 @@ void RemoveAfkSystem::run(World &world)
 {
     std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<AfkFrequency>();
 
-    auto afkTraitment = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
+    auto afkHandle = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
         AfkFrequency &freq = entityPtr.get()->getComponent<AfkFrequency>();
 
         if (freq.frequency == duration<double>(0)) {
@@ -26,5 +26,5 @@ void RemoveAfkSystem::run(World &world)
         }
     };
 
-    std::for_each(joined.begin(), joined.end(), afkTraitment);
+    std::for_each(joined.begin(), joined.end(), afkHandle);
 }
