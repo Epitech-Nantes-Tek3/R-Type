@@ -7,12 +7,12 @@ set(SRC
     ${INC_ROOT}/SharedResources/ButtonActionMap.hpp
 )
 
-set(TARGET ${PROJECT_NAME}_buttonManip)
+set(TARGET ${PROJECT_NAME}_RTypeLogicButtonManipulation)
 
 add_library(${TARGET} ${SRC})
 
 target_include_directories(${TARGET}
-    PUBLIC  ${INC_ROOT}
+    PUBLIC ${INC_ROOT}
     PRIVATE ${PROJECT_NAME}_ecs
 )
 

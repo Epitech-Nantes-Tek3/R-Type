@@ -28,5 +28,5 @@ target_link_libraries(${TARGET}
     ${PROJECT_NAME}_transisthor
     ${PROJECT_NAME}_argumentHandler
     ${PROJECT_NAME}_SFMLGraphicECS
-    ${PROJECT_NAME}_buttonManip
+    ${PROJECT_NAME}_RTypeLogicButtonManipulation
 )
