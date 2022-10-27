@@ -26,6 +26,7 @@
 #include "R-TypeLogic/Global/Components/WeightComponent.hpp"
 #include "R-TypeLogic/Global/SharedResources/Random.hpp"
 #include "R-TypeLogic/Global/Components/LayerLvL.hpp"
+#include "R-TypeLogic/Server/Components/AfkFrequencyComponent.hpp"
 
 namespace ecs
 {

@@ -20,6 +20,12 @@ Server::Server(std::string address, unsigned short port) : _communicatorInstance
     _networkInformations = Client(address, port);
 }
 
+Server::Server()
+{
+    _activeRoomList = {};
+    _networkInformations = Client();
+}
+
 unsigned short Server::createANewRoom(void)
 {
     _activeRoomList.push_back(Room(_activeRoomList.size(),
@@ -39,10 +45,4 @@ void Server::deleteARoom(unsigned short id)
             _activeRoomList.erase(_activeRoomList.begin() + pos);
         pos++;
     }
-}
-
-Server::Server()
-{
-    _activeRoomList = {};
-    _networkInformations = Client();
 }
