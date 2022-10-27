@@ -1,5 +1,5 @@
 <map id="ecs::System" name="ecs::System">
-<area shape="rect" id="node1" title=" " alt="" coords="5,436,107,463"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,461,107,488"/>
 <area shape="rect" id="node2" href="$structecs_1_1_collide.html" title="This is the Collide System. This system will check every entities, see if they collide and apply dama..." alt="" coords="211,5,309,32"/>
 <area shape="rect" id="node3" href="$structecs_1_1_death_life.html" title="This is the DeathLife System. This System takes all entities that have a Life Component with 0 HP/lif..." alt="" coords="203,56,317,83"/>
 <area shape="rect" id="node4" href="$structecs_1_1_death_system.html" title="This is the Death System. This system takes all entities which have Dead Component and removes them f..." alt="" coords="190,107,330,133"/>
@@ -12,10 +12,11 @@
 <area shape="rect" id="node11" href="$structecs_1_1_life_time_death.html" title="This is the LifeTimeDeath System. This System takes all entities that have a LifeTime Component with ..." alt="" coords="186,461,334,488"/>
 <area shape="rect" id="node12" href="$structecs_1_1_movement.html" title="This is the Movement system. This system can move any entities which contains a Position and a Veloci..." alt="" coords="199,512,321,539"/>
 <area shape="rect" id="node13" href="$structecs_1_1_parallax.html" title="Parallax System. Make a moving background to make an &quot;infinite map&quot;." alt="" coords="208,563,312,589"/>
-<area shape="rect" id="node14" href="$structecs_1_1_sf_rectangle_follow_entity_system.html" title="This system class manage SFML Rectangle Shape to modify it&#39;s SfRectangleSahpePosition with the Positi..." alt="" coords="155,614,365,655"/>
-<area shape="rect" id="node15" href="$structecs_1_1_update_clock.html" title="UpdateClock System. Will be used to call the GameClock&#39;s reset." alt="" coords="193,680,327,707"/>
-<area shape="rect" id="node16" href="$struct_send_newly_created_to_clients.html" title=" " alt="" coords="157,731,363,757"/>
-<area shape="rect" id="node17" href="$struct_send_newly_created_to_server.html" title=" " alt="" coords="159,781,361,808"/>
-<area shape="rect" id="node18" href="$struct_send_to_client.html" title="SendToClient is a system that sends Networkable Entities datas to clients" alt="" coords="207,832,313,859"/>
-<area shape="rect" id="node19" href="$struct_send_to_server.html" title=" " alt="" coords="205,883,315,909"/>
+<area shape="rect" id="node14" href="$structecs_1_1_remove_afk_system.html" title="This is the RemoveAfk System. It will send a protocol 13 to afk client." alt="" coords="171,613,349,640"/>
+<area shape="rect" id="node15" href="$structecs_1_1_sf_rectangle_follow_entity_system.html" title="This system class manage SFML Rectangle Shape to modify it&#39;s SfRectangleSahpePosition with the Positi..." alt="" coords="155,665,365,706"/>
+<area shape="rect" id="node16" href="$structecs_1_1_update_clock.html" title="UpdateClock System. Will be used to call the GameClock&#39;s reset." alt="" coords="193,731,327,757"/>
+<area shape="rect" id="node17" href="$struct_send_newly_created_to_clients.html" title=" " alt="" coords="157,781,363,808"/>
+<area shape="rect" id="node18" href="$struct_send_newly_created_to_server.html" title=" " alt="" coords="159,832,361,859"/>
+<area shape="rect" id="node19" href="$struct_send_to_client.html" title="SendToClient is a system that sends Networkable Entities datas to clients" alt="" coords="207,883,313,909"/>
+<area shape="rect" id="node20" href="$struct_send_to_server.html" title=" " alt="" coords="205,933,315,960"/>
 </map>

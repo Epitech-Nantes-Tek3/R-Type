@@ -2,6 +2,7 @@ var namespaceecs =
 [
     [ "ActionName", "classecs_1_1_action_name.html", "classecs_1_1_action_name" ],
     [ "ActionQueueComponent", "classecs_1_1_action_queue_component.html", "classecs_1_1_action_queue_component" ],
+    [ "AfkFrequency", "classecs_1_1_afk_frequency.html", "classecs_1_1_afk_frequency" ],
     [ "AlliedProjectile", "classecs_1_1_allied_projectile.html", "classecs_1_1_allied_projectile" ],
     [ "AllowControllerComponent", "classecs_1_1_allow_controller_component.html", null ],
     [ "AllowMouseAndKeyboardComponent", "classecs_1_1_allow_mouse_and_keyboard_component.html", null ],
@@ -63,6 +64,7 @@ var namespaceecs =
     [ "Position", "classecs_1_1_position.html", "classecs_1_1_position" ],
     [ "Projectile", "classecs_1_1_projectile.html", null ],
     [ "RandomDevice", "structecs_1_1_random_device.html", "structecs_1_1_random_device" ],
+    [ "RemoveAfkSystem", "structecs_1_1_remove_afk_system.html", "structecs_1_1_remove_afk_system" ],
     [ "RenderWindowResource", "classecs_1_1_render_window_resource.html", "classecs_1_1_render_window_resource" ],
     [ "Resource", "classecs_1_1_resource.html", "classecs_1_1_resource" ],
     [ "SfRectangleFollowEntitySystem", "structecs_1_1_sf_rectangle_follow_entity_system.html", "structecs_1_1_sf_rectangle_follow_entity_system" ],

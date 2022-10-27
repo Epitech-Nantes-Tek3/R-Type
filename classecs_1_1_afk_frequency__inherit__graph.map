@@ -1,0 +1,4 @@
+<map id="ecs::AfkFrequency" name="ecs::AfkFrequency">
+<area shape="rect" id="node1" title="The AfkFrequency class, how many seconds will pass before the entity will be considered has inactive." alt="" coords="5,80,147,107"/>
+<area shape="rect" id="node2" href="$classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone..." alt="" coords="13,5,139,32"/>
+</map>

@@ -9,6 +9,7 @@ var hierarchy =
     [ "ecs::Component", "classecs_1_1_component.html", [
       [ "ecs::ActionName", "classecs_1_1_action_name.html", null ],
       [ "ecs::ActionQueueComponent", "classecs_1_1_action_queue_component.html", null ],
+      [ "ecs::AfkFrequency", "classecs_1_1_afk_frequency.html", null ],
       [ "ecs::AlliedProjectile", "classecs_1_1_allied_projectile.html", null ],
       [ "ecs::AllowControllerComponent", "classecs_1_1_allow_controller_component.html", null ],
       [ "ecs::AllowMouseAndKeyboardComponent", "classecs_1_1_allow_mouse_and_keyboard_component.html", null ],
@@ -98,6 +99,7 @@ var hierarchy =
       [ "ecs::LifeTimeDeath", "structecs_1_1_life_time_death.html", null ],
       [ "ecs::Movement", "structecs_1_1_movement.html", null ],
       [ "ecs::Parallax", "structecs_1_1_parallax.html", null ],
+      [ "ecs::RemoveAfkSystem", "structecs_1_1_remove_afk_system.html", null ],
       [ "ecs::SfRectangleFollowEntitySystem", "structecs_1_1_sf_rectangle_follow_entity_system.html", null ],
       [ "ecs::UpdateClock", "structecs_1_1_update_clock.html", null ],
       [ "SendNewlyCreatedToClients", "struct_send_newly_created_to_clients.html", null ],

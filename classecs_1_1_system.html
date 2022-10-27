@@ -97,7 +97,7 @@ Inheritance diagram for ecs::System:</div>
 <div class="dyncontent">
 <div class="center"><img src="classecs_1_1_system__inherit__graph.png" border="0" usemap="#ecs_1_1_system_inherit__map" alt="Inheritance graph"/></div>
 <map name="ecs_1_1_system_inherit__map" id="ecs_1_1_system_inherit__map">
-<area shape="rect" title=" " alt="" coords="5,436,107,463"/>
+<area shape="rect" title=" " alt="" coords="5,461,107,488"/>
 <area shape="rect" href="structecs_1_1_collide.html" title="This is the Collide System. This system will check every entities, see if they collide and apply dama..." alt="" coords="211,5,309,32"/>
 <area shape="rect" href="structecs_1_1_death_life.html" title="This is the DeathLife System. This System takes all entities that have a Life Component with 0 HP/lif..." alt="" coords="203,56,317,83"/>
 <area shape="rect" href="structecs_1_1_death_system.html" title="This is the Death System. This system takes all entities which have Dead Component and removes them f..." alt="" coords="190,107,330,133"/>
@@ -110,12 +110,13 @@ Inheritance diagram for ecs::System:</div>
 <area shape="rect" href="structecs_1_1_life_time_death.html" title="This is the LifeTimeDeath System. This System takes all entities that have a LifeTime Component with ..." alt="" coords="186,461,334,488"/>
 <area shape="rect" href="structecs_1_1_movement.html" title="This is the Movement system. This system can move any entities which contains a Position and a Veloci..." alt="" coords="199,512,321,539"/>
 <area shape="rect" href="structecs_1_1_parallax.html" title="Parallax System. Make a moving background to make an &quot;infinite map&quot;." alt="" coords="208,563,312,589"/>
-<area shape="rect" href="structecs_1_1_sf_rectangle_follow_entity_system.html" title="This system class manage SFML Rectangle Shape to modify it&#39;s SfRectangleSahpePosition with the Positi..." alt="" coords="155,614,365,655"/>
-<area shape="rect" href="structecs_1_1_update_clock.html" title="UpdateClock System. Will be used to call the GameClock&#39;s reset." alt="" coords="193,680,327,707"/>
-<area shape="rect" href="struct_send_newly_created_to_clients.html" title=" " alt="" coords="157,731,363,757"/>
-<area shape="rect" href="struct_send_newly_created_to_server.html" title=" " alt="" coords="159,781,361,808"/>
-<area shape="rect" href="struct_send_to_client.html" title="SendToClient is a system that sends Networkable Entities datas to clients" alt="" coords="207,832,313,859"/>
-<area shape="rect" href="struct_send_to_server.html" title=" " alt="" coords="205,883,315,909"/>
+<area shape="rect" href="structecs_1_1_remove_afk_system.html" title="This is the RemoveAfk System. It will send a protocol 13 to afk client." alt="" coords="171,613,349,640"/>
+<area shape="rect" href="structecs_1_1_sf_rectangle_follow_entity_system.html" title="This system class manage SFML Rectangle Shape to modify it&#39;s SfRectangleSahpePosition with the Positi..." alt="" coords="155,665,365,706"/>
+<area shape="rect" href="structecs_1_1_update_clock.html" title="UpdateClock System. Will be used to call the GameClock&#39;s reset." alt="" coords="193,731,327,757"/>
+<area shape="rect" href="struct_send_newly_created_to_clients.html" title=" " alt="" coords="157,781,363,808"/>
+<area shape="rect" href="struct_send_newly_created_to_server.html" title=" " alt="" coords="159,832,361,859"/>
+<area shape="rect" href="struct_send_to_client.html" title="SendToClient is a system that sends Networkable Entities datas to clients" alt="" coords="207,883,313,909"/>
+<area shape="rect" href="struct_send_to_server.html" title=" " alt="" coords="205,933,315,960"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -182,7 +183,7 @@ Public Member Functions</h2></td></tr>
 
 <p>The main function which implements the desired logic. </p>
 
-<p>Implemented in <a class="el" href="structecs_1_1_collide.html#a8b31f7ed9bfde438999bd443ee5773a4">ecs::Collide</a>, <a class="el" href="structecs_1_1_draw_components.html#a571b971f74ee427edd39e8dedf8908d8">ecs::DrawComponents</a>, <a class="el" href="classecs_1_1_enemies_go_random.html#a516ff1731c65364ac7d2caf6ff803e50">ecs::EnemiesGoRandom</a>, <a class="el" href="structecs_1_1_input_management.html#a4896f31d81f00e7ef8d0af41979a291e">ecs::InputManagement</a>, <a class="el" href="structecs_1_1_sf_rectangle_follow_entity_system.html#a9c48c9d93aecee1e199db7abc9b04bc7">ecs::SfRectangleFollowEntitySystem</a>, <a class="el" href="structecs_1_1_death_system.html#a96e3831feca5f69d82df7cf6906896bf">ecs::DeathSystem</a>, <a class="el" href="structecs_1_1_movement.html#a3956c2d126f291e5d0949b9c720ea86c">ecs::Movement</a>, <a class="el" href="structecs_1_1_parallax.html#a96c20e149dede5b59f897f392aee7bb2">ecs::Parallax</a>, <a class="el" href="structecs_1_1_death_life.html#a7960f30274a3c3924b5e48e034544e38">ecs::DeathLife</a>, <a class="el" href="structecs_1_1_decrease_life_time.html#a05996d10812ad9c196190c1e51bd7314">ecs::DecreaseLifeTime</a>, <a class="el" href="structecs_1_1_life_time_death.html#a69c55e0fcafc404178246cf9c0f25c2e">ecs::LifeTimeDeath</a>, <a class="el" href="structecs_1_1_disconnectable_system.html#adb7c816a9f3d01f63e3bc490596b0146">ecs::DisconnectableSystem</a>, <a class="el" href="structecs_1_1_update_clock.html#a8d1f99397ade16ec7aeb9ce7a08255b4">ecs::UpdateClock</a>, <a class="el" href="struct_send_newly_created_to_server.html#af3515753b0f8a7fae2e97e45f59236a0">SendNewlyCreatedToServer</a>, and <a class="el" href="struct_send_newly_created_to_clients.html#a1e461474215f644b409089503b7ebd35">SendNewlyCreatedToClients</a>.</p>
+<p>Implemented in <a class="el" href="structecs_1_1_collide.html#a8b31f7ed9bfde438999bd443ee5773a4">ecs::Collide</a>, <a class="el" href="structecs_1_1_draw_components.html#a571b971f74ee427edd39e8dedf8908d8">ecs::DrawComponents</a>, <a class="el" href="classecs_1_1_enemies_go_random.html#a516ff1731c65364ac7d2caf6ff803e50">ecs::EnemiesGoRandom</a>, <a class="el" href="structecs_1_1_input_management.html#a4896f31d81f00e7ef8d0af41979a291e">ecs::InputManagement</a>, <a class="el" href="structecs_1_1_sf_rectangle_follow_entity_system.html#a9c48c9d93aecee1e199db7abc9b04bc7">ecs::SfRectangleFollowEntitySystem</a>, <a class="el" href="structecs_1_1_death_life.html#a7960f30274a3c3924b5e48e034544e38">ecs::DeathLife</a>, <a class="el" href="structecs_1_1_death_system.html#a96e3831feca5f69d82df7cf6906896bf">ecs::DeathSystem</a>, <a class="el" href="structecs_1_1_movement.html#a3956c2d126f291e5d0949b9c720ea86c">ecs::Movement</a>, <a class="el" href="structecs_1_1_parallax.html#a96c20e149dede5b59f897f392aee7bb2">ecs::Parallax</a>, <a class="el" href="structecs_1_1_update_clock.html#a8d1f99397ade16ec7aeb9ce7a08255b4">ecs::UpdateClock</a>, <a class="el" href="structecs_1_1_decrease_life_time.html#a05996d10812ad9c196190c1e51bd7314">ecs::DecreaseLifeTime</a>, <a class="el" href="structecs_1_1_life_time_death.html#a69c55e0fcafc404178246cf9c0f25c2e">ecs::LifeTimeDeath</a>, <a class="el" href="structecs_1_1_disconnectable_system.html#adb7c816a9f3d01f63e3bc490596b0146">ecs::DisconnectableSystem</a>, <a class="el" href="structecs_1_1_remove_afk_system.html#a139f799aa6573739b5d3923cb64bdb1d">ecs::RemoveAfkSystem</a>, <a class="el" href="struct_send_newly_created_to_server.html#af3515753b0f8a7fae2e97e45f59236a0">SendNewlyCreatedToServer</a>, and <a class="el" href="struct_send_newly_created_to_clients.html#a1e461474215f644b409089503b7ebd35">SendNewlyCreatedToClients</a>.</p>
 
 </div>
 </div>
