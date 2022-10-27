@@ -17,7 +17,7 @@ namespace graphicECS::SFML::Resources
     /// @brief This shared resource adds a window.
     /// It will used by graphics part to draw something on screen, and get inputs on client part.
     /// It inherite from Resource class.
-    class RenderWindowResource : public Resource {
+    class RenderWindowResource : public ecs::Resource {
       public:
         /// @brief Constructor of the render window resource class.
         /// @param title The title of the window as string. Set to "Default" as default.

@@ -17,7 +17,7 @@ namespace graphicECS::SFML::Resources
 {
 
     /// @brief This resource class stores a map of Graphical SFML textures to be set on Shapes.
-    class GraphicsTextureResource : public Resource {
+    class GraphicsTextureResource : public ecs::Resource {
       public:
         /// @brief Enumeration of all available Textures
         enum textureName_e {
