@@ -23,6 +23,7 @@ namespace ecs
                              .addComponent<DamageRadius>(damageRadius)
                              .addComponent<Collidable>()
                              .addComponent<ShootingFrequency>(0.5)
+                             .addComponent<AfkFrequency>(5.0)
                              .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate)
                              .addComponent<Player>(playerIdentifier);
         if (controlable == true) {

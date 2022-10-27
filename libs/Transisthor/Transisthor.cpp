@@ -17,6 +17,7 @@
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateObstacle.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreatePlayer.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateProjectile.hpp"
+#include "R-TypeLogic/Global/Components/AfkFrequencyComponent.hpp"
 #include "R-TypeLogic/Global/Components/DeathComponent.hpp"
 #include "R-TypeLogic/Global/Components/DestinationComponent.hpp"
 #include "R-TypeLogic/Global/Components/EquipmentComponent.hpp"
@@ -212,8 +213,8 @@ void *Transisthor::transitEcsDataToNetworkDataEntityObstacle(unsigned short id, 
 
 void *Transisthor::transitEcsDataToNetworkDataEntityPlayer(unsigned short id, int posX, int posY,
     double multiplierAbscissa, double multiplierOrdinate, short weight, int sizeX, int sizeY, short life,
-    unsigned short damage, unsigned short damageRadius, bool isControlable, unsigned short playerIdentifier, std::string uuid,
-    std::vector<unsigned short> destination)
+    unsigned short damage, unsigned short damageRadius, bool isControlable, unsigned short playerIdentifier,
+    std::string uuid, std::vector<unsigned short> destination)
 {
     void *networkObject = std::malloc((sizeof(unsigned short) * 5 + sizeof(int) * 4 + sizeof(double) * 2
         + sizeof(short) * 2 + sizeof(char) * uuid.size() + sizeof(bool)));
@@ -353,6 +354,13 @@ void Transisthor::componentConvertVelocityType(unsigned short id, void *byteCode
 
     _ecsWorld.updateComponentOfAnEntityFromGivenDistinctiveComponent<Networkable, Velocity>(
         Networkable(id), newComponent);
+    std::vector<std::shared_ptr<ecs::Entity>> joined = _ecsWorld.joinEntities<Player>();
+    for (auto it : joined) {
+        if (it->getComponent<Networkable>().id == id) {
+            it->getComponent<AfkFrequency>().frequency = it->getComponent<AfkFrequency>().baseFrequency;
+            return;
+        }
+    }
 }
 
 void Transisthor::componentConvertDeathType(unsigned short id, void *byteCode)
@@ -388,6 +396,7 @@ void Transisthor::entityConvertAlliedProjectileType(unsigned short id, void *byt
     if (uuid != nullptr && id == 0) {
         createNewAlliedProjectile(_ecsWorld, *(shooter.get()), uuid,
             _ecsWorld.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
+        shooter->getComponent<AfkFrequency>().frequency = shooter->getComponent<AfkFrequency>().baseFrequency;
     } else {
         std::size_t entityId;
         if (uuid == nullptr) {
