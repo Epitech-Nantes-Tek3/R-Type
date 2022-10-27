@@ -72,6 +72,9 @@ namespace server_data
         /// @param communicatorMessage actual message data
         void _holdADisconnectionRequest(CommunicatorMessage disconectionDemand);
 
+        /// @brief Send to the server the disconnection signal
+        void _disconectionProcess();
+
         /// @brief Cross all the player entity and return the matched one
         /// @param networkId networkId of the player to match
         /// @return founded entity id

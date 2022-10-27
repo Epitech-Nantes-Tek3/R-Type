@@ -124,6 +124,15 @@ void Room::startLobbyLoop(void)
             _worldInstance.get()->runSystems();
         } /// WILL BE IMPROVED IN PART TWO (THREAD + CLOCK)
     }
+    _disconectionProcess();
+}
+
+void Room::_disconectionProcess()
+{
+    auto clientList = _communicatorInstance.get()->getClientList();
+
+    for (auto it : clientList)
+        _communicatorInstance.get()->sendDataToAClient(it, nullptr, 0, 13);
 }
 
 void Room::_holdADisconnectionRequest(CommunicatorMessage disconnectionDemand)
