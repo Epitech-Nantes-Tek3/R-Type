@@ -21,7 +21,7 @@ namespace ecs
 {
     /// @brief This is the Entity Class for E.C.S.
     /// It stores the related Components
-    /// The std::mutex inheritance is in order to allows to lock an Entity when something wants to use/modifie it
+    /// The std::mutex inheritance is in order to allows to lock an Entity when something wants to use/modify it
     class Entity final : public std::mutex {
       public:
         /// @brief The id type
