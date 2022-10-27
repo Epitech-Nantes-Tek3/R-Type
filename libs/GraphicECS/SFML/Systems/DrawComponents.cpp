@@ -18,7 +18,7 @@
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
 #include "R-TypeLogic/Global/Components/SizeComponent.hpp"
 
-using namespace ecs;
+using namespace graphicECS::SFML::Systems;
 
 bool DrawComponents::compareLayer(std::shared_ptr<Entity> e1, std::shared_ptr<Entity> e2)
 {
