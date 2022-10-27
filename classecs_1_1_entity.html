@@ -92,10 +92,28 @@ $(document).ready(function(){initNavTree('classecs_1_1_entity.html',''); initRes
 </div><!--header-->
 <div class="contents">
 
-<p>This is the <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components.">Entity</a> Class for E.C.S. It stores the related Components.  
+<p>This is the <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components The std::mutex inheritance is in...">Entity</a> Class for E.C.S. It stores the related Components The std::mutex inheritance is in order to allows to lock an <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components The std::mutex inheritance is in...">Entity</a> when something wants to use/modify it.  
  <a href="classecs_1_1_entity.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_entity_8hpp_source.html">Entity.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for ecs::Entity:</div>
+<div class="dyncontent">
+<div class="center"><img src="classecs_1_1_entity__inherit__graph.png" border="0" usemap="#ecs_1_1_entity_inherit__map" alt="Inheritance graph"/></div>
+<map name="ecs_1_1_entity_inherit__map" id="ecs_1_1_entity_inherit__map">
+<area shape="rect" title="This is the Entity Class for E.C.S. It stores the related Components The std::mutex inheritance is in..." alt="" coords="6,80,97,107"/>
+<area shape="rect" title=" " alt="" coords="5,5,97,32"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for ecs::Entity:</div>
+<div class="dyncontent">
+<div class="center"><img src="classecs_1_1_entity__coll__graph.png" border="0" usemap="#ecs_1_1_entity_coll__map" alt="Collaboration graph"/></div>
+<map name="ecs_1_1_entity_coll__map" id="ecs_1_1_entity_coll__map">
+<area shape="rect" title="This is the Entity Class for E.C.S. It stores the related Components The std::mutex inheritance is in..." alt="" coords="6,80,97,107"/>
+<area shape="rect" title=" " alt="" coords="5,5,97,32"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
@@ -103,7 +121,7 @@ Public Types</h2></td></tr>
 <tr class="memdesc:aab6c4d53e66bb42221e87baad26e0ab2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The id type.  <a href="classecs_1_1_entity.html#aab6c4d53e66bb42221e87baad26e0ab2">More...</a><br /></td></tr>
 <tr class="separator:aab6c4d53e66bb42221e87baad26e0ab2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abade3686f68748854856876d1759e4a0"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_entity.html#abade3686f68748854856876d1759e4a0">ComponentsList</a> = std::unordered_map&lt; std::type_index, std::unique_ptr&lt; <a class="el" href="classecs_1_1_component.html">Component</a> &gt; &gt;</td></tr>
-<tr class="memdesc:abade3686f68748854856876d1759e4a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the map of Components of the <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components.">Entity</a>.  <a href="classecs_1_1_entity.html#abade3686f68748854856876d1759e4a0">More...</a><br /></td></tr>
+<tr class="memdesc:abade3686f68748854856876d1759e4a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the map of Components of the <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components The std::mutex inheritance is in...">Entity</a>.  <a href="classecs_1_1_entity.html#abade3686f68748854856876d1759e4a0">More...</a><br /></td></tr>
 <tr class="separator:abade3686f68748854856876d1759e4a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -113,29 +131,32 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a58aef82e56c270dbd6c3845f88ee3ea2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa7a1b23feaaffafe12e29435e9c41e46"><td class="memTemplParams" colspan="2">template&lt;std::derived_from&lt; Component &gt; C, typename... Args&gt; </td></tr>
 <tr class="memitem:aa7a1b23feaaffafe12e29435e9c41e46"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classecs_1_1_entity.html">Entity</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classecs_1_1_entity.html#aa7a1b23feaaffafe12e29435e9c41e46">addComponent</a> (Args &amp;&amp;...args)</td></tr>
-<tr class="memdesc:aa7a1b23feaaffafe12e29435e9c41e46"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function can add a <a class="el" href="classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone...">Component</a> to the <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components.">Entity</a>.  <a href="classecs_1_1_entity.html#aa7a1b23feaaffafe12e29435e9c41e46">More...</a><br /></td></tr>
+<tr class="memdesc:aa7a1b23feaaffafe12e29435e9c41e46"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function can add a <a class="el" href="classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone...">Component</a> to the <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components The std::mutex inheritance is in...">Entity</a>.  <a href="classecs_1_1_entity.html#aa7a1b23feaaffafe12e29435e9c41e46">More...</a><br /></td></tr>
 <tr class="separator:aa7a1b23feaaffafe12e29435e9c41e46"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a51ed0ff4a6ef96194e0211e22c009a19"><td class="memTemplParams" colspan="2">template&lt;std::derived_from&lt; Component &gt; C&gt; </td></tr>
 <tr class="memitem:a51ed0ff4a6ef96194e0211e22c009a19"><td class="memTemplItemLeft" align="right" valign="top">C &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classecs_1_1_entity.html#a51ed0ff4a6ef96194e0211e22c009a19">getComponent</a> () const</td></tr>
-<tr class="memdesc:a51ed0ff4a6ef96194e0211e22c009a19"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function can get a <a class="el" href="classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone...">Component</a> in the <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components.">Entity</a>.  <a href="classecs_1_1_entity.html#a51ed0ff4a6ef96194e0211e22c009a19">More...</a><br /></td></tr>
+<tr class="memdesc:a51ed0ff4a6ef96194e0211e22c009a19"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function can get a <a class="el" href="classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone...">Component</a> in the <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components The std::mutex inheritance is in...">Entity</a>.  <a href="classecs_1_1_entity.html#a51ed0ff4a6ef96194e0211e22c009a19">More...</a><br /></td></tr>
 <tr class="separator:a51ed0ff4a6ef96194e0211e22c009a19"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a30056c776dc8e57264e3fc83658e3198"><td class="memTemplParams" colspan="2">template&lt;std::derived_from&lt; Component &gt; C&gt; </td></tr>
 <tr class="memitem:a30056c776dc8e57264e3fc83658e3198"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classecs_1_1_entity.html#a30056c776dc8e57264e3fc83658e3198">removeComponent</a> ()</td></tr>
-<tr class="memdesc:a30056c776dc8e57264e3fc83658e3198"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove a <a class="el" href="classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone...">Component</a> of the <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components.">Entity</a>.  <a href="classecs_1_1_entity.html#a30056c776dc8e57264e3fc83658e3198">More...</a><br /></td></tr>
+<tr class="memdesc:a30056c776dc8e57264e3fc83658e3198"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove a <a class="el" href="classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone...">Component</a> of the <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components The std::mutex inheritance is in...">Entity</a>.  <a href="classecs_1_1_entity.html#a30056c776dc8e57264e3fc83658e3198">More...</a><br /></td></tr>
 <tr class="separator:a30056c776dc8e57264e3fc83658e3198"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aded6f6736a300392df573e72daa7ec45"><td class="memTemplParams" colspan="2">template&lt;std::derived_from&lt; Component &gt; C1, std::derived_from&lt; Component &gt;... C2&gt; </td></tr>
 <tr class="memitem:aded6f6736a300392df573e72daa7ec45"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classecs_1_1_entity.html#aded6f6736a300392df573e72daa7ec45">contains</a> () const</td></tr>
-<tr class="memdesc:aded6f6736a300392df573e72daa7ec45"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function will check if a group of <a class="el" href="classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone...">Component</a> types (at least one <a class="el" href="classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone...">Component</a> type) is in an <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components.">Entity</a>.  <a href="classecs_1_1_entity.html#aded6f6736a300392df573e72daa7ec45">More...</a><br /></td></tr>
+<tr class="memdesc:aded6f6736a300392df573e72daa7ec45"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function will check if a group of <a class="el" href="classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone...">Component</a> types (at least one <a class="el" href="classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone...">Component</a> type) is in an <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components The std::mutex inheritance is in...">Entity</a>.  <a href="classecs_1_1_entity.html#aded6f6736a300392df573e72daa7ec45">More...</a><br /></td></tr>
 <tr class="separator:aded6f6736a300392df573e72daa7ec45"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acf9322786b327ff9257a17e68024b886"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_entity.html#acf9322786b327ff9257a17e68024b886">~Entity</a> ()=default</td></tr>
-<tr class="memdesc:acf9322786b327ff9257a17e68024b886"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default destructor. This is the destructor of the <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components.">Entity</a> Class.  <a href="classecs_1_1_entity.html#acf9322786b327ff9257a17e68024b886">More...</a><br /></td></tr>
+<tr class="memdesc:acf9322786b327ff9257a17e68024b886"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default destructor. This is the destructor of the <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components The std::mutex inheritance is in...">Entity</a> Class.  <a href="classecs_1_1_entity.html#acf9322786b327ff9257a17e68024b886">More...</a><br /></td></tr>
 <tr class="separator:acf9322786b327ff9257a17e68024b886"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a85d333504e88bca14709206285002f4a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_entity.html#a85d333504e88bca14709206285002f4a">Entity</a> (<a class="el" href="classecs_1_1_entity.html#aab6c4d53e66bb42221e87baad26e0ab2">ID</a> id)</td></tr>
-<tr class="memdesc:a85d333504e88bca14709206285002f4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the constructor of the <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components.">Entity</a> Class.  <a href="classecs_1_1_entity.html#a85d333504e88bca14709206285002f4a">More...</a><br /></td></tr>
+<tr class="memdesc:a85d333504e88bca14709206285002f4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the constructor of the <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components The std::mutex inheritance is in...">Entity</a> Class.  <a href="classecs_1_1_entity.html#a85d333504e88bca14709206285002f4a">More...</a><br /></td></tr>
 <tr class="separator:a85d333504e88bca14709206285002f4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1cace49b2034c62e076d8e5354a1e15f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_entity.html#a1cace49b2034c62e076d8e5354a1e15f">Entity</a> (const <a class="el" href="classecs_1_1_entity.html">Entity</a> &amp;)=delete</td></tr>
+<tr class="memdesc:a1cace49b2034c62e076d8e5354a1e15f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete the copy constructor because a mutex can't be copied.  <a href="classecs_1_1_entity.html#a1cace49b2034c62e076d8e5354a1e15f">More...</a><br /></td></tr>
+<tr class="separator:a1cace49b2034c62e076d8e5354a1e15f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This is the <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components.">Entity</a> Class for E.C.S. It stores the related Components. </p>
+<div class="textblock"><p>This is the <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components The std::mutex inheritance is in...">Entity</a> Class for E.C.S. It stores the related Components The std::mutex inheritance is in order to allows to lock an <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components The std::mutex inheritance is in...">Entity</a> when something wants to use/modify it. </p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="abade3686f68748854856876d1759e4a0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abade3686f68748854856876d1759e4a0">&#9670;&nbsp;</a></span>ComponentsList</h2>
@@ -149,7 +170,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>This is the map of Components of the <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components.">Entity</a>. </p>
+<p>This is the map of Components of the <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components The std::mutex inheritance is in...">Entity</a>. </p>
 
 </div>
 </div>
@@ -193,12 +214,12 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Default destructor. This is the destructor of the <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components.">Entity</a> Class. </p>
+<p>Default destructor. This is the destructor of the <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components The std::mutex inheritance is in...">Entity</a> Class. </p>
 
 </div>
 </div>
 <a id="a85d333504e88bca14709206285002f4a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a85d333504e88bca14709206285002f4a">&#9670;&nbsp;</a></span>Entity()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a85d333504e88bca14709206285002f4a">&#9670;&nbsp;</a></span>Entity() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -221,13 +242,41 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>This is the constructor of the <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components.">Entity</a> Class. </p>
+<p>This is the constructor of the <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components The std::mutex inheritance is in...">Entity</a> Class. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">id</td><td>The id of the <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components.">Entity</a> </td></tr>
+    <tr><td class="paramname">id</td><td>The id of the <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components The std::mutex inheritance is in...">Entity</a> </td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a1cace49b2034c62e076d8e5354a1e15f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1cace49b2034c62e076d8e5354a1e15f">&#9670;&nbsp;</a></span>Entity() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ecs::Entity::Entity </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classecs_1_1_entity.html">Entity</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Delete the copy constructor because a mutex can't be copied. </p>
 
 </div>
 </div>
@@ -258,7 +307,7 @@ template&lt;std::derived_from&lt; Component &gt; C, typename... Args&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>This function can add a <a class="el" href="classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone...">Component</a> to the <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components.">Entity</a>. </p>
+<p>This function can add a <a class="el" href="classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone...">Component</a> to the <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components The std::mutex inheritance is in...">Entity</a>. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">C</td><td>Type of the component </td></tr>
@@ -278,7 +327,7 @@ template&lt;std::derived_from&lt; Component &gt; C, typename... Args&gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components.">Entity</a>&amp; a reference to itself </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components The std::mutex inheritance is in...">Entity</a>&amp; a reference to itself </dd></dl>
 
 </div>
 </div>
@@ -307,7 +356,7 @@ template&lt;std::derived_from&lt; Component &gt; C1, std::derived_from&lt; Compo
 </table>
 </div><div class="memdoc">
 
-<p>This function will check if a group of <a class="el" href="classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone...">Component</a> types (at least one <a class="el" href="classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone...">Component</a> type) is in an <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components.">Entity</a>. </p>
+<p>This function will check if a group of <a class="el" href="classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone...">Component</a> types (at least one <a class="el" href="classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone...">Component</a> type) is in an <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components The std::mutex inheritance is in...">Entity</a>. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">C1</td><td>First <a class="el" href="classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone...">Component</a> type to check </td></tr>
@@ -315,7 +364,7 @@ template&lt;std::derived_from&lt; Component &gt; C1, std::derived_from&lt; Compo
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>True if the group of <a class="el" href="classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone...">Component</a> types is contained in <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components.">Entity</a>. Otherwise False </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the group of <a class="el" href="classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone...">Component</a> types is contained in <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components The std::mutex inheritance is in...">Entity</a>. Otherwise False </dd></dl>
 
 </div>
 </div>
@@ -344,7 +393,7 @@ template&lt;std::derived_from&lt; Component &gt; C&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>This function can get a <a class="el" href="classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone...">Component</a> in the <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components.">Entity</a>. </p>
+<p>This function can get a <a class="el" href="classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone...">Component</a> in the <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components The std::mutex inheritance is in...">Entity</a>. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">C</td><td>Searched component type </td></tr>
@@ -414,7 +463,7 @@ template&lt;std::derived_from&lt; Component &gt; C&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Remove a <a class="el" href="classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone...">Component</a> of the <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components.">Entity</a>. </p>
+<p>Remove a <a class="el" href="classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone...">Component</a> of the <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components The std::mutex inheritance is in...">Entity</a>. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">C</td><td>The choosen component type to remove </td></tr>

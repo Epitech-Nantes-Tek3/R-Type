@@ -20,7 +20,7 @@ var searchData=
   ['enemyshootsystem_2ecpp_172',['EnemyShootSystem.cpp',['../_enemy_shoot_system_8cpp.html',1,'']]],
   ['enemyshootsystem_2ehpp_173',['EnemyShootSystem.hpp',['../_enemy_shoot_system_8hpp.html',1,'']]],
   ['entitieslist_174',['EntitiesList',['../classecs_1_1_world.html#a937b406f7b772c2c946eef8afe1107d4',1,'ecs::World']]],
-  ['entity_175',['Entity',['../classecs_1_1_entity.html',1,'ecs::Entity'],['../classecs_1_1_entity.html#a85d333504e88bca14709206285002f4a',1,'ecs::Entity::Entity()']]],
+  ['entity_175',['Entity',['../classecs_1_1_entity.html',1,'ecs::Entity'],['../classecs_1_1_entity.html#a85d333504e88bca14709206285002f4a',1,'ecs::Entity::Entity(ID id)'],['../classecs_1_1_entity.html#a1cace49b2034c62e076d8e5354a1e15f',1,'ecs::Entity::Entity(const Entity &amp;)=delete']]],
   ['entity_2ehpp_176',['Entity.hpp',['../_entity_8hpp.html',1,'']]],
   ['equipment_177',['Equipment',['../classecs_1_1_equipment.html',1,'ecs::Equipment'],['../classecs_1_1_equipment.html#a1513f270bbb347ba2848fe4e05527b0b',1,'ecs::Equipment::Equipment()']]],
   ['equipmentcomponent_2ehpp_178',['EquipmentComponent.hpp',['../_equipment_component_8hpp.html',1,'']]],

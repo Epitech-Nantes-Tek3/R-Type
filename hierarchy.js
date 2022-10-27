@@ -57,7 +57,6 @@ var hierarchy =
       [ "ecs::Weakness", "classecs_1_1_weakness.html", null ],
       [ "ecs::Weight", "classecs_1_1_weight.html", null ]
     ] ],
-    [ "ecs::Entity", "classecs_1_1_entity.html", null ],
     [ "exception", null, [
       [ "error_lib::RTypeError", "classerror__lib_1_1_r_type_error.html", [
         [ "error_lib::ArgumentError", "classerror__lib_1_1_argument_error.html", null ],
@@ -67,6 +66,9 @@ var hierarchy =
       ] ]
     ] ],
     [ "communicator_lib::Message", "structcommunicator__lib_1_1_message.html", null ],
+    [ "mutex", null, [
+      [ "ecs::Entity", "classecs_1_1_entity.html", null ]
+    ] ],
     [ "communicator_lib::Receiver", "classcommunicator__lib_1_1_receiver.html", null ],
     [ "ecs::Resource", "classecs_1_1_resource.html", [
       [ "ecs::ButtonActionMap", "classecs_1_1_button_action_map.html", null ],
