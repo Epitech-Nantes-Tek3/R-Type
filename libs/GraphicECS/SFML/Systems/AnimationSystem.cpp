@@ -6,11 +6,13 @@
 */
 
 #include "AnimationSystem.hpp"
+#include "GraphicsRectangleComponent.hpp"
+// #include "AnimationDelayComponent.hpp"
+#include "AnimationComponent.hpp"
 
-AnimationSystem::AnimationSystem()
-{
-}
+using namespace ecs;
 
-AnimationSystem::~AnimationSystem()
+void AnimationSystem::run(World &world)
 {
+    std::vector<std::shared_ptr<Entity>> shapes = world.joinEntities<GraphicsRectangleComponent, AnimationComponent/*, AnimationDelayComponent*/>();
 }
