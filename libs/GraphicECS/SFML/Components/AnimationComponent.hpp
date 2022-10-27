@@ -11,6 +11,7 @@
 #include <vector>
 #include "Component/Component.hpp"
 #include "GraphicECS/SFML/Resources/GraphicsTextureResource.hpp"
+#include "GraphicsTextureResource.hpp"
 
 namespace ecs
 {
@@ -21,7 +22,7 @@ namespace ecs
             std::vector<GraphicsTextureResource::textureName_e> textures;
 
             /// @brief Index of the current texture in use.
-            std::size_t currentTexture;
+            ecs::GraphicsTextureResource::textureName_e currentTexture;
 
             /// @brief Default constructor of AnimationComponent.
             AnimationComponent() = default;
