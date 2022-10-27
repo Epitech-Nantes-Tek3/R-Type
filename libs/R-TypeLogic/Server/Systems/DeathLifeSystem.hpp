@@ -22,9 +22,18 @@ namespace ecs
         {
             std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Life>();
 
-            auto deathlifetime = [](std::shared_ptr<ecs::Entity> entityPtr) {
+            auto deathlifetime = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
                 if (entityPtr.get()->getComponent<Life>().lifePoint <= 0) {
-                    entityPtr.get()->addComponent<Death>();
+                    if (entityPtr->contains<Player>()) {
+                        Client client = world.getTransisthorBridge()->getCommunicatorInstance().getClientByHisId(
+                            entityPtr->getComponent<NetworkClient>().id);
+
+                        world.getTransisthorBridge()->getCommunicatorInstance().sendDataToAClient(
+                            client, nullptr, 0, 13);
+                        entityPtr->getComponent<Life>().lifePoint = 1000;
+                    } else {
+                        entityPtr.get()->addComponent<Death>();
+                    }
                 }
             };
             std::for_each(joined.begin(), joined.end(), deathlifetime);

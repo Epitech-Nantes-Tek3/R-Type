@@ -61,9 +61,6 @@ namespace client_data
         /// @brief Send to the server the disconnection signal
         void _disconectionProcess();
 
-        /// @brief Check if the player still alive and update the gamestate if it is dead
-        void _holdGameOver();
-
         /// @brief Init all the Sprites in the GameTextureResource
         void _initSpritesForEntities();
 

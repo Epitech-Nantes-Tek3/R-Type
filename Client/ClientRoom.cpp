@@ -128,7 +128,6 @@ void ClientRoom::startLobbyLoop(void)
         }
         if (_state == ClientState::IN_GAME) {
             _worldInstance.get()->runSystems(); /// WILL BE IMPROVED IN PART TWO (THREAD + CLOCK)
-            _holdGameOver();
         }
     }
     _disconectionProcess();
@@ -143,14 +142,6 @@ void ClientRoom::_holdADisconnectionRequest(CommunicatorMessage disconnectionDem
 {
     (void)disconnectionDemand;
     _state = ClientState::ENDED;
-}
-
-void ClientRoom::_holdGameOver()
-{
-    std::vector<std::shared_ptr<ecs::Entity>> player = _worldInstance->joinEntities<Controlable>();
-
-    if (player.empty())
-        this->_state = ClientState::ENDED;
 }
 
 void ClientRoom::_initSpritesForEntities()
