@@ -14,5 +14,6 @@ set(SRC_GRAPHIC_COMPONENT
     ${GRAPHIC_SRC_COMPONENT_ROOT}/GraphicsTextComponent.cpp
     ${GRAPHIC_SRC_COMPONENT_ROOT}/TextureName.hpp
     ${GRAPHIC_SRC_COMPONENT_ROOT}/ParallaxComponent.hpp
+    ${GRAPHIC_SRC_COMPONENT_ROOT}/AnimationComponent.hpp
     PARENT_SCOPE
 )
