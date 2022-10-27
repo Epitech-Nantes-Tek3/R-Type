@@ -15,10 +15,10 @@
 namespace graphicECS::SFML::Components
 {
     /// @brief This component stores a vector of textures to make an animation with them.
-    class AnimationComponent : public Component {
+    class AnimationComponent : public ecs::Component {
       public:
         /// @brief A vector of textureName to store textures used for the animation.
-        std::vector<GraphicsTextureResource::textureName_e> textures;
+        std::vector<ecs::GraphicsTextureResource::textureName_e> textures;
 
         /// @brief Default constructor of AnimationComponent.
         AnimationComponent() = default;

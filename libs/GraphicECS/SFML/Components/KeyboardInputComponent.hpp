@@ -20,7 +20,7 @@ namespace graphicECS::SFML::Components
     /// @brief This component class stores an unsorted map of action/value pair.
     /// This class is created in order to find an action depending on a key pressed or released.
     /// It inherits from Component.
-    class KeyboardInputComponent : public Component {
+    class KeyboardInputComponent : public ecs::Component {
       public:
         /// @brief This unordered_map links SFML key input to an action/value pair enum.
         std::unordered_map<sf::Keyboard::Key, std::pair<ActionQueueComponent::inputAction_e, float>> keyboardMapActions;

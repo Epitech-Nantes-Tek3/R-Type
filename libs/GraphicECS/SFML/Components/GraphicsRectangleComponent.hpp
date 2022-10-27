@@ -15,7 +15,7 @@ namespace graphicECS::SFML::Components
 {
     /// @brief This component class stores a Graphical SFML rectangle shape.
     /// This class is created in order to draw a rectangle shape on a screen.
-    class GraphicsRectangleComponent : public Component {
+    class GraphicsRectangleComponent : public ecs::Component {
       public:
         /// @brief The Graphical SFML rectangle shape to be rendered.
         sf::RectangleShape shape;

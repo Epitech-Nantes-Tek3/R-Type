@@ -15,7 +15,7 @@ namespace graphicECS::SFML::Components
 {
     /// @brief This component class stores a Graphical SFML text.
     /// This class is created in order to draw a text on a screen, specified in shared resource as a window.
-    class GraphicsTextComponent : public Component {
+    class GraphicsTextComponent : public ecs::Component {
       public:
         /// @brief The Graphical SFML text to be rendered.
         /// @note It needs a font component to be drawn.

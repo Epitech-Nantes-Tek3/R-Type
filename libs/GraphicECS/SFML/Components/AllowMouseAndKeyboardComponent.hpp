@@ -13,7 +13,7 @@
 namespace graphicECS::SFML::Components
 {
     /// @brief This component class allows mouse and keyboard usage in client.
-    class AllowMouseAndKeyboardComponent : public Component {};
+    class AllowMouseAndKeyboardComponent : public ecs::Component {};
 } // namespace graphicECS::SFML::Components
 
 #endif /* !ALLOWMOUSEANDKEYBOARDCOMPONENT_HPP_ */

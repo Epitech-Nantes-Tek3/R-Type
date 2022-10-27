@@ -13,7 +13,7 @@
 namespace graphicECS::SFML::Components
 {
     /// @brief This component class allows controller usage in client.
-    class AllowControllerComponent : public Component {};
+    class AllowControllerComponent : public ecs::Component {};
 } // namespace graphicECS::SFML::Components
 
 #endif /* !ALLOWCONTROLLERCOMPONENT_HPP_ */

@@ -19,7 +19,7 @@ namespace graphicECS::SFML::Components
     /// @brief This component class stores an unsorted map of action/value pair.
     /// This class is created in order to find an action depending on a controller joystick input.
     /// It inherites from Component.
-    class ControllerJoystickInputComponent : public Component {
+    class ControllerJoystickInputComponent : public ecs::Component {
       public:
         /// @brief This unordered_map links SFML controller joystick input to an action/value pair enum.
         std::unordered_map<unsigned int, std::pair<ActionQueueComponent::inputAction_e, float>>

@@ -19,7 +19,7 @@ namespace graphicECS::SFML::Components
     /// These functions will be added when an input occurs during the game by a system.
     /// They will be used by another system.
     /// These function are stored in ECSActions.hpp
-    class ActionQueueComponent : public Component {
+    class ActionQueueComponent : public ecs::Component {
       public:
         /// @brief This action queue stores function that will be called in a system and added by another one when
         /// inputs occur.

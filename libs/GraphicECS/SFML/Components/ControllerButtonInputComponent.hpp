@@ -18,10 +18,10 @@ namespace graphicECS::SFML::Components
     /// @brief This component class stores an unsorted map of action/value pair.
     /// This class is created in order to find an action depending on a controller button input.
     /// It inherites from Component.
-    class ControllerButtonInputComponent : public Component {
+    class ControllerButtonInputComponent : public ecs::Component {
       public:
         /// @brief This unordered_map links SFML controller button input to an action/value pair enum.
-        std::unordered_map<unsigned int, std::function<void(World &, float)>> controllerButtonMapActions;
+        std::unordered_map<unsigned int, std::function<void(ecs::World &, float)>> controllerButtonMapActions;
 
         /// @brief Default constructor of the class.
         ControllerButtonInputComponent() = default;
