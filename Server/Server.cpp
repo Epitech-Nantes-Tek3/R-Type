@@ -8,7 +8,6 @@
 /// @file Server/Server.cpp
 
 #include "Server.hpp"
-#include <csignal>
 #include "Error/Error.hpp"
 
 using namespace server_data;
