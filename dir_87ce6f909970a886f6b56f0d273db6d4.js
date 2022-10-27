@@ -10,6 +10,10 @@ var dir_87ce6f909970a886f6b56f0d273db6d4 =
     [ "DecreaseLifeTimeSystem.hpp", "_decrease_life_time_system_8hpp.html", [
       [ "DecreaseLifeTime", "structecs_1_1_decrease_life_time.html", "structecs_1_1_decrease_life_time" ]
     ] ],
+    [ "DisconnectableSystem.cpp", "_disconnectable_system_8cpp.html", null ],
+    [ "DisconnectableSystem.hpp", "_disconnectable_system_8hpp.html", [
+      [ "DisconnectableSystem", "structecs_1_1_disconnectable_system.html", "structecs_1_1_disconnectable_system" ]
+    ] ],
     [ "EnemiesGoRandom.cpp", "_enemies_go_random_8cpp.html", "_enemies_go_random_8cpp" ],
     [ "EnemiesGoRandom.hpp", "_enemies_go_random_8hpp.html", [
       [ "EnemiesGoRandom", "classecs_1_1_enemies_go_random.html", "classecs_1_1_enemies_go_random" ]

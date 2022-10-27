@@ -139,20 +139,26 @@ $(document).ready(function(){initNavTree('_send_to_client_8hpp_source.html','');
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                    component.modified = <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                    std::free(world.<a class="code" href="classecs_1_1_world.html#a2ea940d773ebdb916f49d89c43ba174d">getTransisthorBridge</a>().get()-&gt;transitEcsDataToNetworkData&lt;C1&gt;(</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                        networkId, componentRFCId.find(<span class="keyword">typeid</span>(C1))-&gt;second, component, clientIdList));</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (component.sendToEveryone) {</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                    component.sendToEveryone = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                    std::free(world.<a class="code" href="classecs_1_1_world.html#a2ea940d773ebdb916f49d89c43ba174d">getTransisthorBridge</a>().get()-&gt;transitEcsDataToNetworkData&lt;C1&gt;(</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                        networkId, componentRFCId.find(<span class="keyword">typeid</span>(C1))-&gt;second, component, clientIdList));</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                }</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            }</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        }</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        sendToClients&lt;C2...&gt;(world, networkId, entity, clientIdList);</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    }</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordtype">void</span> runSystem(<a class="code" href="classecs_1_1_world.html">ecs::World</a> &amp;world);</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="classecs_1_1_system.html#ace40d0fa9fb6fb054036b0d96cf94cae">run</a>(<a class="code" href="classecs_1_1_world.html">ecs::World</a> &amp;world) <span class="keyword">override</span> <span class="keyword">final</span> { runSystem(world); };</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;};</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                    <span class="keywordflow">if</span> (component.clientToDelete != 0) {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                        <a class="code" href="classcommunicator__lib_1_1_client.html">Client</a> clientToBeDeleted =</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                            world.<a class="code" href="classecs_1_1_world.html#a2ea940d773ebdb916f49d89c43ba174d">getTransisthorBridge</a>()-&gt;getCommunicatorInstance().getClientByHisId(</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                                component.clientToDelete);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                        world.<a class="code" href="classecs_1_1_world.html#a2ea940d773ebdb916f49d89c43ba174d">getTransisthorBridge</a>()-&gt;getCommunicatorInstance().removeClientFromList(clientToBeDeleted);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                    }</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (component.sendToEveryone) {</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                    component.sendToEveryone = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                    std::free(world.<a class="code" href="classecs_1_1_world.html#a2ea940d773ebdb916f49d89c43ba174d">getTransisthorBridge</a>().get()-&gt;transitEcsDataToNetworkData&lt;C1&gt;(</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                        networkId, componentRFCId.find(<span class="keyword">typeid</span>(C1))-&gt;second, component, clientIdList));</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                }</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            }</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        }</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        sendToClients&lt;C2...&gt;(world, networkId, entity, clientIdList);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    }</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordtype">void</span> runSystem(<a class="code" href="classecs_1_1_world.html">ecs::World</a> &amp;world);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="classecs_1_1_system.html#ace40d0fa9fb6fb054036b0d96cf94cae">run</a>(<a class="code" href="classecs_1_1_world.html">ecs::World</a> &amp;world) <span class="keyword">override</span> <span class="keyword">final</span> { runSystem(world); };</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;};</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="a_network_client_8hpp_html"><div class="ttname"><a href="_network_client_8hpp.html">NetworkClient.hpp</a></div></div>
@@ -176,6 +182,7 @@ $(document).ready(function(){initNavTree('_send_to_client_8hpp_source.html','');
 <div class="ttc" id="aclassecs_1_1_invinsible_html"><div class="ttname"><a href="classecs_1_1_invinsible.html">ecs::Invinsible</a></div><div class="ttdoc">The Invinsible component, to nullify all damages It's a networkable component.</div><div class="ttdef"><b>Definition:</b> InvinsibleComponent.hpp:17</div></div>
 <div class="ttc" id="a_death_component_8hpp_html"><div class="ttname"><a href="_death_component_8hpp.html">DeathComponent.hpp</a></div></div>
 <div class="ttc" id="a_networkable_8hpp_html"><div class="ttname"><a href="_networkable_8hpp.html">Networkable.hpp</a></div></div>
+<div class="ttc" id="aclasscommunicator__lib_1_1_client_html"><div class="ttname"><a href="classcommunicator__lib_1_1_client.html">communicator_lib::Client</a></div><div class="ttdoc">A representation of a client (Address + Port)</div><div class="ttdef"><b>Definition:</b> Client.hpp:19</div></div>
 <div class="ttc" id="a_velocity_component_8hpp_html"><div class="ttname"><a href="_velocity_component_8hpp.html">VelocityComponent.hpp</a></div></div>
 <div class="ttc" id="aclassecs_1_1_invisible_html"><div class="ttname"><a href="classecs_1_1_invisible.html">ecs::Invisible</a></div><div class="ttdoc">The Invisible component, to make an entity lives without drawing it It's a networkable component.</div><div class="ttdef"><b>Definition:</b> InvisibleComponent.hpp:17</div></div>
 <div class="ttc" id="aclassecs_1_1_destination_html"><div class="ttname"><a href="classecs_1_1_destination.html">ecs::Destination</a></div><div class="ttdoc">The Destination component, used for mobiles entities It's a networkable component.</div><div class="ttdef"><b>Definition:</b> DestinationComponent.hpp:17</div></div>

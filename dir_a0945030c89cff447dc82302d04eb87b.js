@@ -39,6 +39,9 @@ var dir_a0945030c89cff447dc82302d04eb87b =
     [ "DestinationComponent.hpp", "_destination_component_8hpp.html", [
       [ "Destination", "classecs_1_1_destination.html", "classecs_1_1_destination" ]
     ] ],
+    [ "DisconnectableComponent.hpp", "_disconnectable_component_8hpp.html", [
+      [ "Disconnectable", "classecs_1_1_disconnectable.html", null ]
+    ] ],
     [ "EnemyComponent.hpp", "_enemy_component_8hpp.html", [
       [ "Enemy", "classecs_1_1_enemy.html", null ]
     ] ],
