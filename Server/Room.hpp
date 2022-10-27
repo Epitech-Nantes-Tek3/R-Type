@@ -75,7 +75,7 @@ namespace server_data
         /// @brief Cross all the player entity and return the matched one
         /// @param networkId networkId of the player to match
         /// @return founded entity id
-        /// @throw a ECSError if no player was found.
+        /// @throw an ECSError if no player was found.
         size_t getEntityPlayerByHisNetworkId(unsigned short networkId);
 
         /// @brief Trait a connexion request. If there is less than 3 players already in the room, send a protocol 22 to
