@@ -15,8 +15,11 @@ namespace ecs
     /// @brief This component allow to know the delay between each frame of an animation.
     class AnimationDelayComponent : public Component {
         public:
-            /// @brief The delay between each frame of an animation as miliseconds.
+            /// @brief The delay between each frame of an animation as milliseconds.
             double delay;
+
+            /// @brief The default delay of the animation as milliseconds.
+            const double baseDelay;
 
             /// @brief Default constructor.
             AnimationDelayComponent() = default;
