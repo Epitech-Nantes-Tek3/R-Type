@@ -7,7 +7,7 @@
 
 #include "RemoveAfkSystem.hpp"
 #include "Transisthor/TransisthorECSLogic/Server/Components/NetworkClient.hpp"
-#include "R-TypeLogic/Global/Components/AfkFrequencyComponent.hpp"
+#include "R-TypeLogic/Server/Components/AfkFrequencyComponent.hpp"
 
 using namespace ecs;
 

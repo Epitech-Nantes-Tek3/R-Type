@@ -17,7 +17,7 @@
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateObstacle.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreatePlayer.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateProjectile.hpp"
-#include "R-TypeLogic/Global/Components/AfkFrequencyComponent.hpp"
+#include "R-TypeLogic/Server/Components/AfkFrequencyComponent.hpp"
 #include "R-TypeLogic/Global/Components/DeathComponent.hpp"
 #include "R-TypeLogic/Global/Components/DestinationComponent.hpp"
 #include "R-TypeLogic/Global/Components/EquipmentComponent.hpp"
