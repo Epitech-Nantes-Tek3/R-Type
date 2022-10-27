@@ -394,6 +394,7 @@ void Transisthor::entityConvertAlliedProjectileType(unsigned short id, void *byt
     }
 
     if (uuid != nullptr && id == 0) {
+        uuid[16] = '\0';
         createNewAlliedProjectile(_ecsWorld, *(shooter.get()), uuid,
             _ecsWorld.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
         shooter->getComponent<AfkFrequency>().frequency = shooter->getComponent<AfkFrequency>().baseFrequency;
