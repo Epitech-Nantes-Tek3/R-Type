@@ -11,6 +11,8 @@
 #include "Component/Component.hpp"
 #include "GraphicECS/SFML/Resources/GraphicsTextureResource.hpp"
 
+using namespace graphicECS::SFML::Resources;
+
 namespace ecs
 {
     /// @brief TextureName store the key as enum to the corresponding texture stores in shared resource.

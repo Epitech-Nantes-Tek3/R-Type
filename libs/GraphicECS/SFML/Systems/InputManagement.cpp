@@ -24,6 +24,8 @@
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/ButtonActionMap.hpp"
 #include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
 
+using namespace graphicECS::SFML::Resources;
+
 namespace ecs
 {
     void InputManagement::_closeWindow(sf::Event &event, World &world)
