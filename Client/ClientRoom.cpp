@@ -123,7 +123,7 @@ void ClientRoom::startLobbyLoop(void)
             if (connectionOperation.message.type == 12)
                 protocol12Answer(connectionOperation);
             if (connectionOperation.message.type == 13)
-                _holdADisconnectionRequest(connectionOperation);
+                _holdADisconnectionRequest();
         } catch (NetworkError &error) {
         }
         if (_state == ClientState::IN_GAME) {
@@ -138,9 +138,8 @@ void ClientRoom::_disconectionProcess()
     _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, nullptr, 0, 13);
 }
 
-void ClientRoom::_holdADisconnectionRequest(CommunicatorMessage disconnectionDemand)
+void ClientRoom::_holdADisconnectionRequest()
 {
-    (void)disconnectionDemand;
     _state = ClientState::ENDED;
 }
 
