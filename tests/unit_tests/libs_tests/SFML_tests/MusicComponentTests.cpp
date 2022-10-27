@@ -22,5 +22,5 @@ Test(MusicName, create_music_shoot)
 {
     MusicName music(MusicResource::COMBATTHEME);
 
-    cr_assert_eq(2, music.musicName);
+    cr_assert_eq(MusicResource::COMBATTHEME, music.musicName);
 }
