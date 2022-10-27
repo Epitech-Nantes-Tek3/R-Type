@@ -7,8 +7,8 @@
 
 #include "UpdateClockSystem.hpp"
 #include <chrono>
-#include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
 #include "R-TypeLogic/Global/Components/ShootingFrequencyComponent.hpp"
+#include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
 
 using namespace ecs;
 
