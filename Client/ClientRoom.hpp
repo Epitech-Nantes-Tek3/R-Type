@@ -54,6 +54,10 @@ namespace client_data
         /// @brief Init some entities only created by the client.
         void _initEntities();
 
+        /// @brief Trait a disconnection request. Identify the player and add to it a disconnection component
+        /// @param communicatorMessage actual message data
+        void _holdADisconnectionRequest(CommunicatorMessage disconectionDemand);
+
         /// @brief Send to the server the disconnection signal
         void _disconectionProcess();
 
