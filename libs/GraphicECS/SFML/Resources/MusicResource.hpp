@@ -19,7 +19,7 @@ namespace ecs
     class MusicResource : public Resource {
       public:
         /// @brief Enumeration of all available Musics
-        enum musicName_e { UNDEFINED, SHOOT, DEATH, EXPLOSION };
+        enum musicName_e { UNDEFINED, MENUTHEME, COMBATTHEME };
 
         /// @brief Name of map which contains Musics.
         using MusicsList = std::unordered_map<musicName_e, std::shared_ptr<sf::Music>>;

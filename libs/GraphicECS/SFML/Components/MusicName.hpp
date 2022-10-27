@@ -9,24 +9,24 @@
 #define MUSICNAME_HPP_
 
 #include "Component/Component.hpp"
-#include "GraphicECS/SFML/Resources/SoundResource.hpp"
+#include "GraphicECS/SFML/Resources/MusicResource.hpp"
 
 namespace ecs
 {
-    /// @brief MusicName store the key as enum to the corresponding music stores in shared resource SoundResource.
+    /// @brief MusicName store the key as enum to the corresponding music stores in shared resource MusicResource.
     class MusicName : public Component {
       public:
         /// @brief Enumeration of all status available for a Music.
-        /// Status BEGIN specify that a music is STOP but at it's begin
-        enum status_e { BEGIN, STOP, PLAYING };
+        /// Status STOPED specify that a music is STOP but at it's begin
+        enum status_e { STOPED, PAUSED, PLAYING };
 
         /// @brief The music name stores to find the corresponding musicName.
-        SoundResource::musicName_e musicName;
+        MusicResource::musicName_e musicName;
 
         /// @brief Constructor of the MusicName component
         /// @param newMusicName The value to set in the musicName, corresponding
-        /// on the sf::Sound load in shared resource Sound.
-        MusicName(SoundResource::musicName_e newMusicName = SoundResource::UNDEFINED, status_e status = status_e::BEGIN)
+        /// on the sf::Music load in shared resource Music.
+        MusicName(MusicResource::musicName_e newMusicName = MusicResource::UNDEFINED, status_e status = status_e::STOPED)
             : musicName(newMusicName){};
 
         /// @brief Default destructor of MusicName component.
