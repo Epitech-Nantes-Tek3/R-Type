@@ -161,7 +161,7 @@ namespace ecs
         /// @return True if the group of System types is contained in the World. Otherwise False
         template <std::derived_from<System> S1, std::derived_from<System>... S2> bool containsSystem() const
         {
-            if (_resourcesList.count(typeid(S1)) == 0)
+            if (_systemsList.count(typeid(S1)) == 0)
                 return false;
             return containsSystem<S2...>();
         }
