@@ -25,11 +25,14 @@ namespace ecs
         /// @brief If the server need to resend it to everyone
         bool sendToEveryone;
 
+        /// @brief Id of the client to delete from the Database after sending the death component. 0 if no client needed to be deleted
+        unsigned short clientToDelete;
+
         /// @brief Constructor of the Velocity Component
         /// @param newMultiplierX the movement's multiplier of abscissa
         /// @param newMultiplierY the movement's multiplier of ordinate
         Velocity(double newMultiplierX = 0, double newMultiplierY = 0)
-            : multiplierAbscissa(newMultiplierX), multiplierOrdinate(newMultiplierY), modified(false), sendToEveryone(false){};
+            : multiplierAbscissa(newMultiplierX), multiplierOrdinate(newMultiplierY), modified(false), sendToEveryone(false), clientToDelete(0){};
         /// @brief Default Destructor
         ~Velocity() = default;
     };

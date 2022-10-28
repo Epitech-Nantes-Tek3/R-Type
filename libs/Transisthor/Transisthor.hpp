@@ -166,7 +166,8 @@ namespace transisthor_lib
         /// @return Return value his only used for testing (Unit and functional)
         void *transitEcsDataToNetworkDataEntityPlayer(unsigned short id, int posX, int posY, double multiplierAbscissa,
             double multiplierOrdinate, short weight, int sizeX, int sizeY, short life, unsigned short damage,
-            unsigned short damageRadius, bool isControlable, unsigned short playerIdentifier, std::string uuid, std::vector<unsigned short> destination);
+            unsigned short damageRadius, bool isControlable, unsigned short playerIdentifier, std::string uuid,
+            std::vector<unsigned short> destination);
 
         /// @brief Function called by the ECS to transfer an order of creation for an Projectile entity
         /// @param id Id of the new entity to create
@@ -191,6 +192,10 @@ namespace transisthor_lib
         /// @return The server endpoint id
         /// @throw an error when no server can be found (Not in a client communicator), throw a NetworkError
         unsigned short getServerEndpointId(void);
+
+        /// @brief Return a reference to the communicator instance
+        /// @return The communicator instance
+        Communicator &getCommunicatorInstance() { return _communicator; };
 
       private:
         /// @brief A reference to a communicator
