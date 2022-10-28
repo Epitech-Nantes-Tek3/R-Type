@@ -12,6 +12,7 @@
 #include "World/World.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateEnemy.hpp"
 #include "R-TypeLogic/Global/Components/DeathComponent.hpp"
+#include <boost/asio/thread_pool.hpp>
 
 namespace ecs
 {
@@ -24,6 +25,7 @@ namespace ecs
             std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Death>();
 
             auto death = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
+                std::lock_guard(*entityPtr.get());
                 if (entityPtr.get()->getComponent<Death>().modified != true) {
                     world.removeEntity(entityPtr->getId());
                 }

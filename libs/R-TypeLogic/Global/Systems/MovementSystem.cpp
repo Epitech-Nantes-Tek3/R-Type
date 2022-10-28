@@ -12,6 +12,7 @@
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
 #include "R-TypeLogic/Global/Components/VelocityComponent.hpp"
 #include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
+#include <boost/asio/thread_pool.hpp>
 
 using namespace ecs;
 
@@ -20,6 +21,7 @@ void Movement::run(World &world)
     std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Position, Velocity>();
 
     auto move = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
+        std::lock_guard(*entityPtr.get());
         GameClock &clock = world.getResource<GameClock>();
         double elapsedTimeInSeconds = clock.getElapsedTime();
         Position &pos = entityPtr.get()->getComponent<Position>();
