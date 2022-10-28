@@ -9,6 +9,7 @@
 #include "AllowMouseAndKeyboardComponent.hpp"
 
 using namespace ecs;
+using namespace graphicECS::SFML::Components;
 
 Test(AllowMouseAndKeyboardComponent, test_class_constructor)
 {

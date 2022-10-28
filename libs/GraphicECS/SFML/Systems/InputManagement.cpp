@@ -25,7 +25,10 @@
 #include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
 #include <boost/asio/thread_pool.hpp>
 
-namespace ecs
+using namespace graphicECS::SFML::Resources;
+using namespace graphicECS::SFML::Components;
+
+namespace graphicECS::SFML::Systems
 {
     void InputManagement::_closeWindow(sf::Event &event, World &world)
     {
@@ -168,7 +171,7 @@ namespace ecs
             RandomDevice &random = world.getResource<RandomDevice>();
             std::string uuid(16, '\0');
 
-            if (freq.frequency.count() <= 0.0) {
+            if (freq.frequency == duration<double>(0.0)) {
                 for (auto &c : uuid)
                     c = hex_char[random.randInt<int>(0, 15)];
                 createNewAlliedProjectile(world, *entityPtr, uuid);
@@ -202,4 +205,4 @@ namespace ecs
         };
         std::for_each(joined.begin(), joined.end(), clickInButton);
     }
-} // namespace ecs
+} // namespace graphicECS::SFML::Systems

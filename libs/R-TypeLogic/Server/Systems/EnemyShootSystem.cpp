@@ -20,19 +20,15 @@ using namespace std::chrono;
 void EnemyShootSystem::run(World &world)
 {
     std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Enemy, ShootingFrequency>();
-    GameClock &clock = world.getResource<GameClock>();
 
-    auto enemiesMayShoot = [&world, &clock](std::shared_ptr<ecs::Entity> entityPtr) {
+    auto enemiesMayShoot = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
         std::lock_guard(*entityPtr.get());
         ShootingFrequency &freq = entityPtr.get()->getComponent<ShootingFrequency>();
-        double delta = freq.frequency.count() - clock.getElapsedTime();
 
-        if (delta <= 0.0) {
+        if (freq.frequency == duration<double>(0)) {
             createNewEnemyProjectile(
                 world, entityPtr, "", world.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
             freq.frequency = freq.baseFrequency;
-        } else {
-            freq.frequency = duration<double>(delta);
         }
     };
     std::for_each(joined.begin(), joined.end(), enemiesMayShoot);

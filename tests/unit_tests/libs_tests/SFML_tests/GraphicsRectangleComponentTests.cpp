@@ -9,6 +9,7 @@
 #include "GraphicsRectangleComponent.hpp"
 
 using namespace ecs;
+using namespace graphicECS::SFML::Components;
 
 Test(GraphicsRectangleComponent, test_create_class)
 {

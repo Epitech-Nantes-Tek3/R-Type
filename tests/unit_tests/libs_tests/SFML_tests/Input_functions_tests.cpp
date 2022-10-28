@@ -18,6 +18,8 @@
 #include "R-TypeLogic/Global/Systems/MovementSystem.hpp"
 
 using namespace ecs;
+using namespace graphicECS::SFML::Systems;
+using namespace graphicECS::SFML::Components;
 
 Test(movePlayerX, Move_x_of_a_player)
 {

@@ -8,6 +8,7 @@ set(TEST_SRC_ROOT
     ${SRC_ROOT}/GraphicsRectangleComponentTests.cpp
     ${SRC_ROOT}/GraphicsTextComponentTests.cpp
     ${SFML_SYSTEMS_TESTS_SRC}
+    ${SFML_COMPONENTS_TESTS_SRC}
 )
 
 create_test(

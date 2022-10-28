@@ -48,6 +48,8 @@ using namespace error_lib;
 using namespace communicator_lib;
 using namespace client_data;
 using namespace ecs;
+using namespace graphicECS::SFML::Systems;
+using namespace graphicECS::SFML::Components;
 
 static ClientRoom::ClientState *clientRoomState(nullptr);
 
@@ -109,7 +111,7 @@ void ClientRoom::protocol12Answer(CommunicatorMessage connexionResponse)
 
 void ClientRoom::startLobbyLoop(void)
 {
-    CommunicatorMessage connexionResponse;
+    CommunicatorMessage connectionOperation;
 
     std::signal(SIGINT, signalCallbackHandler);
     startConnexionProtocol();
@@ -117,18 +119,19 @@ void ClientRoom::startLobbyLoop(void)
     _state = ClientState::LOBBY;
     while (_state != ClientState::ENDED && _state != ClientState::UNDEFINED) {
         try {
-            connexionResponse = _communicatorInstance.get()->getLastMessage();
-            if (connexionResponse.message.type == 11) {
+            connectionOperation = _communicatorInstance.get()->getLastMessage();
+            if (connectionOperation.message.type == 11) {
                 std::cerr << "No places left inside the wanted room. Please retry later" << std::endl;
                 return;
             }
-            if (connexionResponse.message.type == 12)
-                protocol12Answer(connexionResponse);
+            if (connectionOperation.message.type == 12)
+                protocol12Answer(connectionOperation);
+            if (connectionOperation.message.type == 13)
+                _holdADisconnectionRequest();
         } catch (NetworkError &error) {
         }
         if (_state == ClientState::IN_GAME) {
             _worldInstance.get()->runSystems(); /// WILL BE IMPROVED IN PART TWO (THREAD + CLOCK)
-            _holdGameOver();
         }
     }
     _disconectionProcess();
@@ -139,13 +142,7 @@ void ClientRoom::_disconectionProcess()
     _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, nullptr, 0, 13);
 }
 
-void ClientRoom::_holdGameOver()
-{
-    std::vector<std::shared_ptr<ecs::Entity>> player = _worldInstance->joinEntities<Controlable>();
-
-    if (player.empty())
-        this->_state = ClientState::ENDED;
-}
+void ClientRoom::_holdADisconnectionRequest() { _state = ClientState::ENDED; }
 
 void ClientRoom::_initSpritesForEntities()
 {

@@ -26,6 +26,7 @@ namespace ecs
             .addComponent<Collidable>()
             .addComponent<ShootingFrequency>(0.05)
             .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate)
+            .addComponent<AfkFrequency>(10.0)
             .addComponent<Player>(playerIdentifier);
         if (controlable == true) {
             entity.addComponent<Controlable>();
