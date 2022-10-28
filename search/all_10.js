@@ -23,7 +23,7 @@ var searchData=
   ['resetclock_354',['resetClock',['../classecs_1_1_game_clock.html#af91c8f685ae69d44166acd7e356758fb',1,'ecs::GameClock']]],
   ['resetnewclock_355',['resetNewClock',['../class_sending_frequency.html#ae4ca73f29bf87af1407f5995ff368002',1,'SendingFrequency']]],
   ['resetupdateclock_356',['resetUpdateClock',['../class_sending_frequency.html#af68288980e5af650bc7892fd4d33ce35',1,'SendingFrequency']]],
-  ['resource_357',['Resource',['../classecs_1_1_resource.html',1,'ecs::Resource'],['../classecs_1_1_resource.html#a4ab3f5cbdd0b55a5141ffcfb836bb274',1,'ecs::Resource::Resource()']]],
+  ['resource_357',['Resource',['../classecs_1_1_resource.html',1,'ecs::Resource'],['../classecs_1_1_resource.html#af6d38dc8395fce08bba80baed32fd656',1,'ecs::Resource::Resource(const Resource &amp;)=delete'],['../classecs_1_1_resource.html#a4ab3f5cbdd0b55a5141ffcfb836bb274',1,'ecs::Resource::Resource()=default']]],
   ['resource_2ehpp_358',['Resource.hpp',['../_resource_8hpp.html',1,'']]],
   ['resourceslist_359',['ResourcesList',['../classecs_1_1_world.html#a4b01059e3b45c8fbfd15d69c60c8dd0f',1,'ecs::World']]],
   ['room_360',['Room',['../classserver__data_1_1_room.html',1,'server_data::Room'],['../classserver__data_1_1_room.html#ac6ef93a7d9c3e1d624e025058d5f16ff',1,'server_data::Room::Room()'],['../classserver__data_1_1_room.html#a5310158464c77945f1126128f3cdca65',1,'server_data::Room::Room(unsigned short id, Client networkInformations)']]],

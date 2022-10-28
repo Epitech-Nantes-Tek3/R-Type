@@ -45,8 +45,9 @@ var NAVTREEINDEX2 =
 "classecs_1_1_position.html#aee4cb9ed66e882c6706bc381ad41b346":[4,0,3,45,0],
 "classecs_1_1_projectile.html":[4,0,3,46],
 "classecs_1_1_resource.html":[4,0,3,49],
-"classecs_1_1_resource.html#a4ab3f5cbdd0b55a5141ffcfb836bb274":[4,0,3,49,1],
+"classecs_1_1_resource.html#a4ab3f5cbdd0b55a5141ffcfb836bb274":[4,0,3,49,2],
 "classecs_1_1_resource.html#a4bcd1718ebc4a00049324ffcec9e2dfd":[4,0,3,49,0],
+"classecs_1_1_resource.html#af6d38dc8395fce08bba80baed32fd656":[4,0,3,49,1],
 "classecs_1_1_shooting_frequency.html":[4,0,3,50],
 "classecs_1_1_shooting_frequency.html#a1ddea56039f07b6830a3fed8c8e4d9f1":[4,0,3,50,3],
 "classecs_1_1_shooting_frequency.html#a2f243731ab088169107cde7e09019cfc":[4,0,3,50,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX2 =
 "dir_689cc7405b831181d94d9b261ff1b9c4.html":[5,0,1,5,0],
 "dir_6a775b6c311267b736a1cf3366f6a689.html":[5,0,1,6,0,1],
 "dir_7da7d94555b70b51b390ae84941ad419.html":[5,0,1,4,0,0],
-"dir_87ce6f909970a886f6b56f0d273db6d4.html":[5,0,1,5,2,1],
-"dir_8df120ff77343335ba7a15432c542cc2.html":[5,0,1,2,0]
+"dir_87ce6f909970a886f6b56f0d273db6d4.html":[5,0,1,5,2,1]
 };

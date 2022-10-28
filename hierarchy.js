@@ -69,19 +69,19 @@ var hierarchy =
     ] ],
     [ "communicator_lib::Message", "structcommunicator__lib_1_1_message.html", null ],
     [ "mutex", null, [
-      [ "ecs::Entity", "classecs_1_1_entity.html", null ]
+      [ "ecs::Entity", "classecs_1_1_entity.html", null ],
+      [ "ecs::Resource", "classecs_1_1_resource.html", [
+        [ "ecs::ButtonActionMap", "classecs_1_1_button_action_map.html", null ],
+        [ "ecs::GameClock", "classecs_1_1_game_clock.html", null ],
+        [ "ecs::RandomDevice", "structecs_1_1_random_device.html", null ],
+        [ "graphicECS::SFML::Resources::GraphicsFontResource", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_font_resource.html", null ],
+        [ "graphicECS::SFML::Resources::GraphicsTextureResource", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html", null ],
+        [ "graphicECS::SFML::Resources::RenderWindowResource", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_render_window_resource.html", null ],
+        [ "NetworkableIdGenerator", "class_networkable_id_generator.html", null ],
+        [ "SendingFrequency", "class_sending_frequency.html", null ]
+      ] ]
     ] ],
     [ "communicator_lib::Receiver", "classcommunicator__lib_1_1_receiver.html", null ],
-    [ "ecs::Resource", "classecs_1_1_resource.html", [
-      [ "ecs::ButtonActionMap", "classecs_1_1_button_action_map.html", null ],
-      [ "ecs::GameClock", "classecs_1_1_game_clock.html", null ],
-      [ "ecs::RandomDevice", "structecs_1_1_random_device.html", null ],
-      [ "graphicECS::SFML::Resources::GraphicsFontResource", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_font_resource.html", null ],
-      [ "graphicECS::SFML::Resources::GraphicsTextureResource", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html", null ],
-      [ "graphicECS::SFML::Resources::RenderWindowResource", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_render_window_resource.html", null ],
-      [ "NetworkableIdGenerator", "class_networkable_id_generator.html", null ],
-      [ "SendingFrequency", "class_sending_frequency.html", null ]
-    ] ],
     [ "server_data::Room", "classserver__data_1_1_room.html", null ],
     [ "communicator_lib::Sender", "classcommunicator__lib_1_1_sender.html", null ],
     [ "server_data::Server", "classserver__data_1_1_server.html", null ],

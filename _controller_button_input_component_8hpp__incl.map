@@ -1,8 +1,8 @@
 <map id="libs/GraphicECS/SFML/Components/ControllerButtonInputComponent.hpp" name="libs/GraphicECS/SFML/Components/ControllerButtonInputComponent.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="242,5,461,61"/>
+<area shape="rect" id="node1" title=" " alt="" coords="282,5,501,61"/>
 <area shape="rect" id="node2" title=" " alt="" coords="5,109,92,136"/>
 <area shape="rect" id="node3" href="$_component_8hpp.html" title=" " alt="" coords="123,259,327,285"/>
-<area shape="rect" id="node6" href="$_world_8hpp.html" title=" " alt="" coords="605,109,733,136"/>
+<area shape="rect" id="node6" href="$_world_8hpp.html" title=" " alt="" coords="685,109,813,136"/>
 <area shape="rect" id="node15" title=" " alt="" coords="953,259,1077,285"/>
 <area shape="rect" id="node4" title=" " alt="" coords="191,333,258,360"/>
 <area shape="rect" id="node5" title=" " alt="" coords="325,333,405,360"/>
@@ -11,10 +11,10 @@
 <area shape="rect" id="node9" title=" " alt="" coords="590,333,667,360"/>
 <area shape="rect" id="node10" title=" " alt="" coords="453,259,540,285"/>
 <area shape="rect" id="node11" title=" " alt="" coords="1305,408,1368,435"/>
-<area shape="rect" id="node12" href="$_entity_8hpp.html" title=" " alt="" coords="503,184,631,211"/>
-<area shape="rect" id="node16" href="$_resource_8hpp.html" title=" " alt="" coords="707,184,881,211"/>
-<area shape="rect" id="node17" href="$_system_8hpp.html" title=" " alt="" coords="906,184,1058,211"/>
-<area shape="rect" id="node18" href="$_transisthor_8hpp.html" title=" " alt="" coords="1183,184,1378,211"/>
+<area shape="rect" id="node12" href="$_entity_8hpp.html" title=" " alt="" coords="509,184,637,211"/>
+<area shape="rect" id="node16" href="$_resource_8hpp.html" title=" " alt="" coords="661,184,836,211"/>
+<area shape="rect" id="node17" href="$_system_8hpp.html" title=" " alt="" coords="911,184,1063,211"/>
+<area shape="rect" id="node18" href="$_transisthor_8hpp.html" title=" " alt="" coords="1189,184,1383,211"/>
 <area shape="rect" id="node13" title=" " alt="" coords="666,259,746,285"/>
 <area shape="rect" id="node14" title=" " alt="" coords="770,259,834,285"/>
 <area shape="rect" id="node19" href="$_communicator_8hpp.html" title=" " alt="" coords="1102,259,1347,285"/>

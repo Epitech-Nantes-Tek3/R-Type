@@ -1,4 +1,4 @@
 <map id="ecs::Entity" name="ecs::Entity">
-<area shape="rect" id="node1" title="This is the Entity Class for E.C.S. It stores the related Components The std::mutex inheritance is in..." alt="" coords="6,80,97,107"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,5,97,32"/>
+<area shape="rect" id="node1" title="This is the Entity Class for E.C.S. It stores the related Components The std::mutex inheritance is in..." alt="" coords="5,80,96,107"/>
+<area shape="rect" id="node2" title=" " alt="" coords="19,5,83,32"/>
 </map>

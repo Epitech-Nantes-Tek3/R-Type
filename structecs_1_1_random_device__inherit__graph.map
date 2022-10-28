@@ -1,4 +1,5 @@
 <map id="ecs::RandomDevice" name="ecs::RandomDevice">
-<area shape="rect" id="node1" title="Random Shared Resource." alt="" coords="5,80,156,107"/>
-<area shape="rect" id="node2" href="$classecs_1_1_resource.html" title="This is the Resource Class for ECS The base Resource type, all Resources must inherit from Resource." alt="" coords="25,5,137,32"/>
+<area shape="rect" id="node1" title="Random Shared Resource." alt="" coords="5,155,156,181"/>
+<area shape="rect" id="node2" href="$classecs_1_1_resource.html" title="This is the Resource Class for ECS The base Resource type, all Resources must inherit from Resource...." alt="" coords="25,80,137,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="35,5,127,32"/>
 </map>
