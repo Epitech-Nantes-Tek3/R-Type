@@ -1,4 +1,0 @@
-<map id="ecs::ParallaxBackground" name="ecs::ParallaxBackground">
-<area shape="rect" id="node1" title="This component class create a sprite wich travel in the background." alt="" coords="5,80,187,107"/>
-<area shape="rect" id="node2" href="$classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone..." alt="" coords="33,5,159,32"/>
-</map>

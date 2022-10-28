@@ -1,4 +1,0 @@
-<map id="ecs::TextureName" name="ecs::TextureName">
-<area shape="rect" id="node1" title="TextureName store the key as enum to the corresponding texture stores in shared resource." alt="" coords="5,80,144,107"/>
-<area shape="rect" id="node2" href="$classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone..." alt="" coords="11,5,138,32"/>
-</map>

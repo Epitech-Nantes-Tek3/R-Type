@@ -10,8 +10,9 @@ var namespaces_dup =
     [ "argument_handler", "namespaceargument__handler.html", null ],
     [ "client_data", "namespaceclient__data.html", null ],
     [ "communicator_lib", "namespacecommunicator__lib.html", null ],
-    [ "ecs", "namespaceecs.html", "namespaceecs" ],
+    [ "ecs", "namespaceecs.html", null ],
     [ "error_lib", "namespaceerror__lib.html", null ],
+    [ "graphicECS", "namespacegraphic_e_c_s.html", "namespacegraphic_e_c_s" ],
     [ "server_data", "namespaceserver__data.html", null ],
     [ "transisthor_lib", "namespacetransisthor__lib.html", null ]
 ];
