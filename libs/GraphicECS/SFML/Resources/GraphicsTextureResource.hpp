@@ -13,11 +13,11 @@
 #include "Resource/Resource.hpp"
 #include <unordered_map>
 
-namespace ecs
+namespace graphicECS::SFML::Resources
 {
 
     /// @brief This resource class stores a map of Graphical SFML textures to be set on Shapes.
-    class GraphicsTextureResource : public Resource {
+    class GraphicsTextureResource : public ecs::Resource {
       public:
         /// @brief Enumeration of all available Textures
         enum textureName_e {
@@ -36,7 +36,7 @@ namespace ecs
             OBSTACLE_3,
             PROJECTILE_ALLY,
             PROJECTILE_ENEMY,
-            BUTTON,
+            EXIT_BUTTON,
             NATURAL_PROJECTILE
         };
 
@@ -65,6 +65,6 @@ namespace ecs
 
         TexturesList _texturesList;
     };
-} // namespace ecs
+} // namespace graphicECS::SFML::Resources
 
 #endif /* !GRAPHICSTEXTURERESOURCE_HPP_ */

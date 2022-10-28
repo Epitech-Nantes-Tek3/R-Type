@@ -54,17 +54,20 @@ namespace client_data
         /// @brief Init some entities only created by the client.
         void _initEntities();
 
+        /// @brief Handle a disconnection request. Identify the player and add to it a disconnection component
+        void _holdADisconnectionRequest();
+
         /// @brief Send to the server the disconnection signal
         void _disconectionProcess();
-
-        /// @brief Check if the player still alive and update the gamestate if it is dead
-        void _holdGameOver();
 
         /// @brief Init all the Sprites in the GameTextureResource
         void _initSpritesForEntities();
 
         /// @brief Init all the Entities for the parallax (background)
         void _initBackgroundEntities();
+
+        /// @brief Init all the Buttons and the linked actions
+        void _initButtons();
 
         /// @brief Network informations of the room.
         Client _networkInformations;

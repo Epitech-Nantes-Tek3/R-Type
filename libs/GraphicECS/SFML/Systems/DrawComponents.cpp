@@ -19,6 +19,8 @@
 #include "R-TypeLogic/Global/Components/SizeComponent.hpp"
 
 using namespace ecs;
+using namespace graphicECS::SFML::Resources;
+using namespace graphicECS::SFML::Components;
 
 bool DrawComponents::compareLayer(std::shared_ptr<Entity> e1, std::shared_ptr<Entity> e2)
 {
@@ -53,7 +55,8 @@ void DrawComponents::run(World &world)
             }
             auto layerType = entityPtr->getComponent<LayerLvL>();
             if (layerType.layer == LayerLvL::layer_e::OBSTACLE || layerType.layer == LayerLvL::layer_e::ENEMY
-                || layerType.layer == LayerLvL::layer_e::PLAYER || layerType.layer == LayerLvL::layer_e::PROJECTILE) {
+                || layerType.layer == LayerLvL::layer_e::PLAYER || layerType.layer == LayerLvL::layer_e::PROJECTILE ||
+                layerType.layer == LayerLvL::EXIT_BUTTON) {
                 auto entityPos = entityPtr->getComponent<Position>();
                 auto entitySize = entityPtr->getComponent<Size>();
 
@@ -71,6 +74,8 @@ void DrawComponents::run(World &world)
                         entityPtr->addComponent<TextureName>(GraphicsTextureResource::PROJECTILE_ALLY);
                     }
                 }
+                if (layerType.layer == LayerLvL::EXIT_BUTTON)
+                    entityPtr->addComponent<TextureName>(GraphicsTextureResource::EXIT_BUTTON);
             }
         };
         std::for_each(Inputs.begin(), Inputs.end(), layer);

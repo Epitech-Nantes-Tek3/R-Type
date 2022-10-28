@@ -12,5 +12,7 @@ set(SRC_RTYPE_LOGIC_SERVER_SYSTEMS
     ${SRC_RTYPE_LOGIC_SYSTEMS_ROOT}/EnemyShootSystem.hpp
     ${SRC_RTYPE_LOGIC_SYSTEMS_ROOT}/DisconnectableSystem.cpp
     ${SRC_RTYPE_LOGIC_SYSTEMS_ROOT}/DisconnectableSystem.hpp
+    ${SRC_RTYPE_LOGIC_SYSTEMS_ROOT}/RemoveAfkSystem.cpp
+    ${SRC_RTYPE_LOGIC_SYSTEMS_ROOT}/RemoveAfkSystem.hpp
     PARENT_SCOPE
 )
