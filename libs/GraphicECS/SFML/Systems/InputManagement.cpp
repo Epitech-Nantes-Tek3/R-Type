@@ -97,6 +97,7 @@ namespace ecs
             _mouseEvents(event, Inputs);
         }
         for (auto &entityPtr : Inputs) {
+            std::lock_guard(*entityPtr.get());
             std::queue<std::pair<ActionQueueComponent::inputAction_e, float>> &actions =
                 entityPtr->getComponent<ActionQueueComponent>().actions;
             while (actions.size() > 0) {
@@ -114,6 +115,7 @@ namespace ecs
         }
         std::vector<std::shared_ptr<Entity>> players = world.joinEntities<Controlable>();
         for (auto &player : players) {
+            std::lock_guard(*player.get());
             ShootingFrequency &freq = player->getComponent<ShootingFrequency>();
             GameClock &clock = world.getResource<GameClock>();
             double delta = freq.frequency.count() - clock.getElapsedTime();

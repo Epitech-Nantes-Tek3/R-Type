@@ -394,7 +394,9 @@ void Transisthor::entityConvertAlliedProjectileType(unsigned short id, void *byt
         std::size_t entityId;
         if (uuid == nullptr) {
             entityId = createNewAlliedProjectile(_ecsWorld, *(shooter.get()));
-            _ecsWorld.getEntity(entityId).getComponent<Networkable>() = id;
+            ecs::Entity &entity = _ecsWorld.getEntity(entityId);
+            auto guard = std::lock_guard(entity);
+            entity.getComponent<Networkable>() = id;
         } else {
             std::vector<std::shared_ptr<Entity>> newlyCreated = _ecsWorld.joinEntities<NewlyCreated>();
 
@@ -446,11 +448,10 @@ void Transisthor::entityConvertEnemyType(unsigned short id, void *byteCode)
         createNewEnemy(_ecsWorld, posX, posY, multiplierAbscissa, multiplierOrdinate, weight, sizeX, sizeY, life,
             damage, damageRadius, "", _ecsWorld.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
     } else {
-        std::size_t entityId;
-
-        entityId = createNewEnemy(_ecsWorld, posX, posY, multiplierAbscissa, multiplierOrdinate, weight, sizeX, sizeY,
-            life, damage, damageRadius);
-        _ecsWorld.getEntity(entityId).addComponent<Networkable>(id);
+        ecs::Entity &entity = _ecsWorld.getEntity(createNewEnemy(_ecsWorld, posX, posY, multiplierAbscissa,
+            multiplierOrdinate, weight, sizeX, sizeY, life, damage, damageRadius));
+        auto guard = std::lock_guard(entity);
+        entity.addComponent<Networkable>(id);
     }
 }
 
@@ -483,9 +484,9 @@ void Transisthor::entityConvertEnemyProjectileType(unsigned short id, void *byte
         createNewEnemyProjectile(
             _ecsWorld, shooter, "", _ecsWorld.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
     } else {
-        std::size_t entityId;
-        entityId = createNewEnemyProjectile(_ecsWorld, shooter);
-        _ecsWorld.getEntity(entityId).addComponent<Networkable>(id);
+        ecs::Entity &entity = _ecsWorld.getEntity(createNewEnemyProjectile(_ecsWorld, shooter));
+        auto guard = std::lock_guard(entity);
+        entity.addComponent<Networkable>(id);
     }
 }
 
@@ -506,10 +507,9 @@ void Transisthor::entityConvertObstacleType(unsigned short id, void *byteCode)
         createNewObstacle(_ecsWorld, posX, posY, damage, "",
             _ecsWorld.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
     } else {
-        std::size_t entityId;
-
-        entityId = createNewObstacle(_ecsWorld, posX, posY, damage);
-        _ecsWorld.getEntity(entityId).addComponent<Networkable>(id);
+        ecs::Entity &entity = _ecsWorld.getEntity(createNewObstacle(_ecsWorld, posX, posY, damage));
+        auto guard = std::lock_guard(entity);
+        entity.addComponent<Networkable>(id);
     }
 }
 
@@ -560,11 +560,10 @@ void Transisthor::entityConvertPlayerType(unsigned short id, void *byteCode)
             damage, damageRadius, false, playerIdentifier, "",
             _ecsWorld.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
     } else {
-        std::size_t entityId;
-
-        entityId = createNewPlayer(_ecsWorld, posX, posY, multiplierAbscissa, multiplierOrdinate, weight, sizeX, sizeY,
-            life, damage, damageRadius, isPlayer, playerIdentifier);
-        _ecsWorld.getEntity(entityId).addComponent<Networkable>(id);
+        ecs::Entity &entity = _ecsWorld.getEntity(createNewPlayer(_ecsWorld, posX, posY, multiplierAbscissa,
+            multiplierOrdinate, weight, sizeX, sizeY, life, damage, damageRadius, isPlayer, playerIdentifier));
+        auto guard = std::lock_guard(entity);
+        entity.addComponent<Networkable>(id);
     }
 }
 
@@ -589,10 +588,9 @@ void Transisthor::entityConvertProjectileType(unsigned short id, void *byteCode)
         createNewProjectile(_ecsWorld, posX, posY, velAbsc, velOrd, damage, "",
             _ecsWorld.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
     } else {
-        std::size_t entityId;
-
-        entityId = createNewProjectile(_ecsWorld, posX, posY, velAbsc, velOrd, damage);
-        _ecsWorld.getEntity(entityId).addComponent<Networkable>(id);
+        ecs::Entity &entity = _ecsWorld.getEntity(createNewProjectile(_ecsWorld, posX, posY, velAbsc, velOrd, damage));
+        auto guard = std::lock_guard(entity);
+        entity.addComponent<Networkable>(id);
     }
 }
 
