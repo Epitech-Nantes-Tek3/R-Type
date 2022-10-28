@@ -14,6 +14,7 @@
 #include "R-TypeLogic/Global/Components/LifeComponent.hpp"
 #include "R-TypeLogic/Global/Components/ObstacleComponent.hpp"
 #include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
+#include <boost/asio/thread_pool.hpp>
 
 using namespace ecs;
 
@@ -41,10 +42,12 @@ void Collide::collide(
     std::vector<std::shared_ptr<ecs::Entity>> &fstEntities, std::vector<std::shared_ptr<ecs::Entity>> &sndEntities)
 {
     for (std::shared_ptr<ecs::Entity> fstEntity : fstEntities) {
+        std::lock_guard(*fstEntity.get());
         Position &fstPos = fstEntity->getComponent<Position>();
         Size &fstSize = fstEntity->getComponent<Size>();
 
         for (std::shared_ptr<ecs::Entity> sndEntity : sndEntities) {
+            std::lock_guard(*sndEntity.get());
             Position &sndPos = sndEntity->getComponent<Position>();
             Size &sndSize = sndEntity->getComponent<Size>();
 

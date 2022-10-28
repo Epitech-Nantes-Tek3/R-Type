@@ -5,10 +5,10 @@
 ** CreateButton
 */
 
+#include <boost/asio/thread_pool.hpp>
 #include "CreateButton.hpp"
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
 #include "R-TypeLogic/Global/Components/SizeComponent.hpp"
-#include <boost/asio/thread_pool.hpp>
 
 namespace ecs
 {

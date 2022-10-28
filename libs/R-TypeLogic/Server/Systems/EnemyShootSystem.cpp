@@ -12,6 +12,7 @@
 #include "R-TypeLogic/Global/Components/EnemyComponent.hpp"
 #include "R-TypeLogic/Global/Components/ShootingFrequencyComponent.hpp"
 #include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
+#include <boost/asio/thread_pool.hpp>
 
 using namespace ecs;
 using namespace std::chrono;
@@ -22,6 +23,7 @@ void EnemyShootSystem::run(World &world)
     GameClock &clock = world.getResource<GameClock>();
 
     auto enemiesMayShoot = [&world, &clock](std::shared_ptr<ecs::Entity> entityPtr) {
+        std::lock_guard(*entityPtr.get());
         ShootingFrequency &freq = entityPtr.get()->getComponent<ShootingFrequency>();
         double delta = freq.frequency.count() - clock.getElapsedTime();
 
