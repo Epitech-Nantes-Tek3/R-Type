@@ -11,7 +11,7 @@
 #include "System/System.hpp"
 #include "World/World.hpp"
 
-namespace ecs
+namespace graphicECS::SFML::Systems
 {
     /// @brief This class draw GraphicsComponents on window.
     struct DrawComponents : public System {
@@ -25,6 +25,6 @@ namespace ecs
         /// @param world The corresponding world on which run this system.
         void run(World &world) override final;
     };
-} // namespace ecs
+} // namespace graphicECS::SFML::Systems
 
 #endif /* !DRAWCOMPONENTS_HPP_ */

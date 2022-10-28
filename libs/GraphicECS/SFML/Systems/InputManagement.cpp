@@ -19,15 +19,15 @@
 #include "MouseInputComponent.hpp"
 #include "World/World.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/Components/ActionName.hpp"
+#include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/ButtonActionMap.hpp"
 #include "R-TypeLogic/Global/Components/ButtonComponent.hpp"
 #include "R-TypeLogic/Global/Components/ShootingFrequencyComponent.hpp"
-#include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/ButtonActionMap.hpp"
 #include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
 
 using namespace graphicECS::SFML::Resources;
 using namespace graphicECS::SFML::Components;
 
-namespace ecs
+namespace graphicECS::SFML::Systems
 {
     void InputManagement::_closeWindow(sf::Event &event, World &world)
     {
@@ -195,4 +195,4 @@ namespace ecs
         };
         std::for_each(joined.begin(), joined.end(), clickInButton);
     }
-} // namespace ecs
+} // namespace graphicECS::SFML::Systems

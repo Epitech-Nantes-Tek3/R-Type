@@ -18,7 +18,7 @@
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
 #include "R-TypeLogic/Global/Components/SizeComponent.hpp"
 
-using namespace ecs;
+using namespace graphicECS::SFML::Systems;
 using namespace graphicECS::SFML::Resources;
 using namespace graphicECS::SFML::Components;
 
