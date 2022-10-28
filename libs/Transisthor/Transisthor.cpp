@@ -8,6 +8,7 @@
 /// @file libs/Transisthor/Transisthor.cpp
 
 #include "Transisthor.hpp"
+#include <mutex>
 #include "Error/Error.hpp"
 #include "TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "TransisthorECSLogic/Server/Resources/NetworkableIdGenerator.hpp"
@@ -17,7 +18,6 @@
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateObstacle.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreatePlayer.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateProjectile.hpp"
-#include "R-TypeLogic/Server/Components/AfkFrequencyComponent.hpp"
 #include "R-TypeLogic/Global/Components/DeathComponent.hpp"
 #include "R-TypeLogic/Global/Components/DestinationComponent.hpp"
 #include "R-TypeLogic/Global/Components/EquipmentComponent.hpp"
@@ -26,6 +26,7 @@
 #include "R-TypeLogic/Global/Components/LifeComponent.hpp"
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
 #include "R-TypeLogic/Global/Components/VelocityComponent.hpp"
+#include "R-TypeLogic/Server/Components/AfkFrequencyComponent.hpp"
 
 using namespace transisthor_lib;
 using namespace error_lib;
@@ -395,8 +396,9 @@ void Transisthor::entityConvertAlliedProjectileType(unsigned short id, void *byt
 
     if (uuid != nullptr && id == 0) {
         uuid[16] = '\0';
-        createNewAlliedProjectile(_ecsWorld, *(shooter.get()), uuid,
-            _ecsWorld.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
+        NetworkableIdGenerator &generator = _ecsWorld.getResource<NetworkableIdGenerator>();
+        auto guard = std::lock_guard(generator);
+        createNewAlliedProjectile(_ecsWorld, *(shooter.get()), uuid, generator.generateNewNetworkableId());
         shooter->getComponent<AfkFrequency>().frequency = shooter->getComponent<AfkFrequency>().baseFrequency;
     } else {
         std::size_t entityId;
@@ -450,8 +452,10 @@ void Transisthor::entityConvertEnemyType(unsigned short id, void *byteCode)
 
     std::string uuidStr(uuid);
     if (uuidStr != "" && id == 0) {
+        NetworkableIdGenerator &generator = _ecsWorld.getResource<NetworkableIdGenerator>();
+        auto guard = std::lock_guard(generator);
         createNewEnemy(_ecsWorld, posX, posY, multiplierAbscissa, multiplierOrdinate, weight, sizeX, sizeY, life,
-            damage, damageRadius, "", _ecsWorld.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
+            damage, damageRadius, "", generator.generateNewNetworkableId());
     } else {
         std::size_t entityId;
 
@@ -486,8 +490,9 @@ void Transisthor::entityConvertEnemyProjectileType(unsigned short id, void *byte
 
     std::string uuidStr(uuid);
     if (uuidStr != "" && id == 0) {
-        createNewEnemyProjectile(
-            _ecsWorld, shooter, "", _ecsWorld.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
+        NetworkableIdGenerator &generator = _ecsWorld.getResource<NetworkableIdGenerator>();
+        auto guard = std::lock_guard(generator);
+        createNewEnemyProjectile(_ecsWorld, shooter, "", generator.generateNewNetworkableId());
     } else {
         std::size_t entityId;
         entityId = createNewEnemyProjectile(_ecsWorld, shooter);
@@ -509,8 +514,9 @@ void Transisthor::entityConvertObstacleType(unsigned short id, void *byteCode)
     std::string uuidStr(uuid);
 
     if (uuidStr != "" && id == 0) {
-        createNewObstacle(_ecsWorld, posX, posY, damage, "",
-            _ecsWorld.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
+        NetworkableIdGenerator &generator = _ecsWorld.getResource<NetworkableIdGenerator>();
+        auto guard = std::lock_guard(generator);
+        createNewObstacle(_ecsWorld, posX, posY, damage, "", generator.generateNewNetworkableId());
     } else {
         std::size_t entityId;
 
@@ -562,9 +568,10 @@ void Transisthor::entityConvertPlayerType(unsigned short id, void *byteCode)
     std::string uuidStr(uuid);
 
     if (uuidStr != "" && id == 0) {
+        NetworkableIdGenerator &generator = _ecsWorld.getResource<NetworkableIdGenerator>();
+        auto guard = std::lock_guard(generator);
         createNewPlayer(_ecsWorld, posX, posY, multiplierAbscissa, multiplierOrdinate, weight, sizeX, sizeY, life,
-            damage, damageRadius, false, playerIdentifier, "",
-            _ecsWorld.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
+            damage, damageRadius, false, playerIdentifier, "", generator.generateNewNetworkableId());
     } else {
         std::size_t entityId;
 
@@ -592,8 +599,9 @@ void Transisthor::entityConvertProjectileType(unsigned short id, void *byteCode)
     std::string uuidStr(uuid);
 
     if (uuidStr != "" && id == 0) {
-        createNewProjectile(_ecsWorld, posX, posY, velAbsc, velOrd, damage, "",
-            _ecsWorld.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
+        NetworkableIdGenerator &generator = _ecsWorld.getResource<NetworkableIdGenerator>();
+        auto guard = std::lock_guard(generator);
+        createNewProjectile(_ecsWorld, posX, posY, velAbsc, velOrd, damage, "", generator.generateNewNetworkableId());
     } else {
         std::size_t entityId;
 

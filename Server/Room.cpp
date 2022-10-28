@@ -9,6 +9,7 @@
 
 #include "Room.hpp"
 #include <csignal>
+#include <mutex>
 #include "Error/Error.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Resources/SendingFrequency.hpp"
@@ -191,10 +192,12 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
     _remainingPlaces -= 1;
     _state = RoomState::IN_GAME;
     std::cerr << "Room " << _id << " received a connexion protocol." << std::endl;
+    NetworkableIdGenerator &generator = _worldInstance->getResource<NetworkableIdGenerator>();
+    auto guard = std::lock_guard(generator);
     std::size_t playerId = createNewPlayer(*_worldInstance.get(), 20, 500, 0, 0, 1, 102, 102, 100, 10, 4, false,
-        _remainingPlaces + 1, "", _worldInstance->getResource<NetworkableIdGenerator>().generateNewNetworkableId());
-    std::size_t enemyId = createNewEnemyRandom(*_worldInstance.get(), 0, 0, 1, 85, 85, 50, 10, 5, "",
-        _worldInstance.get()->getResource<NetworkableIdGenerator>().generateNewNetworkableId());
+        _remainingPlaces + 1, "", generator.generateNewNetworkableId());
+    std::size_t enemyId = createNewEnemyRandom(
+        *_worldInstance.get(), 0, 0, 1, 85, 85, 50, 10, 5, "", generator.generateNewNetworkableId());
     std::vector<std::shared_ptr<ecs::Entity>> clients = _worldInstance.get()->joinEntities<ecs::NetworkClient>();
     std::vector<unsigned short> clientIdList;
     auto addToClientList = [&clientIdList](std::shared_ptr<ecs::Entity> entityPtr) {
@@ -276,7 +279,9 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
     }
     _communicatorInstance.get()->sendDataToAClient(connexionDemand.message.clientInfo, nullptr, 0, 12);
     if (_remainingPlaces == 3) {
-        _worldInstance.get()->getResource<GameClock>().resetClock();
-        _worldInstance.get()->getResource<GameClock>().resetClock();
+        GameClock &clock = _worldInstance->getResource<GameClock>();
+        auto guard = std::lock_guard(clock);
+        clock.resetClock();
+        clock.resetClock();
     }
 }
