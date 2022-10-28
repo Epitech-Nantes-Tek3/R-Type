@@ -7,6 +7,7 @@
 
 #include "EnemyShootSystem.hpp"
 #include <chrono>
+#include <mutex>
 #include "Transisthor/TransisthorECSLogic/Server/Resources/NetworkableIdGenerator.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateEnemyProjectile.hpp"
 #include "R-TypeLogic/Global/Components/EnemyComponent.hpp"
@@ -23,8 +24,9 @@ void EnemyShootSystem::run(World &world)
         ShootingFrequency &freq = entityPtr.get()->getComponent<ShootingFrequency>();
 
         if (freq.frequency == duration<double>(0)) {
-            createNewEnemyProjectile(
-                world, entityPtr, "", world.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
+            NetworkableIdGenerator &generator = world.getResource<NetworkableIdGenerator>();
+            auto guard = std::lock_guard(generator);
+            createNewEnemyProjectile(world, entityPtr, "", generator.generateNewNetworkableId());
             freq.frequency = freq.baseFrequency;
         }
     };
