@@ -17,6 +17,7 @@
 #include "R-TypeLogic/Global/Components/LayerLvL.hpp"
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
 #include "R-TypeLogic/Global/Components/SizeComponent.hpp"
+#include <boost/asio/thread_pool.hpp>
 
 using namespace ecs;
 
@@ -33,6 +34,7 @@ void DrawComponents::run(World &world)
         world.getResource<RenderWindowResource>().window.clear(sf::Color(0x151123));
         std::sort(Inputs.begin(), Inputs.end(), compareLayer);
         auto layer = [&world](std::shared_ptr<Entity> entityPtr) {
+            std::lock_guard(*entityPtr.get());
             if (entityPtr->contains<GraphicsRectangleComponent>()) {
                 if (world.containsResource<GraphicsTextureResource>()) {
                     entityPtr->getComponent<GraphicsRectangleComponent>().shape.setTexture(
@@ -53,8 +55,8 @@ void DrawComponents::run(World &world)
             }
             auto layerType = entityPtr->getComponent<LayerLvL>();
             if (layerType.layer == LayerLvL::layer_e::OBSTACLE || layerType.layer == LayerLvL::layer_e::ENEMY
-                || layerType.layer == LayerLvL::layer_e::PLAYER || layerType.layer == LayerLvL::layer_e::PROJECTILE ||
-                layerType.layer == LayerLvL::EXIT_BUTTON) {
+                || layerType.layer == LayerLvL::layer_e::PLAYER || layerType.layer == LayerLvL::layer_e::PROJECTILE
+                || layerType.layer == LayerLvL::EXIT_BUTTON) {
                 auto entityPos = entityPtr->getComponent<Position>();
                 auto entitySize = entityPtr->getComponent<Size>();
 

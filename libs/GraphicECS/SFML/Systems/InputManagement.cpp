@@ -19,10 +19,11 @@
 #include "MouseInputComponent.hpp"
 #include "World/World.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/Components/ActionName.hpp"
+#include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/ButtonActionMap.hpp"
 #include "R-TypeLogic/Global/Components/ButtonComponent.hpp"
 #include "R-TypeLogic/Global/Components/ShootingFrequencyComponent.hpp"
-#include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/ButtonActionMap.hpp"
 #include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
+#include <boost/asio/thread_pool.hpp>
 
 namespace ecs
 {
@@ -35,7 +36,8 @@ namespace ecs
     void InputManagement::_keyPressedEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> &Inputs)
     {
         if (event.type == sf::Event::KeyPressed) {
-            auto keyPressed = [event](std::shared_ptr<ecs::Entity> entityPtr) {
+            auto keyPressed = [event](std::shared_ptr<Entity> entityPtr) {
+                std::lock_guard(*entityPtr.get());
                 if (entityPtr->getComponent<KeyboardInputComponent>().keyboardMapActions.contains(event.key.code)
                     && entityPtr->contains<AllowMouseAndKeyboardComponent>())
                     entityPtr->getComponent<ActionQueueComponent>().actions.push(
@@ -48,7 +50,8 @@ namespace ecs
     void InputManagement::_keyReleasedEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> &Inputs)
     {
         if (event.type == sf::Event::KeyReleased) {
-            auto keyReleased = [event](std::shared_ptr<ecs::Entity> entityPtr) {
+            auto keyReleased = [event](std::shared_ptr<Entity> entityPtr) {
+                std::lock_guard(*entityPtr.get());
                 if (entityPtr->getComponent<KeyboardInputComponent>().keyboardMapActions.contains(event.key.code)
                     && entityPtr->contains<AllowMouseAndKeyboardComponent>()) {
                     entityPtr->getComponent<ActionQueueComponent>().actions.push(
@@ -66,7 +69,8 @@ namespace ecs
     void InputManagement::_mouseEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> &Inputs)
     {
         if (event.type == sf::Event::MouseButtonPressed) {
-            auto mouseButtonPressed = [event](std::shared_ptr<ecs::Entity> entityPtr) {
+            auto mouseButtonPressed = [event](std::shared_ptr<Entity> entityPtr) {
+                std::lock_guard(*entityPtr.get());
                 if (entityPtr->getComponent<MouseInputComponent>().MouseMapActions.contains(event.mouseButton.button)
                     && entityPtr->contains<AllowMouseAndKeyboardComponent>()) {
                     entityPtr->getComponent<ActionQueueComponent>().actions.push(
@@ -93,7 +97,7 @@ namespace ecs
             _mouseEvents(event, Inputs);
         }
         for (auto &entityPtr : Inputs) {
-            std::queue<std::pair<ecs::ActionQueueComponent::inputAction_e, float>> &actions =
+            std::queue<std::pair<ActionQueueComponent::inputAction_e, float>> &actions =
                 entityPtr->getComponent<ActionQueueComponent>().actions;
             while (actions.size() > 0) {
                 if (actions.front().first == ActionQueueComponent::MOVEY)
@@ -108,7 +112,7 @@ namespace ecs
                 actions.pop();
             }
         }
-        std::vector<std::shared_ptr<ecs::Entity>> players = world.joinEntities<Controlable>();
+        std::vector<std::shared_ptr<Entity>> players = world.joinEntities<Controlable>();
         for (auto &player : players) {
             ShootingFrequency &freq = player->getComponent<ShootingFrequency>();
             GameClock &clock = world.getResource<GameClock>();
@@ -119,12 +123,13 @@ namespace ecs
 
     void InputManagement::movePlayerX(World &world, float move)
     {
-        std::vector<std::shared_ptr<ecs::Entity>> player = world.joinEntities<Controlable>();
+        std::vector<std::shared_ptr<Entity>> player = world.joinEntities<Controlable>();
         double moveD = double(move);
 
         if (player.empty())
             return;
-        auto moveX = [moveD](std::shared_ptr<ecs::Entity> entityPtr) {
+        auto moveX = [moveD](std::shared_ptr<Entity> entityPtr) {
+            std::lock_guard(*entityPtr.get());
             entityPtr->getComponent<Velocity>().multiplierAbscissa = moveD;
             entityPtr->getComponent<Velocity>().modified = true;
             entityPtr->getComponent<Position>().modified = true;
@@ -134,12 +139,13 @@ namespace ecs
 
     void InputManagement::movePlayerY(World &world, float move)
     {
-        std::vector<std::shared_ptr<ecs::Entity>> player = world.joinEntities<Controlable>();
+        std::vector<std::shared_ptr<Entity>> player = world.joinEntities<Controlable>();
         double moveD = double(move);
 
         if (player.empty())
             return;
-        auto moveY = [moveD](std::shared_ptr<ecs::Entity> entityPtr) {
+        auto moveY = [moveD](std::shared_ptr<Entity> entityPtr) {
+            std::lock_guard(*entityPtr.get());
             entityPtr->getComponent<Velocity>().multiplierOrdinate = moveD;
             entityPtr->getComponent<Velocity>().modified = true;
             entityPtr->getComponent<Position>().modified = true;
@@ -149,14 +155,15 @@ namespace ecs
 
     void InputManagement::shootAction(World &world, float action)
     {
-        std::vector<std::shared_ptr<ecs::Entity>> player = world.joinEntities<Controlable>();
+        std::vector<std::shared_ptr<Entity>> player = world.joinEntities<Controlable>();
 
         if (player.empty() || action < 1)
             return;
-        auto shoot = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
+        auto shoot = [&world](std::shared_ptr<Entity> entityPtr) {
+            std::lock_guard(*entityPtr.get());
             ShootingFrequency &freq = entityPtr.get()->getComponent<ShootingFrequency>();
             const char hex_char[] = "0123456789ABCDEF";
-            ecs::RandomDevice &random = world.getResource<RandomDevice>();
+            RandomDevice &random = world.getResource<RandomDevice>();
             std::string uuid(16, '\0');
 
             if (freq.frequency.count() <= 0.0) {
@@ -176,6 +183,7 @@ namespace ecs
         sf::Vector2i mousePos = sf::Mouse::getPosition(world.getResource<RenderWindowResource>().window);
 
         auto clickInButton = [this, &world, &mousePos](std::shared_ptr<Entity> entityPtr) {
+            std::lock_guard(*entityPtr.get());
             Position &pos = entityPtr.get()->getComponent<Position>();
             Size &size = entityPtr.get()->getComponent<Size>();
             bool sameWidth = pos.y <= mousePos.y && mousePos.y <= pos.y + size.y;

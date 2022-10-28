@@ -16,6 +16,7 @@ void Parallax::run(World &world)
     std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<ParallaxBackground>();
 
     auto makeParallax = [](std::shared_ptr<ecs::Entity> entityPtr) {
+        std::lock_guard(*entityPtr.get());
         Position &pos = entityPtr.get()->getComponent<Position>();
 
         if (pos.x <= MAXIMUM_WIDTH * -1) {
