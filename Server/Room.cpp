@@ -8,6 +8,7 @@
 /// @file Server/Room.cpp
 
 #include "Room.hpp"
+#include <csignal>
 #include "Error/Error.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Resources/SendingFrequency.hpp"
@@ -37,11 +38,23 @@
 #include "R-TypeLogic/Server/Systems/EnemiesGoRandom.hpp"
 #include "R-TypeLogic/Server/Systems/EnemyShootSystem.hpp"
 #include "R-TypeLogic/Server/Systems/LifeTimeDeathSystem.hpp"
+#include "R-TypeLogic/Server/Systems/RemoveAfkSystem.hpp"
 
 using namespace server_data;
 using namespace error_lib;
 using namespace communicator_lib;
 using namespace ecs;
+
+static server_data::Room::RoomState roomState(Room::RoomState::UNDEFINED);
+
+/// @brief Useful function called when a sigint received.
+/// @param signum Value of the received signal
+void signalCallbackHandler(int signum)
+{
+    (void)signum;
+    std::cerr << "Room ask to be closed." << std::endl;
+    roomState = Room::ENDED;
+}
 
 Room::Room()
 {
@@ -87,6 +100,7 @@ void Room::initEcsGameData(void)
     _worldInstance->addSystem<LifeTimeDeath>();
     _worldInstance->addSystem<DecreaseLifeTime>();
     _worldInstance->addSystem<DisconnectableSystem>();
+    _worldInstance->addSystem<RemoveAfkSystem>();
 }
 
 void Room::startConnexionProtocol(void) { _communicatorInstance.get()->startReceiverListening(); }
@@ -95,10 +109,11 @@ void Room::startLobbyLoop(void)
 {
     CommunicatorMessage connectionOperation;
 
+    std::signal(SIGINT, signalCallbackHandler);
     startConnexionProtocol();
     initEcsGameData();
     _state = RoomState::LOBBY;
-    while (_state != RoomState::ENDED && _state != RoomState::UNDEFINED) {
+    while (_state != RoomState::ENDED && _state != RoomState::UNDEFINED && roomState != RoomState::ENDED) {
         try {
             connectionOperation = _communicatorInstance.get()->getLastMessage();
             if (connectionOperation.message.type == 10)
@@ -107,9 +122,20 @@ void Room::startLobbyLoop(void)
                 _holdADisconnectionRequest(connectionOperation);
         } catch (NetworkError &error) {
         }
-        if (_remainingPlaces != 4)
-            _worldInstance.get()->runSystems(); /// WILL BE IMPROVED IN PART TWO (THREAD + CLOCK)
+        if (_state == RoomState::IN_GAME) {
+            _worldInstance.get()->runSystems();
+        } /// WILL BE IMPROVED IN PART TWO (THREAD + CLOCK)
+        _activePlayerGestion();
     }
+    _disconectionProcess();
+}
+
+void Room::_disconectionProcess()
+{
+    auto clientList = _communicatorInstance.get()->getClientList();
+
+    for (auto it : clientList)
+        _communicatorInstance.get()->sendDataToAClient(it, nullptr, 0, 13);
 }
 
 void Room::_holdADisconnectionRequest(CommunicatorMessage disconnectionDemand)
@@ -126,6 +152,19 @@ void Room::_holdADisconnectionRequest(CommunicatorMessage disconnectionDemand)
     }
     _worldInstance->getEntity(clientId).addComponent<Disconnectable>();
     std::cerr << "Player succesfully disconnected." << std::endl;
+}
+
+void Room::_activePlayerGestion()
+{
+    std::vector<std::shared_ptr<ecs::Entity>> joined = _worldInstance->joinEntities<Player>();
+    size_t activePlayer = joined.size();
+
+    if (activePlayer != 0)
+        return;
+    if (_remainingPlaces == 0)
+        _state = RoomState::ENDED;
+    else
+        _state = RoomState::LOBBY;
 }
 
 size_t Room::getEntityPlayerByHisNetworkId(unsigned short networkId)
@@ -150,6 +189,7 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
         return;
     }
     _remainingPlaces -= 1;
+    _state = RoomState::IN_GAME;
     std::cerr << "Room " << _id << " received a connexion protocol." << std::endl;
     std::size_t playerId = createNewPlayer(*_worldInstance.get(), 20, 500, 0, 0, 1, 102, 102, 100, 10, 4, false,
         _remainingPlaces + 1, "", _worldInstance->getResource<NetworkableIdGenerator>().generateNewNetworkableId());

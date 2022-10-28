@@ -11,6 +11,8 @@
 
 #define MAXIMUM_WIDTH 1920
 
+using namespace graphicECS::SFML::Components;
+
 void Parallax::run(World &world)
 {
     std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<ParallaxBackground>();

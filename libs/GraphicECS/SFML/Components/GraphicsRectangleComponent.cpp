@@ -7,7 +7,7 @@
 
 #include "GraphicsRectangleComponent.hpp"
 
-using namespace ecs;
+using namespace graphicECS::SFML::Components;
 
 GraphicsRectangleComponent::GraphicsRectangleComponent(
     const std::size_t x, const std::size_t y, const std::size_t width, const std::size_t height)
