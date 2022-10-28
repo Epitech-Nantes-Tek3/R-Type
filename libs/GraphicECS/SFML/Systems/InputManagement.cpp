@@ -122,15 +122,6 @@ namespace graphicECS::SFML::Systems
                 actions.pop();
             }
         }
-        std::vector<std::shared_ptr<Entity>> players = world.joinEntities<Controlable>();
-        for (auto &player : players) {
-            std::lock_guard(*player.get());
-            ShootingFrequency &freq = player->getComponent<ShootingFrequency>();
-            GameClock &clock = world.getResource<GameClock>();
-            auto guard = std::lock_guard(clock);
-            double delta = freq.frequency.count() - clock.getElapsedTime();
-            freq.frequency = duration<double>(delta);
-        }
     }
 
     void InputManagement::movePlayerX(World &world, float move)
