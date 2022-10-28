@@ -6,6 +6,7 @@
 */
 
 #include "CreateObstacle.hpp"
+#include <boost/asio/thread_pool.hpp>
 
 namespace ecs
 {
@@ -13,15 +14,16 @@ namespace ecs
     std::size_t createNewObstacle(World &world, const int posX, const int posY, const unsigned short damage,
         const std::string uuid, unsigned short networkId)
     {
-        Entity &entity = world.addEntity()
-                             .addComponent<Position>(posX, posY)
-                             .addComponent<Weight>(1)
-                             .addComponent<Size>(1, 1)
-                             .addComponent<Life>(10)
-                             .addComponent<Damage>(damage)
-                             .addComponent<DamageRadius>(5)
-                             .addComponent<Collidable>()
-                             .addComponent<Obstacle>();
+        Entity &entity = world.addEntity();
+        auto guard = std::lock_guard(entity);
+        entity.addComponent<Position>(posX, posY)
+            .addComponent<Weight>(1)
+            .addComponent<Size>(1, 1)
+            .addComponent<Life>(10)
+            .addComponent<Damage>(damage)
+            .addComponent<DamageRadius>(5)
+            .addComponent<Collidable>()
+            .addComponent<Obstacle>();
 
         if (networkId) {
             // Case : Creation in a server instance

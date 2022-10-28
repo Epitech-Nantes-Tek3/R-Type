@@ -6,6 +6,7 @@
 */
 
 #include "CreateEnemyProjectile.hpp"
+#include <boost/asio/thread_pool.hpp>
 
 namespace ecs
 {
@@ -15,17 +16,18 @@ namespace ecs
         Position pos = enemy.get()->getComponent<Position>();
         Damage damage = enemy.get()->getComponent<Damage>();
 
-        Entity &entity = world.addEntity()
-                             .addComponent<Position>(pos.x, pos.y + 20)
-                             .addComponent<Velocity>(-400, 0)
-                             .addComponent<Weight>(1)
-                             .addComponent<Size>(40, 40)
-                             .addComponent<LifeTime>(3)
-                             .addComponent<Life>(1)
-                             .addComponent<Damage>(damage)
-                             .addComponent<DamageRadius>(5)
-                             .addComponent<Collidable>()
-                             .addComponent<EnemyProjectile>(enemy.get()->getComponent<Networkable>().id);
+        Entity &entity = world.addEntity();
+        auto guard = std::lock_guard(entity);
+        entity.addComponent<Position>(pos.x, pos.y + 20)
+            .addComponent<Velocity>(-400, 0)
+            .addComponent<Weight>(1)
+            .addComponent<Size>(40, 40)
+            .addComponent<LifeTime>(3)
+            .addComponent<Life>(1)
+            .addComponent<Damage>(damage)
+            .addComponent<DamageRadius>(5)
+            .addComponent<Collidable>()
+            .addComponent<EnemyProjectile>(enemy.get()->getComponent<Networkable>().id);
 
         if (networkId) {
             // Case : Creation in a server instance

@@ -6,6 +6,7 @@
 */
 
 #include "CreatePlayer.hpp"
+#include <boost/asio/thread_pool.hpp>
 
 namespace ecs
 {
@@ -14,17 +15,18 @@ namespace ecs
         const unsigned short life, const unsigned short damage, const unsigned short damageRadius, bool controlable,
         unsigned short playerIdentifier, const std::string uuid, unsigned short networkId)
     {
-        Entity &entity = world.addEntity()
-                             .addComponent<Position>(posX, posY)
-                             .addComponent<Weight>(weight)
-                             .addComponent<Size>(sizeX, sizeY)
-                             .addComponent<Life>(life)
-                             .addComponent<Damage>(damage)
-                             .addComponent<DamageRadius>(damageRadius)
-                             .addComponent<Collidable>()
-                             .addComponent<ShootingFrequency>(0.05)
-                             .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate)
-                             .addComponent<Player>(playerIdentifier);
+        Entity &entity = world.addEntity();
+        auto guard = std::lock_guard(entity);
+        entity.addComponent<Position>(posX, posY)
+            .addComponent<Weight>(weight)
+            .addComponent<Size>(sizeX, sizeY)
+            .addComponent<Life>(life)
+            .addComponent<Damage>(damage)
+            .addComponent<DamageRadius>(damageRadius)
+            .addComponent<Collidable>()
+            .addComponent<ShootingFrequency>(0.05)
+            .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate)
+            .addComponent<Player>(playerIdentifier);
         if (controlable == true) {
             entity.addComponent<Controlable>();
         }

@@ -8,18 +8,20 @@
 #include "CreateButton.hpp"
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
 #include "R-TypeLogic/Global/Components/SizeComponent.hpp"
+#include <boost/asio/thread_pool.hpp>
 
 namespace ecs
 {
     std::size_t createNewButton(World &world, const int posX, const int posY, const int sizeX, const int sizeY,
         ButtonActionMap::buttonAction_e actionName, LayerLvL::layer_e layerLvl)
     {
-        return world.addEntity()
-            .addComponent<Button>()
+        Entity &entity = world.addEntity();
+        auto guard = std::lock_guard(entity);
+        entity.addComponent<Button>()
             .addComponent<Size>(sizeX, sizeY)
             .addComponent<Position>(posX, posY)
             .addComponent<LayerLvL>(layerLvl)
-            .addComponent<ActionName>(actionName)
-            .getId();
+            .addComponent<ActionName>(actionName);
+        return entity.getId();
     }
 } // namespace ecs

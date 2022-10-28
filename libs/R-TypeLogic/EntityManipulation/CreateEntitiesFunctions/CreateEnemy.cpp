@@ -5,6 +5,7 @@
 ** CreateEnemy
 */
 
+#include <boost/asio/thread_pool.hpp>
 #include "CreateEnemy.hpp"
 
 namespace ecs
@@ -14,16 +15,17 @@ namespace ecs
         const unsigned short life, const unsigned short damage, const unsigned short damageRadius,
         const std::string uuid, const unsigned short networkId)
     {
-        Entity &entity = world.addEntity()
-                             .addComponent<Position>(posX, posY)
-                             .addComponent<Weight>(weight)
-                             .addComponent<Size>(sizeX, sizeY)
-                             .addComponent<Life>(life)
-                             .addComponent<Damage>(damage)
-                             .addComponent<DamageRadius>(damageRadius)
-                             .addComponent<Collidable>()
-                             .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate)
-                             .addComponent<Enemy>();
+        Entity &entity = world.addEntity();
+        auto guard = std::lock_guard(entity);
+        entity.addComponent<Position>(posX, posY)
+            .addComponent<Weight>(weight)
+            .addComponent<Size>(sizeX, sizeY)
+            .addComponent<Life>(life)
+            .addComponent<Damage>(damage)
+            .addComponent<DamageRadius>(damageRadius)
+            .addComponent<Collidable>()
+            .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate)
+            .addComponent<Enemy>();
 
         if (networkId) {
             // Case : Creation in a server instance
