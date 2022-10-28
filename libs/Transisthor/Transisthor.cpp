@@ -17,7 +17,6 @@
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateObstacle.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreatePlayer.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateProjectile.hpp"
-#include "R-TypeLogic/Server/Components/AfkFrequencyComponent.hpp"
 #include "R-TypeLogic/Global/Components/DeathComponent.hpp"
 #include "R-TypeLogic/Global/Components/DestinationComponent.hpp"
 #include "R-TypeLogic/Global/Components/EquipmentComponent.hpp"
@@ -26,6 +25,7 @@
 #include "R-TypeLogic/Global/Components/LifeComponent.hpp"
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
 #include "R-TypeLogic/Global/Components/VelocityComponent.hpp"
+#include "R-TypeLogic/Server/Components/AfkFrequencyComponent.hpp"
 #include <boost/asio/thread_pool.hpp>
 
 using namespace transisthor_lib;
@@ -409,7 +409,7 @@ void Transisthor::entityConvertAlliedProjectileType(unsigned short id, void *byt
             entity.getComponent<Networkable>() = id;
         } else {
             std::vector<std::shared_ptr<Entity>> newlyCreated = _ecsWorld.joinEntities<NewlyCreated>();
-
+            uuid[16] = '\0';
             for (std::shared_ptr<Entity> ptr : newlyCreated) {
                 std::lock_guard(*ptr.get());
                 if (ptr->getComponent<NewlyCreated>().uuid == uuid) {
