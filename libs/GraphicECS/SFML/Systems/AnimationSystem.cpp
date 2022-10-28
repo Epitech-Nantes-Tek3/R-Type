@@ -6,9 +6,9 @@
 */
 
 #include "AnimationSystem.hpp"
-#include "GraphicsRectangleComponent.hpp"
-#include "AnimationDelayComponent.hpp"
 #include "AnimationComponent.hpp"
+#include "AnimationDelayComponent.hpp"
+#include "GraphicsRectangleComponent.hpp"
 #include "GraphicsTextureResource.hpp"
 
 using namespace graphicECS::SFML::Systems;
@@ -17,17 +17,24 @@ using namespace graphicECS::SFML::Components;
 
 void AnimationSystem::run(World &world)
 {
-    std::vector<std::shared_ptr<Entity>> shapes = world.joinEntities<GraphicsRectangleComponent, AnimationComponent, AnimationDelayComponent>();
+    std::vector<std::shared_ptr<Entity>> shapes =
+        world.joinEntities<GraphicsRectangleComponent, AnimationComponent, AnimationDelayComponent>();
 
     auto shape = [&world](std::shared_ptr<Entity> entity) {
         using texturesNamesVector = std::vector<GraphicsTextureResource::textureName_e>;
         using texturesMap = std::unordered_map<GraphicsTextureResource::textureName_e, std::shared_ptr<sf::Texture>>;
 
-        texturesNamesVector texturesNames = entity->getComponent<AnimationComponent>().textures;
-        GraphicsTextureResource::textureName_e currentTexture = entity->getComponent<AnimationComponent>().currentTexture;
-        texturesMap textures = world.getResource<GraphicsTextureResource>()._texturesList;
+        if (entity->getComponent<AnimationDelayComponent>().delay == std::chrono::duration<double>(0)) {
+            texturesNamesVector texturesNames = entity->getComponent<AnimationComponent>().textures;
+            GraphicsTextureResource::textureName_e &currentTexture =
+                entity->getComponent<AnimationComponent>().currentTexture;
+            texturesMap textures = world.getResource<GraphicsTextureResource>()._texturesList;
 
-        entity->getComponent<GraphicsRectangleComponent>().shape.setTexture(textures.at(currentTexture).get());
+            currentTexture = (currentTexture < textures.size())
+                ? GraphicsTextureResource::textureName_e(currentTexture + 1)
+                : GraphicsTextureResource::textureName_e(0);
+            entity->getComponent<GraphicsRectangleComponent>().shape.setTexture(textures.at(currentTexture).get());
+        }
     };
     std::for_each(shapes.begin(), shapes.end(), shape);
 }
