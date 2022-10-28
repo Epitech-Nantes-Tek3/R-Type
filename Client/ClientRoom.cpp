@@ -43,6 +43,7 @@
 #include "R-TypeLogic/Global/Systems/DeathSystem.hpp"
 #include "R-TypeLogic/Global/Systems/MovementSystem.hpp"
 #include "R-TypeLogic/Global/Systems/UpdateClockSystem.hpp"
+#include <boost/asio/thread_pool.hpp>
 
 using namespace error_lib;
 using namespace communicator_lib;
@@ -105,8 +106,10 @@ void ClientRoom::protocol12Answer(CommunicatorMessage connexionResponse)
 {
     _state = ClientState::IN_GAME;
     _worldInstance.get()->addEntity().addComponent<NetworkServer>(connexionResponse.message.clientInfo.getId());
-    _worldInstance.get()->getResource<GameClock>().resetClock();
-    _worldInstance.get()->getResource<GameClock>().resetClock();
+    auto &clock = _worldInstance.get()->getResource<GameClock>();
+    auto guard = std::lock_guard(clock);
+    clock.resetClock();
+    clock.resetClock();
 }
 
 void ClientRoom::startLobbyLoop(void)
@@ -149,6 +152,7 @@ void ClientRoom::_initSpritesForEntities()
     _worldInstance->addResource<GraphicsTextureResource>(GraphicsTextureResource::ENEMY_STATIC,
         "assets/EpiSprite/BasicEnemySpriteSheet.gif", sf::Vector2f(0, 0), sf::Vector2f(34, 34));
     GraphicsTextureResource &spritesList = _worldInstance->getResource<GraphicsTextureResource>();
+    auto guard = std::lock_guard(spritesList);
 
     spritesList.addTexture(GraphicsTextureResource::PLAYER_STATIC, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
         sf::Vector2f(500, 0), sf::Vector2f(500, 34));
