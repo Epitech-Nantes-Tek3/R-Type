@@ -143,7 +143,7 @@ namespace ecs
         {
             ResourcesList::iterator it = _resourcesList.find(typeid(R));
             if (it == _resourcesList.end())
-                formaterthrow std::logic_error("attempted to remove a non-existent Resource");
+                throw std::logic_error("attempted to remove a non-existent Resource");
             _resourcesList.erase(it);
         }
 
