@@ -7,6 +7,7 @@
 
 #include "InputManagement.hpp"
 #include <chrono>
+#include <mutex>
 #include <random>
 #include <string.h>
 #include "ActionQueueComponent.hpp"
@@ -19,17 +20,22 @@
 #include "MouseInputComponent.hpp"
 #include "World/World.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/Components/ActionName.hpp"
+#include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/ButtonActionMap.hpp"
 #include "R-TypeLogic/Global/Components/ButtonComponent.hpp"
 #include "R-TypeLogic/Global/Components/ShootingFrequencyComponent.hpp"
-#include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/ButtonActionMap.hpp"
 #include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
+using namespace graphicECS::SFML::Resources;
+using namespace graphicECS::SFML::Components;
 
-namespace ecs
+namespace graphicECS::SFML::Systems
 {
     void InputManagement::_closeWindow(sf::Event &event, World &world)
     {
-        if (event.type == sf::Event::Closed)
-            world.getResource<RenderWindowResource>().window.close();
+        if (event.type == sf::Event::Closed) {
+            RenderWindowResource &windowResource = world.getResource<RenderWindowResource>();
+            auto guard = std::lock_guard(windowResource);
+            windowResource.window.close();
+        }
     }
 
     void InputManagement::_keyPressedEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> &Inputs)
@@ -85,15 +91,18 @@ namespace ecs
 
         if (Inputs.empty())
             return;
-        while (world.containsResource<RenderWindowResource>()
-            && world.getResource<RenderWindowResource>().window.pollEvent(event)) {
+        while (world.containsResource<RenderWindowResource>()) {
+            RenderWindowResource &windowResource = world.getResource<RenderWindowResource>();
+            auto guard = std::lock_guard(windowResource);
+            if (!windowResource.window.pollEvent(event))
+                break;
             _closeWindow(event, world);
             _keyPressedEvents(event, Inputs);
             _keyReleasedEvents(event, Inputs);
             _mouseEvents(event, Inputs);
         }
         for (auto &entityPtr : Inputs) {
-            std::queue<std::pair<ecs::ActionQueueComponent::inputAction_e, float>> &actions =
+            std::queue<std::pair<ActionQueueComponent::inputAction_e, float>> &actions =
                 entityPtr->getComponent<ActionQueueComponent>().actions;
             while (actions.size() > 0) {
                 if (actions.front().first == ActionQueueComponent::MOVEY)
@@ -112,6 +121,7 @@ namespace ecs
         for (auto &player : players) {
             ShootingFrequency &freq = player->getComponent<ShootingFrequency>();
             GameClock &clock = world.getResource<GameClock>();
+            auto guard = std::lock_guard(clock);
             double delta = freq.frequency.count() - clock.getElapsedTime();
             freq.frequency = duration<double>(delta);
         }
@@ -157,9 +167,10 @@ namespace ecs
             ShootingFrequency &freq = entityPtr.get()->getComponent<ShootingFrequency>();
             const char hex_char[] = "0123456789ABCDEF";
             ecs::RandomDevice &random = world.getResource<RandomDevice>();
+            auto guard = std::lock_guard(random);
             std::string uuid(16, '\0');
 
-            if (freq.frequency.count() <= 0.0) {
+            if (freq.frequency == duration<double>(0.0)) {
                 for (auto &c : uuid)
                     c = hex_char[random.randInt<int>(0, 15)];
                 createNewAlliedProjectile(world, *entityPtr, uuid);
@@ -173,7 +184,9 @@ namespace ecs
     {
         (void)action;
         std::vector<std::shared_ptr<Entity>> joined = world.joinEntities<Button, Position, Size>();
-        sf::Vector2i mousePos = sf::Mouse::getPosition(world.getResource<RenderWindowResource>().window);
+        RenderWindowResource &windowResource = world.getResource<RenderWindowResource>();
+        auto guard = std::lock_guard(windowResource);
+        sf::Vector2i mousePos = sf::Mouse::getPosition(windowResource.window);
 
         auto clickInButton = [this, &world, &mousePos](std::shared_ptr<Entity> entityPtr) {
             Position &pos = entityPtr.get()->getComponent<Position>();
@@ -184,12 +197,12 @@ namespace ecs
             if (sameHeigth && sameWidth) {
                 ActionName &name = entityPtr.get()->getComponent<ActionName>();
                 ButtonActionMap &map = world.getResource<ButtonActionMap>();
+                auto guard = std::lock_guard(map);
 
                 std::function<void(World &)> fct = map.actionList.find(name.actionName)->second;
-
                 fct(world);
             }
         };
         std::for_each(joined.begin(), joined.end(), clickInButton);
     }
-} // namespace ecs
+} // namespace graphicECS::SFML::Systems

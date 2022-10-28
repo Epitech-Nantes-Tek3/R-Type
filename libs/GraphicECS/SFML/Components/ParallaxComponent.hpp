@@ -10,10 +10,10 @@
 
 #include "Component/Component.hpp"
 
-namespace ecs
+namespace graphicECS::SFML::Components
 {
     /// @brief This component class create a sprite wich travel in the background
-    class ParallaxBackground : public Component {};
-} // namespace ecs
+    class ParallaxBackground : public ecs::Component {};
+} // namespace graphicECS::SFML::Components
 
 #endif /* !PARALLAXCOMPONENT_HPP_ */

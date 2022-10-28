@@ -15,7 +15,7 @@
 #include "World/World.hpp"
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
 
-namespace ecs
+namespace graphicECS::SFML::Systems
 {
     /// @brief This system class manage SFML Rectangle Shape to modify it's SfRectangleSahpePosition with the Position
     /// of the Entity
@@ -24,6 +24,6 @@ namespace ecs
         /// @param world The corresponding world on which run this system.
         void run(World &world) override final;
     };
-} // namespace ecs
+} // namespace graphicECS::SFML::Systems
 
 #endif /* !SFRECTANGLEFOLLOWENTITYSYSTEM_HPP_ */
