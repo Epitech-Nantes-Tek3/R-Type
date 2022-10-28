@@ -26,12 +26,18 @@ namespace ecs
         /// @brief Constructor of the MusicName component
         /// @param newMusicName The value to set in the musicName, corresponding
         /// on the sf::Music load in shared resource Music.
-        MusicName(MusicResource::musicName_e newMusicName = MusicResource::UNDEFINED, status_e status = status_e::STOPED)
+        MusicName(
+            MusicResource::musicName_e newMusicName = MusicResource::UNDEFINED, status_e status = status_e::STOPED)
             : musicName(newMusicName){};
 
         /// @brief Default destructor of MusicName component.
         ~MusicName() = default;
 
+        /// @brief This function return the status of the Music
+        inline status_e getStatus() const { return _status; };
+
+        /// @brief This function set the status of the Music
+        inline void setStatus(status_e status) { _status = status; };
       private:
         status_e _status;
     };
