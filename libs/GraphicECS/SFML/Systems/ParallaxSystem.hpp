@@ -11,7 +11,7 @@
 #include "System/System.hpp"
 #include "World/World.hpp"
 
-namespace ecs
+namespace graphicECS::SFML::Systems
 {
     /// @brief Parallax System. Make a moving background to make an "infinite map"
     struct Parallax : public System {
@@ -21,6 +21,6 @@ namespace ecs
         void run(World &world) override final;
     };
 
-} // namespace ecs
+} // namespace graphicECS::SFML::Systems
 
 #endif /* !PARALLAXSYSTEM_HPP_ */

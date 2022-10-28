@@ -10,6 +10,7 @@
 #include "ClientRoom.hpp"
 #include <csignal>
 #include <functional>
+#include <mutex>
 #include "ButtonAction.hpp"
 #include "Error/Error.hpp"
 #include "GraphicECS/SFML/Components/ActionQueueComponent.hpp"
@@ -48,6 +49,8 @@ using namespace error_lib;
 using namespace communicator_lib;
 using namespace client_data;
 using namespace ecs;
+using namespace graphicECS::SFML::Systems;
+using namespace graphicECS::SFML::Components;
 
 static ClientRoom::ClientState *clientRoomState(nullptr);
 
@@ -103,13 +106,15 @@ void ClientRoom::protocol12Answer(CommunicatorMessage connexionResponse)
 {
     _state = ClientState::IN_GAME;
     _worldInstance.get()->addEntity().addComponent<NetworkServer>(connexionResponse.message.clientInfo.getId());
-    _worldInstance.get()->getResource<GameClock>().resetClock();
-    _worldInstance.get()->getResource<GameClock>().resetClock();
+    auto &clock = _worldInstance.get()->getResource<GameClock>();
+    auto guard = std::lock_guard(clock);
+    clock.resetClock();
+    clock.resetClock();
 }
 
 void ClientRoom::startLobbyLoop(void)
 {
-    CommunicatorMessage connexionResponse;
+    CommunicatorMessage connectionOperation;
 
     std::signal(SIGINT, signalCallbackHandler);
     startConnexionProtocol();
@@ -117,18 +122,19 @@ void ClientRoom::startLobbyLoop(void)
     _state = ClientState::LOBBY;
     while (_state != ClientState::ENDED && _state != ClientState::UNDEFINED) {
         try {
-            connexionResponse = _communicatorInstance.get()->getLastMessage();
-            if (connexionResponse.message.type == 11) {
+            connectionOperation = _communicatorInstance.get()->getLastMessage();
+            if (connectionOperation.message.type == 11) {
                 std::cerr << "No places left inside the wanted room. Please retry later" << std::endl;
                 return;
             }
-            if (connexionResponse.message.type == 12)
-                protocol12Answer(connexionResponse);
+            if (connectionOperation.message.type == 12)
+                protocol12Answer(connectionOperation);
+            if (connectionOperation.message.type == 13)
+                _holdADisconnectionRequest();
         } catch (NetworkError &error) {
         }
         if (_state == ClientState::IN_GAME) {
             _worldInstance.get()->runSystems(); /// WILL BE IMPROVED IN PART TWO (THREAD + CLOCK)
-            _holdGameOver();
         }
     }
     _disconectionProcess();
@@ -139,19 +145,14 @@ void ClientRoom::_disconectionProcess()
     _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, nullptr, 0, 13);
 }
 
-void ClientRoom::_holdGameOver()
-{
-    std::vector<std::shared_ptr<ecs::Entity>> player = _worldInstance->joinEntities<Controlable>();
-
-    if (player.empty())
-        this->_state = ClientState::ENDED;
-}
+void ClientRoom::_holdADisconnectionRequest() { _state = ClientState::ENDED; }
 
 void ClientRoom::_initSpritesForEntities()
 {
     _worldInstance->addResource<GraphicsTextureResource>(GraphicsTextureResource::ENEMY_STATIC,
         "assets/EpiSprite/BasicEnemySpriteSheet.gif", sf::Vector2f(0, 0), sf::Vector2f(34, 34));
     GraphicsTextureResource &spritesList = _worldInstance->getResource<GraphicsTextureResource>();
+    auto guard = std::lock_guard(spritesList);
 
     spritesList.addTexture(GraphicsTextureResource::PLAYER_STATIC, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
         sf::Vector2f(500, 0), sf::Vector2f(500, 34));

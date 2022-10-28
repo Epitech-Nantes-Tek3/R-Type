@@ -7,6 +7,7 @@
 
 #include "DrawComponents.hpp"
 #include <algorithm>
+#include <mutex>
 #include "GraphicECS/SFML/Resources/RenderWindowResource.hpp"
 #include "GraphicsRectangleComponent.hpp"
 #include "GraphicsTextComponent.hpp"
@@ -17,8 +18,9 @@
 #include "R-TypeLogic/Global/Components/LayerLvL.hpp"
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
 #include "R-TypeLogic/Global/Components/SizeComponent.hpp"
-
-using namespace ecs;
+using namespace graphicECS::SFML::Systems;
+using namespace graphicECS::SFML::Resources;
+using namespace graphicECS::SFML::Components;
 
 bool DrawComponents::compareLayer(std::shared_ptr<Entity> e1, std::shared_ptr<Entity> e2)
 {
@@ -28,33 +30,32 @@ bool DrawComponents::compareLayer(std::shared_ptr<Entity> e1, std::shared_ptr<En
 void DrawComponents::run(World &world)
 {
     std::vector<std::shared_ptr<Entity>> Inputs = world.joinEntities<LayerLvL>();
-
-    if (world.getResource<RenderWindowResource>().window.isOpen()) {
-        world.getResource<RenderWindowResource>().window.clear(sf::Color(0x151123));
+    RenderWindowResource &windowResource = world.getResource<RenderWindowResource>();
+    auto guard = std::lock_guard(windowResource);
+    if (windowResource.window.isOpen()) {
+        windowResource.window.clear(sf::Color(0x151123));
         std::sort(Inputs.begin(), Inputs.end(), compareLayer);
-        auto layer = [&world](std::shared_ptr<Entity> entityPtr) {
+        auto layer = [&world, &windowResource](std::shared_ptr<Entity> entityPtr) {
             if (entityPtr->contains<GraphicsRectangleComponent>()) {
                 if (world.containsResource<GraphicsTextureResource>()) {
+                    GraphicsTextureResource &textureResource = world.getResource<GraphicsTextureResource>();
+                    auto guard = std::lock_guard(textureResource);
                     entityPtr->getComponent<GraphicsRectangleComponent>().shape.setTexture(
-                        world.getResource<GraphicsTextureResource>()
-                            ._texturesList[entityPtr->getComponent<TextureName>().textureName]
-                            .get());
+                        textureResource._texturesList[entityPtr->getComponent<TextureName>().textureName].get());
                 } else {
                     entityPtr->getComponent<GraphicsRectangleComponent>().shape.setFillColor(sf::Color::White);
                 }
-                world.getResource<RenderWindowResource>().window.draw(
-                    entityPtr->getComponent<GraphicsRectangleComponent>().shape);
+                windowResource.window.draw(entityPtr->getComponent<GraphicsRectangleComponent>().shape);
                 return;
             }
             if (entityPtr->contains<GraphicsTextComponent>()) {
-                world.getResource<RenderWindowResource>().window.draw(
-                    entityPtr->getComponent<GraphicsTextComponent>().text);
+                windowResource.window.draw(entityPtr->getComponent<GraphicsTextComponent>().text);
                 return;
             }
             auto layerType = entityPtr->getComponent<LayerLvL>();
             if (layerType.layer == LayerLvL::layer_e::OBSTACLE || layerType.layer == LayerLvL::layer_e::ENEMY
-                || layerType.layer == LayerLvL::layer_e::PLAYER || layerType.layer == LayerLvL::layer_e::PROJECTILE ||
-                layerType.layer == LayerLvL::EXIT_BUTTON) {
+                || layerType.layer == LayerLvL::layer_e::PLAYER || layerType.layer == LayerLvL::layer_e::PROJECTILE
+                || layerType.layer == LayerLvL::EXIT_BUTTON) {
                 auto entityPos = entityPtr->getComponent<Position>();
                 auto entitySize = entityPtr->getComponent<Size>();
 
@@ -77,6 +78,6 @@ void DrawComponents::run(World &world)
             }
         };
         std::for_each(Inputs.begin(), Inputs.end(), layer);
-        world.getResource<RenderWindowResource>().window.display();
+        windowResource.window.display();
     }
 }

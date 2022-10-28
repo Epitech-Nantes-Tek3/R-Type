@@ -15,7 +15,7 @@
 #include "R-TypeLogic/Global/Components/ControlableComponent.hpp"
 #include "R-TypeLogic/Global/Components/VelocityComponent.hpp"
 
-namespace ecs
+namespace graphicECS::SFML::Systems
 {
     /// @brief This system class manage SFML input to link them to an action.
     struct InputManagement : public System {
@@ -72,6 +72,6 @@ namespace ecs
         /// @param Inputs Entity which contains inputs entity like mouse, keyboard and controller
         void _mouseEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> &Inputs);
     };
-} // namespace ecs
+} // namespace graphicECS::SFML::Systems
 
 #endif /* !INPUTMANAGEMENT_HPP_ */

@@ -9,6 +9,7 @@
 #include "AllowControllerComponent.hpp"
 
 using namespace ecs;
+using namespace graphicECS::SFML::Components;
 
 Test(AllowControllerComponent, test_class_constructor)
 {

@@ -8,6 +8,7 @@
 /// @file libs/Transisthor/Transisthor.cpp
 
 #include "Transisthor.hpp"
+#include <mutex>
 #include "Error/Error.hpp"
 #include "TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "TransisthorECSLogic/Server/Resources/NetworkableIdGenerator.hpp"
@@ -25,6 +26,7 @@
 #include "R-TypeLogic/Global/Components/LifeComponent.hpp"
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
 #include "R-TypeLogic/Global/Components/VelocityComponent.hpp"
+#include "R-TypeLogic/Server/Components/AfkFrequencyComponent.hpp"
 
 using namespace transisthor_lib;
 using namespace error_lib;
@@ -212,8 +214,8 @@ void *Transisthor::transitEcsDataToNetworkDataEntityObstacle(unsigned short id, 
 
 void *Transisthor::transitEcsDataToNetworkDataEntityPlayer(unsigned short id, int posX, int posY,
     double multiplierAbscissa, double multiplierOrdinate, short weight, int sizeX, int sizeY, short life,
-    unsigned short damage, unsigned short damageRadius, bool isControlable, unsigned short playerIdentifier, std::string uuid,
-    std::vector<unsigned short> destination)
+    unsigned short damage, unsigned short damageRadius, bool isControlable, unsigned short playerIdentifier,
+    std::string uuid, std::vector<unsigned short> destination)
 {
     void *networkObject = std::malloc((sizeof(unsigned short) * 5 + sizeof(int) * 4 + sizeof(double) * 2
         + sizeof(short) * 2 + sizeof(char) * uuid.size() + sizeof(bool)));
@@ -353,6 +355,13 @@ void Transisthor::componentConvertVelocityType(unsigned short id, void *byteCode
 
     _ecsWorld.updateComponentOfAnEntityFromGivenDistinctiveComponent<Networkable, Velocity>(
         Networkable(id), newComponent);
+    std::vector<std::shared_ptr<ecs::Entity>> joined = _ecsWorld.joinEntities<Player>();
+    for (auto it : joined) {
+        if (it->getComponent<Networkable>().id == id) {
+            it->getComponent<AfkFrequency>().frequency = it->getComponent<AfkFrequency>().baseFrequency;
+            return;
+        }
+    }
 }
 
 void Transisthor::componentConvertDeathType(unsigned short id, void *byteCode)
@@ -386,8 +395,11 @@ void Transisthor::entityConvertAlliedProjectileType(unsigned short id, void *byt
     }
 
     if (uuid != nullptr && id == 0) {
-        createNewAlliedProjectile(_ecsWorld, *(shooter.get()), uuid,
-            _ecsWorld.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
+        uuid[16] = '\0';
+        NetworkableIdGenerator &generator = _ecsWorld.getResource<NetworkableIdGenerator>();
+        auto guard = std::lock_guard(generator);
+        createNewAlliedProjectile(_ecsWorld, *(shooter.get()), uuid, generator.generateNewNetworkableId());
+        shooter->getComponent<AfkFrequency>().frequency = shooter->getComponent<AfkFrequency>().baseFrequency;
     } else {
         std::size_t entityId;
         if (uuid == nullptr) {
@@ -440,8 +452,10 @@ void Transisthor::entityConvertEnemyType(unsigned short id, void *byteCode)
 
     std::string uuidStr(uuid);
     if (uuidStr != "" && id == 0) {
+        NetworkableIdGenerator &generator = _ecsWorld.getResource<NetworkableIdGenerator>();
+        auto guard = std::lock_guard(generator);
         createNewEnemy(_ecsWorld, posX, posY, multiplierAbscissa, multiplierOrdinate, weight, sizeX, sizeY, life,
-            damage, damageRadius, "", _ecsWorld.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
+            damage, damageRadius, "", generator.generateNewNetworkableId());
     } else {
         std::size_t entityId;
 
@@ -476,8 +490,9 @@ void Transisthor::entityConvertEnemyProjectileType(unsigned short id, void *byte
 
     std::string uuidStr(uuid);
     if (uuidStr != "" && id == 0) {
-        createNewEnemyProjectile(
-            _ecsWorld, shooter, "", _ecsWorld.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
+        NetworkableIdGenerator &generator = _ecsWorld.getResource<NetworkableIdGenerator>();
+        auto guard = std::lock_guard(generator);
+        createNewEnemyProjectile(_ecsWorld, shooter, "", generator.generateNewNetworkableId());
     } else {
         std::size_t entityId;
         entityId = createNewEnemyProjectile(_ecsWorld, shooter);
@@ -499,8 +514,9 @@ void Transisthor::entityConvertObstacleType(unsigned short id, void *byteCode)
     std::string uuidStr(uuid);
 
     if (uuidStr != "" && id == 0) {
-        createNewObstacle(_ecsWorld, posX, posY, damage, "",
-            _ecsWorld.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
+        NetworkableIdGenerator &generator = _ecsWorld.getResource<NetworkableIdGenerator>();
+        auto guard = std::lock_guard(generator);
+        createNewObstacle(_ecsWorld, posX, posY, damage, "", generator.generateNewNetworkableId());
     } else {
         std::size_t entityId;
 
@@ -552,9 +568,10 @@ void Transisthor::entityConvertPlayerType(unsigned short id, void *byteCode)
     std::string uuidStr(uuid);
 
     if (uuidStr != "" && id == 0) {
+        NetworkableIdGenerator &generator = _ecsWorld.getResource<NetworkableIdGenerator>();
+        auto guard = std::lock_guard(generator);
         createNewPlayer(_ecsWorld, posX, posY, multiplierAbscissa, multiplierOrdinate, weight, sizeX, sizeY, life,
-            damage, damageRadius, false, playerIdentifier, "",
-            _ecsWorld.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
+            damage, damageRadius, false, playerIdentifier, "", generator.generateNewNetworkableId());
     } else {
         std::size_t entityId;
 
@@ -582,8 +599,9 @@ void Transisthor::entityConvertProjectileType(unsigned short id, void *byteCode)
     std::string uuidStr(uuid);
 
     if (uuidStr != "" && id == 0) {
-        createNewProjectile(_ecsWorld, posX, posY, velAbsc, velOrd, damage, "",
-            _ecsWorld.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
+        NetworkableIdGenerator &generator = _ecsWorld.getResource<NetworkableIdGenerator>();
+        auto guard = std::lock_guard(generator);
+        createNewProjectile(_ecsWorld, posX, posY, velAbsc, velOrd, damage, "", generator.generateNewNetworkableId());
     } else {
         std::size_t entityId;
 
