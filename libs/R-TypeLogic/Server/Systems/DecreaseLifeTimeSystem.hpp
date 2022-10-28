@@ -8,7 +8,7 @@
 #ifndef DECREASELIFETIMESYSTEM_HPP_
 #define DECREASELIFETIMESYSTEM_HPP_
 
-#include <boost/asio/thread_pool.hpp>
+#include <mutex>
 #include "World/World.hpp"
 #include "R-TypeLogic/Global/Components/DeathComponent.hpp"
 #include "R-TypeLogic/Global/Components/LifeTimeComponent.hpp"

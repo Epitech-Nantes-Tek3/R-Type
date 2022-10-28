@@ -8,10 +8,10 @@
 #ifndef LIFETIMEDEATH_SYSTEM_HPP_
 #define LIFETIMEDEATH_SYSTEM_HPP_
 
+#include <mutex>
 #include "World/World.hpp"
 #include "R-TypeLogic/Global/Components/DeathComponent.hpp"
 #include "R-TypeLogic/Global/Components/LifeTimeComponent.hpp"
-#include <boost/asio/thread_pool.hpp>
 
 namespace ecs
 {

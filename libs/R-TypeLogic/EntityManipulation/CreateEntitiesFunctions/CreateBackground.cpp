@@ -5,8 +5,8 @@
 ** CreateBackground
 */
 
-#include <boost/asio/thread_pool.hpp>
 #include "CreateBackground.hpp"
+#include <mutex>
 
 namespace ecs
 {

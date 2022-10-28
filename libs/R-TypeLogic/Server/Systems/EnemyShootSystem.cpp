@@ -7,12 +7,12 @@
 
 #include "EnemyShootSystem.hpp"
 #include <chrono>
+#include <mutex>
 #include "Transisthor/TransisthorECSLogic/Server/Resources/NetworkableIdGenerator.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateEnemyProjectile.hpp"
 #include "R-TypeLogic/Global/Components/EnemyComponent.hpp"
 #include "R-TypeLogic/Global/Components/ShootingFrequencyComponent.hpp"
 #include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
-#include <boost/asio/thread_pool.hpp>
 
 using namespace ecs;
 using namespace std::chrono;

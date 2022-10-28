@@ -5,8 +5,8 @@
 ** CreateAlliedProjectile
 */
 
-#include <boost/asio/thread_pool.hpp>
 #include "CreateAlliedProjectile.hpp"
+#include <mutex>
 
 namespace ecs
 {

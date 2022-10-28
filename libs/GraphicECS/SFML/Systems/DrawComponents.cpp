@@ -7,6 +7,7 @@
 
 #include "DrawComponents.hpp"
 #include <algorithm>
+#include <mutex>
 #include "GraphicECS/SFML/Resources/RenderWindowResource.hpp"
 #include "GraphicsRectangleComponent.hpp"
 #include "GraphicsTextComponent.hpp"
@@ -17,7 +18,6 @@
 #include "R-TypeLogic/Global/Components/LayerLvL.hpp"
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
 #include "R-TypeLogic/Global/Components/SizeComponent.hpp"
-#include <boost/asio/thread_pool.hpp>
 
 using namespace graphicECS::SFML::Systems;
 using namespace graphicECS::SFML::Resources;

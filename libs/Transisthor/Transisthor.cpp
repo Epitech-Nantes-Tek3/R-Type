@@ -26,7 +26,7 @@
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
 #include "R-TypeLogic/Global/Components/VelocityComponent.hpp"
 #include "R-TypeLogic/Server/Components/AfkFrequencyComponent.hpp"
-#include <boost/asio/thread_pool.hpp>
+#include <mutex>
 
 using namespace transisthor_lib;
 using namespace error_lib;

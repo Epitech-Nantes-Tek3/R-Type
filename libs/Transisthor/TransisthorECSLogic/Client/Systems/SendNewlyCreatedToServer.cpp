@@ -5,8 +5,8 @@
 ** SendNewlyCreatedToServer
 */
 
-#include <boost/asio/thread_pool.hpp>
 #include "Transisthor/TransisthorECSLogic/Client/Systems/SendNewlyCreatedToServer.hpp"
+#include <mutex>
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Components/NetworkServer.hpp"
 #include "R-TypeLogic/Global/Components/AlliedProjectileComponent.hpp"

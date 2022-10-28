@@ -11,13 +11,13 @@
 #include <cstddef>
 #include <map>
 #include <memory>
+#include <mutex>
 #include <typeindex>
 #include <vector>
 #include "Entity/Entity.hpp"
 #include "Resource/Resource.hpp"
 #include "System/System.hpp"
 #include "Transisthor/Transisthor.hpp"
-#include <boost/asio/thread_pool.hpp>
 #include <unordered_map>
 
 namespace transisthor_lib
@@ -143,7 +143,7 @@ namespace ecs
         {
             ResourcesList::iterator it = _resourcesList.find(typeid(R));
             if (it == _resourcesList.end())
-                throw std::logic_error("attempted to remove a non-existent Resource");
+                formaterthrow std::logic_error("attempted to remove a non-existent Resource");
             _resourcesList.erase(it);
         }
 

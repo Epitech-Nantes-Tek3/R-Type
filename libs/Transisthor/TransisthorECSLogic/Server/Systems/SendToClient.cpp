@@ -6,8 +6,8 @@
 */
 
 #include "SendToClient.hpp"
+#include <mutex>
 #include "Transisthor/TransisthorECSLogic/Both/Resources/SendingFrequency.hpp"
-#include <boost/asio/thread_pool.hpp>
 
 void SendToClient::runSystem(ecs::World &world)
 {

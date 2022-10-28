@@ -6,6 +6,7 @@
 */
 
 #include "CollidableSystem.hpp"
+#include <mutex>
 #include "R-TypeLogic/Global/Components/AlliedProjectileComponent.hpp"
 #include "R-TypeLogic/Global/Components/CollidableComponent.hpp"
 #include "R-TypeLogic/Global/Components/DamageComponent.hpp"
@@ -14,7 +15,6 @@
 #include "R-TypeLogic/Global/Components/LifeComponent.hpp"
 #include "R-TypeLogic/Global/Components/ObstacleComponent.hpp"
 #include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
-#include <boost/asio/thread_pool.hpp>
 
 using namespace ecs;
 

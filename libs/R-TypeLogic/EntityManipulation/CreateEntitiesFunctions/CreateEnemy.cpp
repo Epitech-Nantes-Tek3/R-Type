@@ -5,8 +5,8 @@
 ** CreateEnemy
 */
 
-#include <boost/asio/thread_pool.hpp>
 #include "CreateEnemy.hpp"
+#include <mutex>
 
 namespace ecs
 {

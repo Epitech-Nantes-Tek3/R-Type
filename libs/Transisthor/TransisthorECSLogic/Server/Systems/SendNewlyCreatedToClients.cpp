@@ -7,6 +7,7 @@
 
 #include "Transisthor/TransisthorECSLogic/Server/Systems/SendNewlyCreatedToClients.hpp"
 #include <chrono>
+#include <mutex>
 #include <thread>
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Resources/SendingFrequency.hpp"
@@ -25,7 +26,6 @@
 #include "R-TypeLogic/Global/Components/SizeComponent.hpp"
 #include "R-TypeLogic/Global/Components/VelocityComponent.hpp"
 #include "R-TypeLogic/Global/Components/WeightComponent.hpp"
-#include <boost/asio/thread_pool.hpp>
 
 using namespace ecs;
 

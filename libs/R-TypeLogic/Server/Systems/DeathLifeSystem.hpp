@@ -8,12 +8,12 @@
 #ifndef DEATHLIFESYSTEM_HPP_
 #define DEATHLIFESYSTEM_HPP_
 
+#include <mutex>
 #include "Transisthor/TransisthorECSLogic/Server/Components/NetworkClient.hpp"
 #include "World/World.hpp"
 #include "R-TypeLogic/Global/Components/DeathComponent.hpp"
 #include "R-TypeLogic/Global/Components/LifeComponent.hpp"
 #include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
-#include <boost/asio/thread_pool.hpp>
 
 namespace ecs
 {
