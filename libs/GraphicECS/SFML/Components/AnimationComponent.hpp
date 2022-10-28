@@ -21,11 +21,11 @@ namespace graphicECS::SFML::Components
         /// @brief A vector of textureName to store textures used for the animation.
         std::vector<graphicECS::SFML::Resources::GraphicsTextureResource::textureName_e> textures;
 
-            /// @brief Index of the current texture in use.
-            graphicECS::SFML::Resources::GraphicsTextureResource::textureName_e currentTexture;
+        /// @brief Index of the current texture in use.
+        graphicECS::SFML::Resources::GraphicsTextureResource::textureName_e currentTexture;
 
-            /// @brief Default constructor of AnimationComponent.
-            AnimationComponent() = default;
+        /// @brief Default constructor of AnimationComponent.
+        AnimationComponent() = default;
 
         /// @brief Default destructor of AnimationComponent.
         ~AnimationComponent() = default;
