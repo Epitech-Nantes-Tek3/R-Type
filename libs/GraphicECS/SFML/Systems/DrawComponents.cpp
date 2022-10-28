@@ -20,6 +20,7 @@
 
 using namespace ecs;
 using namespace graphicECS::SFML::Resources;
+using namespace graphicECS::SFML::Components;
 
 bool DrawComponents::compareLayer(std::shared_ptr<Entity> e1, std::shared_ptr<Entity> e2)
 {

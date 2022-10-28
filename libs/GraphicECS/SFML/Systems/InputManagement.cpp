@@ -25,6 +25,7 @@
 #include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
 
 using namespace graphicECS::SFML::Resources;
+using namespace graphicECS::SFML::Components;
 
 namespace ecs
 {
@@ -95,7 +96,7 @@ namespace ecs
             _mouseEvents(event, Inputs);
         }
         for (auto &entityPtr : Inputs) {
-            std::queue<std::pair<ecs::ActionQueueComponent::inputAction_e, float>> &actions =
+            std::queue<std::pair<ActionQueueComponent::inputAction_e, float>> &actions =
                 entityPtr->getComponent<ActionQueueComponent>().actions;
             while (actions.size() > 0) {
                 if (actions.front().first == ActionQueueComponent::MOVEY)
