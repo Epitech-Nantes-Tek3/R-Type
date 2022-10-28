@@ -32,8 +32,11 @@ namespace graphicECS::SFML::Systems
 {
     void InputManagement::_closeWindow(sf::Event &event, World &world)
     {
-        if (event.type == sf::Event::Closed)
-            world.getResource<RenderWindowResource>().window.close();
+        if (event.type == sf::Event::Closed) {
+            RenderWindowResource &windowResource = world.getResource<RenderWindowResource>();
+            auto guard = std::lock_guard(windowResource);
+            windowResource.window.close();
+        }
     }
 
     void InputManagement::_keyPressedEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> &Inputs)
@@ -92,8 +95,11 @@ namespace graphicECS::SFML::Systems
 
         if (Inputs.empty())
             return;
-        while (world.containsResource<RenderWindowResource>()
-            && world.getResource<RenderWindowResource>().window.pollEvent(event)) {
+        while (world.containsResource<RenderWindowResource>()) {
+            RenderWindowResource &windowResource = world.getResource<RenderWindowResource>();
+            auto guard = std::lock_guard(windowResource);
+            if (!windowResource.window.pollEvent(event))
+                break;
             _closeWindow(event, world);
             _keyPressedEvents(event, Inputs);
             _keyReleasedEvents(event, Inputs);
@@ -121,6 +127,7 @@ namespace graphicECS::SFML::Systems
             std::lock_guard(*player.get());
             ShootingFrequency &freq = player->getComponent<ShootingFrequency>();
             GameClock &clock = world.getResource<GameClock>();
+            auto guard = std::lock_guard(clock);
             double delta = freq.frequency.count() - clock.getElapsedTime();
             freq.frequency = duration<double>(delta);
         }
@@ -169,6 +176,7 @@ namespace graphicECS::SFML::Systems
             ShootingFrequency &freq = entityPtr.get()->getComponent<ShootingFrequency>();
             const char hex_char[] = "0123456789ABCDEF";
             RandomDevice &random = world.getResource<RandomDevice>();
+            auto guard = std::lock_guard(random);
             std::string uuid(16, '\0');
 
             if (freq.frequency == duration<double>(0.0)) {
@@ -185,7 +193,9 @@ namespace graphicECS::SFML::Systems
     {
         (void)action;
         std::vector<std::shared_ptr<Entity>> joined = world.joinEntities<Button, Position, Size>();
-        sf::Vector2i mousePos = sf::Mouse::getPosition(world.getResource<RenderWindowResource>().window);
+        RenderWindowResource &windowResource = world.getResource<RenderWindowResource>();
+        auto guard = std::lock_guard(windowResource);
+        sf::Vector2i mousePos = sf::Mouse::getPosition(windowResource.window);
 
         auto clickInButton = [this, &world, &mousePos](std::shared_ptr<Entity> entityPtr) {
             std::lock_guard(*entityPtr.get());
@@ -197,9 +207,9 @@ namespace graphicECS::SFML::Systems
             if (sameHeigth && sameWidth) {
                 ActionName &name = entityPtr.get()->getComponent<ActionName>();
                 ButtonActionMap &map = world.getResource<ButtonActionMap>();
+                auto guard = std::lock_guard(map);
 
                 std::function<void(World &)> fct = map.actionList.find(name.actionName)->second;
-
                 fct(world);
             }
         };

@@ -26,8 +26,9 @@ void EnemyShootSystem::run(World &world)
         ShootingFrequency &freq = entityPtr.get()->getComponent<ShootingFrequency>();
 
         if (freq.frequency == duration<double>(0)) {
-            createNewEnemyProjectile(
-                world, entityPtr, "", world.getResource<NetworkableIdGenerator>().generateNewNetworkableId());
+            NetworkableIdGenerator &generator = world.getResource<NetworkableIdGenerator>();
+            auto guard = std::lock_guard(generator);
+            createNewEnemyProjectile(world, entityPtr, "", generator.generateNewNetworkableId());
             freq.frequency = freq.baseFrequency;
         }
     };

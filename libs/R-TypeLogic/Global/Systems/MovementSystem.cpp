@@ -23,6 +23,7 @@ void Movement::run(World &world)
     auto move = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
         std::lock_guard(*entityPtr.get());
         GameClock &clock = world.getResource<GameClock>();
+        auto guard = std::lock_guard(clock);
         double elapsedTimeInSeconds = clock.getElapsedTime();
         Position &pos = entityPtr.get()->getComponent<Position>();
         Velocity &vel = entityPtr.get()->getComponent<Velocity>();
