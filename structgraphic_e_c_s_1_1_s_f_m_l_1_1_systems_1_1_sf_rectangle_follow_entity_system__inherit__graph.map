@@ -1,0 +1,4 @@
+<map id="graphicECS::SFML::Systems::SfRectangleFollowEntitySystem" name="graphicECS::SFML::Systems::SfRectangleFollowEntitySystem">
+<area shape="rect" id="node1" title="This system class manage SFML Rectangle Shape to modify it&#39;s SfRectangleSahpePosition with the Positi..." alt="" coords="5,80,243,121"/>
+<area shape="rect" id="node2" href="$classecs_1_1_system.html" title=" " alt="" coords="73,5,175,32"/>
+</map>
