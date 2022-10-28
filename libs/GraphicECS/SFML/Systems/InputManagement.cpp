@@ -24,6 +24,7 @@
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/ButtonActionMap.hpp"
 #include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
 
+using namespace graphicECS::SFML::Resources;
 using namespace graphicECS::SFML::Components;
 
 namespace ecs

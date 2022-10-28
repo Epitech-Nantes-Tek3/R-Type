@@ -11,6 +11,8 @@
 #include "Component/Component.hpp"
 #include "GraphicECS/SFML/Resources/GraphicsTextureResource.hpp"
 
+using namespace graphicECS::SFML::Resources;
+
 namespace graphicECS::SFML::Components
 {
     /// @brief TextureName store the key as enum to the corresponding texture stores in shared resource.
@@ -22,7 +24,7 @@ namespace graphicECS::SFML::Components
         /// @brief Constructor of the TextureName component
         /// @param newTextureName The value to set in the textureName, corresponding
         /// on the sf::Texture load in shared resource GraphicsTexture.
-        TextureName(ecs::GraphicsTextureResource::textureName_e newTextureName = ecs::GraphicsTextureResource::UNDEFINED)
+        TextureName(GraphicsTextureResource::textureName_e newTextureName = GraphicsTextureResource::UNDEFINED)
             : textureName(newTextureName){};
 
         /// @brief Default destructor of TextureName component.
