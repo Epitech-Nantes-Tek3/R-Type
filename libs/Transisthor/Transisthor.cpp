@@ -25,6 +25,7 @@
 #include "R-TypeLogic/Global/Components/LifeComponent.hpp"
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
 #include "R-TypeLogic/Global/Components/VelocityComponent.hpp"
+#include <boost/asio/thread_pool.hpp>
 
 using namespace transisthor_lib;
 using namespace error_lib;
@@ -212,8 +213,8 @@ void *Transisthor::transitEcsDataToNetworkDataEntityObstacle(unsigned short id, 
 
 void *Transisthor::transitEcsDataToNetworkDataEntityPlayer(unsigned short id, int posX, int posY,
     double multiplierAbscissa, double multiplierOrdinate, short weight, int sizeX, int sizeY, short life,
-    unsigned short damage, unsigned short damageRadius, bool isControlable, unsigned short playerIdentifier, std::string uuid,
-    std::vector<unsigned short> destination)
+    unsigned short damage, unsigned short damageRadius, bool isControlable, unsigned short playerIdentifier,
+    std::string uuid, std::vector<unsigned short> destination)
 {
     void *networkObject = std::malloc((sizeof(unsigned short) * 5 + sizeof(int) * 4 + sizeof(double) * 2
         + sizeof(short) * 2 + sizeof(char) * uuid.size() + sizeof(bool)));
@@ -372,6 +373,7 @@ void Transisthor::entityConvertAlliedProjectileType(unsigned short id, void *byt
 
     auto findShooter = [allyId](std::vector<std::shared_ptr<Entity>> networkables) {
         for (std::shared_ptr<Entity> ptr : networkables) {
+            std::lock_guard(*ptr.get());
             if (ptr->getComponent<Networkable>().id == allyId)
                 return ptr;
         }
@@ -397,6 +399,7 @@ void Transisthor::entityConvertAlliedProjectileType(unsigned short id, void *byt
             std::vector<std::shared_ptr<Entity>> newlyCreated = _ecsWorld.joinEntities<NewlyCreated>();
 
             for (std::shared_ptr<Entity> ptr : newlyCreated) {
+                std::lock_guard(*ptr.get());
                 if (ptr->getComponent<NewlyCreated>().uuid == uuid) {
                     ptr->getComponent<NewlyCreated>().uuid = "";
                     ptr->getComponent<Networkable>().id = id;
@@ -461,6 +464,7 @@ void Transisthor::entityConvertEnemyProjectileType(unsigned short id, void *byte
 
     auto findShooter = [enemyId](std::vector<std::shared_ptr<Entity>> networkables) {
         for (std::shared_ptr<Entity> ptr : networkables) {
+            std::lock_guard(*ptr.get());
             if (ptr->getComponent<Networkable>().id == enemyId)
                 return ptr;
         }

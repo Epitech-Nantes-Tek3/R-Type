@@ -7,6 +7,7 @@
 
 #include "SendToServer.hpp"
 #include "R-TypeLogic/Global/Components/ControlableComponent.hpp"
+#include <boost/asio/thread_pool.hpp>
 
 void SendToServer::runSystem(ecs::World &world)
 {
@@ -15,10 +16,12 @@ void SendToServer::runSystem(ecs::World &world)
     std::vector<unsigned short> serverIdList;
 
     auto addToServerList = [&serverIdList](std::shared_ptr<ecs::Entity> entityPtr) {
+        std::lock_guard(*entityPtr.get());
         serverIdList.emplace_back(entityPtr->getComponent<ecs::NetworkServer>().id);
     };
 
     auto update = [this, &world, &serverIdList](std::shared_ptr<ecs::Entity> entityPtr) {
+        std::lock_guard(*entityPtr.get());
         unsigned short networkId = entityPtr->getComponent<ecs::Networkable>().id;
         sendToServer<ecs::Velocity, ecs::Position>(world, networkId, entityPtr, serverIdList);
         return;

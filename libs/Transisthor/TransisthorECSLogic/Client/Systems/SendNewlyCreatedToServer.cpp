@@ -5,6 +5,7 @@
 ** SendNewlyCreatedToServer
 */
 
+#include <boost/asio/thread_pool.hpp>
 #include "Transisthor/TransisthorECSLogic/Client/Systems/SendNewlyCreatedToServer.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Components/NetworkServer.hpp"
@@ -32,10 +33,12 @@ void SendNewlyCreatedToServer::runSystem(ecs::World &world)
     std::vector<unsigned short> serverIdList;
 
     auto addToClientList = [&serverIdList](std::shared_ptr<ecs::Entity> entityPtr) {
+        std::lock_guard(*entityPtr.get());
         serverIdList.emplace_back(entityPtr.get()->getComponent<ecs::NetworkServer>().id);
     };
 
     auto update = [this, &world, &serverIdList](std::shared_ptr<ecs::Entity> entityPtr) {
+        std::lock_guard(*entityPtr.get());
         NewlyCreated &newlyCreated = entityPtr->getComponent<NewlyCreated>();
 
         if (!newlyCreated.isClientInstance)

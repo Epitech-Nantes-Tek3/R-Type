@@ -25,6 +25,7 @@
 #include "R-TypeLogic/Global/Components/SizeComponent.hpp"
 #include "R-TypeLogic/Global/Components/VelocityComponent.hpp"
 #include "R-TypeLogic/Global/Components/WeightComponent.hpp"
+#include <boost/asio/thread_pool.hpp>
 
 using namespace ecs;
 
@@ -35,10 +36,12 @@ void SendNewlyCreatedToClients::runSystem(ecs::World &world)
     std::vector<unsigned short> clientIdList;
 
     auto addToClientList = [&clientIdList](std::shared_ptr<ecs::Entity> entityPtr) {
+        std::lock_guard(*entityPtr.get());
         clientIdList.emplace_back(entityPtr.get()->getComponent<ecs::NetworkClient>().id);
     };
 
     auto update = [this, &world, &clientIdList](std::shared_ptr<ecs::Entity> entityPtr) {
+        std::lock_guard(*entityPtr.get());
         NewlyCreated &newlyCreated = entityPtr->getComponent<NewlyCreated>();
 
         if (newlyCreated.isClientInstance || newlyCreated.sended == true)
