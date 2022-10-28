@@ -6,14 +6,13 @@
 */
 
 #include "MovementSystem.hpp"
+#include <mutex>
 #include "R-TypeLogic/Global/Components/DestinationComponent.hpp"
 #include "R-TypeLogic/Global/Components/EnemyComponent.hpp"
 #include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
 #include "R-TypeLogic/Global/Components/VelocityComponent.hpp"
 #include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
-#include <boost/asio/thread_pool.hpp>
-
 using namespace ecs;
 
 void Movement::run(World &world)

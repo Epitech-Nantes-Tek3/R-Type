@@ -10,6 +10,7 @@
 #include "ClientRoom.hpp"
 #include <csignal>
 #include <functional>
+#include <mutex>
 #include "ButtonAction.hpp"
 #include "Error/Error.hpp"
 #include "GraphicECS/SFML/Components/ActionQueueComponent.hpp"
@@ -43,7 +44,6 @@
 #include "R-TypeLogic/Global/Systems/DeathSystem.hpp"
 #include "R-TypeLogic/Global/Systems/MovementSystem.hpp"
 #include "R-TypeLogic/Global/Systems/UpdateClockSystem.hpp"
-#include <boost/asio/thread_pool.hpp>
 
 using namespace error_lib;
 using namespace communicator_lib;

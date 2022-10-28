@@ -7,6 +7,7 @@
 
 #include "InputManagement.hpp"
 #include <chrono>
+#include <mutex>
 #include <random>
 #include <string.h>
 #include "ActionQueueComponent.hpp"
@@ -23,8 +24,6 @@
 #include "R-TypeLogic/Global/Components/ButtonComponent.hpp"
 #include "R-TypeLogic/Global/Components/ShootingFrequencyComponent.hpp"
 #include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
-#include <boost/asio/thread_pool.hpp>
-
 using namespace graphicECS::SFML::Resources;
 using namespace graphicECS::SFML::Components;
 
