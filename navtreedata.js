@@ -71,7 +71,7 @@ var NAVTREEINDEX =
 [
 "_action_name_8hpp.html",
 "_send_to_server_8hpp.html",
-"classecs_1_1_invinsible.html#a336faf0b3e8378fd47d5a575476183fd",
+"classecs_1_1_life.html#ae7784365d59fadc42676c409c2383bc4",
 "dir_922c588100a187620fdc1533bc178f73.html"
 ];
 

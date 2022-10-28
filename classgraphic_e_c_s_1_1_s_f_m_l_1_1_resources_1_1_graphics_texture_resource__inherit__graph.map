@@ -1,0 +1,4 @@
+<map id="graphicECS::SFML::Resources::GraphicsTextureResource" name="graphicECS::SFML::Resources::GraphicsTextureResource">
+<area shape="rect" id="node1" title="This resource class stores a map of Graphical SFML textures to be set on Shapes." alt="" coords="5,80,219,121"/>
+<area shape="rect" id="node2" href="$classecs_1_1_resource.html" title="This is the Resource Class for ECS The base Resource type, all Resources must inherit from Resource." alt="" coords="56,5,168,32"/>
+</map>
