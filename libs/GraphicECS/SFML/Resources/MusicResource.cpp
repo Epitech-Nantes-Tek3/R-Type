@@ -11,10 +11,10 @@ using namespace ecs;
 
 void MusicResource::addMusic(const musicName_e music_e, const std::filesystem::path &musicPath)
 {
-    sf::Music music;
+    std::shared_ptr<sf::Music> music = std::make_shared<sf::Music>();
 
-    if (!music.openFromFile(musicPath)) {
+    if (!music->openFromFile(musicPath)) {
         // throw error...
     }
-    _musicsList.emplace(music_e, std::make_shared<sf::Sound>(music));
+    _musicsList.emplace(music_e, music);
 }
