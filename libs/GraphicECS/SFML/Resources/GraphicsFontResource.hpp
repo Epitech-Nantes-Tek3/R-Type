@@ -12,11 +12,11 @@
 #include <filesystem>
 #include "Resource/Resource.hpp"
 
-namespace ecs
+namespace graphicECS::SFML::Resources
 {
     /// @brief This resource class stores the font in order to draw a Graphical text resource.
     /// It justs exist for the Graphical text resource.
-    class GraphicsFontResource : public Resource {
+    class GraphicsFontResource : public ecs::Resource {
       public:
         /// @brief The Graphical SFML font to be used with Graphical text resource.
         /// @note Only used with Graphical text resource.
@@ -32,6 +32,6 @@ namespace ecs
         /// @brief Default destructor of the class.
         ~GraphicsFontResource() = default;
     };
-} // namespace ecs
+} // namespace graphicECS::SFML::Resources
 
 #endif /* !GRAPHICSFONTRESOURCE_HPP_ */

@@ -49,6 +49,7 @@ using namespace communicator_lib;
 using namespace client_data;
 using namespace ecs;
 using namespace graphicECS::SFML::Systems;
+using namespace graphicECS::SFML::Components;
 
 static ClientRoom::ClientState *clientRoomState(nullptr);
 

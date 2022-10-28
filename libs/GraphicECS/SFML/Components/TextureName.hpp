@@ -11,10 +11,12 @@
 #include "Component/Component.hpp"
 #include "GraphicECS/SFML/Resources/GraphicsTextureResource.hpp"
 
-namespace ecs
+using namespace graphicECS::SFML::Resources;
+
+namespace graphicECS::SFML::Components
 {
     /// @brief TextureName store the key as enum to the corresponding texture stores in shared resource.
-    class TextureName : public Component {
+    class TextureName : public ecs::Component {
       public:
         /// @brief The texture name stores to find the corresponding textureName.
         GraphicsTextureResource::textureName_e textureName;
@@ -28,6 +30,6 @@ namespace ecs
         /// @brief Default destructor of TextureName component.
         ~TextureName() = default;
     };
-} // namespace ecs
+} // namespace graphicECS::SFML::Components
 
 #endif /* !TEXTURENAME_HPP_ */

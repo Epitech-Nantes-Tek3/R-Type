@@ -12,6 +12,7 @@
 #define MAXIMUM_WIDTH 1920
 
 using namespace graphicECS::SFML::Systems;
+using namespace graphicECS::SFML::Components;
 
 void Parallax::run(World &world)
 {

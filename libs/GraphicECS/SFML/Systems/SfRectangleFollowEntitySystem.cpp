@@ -8,6 +8,7 @@
 #include "SfRectangleFollowEntitySystem.hpp"
 
 using namespace graphicECS::SFML::Systems;
+using namespace graphicECS::SFML::Components;
 
 void SfRectangleFollowEntitySystem::run(World &world)
 {
