@@ -7,7 +7,7 @@
 
 #include "AnimationSystem.hpp"
 #include "GraphicsRectangleComponent.hpp"
-// #include "AnimationDelayComponent.hpp"
+#include "AnimationDelayComponent.hpp"
 #include "AnimationComponent.hpp"
 #include "GraphicsTextureResource.hpp"
 
@@ -17,7 +17,7 @@ using namespace graphicECS::SFML::Components;
 
 void AnimationSystem::run(World &world)
 {
-    std::vector<std::shared_ptr<Entity>> shapes = world.joinEntities<GraphicsRectangleComponent, AnimationComponent/*, AnimationDelayComponent*/>();
+    std::vector<std::shared_ptr<Entity>> shapes = world.joinEntities<GraphicsRectangleComponent, AnimationComponent, AnimationDelayComponent>();
 
     auto shape = [&world](std::shared_ptr<Entity> entity) {
         using texturesNamesVector = std::vector<GraphicsTextureResource::textureName_e>;

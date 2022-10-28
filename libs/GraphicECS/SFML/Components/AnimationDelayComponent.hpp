@@ -20,12 +20,12 @@ namespace graphicECS::SFML::Components
         std::chrono::duration<double> delay;
 
         /// @brief The default delay of the animation as milliseconds.
-        const std::chrono::duration<double> baseDelay;
+        std::chrono::duration<double> baseDelay;
 
         /// @brief Construct the class to set default values.
         /// @param d Delay to set the baseDelay of the animation. Default value is 500.0 milliseconds.
         AnimationDelayComponent(const double &d = 500.0)
-            : baseDelay(std::chrono::duration<double>(d)), delay(std::chrono::duration<double>(d)){};
+            : delay(std::chrono::duration<double>(d)), baseDelay(std::chrono::duration<double>(d)){};
 
         /// @brief Default destructor.
         ~AnimationDelayComponent() = default;
