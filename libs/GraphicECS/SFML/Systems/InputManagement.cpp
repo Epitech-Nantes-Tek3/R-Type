@@ -24,6 +24,8 @@
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/ButtonActionMap.hpp"
 #include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
 
+using namespace graphicECS::SFML::Components;
+
 namespace ecs
 {
     void InputManagement::_closeWindow(sf::Event &event, World &world)
@@ -93,7 +95,7 @@ namespace ecs
             _mouseEvents(event, Inputs);
         }
         for (auto &entityPtr : Inputs) {
-            std::queue<std::pair<ecs::ActionQueueComponent::inputAction_e, float>> &actions =
+            std::queue<std::pair<ActionQueueComponent::inputAction_e, float>> &actions =
                 entityPtr->getComponent<ActionQueueComponent>().actions;
             while (actions.size() > 0) {
                 if (actions.front().first == ActionQueueComponent::MOVEY)
