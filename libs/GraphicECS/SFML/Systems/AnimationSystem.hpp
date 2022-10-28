@@ -11,11 +11,11 @@
 #include "System/System.hpp"
 #include "World/World.hpp"
 
-namespace ecs
+namespace graphicECS::SFML::Systems
 {
-    struct AnimationSystem : public System {
+    struct AnimationSystem : public ecs::System {
         void run(World &world) override final;
     };
-} // namespace ecs
+} // namespace graphicECS::SFML::Systems
 
 #endif /* !ANIMATIONSYSTEM_HPP_ */
