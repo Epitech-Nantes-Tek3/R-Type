@@ -11,10 +11,10 @@
 #include <chrono>
 #include "Component/Component.hpp"
 
-namespace ecs
+namespace graphicECS::SFML::Components
 {
     /// @brief This component allows to know the delay between each frame of an animation.
-    class AnimationDelayComponent : public Component {
+    class AnimationDelayComponent : public ecs::Component {
       public:
         /// @brief The delay between each frame of an animation as milliseconds.
         std::chrono::duration<double> delay;
@@ -30,6 +30,6 @@ namespace ecs
         /// @brief Default destructor.
         ~AnimationDelayComponent() = default;
     };
-} // namespace ecs
+} // namespace graphicECS::SFML::Components
 
 #endif /* !ANIMATIONDELAYCOMPONENT_HPP_ */
