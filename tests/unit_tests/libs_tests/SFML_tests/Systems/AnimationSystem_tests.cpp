@@ -13,6 +13,7 @@
 #include "GraphicECS/SFML/Resources/GraphicsTextureResource.hpp"
 #include "World/World.hpp"
 #include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
+#include "R-TypeLogic/Global/Systems/UpdateClockSystem.hpp"
 
 using namespace graphicECS::SFML::Components;
 using namespace graphicECS::SFML::Systems;
@@ -22,9 +23,7 @@ Test(AnimationSystem, create_basic_animation)
 {
     World world(1);
 
-    world.addEntity()
-        .addComponent<AnimationComponent>()
-        .addComponent<AnimationFrequencyComponent>();
+    world.addEntity().addComponent<AnimationComponent>().addComponent<AnimationFrequencyComponent>();
     world.addResource<GameClock>();
     world.addResource<GraphicsTextureResource>(GraphicsTextureResource::PLAYER_STATIC_1,
         "assets/EpiSprite/BasicPlayerSpriteSheet.gif", sf::Vector2f(534 / 16 * 8, 0), sf::Vector2f(534 / 16, 34));
@@ -62,9 +61,7 @@ Test(AnimationSystem, use_basic_animation_and_wait_one_second)
 {
     World world(1);
 
-    world.addEntity()
-        .addComponent<AnimationComponent>()
-        .addComponent<AnimationFrequencyComponent>();
+    world.addEntity().addComponent<AnimationComponent>().addComponent<AnimationFrequencyComponent>();
     world.addResource<GameClock>();
     world.addResource<GraphicsTextureResource>(GraphicsTextureResource::PLAYER_STATIC_1,
         "assets/EpiSprite/BasicPlayerSpriteSheet.gif", sf::Vector2f(534 / 16 * 8, 0), sf::Vector2f(534 / 16, 34));
@@ -94,6 +91,7 @@ Test(AnimationSystem, use_basic_animation_and_wait_one_second)
         it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_8);
     }
     world.addSystem<AnimationSystem>();
+    world.addSystem<UpdateClock>();
     sleep(1);
     world.runSystems();
     cr_assert_eq(1, 1);
