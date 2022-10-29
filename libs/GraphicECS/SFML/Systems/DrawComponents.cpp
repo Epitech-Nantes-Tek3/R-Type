@@ -37,7 +37,7 @@ void DrawComponents::run(World &world)
         windowResource.window.clear(sf::Color(0x151123));
         std::sort(Inputs.begin(), Inputs.end(), compareLayer);
         auto layer = [&world, &windowResource](std::shared_ptr<Entity> entityPtr) {
-            std::lock_guard(*entityPtr.get());
+            auto guardEntity = std::lock_guard(*entityPtr.get());
             if (entityPtr->contains<GraphicsRectangleComponent>()) {
                 if (world.containsResource<GraphicsTextureResource>()) {
                     GraphicsTextureResource &textureResource = world.getResource<GraphicsTextureResource>();
