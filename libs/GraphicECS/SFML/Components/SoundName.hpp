@@ -13,7 +13,7 @@
 
 namespace graphicECS::SFML::Components
 {
-    /// @brief SoundName store the key as enum to the corresponding sound stores in shared resource SoundResource.
+    /// @brief SoundName stores the key as enum to the corresponding sound stored in shared resource SoundResource.
     class SoundName : public Component {
       public:
         /// @brief Enumeration of all status available for a Sound.
