@@ -25,7 +25,7 @@ namespace graphicECS::SFML::Components
         /// @brief Construct the class to set default values.
         /// @param d Frequency to set the baseFrequency of the animation. Default value is 500.0 milliseconds.
         AnimationFrequencyComponent(const double &d = 500.0)
-            : baseFrequency(std::chrono::duration<double>(d)), frequency(std::chrono::duration<double>(d)){};
+            : frequency(std::chrono::duration<double>(d)), baseFrequency(std::chrono::duration<double>(d)){};
 
         /// @brief Default destructor.
         ~AnimationFrequencyComponent() = default;
