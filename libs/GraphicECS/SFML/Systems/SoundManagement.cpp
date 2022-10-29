@@ -7,6 +7,8 @@
 
 #include "SoundManagement.hpp"
 
+using namespace graphicECS::SFML::Components;
+
 namespace graphicECS::SFML::Systems
 {
     void SoundManagement::run(World &world)
