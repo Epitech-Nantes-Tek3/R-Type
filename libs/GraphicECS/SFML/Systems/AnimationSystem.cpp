@@ -27,17 +27,18 @@ void AnimationSystem::run(World &world)
     for (auto entity : shapes) {
         using texturesNamesVector = std::vector<GraphicsTextureResource::textureName_e>;
         using texturesMap = std::unordered_map<GraphicsTextureResource::textureName_e, std::shared_ptr<sf::Texture>>;
-        auto guard = std::lock_guard(*entity.get());
+        auto entityGuard = std::lock_guard(*entity.get());
         {
-            auto guard = std::lock_guard(world.getResource<GameClock>());
+            auto &clock = world.getResource<GameClock>();
+            auto clockGuard = std::lock_guard(clock);
             entity->getComponent<AnimationFrequencyComponent>().frequency -=
-                std::chrono::duration<double>(world.getResource<GameClock>().getElapsedTime());
+                std::chrono::duration<double>(clock.getElapsedTime());
         }
         if (entity->getComponent<AnimationFrequencyComponent>().frequency < std::chrono::duration<double>(0)) {
             texturesNamesVector texturesNames = entity->getComponent<AnimationComponent>().textures;
             std::size_t &currentTexturePos = entity->getComponent<AnimationComponent>().currentTexturePos;
             {
-                auto guard = std::lock_guard(world.getResource<GraphicsTextureResource>());
+                auto textureGuard = std::lock_guard(world.getResource<GraphicsTextureResource>());
                 texturesMap textures = world.getResource<GraphicsTextureResource>()._texturesList;
 
                 currentTexturePos = (currentTexturePos < texturesNames.size() - 1) ? currentTexturePos + 1 : 0;
