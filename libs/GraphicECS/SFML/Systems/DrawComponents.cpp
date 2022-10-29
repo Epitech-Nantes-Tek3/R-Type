@@ -27,19 +27,26 @@ bool DrawComponents::compareLayer(std::shared_ptr<Entity> e1, std::shared_ptr<En
     return (e1->getComponent<LayerLvL>().layer < e2->getComponent<LayerLvL>().layer);
 }
 
-void DrawComponents::_drawComponent(World &world, RenderWindowResource &windowResource, std::shared_ptr<ecs::Entity> &entityPtr)
+void DrawComponents::_updateTexture(World &world, std::shared_ptr<ecs::Entity> &entityPtr)
+{
+    if (world.containsResource<GraphicsTextureResource>()) {
+        GraphicsTextureResource &textureResource = world.getResource<GraphicsTextureResource>();
+        auto guard = std::lock_guard(textureResource);
+
+        entityPtr->getComponent<GraphicsRectangleComponent>().shape.setTexture(
+            textureResource._texturesList[entityPtr->getComponent<TextureName>().textureName].get());
+    } else {
+        entityPtr->getComponent<GraphicsRectangleComponent>().shape.setFillColor(sf::Color::White);
+    }
+}
+
+void DrawComponents::_drawComponent(
+    World &world, RenderWindowResource &windowResource, std::shared_ptr<ecs::Entity> &entityPtr)
 {
     auto entityGuard = std::lock_guard(*entityPtr.get());
 
     if (entityPtr->contains<GraphicsRectangleComponent>()) {
-        if (world.containsResource<GraphicsTextureResource>()) {
-            GraphicsTextureResource &textureResource = world.getResource<GraphicsTextureResource>();
-            auto guard = std::lock_guard(textureResource);
-            entityPtr->getComponent<GraphicsRectangleComponent>().shape.setTexture(
-                textureResource._texturesList[entityPtr->getComponent<TextureName>().textureName].get());
-        } else {
-            entityPtr->getComponent<GraphicsRectangleComponent>().shape.setFillColor(sf::Color::White);
-        }
+        _updateTexture(world, entityPtr);
         windowResource.window.draw(entityPtr->getComponent<GraphicsRectangleComponent>().shape);
         return;
     }

@@ -30,6 +30,7 @@ namespace graphicECS::SFML::Systems
         void _updateWindow(World &world, std::vector<std::shared_ptr<Entity>> &inputs);
         void _drawComponent(World &world, graphicECS::SFML::Resources::RenderWindowResource &windowResource,
             std::shared_ptr<ecs::Entity> &entityPtr);
+        void _updateTexture(World &world, std::shared_ptr<ecs::Entity> &entityPtr);
     };
 } // namespace graphicECS::SFML::Systems
 
