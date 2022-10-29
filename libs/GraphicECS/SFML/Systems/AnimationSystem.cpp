@@ -5,11 +5,13 @@
 ** AnimationSystem
 */
 
+#include <mutex>
 #include "AnimationSystem.hpp"
 #include "AnimationComponent.hpp"
 #include "AnimationFrequencyComponent.hpp"
 #include "GraphicsRectangleComponent.hpp"
 #include "GraphicsTextureResource.hpp"
+#include "GameClock.hpp"
 
 using namespace graphicECS::SFML::Systems;
 using namespace graphicECS::SFML::Resources;
@@ -24,6 +26,9 @@ void AnimationSystem::run(World &world)
         using texturesNamesVector = std::vector<GraphicsTextureResource::textureName_e>;
         using texturesMap = std::unordered_map<GraphicsTextureResource::textureName_e, std::shared_ptr<sf::Texture>>;
 
+        entity->getComponent<AnimationFrequencyComponent>().frequency -= std::chrono::duration<double>(world.getResource<GameClock>().getElapsedTime());
+        if (entity->getComponent<AnimationFrequencyComponent>().frequency < std::chrono::duration<double>(0))
+            entity->getComponent<AnimationFrequencyComponent>().frequency = std::chrono::duration<double>(0);
         if (entity->getComponent<AnimationFrequencyComponent>().frequency == std::chrono::duration<double>(0)) {
             texturesNamesVector texturesNames = entity->getComponent<AnimationComponent>().textures;
             GraphicsTextureResource::textureName_e &currentTexture =
