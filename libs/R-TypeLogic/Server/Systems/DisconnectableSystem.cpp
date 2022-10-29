@@ -6,6 +6,7 @@
 */
 
 #include "DisconnectableSystem.hpp"
+#include <mutex>
 #include "Transisthor/TransisthorECSLogic/Server/Components/NetworkClient.hpp"
 #include "R-TypeLogic/Global/Components/DeathComponent.hpp"
 #include "R-TypeLogic/Global/Components/DisconnectableComponent.hpp"
@@ -17,6 +18,7 @@ void DisconnectableSystem::run(World &world)
     std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Disconnectable>();
 
     auto disconnectableChange = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
+        std::lock_guard(*entityPtr.get());
         entityPtr->removeComponent<Disconnectable>();
         entityPtr->addComponent<Death>();
         entityPtr->getComponent<Death>().clientToDelete = entityPtr->getComponent<NetworkClient>().id;
