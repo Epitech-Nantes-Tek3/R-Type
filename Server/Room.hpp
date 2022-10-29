@@ -123,6 +123,13 @@ namespace server_data
     /// @return true If the two rooms have the same id
     /// @return false If the two rooms have different id
     inline bool operator==(const Room &left, const unsigned short &right) { return ((left.getRoomId() == right)); }
+
+    /// @brief Overload of the == operator to compare rooms with her name
+    /// @param left param of the comparison
+    /// @param right param of the comparison
+    /// @return true If the two rooms have the same name
+    /// @return false If the two rooms have different name
+    inline bool operator==(const Room &left, const std::string &right) { return ((left.getRoomName() == right)); }
 } // namespace server_data
 
 #endif /* !ROOM_HPP_ */

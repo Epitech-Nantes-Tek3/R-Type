@@ -60,6 +60,8 @@ void Server::startHubLoop()
                 _holdANewConnectionRequest(connectionOperation);
             if (connectionOperation.message.type == 16)
                 _holdAJoinRoomRequest(connectionOperation);
+            if (connectionOperation.message.type == 17)
+                _holdACreateRoomRequest(connectionOperation);
         } catch (NetworkError &error) {
         }
     }
@@ -92,6 +94,29 @@ void Server::_holdAJoinRoomRequest(CommunicatorMessage joinDemand)
         }
     }
     _communicatorInstance.get()->sendDataToAClient(joinDemand.message.clientInfo, nullptr, 0, 11);
+}
+
+void Server::_holdACreateRoomRequest(CommunicatorMessage createDemand)
+{
+    char *tempRoomName = (char *)createDemand.message.data;
+    std::string roomName(11, '\0');
+
+    for (int i = 0; i < 10; i++)
+        roomName[i] = tempRoomName[i];
+    for (auto it : _activeRoomList) {
+        if (it == roomName) {
+            _communicatorInstance.get()->sendDataToAClient(createDemand.message.clientInfo, nullptr, 0, 11);
+            return;
+        }
+    }
+    unsigned short roomId = createANewRoom(roomName);
+    for (auto it : _activeRoomList) {
+        if (it == roomId) {
+            _communicatorInstance.get()->kickAClient(createDemand.message.clientInfo, it.getNetworkInformations());
+            it.startLobbyLoop(); /// WILL BE REMOVED WITH PROCESS IMPLEMENTATION
+            return;
+        }
+    }
 }
 
 void Server::_holdANewConnectionRequest(CommunicatorMessage connectionDemand)

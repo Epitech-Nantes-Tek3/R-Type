@@ -76,6 +76,11 @@ namespace server_data
         /// @param joinDemand actual message data
         void _holdAJoinRoomRequest(CommunicatorMessage joinDemand);
 
+        /// @brief Handle a create room request. Check if the room already exist, otherwise launch it and send a
+        /// protocol 20
+        /// @param createDemand actual message data
+        void _holdACreateRoomRequest(CommunicatorMessage createDemand);
+
         /// @brief Send to all clients the disconnection signal
         void _disconnectionProcess();
     };
