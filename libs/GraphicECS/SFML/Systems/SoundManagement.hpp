@@ -27,6 +27,10 @@ namespace graphicECS::SFML::Systems
         {
             world.getResource<SoundResource>()._soundsList.at(sound.getName())->pause();
         };
+        inline void playSound(World &world, SoundName &sound)
+        {
+            world.getResource<SoundResource>()._soundsList.at(sound.getName())->play();
+        };
     };
 } // namespace graphicECS::SFML::Systems
 
