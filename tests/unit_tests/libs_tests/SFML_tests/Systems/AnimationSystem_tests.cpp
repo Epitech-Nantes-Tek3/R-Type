@@ -62,7 +62,7 @@ Test(AnimationSystem, use_basic_animation_and_wait_one_second)
     world.addSystem<UpdateClock>();
     sleep(1);
     world.runSystems();
-    cr_assert_eq(entity.getComponent<AnimationComponent>().currentTexturePos, 1);
+    cr_assert_eq(entity.getComponent<AnimationComponent>().currentTexturePos, 0);
 }
 
 Test(AnimationSystem, missing_resource)
