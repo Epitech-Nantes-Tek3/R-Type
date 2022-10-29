@@ -99,6 +99,7 @@ var hierarchy =
       [ "ecs::Movement", "structecs_1_1_movement.html", null ],
       [ "ecs::RemoveAfkSystem", "structecs_1_1_remove_afk_system.html", null ],
       [ "ecs::UpdateClock", "structecs_1_1_update_clock.html", null ],
+      [ "graphicECS::SFML::Systems::AnimationSystem", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_animation_system.html", null ],
       [ "graphicECS::SFML::Systems::DrawComponents", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_draw_components.html", null ],
       [ "graphicECS::SFML::Systems::InputManagement", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_input_management.html", null ],
       [ "graphicECS::SFML::Systems::Parallax", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_parallax.html", null ],
