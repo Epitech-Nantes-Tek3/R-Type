@@ -131,17 +131,43 @@ void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
         offset += sizeof(char) * 10;
         std::cerr << "\t" << roomId << " : " << roomName << " is available." << std::endl;
     }
-    std::cerr << "Refer in the terminal the wanted room id : ";
-    unsigned short choosenRoomId = 0;
 
-    std::cin >> choosenRoomId; /// WILL BE REMOVED WHEN GRAPHICAL INTERACTION HAS BEEN IMPLEMENTED
-    std::cerr << "Waiting for room number " << choosenRoomId << " answer..." << std::endl;
-    void *networkData = std::malloc(sizeof(unsigned short));
+    std::cerr << "If you want to join a existent room, please refer Y. Otherwise use N : ";
+    char choosedMod = '\0';
 
-    if (networkData == nullptr)
-        throw std::logic_error("Malloc failed.");
-    std::memcpy(networkData, &choosenRoomId, sizeof(unsigned short));
-    _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, networkData, sizeof(unsigned short), 16);
+    std::cin >> choosedMod;
+    if (choosedMod == 'Y') {
+        std::cerr << "Refer in the terminal the wanted room id : ";
+        unsigned short choosenRoomId = 0;
+
+        std::cin >> choosenRoomId; /// WILL BE REMOVED WHEN GRAPHICAL INTERACTION HAS BEEN IMPLEMENTED
+        std::cerr << "Waiting for room number " << choosenRoomId << " answer..." << std::endl;
+        void *networkData = std::malloc(sizeof(unsigned short));
+
+        if (networkData == nullptr)
+            throw std::logic_error("Malloc failed.");
+        std::memcpy(networkData, &choosenRoomId, sizeof(unsigned short));
+        _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, networkData, sizeof(unsigned short), 16);
+    } else if (choosedMod == 'N') {
+        std::cerr << "Refer in the terminal the wanted room name : ";
+        std::string roomName;
+
+        std::cin >> roomName; /// WILL BE REMOVED WHEN GRAPHICAL INTERACTION HAS BEEN IMPLEMENTEND
+        if (roomName.size() != 10) {
+            std::cerr << "Please refer a valid room name (10 characters)." << std::endl;
+            _state = ClientState::ENDED;
+            return;
+        }
+        void *networkData = std::malloc(sizeof(char) * 10);
+
+        if (networkData == nullptr)
+            throw std::logic_error("Malloc failed.");
+        std::memcpy(networkData, roomName.c_str(), sizeof(char) * 10);
+        _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, networkData, sizeof(char) * 10, 17);
+    } else {
+        std::cerr << "Not a valid option ;)" << std::endl;
+        _state = ClientState::ENDED;
+    }
 }
 
 void ClientRoom::startLobbyLoop(void)
