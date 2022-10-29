@@ -10,7 +10,6 @@
 
 #include <vector>
 #include "Component/Component.hpp"
-#include "GraphicECS/SFML/Resources/GraphicsTextureResource.hpp"
 #include "GraphicsTextureResource.hpp"
 
 namespace graphicECS::SFML::Components

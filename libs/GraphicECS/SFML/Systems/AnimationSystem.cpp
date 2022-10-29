@@ -25,7 +25,7 @@ void AnimationSystem::run(World &world)
     auto shape = [&world](std::shared_ptr<Entity> entity) {
         using texturesNamesVector = std::vector<GraphicsTextureResource::textureName_e>;
         using texturesMap = std::unordered_map<GraphicsTextureResource::textureName_e, std::shared_ptr<sf::Texture>>;
-
+        std::lock_guard(*entity.get());
         entity->getComponent<AnimationFrequencyComponent>().frequency -= std::chrono::duration<double>(world.getResource<GameClock>().getElapsedTime());
         if (entity->getComponent<AnimationFrequencyComponent>().frequency < std::chrono::duration<double>(0))
             entity->getComponent<AnimationFrequencyComponent>().frequency = std::chrono::duration<double>(0);

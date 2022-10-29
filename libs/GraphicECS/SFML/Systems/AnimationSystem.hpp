@@ -13,7 +13,7 @@
 
 namespace graphicECS::SFML::Systems
 {
-    /// @brief This structure system update the AnimationFrequency and update texture on shapes.
+    /// @brief This structure system updates the AnimationFrequency and update texture on shapes.
     struct AnimationSystem : public ecs::System {
         /// @brief It is used by the world to run this system. It updates textures on shapes and AnimationFrequency.
         /// @param world The corresponding world on which run this system.
