@@ -10,7 +10,7 @@
 
 #include <vector>
 #include "Component/Component.hpp"
-#include "GraphicECS/SFML/Resources/GraphicsTextureResource.hpp"
+#include "GraphicsTextureResource.hpp"
 
 namespace graphicECS::SFML::Components
 {
@@ -19,6 +19,9 @@ namespace graphicECS::SFML::Components
       public:
         /// @brief A vector of textureName to store textures used for the animation.
         std::vector<graphicECS::SFML::Resources::GraphicsTextureResource::textureName_e> textures;
+
+        /// @brief Index of the current texture in use.
+        graphicECS::SFML::Resources::GraphicsTextureResource::textureName_e currentTexture;
 
         /// @brief Default constructor of AnimationComponent.
         AnimationComponent() = default;
