@@ -79,7 +79,25 @@ void Server::_holdADisconnectionRequest(CommunicatorMessage disconnectionDemand)
 
 void Server::_holdANewConnectionRequest(CommunicatorMessage connectionDemand)
 {
-    _communicatorInstance.get()->sendDataToAClient(connectionDemand.message.clientInfo, nullptr, 0, 15);
+    void *networkData =
+        std::malloc(sizeof(unsigned short) + _activeRoomList.size() * (sizeof(unsigned short) + sizeof(char) * 10));
+    std::size_t offset = 0;
+    unsigned short roomListSize = _activeRoomList.size();
+
+    if (networkData == nullptr)
+        throw std::logic_error("Malloc failed.");
+    std::memcpy(networkData, &roomListSize, sizeof(unsigned short));
+    offset += sizeof(unsigned short);
+    for (auto it : _activeRoomList) {
+        unsigned short roomId = it.getRoomId();
+        std::string roomName = it.getRoomName();
+
+        std::memcpy((void *)((char *)networkData + offset), &roomId, sizeof(unsigned short));
+        offset += sizeof(unsigned short);
+        std::memcpy((void *)((char *)networkData + offset), &roomName, sizeof(char) * 10);
+        offset += sizeof(char) * 10;
+    }
+    _communicatorInstance.get()->sendDataToAClient(connectionDemand.message.clientInfo, networkData, offset, 15);
 }
 
 void Server::deleteARoom(unsigned short id)
