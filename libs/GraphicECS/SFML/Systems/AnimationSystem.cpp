@@ -38,8 +38,9 @@ void AnimationSystem::run(World &world)
             texturesNamesVector texturesNames = entity->getComponent<AnimationComponent>().textures;
             std::size_t &currentTexturePos = entity->getComponent<AnimationComponent>().currentTexturePos;
             {
-                auto textureGuard = std::lock_guard(world.getResource<GraphicsTextureResource>());
-                texturesMap textures = world.getResource<GraphicsTextureResource>()._texturesList;
+                auto &textureResource = world.getResource<GraphicsTextureResource>();
+                auto textureGuard = std::lock_guard(textureResource);
+                texturesMap textures = textureResource._texturesList;
 
                 currentTexturePos = (currentTexturePos < texturesNames.size() - 1) ? currentTexturePos + 1 : 0;
                 entity->getComponent<GraphicsRectangleComponent>().shape.setTexture(
