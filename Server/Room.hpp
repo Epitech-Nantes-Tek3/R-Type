@@ -33,8 +33,9 @@ namespace server_data
 
         /// @brief Construct a new Room object
         /// @param id Id of the room
+        /// @param name of the room
         /// @param networkInformation Network informations of the room
-        Room(unsigned short id, Client networkInformations);
+        Room(unsigned short id, std::string name, Client networkInformations);
 
         /// @brief Destroy the Room object
         ~Room() = default;
@@ -43,12 +44,19 @@ namespace server_data
         /// @return The room id
         inline unsigned short getRoomId(void) const { return _id; };
 
+        /// @brief Get the room name
+        /// @return The room name
+        inline std::string getRoomName(void) const { return _name; };
+
         /// @brief Start the loop function of the room. Warning, call it inside a thread
         void startLobbyLoop(void);
 
       private:
         /// @brief Id of the room. (Used by the server)
         unsigned short _id;
+
+        /// @brief Name of the room.
+        std::string _name;
 
         /// @brief Network informations of the Room.
         Client _networkInformations;

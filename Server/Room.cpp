@@ -68,9 +68,10 @@ Room::Room()
     _worldInstance.get()->setTransisthorBridge(_communicatorInstance.get()->getTransisthorBridge());
     _state = RoomState::UNDEFINED;
     _remainingPlaces = 4;
+    _name = std::string(10, '\0');
 }
 
-Room::Room(unsigned short id, Client networkInformations)
+Room::Room(unsigned short id, std::string name, Client networkInformations)
 {
     _id = id;
     _networkInformations = networkInformations;
@@ -81,6 +82,7 @@ Room::Room(unsigned short id, Client networkInformations)
     _worldInstance.get()->setTransisthorBridge(_communicatorInstance.get()->getTransisthorBridge());
     _state = RoomState::UNDEFINED;
     _remainingPlaces = 4;
+    _name = name;
 }
 
 void Room::initEcsGameData(void)

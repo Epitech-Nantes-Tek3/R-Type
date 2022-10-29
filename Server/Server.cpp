@@ -26,9 +26,9 @@ Server::Server()
     _networkInformations = Client();
 }
 
-unsigned short Server::createANewRoom(void)
+unsigned short Server::createANewRoom(std::string name)
 {
-    _activeRoomList.push_back(Room(_activeRoomList.size(),
+    _activeRoomList.push_back(Room(_activeRoomList.size(), name,
         Client(_networkInformations.getAddress(),
             _networkInformations.getPort()
                 + 1000))); /// WILL BE REFACTO IN PART 2 TO AUTOMATIZE NEW FREE PORT DETECTION

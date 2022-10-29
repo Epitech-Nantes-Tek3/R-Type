@@ -34,8 +34,9 @@ namespace server_data
         ~Server() = default;
 
         /// @brief Create and add a new Room inside the room list
-        /// @brief Id of the newly created room
-        unsigned short createANewRoom(void);
+        /// @param name of the room
+        /// @return Id of the newly created room
+        unsigned short createANewRoom(std::string name);
 
         /// @brief Remove and delete a room of the list
         /// @param id of the room to be deleted
