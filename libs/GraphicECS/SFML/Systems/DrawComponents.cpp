@@ -32,6 +32,10 @@ void DrawComponents::run(World &world)
 {
     std::vector<std::shared_ptr<Entity>> Inputs = world.joinEntities<LayerLvL>();
     RenderWindowResource &windowResource = world.getResource<RenderWindowResource>();
+
+    if (Inputs.empty() || !world.containsResource<RenderWindowResource>())
+        return;
+    _updateWindow()
     auto guard = std::lock_guard(windowResource);
     if (windowResource.window.isOpen()) {
         windowResource.window.clear(sf::Color(0x151123));
