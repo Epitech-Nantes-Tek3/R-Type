@@ -18,13 +18,13 @@ namespace graphicECS::SFML::Systems
         auto stopMusic = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
             MusicName music = entityPtr.get()->getComponent<MusicName>();
 
-            if (music.getStatus() == sf::Music::Stopped && world.getResource<MusicResource>()._musicsList.at(music.getName())->getStatus() != MusicName::STOPED) {
+            if (music.getStatus() == MusicName::STOPED && world.getResource<MusicResource>()._musicsList.at(music.getName())->getStatus() != sf::Music::Stopped) {
                 world.getResource<MusicResource>()._musicsList.at(music.getName())->stop();
             }
-            if (music.getStatus() == sf::Music::Paused && world.getResource<MusicResource>()._musicsList.at(music.getName())->getStatus() != MusicName::PAUSED) {
+            if (music.getStatus() == MusicName::PAUSED && world.getResource<MusicResource>()._musicsList.at(music.getName())->getStatus() != sf::Music::Paused) {
                 world.getResource<MusicResource>()._musicsList.at(music.getName())->pause();
             }
-            if (music.getStatus() == sf::Music::Playing && world.getResource<MusicResource>()._musicsList.at(music.getName())->getStatus() != MusicName::PLAYING) {
+            if (music.getStatus() == MusicName::PLAYING && world.getResource<MusicResource>()._musicsList.at(music.getName())->getStatus() != sf::Music::Playing) {
                 world.getResource<MusicResource>()._musicsList.at(music.getName())->play();
             }
         };
