@@ -11,7 +11,7 @@
 #include "AnimationFrequencyComponent.hpp"
 #include "GraphicsRectangleComponent.hpp"
 #include "GraphicsTextureResource.hpp"
-#include "GameClock.hpp"
+#include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
 
 using namespace graphicECS::SFML::Systems;
 using namespace graphicECS::SFML::Resources;
