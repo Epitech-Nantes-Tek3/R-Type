@@ -23,11 +23,11 @@ void UpdateClock::run(World &world)
     clock.resetClock();
 
     for (auto entityPtr : joinedShoot) {
-        std::lock_guard(*entityPtr.get());
+        auto guard = std::lock_guard(*entityPtr.get());
         updateAFrequencyComponent<ShootingFrequency>(clock, entityPtr);
     }
     for (auto entityPtr : joinedAfk) {
-        std::lock_guard(*entityPtr.get());
+        auto guard = std::lock_guard(*entityPtr.get());
         updateAFrequencyComponent<AfkFrequency>(clock, entityPtr);
     }
 }

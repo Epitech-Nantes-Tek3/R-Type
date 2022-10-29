@@ -381,7 +381,7 @@ void Transisthor::entityConvertAlliedProjectileType(unsigned short id, void *byt
 
     auto findShooter = [allyId](std::vector<std::shared_ptr<Entity>> networkables) {
         for (std::shared_ptr<Entity> ptr : networkables) {
-            std::lock_guard(*ptr.get());
+            auto guard = std::lock_guard(*ptr.get());
             if (ptr->getComponent<Networkable>().id == allyId)
                 return ptr;
         }
@@ -412,7 +412,7 @@ void Transisthor::entityConvertAlliedProjectileType(unsigned short id, void *byt
             std::vector<std::shared_ptr<Entity>> newlyCreated = _ecsWorld.joinEntities<NewlyCreated>();
             uuid[16] = '\0';
             for (std::shared_ptr<Entity> ptr : newlyCreated) {
-                std::lock_guard(*ptr.get());
+                auto newGuard = std::lock_guard(*ptr.get());
                 if (ptr->getComponent<NewlyCreated>().uuid == uuid) {
                     ptr->getComponent<NewlyCreated>().uuid = "";
                     ptr->getComponent<Networkable>().id = id;
@@ -478,7 +478,7 @@ void Transisthor::entityConvertEnemyProjectileType(unsigned short id, void *byte
 
     auto findShooter = [enemyId](std::vector<std::shared_ptr<Entity>> networkables) {
         for (std::shared_ptr<Entity> ptr : networkables) {
-            std::lock_guard(*ptr.get());
+            auto guard = std::lock_guard(*ptr.get());
             if (ptr->getComponent<Networkable>().id == enemyId)
                 return ptr;
         }
