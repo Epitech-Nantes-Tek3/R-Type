@@ -44,6 +44,7 @@
 #include "R-TypeLogic/Global/SharedResources/Random.hpp"
 #include "R-TypeLogic/Global/Systems/DeathSystem.hpp"
 #include "R-TypeLogic/Global/Systems/MovementSystem.hpp"
+#include "R-TypeLogic/Global/Systems/NoAfkInMenuSystem.hpp"
 #include "R-TypeLogic/Global/Systems/UpdateClockSystem.hpp"
 
 using namespace error_lib;
@@ -192,6 +193,7 @@ void ClientRoom::_initSystems()
     _worldInstance->addSystem<SfRectangleFollowEntitySystem>();
     _worldInstance->addSystem<Parallax>();
     _worldInstance->addSystem<Movement>();
+    _worldInstance->addSystem<NoAfkInMenu>();
 }
 
 void ClientRoom::_initBackgroundEntities()
@@ -300,7 +302,10 @@ void ClientRoom::_initButtons()
     ButtonActionMap &actionsList = _worldInstance->getResource<ButtonActionMap>();
     actionsList.addAction(ButtonActionMap::RESUME, std::function<void(World &)>(resumeGame));
     actionsList.addAction(ButtonActionMap::PAUSE, std::function<void(World &)>(pauseGame));
-    createNewButton(*(_worldInstance.get()), 0, 0, 68, 68, ButtonActionMap::PAUSE, LayerLvL::BUTTON, MenuStates::IN_GAME);
-    createNewButton(*(_worldInstance.get()), 909, 200, 102, 102, ButtonActionMap::RESUME, LayerLvL::BUTTON, MenuStates::GAME_PAUSED);
-    createNewButton(*(_worldInstance.get()), 909, 500, 102, 102, ButtonActionMap::EXIT, LayerLvL::BUTTON, MenuStates::GAME_PAUSED);
+    createNewButton(
+        *(_worldInstance.get()), 0, 0, 68, 68, ButtonActionMap::PAUSE, LayerLvL::BUTTON, MenuStates::IN_GAME);
+    createNewButton(*(_worldInstance.get()), 909, 200, 102, 102, ButtonActionMap::RESUME, LayerLvL::BUTTON,
+        MenuStates::GAME_PAUSED);
+    createNewButton(
+        *(_worldInstance.get()), 909, 500, 102, 102, ButtonActionMap::EXIT, LayerLvL::BUTTON, MenuStates::GAME_PAUSED);
 }
