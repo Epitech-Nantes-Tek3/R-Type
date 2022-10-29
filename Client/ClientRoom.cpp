@@ -99,7 +99,7 @@ void ClientRoom::initEcsGameData(void)
 void ClientRoom::startConnexionProtocol(void)
 {
     _communicatorInstance.get()->startReceiverListening();
-    _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, nullptr, 0, 10);
+    _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, nullptr, 0, 14);
 }
 
 void ClientRoom::protocol12Answer(CommunicatorMessage connexionResponse)
@@ -112,14 +112,36 @@ void ClientRoom::protocol12Answer(CommunicatorMessage connexionResponse)
     clock.resetClock();
 }
 
+void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
+{
+    (void)connectionResponse;
+    std::cerr << "Succesfully connected to the hub." << std::endl;
+    std::cerr << "Available Rooms : " << std::endl;
+    std::cerr << "Refer in the terminal the wanted room id." << std::endl;
+}
+
 void ClientRoom::startLobbyLoop(void)
 {
     CommunicatorMessage connectionOperation;
 
     std::signal(SIGINT, signalCallbackHandler);
     startConnexionProtocol();
-    initEcsGameData();
-    _state = ClientState::LOBBY;
+    while (_state != ClientState::ENDED && _state == ClientState::UNDEFINED) {
+        try {
+            connectionOperation = _communicatorInstance.get()->getLastMessage();
+            if (connectionOperation.message.type == 11) {
+                std::cerr << "No places left inside the hub. Please retry later" << std::endl;
+                return;
+            }
+            if (connectionOperation.message.type == 15)
+                _protocol15Answer(connectionOperation);
+        } catch (NetworkError &error) {
+        }
+    }
+    if (_state != ClientState::ENDED) {
+        initEcsGameData();
+        _state = ClientState::LOBBY;
+    }
     while (_state != ClientState::ENDED && _state != ClientState::UNDEFINED) {
         try {
             connectionOperation = _communicatorInstance.get()->getLastMessage();
