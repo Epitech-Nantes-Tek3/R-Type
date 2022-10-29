@@ -19,5 +19,6 @@ int main(int ac, char **av)
     Server server = Server(serverInformation.address, serverInformation.port);
 
     server.createANewRoom("SleepLucas");
+    server.startHubLoop();
     return 0;
 }
