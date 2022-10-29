@@ -4,6 +4,7 @@ var namespacegraphic_e_c_s_1_1_s_f_m_l_1_1_components =
     [ "AllowControllerComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_allow_controller_component.html", null ],
     [ "AllowMouseAndKeyboardComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_allow_mouse_and_keyboard_component.html", null ],
     [ "AnimationComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_animation_component.html", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_animation_component" ],
+    [ "AnimationFrequencyComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_animation_frequency_component.html", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_animation_frequency_component" ],
     [ "ControllerButtonInputComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_controller_button_input_component.html", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_controller_button_input_component" ],
     [ "ControllerJoystickInputComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_controller_joystick_input_component.html", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_controller_joystick_input_component" ],
     [ "GraphicsRectangleComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_graphics_rectangle_component.html", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_graphics_rectangle_component" ],

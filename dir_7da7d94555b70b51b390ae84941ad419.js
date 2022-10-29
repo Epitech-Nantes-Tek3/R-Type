@@ -12,6 +12,9 @@ var dir_7da7d94555b70b51b390ae84941ad419 =
     [ "AnimationComponent.hpp", "_animation_component_8hpp.html", [
       [ "AnimationComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_animation_component.html", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_animation_component" ]
     ] ],
+    [ "AnimationFrequencyComponent.hpp", "_animation_frequency_component_8hpp.html", [
+      [ "AnimationFrequencyComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_animation_frequency_component.html", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_animation_frequency_component" ]
+    ] ],
     [ "ControllerButtonInputComponent.hpp", "_controller_button_input_component_8hpp.html", [
       [ "ControllerButtonInputComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_controller_button_input_component.html", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_controller_button_input_component" ]
     ] ],

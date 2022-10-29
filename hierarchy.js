@@ -50,6 +50,7 @@ var hierarchy =
       [ "graphicECS::SFML::Components::AllowControllerComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_allow_controller_component.html", null ],
       [ "graphicECS::SFML::Components::AllowMouseAndKeyboardComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_allow_mouse_and_keyboard_component.html", null ],
       [ "graphicECS::SFML::Components::AnimationComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_animation_component.html", null ],
+      [ "graphicECS::SFML::Components::AnimationFrequencyComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_animation_frequency_component.html", null ],
       [ "graphicECS::SFML::Components::ControllerButtonInputComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_controller_button_input_component.html", null ],
       [ "graphicECS::SFML::Components::ControllerJoystickInputComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_controller_joystick_input_component.html", null ],
       [ "graphicECS::SFML::Components::GraphicsRectangleComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_graphics_rectangle_component.html", null ],

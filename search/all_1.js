@@ -26,10 +26,12 @@ var searchData=
   ['allycollide_24',['allyCollide',['../structecs_1_1_collide.html#a909746acf634eeda41fbfa2616a4fa44',1,'ecs::Collide']]],
   ['animationcomponent_25',['AnimationComponent',['../classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_animation_component.html',1,'graphicECS::SFML::Components::AnimationComponent'],['../classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_animation_component.html#a57dedaf70e683d7b42c40ba2851ff254',1,'graphicECS::SFML::Components::AnimationComponent::AnimationComponent()']]],
   ['animationcomponent_2ehpp_26',['AnimationComponent.hpp',['../_animation_component_8hpp.html',1,'']]],
-  ['argument_5fhandler_27',['argument_handler',['../namespaceargument__handler.html',1,'']]],
-  ['argumenterror_28',['ArgumentError',['../classerror__lib_1_1_argument_error.html',1,'error_lib::ArgumentError'],['../classerror__lib_1_1_argument_error.html#af64571724d5be89ba604c0d97f7e5a47',1,'error_lib::ArgumentError::ArgumentError()']]],
-  ['argumentfunctiontype_29',['ArgumentFunctionType',['../classargument__handler_1_1_argument_handler.html#ade7b92c1c2885408ad21f61d3d8faa05',1,'argument_handler::ArgumentHandler']]],
-  ['argumenthandler_30',['ArgumentHandler',['../classargument__handler_1_1_argument_handler.html',1,'argument_handler::ArgumentHandler'],['../classargument__handler_1_1_argument_handler.html#a557d671c8941fc6c612b7848e9612629',1,'argument_handler::ArgumentHandler::ArgumentHandler()'],['../classargument__handler_1_1_argument_handler.html#ac2273c25a5d835cd891e47254ea512b8',1,'argument_handler::ArgumentHandler::ArgumentHandler(const int ac, char **av)']]],
-  ['argumenthandler_2ecpp_31',['ArgumentHandler.cpp',['../_argument_handler_8cpp.html',1,'']]],
-  ['argumenthandler_2ehpp_32',['ArgumentHandler.hpp',['../_argument_handler_8hpp.html',1,'']]]
+  ['animationfrequencycomponent_27',['AnimationFrequencyComponent',['../classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_animation_frequency_component.html',1,'graphicECS::SFML::Components::AnimationFrequencyComponent'],['../classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_animation_frequency_component.html#a428572ecc8007e0094917fdf1a47676d',1,'graphicECS::SFML::Components::AnimationFrequencyComponent::AnimationFrequencyComponent()']]],
+  ['animationfrequencycomponent_2ehpp_28',['AnimationFrequencyComponent.hpp',['../_animation_frequency_component_8hpp.html',1,'']]],
+  ['argument_5fhandler_29',['argument_handler',['../namespaceargument__handler.html',1,'']]],
+  ['argumenterror_30',['ArgumentError',['../classerror__lib_1_1_argument_error.html',1,'error_lib::ArgumentError'],['../classerror__lib_1_1_argument_error.html#af64571724d5be89ba604c0d97f7e5a47',1,'error_lib::ArgumentError::ArgumentError()']]],
+  ['argumentfunctiontype_31',['ArgumentFunctionType',['../classargument__handler_1_1_argument_handler.html#ade7b92c1c2885408ad21f61d3d8faa05',1,'argument_handler::ArgumentHandler']]],
+  ['argumenthandler_32',['ArgumentHandler',['../classargument__handler_1_1_argument_handler.html',1,'argument_handler::ArgumentHandler'],['../classargument__handler_1_1_argument_handler.html#a557d671c8941fc6c612b7848e9612629',1,'argument_handler::ArgumentHandler::ArgumentHandler()'],['../classargument__handler_1_1_argument_handler.html#ac2273c25a5d835cd891e47254ea512b8',1,'argument_handler::ArgumentHandler::ArgumentHandler(const int ac, char **av)']]],
+  ['argumenthandler_2ecpp_33',['ArgumentHandler.cpp',['../_argument_handler_8cpp.html',1,'']]],
+  ['argumenthandler_2ehpp_34',['ArgumentHandler.hpp',['../_argument_handler_8hpp.html',1,'']]]
 ];
