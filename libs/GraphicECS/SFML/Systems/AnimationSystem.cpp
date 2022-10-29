@@ -19,10 +19,11 @@ using namespace graphicECS::SFML::Components;
 
 void AnimationSystem::_updateFrequency(World &world, std::shared_ptr<ecs::Entity> entity)
 {
-    auto guard = std::lock_guard(world.getResource<GameClock>());
+    GameClock &clock = world.getResource<GameClock>();
+    auto guard = std::lock_guard(clock);
 
     entity->getComponent<AnimationFrequencyComponent>().frequency -=
-        std::chrono::duration<double>(world.getResource<GameClock>().getElapsedTime());
+        std::chrono::duration<double>(clock.getElapsedTime());
 }
 
 void AnimationSystem::_updateAnimation(World &world, std::shared_ptr<ecs::Entity> entity)
@@ -30,18 +31,20 @@ void AnimationSystem::_updateAnimation(World &world, std::shared_ptr<ecs::Entity
     using texturesNamesVector = std::vector<GraphicsTextureResource::textureName_e>;
     using texturesMap = std::unordered_map<GraphicsTextureResource::textureName_e, std::shared_ptr<sf::Texture>>;
 
-    texturesNamesVector texturesNames = entity->getComponent<AnimationComponent>().textures;
-    std::size_t &currentTexturePos = entity->getComponent<AnimationComponent>().currentTexturePos;
+    AnimationComponent &animation = entity->getComponent<AnimationComponent>();
+    texturesNamesVector texturesNames = animation.textures;
+    std::size_t &currentTexturePos = animation.currentTexturePos;
+    AnimationFrequencyComponent animationFrequency = entity->getComponent<AnimationFrequencyComponent>();
+    GraphicsTextureResource &textureRessource = world.getResource<GraphicsTextureResource>();
     {
-        auto guard = std::lock_guard(world.getResource<GraphicsTextureResource>());
-        texturesMap textures = world.getResource<GraphicsTextureResource>()._texturesList;
+        auto guard = std::lock_guard(textureRessource);
+        texturesMap textures = textureRessource._texturesList;
 
         currentTexturePos = (currentTexturePos < texturesNames.size() - 1) ? currentTexturePos + 1 : 0;
         entity->getComponent<GraphicsRectangleComponent>().shape.setTexture(
             textures.at(texturesNames[currentTexturePos]).get());
     }
-    entity->getComponent<AnimationFrequencyComponent>().frequency =
-        entity->getComponent<AnimationFrequencyComponent>().baseFrequency;
+    animationFrequency.frequency = animationFrequency.baseFrequency;
 }
 
 void AnimationSystem::run(World &world)
