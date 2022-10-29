@@ -9,7 +9,6 @@
 #define STOPMUSIC_HPP_
 
 #include "System/System.hpp"
-#include "SFML/Components/MusicName.hpp"
 #include "World/World.hpp"
 
 namespace graphicECS::SFML::Systems
