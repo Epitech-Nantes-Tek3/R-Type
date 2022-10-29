@@ -13,6 +13,7 @@
 
 namespace ecs
 {
+    /// @brief This is the display Component. It's used for the Button Entities to choose the menu to be displayed
     class DisplayState : public Component {
       public:
         /// @brief The state where the associated button shall be displayed

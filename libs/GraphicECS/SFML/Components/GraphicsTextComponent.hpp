@@ -22,6 +22,7 @@ namespace graphicECS::SFML::Components
         sf::Text text;
 
         /// @brief Construct a GraphicsTextComponent width default parameters if they aren't specified.
+        /// @param newFont The font to be set to the text
         /// @param newText The new text of the component. Default "".
         /// @param x The x position of the text on the window. Default 10.
         /// @param y The y position of the text on the window. Default 10.
