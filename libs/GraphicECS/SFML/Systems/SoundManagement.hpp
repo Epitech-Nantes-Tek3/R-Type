@@ -19,6 +19,10 @@ namespace graphicECS::SFML::Systems
         void run(World &world);
 
       private:
+        inline void stopSound(World &world, SoundName &sound)
+        {
+            world.getResource<SoundResource>()._soundsList.at(sound.getName())->stop();
+        };
 
     };
 } // namespace graphicECS::SFML::Systems
