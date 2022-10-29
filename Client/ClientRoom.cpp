@@ -131,7 +131,11 @@ void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
         offset += sizeof(char) * 10;
         std::cerr << "\t" << roomId << " : " << roomName << " is available." << std::endl;
     }
-    std::cerr << "Refer in the terminal the wanted room id." << std::endl;
+    std::cerr << "Refer in the terminal the wanted room id : ";
+    unsigned short choosenRoomId = 0;
+
+    std::cin >> choosenRoomId; /// WILL BE REMOVED WHEN GRAPHICAL INTERACTION HAS BEEN IMPLEMENTED
+    std::cerr << "Waiting for room number " << choosenRoomId << " answer..." << std::endl;
 }
 
 void ClientRoom::startLobbyLoop(void)
