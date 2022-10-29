@@ -8,9 +8,9 @@
 #ifndef MUSICMANAGEMENT_HPP_
 #define MUSICMANAGEMENT_HPP_
 
-#include "GraphicECS/SFML/Components/MusicName.hpp"
 #include "System/System.hpp"
 #include "World/World.hpp"
+#include "GraphicECS/SFML/Components/MusicName.hpp"
 
 namespace graphicECS::SFML::Systems
 {
