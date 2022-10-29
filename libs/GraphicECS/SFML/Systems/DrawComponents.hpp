@@ -24,7 +24,7 @@ namespace graphicECS::SFML::Systems
 
         /// @brief Add corresponding texts to the button thanks to its action
         /// @param buttonPtr A Button Entity
-        static void addButtonText(std::shared_ptr<Entity> buttonPtr, const sf::Font newFont);
+        static void addButtonText(std::shared_ptr<Entity> buttonPtr, const sf::Font &newFont);
 
         /// @brief The run function of this system. It will be used by the world in the function runSystems.
         /// @param world The corresponding world on which run this system.
