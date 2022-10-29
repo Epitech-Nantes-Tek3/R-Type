@@ -25,22 +25,6 @@ Test(AnimationSystem, create_basic_animation)
 
     auto &entity = world.addEntity().addComponent<AnimationComponent>().addComponent<AnimationFrequencyComponent>();
     world.addResource<GameClock>();
-    world.addResource<GraphicsTextureResource>(GraphicsTextureResource::PLAYER_STATIC_1,
-        "assets/EpiSprite/BasicPlayerSpriteSheet.gif", sf::Vector2f(534 / 16 * 8, 0), sf::Vector2f(534 / 16, 34));
-    world.getResource<GraphicsTextureResource>().addTexture(GraphicsTextureResource::PLAYER_STATIC_2,
-        "assets/EpiSprite/BasicPlayerSpriteSheet.gif", sf::Vector2f(534 / 16 * 9, 0), sf::Vector2f(534 / 16, 34));
-    world.getResource<GraphicsTextureResource>().addTexture(GraphicsTextureResource::PLAYER_STATIC_3,
-        "assets/EpiSprite/BasicPlayerSpriteSheet.gif", sf::Vector2f(534 / 16 * 10, 0), sf::Vector2f(534 / 16, 34));
-    world.getResource<GraphicsTextureResource>().addTexture(GraphicsTextureResource::PLAYER_STATIC_4,
-        "assets/EpiSprite/BasicPlayerSpriteSheet.gif", sf::Vector2f(534 / 16 * 11, 0), sf::Vector2f(534 / 16, 34));
-    world.getResource<GraphicsTextureResource>().addTexture(GraphicsTextureResource::PLAYER_STATIC_5,
-        "assets/EpiSprite/BasicPlayerSpriteSheet.gif", sf::Vector2f(534 / 16 * 12, 0), sf::Vector2f(534 / 16, 34));
-    world.getResource<GraphicsTextureResource>().addTexture(GraphicsTextureResource::PLAYER_STATIC_6,
-        "assets/EpiSprite/BasicPlayerSpriteSheet.gif", sf::Vector2f(534 / 16 * 13, 0), sf::Vector2f(534 / 16, 34));
-    world.getResource<GraphicsTextureResource>().addTexture(GraphicsTextureResource::PLAYER_STATIC_7,
-        "assets/EpiSprite/BasicPlayerSpriteSheet.gif", sf::Vector2f(534 / 16 * 14, 0), sf::Vector2f(534 / 16, 34));
-    world.getResource<GraphicsTextureResource>().addTexture(GraphicsTextureResource::PLAYER_STATIC_8,
-        "assets/EpiSprite/BasicPlayerSpriteSheet.gif", sf::Vector2f(534 / 16 * 15, 0), sf::Vector2f(534 / 16, 34));
     auto animation = world.joinEntities<AnimationComponent>();
     for (auto &it : animation) {
         it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_1);
@@ -63,22 +47,6 @@ Test(AnimationSystem, use_basic_animation_and_wait_one_second)
 
     auto &entity = world.addEntity().addComponent<AnimationComponent>().addComponent<AnimationFrequencyComponent>();
     world.addResource<GameClock>();
-    world.addResource<GraphicsTextureResource>(GraphicsTextureResource::PLAYER_STATIC_1,
-        "assets/EpiSprite/BasicPlayerSpriteSheet.gif", sf::Vector2f(534 / 16 * 8, 0), sf::Vector2f(534 / 16, 34));
-    world.getResource<GraphicsTextureResource>().addTexture(GraphicsTextureResource::PLAYER_STATIC_2,
-        "assets/EpiSprite/BasicPlayerSpriteSheet.gif", sf::Vector2f(534 / 16 * 9, 0), sf::Vector2f(534 / 16, 34));
-    world.getResource<GraphicsTextureResource>().addTexture(GraphicsTextureResource::PLAYER_STATIC_3,
-        "assets/EpiSprite/BasicPlayerSpriteSheet.gif", sf::Vector2f(534 / 16 * 10, 0), sf::Vector2f(534 / 16, 34));
-    world.getResource<GraphicsTextureResource>().addTexture(GraphicsTextureResource::PLAYER_STATIC_4,
-        "assets/EpiSprite/BasicPlayerSpriteSheet.gif", sf::Vector2f(534 / 16 * 11, 0), sf::Vector2f(534 / 16, 34));
-    world.getResource<GraphicsTextureResource>().addTexture(GraphicsTextureResource::PLAYER_STATIC_5,
-        "assets/EpiSprite/BasicPlayerSpriteSheet.gif", sf::Vector2f(534 / 16 * 12, 0), sf::Vector2f(534 / 16, 34));
-    world.getResource<GraphicsTextureResource>().addTexture(GraphicsTextureResource::PLAYER_STATIC_6,
-        "assets/EpiSprite/BasicPlayerSpriteSheet.gif", sf::Vector2f(534 / 16 * 13, 0), sf::Vector2f(534 / 16, 34));
-    world.getResource<GraphicsTextureResource>().addTexture(GraphicsTextureResource::PLAYER_STATIC_7,
-        "assets/EpiSprite/BasicPlayerSpriteSheet.gif", sf::Vector2f(534 / 16 * 14, 0), sf::Vector2f(534 / 16, 34));
-    world.getResource<GraphicsTextureResource>().addTexture(GraphicsTextureResource::PLAYER_STATIC_8,
-        "assets/EpiSprite/BasicPlayerSpriteSheet.gif", sf::Vector2f(534 / 16 * 15, 0), sf::Vector2f(534 / 16, 34));
     auto animation = world.joinEntities<AnimationComponent>();
     for (auto &it : animation) {
         it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_1);
@@ -102,22 +70,6 @@ Test(AnimationSystem, missing_resource)
     World world(1);
 
     auto &entity = world.addEntity().addComponent<AnimationComponent>().addComponent<AnimationFrequencyComponent>();
-    world.addResource<GraphicsTextureResource>(GraphicsTextureResource::PLAYER_STATIC_1,
-        "assets/EpiSprite/BasicPlayerSpriteSheet.gif", sf::Vector2f(534 / 16 * 8, 0), sf::Vector2f(534 / 16, 34));
-    world.getResource<GraphicsTextureResource>().addTexture(GraphicsTextureResource::PLAYER_STATIC_2,
-        "assets/EpiSprite/BasicPlayerSpriteSheet.gif", sf::Vector2f(534 / 16 * 9, 0), sf::Vector2f(534 / 16, 34));
-    world.getResource<GraphicsTextureResource>().addTexture(GraphicsTextureResource::PLAYER_STATIC_3,
-        "assets/EpiSprite/BasicPlayerSpriteSheet.gif", sf::Vector2f(534 / 16 * 10, 0), sf::Vector2f(534 / 16, 34));
-    world.getResource<GraphicsTextureResource>().addTexture(GraphicsTextureResource::PLAYER_STATIC_4,
-        "assets/EpiSprite/BasicPlayerSpriteSheet.gif", sf::Vector2f(534 / 16 * 11, 0), sf::Vector2f(534 / 16, 34));
-    world.getResource<GraphicsTextureResource>().addTexture(GraphicsTextureResource::PLAYER_STATIC_5,
-        "assets/EpiSprite/BasicPlayerSpriteSheet.gif", sf::Vector2f(534 / 16 * 12, 0), sf::Vector2f(534 / 16, 34));
-    world.getResource<GraphicsTextureResource>().addTexture(GraphicsTextureResource::PLAYER_STATIC_6,
-        "assets/EpiSprite/BasicPlayerSpriteSheet.gif", sf::Vector2f(534 / 16 * 13, 0), sf::Vector2f(534 / 16, 34));
-    world.getResource<GraphicsTextureResource>().addTexture(GraphicsTextureResource::PLAYER_STATIC_7,
-        "assets/EpiSprite/BasicPlayerSpriteSheet.gif", sf::Vector2f(534 / 16 * 14, 0), sf::Vector2f(534 / 16, 34));
-    world.getResource<GraphicsTextureResource>().addTexture(GraphicsTextureResource::PLAYER_STATIC_8,
-        "assets/EpiSprite/BasicPlayerSpriteSheet.gif", sf::Vector2f(534 / 16 * 15, 0), sf::Vector2f(534 / 16, 34));
     auto animation = world.joinEntities<AnimationComponent>();
     for (auto &it : animation) {
         it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_1);
