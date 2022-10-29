@@ -22,23 +22,24 @@ void AnimationSystem::run(World &world)
     std::vector<std::shared_ptr<Entity>> shapes =
         world.joinEntities<GraphicsRectangleComponent, AnimationComponent, AnimationFrequencyComponent>();
 
-    auto shape = [&world](std::shared_ptr<Entity> entity) {
+    if (shapes.empty())
+        return;
+    for (auto entity : shapes) {
         using texturesNamesVector = std::vector<GraphicsTextureResource::textureName_e>;
         using texturesMap = std::unordered_map<GraphicsTextureResource::textureName_e, std::shared_ptr<sf::Texture>>;
         std::lock_guard(*entity.get());
         entity->getComponent<AnimationFrequencyComponent>().frequency -= std::chrono::duration<double>(world.getResource<GameClock>().getElapsedTime());
         if (entity->getComponent<AnimationFrequencyComponent>().frequency < std::chrono::duration<double>(0)) {
             texturesNamesVector texturesNames = entity->getComponent<AnimationComponent>().textures;
-            GraphicsTextureResource::textureName_e &currentTexture =
-                entity->getComponent<AnimationComponent>().currentTexture;
+            std::size_t &currentTexturePos =
+                entity->getComponent<AnimationComponent>().currentTexturePos;
             texturesMap textures = world.getResource<GraphicsTextureResource>()._texturesList;
 
-            currentTexture = (currentTexture < textures.size())
-                ? GraphicsTextureResource::textureName_e(currentTexture + 1)
-                : GraphicsTextureResource::textureName_e(0);
-            entity->getComponent<GraphicsRectangleComponent>().shape.setTexture(textures.at(currentTexture).get());
+            currentTexturePos = (currentTexturePos < texturesNames.size() - 1)
+                ? currentTexturePos + 1
+                : 0;
+            entity->getComponent<GraphicsRectangleComponent>().shape.setTexture(textures.at(texturesNames[currentTexturePos]).get());
             entity->getComponent<AnimationFrequencyComponent>().frequency = entity->getComponent<AnimationFrequencyComponent>().baseFrequency;
         }
-    };
-    std::for_each(shapes.begin(), shapes.end(), shape);
+    }
 }
