@@ -5,28 +5,32 @@
 ** MusicManagement
 */
 
+#include "MusicManagement.hpp"
+
 using namespace graphicECS::SFML::Components;
 
 namespace graphicECS::SFML::Systems
 {
     void MusicManagement::run(World &world)
     {
-        std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<MusicName>();
-
-        auto stopMusic = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
-            MusicName sound = entityPtr.get()->getComponent<MusicName>();
-
-            if (sound.getStatus() == MusicName::STOPED) {
-                world.getResource<MusicResource>()._soundsList.at(sound.getName())->stop();
-            }
-            if (sound.getStatus() == MusicName::PAUSED) {
-                world.getResource<MusicResource>()._soundsList.at(sound.getName())->pause();
-            }
-            if (sound.getStatus() == MusicName::PLAYING) {
-                world.getResource<MusicResource>()._soundsList.at(sound.getName())->play();
-            }
-        };
-
-        std::for_each(joined.begin(), joined.end(), stopMusic);
+        void(world);
     }
 } // namespace graphicECS::SFML::Systems
+
+        // std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<MusicName>();
+
+        // auto stopMusic = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
+        //     MusicName music = entityPtr.get()->getComponent<MusicName>();
+
+        //     if (music.getStatus() == MusicName::STOPED) {
+        //         world.getResource<MusicResource>()._musicsList.at(music.getName())->stop();
+        //     }
+        //     if (music.getStatus() == MusicName::PAUSED) {
+        //         world.getResource<MusicResource>()._musicsList.at(music.getName())->pause();
+        //     }
+        //     if (music.getStatus() == MusicName::PLAYING) {
+        //         world.getResource<MusicResource>()._musicsList.at(music.getName())->play();
+        //     }
+        // };
+
+        // std::for_each(joined.begin(), joined.end(), stopMusic);
