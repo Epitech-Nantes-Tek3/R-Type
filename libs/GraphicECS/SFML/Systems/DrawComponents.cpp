@@ -48,11 +48,9 @@ void DrawComponents::_drawComponent(
     if (entityPtr->contains<GraphicsRectangleComponent>()) {
         _updateTexture(world, entityPtr);
         windowResource.window.draw(entityPtr->getComponent<GraphicsRectangleComponent>().shape);
-        return;
     }
     if (entityPtr->contains<GraphicsTextComponent>()) {
         windowResource.window.draw(entityPtr->getComponent<GraphicsTextComponent>().text);
-        return;
     }
     auto layerType = entityPtr->getComponent<LayerLvL>();
     if (layerType.layer == LayerLvL::layer_e::OBSTACLE || layerType.layer == LayerLvL::layer_e::ENEMY
