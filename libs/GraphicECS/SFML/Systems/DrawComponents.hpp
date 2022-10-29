@@ -8,6 +8,7 @@
 #ifndef DRAWCOMPONENTS_HPP_
 #define DRAWCOMPONENTS_HPP_
 
+#include "GraphicECS/SFML/Resources/RenderWindowResource.hpp"
 #include "System/System.hpp"
 #include "World/World.hpp"
 
@@ -26,7 +27,9 @@ namespace graphicECS::SFML::Systems
         void run(World &world) override final;
 
       private:
-        void _updateWindow();
+        void _updateWindow(World &world, std::vector<std::shared_ptr<Entity>> &inputs);
+        void _drawComponent(World &world, graphicECS::SFML::Resources::RenderWindowResource &windowResource,
+            std::shared_ptr<ecs::Entity> &entityPtr);
     };
 } // namespace graphicECS::SFML::Systems
 
