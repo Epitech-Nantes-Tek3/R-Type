@@ -5,6 +5,7 @@ set(SRC
     ${SRC_ROOT}/SharedResources/ButtonActionMap.cpp
     ${INC_ROOT}/Components/ActionName.hpp
     ${INC_ROOT}/SharedResources/ButtonActionMap.hpp
+    ${INC_ROOT}/SharedResources/MenuStates.hpp
 )
 
 set(TARGET ${PROJECT_NAME}_RTypeLogicButtonManipulation)
