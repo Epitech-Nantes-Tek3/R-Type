@@ -19,13 +19,13 @@ namespace graphicECS::SFML::Systems
             SoundName sound = entityPtr.get()->getComponent<SoundName>();
 
             if (sound.getStatus() == SoundName::STOPED) {
-                stopSound(world, sound);
+                world.getResource<SoundResource>()._soundsList.at(sound.getName())->stop();
             }
             if (sound.getStatus() == SoundName::PAUSED) {
-                pauseSound(world, sound);
+                world.getResource<SoundResource>()._soundsList.at(sound.getName())->pause();
             }
-            if (sound.getStatus() == SoundName::PLAY) {
-                playSound(world, sound);
+            if (sound.getStatus() == SoundName::PLAYING) {
+                world.getResource<SoundResource>()._soundsList.at(sound.getName())->play();
             }
         };
 
