@@ -55,3 +55,6 @@ tests/R-Type_communicator_send
 docs/html
 CMakeGraphVizOptions.cmake
 coverage
+
+#Debug
+vgcore*
