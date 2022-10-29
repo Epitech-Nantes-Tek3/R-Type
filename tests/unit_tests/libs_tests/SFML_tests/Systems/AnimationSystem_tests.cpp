@@ -24,8 +24,7 @@ Test(AnimationSystem, create_basic_animation)
 
     world.addEntity()
         .addComponent<AnimationComponent>()
-        .addComponent<AnimationFrequencyComponent>()
-        .addComponent<GraphicsRectangleComponent>();
+        .addComponent<AnimationFrequencyComponent>();
     world.addResource<GameClock>();
     world.addResource<GraphicsTextureResource>(GraphicsTextureResource::PLAYER_STATIC_1,
         "assets/EpiSprite/BasicPlayerSpriteSheet.gif", sf::Vector2f(534 / 16 * 8, 0), sf::Vector2f(534 / 16, 34));
@@ -65,8 +64,7 @@ Test(AnimationSystem, use_basic_animation_and_wait_one_second)
 
     world.addEntity()
         .addComponent<AnimationComponent>()
-        .addComponent<AnimationFrequencyComponent>()
-        .addComponent<GraphicsRectangleComponent>();
+        .addComponent<AnimationFrequencyComponent>();
     world.addResource<GameClock>();
     world.addResource<GraphicsTextureResource>(GraphicsTextureResource::PLAYER_STATIC_1,
         "assets/EpiSprite/BasicPlayerSpriteSheet.gif", sf::Vector2f(534 / 16 * 8, 0), sf::Vector2f(534 / 16, 34));

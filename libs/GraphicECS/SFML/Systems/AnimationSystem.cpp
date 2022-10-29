@@ -41,16 +41,17 @@ void AnimationSystem::_updateAnimation(World &world, std::shared_ptr<ecs::Entity
         texturesMap textures = textureRessource._texturesList;
 
         currentTexturePos = (currentTexturePos < texturesNames.size() - 1) ? currentTexturePos + 1 : 0;
-        entity->getComponent<GraphicsRectangleComponent>().shape.setTexture(
-            textures.at(texturesNames[currentTexturePos]).get());
+        if (entity->contains<GraphicsRectangleComponent>()) {
+            entity->getComponent<GraphicsRectangleComponent>().shape.setTexture(
+                textures.at(texturesNames[currentTexturePos]).get());
+        }
     }
     animationFrequency.frequency = animationFrequency.baseFrequency;
 }
 
 void AnimationSystem::run(World &world)
 {
-    std::vector<std::shared_ptr<Entity>> shapes =
-        world.joinEntities<GraphicsRectangleComponent, AnimationComponent, AnimationFrequencyComponent>();
+    std::vector<std::shared_ptr<Entity>> shapes = world.joinEntities<AnimationComponent, AnimationFrequencyComponent>();
 
     if (shapes.empty() || !world.containsResource<GameClock>() || !world.containsResource<GraphicsTextureResource>())
         return;
