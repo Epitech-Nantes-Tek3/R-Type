@@ -49,7 +49,7 @@ void AnimationSystem::run(World &world)
     std::vector<std::shared_ptr<Entity>> shapes =
         world.joinEntities<GraphicsRectangleComponent, AnimationComponent, AnimationFrequencyComponent>();
 
-    if (shapes.empty())
+    if (shapes.empty() || !world.containsResource<GameClock>() || !world.containsResource<GraphicsTextureResource>())
         return;
     for (auto entity : shapes) {
         auto guard = std::lock_guard(*entity.get());
