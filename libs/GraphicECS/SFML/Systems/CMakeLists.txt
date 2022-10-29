@@ -13,5 +13,7 @@ set(SRC_GRAPHIC_SYSTEM
     ${GRAPHIC_SRC_SYSTEM_ROOT}/SoundManagement.hpp
     ${GRAPHIC_SRC_SYSTEM_ROOT}/MusicManagement.cpp
     ${GRAPHIC_SRC_SYSTEM_ROOT}/MusicManagement.hpp
+    ${GRAPHIC_SRC_SYSTEM_ROOT}/AnimationSystem.cpp
+    ${GRAPHIC_SRC_SYSTEM_ROOT}/AnimationSystem.hpp
     PARENT_SCOPE
 )

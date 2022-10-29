@@ -10,6 +10,7 @@
 #include <mutex>
 #include "R-TypeLogic/Global/Components/ShootingFrequencyComponent.hpp"
 #include "R-TypeLogic/Server/Components/AfkFrequencyComponent.hpp"
+
 using namespace ecs;
 
 void UpdateClock::run(World &world)
