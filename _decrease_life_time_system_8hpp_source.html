@@ -111,23 +111,24 @@ $(document).ready(function(){initNavTree('_decrease_life_time_system_8hpp_source
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            std::vector&lt;std::shared_ptr&lt;ecs::Entity&gt;&gt; joined = world.joinEntities&lt;<a class="code" href="classecs_1_1_life_time.html">LifeTime</a>&gt;();</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            <span class="keyword">auto</span> decreaseLifeTime = [&amp;world](std::shared_ptr&lt;ecs::Entity&gt; entityPtr) {</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                <a class="code" href="classecs_1_1_game_clock.html">GameClock</a> &amp;clock = world.getResource&lt;<a class="code" href="classecs_1_1_game_clock.html">GameClock</a>&gt;();</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                <span class="keyword">auto</span> guard = std::lock_guard(clock);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                entityPtr.get()-&gt;getComponent&lt;<a class="code" href="classecs_1_1_life_time.html">LifeTime</a>&gt;() = entityPtr.get()-&gt;getComponent&lt;<a class="code" href="classecs_1_1_life_time.html">LifeTime</a>&gt;().timeLeft</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                    - std::chrono::duration&lt;double&gt;(clock.<a class="code" href="classecs_1_1_game_clock.html#a631dfb91707d62b703f7423fc3ef9ca4">getElapsedTime</a>());</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            };</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            std::for_each(joined.begin(), joined.end(), decreaseLifeTime);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        }</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    };</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;} <span class="comment">// namespace ecs</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !DECREASELIFETIMESYSTEM_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                std::lock_guard(*entityPtr.get());</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                <a class="code" href="classecs_1_1_game_clock.html">GameClock</a> &amp;clock = world.getResource&lt;<a class="code" href="classecs_1_1_game_clock.html">GameClock</a>&gt;();</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                <span class="keyword">auto</span> guard = std::lock_guard(clock);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                entityPtr.get()-&gt;getComponent&lt;<a class="code" href="classecs_1_1_life_time.html">LifeTime</a>&gt;() = entityPtr.get()-&gt;getComponent&lt;<a class="code" href="classecs_1_1_life_time.html">LifeTime</a>&gt;().timeLeft</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                    - std::chrono::duration&lt;double&gt;(clock.<a class="code" href="classecs_1_1_game_clock.html#a631dfb91707d62b703f7423fc3ef9ca4">getElapsedTime</a>());</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            };</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            std::for_each(joined.begin(), joined.end(), decreaseLifeTime);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        }</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    };</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;} <span class="comment">// namespace ecs</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !DECREASELIFETIMESYSTEM_HPP_ */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="a_life_time_component_8hpp_html"><div class="ttname"><a href="_life_time_component_8hpp.html">LifeTimeComponent.hpp</a></div></div>
 <div class="ttc" id="aclassecs_1_1_game_clock_html_a631dfb91707d62b703f7423fc3ef9ca4"><div class="ttname"><a href="classecs_1_1_game_clock.html#a631dfb91707d62b703f7423fc3ef9ca4">ecs::GameClock::getElapsedTime</a></div><div class="ttdeci">double getElapsedTime()</div><div class="ttdoc">This function do the difference between now and the last time the clock was reset.</div><div class="ttdef"><b>Definition:</b> GameClock.cpp:15</div></div>
 <div class="ttc" id="a_world_8hpp_html"><div class="ttname"><a href="_world_8hpp.html">World.hpp</a></div></div>
-<div class="ttc" id="aclassecs_1_1_world_html"><div class="ttname"><a href="classecs_1_1_world.html">ecs::World</a></div><div class="ttdef"><b>Definition:</b> World.hpp:31</div></div>
+<div class="ttc" id="aclassecs_1_1_world_html"><div class="ttname"><a href="classecs_1_1_world.html">ecs::World</a></div><div class="ttdef"><b>Definition:</b> World.hpp:32</div></div>
 <div class="ttc" id="aclassecs_1_1_game_clock_html"><div class="ttname"><a href="classecs_1_1_game_clock.html">ecs::GameClock</a></div><div class="ttdoc">Shared Resource Clock for the Game.</div><div class="ttdef"><b>Definition:</b> GameClock.hpp:17</div></div>
 <div class="ttc" id="a_game_clock_8hpp_html"><div class="ttname"><a href="_game_clock_8hpp.html">GameClock.hpp</a></div></div>
 <div class="ttc" id="aclassecs_1_1_system_html"><div class="ttname"><a href="classecs_1_1_system.html">ecs::System</a></div><div class="ttdef"><b>Definition:</b> System.hpp:19</div></div>
