@@ -6,6 +6,7 @@
 */
 
 #include "CreatePlayer.hpp"
+#include <mutex>
 
 namespace ecs
 {
@@ -14,18 +15,19 @@ namespace ecs
         const unsigned short life, const unsigned short damage, const unsigned short damageRadius, bool controlable,
         unsigned short playerIdentifier, const std::string uuid, unsigned short networkId)
     {
-        Entity &entity = world.addEntity()
-                             .addComponent<Position>(posX, posY)
-                             .addComponent<Weight>(weight)
-                             .addComponent<Size>(sizeX, sizeY)
-                             .addComponent<Life>(life)
-                             .addComponent<Damage>(damage)
-                             .addComponent<DamageRadius>(damageRadius)
-                             .addComponent<Collidable>()
-                             .addComponent<ShootingFrequency>(0.5)
-                             .addComponent<AfkFrequency>(10.0)
-                             .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate)
-                             .addComponent<Player>(playerIdentifier);
+        Entity &entity = world.addEntity();
+        auto guard = std::lock_guard(entity);
+        entity.addComponent<Position>(posX, posY)
+            .addComponent<Weight>(weight)
+            .addComponent<Size>(sizeX, sizeY)
+            .addComponent<Life>(life)
+            .addComponent<Damage>(damage)
+            .addComponent<DamageRadius>(damageRadius)
+            .addComponent<Collidable>()
+            .addComponent<ShootingFrequency>(0.25)
+            .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate)
+            .addComponent<AfkFrequency>(10.0)
+            .addComponent<Player>(playerIdentifier);
         if (controlable == true) {
             entity.addComponent<Controlable>();
         }

@@ -18,6 +18,7 @@
 #include "R-TypeLogic/Global/Components/LayerLvL.hpp"
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
 #include "R-TypeLogic/Global/Components/SizeComponent.hpp"
+
 using namespace graphicECS::SFML::Systems;
 using namespace graphicECS::SFML::Resources;
 using namespace graphicECS::SFML::Components;
@@ -36,6 +37,7 @@ void DrawComponents::run(World &world)
         windowResource.window.clear(sf::Color(0x151123));
         std::sort(Inputs.begin(), Inputs.end(), compareLayer);
         auto layer = [&world, &windowResource](std::shared_ptr<Entity> entityPtr) {
+            std::lock_guard(*entityPtr.get());
             if (entityPtr->contains<GraphicsRectangleComponent>()) {
                 if (world.containsResource<GraphicsTextureResource>()) {
                     GraphicsTextureResource &textureResource = world.getResource<GraphicsTextureResource>();
