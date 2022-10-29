@@ -8,11 +8,12 @@
 #ifndef DEATHLIFESYSTEM_HPP_
 #define DEATHLIFESYSTEM_HPP_
 
+#include <mutex>
+#include "Transisthor/TransisthorECSLogic/Server/Components/NetworkClient.hpp"
 #include "World/World.hpp"
 #include "R-TypeLogic/Global/Components/DeathComponent.hpp"
 #include "R-TypeLogic/Global/Components/LifeComponent.hpp"
 #include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
-#include "Transisthor/TransisthorECSLogic/Server/Components/NetworkClient.hpp"
 
 namespace ecs
 {
@@ -25,6 +26,7 @@ namespace ecs
             std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Life>();
 
             auto deathlifetime = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
+                std::lock_guard(*entityPtr.get());
                 if (entityPtr.get()->getComponent<Life>().lifePoint <= 0) {
                     if (entityPtr->contains<Player>()) {
                         Client client = world.getTransisthorBridge()->getCommunicatorInstance().getClientByHisId(
