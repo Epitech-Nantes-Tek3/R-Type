@@ -21,6 +21,7 @@
 #include "World/World.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/Components/ActionName.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/ButtonActionMap.hpp"
+#include "R-TypeLogic/EntityManipulation/ButtonManipulation/Components/DisplayState.hpp"
 #include "R-TypeLogic/Global/Components/ButtonComponent.hpp"
 #include "R-TypeLogic/Global/Components/ShootingFrequencyComponent.hpp"
 #include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
@@ -110,12 +111,14 @@ namespace graphicECS::SFML::Systems
             std::queue<std::pair<ActionQueueComponent::inputAction_e, float>> &actions =
                 entityPtr->getComponent<ActionQueueComponent>().actions;
             while (actions.size() > 0) {
-                if (actions.front().first == ActionQueueComponent::MOVEY)
-                    movePlayerY(world, actions.front().second);
-                if (actions.front().first == ActionQueueComponent::MOVEX)
-                    movePlayerX(world, actions.front().second);
-                if (actions.front().first == ActionQueueComponent::SHOOT)
-                    shootAction(world, actions.front().second);
+                if (world.getResource<MenuStates>().currentState == MenuStates::IN_GAME) {
+                    if (actions.front().first == ActionQueueComponent::MOVEY)
+                        movePlayerY(world, actions.front().second);
+                    if (actions.front().first == ActionQueueComponent::MOVEX)
+                        movePlayerX(world, actions.front().second);
+                    if (actions.front().first == ActionQueueComponent::SHOOT)
+                        shootAction(world, actions.front().second);
+                }
                 if (actions.front().first == ActionQueueComponent::BUTTON_CLICK) {
                     clickHandle(world, actions.front().second);
                 }
@@ -192,10 +195,12 @@ namespace graphicECS::SFML::Systems
             std::lock_guard(*entityPtr.get());
             Position &pos = entityPtr.get()->getComponent<Position>();
             Size &size = entityPtr.get()->getComponent<Size>();
+            DisplayState &state = entityPtr.get()->getComponent<DisplayState>();
+
             bool sameWidth = pos.y <= mousePos.y && mousePos.y <= pos.y + size.y;
             bool sameHeigth = pos.x <= mousePos.x && mousePos.x <= pos.x + size.x;
 
-            if (sameHeigth && sameWidth) {
+            if (sameHeigth && sameWidth && state.displayState == world.getResource<MenuStates>().currentState) {
                 ActionName &name = entityPtr.get()->getComponent<ActionName>();
                 ButtonActionMap &map = world.getResource<ButtonActionMap>();
                 auto guard = std::lock_guard(map);
