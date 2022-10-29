@@ -13,6 +13,7 @@
 #include "GraphicsTextComponent.hpp"
 #include "GraphicsTextureResource.hpp"
 #include "TextureName.hpp"
+#include "R-TypeLogic/EntityManipulation/ButtonManipulation/Components/DisplayState.hpp"
 #include "R-TypeLogic/Global/Components/AlliedProjectileComponent.hpp"
 #include "R-TypeLogic/Global/Components/EnemyProjectileComponent.hpp"
 #include "R-TypeLogic/Global/Components/LayerLvL.hpp"
@@ -47,7 +48,13 @@ void DrawComponents::run(World &world)
                 } else {
                     entityPtr->getComponent<GraphicsRectangleComponent>().shape.setFillColor(sf::Color::White);
                 }
-                windowResource.window.draw(entityPtr->getComponent<GraphicsRectangleComponent>().shape);
+                if (entityPtr->getComponent<LayerLvL>().layer == LayerLvL::BUTTON
+                    && world.getResource<MenuStates>().currentState
+                        == entityPtr->getComponent<DisplayState>().displayState) {
+                    windowResource.window.draw(entityPtr->getComponent<GraphicsRectangleComponent>().shape);
+                } else if (entityPtr->getComponent<LayerLvL>().layer != LayerLvL::BUTTON){
+                    windowResource.window.draw(entityPtr->getComponent<GraphicsRectangleComponent>().shape);
+                }
                 return;
             }
             if (entityPtr->contains<GraphicsTextComponent>()) {
@@ -75,8 +82,10 @@ void DrawComponents::run(World &world)
                         entityPtr->addComponent<TextureName>(GraphicsTextureResource::PROJECTILE_ALLY);
                     }
                 }
-                if (layerType.layer == LayerLvL::BUTTON)
+                if (layerType.layer == LayerLvL::BUTTON) {
                     entityPtr->addComponent<TextureName>(GraphicsTextureResource::BUTTON);
+                    // addButtonTexts
+                }
             }
         };
         std::for_each(Inputs.begin(), Inputs.end(), layer);

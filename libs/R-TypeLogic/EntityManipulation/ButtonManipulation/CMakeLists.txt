@@ -6,6 +6,7 @@ set(SRC
     ${INC_ROOT}/Components/ActionName.hpp
     ${INC_ROOT}/SharedResources/ButtonActionMap.hpp
     ${INC_ROOT}/SharedResources/MenuStates.hpp
+    ${INC_ROOT}/Components/DisplayState.hpp
 )
 
 set(TARGET ${PROJECT_NAME}_RTypeLogicButtonManipulation)
