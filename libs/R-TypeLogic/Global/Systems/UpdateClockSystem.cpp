@@ -20,8 +20,13 @@ void UpdateClock::run(World &world)
     std::vector<std::shared_ptr<ecs::Entity>> joinedAfk = world.joinEntities<AfkFrequency>();
 
     clock.resetClock();
-    for (auto it : joinedShoot)
-        updateAFrequencyComponent<ShootingFrequency>(clock, it);
-    for (auto it : joinedAfk)
-        updateAFrequencyComponent<AfkFrequency>(clock, it);
+
+    for (auto entityPtr : joinedShoot) {
+        std::lock_guard(*entityPtr.get());
+        updateAFrequencyComponent<ShootingFrequency>(clock, entityPtr);
+    }
+    for (auto entityPtr : joinedAfk) {
+        std::lock_guard(*entityPtr.get());
+        updateAFrequencyComponent<AfkFrequency>(clock, entityPtr);
+    }
 }

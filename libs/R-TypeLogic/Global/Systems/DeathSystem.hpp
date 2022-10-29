@@ -8,6 +8,7 @@
 #ifndef DEATHSYSTEM_HPP_
 #define DEATHSYSTEM_HPP_
 
+#include <mutex>
 #include "Transisthor/TransisthorECSLogic/Server/Resources/NetworkableIdGenerator.hpp"
 #include "World/World.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateEnemy.hpp"
@@ -24,6 +25,7 @@ namespace ecs
             std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Death>();
 
             auto death = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
+                std::lock_guard(*entityPtr.get());
                 if (entityPtr.get()->getComponent<Death>().modified != true) {
                     world.removeEntity(entityPtr->getId());
                 }
