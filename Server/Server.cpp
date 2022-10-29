@@ -32,12 +32,12 @@ Server::Server()
 
 unsigned short Server::createANewRoom(std::string name)
 {
-    _activeRoomList.push_back(Room(_activeRoomList.size(), name,
+    _activeRoomList.push_back(Room(_activeRoomList.size() + 1, name,
         Client(_networkInformations.getAddress(),
             _networkInformations.getPort()
                 + 1000))); /// WILL BE REFACTO IN PART 2 TO AUTOMATIZE NEW FREE PORT DETECTION
     //_activeRoomList.back().startLobbyLoop();
-    return _activeRoomList.size() - 1;
+    return _activeRoomList.size();
 }
 
 void Server::_startConnexionProtocol()
@@ -94,7 +94,7 @@ void Server::_holdANewConnectionRequest(CommunicatorMessage connectionDemand)
 
         std::memcpy((void *)((char *)networkData + offset), &roomId, sizeof(unsigned short));
         offset += sizeof(unsigned short);
-        std::memcpy((void *)((char *)networkData + offset), &roomName, sizeof(char) * 10);
+        std::memcpy((void *)((char *)networkData + offset), roomName.c_str(), sizeof(char) * 10);
         offset += sizeof(char) * 10;
     }
     _communicatorInstance.get()->sendDataToAClient(connectionDemand.message.clientInfo, networkData, offset, 15);

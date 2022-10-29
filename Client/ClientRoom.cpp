@@ -114,9 +114,23 @@ void ClientRoom::protocol12Answer(CommunicatorMessage connexionResponse)
 
 void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
 {
-    (void)connectionResponse;
+    unsigned short roomNumber = 0;
+    std::size_t offset = sizeof(unsigned short);
+
+    std::memcpy(&roomNumber, connectionResponse.message.data, sizeof(unsigned short));
     std::cerr << "Succesfully connected to the hub." << std::endl;
     std::cerr << "Available Rooms : " << std::endl;
+    for (int i = 0; i < roomNumber; i++) {
+        unsigned short roomId = 0;
+        std::memcpy(&roomId, (void *)((char *)connectionResponse.message.data + offset), sizeof(unsigned short));
+        offset += sizeof(unsigned short);
+        char *tempRoomName = (char *)connectionResponse.message.data + offset;
+        std::string roomName(11, '\0');
+        for (int j = 0; j < 10; j++)
+            roomName[j] = tempRoomName[j];
+        offset += sizeof(char) * 10;
+        std::cerr << "\t" << roomId << " : " << roomName << " is available." << std::endl;
+    }
     std::cerr << "Refer in the terminal the wanted room id." << std::endl;
 }
 
