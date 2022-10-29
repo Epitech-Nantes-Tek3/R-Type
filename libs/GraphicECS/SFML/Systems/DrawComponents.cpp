@@ -29,7 +29,8 @@ bool DrawComponents::compareLayer(std::shared_ptr<Entity> e1, std::shared_ptr<En
 
 void DrawComponents::_drawComponent(World &world, RenderWindowResource &windowResource, std::shared_ptr<ecs::Entity> &entityPtr)
 {
-    std::lock_guard(*entityPtr.get());
+    auto entityGuard = std::lock_guard(*entityPtr.get());
+
     if (entityPtr->contains<GraphicsRectangleComponent>()) {
         if (world.containsResource<GraphicsTextureResource>()) {
             GraphicsTextureResource &textureResource = world.getResource<GraphicsTextureResource>();
@@ -71,15 +72,15 @@ void DrawComponents::_drawComponent(World &world, RenderWindowResource &windowRe
     }
 }
 
-void DrawComponents::_updateWindow(World &world, std::vector<std::shared_ptr<Entity>> &inputs)
+void DrawComponents::_updateWindow(World &world, std::vector<std::shared_ptr<Entity>> &layers)
 {
     RenderWindowResource &windowResource = world.getResource<RenderWindowResource>();
     auto guard = std::lock_guard(windowResource);
 
     if (windowResource.window.isOpen()) {
         windowResource.window.clear(sf::Color(0x151123));
-        std::sort(inputs.begin(), inputs.end(), compareLayer);
-        for (auto &it : inputs) {
+        std::sort(layers.begin(), layers.end(), compareLayer);
+        for (auto &it : layers) {
             _drawComponent(world, windowResource, it);
         }
         windowResource.window.display();
@@ -88,9 +89,9 @@ void DrawComponents::_updateWindow(World &world, std::vector<std::shared_ptr<Ent
 
 void DrawComponents::run(World &world)
 {
-    std::vector<std::shared_ptr<Entity>> inputs = world.joinEntities<LayerLvL>();
+    std::vector<std::shared_ptr<Entity>> layers = world.joinEntities<LayerLvL>();
 
-    if (inputs.empty() || !world.containsResource<RenderWindowResource>())
+    if (layers.empty() || !world.containsResource<RenderWindowResource>())
         return;
-    _updateWindow(world, inputs);
+    _updateWindow(world, layers);
 }
