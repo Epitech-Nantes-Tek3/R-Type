@@ -26,6 +26,7 @@
 #include "GraphicECS/SFML/Resources/GraphicsFontResource.hpp"
 #include "GraphicECS/SFML/Resources/GraphicsTextureResource.hpp"
 #include "GraphicECS/SFML/Resources/RenderWindowResource.hpp"
+#include "GraphicECS/SFML/Systems/AnimationSystem.hpp"
 #include "GraphicECS/SFML/Systems/DrawComponents.hpp"
 #include "GraphicECS/SFML/Systems/InputManagement.hpp"
 #include "GraphicECS/SFML/Systems/ParallaxSystem.hpp"
@@ -154,8 +155,22 @@ void ClientRoom::_initSpritesForEntities()
     GraphicsTextureResource &spritesList = _worldInstance->getResource<GraphicsTextureResource>();
     auto guard = std::lock_guard(spritesList);
 
-    spritesList.addTexture(GraphicsTextureResource::PLAYER_STATIC, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
-        sf::Vector2f(500, 0), sf::Vector2f(500, 34));
+    spritesList.addTexture(GraphicsTextureResource::PLAYER_STATIC_1, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
+        sf::Vector2f(534 / 16 * 8, 0), sf::Vector2f(534 / 16, 34));
+    spritesList.addTexture(GraphicsTextureResource::PLAYER_STATIC_2, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
+        sf::Vector2f(534 / 16 * 9, 0), sf::Vector2f(534 / 16, 34));
+    spritesList.addTexture(GraphicsTextureResource::PLAYER_STATIC_3, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
+        sf::Vector2f(534 / 16 * 10, 0), sf::Vector2f(534 / 16, 34));
+    spritesList.addTexture(GraphicsTextureResource::PLAYER_STATIC_4, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
+        sf::Vector2f(534 / 16 * 11, 0), sf::Vector2f(534 / 16, 34));
+    spritesList.addTexture(GraphicsTextureResource::PLAYER_STATIC_5, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
+        sf::Vector2f(534 / 16 * 12, 0), sf::Vector2f(534 / 16, 34));
+    spritesList.addTexture(GraphicsTextureResource::PLAYER_STATIC_6, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
+        sf::Vector2f(534 / 16 * 13, 0), sf::Vector2f(534 / 16, 34));
+    spritesList.addTexture(GraphicsTextureResource::PLAYER_STATIC_7, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
+        sf::Vector2f(534 / 16 * 14, 0), sf::Vector2f(534 / 16, 34));
+    spritesList.addTexture(GraphicsTextureResource::PLAYER_STATIC_8, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
+        sf::Vector2f(534 / 16 * 15, 0), sf::Vector2f(534 / 16, 34));
     spritesList.addTexture(GraphicsTextureResource::PROJECTILE_ENEMY,
         "assets/EpiSprite/BasicEnemyProjectileSpriteSheet.gif", sf::Vector2f(0, 0), sf::Vector2f(34, 34));
     spritesList.addTexture(GraphicsTextureResource::PROJECTILE_ALLY,
@@ -190,6 +205,7 @@ void ClientRoom::_initSystems()
     _worldInstance->addSystem<SfRectangleFollowEntitySystem>();
     _worldInstance->addSystem<Parallax>();
     _worldInstance->addSystem<Movement>();
+    _worldInstance->addSystem<AnimationSystem>();
 }
 
 void ClientRoom::_initBackgroundEntities()

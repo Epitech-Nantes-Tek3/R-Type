@@ -9,6 +9,7 @@
 #include "AnimationComponent.hpp"
 #include "AnimationFrequencyComponent.hpp"
 #include "AnimationSystem.hpp"
+#include "GraphicECS/SFML/Components/GraphicsRectangleComponent.hpp"
 #include "World/World.hpp"
 
 using namespace graphicECS::SFML::Components;
@@ -18,7 +19,7 @@ Test(AnimationSystem, create_basic_animation)
 {
     World world(1);
 
-    world.addEntity().addComponent<AnimationComponent>().addComponent<AnimationFrequencyComponent>();
+    world.addEntity().addComponent<AnimationComponent>().addComponent<AnimationFrequencyComponent>().addComponent<GraphicsRectangleComponent>();
     world.addSystem<AnimationSystem>();
 
     world.runSystems();
