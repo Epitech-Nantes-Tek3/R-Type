@@ -28,7 +28,7 @@ namespace ecs
         /// on the sf::Music load in shared resource Music.
         MusicName(
             MusicResource::musicName_e newMusicName = MusicResource::UNDEFINED, status_e status = status_e::STOPED)
-            : musicName(newMusicName){};
+            : _name(newMusicName), _status(status) {};
 
         /// @brief Default destructor of MusicName component.
         ~MusicName() = default;
@@ -38,8 +38,15 @@ namespace ecs
 
         /// @brief This function set the status of the Music
         inline void setStatus(status_e status) { _status = status; };
+
+        /// @brief This function return the name of the Music
+        inline MusicResource::musicName_e getName() const { return _name; };
+
+        /// @brief This function set the name of the Music
+        inline void setName(MusicResource::musicName_e name) { _name = name; };
       private:
         status_e _status;
+        MusicResource::musicName_e _name;
     };
 } // namespace ecs
 
