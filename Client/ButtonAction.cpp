@@ -14,8 +14,13 @@ using namespace graphicECS::SFML::Resources;
 
 void exitWindow(World &world)
 {
+#ifdef __linux__
     (void)world;
     std::raise(SIGINT);
+#elif _WIN32
+    RenderWindowResource &resource = world.getResource<RenderWindowResource>();
+    resource.window.close();
+#endif
 }
 
 void pauseGame(World &world)
