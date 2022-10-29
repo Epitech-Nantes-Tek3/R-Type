@@ -9,7 +9,8 @@ set(SRC_GRAPHIC_SYSTEM
     ${GRAPHIC_SRC_SYSTEM_ROOT}/SfRectangleFollowEntitySystem.hpp
     ${GRAPHIC_SRC_SYSTEM_ROOT}/ParallaxSystem.cpp
     ${GRAPHIC_SRC_SYSTEM_ROOT}/ParallaxSystem.hpp
-    ${GRAPHIC_SRC_SYSTEM_ROOT}/StopMusic.hpp
-    ${GRAPHIC_SRC_SYSTEM_ROOT}/StopMusic.cpp
+    ${GRAPHIC_SRC_SYSTEM_ROOT}/SoundManagement.cpp
+    ${GRAPHIC_SRC_SYSTEM_ROOT}/SoundManagement.hpp
+
     PARENT_SCOPE
 )

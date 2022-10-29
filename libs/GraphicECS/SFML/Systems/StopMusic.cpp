@@ -11,6 +11,8 @@
 using namespace graphicECS::SFML::Systems;
 using namespace graphicECS::SFML::Components;
 
+void stopMusic(World &world, MusicName &music) { world.getResource<MusicResource>()._musicsList.at(music.getName())->stop(); }
+
 void StopMusic::run(World &world)
 {
     std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<MusicName>();
@@ -19,7 +21,7 @@ void StopMusic::run(World &world)
         MusicName music = entityPtr.get()->getComponent<MusicName>();
 
         if (music.getStatus() == MusicName::STOPED) {
-            world.getResource<MusicResource>()._musicsList.at(music.getName())->stop();
+            stopMusic(world, music);
         }
     };
 
