@@ -18,13 +18,13 @@ namespace graphicECS::SFML::Systems
         auto stopSound = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
             SoundName sound = entityPtr.get()->getComponent<SoundName>();
 
-            if (sound.getStatus() == SoundName::STOPED) {
+         if (sound.getStatus() == SoundName::STOPED && world.getResource<SoundResource>()._soundsList.at(sound.getName())->getStatus() != sf::Sound::Stopped) {
                 world.getResource<SoundResource>()._soundsList.at(sound.getName())->stop();
             }
-            if (sound.getStatus() == SoundName::PAUSED) {
+            if (sound.getStatus() == SoundName::PAUSED && world.getResource<SoundResource>()._soundsList.at(sound.getName())->getStatus() != sf::Sound::Paused) {
                 world.getResource<SoundResource>()._soundsList.at(sound.getName())->pause();
             }
-            if (sound.getStatus() == SoundName::PLAYING) {
+            if (sound.getStatus() == SoundName::PLAYING && world.getResource<SoundResource>()._soundsList.at(sound.getName())->getStatus() != sf::Sound::Playing) {
                 world.getResource<SoundResource>()._soundsList.at(sound.getName())->play();
             }
         };
