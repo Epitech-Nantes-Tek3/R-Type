@@ -47,9 +47,7 @@ unsigned short Server::_getAFreePort(unsigned short actual)
 unsigned short Server::createANewRoom(std::string name)
 {
     _activeRoomList.push_back(Room(_activeRoomList.size() + 1, name,
-        Client(_networkInformations.getAddress(),
-            _getAFreePort(_networkInformations.getPort()
-                + 101)))); /// WILL BE REFACTO IN PART 2 TO AUTOMATIZE NEW FREE PORT DETECTION
+        Client(_networkInformations.getAddress(), _getAFreePort(_networkInformations.getPort() + 101))));
     return _activeRoomList.size();
 }
 

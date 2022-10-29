@@ -63,6 +63,7 @@ namespace server_data
 
         /// @brief Cross all machine port and find an empty one
         /// @param actual port number (+ 100 per iteration)
+        /// @return the first empty port founded
         unsigned short _getAFreePort(unsigned short actual);
 
         /// @brief Start the connexion protocol and ask the server for a place inside the room
