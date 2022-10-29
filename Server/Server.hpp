@@ -61,6 +61,10 @@ namespace server_data
         /// @brief Instance of the communicator library
         std::shared_ptr<Communicator> _communicatorInstance;
 
+        /// @brief Cross all machine port and find an empty one
+        /// @param actual port number (+ 100 per iteration)
+        unsigned short _getAFreePort(unsigned short actual);
+
         /// @brief Start the connexion protocol and ask the server for a place inside the room
         void _startConnexionProtocol();
 

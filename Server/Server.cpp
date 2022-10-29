@@ -30,13 +30,26 @@ Server::Server()
     _communicatorInstance = std::make_shared<Communicator>(_networkInformations);
 }
 
+unsigned short Server::_getAFreePort(unsigned short actual)
+{
+    try {
+        boost::asio::io_service io_service;
+        boost::asio::ip::udp::socket socket(io_service);
+        socket.open(boost::asio::ip::udp::v4());
+        socket.bind(boost::asio::ip::udp::endpoint(
+            boost::asio::ip::address::from_string(_networkInformations.getAddress()), actual));
+        return actual;
+    } catch (const boost::system::system_error &error) {
+        return _getAFreePort(actual + 101);
+    }
+}
+
 unsigned short Server::createANewRoom(std::string name)
 {
     _activeRoomList.push_back(Room(_activeRoomList.size() + 1, name,
         Client(_networkInformations.getAddress(),
-            _networkInformations.getPort()
-                + 1000))); /// WILL BE REFACTO IN PART 2 TO AUTOMATIZE NEW FREE PORT DETECTION
-    //_activeRoomList.back().startLobbyLoop();
+            _getAFreePort(_networkInformations.getPort()
+                + 101)))); /// WILL BE REFACTO IN PART 2 TO AUTOMATIZE NEW FREE PORT DETECTION
     return _activeRoomList.size();
 }
 
