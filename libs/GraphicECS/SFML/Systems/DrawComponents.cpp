@@ -8,11 +8,13 @@
 #include "DrawComponents.hpp"
 #include <algorithm>
 #include <mutex>
+#include "GraphicECS/SFML/Resources/GraphicsFontResource.hpp"
 #include "GraphicECS/SFML/Resources/RenderWindowResource.hpp"
 #include "GraphicsRectangleComponent.hpp"
 #include "GraphicsTextComponent.hpp"
 #include "GraphicsTextureResource.hpp"
 #include "TextureName.hpp"
+#include "R-TypeLogic/EntityManipulation/ButtonManipulation/Components/ActionName.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/Components/DisplayState.hpp"
 #include "R-TypeLogic/Global/Components/AlliedProjectileComponent.hpp"
 #include "R-TypeLogic/Global/Components/EnemyProjectileComponent.hpp"
@@ -27,6 +29,30 @@ using namespace graphicECS::SFML::Components;
 bool DrawComponents::compareLayer(std::shared_ptr<Entity> e1, std::shared_ptr<Entity> e2)
 {
     return (e1->getComponent<LayerLvL>().layer < e2->getComponent<LayerLvL>().layer);
+}
+
+void DrawComponents::addButtonText(std::shared_ptr<Entity> buttonPtr, const sf::Font newFont)
+{
+    Position &pos = buttonPtr->getComponent<Position>();
+    Size &size = buttonPtr->getComponent<Size>();
+
+    if (buttonPtr->contains<GraphicsTextComponent>())
+        return;
+    switch (buttonPtr->getComponent<ActionName>().actionName) {
+        case ButtonActionMap::RESUME:
+            buttonPtr->addComponent<GraphicsTextComponent>(
+                newFont, "Resume", pos.x + 0.2 * size.x, pos.y + 0.2 * size.y, size.x * 0.6);
+            break;
+        case ButtonActionMap::EXIT:
+            buttonPtr->addComponent<GraphicsTextComponent>(
+                newFont, "Exit the game", pos.x + 0.2 * size.x, pos.y + 0.2 * size.y, size.x * 0.6);
+            break;
+        case ButtonActionMap::PAUSE:
+            buttonPtr->addComponent<GraphicsTextComponent>(
+                newFont, "Pause", pos.x + 0.2 * size.x, pos.y + 0.2 * size.y, size.x * 0.6);
+            break;
+        default: break;
+    }
 }
 
 void DrawComponents::run(World &world)
@@ -52,7 +78,7 @@ void DrawComponents::run(World &world)
                     && world.getResource<MenuStates>().currentState
                         == entityPtr->getComponent<DisplayState>().displayState) {
                     windowResource.window.draw(entityPtr->getComponent<GraphicsRectangleComponent>().shape);
-                } else if (entityPtr->getComponent<LayerLvL>().layer != LayerLvL::BUTTON){
+                } else if (entityPtr->getComponent<LayerLvL>().layer != LayerLvL::BUTTON) {
                     windowResource.window.draw(entityPtr->getComponent<GraphicsRectangleComponent>().shape);
                 }
                 return;
@@ -84,7 +110,7 @@ void DrawComponents::run(World &world)
                 }
                 if (layerType.layer == LayerLvL::BUTTON) {
                     entityPtr->addComponent<TextureName>(GraphicsTextureResource::BUTTON);
-                    // addButtonTexts
+                    addButtonText(entityPtr, world.getResource<GraphicsFontResource>().font);
                 }
             }
         };
