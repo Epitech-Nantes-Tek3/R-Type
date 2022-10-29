@@ -13,7 +13,7 @@
 
 namespace ecs
 {
-    class DisplayState : public Component{
+    class DisplayState : public Component {
       public:
         /// @brief The state where the associated button shall be displayed
         MenuStates::menuState_e displayState;
