@@ -8,9 +8,9 @@
 #ifndef SOUNDMANAGEMENT_HPP_
 #define SOUNDMANAGEMENT_HPP_
 
+#include "GraphicECS/SFML/Components/SoundName.hpp"
 #include "System/System.hpp"
 #include "World/World.hpp"
-#include "GraphicECS/SFML/Components/SoundName.hpp"
 
 namespace graphicECS::SFML::Systems
 {
@@ -23,7 +23,10 @@ namespace graphicECS::SFML::Systems
         {
             world.getResource<SoundResource>()._soundsList.at(sound.getName())->stop();
         };
-
+        inline void pauseSound(World &world, SoundName &sound)
+        {
+            world.getResource<SoundResource>()._soundsList.at(sound.getName())->pause();
+        };
     };
 } // namespace graphicECS::SFML::Systems
 
