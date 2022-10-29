@@ -48,6 +48,10 @@ namespace server_data
         /// @return The room name
         inline std::string getRoomName(void) const { return _name; };
 
+        /// @brief Get the networkInformations of the room
+        /// @return The room networkInformations
+        inline Client getNetworkInformations(void) const { return _networkInformations; };
+
         /// @brief Start the loop function of the room. Warning, call it inside a thread
         void startLobbyLoop(void);
 

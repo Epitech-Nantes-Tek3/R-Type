@@ -84,11 +84,14 @@ void Server::_holdAJoinRoomRequest(CommunicatorMessage joinDemand)
     unsigned short choosenRoom = 0;
 
     std::memcpy(&choosenRoom, joinDemand.message.data, sizeof(unsigned short));
-    auto founded = std::find(_activeRoomList.begin(), _activeRoomList.end(), choosenRoom);
-
-    if (founded == _activeRoomList.end())
-        _communicatorInstance.get()->sendDataToAClient(joinDemand.message.clientInfo, nullptr, 0, 11);
-    /// SWITCH PROTOCOL
+    for (auto it : _activeRoomList) {
+        if (it == choosenRoom) {
+            _communicatorInstance.get()->kickAClient(joinDemand.message.clientInfo, it.getNetworkInformations());
+            it.startLobbyLoop(); /// WILL BE REMOVED WITH PROCESS IMPLEMENTATION
+            return;
+        }
+    }
+    _communicatorInstance.get()->sendDataToAClient(joinDemand.message.clientInfo, nullptr, 0, 11);
 }
 
 void Server::_holdANewConnectionRequest(CommunicatorMessage connectionDemand)

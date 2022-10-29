@@ -159,11 +159,16 @@ void ClientRoom::startLobbyLoop(void)
             }
             if (connectionOperation.message.type == 15)
                 _protocol15Answer(connectionOperation);
+            if (connectionOperation.message.type == 20) {
+                _serverEndpoint = _communicatorInstance->getClientByHisId(_communicatorInstance->getServerEndpointId());
+                break;
+            }
         } catch (NetworkError &error) {
         }
     }
     if (_state != ClientState::ENDED) {
         initEcsGameData();
+        _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, nullptr, 0, 10);
         _state = ClientState::LOBBY;
     }
     while (_state != ClientState::ENDED && _state != ClientState::UNDEFINED) {
