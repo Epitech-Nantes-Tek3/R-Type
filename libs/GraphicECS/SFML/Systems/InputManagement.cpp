@@ -95,7 +95,6 @@ namespace graphicECS::SFML::Systems
 
         if (Inputs.empty())
             return;
-        std::cerr << "1" << std::endl;
         while (world.containsResource<RenderWindowResource>()) {
             RenderWindowResource &windowResource = world.getResource<RenderWindowResource>();
             auto guard = std::lock_guard(windowResource);
@@ -106,32 +105,24 @@ namespace graphicECS::SFML::Systems
             _keyReleasedEvents(event, Inputs);
             _mouseEvents(event, Inputs);
         }
-        std::cerr << "2" << std::endl;
         for (auto &entityPtr : Inputs) {
             entityPtr->lock();
             std::queue<std::pair<ActionQueueComponent::inputAction_e, float>> &actions =
                 entityPtr->getComponent<ActionQueueComponent>().actions;
             entityPtr->unlock();
-            std::cerr << "2.1" << std::endl;
             while (actions.size() > 0) {
-                std::cerr << "2.1.1" << std::endl;
                 if (actions.front().first == ActionQueueComponent::MOVEY)
                     movePlayerY(world, actions.front().second);
-                std::cerr << "2.1.2" << std::endl;
                 if (actions.front().first == ActionQueueComponent::MOVEX)
                     movePlayerX(world, actions.front().second);
-                std::cerr << "2.1.3" << std::endl;
                 if (actions.front().first == ActionQueueComponent::SHOOT)
                     shootAction(world, actions.front().second);
-                std::cerr << "2.1.4" << std::endl;
                 if (actions.front().first == ActionQueueComponent::BUTTON_CLICK) {
                     clickHandle(world, actions.front().second);
                 }
-                std::cerr << "2.1.5" << std::endl;
                 actions.pop();
             }
         }
-        std::cerr << "3" << std::endl;
     }
 
     void InputManagement::movePlayerX(World &world, float move)
