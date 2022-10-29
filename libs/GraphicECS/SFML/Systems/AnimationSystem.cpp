@@ -25,6 +25,25 @@ void AnimationSystem::_updateFrequency(World &world, std::shared_ptr<ecs::Entity
         std::chrono::duration<double>(world.getResource<GameClock>().getElapsedTime());
 }
 
+void AnimationSystem::_updateAnimation(World &world, std::shared_ptr<ecs::Entity> entity)
+{
+    using texturesNamesVector = std::vector<GraphicsTextureResource::textureName_e>;
+    using texturesMap = std::unordered_map<GraphicsTextureResource::textureName_e, std::shared_ptr<sf::Texture>>;
+
+    texturesNamesVector texturesNames = entity->getComponent<AnimationComponent>().textures;
+    std::size_t &currentTexturePos = entity->getComponent<AnimationComponent>().currentTexturePos;
+    {
+        auto guard = std::lock_guard(world.getResource<GraphicsTextureResource>());
+        texturesMap textures = world.getResource<GraphicsTextureResource>()._texturesList;
+
+        currentTexturePos = (currentTexturePos < texturesNames.size() - 1) ? currentTexturePos + 1 : 0;
+        entity->getComponent<GraphicsRectangleComponent>().shape.setTexture(
+            textures.at(texturesNames[currentTexturePos]).get());
+    }
+    entity->getComponent<AnimationFrequencyComponent>().frequency =
+        entity->getComponent<AnimationFrequencyComponent>().baseFrequency;
+}
+
 void AnimationSystem::run(World &world)
 {
     std::vector<std::shared_ptr<Entity>> shapes =
@@ -33,23 +52,10 @@ void AnimationSystem::run(World &world)
     if (shapes.empty())
         return;
     for (auto entity : shapes) {
-        using texturesNamesVector = std::vector<GraphicsTextureResource::textureName_e>;
-        using texturesMap = std::unordered_map<GraphicsTextureResource::textureName_e, std::shared_ptr<sf::Texture>>;
         auto guard = std::lock_guard(*entity.get());
         _updateFrequency(world, entity);
         if (entity->getComponent<AnimationFrequencyComponent>().frequency < std::chrono::duration<double>(0)) {
-            texturesNamesVector texturesNames = entity->getComponent<AnimationComponent>().textures;
-            std::size_t &currentTexturePos = entity->getComponent<AnimationComponent>().currentTexturePos;
-            {
-                auto guard = std::lock_guard(world.getResource<GraphicsTextureResource>());
-                texturesMap textures = world.getResource<GraphicsTextureResource>()._texturesList;
-
-                currentTexturePos = (currentTexturePos < texturesNames.size() - 1) ? currentTexturePos + 1 : 0;
-                entity->getComponent<GraphicsRectangleComponent>().shape.setTexture(
-                    textures.at(texturesNames[currentTexturePos]).get());
-            }
-            entity->getComponent<AnimationFrequencyComponent>().frequency =
-                entity->getComponent<AnimationFrequencyComponent>().baseFrequency;
+            _updateAnimation(world, entity);
         }
     }
 }

@@ -21,6 +21,7 @@ namespace graphicECS::SFML::Systems
 
       private:
         void _updateFrequency(World &world, std::shared_ptr<ecs::Entity> entity);
+        void _updateAnimation(World &world, std::shared_ptr<ecs::Entity> entity);
     };
 } // namespace graphicECS::SFML::Systems
 
