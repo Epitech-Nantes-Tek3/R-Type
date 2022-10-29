@@ -136,6 +136,12 @@ void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
 
     std::cin >> choosenRoomId; /// WILL BE REMOVED WHEN GRAPHICAL INTERACTION HAS BEEN IMPLEMENTED
     std::cerr << "Waiting for room number " << choosenRoomId << " answer..." << std::endl;
+    void *networkData = std::malloc(sizeof(unsigned short));
+
+    if (networkData == nullptr)
+        throw std::logic_error("Malloc failed.");
+    std::memcpy(networkData, &choosenRoomId, sizeof(unsigned short));
+    _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, networkData, sizeof(unsigned short), 16);
 }
 
 void ClientRoom::startLobbyLoop(void)

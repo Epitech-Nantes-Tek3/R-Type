@@ -72,6 +72,10 @@ namespace server_data
         /// @param connectionDemand actual message data
         void _holdADisconnectionRequest(CommunicatorMessage disconnectionDemand);
 
+        /// @brief Handle a joining room request. Identifiy the room and send a protocol 20
+        /// @param joinDemand actual message data
+        void _holdAJoinRoomRequest(CommunicatorMessage joinDemand);
+
         /// @brief Send to all clients the disconnection signal
         void _disconnectionProcess();
     };

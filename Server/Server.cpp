@@ -54,10 +54,12 @@ void Server::startHubLoop()
     while (_state != HubState::UNDEFINED && _state != HubState::ENDED) {
         try {
             connectionOperation = _communicatorInstance.get()->getLastMessage();
-            if (connectionOperation.message.type == 14)
-                _holdANewConnectionRequest(connectionOperation);
             if (connectionOperation.message.type == 13)
                 _holdADisconnectionRequest(connectionOperation);
+            if (connectionOperation.message.type == 14)
+                _holdANewConnectionRequest(connectionOperation);
+            if (connectionOperation.message.type == 16)
+                _holdAJoinRoomRequest(connectionOperation);
         } catch (NetworkError &error) {
         }
     }
@@ -75,6 +77,18 @@ void Server::_disconnectionProcess()
 void Server::_holdADisconnectionRequest(CommunicatorMessage disconnectionDemand)
 {
     _communicatorInstance.get()->sendDataToAClient(disconnectionDemand.message.clientInfo, nullptr, 0, 13);
+}
+
+void Server::_holdAJoinRoomRequest(CommunicatorMessage joinDemand)
+{
+    unsigned short choosenRoom = 0;
+
+    std::memcpy(&choosenRoom, joinDemand.message.data, sizeof(unsigned short));
+    auto founded = std::find(_activeRoomList.begin(), _activeRoomList.end(), choosenRoom);
+
+    if (founded == _activeRoomList.end())
+        _communicatorInstance.get()->sendDataToAClient(joinDemand.message.clientInfo, nullptr, 0, 11);
+    /// SWITCH PROTOCOL
 }
 
 void Server::_holdANewConnectionRequest(CommunicatorMessage connectionDemand)
