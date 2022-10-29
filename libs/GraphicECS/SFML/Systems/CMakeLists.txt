@@ -11,6 +11,7 @@ set(SRC_GRAPHIC_SYSTEM
     ${GRAPHIC_SRC_SYSTEM_ROOT}/ParallaxSystem.hpp
     ${GRAPHIC_SRC_SYSTEM_ROOT}/SoundManagement.cpp
     ${GRAPHIC_SRC_SYSTEM_ROOT}/SoundManagement.hpp
-
+    ${GRAPHIC_SRC_SYSTEM_ROOT}/MusicManagement.cpp
+    ${GRAPHIC_SRC_SYSTEM_ROOT}/MusicManagement.hpp
     PARENT_SCOPE
 )
