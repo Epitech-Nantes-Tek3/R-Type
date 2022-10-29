@@ -111,7 +111,11 @@ namespace graphicECS::SFML::Systems
             std::queue<std::pair<ActionQueueComponent::inputAction_e, float>> &actions =
                 entityPtr->getComponent<ActionQueueComponent>().actions;
             while (actions.size() > 0) {
-                if (world.getResource<MenuStates>().currentState == MenuStates::IN_GAME) {
+                MenuStates &menuState = world.getResource<MenuStates>();
+                menuState.lock();
+                MenuStates::menuState_e currState = menuState.currentState;
+                menuState.unlock();
+                if (currState == MenuStates::IN_GAME) {
                     if (actions.front().first == ActionQueueComponent::MOVEY)
                         movePlayerY(world, actions.front().second);
                     if (actions.front().first == ActionQueueComponent::MOVEX)
@@ -199,8 +203,11 @@ namespace graphicECS::SFML::Systems
 
             bool sameWidth = pos.y <= mousePos.y && mousePos.y <= pos.y + size.y;
             bool sameHeigth = pos.x <= mousePos.x && mousePos.x <= pos.x + size.x;
-
-            if (sameHeigth && sameWidth && state.displayState == world.getResource<MenuStates>().currentState) {
+            MenuStates &menuState = world.getResource<MenuStates>();
+            menuState.lock();
+            MenuStates::menuState_e currState = menuState.currentState;
+            menuState.unlock();
+            if (sameHeigth && sameWidth && state.displayState == currState) {
                 ActionName &name = entityPtr.get()->getComponent<ActionName>();
                 ButtonActionMap &map = world.getResource<ButtonActionMap>();
                 auto guard = std::lock_guard(map);

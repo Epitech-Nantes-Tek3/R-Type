@@ -10,6 +10,7 @@
 #include "R-TypeLogic/Global/Components/VelocityComponent.hpp"
 #include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
 #include "R-TypeLogic/Server/Components/AfkFrequencyComponent.hpp"
+#include <mutex>
 
 using namespace ecs;
 
@@ -17,7 +18,11 @@ void NoAfkInMenu::run(World &world)
 {
     std::vector<std::shared_ptr<Entity>> joined = world.joinEntities<AfkFrequency>();
 
-    if (world.getResource<MenuStates>().currentState == MenuStates::IN_GAME)
+   MenuStates &menuState = world.getResource<MenuStates>();
+    menuState.lock();
+    MenuStates::menuState_e currState = menuState.currentState;
+    menuState.unlock();
+    if (currState == MenuStates::IN_GAME)
         return;
 
     auto updatePlayersInMenu = [&world](std::shared_ptr<Entity> entityPtr) {
@@ -25,6 +30,7 @@ void NoAfkInMenu::run(World &world)
         GameClock &gameClock = world.getResource<GameClock>();
         AfkFrequency &freq = entityPtr->getComponent<AfkFrequency>();
 
+        auto secondGuard = std::lock_guard(gameClock);
         double delta = freq.frequency.count() - gameClock.getElapsedTime();
 
         if (delta <= 5.0) {
