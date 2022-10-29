@@ -50,7 +50,7 @@ Test(transisthor_testing, transit_position_component)
     Position newPos;
     Client temporaryClient = Client();
     communicator.addClientToList(temporaryClient);
-    void *temp = transisthor.transitEcsDataToNetworkData<Position>(1, 6, pos, {1});
+    void *temp = transisthor.transitEcsDataToNetworkData<Position>(1, 6, pos, {0});
     void *networkAnswer = transisthor.transitNetworkDataToEcsDataComponent({Client(), temp, sizeof(Position), 30});
 
     cr_assert_eq(pos.x, 10);
@@ -69,7 +69,7 @@ Test(transisthor_testing, transit_destination_component)
     Destination newPos;
     Client temporaryClient = Client();
     communicator.addClientToList(temporaryClient);
-    void *temp = transisthor.transitEcsDataToNetworkData<Destination>(1, 1, pos, {1});
+    void *temp = transisthor.transitEcsDataToNetworkData<Destination>(1, 1, pos, {0});
     void *networkAnswer = transisthor.transitNetworkDataToEcsDataComponent({Client(), temp, sizeof(Destination), 30});
 
     cr_assert_eq(pos.x, 10);
@@ -88,7 +88,7 @@ Test(transisthor_testing, transit_equipment_component)
     Equipment newPos;
     Client temporaryClient = Client();
     communicator.addClientToList(temporaryClient);
-    void *temp = transisthor.transitEcsDataToNetworkData<Equipment>(1, 2, pos, {1});
+    void *temp = transisthor.transitEcsDataToNetworkData<Equipment>(1, 2, pos, {0});
     void *networkAnswer = transisthor.transitNetworkDataToEcsDataComponent({Client(), temp, sizeof(Equipment), 30});
 
     cr_assert_eq(pos.typeId, 10);
@@ -105,7 +105,7 @@ Test(transisthor_testing, transit_invinsible_component)
     Invinsible newPos;
     Client temporaryClient = Client();
     communicator.addClientToList(temporaryClient);
-    void *temp = transisthor.transitEcsDataToNetworkData<Invinsible>(1, 3, pos, {1});
+    void *temp = transisthor.transitEcsDataToNetworkData<Invinsible>(1, 3, pos, {0});
     void *networkAnswer = transisthor.transitNetworkDataToEcsDataComponent({Client(), temp, sizeof(Invinsible), 30});
 
     newPos = buildComponentFromByteCode<Invinsible>(networkAnswer);
@@ -121,7 +121,7 @@ Test(transisthor_testing, transit_invisible_component)
     Invisible newPos;
     Client temporaryClient = Client();
     communicator.addClientToList(temporaryClient);
-    void *temp = transisthor.transitEcsDataToNetworkData<Invisible>(1, 4, pos, {1});
+    void *temp = transisthor.transitEcsDataToNetworkData<Invisible>(1, 4, pos, {0});
     void *networkAnswer = transisthor.transitNetworkDataToEcsDataComponent({Client(), temp, sizeof(Invisible), 30});
 
     newPos = buildComponentFromByteCode<Invisible>(networkAnswer);
@@ -137,7 +137,7 @@ Test(transisthor_testing, transit_life_component)
     Life newPos;
     Client temporaryClient = Client();
     communicator.addClientToList(temporaryClient);
-    void *temp = transisthor.transitEcsDataToNetworkData<Life>(1, 5, pos, {1});
+    void *temp = transisthor.transitEcsDataToNetworkData<Life>(1, 5, pos, {0});
     void *networkAnswer = transisthor.transitNetworkDataToEcsDataComponent({Client(), temp, sizeof(Life), 30});
 
     cr_assert_eq(pos.lifePoint, 10);
@@ -154,7 +154,7 @@ Test(transisthor_testing, transit_velocity_component)
     Velocity newPos;
     Client temporaryClient = Client();
     communicator.addClientToList(temporaryClient);
-    void *temp = transisthor.transitEcsDataToNetworkData<Velocity>(1, 7, pos, {1});
+    void *temp = transisthor.transitEcsDataToNetworkData<Velocity>(1, 7, pos, {0});
     void *networkAnswer = transisthor.transitNetworkDataToEcsDataComponent({Client(), temp, sizeof(Velocity), 30});
 
     cr_assert_eq(pos.multiplierOrdinate, 12);
@@ -173,7 +173,7 @@ Test(transisthor_testing, transit_death_component)
     Death newDeath;
     Client temporaryClient = Client();
     communicator.addClientToList(temporaryClient);
-    void *temp = transisthor.transitEcsDataToNetworkData<Death>(1, 8, death, {1});
+    void *temp = transisthor.transitEcsDataToNetworkData<Death>(1, 8, death, {0});
     void *networkAnswer = transisthor.transitNetworkDataToEcsDataComponent({Client(), temp, sizeof(Death), 30});
 
     cr_assert_eq(death.modified, true);
@@ -188,7 +188,7 @@ Test(transisthor_testing, transit_to_a_non_valid_client)
     Transisthor transisthor = Transisthor(communicator, world);
     Velocity pos = Velocity(10, 12);
     try {
-        void *temp = transisthor.transitEcsDataToNetworkData<Velocity>(1, 7, pos, {1});
+        void *temp = transisthor.transitEcsDataToNetworkData<Velocity>(1, 7, pos, {0});
         (void)temp;
         cr_assert_eq(41, 42);
     } catch (NetworkError &err) {
@@ -262,7 +262,7 @@ Test(transisthor_testing, transit_enemy_entity)
     Position entityPosition = world.getEntity(entityId).getComponent<Position>();
 
     void *temp = transisthor.transitEcsDataToNetworkDataEntityEnemy(
-        entityId, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, std::string("UUID"), {1});
+        entityId, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, std::string("UUID"), {0});
     void *networkAnswer = transisthor.transitNetworkDataToEcsDataEntity({Client(), temp, 1, 31});
 
     int posX = 0;
@@ -328,7 +328,7 @@ Test(transisthor_testing, transit_enemy_entity_without_uuid)
     Position entityPosition = world.getEntity(entityId).getComponent<Position>();
 
     void *temp = transisthor.transitEcsDataToNetworkDataEntityEnemy(
-        entityId, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, std::string(""), {1});
+        entityId, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, std::string(""), {0});
     void *networkAnswer = transisthor.transitNetworkDataToEcsDataEntity({Client(), temp, 1, 31});
 
     int posX = 0;
@@ -390,7 +390,7 @@ Test(transisthor_testing, transit_player_entity)
     std::size_t entityId = createNewPlayer(world, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, false, 2, "UUID");
 
     void *temp = transisthor.transitEcsDataToNetworkDataEntityPlayer(
-        entityId, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, false, 2, std::string("UUID"), {1});
+        entityId, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, false, 2, std::string("UUID"), {0});
     void *networkAnswer = transisthor.transitNetworkDataToEcsDataEntity({Client(), temp, 1, 31});
 
     int posX = 0;
@@ -464,7 +464,7 @@ Test(transisthor_testing, transit_player_entity_without_uuid)
     std::size_t entityId = createNewPlayer(world, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, false, 2, "", 1);
 
     void *temp = transisthor.transitEcsDataToNetworkDataEntityPlayer(
-        entityId, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, false, 2, std::string(""), {1});
+        entityId, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, false, 2, std::string(""), {0});
     void *networkAnswer = transisthor.transitNetworkDataToEcsDataEntity({Client(), temp, 1, 31});
 
     int posX = 0;
@@ -544,7 +544,7 @@ Test(transisthor_testing, transit_alliedProjectile_entity)
 
     unsigned short entityId = createNewAlliedProjectile(world, world.getEntity(allied), "UUID", 1);
 
-    void *temp = transisthor.transitEcsDataToNetworkDataEntityAlliedProjectile(entityId, 10, std::string("UUID"), {1});
+    void *temp = transisthor.transitEcsDataToNetworkDataEntityAlliedProjectile(entityId, 10, std::string("UUID"), {0});
     void *networkAnswer = transisthor.transitNetworkDataToEcsDataEntity({Client(), temp, 1, 31});
 
     unsigned short newAllied = 0;
@@ -574,7 +574,7 @@ Test(transisthor_testing, transit_alliedProjectile_entity_empty_uuid)
 
     unsigned short entityId = createNewAlliedProjectile(world, world.getEntity(allied), "", 1);
 
-    void *temp = transisthor.transitEcsDataToNetworkDataEntityAlliedProjectile(entityId, 10, std::string(""), {1});
+    void *temp = transisthor.transitEcsDataToNetworkDataEntityAlliedProjectile(entityId, 10, std::string(""), {0});
     (void)temp;
     cr_assert_eq(42, 42);
 }
@@ -599,7 +599,7 @@ Test(transisthor_testing, transit_enemyProjectile_entity)
     std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Damage>();
 
     unsigned short entityId = createNewEnemyProjectile(world, joined.at(0), "UUID");
-    void *temp = transisthor.transitEcsDataToNetworkDataEntityEnemyProjectile(entityId, 10, std::string("UUID"), {1});
+    void *temp = transisthor.transitEcsDataToNetworkDataEntityEnemyProjectile(entityId, 10, std::string("UUID"), {0});
     (void)temp;
     void *networkAnswer = transisthor.transitNetworkDataToEcsDataEntity({Client(), temp, 1, 31});
 
@@ -633,7 +633,7 @@ Test(transisthor_testing, transit_enemyProjectile_entity_without_uuid)
 
     unsigned short entityId = createNewEnemyProjectile(world, joined.at(0), "", 1);
 
-    void *temp = transisthor.transitEcsDataToNetworkDataEntityEnemyProjectile(entityId, enemy, std::string(""), {1});
+    void *temp = transisthor.transitEcsDataToNetworkDataEntityEnemyProjectile(entityId, enemy, std::string(""), {0});
     (void)temp;
     cr_assert_eq(42, 42);
 }
@@ -653,7 +653,7 @@ Test(transisthor_testing, transit_obstacle_entity)
     Position entityPosition = world.getEntity(entityId).getComponent<Position>();
 
     void *temp = transisthor.transitEcsDataToNetworkDataEntityObstacle(
-        entityId, entityPosition.x, entityPosition.y, 5, std::string("UUID"), {1});
+        entityId, entityPosition.x, entityPosition.y, 5, std::string("UUID"), {0});
     void *networkAnswer = transisthor.transitNetworkDataToEcsDataEntity({Client(), temp, 1, 31});
 
     int posX = 0;
@@ -686,7 +686,7 @@ Test(transisthor_testing, transit_obstacle_entity_without_uuid)
     Position entityPosition = world.getEntity(entityId).getComponent<Position>();
 
     void *temp = transisthor.transitEcsDataToNetworkDataEntityObstacle(
-        entityId, entityPosition.x, entityPosition.y, 5, std::string(""), {1});
+        entityId, entityPosition.x, entityPosition.y, 5, std::string(""), {0});
     void *networkAnswer = transisthor.transitNetworkDataToEcsDataEntity({Client(), temp, 1, 31});
 
     int posX = 0;
@@ -720,7 +720,7 @@ Test(transisthor_testing, transit_projectile_entity)
     Velocity entityVel = world.getEntity(entityId).getComponent<Velocity>();
 
     void *temp = transisthor.transitEcsDataToNetworkDataEntityProjectile(entityId, entityPosition.x, entityPosition.y,
-        entityVel.multiplierAbscissa, entityVel.multiplierOrdinate, 1, std::string("UUID"), {1});
+        entityVel.multiplierAbscissa, entityVel.multiplierOrdinate, 1, std::string("UUID"), {0});
     void *networkAnswer = transisthor.transitNetworkDataToEcsDataEntity({Client(), temp, 1, 31});
 
     int posX = 0;
@@ -761,7 +761,7 @@ Test(transisthor_testing, transit_projectile_entity_without_uuid)
     Velocity entityVel = world.getEntity(entityId).getComponent<Velocity>();
 
     void *temp = transisthor.transitEcsDataToNetworkDataEntityProjectile(entityId, entityPosition.x, entityPosition.y,
-        entityVel.multiplierAbscissa, entityVel.multiplierOrdinate, 1, std::string(""), {1});
+        entityVel.multiplierAbscissa, entityVel.multiplierOrdinate, 1, std::string(""), {0});
     void *networkAnswer = transisthor.transitNetworkDataToEcsDataEntity({Client(), temp, 1, 31});
 
     int posX = 0;
