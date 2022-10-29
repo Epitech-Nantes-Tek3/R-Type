@@ -7,6 +7,7 @@
 
 #include "Transisthor/TransisthorECSLogic/Server/Systems/SendNewlyCreatedToClients.hpp"
 #include <chrono>
+#include <mutex>
 #include <thread>
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Resources/SendingFrequency.hpp"
@@ -35,10 +36,12 @@ void SendNewlyCreatedToClients::runSystem(ecs::World &world)
     std::vector<unsigned short> clientIdList;
 
     auto addToClientList = [&clientIdList](std::shared_ptr<ecs::Entity> entityPtr) {
+        std::lock_guard(*entityPtr.get());
         clientIdList.emplace_back(entityPtr.get()->getComponent<ecs::NetworkClient>().id);
     };
 
     auto update = [this, &world, &clientIdList](std::shared_ptr<ecs::Entity> entityPtr) {
+        std::lock_guard(*entityPtr.get());
         NewlyCreated &newlyCreated = entityPtr->getComponent<NewlyCreated>();
 
         if (newlyCreated.isClientInstance || newlyCreated.sended == true)

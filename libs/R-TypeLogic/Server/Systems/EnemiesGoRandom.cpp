@@ -6,6 +6,7 @@
 */
 
 #include "EnemiesGoRandom.hpp"
+#include <mutex>
 #include "R-TypeLogic/Global/Components/DestinationComponent.hpp"
 #include "R-TypeLogic/Global/Components/EnemyComponent.hpp"
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
@@ -25,6 +26,7 @@ void EnemiesGoRandom::run(World &world)
     std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Enemy, Position, Velocity, Destination>();
 
     auto randomMove = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
+        std::lock_guard(*entityPtr.get());
         Position &pos = entityPtr.get()->getComponent<Position>();
         Velocity &vel = entityPtr.get()->getComponent<Velocity>();
         Destination &dest = entityPtr.get()->getComponent<Destination>();
