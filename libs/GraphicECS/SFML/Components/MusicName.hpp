@@ -27,7 +27,7 @@ namespace graphicECS::SFML::Components
         /// @brief Constructor of the MusicName component
         /// @param newMusicName The value to set in the musicName, corresponding
         /// on the sf::Music load in shared resource Music.
-        MusicName(graphicECS::SFML::Resources::MusicResource::musicName_e newMusicName = MusicResource::UNDEFINED, status_e status = status_e::STOPED)
+        MusicName(graphicECS::SFML::Resources::MusicResource::musicName_e newMusicName = graphicECS::SFML::Resources::MusicResource::UNDEFINED, status_e status = status_e::STOPED)
             : musicName(newMusicName), _status(status) {};
 
         /// @brief Default destructor of MusicName component.
