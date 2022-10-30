@@ -17,6 +17,7 @@
 #include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
 #define private public
 #include "InputManagement.hpp"
+#include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/MenuStates.hpp"
 
 using namespace graphicECS::SFML::Systems;
 using namespace graphicECS::SFML::Components;
@@ -126,6 +127,7 @@ Test(InputManagement, actionsLists)
     world.addEntity().addComponent<MouseInputComponent>().addComponent<KeyboardInputComponent>().addComponent<ControllerButtonInputComponent>().addComponent<ControllerJoystickInputComponent>().addComponent<ActionQueueComponent>().addComponent<AllowMouseAndKeyboardComponent>();
     std::vector<std::shared_ptr<Entity>> Inputs = world.joinEntities<MouseInputComponent, KeyboardInputComponent,
         ControllerButtonInputComponent, ControllerJoystickInputComponent, ActionQueueComponent>();
+    world.addResource<MenuStates>();
     Inputs[0]->getComponent<ActionQueueComponent>().actions.push(std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEX, 100));
     Inputs[0]->getComponent<ActionQueueComponent>().actions.push(std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEY, 100));
     Inputs[0]->getComponent<ActionQueueComponent>().actions.push(std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::SHOOT, 0));
