@@ -11,10 +11,12 @@
 #include "Component/Component.hpp"
 #include "GraphicECS/SFML/Resources/MusicResource.hpp"
 
+using namespace graphicECS::SFML::Resources;
+
 namespace graphicECS::SFML::Components
 {
     /// @brief MusicName stores the key as enum to the corresponding music stored in shared resource MusicResource.
-    class MusicName : public Component {
+    class MusicName : public ecs::Component {
       public:
 
         /// @brief Enumeration of all status available for a Music.

@@ -10,6 +10,7 @@
 #include "MusicResource.hpp"
 
 using namespace ecs;
+using namespace graphicECS::SFML::Components;
 
 Test(MusicName, create_music_undefined)
 {
