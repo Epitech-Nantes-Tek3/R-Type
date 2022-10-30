@@ -72,7 +72,7 @@ var NAVTREEINDEX =
 "_action_name_8hpp.html",
 "_resource_8hpp_source.html",
 "classecs_1_1_invisible.html#a921c4886b1df91b8ac6cf01e84261563",
-"classtransisthor__lib_1_1_transisthor.html#a3da9082ddc11232a571f2ca5fbb445c0"
+"classserver__data_1_1_server.html#a5a3985c96088955a55f3ebfd7fad7b23"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
