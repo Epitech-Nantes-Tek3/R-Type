@@ -11,10 +11,12 @@
 #include "Component/Component.hpp"
 #include "GraphicECS/SFML/Resources/SoundResource.hpp"
 
+using namespace graphicECS::SFML::Resources;
+
 namespace graphicECS::SFML::Components
 {
     /// @brief SoundName stores the key as enum to the corresponding sound stored in shared resource SoundResource.
-    class SoundName : public Component {
+    class SoundName : public ecs::Component {
       public:
         /// @brief Enumeration of all status available for a Sound.
         /// Status STOPED specify that a sound is STOP but at it's begin
@@ -36,6 +38,6 @@ namespace graphicECS::SFML::Components
         /// @brief Status of the Sound
         status_e _status;
     };
-} // namespace ecs
+} // namespace graphicECS::SFML::Components
 
 #endif /* !SOUNDNAME_HPP_ */
