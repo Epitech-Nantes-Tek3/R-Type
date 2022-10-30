@@ -112,7 +112,7 @@ $(document).ready(function(){initNavTree('_death_life_system_8hpp_source.html','
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            std::vector&lt;std::shared_ptr&lt;ecs::Entity&gt;&gt; joined = world.joinEntities&lt;<a class="code" href="classecs_1_1_life.html">Life</a>&gt;();</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            <span class="keyword">auto</span> deathlifetime = [&amp;world](std::shared_ptr&lt;ecs::Entity&gt; entityPtr) {</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                std::lock_guard(*entityPtr.get());</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                <span class="keyword">auto</span> guard = std::lock_guard(*entityPtr.get());</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                <span class="keywordflow">if</span> (entityPtr.get()-&gt;getComponent&lt;<a class="code" href="classecs_1_1_life.html">Life</a>&gt;().<a class="code" href="classecs_1_1_life.html#ae7784365d59fadc42676c409c2383bc4">lifePoint</a> &lt;= 0) {</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                    <span class="keywordflow">if</span> (entityPtr-&gt;contains&lt;<a class="code" href="classecs_1_1_player.html">Player</a>&gt;()) {</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                        <a class="code" href="classcommunicator__lib_1_1_client.html">Client</a> client = world.getTransisthorBridge()-&gt;getCommunicatorInstance().getClientByHisId(</div>

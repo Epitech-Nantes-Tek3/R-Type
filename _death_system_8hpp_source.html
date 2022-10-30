@@ -111,7 +111,7 @@ $(document).ready(function(){initNavTree('_death_system_8hpp_source.html',''); i
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            std::vector&lt;std::shared_ptr&lt;ecs::Entity&gt;&gt; joined = world.joinEntities&lt;<a class="code" href="classecs_1_1_death.html">Death</a>&gt;();</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            <span class="keyword">auto</span> death = [&amp;world](std::shared_ptr&lt;ecs::Entity&gt; entityPtr) {</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                std::lock_guard(*entityPtr.get());</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                <span class="keyword">auto</span> guard = std::lock_guard(*entityPtr.get());</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                <span class="keywordflow">if</span> (entityPtr.get()-&gt;getComponent&lt;<a class="code" href="classecs_1_1_death.html">Death</a>&gt;().<a class="code" href="classecs_1_1_death.html#a1c6e3b678ccc2ba3fc556b16cfe337cc">modified</a> != <span class="keyword">true</span>) {</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                    world.removeEntity(entityPtr-&gt;getId());</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                }</div>

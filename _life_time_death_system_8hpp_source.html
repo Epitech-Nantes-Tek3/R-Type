@@ -110,7 +110,7 @@ $(document).ready(function(){initNavTree('_life_time_death_system_8hpp_source.ht
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            std::vector&lt;std::shared_ptr&lt;ecs::Entity&gt;&gt; joined = world.joinEntities&lt;<a class="code" href="classecs_1_1_life_time.html">LifeTime</a>&gt;();</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            <span class="keyword">auto</span> deathLifeTime = [](std::shared_ptr&lt;ecs::Entity&gt; entityPtr) {</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                std::lock_guard(*entityPtr.get());</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                <span class="keyword">auto</span> guard = std::lock_guard(*entityPtr.get());</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                <span class="keywordflow">if</span> (entityPtr.get()-&gt;getComponent&lt;<a class="code" href="classecs_1_1_life_time.html">LifeTime</a>&gt;().<a class="code" href="classecs_1_1_life_time.html#a3ecaf6501e7300a9aac88986ce343d87">timeLeft</a> &lt;= std::chrono::duration&lt;double&gt;(0.0)</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                    &amp;&amp; !entityPtr.get()-&gt;contains&lt;<a class="code" href="classecs_1_1_death.html">Death</a>&gt;()) {</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                    entityPtr.get()-&gt;addComponent&lt;<a class="code" href="classecs_1_1_death.html">Death</a>&gt;();</div>

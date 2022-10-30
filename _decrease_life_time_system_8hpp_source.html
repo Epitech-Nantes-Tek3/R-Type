@@ -111,7 +111,7 @@ $(document).ready(function(){initNavTree('_decrease_life_time_system_8hpp_source
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            std::vector&lt;std::shared_ptr&lt;ecs::Entity&gt;&gt; joined = world.joinEntities&lt;<a class="code" href="classecs_1_1_life_time.html">LifeTime</a>&gt;();</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            <span class="keyword">auto</span> decreaseLifeTime = [&amp;world](std::shared_ptr&lt;ecs::Entity&gt; entityPtr) {</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                std::lock_guard(*entityPtr.get());</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                <span class="keyword">auto</span> entityGuard = std::lock_guard(*entityPtr.get());</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                <a class="code" href="classecs_1_1_game_clock.html">GameClock</a> &amp;clock = world.getResource&lt;<a class="code" href="classecs_1_1_game_clock.html">GameClock</a>&gt;();</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                <span class="keyword">auto</span> guard = std::lock_guard(clock);</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                entityPtr.get()-&gt;getComponent&lt;<a class="code" href="classecs_1_1_life_time.html">LifeTime</a>&gt;() = entityPtr.get()-&gt;getComponent&lt;<a class="code" href="classecs_1_1_life_time.html">LifeTime</a>&gt;().timeLeft</div>
