@@ -33,18 +33,7 @@ namespace ecs
         /// @brief Default destructor of SoundName component.
         ~SoundName() = default;
 
-        /// @brief This function return the status of the Sound
-        inline status_e getStatus() const { return _status; };
-
-        /// @brief This function set the status of the Sound
-        inline void setStatus(status_e status) { _status = status; };
-
-        /// @brief This function return the name of the Sound
-        inline SoundResource::soundName_e getName() const { return soundName; };
-
-        /// @brief This function set the name of the Sound
-        inline void setName(SoundResource::soundName_e name) { soundName = name; };
-        
+        /// @brief Status of the Sound
         status_e _status;
     };
 } // namespace ecs
