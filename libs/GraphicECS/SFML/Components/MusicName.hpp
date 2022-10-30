@@ -14,7 +14,7 @@
 namespace graphicECS::SFML::Components
 {
     /// @brief MusicName stores the key as enum to the corresponding music stored in shared resource MusicResource.
-    class MusicName : public Component {
+    class MusicName : public ecs::Component {
       public:
 
         /// @brief Enumeration of all status available for a Music.
@@ -22,12 +22,12 @@ namespace graphicECS::SFML::Components
         enum status_e { STOPED, PAUSED, PLAYING };
 
         /// @brief The music name stores an enum to find which music it needs in MusicResources shared resource
-        MusicResource::musicName_e musicName;
+        graphicECS::SFML::Resources::MusicResource::musicName_e musicName;
 
         /// @brief Constructor of the MusicName component
         /// @param newMusicName The value to set in the musicName, corresponding
         /// on the sf::Music load in shared resource Music.
-        MusicName(MusicResource::musicName_e newMusicName = MusicResource::UNDEFINED, status_e status = status_e::STOPED)
+        MusicName(graphicECS::SFML::Resources::MusicResource::musicName_e newMusicName = MusicResource::UNDEFINED, status_e status = status_e::STOPED)
             : musicName(newMusicName), _status(status) {};
 
         /// @brief Default destructor of MusicName component.
@@ -40,10 +40,10 @@ namespace graphicECS::SFML::Components
         inline void setStatus(status_e status) { _status = status; };
 
         /// @brief This function return the name of the Music
-        inline MusicResource::musicName_e getName() const { return musicName; };
+        inline graphicECS::SFML::Resources::MusicResource::musicName_e getName() const { return musicName; };
 
         /// @brief This function set the name of the Music
-        inline void setName(MusicResource::musicName_e name) { musicName = name; };
+        inline void setName(graphicECS::SFML::Resources::MusicResource::musicName_e name) { musicName = name; };
       private:
         status_e _status;
     };
