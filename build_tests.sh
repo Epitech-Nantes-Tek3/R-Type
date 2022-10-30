@@ -34,7 +34,7 @@ cmake --build . -- -j
 testExitStatus $? "cmake build"
 
 # Run Ctest
-ctest --output-on-failure
+ctest -j 30 --output-on-failure
 testExitStatus $? "run ctest"
 
 # Create coverage html graph

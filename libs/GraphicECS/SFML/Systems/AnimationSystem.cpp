@@ -17,30 +17,49 @@ using namespace graphicECS::SFML::Systems;
 using namespace graphicECS::SFML::Resources;
 using namespace graphicECS::SFML::Components;
 
+void AnimationSystem::_updateFrequency(World &world, std::shared_ptr<ecs::Entity> entity)
+{
+    GameClock &clock = world.getResource<GameClock>();
+    auto guard = std::lock_guard(clock);
+
+    entity->getComponent<AnimationFrequencyComponent>().frequency -=
+        std::chrono::duration<double>(clock.getElapsedTime());
+}
+
+void AnimationSystem::_updateAnimation(World &world, std::shared_ptr<ecs::Entity> entity)
+{
+    using texturesNamesVector = std::vector<GraphicsTextureResource::textureName_e>;
+    using texturesMap = std::unordered_map<GraphicsTextureResource::textureName_e, std::shared_ptr<sf::Texture>>;
+
+    AnimationComponent &animation = entity->getComponent<AnimationComponent>();
+    texturesNamesVector texturesNames = animation.textures;
+    std::size_t &currentTexturePos = animation.currentTexturePos;
+    AnimationFrequencyComponent animationFrequency = entity->getComponent<AnimationFrequencyComponent>();
+    GraphicsTextureResource &textureRessource = world.getResource<GraphicsTextureResource>();
+    {
+        auto guard = std::lock_guard(textureRessource);
+        texturesMap textures = textureRessource._texturesList;
+
+        currentTexturePos = (currentTexturePos < texturesNames.size() - 1) ? currentTexturePos + 1 : 0;
+        if (entity->contains<GraphicsRectangleComponent>()) {
+            entity->getComponent<GraphicsRectangleComponent>().shape.setTexture(
+                textures.at(texturesNames[currentTexturePos]).get());
+        }
+    }
+    animationFrequency.frequency = animationFrequency.baseFrequency;
+}
+
 void AnimationSystem::run(World &world)
 {
-    std::vector<std::shared_ptr<Entity>> shapes =
-        world.joinEntities<GraphicsRectangleComponent, AnimationComponent, AnimationFrequencyComponent>();
+    std::vector<std::shared_ptr<Entity>> shapes = world.joinEntities<AnimationComponent, AnimationFrequencyComponent>();
 
-    auto shape = [&world](std::shared_ptr<Entity> entity) {
-        using texturesNamesVector = std::vector<GraphicsTextureResource::textureName_e>;
-        using texturesMap = std::unordered_map<GraphicsTextureResource::textureName_e, std::shared_ptr<sf::Texture>>;
+    if (shapes.empty() || !world.containsResource<GameClock>() || !world.containsResource<GraphicsTextureResource>())
+        return;
+    for (auto entity : shapes) {
         auto guard = std::lock_guard(*entity.get());
-        entity->getComponent<AnimationFrequencyComponent>().frequency -=
-            std::chrono::duration<double>(world.getResource<GameClock>().getElapsedTime());
+        _updateFrequency(world, entity);
         if (entity->getComponent<AnimationFrequencyComponent>().frequency < std::chrono::duration<double>(0)) {
-            texturesNamesVector texturesNames = entity->getComponent<AnimationComponent>().textures;
-            GraphicsTextureResource::textureName_e &currentTexture =
-                entity->getComponent<AnimationComponent>().currentTexture;
-            texturesMap textures = world.getResource<GraphicsTextureResource>()._texturesList;
-
-            currentTexture = (currentTexture < textures.size())
-                ? GraphicsTextureResource::textureName_e(currentTexture + 1)
-                : GraphicsTextureResource::textureName_e(0);
-            entity->getComponent<GraphicsRectangleComponent>().shape.setTexture(textures.at(currentTexture).get());
-            entity->getComponent<AnimationFrequencyComponent>().frequency =
-                entity->getComponent<AnimationFrequencyComponent>().baseFrequency;
+            _updateAnimation(world, entity);
         }
-    };
-    std::for_each(shapes.begin(), shapes.end(), shape);
+    }
 }
