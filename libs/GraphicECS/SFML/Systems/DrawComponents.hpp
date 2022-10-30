@@ -29,6 +29,12 @@ namespace graphicECS::SFML::Systems
         /// @brief The run function of this system. It will be used by the world in the function runSystems.
         /// @param world The corresponding world on which run this system.
         void run(World &world) override final;
+
+      private:
+        void _updatePlayer(LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr);
+        void _updateEnemy(LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr);
+        void _udpateProjectile(LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr);
+        void _updateButton(World &world, LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr);
     };
 } // namespace graphicECS::SFML::Systems
 

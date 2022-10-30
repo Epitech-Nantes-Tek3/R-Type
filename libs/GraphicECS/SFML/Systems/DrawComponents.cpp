@@ -56,7 +56,7 @@ void DrawComponents::addButtonText(std::shared_ptr<Entity> buttonPtr, const sf::
     }
 }
 
-void _updatePlayer(LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr)
+void DrawComponents::_updatePlayer(LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr)
 {
     if (layerType.layer == LayerLvL::layer_e::PLAYER) {
         entityPtr->addComponent<AnimationComponent>();
@@ -73,13 +73,13 @@ void _updatePlayer(LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr)
     }
 }
 
-void _updateEnemy(LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr)
+void DrawComponents::_updateEnemy(LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr)
 {
     if (layerType.layer == LayerLvL::layer_e::ENEMY)
         entityPtr->addComponent<TextureName>(GraphicsTextureResource::ENEMY_STATIC);
 }
 
-void _udpateProjectile(LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr)
+void DrawComponents::_udpateProjectile(LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr)
 {
     if (layerType.layer == LayerLvL::layer_e::PROJECTILE) {
         if (entityPtr->contains<EnemyProjectile>()) {
@@ -91,7 +91,7 @@ void _udpateProjectile(LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityP
     }
 }
 
-void _updateButton(World &world, LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr)
+void DrawComponents::_updateButton(World &world, LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr)
 {
     if (layerType.layer == LayerLvL::BUTTON) {
         entityPtr->addComponent<TextureName>(GraphicsTextureResource::BUTTON);
