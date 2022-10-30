@@ -56,6 +56,49 @@ void DrawComponents::addButtonText(std::shared_ptr<Entity> buttonPtr, const sf::
     }
 }
 
+void _updatePlayer(LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr)
+{
+    if (layerType.layer == LayerLvL::layer_e::PLAYER) {
+        entityPtr->addComponent<AnimationComponent>();
+        entityPtr->addComponent<AnimationFrequencyComponent>(0.05);
+        entityPtr->getComponent<AnimationComponent>().currentTexturePos = 0;
+        entityPtr->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_1);
+        entityPtr->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_2);
+        entityPtr->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_3);
+        entityPtr->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_4);
+        entityPtr->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_5);
+        entityPtr->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_6);
+        entityPtr->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_7);
+        entityPtr->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_8);
+    }
+}
+
+void _updateEnemy(LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr)
+{
+    if (layerType.layer == LayerLvL::layer_e::ENEMY)
+        entityPtr->addComponent<TextureName>(GraphicsTextureResource::ENEMY_STATIC);
+}
+
+void _udpateProjectile(LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr)
+{
+    if (layerType.layer == LayerLvL::layer_e::PROJECTILE) {
+        if (entityPtr->contains<EnemyProjectile>()) {
+            entityPtr->addComponent<TextureName>(GraphicsTextureResource::PROJECTILE_ENEMY);
+        }
+        if (entityPtr->contains<AlliedProjectile>()) {
+            entityPtr->addComponent<TextureName>(GraphicsTextureResource::PROJECTILE_ALLY);
+        }
+    }
+}
+
+void _updateButton(World &world, LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr)
+{
+    if (layerType.layer == LayerLvL::BUTTON) {
+        entityPtr->addComponent<TextureName>(GraphicsTextureResource::BUTTON);
+        addButtonText(entityPtr, world.getResource<GraphicsFontResource>().font);
+    }
+}
+
 void DrawComponents::run(World &world)
 {
     std::vector<std::shared_ptr<Entity>> Inputs = world.joinEntities<LayerLvL>();
@@ -112,41 +155,10 @@ void DrawComponents::run(World &world)
 
                 entityPtr->addComponent<GraphicsRectangleComponent>(
                     entityPos.x, entityPos.y, entitySize.x, entitySize.y);
-                if (layerType.layer == LayerLvL::layer_e::PLAYER) {
-                    entityPtr->addComponent<AnimationComponent>();
-                    entityPtr->addComponent<AnimationFrequencyComponent>(0.05);
-                    entityPtr->getComponent<AnimationComponent>().currentTexturePos = 0;
-                    entityPtr->getComponent<AnimationComponent>().textures.push_back(
-                        GraphicsTextureResource::PLAYER_STATIC_1);
-                    entityPtr->getComponent<AnimationComponent>().textures.push_back(
-                        GraphicsTextureResource::PLAYER_STATIC_2);
-                    entityPtr->getComponent<AnimationComponent>().textures.push_back(
-                        GraphicsTextureResource::PLAYER_STATIC_3);
-                    entityPtr->getComponent<AnimationComponent>().textures.push_back(
-                        GraphicsTextureResource::PLAYER_STATIC_4);
-                    entityPtr->getComponent<AnimationComponent>().textures.push_back(
-                        GraphicsTextureResource::PLAYER_STATIC_5);
-                    entityPtr->getComponent<AnimationComponent>().textures.push_back(
-                        GraphicsTextureResource::PLAYER_STATIC_6);
-                    entityPtr->getComponent<AnimationComponent>().textures.push_back(
-                        GraphicsTextureResource::PLAYER_STATIC_7);
-                    entityPtr->getComponent<AnimationComponent>().textures.push_back(
-                        GraphicsTextureResource::PLAYER_STATIC_8);
-                }
-                if (layerType.layer == LayerLvL::layer_e::ENEMY)
-                    entityPtr->addComponent<TextureName>(GraphicsTextureResource::ENEMY_STATIC);
-                if (layerType.layer == LayerLvL::layer_e::PROJECTILE) {
-                    if (entityPtr->contains<EnemyProjectile>()) {
-                        entityPtr->addComponent<TextureName>(GraphicsTextureResource::PROJECTILE_ENEMY);
-                    }
-                    if (entityPtr->contains<AlliedProjectile>()) {
-                        entityPtr->addComponent<TextureName>(GraphicsTextureResource::PROJECTILE_ALLY);
-                    }
-                }
-                if (layerType.layer == LayerLvL::BUTTON) {
-                    entityPtr->addComponent<TextureName>(GraphicsTextureResource::BUTTON);
-                    addButtonText(entityPtr, world.getResource<GraphicsFontResource>().font);
-                }
+                _updatePlayer(layerType, entityPtr);
+                _updateEnemy(layerType, entityPtr);
+                _udpateProjectile(layerType, entityPtr);
+                _updateButton(world, layerType, entityPtr);
             }
         };
         std::for_each(Inputs.begin(), Inputs.end(), layer);
