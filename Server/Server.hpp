@@ -69,7 +69,8 @@ namespace server_data
         /// @brief Start the connexion protocol and ask the server for a place inside the room
         void _startConnexionProtocol();
 
-        /// @brief Handle a connection request. Send all rooms informations (id + name) to the client.
+        /// @brief Handle a connection request. Send all rooms informations (id + name) to the client. Send a protocol
+        /// 15
         /// @param connectionDemand actual message data
         void _holdANewConnectionRequest(CommunicatorMessage connectionDemand);
 
