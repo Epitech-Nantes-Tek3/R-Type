@@ -8,6 +8,8 @@
 #include "DrawComponents.hpp"
 #include <algorithm>
 #include <mutex>
+#include "AnimationComponent.hpp"
+#include "AnimationFrequencyComponent.hpp"
 #include "GraphicECS/SFML/Resources/GraphicsFontResource.hpp"
 #include "GraphicECS/SFML/Resources/RenderWindowResource.hpp"
 #include "GraphicsRectangleComponent.hpp"
@@ -48,8 +50,7 @@ void DrawComponents::addButtonText(std::shared_ptr<Entity> buttonPtr, const sf::
                 newFont, "Exit the game", pos.x, pos.y + size.y * 0.5, size.x * 0.3);
             break;
         case ButtonActionMap::PAUSE:
-            buttonPtr->addComponent<GraphicsTextComponent>(
-                newFont, "Pause", pos.x, pos.y + size.y * 0.5, size.x * 0.3);
+            buttonPtr->addComponent<GraphicsTextComponent>(newFont, "Pause", pos.x, pos.y + size.y * 0.5, size.x * 0.3);
             break;
         default: break;
     }
@@ -71,8 +72,18 @@ void DrawComponents::run(World &world)
                     if (world.containsResource<GraphicsTextureResource>()) {
                         GraphicsTextureResource &textureResource = world.getResource<GraphicsTextureResource>();
                         auto guard = std::lock_guard(textureResource);
-                        entityPtr->getComponent<GraphicsRectangleComponent>().shape.setTexture(
-                            textureResource._texturesList[entityPtr->getComponent<TextureName>().textureName].get());
+                        if (entityPtr->contains<TextureName>()) {
+                            entityPtr->getComponent<GraphicsRectangleComponent>().shape.setTexture(
+                                textureResource._texturesList[entityPtr->getComponent<TextureName>().textureName]
+                                    .get());
+                        } else if (entityPtr->contains<AnimationComponent>()) {
+                            entityPtr->getComponent<GraphicsRectangleComponent>().shape.setTexture(
+                                textureResource
+                                    ._texturesList[entityPtr->getComponent<AnimationComponent>()
+                                                       .textures[entityPtr->getComponent<AnimationComponent>()
+                                                                     .currentTexturePos]]
+                                    .get());
+                        }
                     } else {
                         entityPtr->getComponent<GraphicsRectangleComponent>().shape.setFillColor(sf::Color::White);
                     }
@@ -101,8 +112,27 @@ void DrawComponents::run(World &world)
 
                 entityPtr->addComponent<GraphicsRectangleComponent>(
                     entityPos.x, entityPos.y, entitySize.x, entitySize.y);
-                if (layerType.layer == LayerLvL::layer_e::PLAYER)
-                    entityPtr->addComponent<TextureName>(GraphicsTextureResource::PLAYER_STATIC);
+                if (layerType.layer == LayerLvL::layer_e::PLAYER) {
+                    entityPtr->addComponent<AnimationComponent>();
+                    entityPtr->addComponent<AnimationFrequencyComponent>(0.005);
+                    entityPtr->getComponent<AnimationComponent>().currentTexturePos = 0;
+                    entityPtr->getComponent<AnimationComponent>().textures.push_back(
+                        GraphicsTextureResource::PLAYER_STATIC_1);
+                    entityPtr->getComponent<AnimationComponent>().textures.push_back(
+                        GraphicsTextureResource::PLAYER_STATIC_2);
+                    entityPtr->getComponent<AnimationComponent>().textures.push_back(
+                        GraphicsTextureResource::PLAYER_STATIC_3);
+                    entityPtr->getComponent<AnimationComponent>().textures.push_back(
+                        GraphicsTextureResource::PLAYER_STATIC_4);
+                    entityPtr->getComponent<AnimationComponent>().textures.push_back(
+                        GraphicsTextureResource::PLAYER_STATIC_5);
+                    entityPtr->getComponent<AnimationComponent>().textures.push_back(
+                        GraphicsTextureResource::PLAYER_STATIC_6);
+                    entityPtr->getComponent<AnimationComponent>().textures.push_back(
+                        GraphicsTextureResource::PLAYER_STATIC_7);
+                    entityPtr->getComponent<AnimationComponent>().textures.push_back(
+                        GraphicsTextureResource::PLAYER_STATIC_8);
+                }
                 if (layerType.layer == LayerLvL::layer_e::ENEMY)
                     entityPtr->addComponent<TextureName>(GraphicsTextureResource::ENEMY_STATIC);
                 if (layerType.layer == LayerLvL::layer_e::PROJECTILE) {
