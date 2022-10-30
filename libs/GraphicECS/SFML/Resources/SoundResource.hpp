@@ -12,11 +12,12 @@
 #include <filesystem>
 #include "Resource/Resource.hpp"
 #include <unordered_map>
+#include "Error/Error.hpp"
 
-namespace ecs
+namespace graphicECS::SFML::Resources
 {
     /// @brief This resource class stores a map of Sounds SFML.
-    class SoundResource : public Resource {
+    class SoundResource : public ecs::Resource {
       public:
         /// @brief Enumeration of all available Sounds
         enum soundName_e { UNDEFINED, SHOOT, DEATH, EXPLOSION };
@@ -42,6 +43,6 @@ namespace ecs
 
         SoundsList _soundsList;
     };
-} // namespace ecs
+} // namespace graphicECS::SFML::Resources
 
 #endif /* !SOUNDRESOURCES_HPP_ */

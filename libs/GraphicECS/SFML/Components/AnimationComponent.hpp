@@ -21,7 +21,7 @@ namespace graphicECS::SFML::Components
         std::vector<graphicECS::SFML::Resources::GraphicsTextureResource::textureName_e> textures;
 
         /// @brief Index of the current texture in use.
-        graphicECS::SFML::Resources::GraphicsTextureResource::textureName_e currentTexture;
+        std::size_t currentTexturePos;
 
         /// @brief Default constructor of AnimationComponent.
         AnimationComponent() = default;
