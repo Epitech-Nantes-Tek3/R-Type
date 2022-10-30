@@ -5,8 +5,8 @@
 ** AnimationSystem
 */
 
-#include <mutex>
 #include "AnimationSystem.hpp"
+#include <mutex>
 #include "AnimationComponent.hpp"
 #include "AnimationFrequencyComponent.hpp"
 #include "GraphicsRectangleComponent.hpp"
@@ -26,7 +26,8 @@ void AnimationSystem::run(World &world)
         using texturesNamesVector = std::vector<GraphicsTextureResource::textureName_e>;
         using texturesMap = std::unordered_map<GraphicsTextureResource::textureName_e, std::shared_ptr<sf::Texture>>;
         auto guard = std::lock_guard(*entity.get());
-        entity->getComponent<AnimationFrequencyComponent>().frequency -= std::chrono::duration<double>(world.getResource<GameClock>().getElapsedTime());
+        entity->getComponent<AnimationFrequencyComponent>().frequency -=
+            std::chrono::duration<double>(world.getResource<GameClock>().getElapsedTime());
         if (entity->getComponent<AnimationFrequencyComponent>().frequency < std::chrono::duration<double>(0)) {
             texturesNamesVector texturesNames = entity->getComponent<AnimationComponent>().textures;
             GraphicsTextureResource::textureName_e &currentTexture =
@@ -37,7 +38,8 @@ void AnimationSystem::run(World &world)
                 ? GraphicsTextureResource::textureName_e(currentTexture + 1)
                 : GraphicsTextureResource::textureName_e(0);
             entity->getComponent<GraphicsRectangleComponent>().shape.setTexture(textures.at(currentTexture).get());
-            entity->getComponent<AnimationFrequencyComponent>().frequency = entity->getComponent<AnimationFrequencyComponent>().baseFrequency;
+            entity->getComponent<AnimationFrequencyComponent>().frequency =
+                entity->getComponent<AnimationFrequencyComponent>().baseFrequency;
         }
     };
     std::for_each(shapes.begin(), shapes.end(), shape);
