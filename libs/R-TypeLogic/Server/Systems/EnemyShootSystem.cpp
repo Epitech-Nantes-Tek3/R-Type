@@ -22,7 +22,7 @@ void EnemyShootSystem::run(World &world)
     std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Enemy, ShootingFrequency>();
 
     auto enemiesMayShoot = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
-        std::lock_guard(*entityPtr.get());
+        auto guard = std::lock_guard(*entityPtr.get());
         ShootingFrequency &freq = entityPtr.get()->getComponent<ShootingFrequency>();
 
         if (freq.frequency == duration<double>(0)) {

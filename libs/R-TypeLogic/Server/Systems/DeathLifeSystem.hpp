@@ -26,7 +26,7 @@ namespace ecs
             std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Life>();
 
             auto deathlifetime = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
-                std::lock_guard(*entityPtr.get());
+                auto guard = std::lock_guard(*entityPtr.get());
                 if (entityPtr.get()->getComponent<Life>().lifePoint <= 0) {
                     if (entityPtr->contains<Player>()) {
                         Client client = world.getTransisthorBridge()->getCommunicatorInstance().getClientByHisId(

@@ -215,7 +215,7 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
     std::vector<std::shared_ptr<Entity>> projectiles = _worldInstance.get()->joinEntities<Networkable, Projectile>();
 
     for (std::shared_ptr<Entity> entityPtr : players) {
-        std::lock_guard(*entityPtr.get());
+        auto guard = std::lock_guard(*entityPtr.get());
         Position &pos = entityPtr->getComponent<Position>();
         Velocity &vel = entityPtr->getComponent<Velocity>();
         Size &size = entityPtr->getComponent<Size>();
@@ -241,7 +241,7 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
         }
     }
     for (std::shared_ptr<Entity> entityPtr : enemies) {
-        std::lock_guard(*entityPtr.get());
+        auto guard = std::lock_guard(*entityPtr.get());
         Position &pos = entityPtr->getComponent<Position>();
         Velocity &vel = entityPtr->getComponent<Velocity>();
         Size &size = entityPtr->getComponent<Size>();
@@ -255,7 +255,7 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
         }
     }
     for (std::shared_ptr<Entity> entityPtr : obstacles) {
-        std::lock_guard(*entityPtr.get());
+        auto guard = std::lock_guard(*entityPtr.get());
         Position &pos = entityPtr->getComponent<Position>();
 
         std::free(_worldInstance.get()->getTransisthorBridge()->transitEcsDataToNetworkDataEntityObstacle(
@@ -263,7 +263,7 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
             {connexionDemand.message.clientInfo.getId()}));
     }
     for (std::shared_ptr<Entity> entityPtr : projectiles) {
-        std::lock_guard(*entityPtr.get());
+        auto guard = std::lock_guard(*entityPtr.get());
         Position &pos = entityPtr->getComponent<Position>();
         Velocity &vel = entityPtr->getComponent<Velocity>();
 
@@ -272,13 +272,13 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
             entityPtr->getComponent<Damage>().damagePoint, "", {connexionDemand.message.clientInfo.getId()}));
     }
     for (std::shared_ptr<Entity> entityPtr : alliedProjectiles) {
-        std::lock_guard(*entityPtr.get());
+        auto guard = std::lock_guard(*entityPtr.get());
         std::free(_worldInstance.get()->getTransisthorBridge()->transitEcsDataToNetworkDataEntityAlliedProjectile(
             entityPtr->getComponent<Networkable>().id, entityPtr->getComponent<AlliedProjectile>().parentNetworkId, "",
             {connexionDemand.message.clientInfo.getId()}));
     }
     for (std::shared_ptr<Entity> entityPtr : enemyProjectiles) {
-        std::lock_guard(*entityPtr.get());
+        auto guard = std::lock_guard(*entityPtr.get());
         std::free(_worldInstance.get()->getTransisthorBridge()->transitEcsDataToNetworkDataEntityEnemyProjectile(
             entityPtr->getComponent<Networkable>().id, entityPtr->getComponent<EnemyProjectile>().parentNetworkId, "",
             {connexionDemand.message.clientInfo.getId()}));

@@ -33,12 +33,12 @@ void SendNewlyCreatedToServer::runSystem(ecs::World &world)
     std::vector<unsigned short> serverIdList;
 
     auto addToClientList = [&serverIdList](std::shared_ptr<ecs::Entity> entityPtr) {
-        std::lock_guard(*entityPtr.get());
+        auto guard = std::lock_guard(*entityPtr.get());
         serverIdList.emplace_back(entityPtr.get()->getComponent<ecs::NetworkServer>().id);
     };
 
     auto update = [this, &world, &serverIdList](std::shared_ptr<ecs::Entity> entityPtr) {
-        std::lock_guard(*entityPtr.get());
+        auto guard = std::lock_guard(*entityPtr.get());
         NewlyCreated &newlyCreated = entityPtr->getComponent<NewlyCreated>();
 
         if (!newlyCreated.isClientInstance)
