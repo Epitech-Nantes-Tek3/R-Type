@@ -127,8 +127,8 @@ namespace server_data
     /// @brief Overload of the == operator to compare rooms with her name
     /// @param left param of the comparison
     /// @param right param of the comparison
-    /// @return true If the two rooms have the same name
-    /// @return false If the two rooms have different name
+    /// @return true If the room have the good name
+    /// @return false If the room haven't the good name
     inline bool operator==(const Room &left, const std::string &right) { return ((left.getRoomName() == right)); }
 } // namespace server_data
 
