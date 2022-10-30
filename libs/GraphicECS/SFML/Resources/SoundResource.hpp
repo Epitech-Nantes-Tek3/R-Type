@@ -13,10 +13,10 @@
 #include "Resource/Resource.hpp"
 #include <unordered_map>
 
-namespace ecs
+namespace graphicECS::SFML::Resources
 {
     /// @brief This resource class stores a map of Sounds SFML.
-    class SoundResource : public Resource {
+    class SoundResource : public ecs::Resource {
       public:
         /// @brief Enumeration of all available Sounds
         enum soundName_e { UNDEFINED, SHOOT, DEATH, EXPLOSION };

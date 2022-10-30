@@ -7,13 +7,13 @@
 
 #include "MusicResource.hpp"
 
-using namespace ecs;
+using namespace graphicECS::SFML::Resources;
 
 void MusicResource::addMusic(const musicName_e music_e, const std::filesystem::path &musicPath)
 {
     std::shared_ptr<sf::Music> music = std::make_shared<sf::Music>();
 
-    if (!music->openFromFile(musicPath)) {
+    if (!music->openFromFile(musicPath.string())) {
         // throw error...
     }
     _musicsList.emplace(music_e, music);

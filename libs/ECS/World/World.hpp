@@ -74,7 +74,7 @@ namespace ecs
             std::vector<std::shared_ptr<Entity>> joined = this->joinEntities<DistinctiveC>();
 
             for (std::shared_ptr<Entity> entityPtr : joined) {
-                std::lock_guard(*entityPtr.get());
+                auto guard = std::lock_guard(*entityPtr.get());
                 DistinctiveC &dc = entityPtr->getComponent<DistinctiveC>();
                 if (distinctive == dc) {
                     if (entityPtr->contains<C>()) {
@@ -99,7 +99,7 @@ namespace ecs
 
             for (auto &it : _entitiesList) {
                 std::shared_ptr<Entity> entity = it.second;
-                std::lock_guard(*entity.get());
+                auto guard = std::lock_guard(*entity.get());
                 if (entity.get()->contains<C...>())
                     joinedEntities.push_back(entity);
             }

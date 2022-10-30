@@ -14,21 +14,21 @@
 namespace graphicECS::SFML::Components
 {
 
-    /// @brief SoundName stores the key as enum to the corresponding music stored in shared resource SoundResource.
-    class SoundName : public Component {
+    /// @brief SoundName stores the key as enum to the corresponding sound stored in shared resource SoundResource.
+    class SoundName : public ecs::Component {
       public:
         /// @brief Enumeration of all status available for a Sound.
-        /// Status STOPED specify that a music is STOP but at it's begin
+        /// Status STOPED specify that a sound is STOP but at it's begin
         enum status_e { STOPED, PAUSED, PLAYING };
 
         /// @brief The sound name stores an enum to find which sound it needs in SoundResources shared resource.
-        SoundResource::soundName_e soundName;
+        graphicECS::SFML::Resources::SoundResource::soundName_e soundName;
 
         /// @brief Constructor of the SoundName component
         /// @param newSoundName The value to set in the soundName, corresponding
         /// on the sf::Sound load in shared resource Sound.
         SoundName(
-            SoundResource::soundName_e newSoundName = SoundResource::UNDEFINED, status_e status = status_e::STOPED)
+            graphicECS::SFML::Resources::SoundResource::soundName_e newSoundName = graphicECS::SFML::Resources::SoundResource::UNDEFINED, status_e status = status_e::STOPED)
             : soundName(newSoundName), _status(status){};
 
         /// @brief Default destructor of SoundName component.
@@ -41,10 +41,10 @@ namespace graphicECS::SFML::Components
         inline void setStatus(status_e status) { _status = status; };
 
         /// @brief This function return the name of the Sound
-        inline SoundResource::soundName_e getName() const { return soundName; };
+        inline graphicECS::SFML::Resources::SoundResource::soundName_e getName() const { return soundName; };
 
         /// @brief This function set the name of the Sound
-        inline void setName(SoundResource::soundName_e name) { soundName = name; };
+        inline void setName(graphicECS::SFML::Resources::SoundResource::soundName_e name) { soundName = name; };
 
       private:
         status_e _status;

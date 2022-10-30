@@ -13,10 +13,10 @@
 #include "Resource/Resource.hpp"
 #include <unordered_map>
 
-namespace ecs
+namespace graphicECS::SFML::Resources
 {
     /// @brief This resource class stores a map of Musics SFML.
-    class MusicResource : public Resource {
+    class MusicResource : public ecs::Resource {
       public:
         /// @brief Enumeration of all available Musics
         enum musicName_e { UNDEFINED, MENUTHEME, COMBATTHEME };
