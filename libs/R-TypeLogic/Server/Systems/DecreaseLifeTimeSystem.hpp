@@ -24,7 +24,7 @@ namespace ecs
             std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<LifeTime>();
 
             auto decreaseLifeTime = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
-                std::lock_guard(*entityPtr.get());
+                auto entityGuard = std::lock_guard(*entityPtr.get());
                 GameClock &clock = world.getResource<GameClock>();
                 auto guard = std::lock_guard(clock);
                 entityPtr.get()->getComponent<LifeTime>() = entityPtr.get()->getComponent<LifeTime>().timeLeft

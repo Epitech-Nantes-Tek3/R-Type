@@ -44,7 +44,7 @@ namespace graphicECS::SFML::Systems
     {
         if (event.type == sf::Event::KeyPressed) {
             auto keyPressed = [event](std::shared_ptr<Entity> entityPtr) {
-                std::lock_guard(*entityPtr.get());
+                auto guard = std::lock_guard(*entityPtr.get());
                 if (entityPtr->getComponent<KeyboardInputComponent>().keyboardMapActions.contains(event.key.code)
                     && entityPtr->contains<AllowMouseAndKeyboardComponent>())
                     entityPtr->getComponent<ActionQueueComponent>().actions.push(
@@ -58,7 +58,7 @@ namespace graphicECS::SFML::Systems
     {
         if (event.type == sf::Event::KeyReleased) {
             auto keyReleased = [event](std::shared_ptr<Entity> entityPtr) {
-                std::lock_guard(*entityPtr.get());
+                auto guard = std::lock_guard(*entityPtr.get());
                 if (entityPtr->getComponent<KeyboardInputComponent>().keyboardMapActions.contains(event.key.code)
                     && entityPtr->contains<AllowMouseAndKeyboardComponent>()) {
                     entityPtr->getComponent<ActionQueueComponent>().actions.push(
@@ -77,7 +77,7 @@ namespace graphicECS::SFML::Systems
     {
         if (event.type == sf::Event::MouseButtonPressed) {
             auto mouseButtonPressed = [event](std::shared_ptr<Entity> entityPtr) {
-                std::lock_guard(*entityPtr.get());
+                auto guard = std::lock_guard(*entityPtr.get());
                 if (entityPtr->getComponent<MouseInputComponent>().MouseMapActions.contains(event.mouseButton.button)
                     && entityPtr->contains<AllowMouseAndKeyboardComponent>()) {
                     entityPtr->getComponent<ActionQueueComponent>().actions.push(
@@ -107,9 +107,10 @@ namespace graphicECS::SFML::Systems
             _mouseEvents(event, Inputs);
         }
         for (auto &entityPtr : Inputs) {
-            std::lock_guard(*entityPtr.get());
+            entityPtr->lock();
             std::queue<std::pair<ActionQueueComponent::inputAction_e, float>> &actions =
                 entityPtr->getComponent<ActionQueueComponent>().actions;
+            entityPtr->unlock();
             while (actions.size() > 0) {
                 MenuStates &menuState = world.getResource<MenuStates>();
                 menuState.lock();
@@ -139,7 +140,7 @@ namespace graphicECS::SFML::Systems
         if (player.empty())
             return;
         auto moveX = [moveD](std::shared_ptr<Entity> entityPtr) {
-            std::lock_guard(*entityPtr.get());
+            auto guard = std::lock_guard(*entityPtr.get());
             entityPtr->getComponent<Velocity>().multiplierAbscissa = moveD;
             entityPtr->getComponent<Velocity>().modified = true;
             entityPtr->getComponent<Position>().modified = true;
@@ -155,7 +156,7 @@ namespace graphicECS::SFML::Systems
         if (player.empty())
             return;
         auto moveY = [moveD](std::shared_ptr<Entity> entityPtr) {
-            std::lock_guard(*entityPtr.get());
+            auto guard = std::lock_guard(*entityPtr.get());
             entityPtr->getComponent<Velocity>().multiplierOrdinate = moveD;
             entityPtr->getComponent<Velocity>().modified = true;
             entityPtr->getComponent<Position>().modified = true;
@@ -170,7 +171,7 @@ namespace graphicECS::SFML::Systems
         if (player.empty() || action < 1)
             return;
         auto shoot = [&world](std::shared_ptr<Entity> entityPtr) {
-            std::lock_guard(*entityPtr.get());
+            auto entityGuard = std::lock_guard(*entityPtr.get());
             ShootingFrequency &freq = entityPtr.get()->getComponent<ShootingFrequency>();
             const char hex_char[] = "0123456789ABCDEF";
             RandomDevice &random = world.getResource<RandomDevice>();
@@ -196,7 +197,7 @@ namespace graphicECS::SFML::Systems
         sf::Vector2i mousePos = sf::Mouse::getPosition(windowResource.window);
 
         auto clickInButton = [this, &world, &mousePos](std::shared_ptr<Entity> entityPtr) {
-            std::lock_guard(*entityPtr.get());
+            auto entityGuard = std::lock_guard(*entityPtr.get());
             Position &pos = entityPtr.get()->getComponent<Position>();
             Size &size = entityPtr.get()->getComponent<Size>();
             DisplayState &state = entityPtr.get()->getComponent<DisplayState>();
