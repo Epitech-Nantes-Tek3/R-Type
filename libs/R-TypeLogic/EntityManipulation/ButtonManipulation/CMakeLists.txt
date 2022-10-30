@@ -3,8 +3,10 @@ set(INC_ROOT ${PROJECT_SOURCE_DIR}/libs/R-TypeLogic/EntityManipulation/ButtonMan
 
 set(SRC
     ${SRC_ROOT}/SharedResources/ButtonActionMap.cpp
-    ${INC_ROOT}/Components/ActionName.hpp
     ${INC_ROOT}/SharedResources/ButtonActionMap.hpp
+    ${INC_ROOT}/SharedResources/MenuStates.hpp
+    ${INC_ROOT}/Components/DisplayState.hpp
+    ${INC_ROOT}/Components/ActionName.hpp
 )
 
 set(TARGET ${PROJECT_NAME}_RTypeLogicButtonManipulation)
