@@ -44,7 +44,7 @@ namespace graphicECS::SFML::Components
 
         /// @brief This function set the name of the Music
         inline void setName(MusicResource::musicName_e name) { musicName = name; };
-      private:
+
         status_e _status;
     };
 } // namespace graphicECS::SFML::Components
