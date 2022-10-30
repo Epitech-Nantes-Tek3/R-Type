@@ -19,13 +19,13 @@ namespace graphicECS::SFML::Systems
         auto stopSound = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
             SoundName sound = entityPtr.get()->getComponent<SoundName>();
 
-         if (sound._status == SoundName::STOPED && world.getResource<SoundResource>()._soundsList.at(sound.name)->_status != sf::Sound::Stopped) {
+         if (sound._status == SoundName::STOPED && world.getResource<SoundResource>()._soundsList.at(sound.soundName)->getStatus() != sf::Sound::Stopped) {
                 world.getResource<SoundResource>()._soundsList.at(sound.soundName)->stop();
             }
-            if (sound._status == SoundName::PAUSED && world.getResource<SoundResource>()._soundsList.at(sound.soundName)->_status != sf::Sound::Paused) {
+            if (sound._status == SoundName::PAUSED && world.getResource<SoundResource>()._soundsList.at(sound.soundName)->getStatus() != sf::Sound::Paused) {
                 world.getResource<SoundResource>()._soundsList.at(sound.soundName)->pause();
             }
-            if (sound._status == SoundName::PLAYING && world.getResource<SoundResource>()._soundsList.at(sound.soundName)->_status != sf::Sound::Playing) {
+            if (sound._status == SoundName::PLAYING && world.getResource<SoundResource>()._soundsList.at(sound.soundName)->getStatus() != sf::Sound::Playing) {
                 world.getResource<SoundResource>()._soundsList.at(sound.soundName)->play();
             }
         };
