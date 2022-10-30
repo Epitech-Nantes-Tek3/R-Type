@@ -114,7 +114,7 @@ void DrawComponents::run(World &world)
                     entityPos.x, entityPos.y, entitySize.x, entitySize.y);
                 if (layerType.layer == LayerLvL::layer_e::PLAYER) {
                     entityPtr->addComponent<AnimationComponent>();
-                    entityPtr->addComponent<AnimationFrequencyComponent>(0.005);
+                    entityPtr->addComponent<AnimationFrequencyComponent>(0.05);
                     entityPtr->getComponent<AnimationComponent>().currentTexturePos = 0;
                     entityPtr->getComponent<AnimationComponent>().textures.push_back(
                         GraphicsTextureResource::PLAYER_STATIC_1);
