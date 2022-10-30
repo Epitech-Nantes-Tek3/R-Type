@@ -13,7 +13,6 @@
 
 namespace graphicECS::SFML::Components
 {
-
     /// @brief SoundName stores the key as enum to the corresponding sound stored in shared resource SoundResource.
     class SoundName : public ecs::Component {
       public:
@@ -34,19 +33,7 @@ namespace graphicECS::SFML::Components
         /// @brief Default destructor of SoundName component.
         ~SoundName() = default;
 
-        /// @brief This function return the status of the Sound
-        inline status_e getStatus() const { return _status; };
-
-        /// @brief This function set the status of the Sound
-        inline void setStatus(status_e status) { _status = status; };
-
-        /// @brief This function return the name of the Sound
-        inline graphicECS::SFML::Resources::SoundResource::soundName_e getName() const { return soundName; };
-
-        /// @brief This function set the name of the Sound
-        inline void setName(graphicECS::SFML::Resources::SoundResource::soundName_e name) { soundName = name; };
-
-      private:
+        /// @brief Status of the Sound
         status_e _status;
     };
 } // namespace graphicECS::SFML::Components

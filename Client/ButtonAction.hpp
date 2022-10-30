@@ -14,4 +14,12 @@
 /// @param world the world where the window will be closed
 void exitWindow(World &world);
 
+/// @brief Pause the game, changing the menu state resource
+/// @param world the world where the game will be paused
+void pauseGame(World &world);
+
+/// @brief Resume the game, changing the menu state resource
+/// @param world the world where the game will be resumed
+void resumeGame(World &world);
+
 #endif /* !BUTTONACTION_HPP_ */

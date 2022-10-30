@@ -21,6 +21,7 @@
 #include "World/World.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/Components/ActionName.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/ButtonActionMap.hpp"
+#include "R-TypeLogic/EntityManipulation/ButtonManipulation/Components/DisplayState.hpp"
 #include "R-TypeLogic/Global/Components/ButtonComponent.hpp"
 #include "R-TypeLogic/Global/Components/ShootingFrequencyComponent.hpp"
 #include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
@@ -111,12 +112,18 @@ namespace graphicECS::SFML::Systems
                 entityPtr->getComponent<ActionQueueComponent>().actions;
             entityPtr->unlock();
             while (actions.size() > 0) {
-                if (actions.front().first == ActionQueueComponent::MOVEY)
-                    movePlayerY(world, actions.front().second);
-                if (actions.front().first == ActionQueueComponent::MOVEX)
-                    movePlayerX(world, actions.front().second);
-                if (actions.front().first == ActionQueueComponent::SHOOT)
-                    shootAction(world, actions.front().second);
+                MenuStates &menuState = world.getResource<MenuStates>();
+                menuState.lock();
+                MenuStates::menuState_e currState = menuState.currentState;
+                menuState.unlock();
+                if (currState == MenuStates::IN_GAME) {
+                    if (actions.front().first == ActionQueueComponent::MOVEY)
+                        movePlayerY(world, actions.front().second);
+                    if (actions.front().first == ActionQueueComponent::MOVEX)
+                        movePlayerX(world, actions.front().second);
+                    if (actions.front().first == ActionQueueComponent::SHOOT)
+                        shootAction(world, actions.front().second);
+                }
                 if (actions.front().first == ActionQueueComponent::BUTTON_CLICK) {
                     clickHandle(world, actions.front().second);
                 }
@@ -193,10 +200,15 @@ namespace graphicECS::SFML::Systems
             auto guardEntity = std::lock_guard(*entityPtr.get());
             Position &pos = entityPtr.get()->getComponent<Position>();
             Size &size = entityPtr.get()->getComponent<Size>();
+            DisplayState &state = entityPtr.get()->getComponent<DisplayState>();
+
             bool sameWidth = pos.y <= mousePos.y && mousePos.y <= pos.y + size.y;
             bool sameHeigth = pos.x <= mousePos.x && mousePos.x <= pos.x + size.x;
-
-            if (sameHeigth && sameWidth) {
+            MenuStates &menuState = world.getResource<MenuStates>();
+            menuState.lock();
+            MenuStates::menuState_e currState = menuState.currentState;
+            menuState.unlock();
+            if (sameHeigth && sameWidth && state.displayState == currState) {
                 ActionName &name = entityPtr.get()->getComponent<ActionName>();
                 ButtonActionMap &map = world.getResource<ButtonActionMap>();
                 auto guard = std::lock_guard(map);

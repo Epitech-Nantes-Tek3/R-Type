@@ -33,18 +33,7 @@ namespace graphicECS::SFML::Components
         /// @brief Default destructor of MusicName component.
         ~MusicName() = default;
 
-        /// @brief This function return the status of the Music
-        inline status_e getStatus() const { return _status; };
-
-        /// @brief This function set the status of the Music
-        inline void setStatus(status_e status) { _status = status; };
-
-        /// @brief This function return the name of the Music
-        inline graphicECS::SFML::Resources::MusicResource::musicName_e getName() const { return musicName; };
-
-        /// @brief This function set the name of the Music
-        inline void setName(graphicECS::SFML::Resources::MusicResource::musicName_e name) { musicName = name; };
-      private:
+        /// @brief Status of the Music
         status_e _status;
     };
 } // namespace graphicECS::SFML::Components

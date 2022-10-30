@@ -22,11 +22,12 @@ namespace graphicECS::SFML::Components
         sf::Text text;
 
         /// @brief Construct a GraphicsTextComponent width default parameters if they aren't specified.
+        /// @param newFont The font to be set to the text
         /// @param newText The new text of the component. Default "".
         /// @param x The x position of the text on the window. Default 10.
         /// @param y The y position of the text on the window. Default 10.
         /// @param size The character size of the text. Default 16.
-        GraphicsTextComponent(const std::string newText = "", const std::size_t x = 10, const std::size_t y = 10,
+        GraphicsTextComponent(const sf::Font &newFont, const std::string newText = "", const std::size_t x = 10, const std::size_t y = 10,
             const std::size_t size = 16);
 
         /// @brief Default destructor of the class.

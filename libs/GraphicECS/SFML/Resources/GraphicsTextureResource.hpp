@@ -36,7 +36,7 @@ namespace graphicECS::SFML::Resources
             OBSTACLE_3,
             PROJECTILE_ALLY,
             PROJECTILE_ENEMY,
-            EXIT_BUTTON,
+            BUTTON,
             NATURAL_PROJECTILE
         };
 

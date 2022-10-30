@@ -35,6 +35,7 @@
 #include "Transisthor/TransisthorECSLogic/Client/Systems/SendNewlyCreatedToServer.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Systems/SendToServer.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/ButtonActionMap.hpp"
+#include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/MenuStates.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateButton.hpp"
 #include "R-TypeLogic/Global/Components/LayerLvL.hpp"
 #include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
@@ -43,6 +44,7 @@
 #include "R-TypeLogic/Global/SharedResources/Random.hpp"
 #include "R-TypeLogic/Global/Systems/DeathSystem.hpp"
 #include "R-TypeLogic/Global/Systems/MovementSystem.hpp"
+#include "R-TypeLogic/Global/Systems/NoAfkInMenuSystem.hpp"
 #include "R-TypeLogic/Global/Systems/UpdateClockSystem.hpp"
 
 using namespace error_lib;
@@ -166,8 +168,8 @@ void ClientRoom::_initSpritesForEntities()
         sf::Vector2f(0, 0), sf::Vector2f(1920, 1080));
     spritesList.addTexture(GraphicsTextureResource::BACKGROUND_LAYER_1, "assets/Backgrounds/middle.png",
         sf::Vector2f(0, 0), sf::Vector2f(1920, 1080));
-    spritesList.addTexture(GraphicsTextureResource::EXIT_BUTTON, "assets/EpiSprite/r-typesheet11.gif",
-        sf::Vector2f(34, 0), sf::Vector2f(34, 34));
+    spritesList.addTexture(GraphicsTextureResource::BUTTON, "assets/EpiSprite/r-typesheet11.gif", sf::Vector2f(34, 0),
+        sf::Vector2f(34, 34));
 }
 
 void ClientRoom::_initSharedResources()
@@ -176,6 +178,7 @@ void ClientRoom::_initSharedResources()
     _worldInstance->addResource<GameClock>();
     _worldInstance->addResource<RenderWindowResource>();
     _worldInstance->addResource<GraphicsFontResource>("assets/fonts/arial.ttf");
+    _worldInstance->addResource<MenuStates>(MenuStates::IN_GAME);
     _initSpritesForEntities();
 }
 
@@ -190,6 +193,7 @@ void ClientRoom::_initSystems()
     _worldInstance->addSystem<SfRectangleFollowEntitySystem>();
     _worldInstance->addSystem<Parallax>();
     _worldInstance->addSystem<Movement>();
+    _worldInstance->addSystem<NoAfkInMenu>();
 }
 
 void ClientRoom::_initBackgroundEntities()
@@ -295,5 +299,13 @@ void ClientRoom::_initEntities()
 void ClientRoom::_initButtons()
 {
     _worldInstance->addResource<ButtonActionMap>(ButtonActionMap::EXIT, std::function<void(World &)>(exitWindow));
-    createNewButton(*(_worldInstance.get()), 0, 0, 34, 34, ButtonActionMap::EXIT, LayerLvL::EXIT_BUTTON);
+    ButtonActionMap &actionsList = _worldInstance->getResource<ButtonActionMap>();
+    actionsList.addAction(ButtonActionMap::RESUME, std::function<void(World &)>(resumeGame));
+    actionsList.addAction(ButtonActionMap::PAUSE, std::function<void(World &)>(pauseGame));
+    createNewButton(
+        *(_worldInstance.get()), 0, 0, 68, 68, ButtonActionMap::PAUSE, LayerLvL::BUTTON, MenuStates::IN_GAME);
+    createNewButton(*(_worldInstance.get()), 909, 200, 102, 102, ButtonActionMap::RESUME, LayerLvL::BUTTON,
+        MenuStates::GAME_PAUSED);
+    createNewButton(
+        *(_worldInstance.get()), 909, 500, 102, 102, ButtonActionMap::EXIT, LayerLvL::BUTTON, MenuStates::GAME_PAUSED);
 }
