@@ -33,7 +33,7 @@ void Communicator::addClientToList(Client &client)
 {
     if (std::find(_clientList.begin(), _clientList.end(), client) != _clientList.end())
         throw NetworkError("Client already registered in the communicator.", "Communicator.cpp -> addClientToList");
-    client.setId(_clientList.size() + 1);
+    client.setId(_clientList.size());
     _clientList.push_back(client);
 }
 
@@ -101,6 +101,7 @@ void Communicator::kickAClient(Client client, Client newEndpoint)
         return;
     }
     sendProtocol20(client, newEndpoint);
+    std::cerr << "Removed : " << client.getId() << std::endl;
     removeClientFromList(client);
     _receiverModule.removeAllClientMessage(client);
     std::cerr << "You have asked a client to switch to a new communicator." << std::endl;
@@ -160,7 +161,6 @@ Client Communicator::getClientByHisId(unsigned short id)
             return it;
     }
     throw NetworkError("No matched client founded.", "Communicator.cpp -> getClientByHisId");
-    return Client();
 }
 
 unsigned short Communicator::getServerEndpointId(void)
