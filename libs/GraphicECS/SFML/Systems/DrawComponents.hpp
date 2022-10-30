@@ -35,6 +35,7 @@ namespace graphicECS::SFML::Systems
         void _updateEnemy(LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr);
         void _udpateProjectile(LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr);
         void _updateButton(World &world, LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr);
+        void _updateEntities(World &world, std::shared_ptr<ecs::Entity> entityPtr);
     };
 } // namespace graphicECS::SFML::Systems
 

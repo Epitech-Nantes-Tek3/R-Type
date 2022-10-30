@@ -99,6 +99,23 @@ void DrawComponents::_updateButton(World &world, LayerLvL &layerType, std::share
     }
 }
 
+void DrawComponents::_updateEntities(World &world, std::shared_ptr<ecs::Entity> entityPtr)
+{
+    auto layerType = entityPtr->getComponent<LayerLvL>();
+    if (layerType.layer == LayerLvL::layer_e::OBSTACLE || layerType.layer == LayerLvL::layer_e::ENEMY
+        || layerType.layer == LayerLvL::layer_e::PLAYER || layerType.layer == LayerLvL::layer_e::PROJECTILE
+        || layerType.layer == LayerLvL::BUTTON) {
+        auto entityPos = entityPtr->getComponent<Position>();
+        auto entitySize = entityPtr->getComponent<Size>();
+
+        entityPtr->addComponent<GraphicsRectangleComponent>(entityPos.x, entityPos.y, entitySize.x, entitySize.y);
+        _updatePlayer(layerType, entityPtr);
+        _updateEnemy(layerType, entityPtr);
+        _udpateProjectile(layerType, entityPtr);
+        _updateButton(world, layerType, entityPtr);
+    }
+}
+
 void DrawComponents::run(World &world)
 {
     std::vector<std::shared_ptr<Entity>> Inputs = world.joinEntities<LayerLvL>();
@@ -146,20 +163,7 @@ void DrawComponents::run(World &world)
                 }
                 return;
             }
-            auto layerType = entityPtr->getComponent<LayerLvL>();
-            if (layerType.layer == LayerLvL::layer_e::OBSTACLE || layerType.layer == LayerLvL::layer_e::ENEMY
-                || layerType.layer == LayerLvL::layer_e::PLAYER || layerType.layer == LayerLvL::layer_e::PROJECTILE
-                || layerType.layer == LayerLvL::BUTTON) {
-                auto entityPos = entityPtr->getComponent<Position>();
-                auto entitySize = entityPtr->getComponent<Size>();
-
-                entityPtr->addComponent<GraphicsRectangleComponent>(
-                    entityPos.x, entityPos.y, entitySize.x, entitySize.y);
-                _updatePlayer(layerType, entityPtr);
-                _updateEnemy(layerType, entityPtr);
-                _udpateProjectile(layerType, entityPtr);
-                _updateButton(world, layerType, entityPtr);
-            }
+            _updateEntities(world, entityPtr);
         }
         windowResource.window.display();
     }
