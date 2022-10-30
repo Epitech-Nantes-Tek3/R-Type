@@ -13,8 +13,10 @@ void SoundResource::addSound(const soundName_e sound_e, const std::filesystem::p
 {
     sf::SoundBuffer buffer;
     sf::Sound sound;
-    
-    buffer.loadFromFile(soundPath);
+
+    if (!buffer.loadFromFile(soundPath.string()))
+        // throw error
+        void();
     sound.setBuffer(buffer);
     _soundsList.emplace(sound_e, std::make_shared<sf::Sound>(sound));
 }
