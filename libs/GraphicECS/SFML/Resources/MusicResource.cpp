@@ -6,7 +6,6 @@
 */
 
 #include "MusicResource.hpp"
-#include "Error/Error.hpp"
 
 using namespace graphicECS::SFML::Resources;
 

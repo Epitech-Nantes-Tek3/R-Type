@@ -171,7 +171,7 @@ namespace graphicECS::SFML::Systems
         if (player.empty() || action < 1)
             return;
         auto shoot = [&world](std::shared_ptr<Entity> entityPtr) {
-            auto guardEntity = std::lock_guard(*entityPtr.get());
+            auto entityGuard = std::lock_guard(*entityPtr.get());
             ShootingFrequency &freq = entityPtr.get()->getComponent<ShootingFrequency>();
             const char hex_char[] = "0123456789ABCDEF";
             RandomDevice &random = world.getResource<RandomDevice>();
@@ -197,7 +197,7 @@ namespace graphicECS::SFML::Systems
         sf::Vector2i mousePos = sf::Mouse::getPosition(windowResource.window);
 
         auto clickInButton = [this, &world, &mousePos](std::shared_ptr<Entity> entityPtr) {
-            auto guardEntity = std::lock_guard(*entityPtr.get());
+            auto entityGuard = std::lock_guard(*entityPtr.get());
             Position &pos = entityPtr.get()->getComponent<Position>();
             Size &size = entityPtr.get()->getComponent<Size>();
             DisplayState &state = entityPtr.get()->getComponent<DisplayState>();

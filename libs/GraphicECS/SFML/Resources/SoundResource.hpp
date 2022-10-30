@@ -12,6 +12,7 @@
 #include <filesystem>
 #include "Resource/Resource.hpp"
 #include <unordered_map>
+#include "Error/Error.hpp"
 
 namespace graphicECS::SFML::Resources
 {
@@ -42,6 +43,6 @@ namespace graphicECS::SFML::Resources
 
         SoundsList _soundsList;
     };
-} // namespace ecs
+} // namespace graphicECS::SFML::Resources
 
 #endif /* !SOUNDRESOURCES_HPP_ */

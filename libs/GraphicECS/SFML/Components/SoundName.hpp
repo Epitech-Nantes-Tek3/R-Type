@@ -11,6 +11,8 @@
 #include "Component/Component.hpp"
 #include "GraphicECS/SFML/Resources/SoundResource.hpp"
 
+using namespace graphicECS::SFML::Resources;
+
 namespace graphicECS::SFML::Components
 {
     /// @brief SoundName stores the key as enum to the corresponding sound stored in shared resource SoundResource.
