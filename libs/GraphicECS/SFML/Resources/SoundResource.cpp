@@ -7,7 +7,7 @@
 
 #include "SoundResource.hpp"
 
-using namespace ecs;
+using namespace graphicECS::SFML::Resources;
 
 void SoundResource::addSound(const soundName_e sound_e, const std::filesystem::path &soundPath)
 {

@@ -7,7 +7,7 @@
 
 #include "MusicResource.hpp"
 
-using namespace ecs;
+using namespace graphicECS::SFML::Resources;
 
 void MusicResource::addMusic(const musicName_e music_e, const std::filesystem::path &musicPath)
 {
