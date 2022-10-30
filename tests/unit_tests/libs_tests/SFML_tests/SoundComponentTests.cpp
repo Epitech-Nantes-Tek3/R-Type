@@ -13,14 +13,14 @@ using namespace ecs;
 
 Test(SoundName, create_sound_undefined)
 {
-    SoundName sound;
+    graphicECS::SFML::Components::SoundName sound;
 
     cr_assert_eq(0, sound.soundName);
 }
 
 Test(SoundName, create_sound_shoot)
 {
-    SoundName sound(SoundResource::SHOOT);
+    graphicECS::SFML::Components::SoundName sound(graphicECS::SFML::Resources::SoundResource::SHOOT);
 
-    cr_assert_eq(SoundResource::SHOOT, sound.soundName);
+    cr_assert_eq(graphicECS::SFML::Resources::SoundResource::SHOOT, sound.soundName);
 }
