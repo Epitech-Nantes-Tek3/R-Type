@@ -13,7 +13,7 @@ void MusicResource::addMusic(const musicName_e music_e, const std::filesystem::p
 {
     std::shared_ptr<sf::Music> music = std::make_shared<sf::Music>();
 
-    if (!music->openFromFile(musicPath)) {
+    if (!music->openFromFile(musicPath.string())) {
         // throw error...
     }
     _musicsList.emplace(music_e, music);
