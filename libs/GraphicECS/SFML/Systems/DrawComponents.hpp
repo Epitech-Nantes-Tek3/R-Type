@@ -39,6 +39,9 @@ namespace graphicECS::SFML::Systems
         void _updateButton(World &world, LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr);
         void _updateEntities(World &world, std::shared_ptr<ecs::Entity> entityPtr);
         void _drawComponent(World &world, std::shared_ptr<ecs::Entity> entityPtr, graphicECS::SFML::Resources::RenderWindowResource &windowResource);
+        void _drawRectangle(World &world, std::shared_ptr<ecs::Entity> entityPtr, graphicECS::SFML::Resources::RenderWindowResource &windowResource);
+        void _drawText(World &world, std::shared_ptr<ecs::Entity> entityPtr, graphicECS::SFML::Resources::RenderWindowResource &windowResource);
+        void _updateTexture(World &world, std::shared_ptr<ecs::Entity> entityPtr, graphicECS::SFML::Resources::RenderWindowResource &windowResource);
     };
 } // namespace graphicECS::SFML::Systems
 
