@@ -108,7 +108,7 @@ void DrawComponents::run(World &world)
     if (windowResource.window.isOpen()) {
         windowResource.window.clear(sf::Color(0x151123));
         std::sort(Inputs.begin(), Inputs.end(), compareLayer);
-        auto layer = [&world, &windowResource](std::shared_ptr<Entity> entityPtr) {
+        for (auto entityPtr : Inputs) {
             auto entityGuard = std::lock_guard(*entityPtr.get());
             if (entityPtr->contains<GraphicsRectangleComponent>() || entityPtr->contains<GraphicsTextComponent>()) {
                 if (entityPtr->contains<GraphicsRectangleComponent>()) {
@@ -160,8 +160,7 @@ void DrawComponents::run(World &world)
                 _udpateProjectile(layerType, entityPtr);
                 _updateButton(world, layerType, entityPtr);
             }
-        };
-        std::for_each(Inputs.begin(), Inputs.end(), layer);
+        }
         windowResource.window.display();
     }
 }
