@@ -62,7 +62,7 @@ namespace server_data
         std::shared_ptr<Communicator> _communicatorInstance;
 
         /// @brief Cross all machine port and find an empty one
-        /// @param actual port number (+ 100 per iteration)
+        /// @param actual port number (+ 101 per iteration)
         /// @return the first empty port founded
         unsigned short _getAFreePort(unsigned short actual);
 
