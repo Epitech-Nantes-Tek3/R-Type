@@ -6,6 +6,7 @@
 */
 
 #include "MusicResource.hpp"
+#include "Error/Error.hpp"
 
 using namespace ecs;
 
@@ -14,7 +15,7 @@ void MusicResource::addMusic(const musicName_e music_e, const std::filesystem::p
     std::shared_ptr<sf::Music> music = std::make_shared<sf::Music>();
 
     if (!music->openFromFile(musicPath.string())) {
-        // throw error...
+        throw std::logic_error("LoadFromFile for load song buffer failed.");
     }
     _musicsList.emplace(music_e, music);
 }
