@@ -116,52 +116,64 @@ $(document).ready(function(){initNavTree('_room_8hpp_source.html',''); initResiz
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <a class="code" href="classserver__data_1_1_room.html">Room</a>();</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <a class="code" href="classserver__data_1_1_room.html">Room</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">id</span>, <a class="code" href="classcommunicator__lib_1_1_client.html">Client</a> networkInformations);</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        ~<a class="code" href="classserver__data_1_1_room.html">Room</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classserver__data_1_1_room.html#af7672ed27fad789e479ef8b62d973ea3">   44</a></span>&#160;        <span class="keyword">inline</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <a class="code" href="classserver__data_1_1_room.html#af7672ed27fad789e479ef8b62d973ea3">getRoomId</a>(<span class="keywordtype">void</span>)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _id; };</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keywordtype">void</span> startLobbyLoop(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;      <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> _id;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <a class="code" href="classcommunicator__lib_1_1_client.html">Client</a> _networkInformations;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        std::shared_ptr&lt;Communicator&gt; _communicatorInstance;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        std::shared_ptr&lt;Transisthor&gt; _transisthorInstance;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <a class="code" href="classserver__data_1_1_room.html">Room</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">id</span>, std::string name, <a class="code" href="classcommunicator__lib_1_1_client.html">Client</a> networkInformations);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        ~<a class="code" href="classserver__data_1_1_room.html">Room</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classserver__data_1_1_room.html#af7672ed27fad789e479ef8b62d973ea3">   45</a></span>&#160;        <span class="keyword">inline</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <a class="code" href="classserver__data_1_1_room.html#af7672ed27fad789e479ef8b62d973ea3">getRoomId</a>(<span class="keywordtype">void</span>)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _id; };</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="classserver__data_1_1_room.html#afc9e8b9e239de624c78db44a0124c5bd">   49</a></span>&#160;        <span class="keyword">inline</span> std::string <a class="code" href="classserver__data_1_1_room.html#afc9e8b9e239de624c78db44a0124c5bd">getRoomName</a>(<span class="keywordtype">void</span>)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _name; };</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="classserver__data_1_1_room.html#ac23097337799f4a477c11299b7a54bda">   53</a></span>&#160;        <span class="keyword">inline</span> <a class="code" href="classcommunicator__lib_1_1_client.html">Client</a> <a class="code" href="classserver__data_1_1_room.html#ac23097337799f4a477c11299b7a54bda">getNetworkInformations</a>(<span class="keywordtype">void</span>)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _networkInformations; };</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordtype">void</span> startLobbyLoop(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;      <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> _id;</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        std::shared_ptr&lt;World&gt; _worldInstance;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        std::string _name;</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        RoomState _state;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <a class="code" href="classcommunicator__lib_1_1_client.html">Client</a> _networkInformations;</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> _remainingPlaces;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        std::shared_ptr&lt;Communicator&gt; _communicatorInstance;</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordtype">void</span> _holdADisconnectionRequest(<a class="code" href="structcommunicator__lib_1_1_communicator_message.html">CommunicatorMessage</a> disconectionDemand);</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keywordtype">void</span> _disconectionProcess();</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="keywordtype">void</span> _activePlayerGestion();</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        std::shared_ptr&lt;Transisthor&gt; _transisthorInstance;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        std::shared_ptr&lt;World&gt; _worldInstance;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        RoomState _state;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> _remainingPlaces;</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keywordtype">size_t</span> getEntityPlayerByHisNetworkId(<span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> networkId);</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="keywordtype">void</span> holdANewConnexionRequest(<a class="code" href="structcommunicator__lib_1_1_communicator_message.html">CommunicatorMessage</a> communicatorMessage);</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="keywordtype">void</span> initEcsGameData(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <span class="keywordtype">void</span> startConnexionProtocol(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    };</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="keywordtype">void</span> _holdADisconnectionRequest(<a class="code" href="structcommunicator__lib_1_1_communicator_message.html">CommunicatorMessage</a> disconectionDemand);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="keywordtype">void</span> _disconectionProcess();</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="keywordtype">void</span> _activePlayerGestion();</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <span class="keywordtype">size_t</span> getEntityPlayerByHisNetworkId(<span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> networkId);</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
-<div class="line"><a name="l00106"></a><span class="lineno"><a class="line" href="namespaceserver__data.html#a57ed7d487be0665b19190244d4dc5a9f">  106</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="namespacecommunicator__lib.html#a09b5d088e66a5c9af9461003c1781016">operator==</a>(<span class="keyword">const</span> <a class="code" href="classserver__data_1_1_room.html">Room</a> &amp;left, <span class="keyword">const</span> <a class="code" href="classserver__data_1_1_room.html">Room</a> &amp;right) { <span class="keywordflow">return</span> ((left.<a class="code" href="classserver__data_1_1_room.html#af7672ed27fad789e479ef8b62d973ea3">getRoomId</a>() == right.<a class="code" href="classserver__data_1_1_room.html#af7672ed27fad789e479ef8b62d973ea3">getRoomId</a>())); }</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;} <span class="comment">// namespace server_data</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <span class="keywordtype">void</span> holdANewConnexionRequest(<a class="code" href="structcommunicator__lib_1_1_communicator_message.html">CommunicatorMessage</a> communicatorMessage);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <span class="keywordtype">void</span> initEcsGameData(<span class="keywordtype">void</span>);</div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !ROOM_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <span class="keywordtype">void</span> startConnexionProtocol(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    };</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
+<div class="line"><a name="l00118"></a><span class="lineno"><a class="line" href="namespaceserver__data.html#a57ed7d487be0665b19190244d4dc5a9f">  118</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="namespacecommunicator__lib.html#a09b5d088e66a5c9af9461003c1781016">operator==</a>(<span class="keyword">const</span> <a class="code" href="classserver__data_1_1_room.html">Room</a> &amp;left, <span class="keyword">const</span> <a class="code" href="classserver__data_1_1_room.html">Room</a> &amp;right) { <span class="keywordflow">return</span> ((left.<a class="code" href="classserver__data_1_1_room.html#af7672ed27fad789e479ef8b62d973ea3">getRoomId</a>() == right.<a class="code" href="classserver__data_1_1_room.html#af7672ed27fad789e479ef8b62d973ea3">getRoomId</a>())); }</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
+<div class="line"><a name="l00125"></a><span class="lineno"><a class="line" href="namespaceserver__data.html#a8a883bb69b394cb3ead59d7bae0f443c">  125</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="namespacecommunicator__lib.html#a09b5d088e66a5c9af9461003c1781016">operator==</a>(<span class="keyword">const</span> <a class="code" href="classserver__data_1_1_room.html">Room</a> &amp;left, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> &amp;right) { <span class="keywordflow">return</span> ((left.<a class="code" href="classserver__data_1_1_room.html#af7672ed27fad789e479ef8b62d973ea3">getRoomId</a>() == right)); }</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160; </div>
+<div class="line"><a name="l00132"></a><span class="lineno"><a class="line" href="namespaceserver__data.html#a492b65969929793fcd1d22881617ad17">  132</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="namespacecommunicator__lib.html#a09b5d088e66a5c9af9461003c1781016">operator==</a>(<span class="keyword">const</span> <a class="code" href="classserver__data_1_1_room.html">Room</a> &amp;left, <span class="keyword">const</span> std::string &amp;right) { <span class="keywordflow">return</span> ((left.<a class="code" href="classserver__data_1_1_room.html#afc9e8b9e239de624c78db44a0124c5bd">getRoomName</a>() == right)); }</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;} <span class="comment">// namespace server_data</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !ROOM_HPP_ */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="a_transisthor_8hpp_html"><div class="ttname"><a href="_transisthor_8hpp.html">Transisthor.hpp</a></div></div>
 <div class="ttc" id="a_communicator_8hpp_html"><div class="ttname"><a href="_communicator_8hpp.html">Communicator.hpp</a></div></div>
+<div class="ttc" id="aclassserver__data_1_1_room_html_ac23097337799f4a477c11299b7a54bda"><div class="ttname"><a href="classserver__data_1_1_room.html#ac23097337799f4a477c11299b7a54bda">server_data::Room::getNetworkInformations</a></div><div class="ttdeci">Client getNetworkInformations(void) const</div><div class="ttdoc">Get the networkInformations of the room.</div><div class="ttdef"><b>Definition:</b> Room.hpp:53</div></div>
+<div class="ttc" id="aclassserver__data_1_1_room_html_afc9e8b9e239de624c78db44a0124c5bd"><div class="ttname"><a href="classserver__data_1_1_room.html#afc9e8b9e239de624c78db44a0124c5bd">server_data::Room::getRoomName</a></div><div class="ttdeci">std::string getRoomName(void) const</div><div class="ttdoc">Get the room name.</div><div class="ttdef"><b>Definition:</b> Room.hpp:49</div></div>
 <div class="ttc" id="a_world_8hpp_html"><div class="ttname"><a href="_world_8hpp.html">World.hpp</a></div></div>
 <div class="ttc" id="anamespaceserver__data_html"><div class="ttname"><a href="namespaceserver__data.html">server_data</a></div><div class="ttdef"><b>Definition:</b> Room.hpp:23</div></div>
 <div class="ttc" id="aclassserver__data_1_1_room_html_a1af48f2f03799721c8ea726182e05786a8dc06687f308c0a5128e3d48a40ecd0f"><div class="ttname"><a href="classserver__data_1_1_room.html#a1af48f2f03799721c8ea726182e05786a8dc06687f308c0a5128e3d48a40ecd0f">server_data::Room::UNDEFINED</a></div><div class="ttdeci">@ UNDEFINED</div><div class="ttdef"><b>Definition:</b> Room.hpp:29</div></div>
@@ -169,7 +181,7 @@ $(document).ready(function(){initNavTree('_room_8hpp_source.html',''); initResiz
 <div class="ttc" id="a_client_8hpp_html"><div class="ttname"><a href="_client_8hpp.html">Client.hpp</a></div></div>
 <div class="ttc" id="anamespacecommunicator__lib_html_a09b5d088e66a5c9af9461003c1781016"><div class="ttname"><a href="namespacecommunicator__lib.html#a09b5d088e66a5c9af9461003c1781016">communicator_lib::operator==</a></div><div class="ttdeci">bool operator==(const Client &amp;left, const Client &amp;right)</div><div class="ttdoc">Overload of the == operator to compare two clients.</div><div class="ttdef"><b>Definition:</b> Client.hpp:65</div></div>
 <div class="ttc" id="aclassserver__data_1_1_room_html_a1af48f2f03799721c8ea726182e05786"><div class="ttname"><a href="classserver__data_1_1_room.html#a1af48f2f03799721c8ea726182e05786">server_data::Room::RoomState</a></div><div class="ttdeci">RoomState</div><div class="ttdoc">All the possible state of a room.</div><div class="ttdef"><b>Definition:</b> Room.hpp:29</div></div>
-<div class="ttc" id="aclassserver__data_1_1_room_html_af7672ed27fad789e479ef8b62d973ea3"><div class="ttname"><a href="classserver__data_1_1_room.html#af7672ed27fad789e479ef8b62d973ea3">server_data::Room::getRoomId</a></div><div class="ttdeci">unsigned short getRoomId(void) const</div><div class="ttdoc">Get the room id.</div><div class="ttdef"><b>Definition:</b> Room.hpp:44</div></div>
+<div class="ttc" id="aclassserver__data_1_1_room_html_af7672ed27fad789e479ef8b62d973ea3"><div class="ttname"><a href="classserver__data_1_1_room.html#af7672ed27fad789e479ef8b62d973ea3">server_data::Room::getRoomId</a></div><div class="ttdeci">unsigned short getRoomId(void) const</div><div class="ttdoc">Get the room id.</div><div class="ttdef"><b>Definition:</b> Room.hpp:45</div></div>
 <div class="ttc" id="aclasscommunicator__lib_1_1_client_html"><div class="ttname"><a href="classcommunicator__lib_1_1_client.html">communicator_lib::Client</a></div><div class="ttdoc">A representation of a client (Address + Port)</div><div class="ttdef"><b>Definition:</b> Client.hpp:19</div></div>
 <div class="ttc" id="anamespaceecs_html"><div class="ttname"><a href="namespaceecs.html">ecs</a></div><div class="ttdef"><b>Definition:</b> Component.hpp:12</div></div>
 <div class="ttc" id="anamespacecommunicator__lib_html"><div class="ttname"><a href="namespacecommunicator__lib.html">communicator_lib</a></div><div class="ttdef"><b>Definition:</b> Client.hpp:16</div></div>

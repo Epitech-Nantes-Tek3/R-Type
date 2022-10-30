@@ -105,10 +105,16 @@ Functions</h2></td></tr>
 <tr class="memitem:a57ed7d487be0665b19190244d4dc5a9f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceserver__data.html#a57ed7d487be0665b19190244d4dc5a9f">operator==</a> (const <a class="el" href="classserver__data_1_1_room.html">Room</a> &amp;left, const <a class="el" href="classserver__data_1_1_room.html">Room</a> &amp;right)</td></tr>
 <tr class="memdesc:a57ed7d487be0665b19190244d4dc5a9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overload of the == operator to compare two rooms.  <a href="namespaceserver__data.html#a57ed7d487be0665b19190244d4dc5a9f">More...</a><br /></td></tr>
 <tr class="separator:a57ed7d487be0665b19190244d4dc5a9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a883bb69b394cb3ead59d7bae0f443c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceserver__data.html#a8a883bb69b394cb3ead59d7bae0f443c">operator==</a> (const <a class="el" href="classserver__data_1_1_room.html">Room</a> &amp;left, const unsigned short &amp;right)</td></tr>
+<tr class="memdesc:a8a883bb69b394cb3ead59d7bae0f443c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overload of the == operator to compare rooms with her id.  <a href="namespaceserver__data.html#a8a883bb69b394cb3ead59d7bae0f443c">More...</a><br /></td></tr>
+<tr class="separator:a8a883bb69b394cb3ead59d7bae0f443c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a492b65969929793fcd1d22881617ad17"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceserver__data.html#a492b65969929793fcd1d22881617ad17">operator==</a> (const <a class="el" href="classserver__data_1_1_room.html">Room</a> &amp;left, const std::string &amp;right)</td></tr>
+<tr class="memdesc:a492b65969929793fcd1d22881617ad17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overload of the == operator to compare rooms with her name.  <a href="namespaceserver__data.html#a492b65969929793fcd1d22881617ad17">More...</a><br /></td></tr>
+<tr class="separator:a492b65969929793fcd1d22881617ad17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a57ed7d487be0665b19190244d4dc5a9f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a57ed7d487be0665b19190244d4dc5a9f">&#9670;&nbsp;</a></span>operator==()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a57ed7d487be0665b19190244d4dc5a9f">&#9670;&nbsp;</a></span>operator==() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -142,6 +148,102 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Overload of the == operator to compare two rooms. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">left</td><td>param of the comparison </td></tr>
+    <tr><td class="paramname">right</td><td>param of the comparison </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true If the two rooms have the same id </dd>
+<dd>
+false If the two rooms have different id </dd></dl>
+
+</div>
+</div>
+<a id="a492b65969929793fcd1d22881617ad17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a492b65969929793fcd1d22881617ad17">&#9670;&nbsp;</a></span>operator==() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool server_data::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classserver__data_1_1_room.html">Room</a> &amp;&#160;</td>
+          <td class="paramname"><em>left</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>right</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Overload of the == operator to compare rooms with her name. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">left</td><td>param of the comparison </td></tr>
+    <tr><td class="paramname">right</td><td>param of the comparison </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true If the room have the good name </dd>
+<dd>
+false If the room haven't the good name </dd></dl>
+
+</div>
+</div>
+<a id="a8a883bb69b394cb3ead59d7bae0f443c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a883bb69b394cb3ead59d7bae0f443c">&#9670;&nbsp;</a></span>operator==() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool server_data::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classserver__data_1_1_room.html">Room</a> &amp;&#160;</td>
+          <td class="paramname"><em>left</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned short &amp;&#160;</td>
+          <td class="paramname"><em>right</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Overload of the == operator to compare rooms with her id. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">left</td><td>param of the comparison </td></tr>

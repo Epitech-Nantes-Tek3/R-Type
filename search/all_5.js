@@ -3,7 +3,7 @@ var searchData=
   ['ecs_169',['ecs',['../namespaceecs.html',1,'']]],
   ['ecsactions_2ehpp_170',['ECSActions.hpp',['../_e_c_s_actions_8hpp.html',1,'']]],
   ['ecserror_171',['EcsError',['../classerror__lib_1_1_ecs_error.html',1,'error_lib::EcsError'],['../classerror__lib_1_1_ecs_error.html#a1bbd1ef9697acadf2ffccabc1183c4a5',1,'error_lib::EcsError::EcsError()']]],
-  ['ended_172',['ENDED',['../classclient__data_1_1_client_room.html#a8e238231449feaa8357997ae01f9f2cea813cb4e5ad16ad700c47ba48bd3e23e5',1,'client_data::ClientRoom::ENDED()'],['../classserver__data_1_1_room.html#a1af48f2f03799721c8ea726182e05786a77611e9eeea5ac7b75b7a1b6fc9c0352',1,'server_data::Room::ENDED()']]],
+  ['ended_172',['ENDED',['../classclient__data_1_1_client_room.html#a8e238231449feaa8357997ae01f9f2cea813cb4e5ad16ad700c47ba48bd3e23e5',1,'client_data::ClientRoom::ENDED()'],['../classserver__data_1_1_room.html#a1af48f2f03799721c8ea726182e05786a77611e9eeea5ac7b75b7a1b6fc9c0352',1,'server_data::Room::ENDED()'],['../classserver__data_1_1_server.html#afa18619a548a505dbae99d57e2e681b6a9b95fc3e1791b61e150b9d0ed4782e1d',1,'server_data::Server::ENDED()']]],
   ['enemiesgorandom_173',['EnemiesGoRandom',['../classecs_1_1_enemies_go_random.html',1,'ecs']]],
   ['enemiesgorandom_2ecpp_174',['EnemiesGoRandom.cpp',['../_enemies_go_random_8cpp.html',1,'']]],
   ['enemiesgorandom_2ehpp_175',['EnemiesGoRandom.hpp',['../_enemies_go_random_8hpp.html',1,'']]],

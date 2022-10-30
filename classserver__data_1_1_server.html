@@ -84,6 +84,7 @@ $(document).ready(function(){initNavTree('classserver__data_1_1_server.html','')
 
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classserver__data_1_1_server-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -96,6 +97,15 @@ $(document).ready(function(){initNavTree('classserver__data_1_1_server.html','')
 
 <p><code>#include &lt;<a class="el" href="_server_8hpp_source.html">Server.hpp</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:afa18619a548a505dbae99d57e2e681b6"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classserver__data_1_1_server.html#afa18619a548a505dbae99d57e2e681b6">HubState</a> { <a class="el" href="classserver__data_1_1_server.html#afa18619a548a505dbae99d57e2e681b6aed80cce2b70937d1c9b963a33816a7bd">UNDEFINED</a>, 
+<a class="el" href="classserver__data_1_1_server.html#afa18619a548a505dbae99d57e2e681b6a3e079c45250d4eae6f5dff1353bf44ae">HUB</a>, 
+<a class="el" href="classserver__data_1_1_server.html#afa18619a548a505dbae99d57e2e681b6a9b95fc3e1791b61e150b9d0ed4782e1d">ENDED</a>
+ }</td></tr>
+<tr class="memdesc:afa18619a548a505dbae99d57e2e681b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">All the possible state of a room.  <a href="classserver__data_1_1_server.html#afa18619a548a505dbae99d57e2e681b6">More...</a><br /></td></tr>
+<tr class="separator:afa18619a548a505dbae99d57e2e681b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a4198b176b5d91ee5211ff53fe78483f2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classserver__data_1_1_server.html#a4198b176b5d91ee5211ff53fe78483f2">Server</a> (std::string address, unsigned short port)</td></tr>
@@ -107,16 +117,41 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aaf4c1749ab9802025359c962b33aead0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classserver__data_1_1_server.html#aaf4c1749ab9802025359c962b33aead0">~Server</a> ()=default</td></tr>
 <tr class="memdesc:aaf4c1749ab9802025359c962b33aead0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy the <a class="el" href="classserver__data_1_1_server.html" title="Main class of the server part. Hold room process.">Server</a> object.  <a href="classserver__data_1_1_server.html#aaf4c1749ab9802025359c962b33aead0">More...</a><br /></td></tr>
 <tr class="separator:aaf4c1749ab9802025359c962b33aead0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a20c04f920e9b940f20ef428211c11041"><td class="memItemLeft" align="right" valign="top">unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classserver__data_1_1_server.html#a20c04f920e9b940f20ef428211c11041">createANewRoom</a> (void)</td></tr>
-<tr class="memdesc:a20c04f920e9b940f20ef428211c11041"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create and add a new <a class="el" href="classserver__data_1_1_room.html" title="Place where the game run (Like a lobby). Hold all libraries instance.">Room</a> inside the room list.  <a href="classserver__data_1_1_server.html#a20c04f920e9b940f20ef428211c11041">More...</a><br /></td></tr>
-<tr class="separator:a20c04f920e9b940f20ef428211c11041"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c81e92e4c1e19f42777bd6425c8342c"><td class="memItemLeft" align="right" valign="top">unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classserver__data_1_1_server.html#a4c81e92e4c1e19f42777bd6425c8342c">createANewRoom</a> (std::string name)</td></tr>
+<tr class="memdesc:a4c81e92e4c1e19f42777bd6425c8342c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create and add a new <a class="el" href="classserver__data_1_1_room.html" title="Place where the game run (Like a lobby). Hold all libraries instance.">Room</a> inside the room list.  <a href="classserver__data_1_1_server.html#a4c81e92e4c1e19f42777bd6425c8342c">More...</a><br /></td></tr>
+<tr class="separator:a4c81e92e4c1e19f42777bd6425c8342c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5471d756c8a7406fa6918f96624623e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classserver__data_1_1_server.html#a5471d756c8a7406fa6918f96624623e5">startHubLoop</a> ()</td></tr>
+<tr class="memdesc:a5471d756c8a7406fa6918f96624623e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start the hub global loop.  <a href="classserver__data_1_1_server.html#a5471d756c8a7406fa6918f96624623e5">More...</a><br /></td></tr>
+<tr class="separator:a5471d756c8a7406fa6918f96624623e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5a3985c96088955a55f3ebfd7fad7b23"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classserver__data_1_1_server.html#a5a3985c96088955a55f3ebfd7fad7b23">deleteARoom</a> (unsigned short id)</td></tr>
 <tr class="memdesc:a5a3985c96088955a55f3ebfd7fad7b23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove and delete a room of the list.  <a href="classserver__data_1_1_server.html#a5a3985c96088955a55f3ebfd7fad7b23">More...</a><br /></td></tr>
 <tr class="separator:a5a3985c96088955a55f3ebfd7fad7b23"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Main class of the server part. Hold room process. </p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+</div><h2 class="groupheader">Member Enumeration Documentation</h2>
+<a id="afa18619a548a505dbae99d57e2e681b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa18619a548a505dbae99d57e2e681b6">&#9670;&nbsp;</a></span>HubState</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="classserver__data_1_1_server.html#afa18619a548a505dbae99d57e2e681b6">server_data::Server::HubState</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>All the possible state of a room. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="afa18619a548a505dbae99d57e2e681b6aed80cce2b70937d1c9b963a33816a7bd"></a>UNDEFINED&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="afa18619a548a505dbae99d57e2e681b6a3e079c45250d4eae6f5dff1353bf44ae"></a>HUB&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="afa18619a548a505dbae99d57e2e681b6a9b95fc3e1791b61e150b9d0ed4782e1d"></a>ENDED&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a4198b176b5d91ee5211ff53fe78483f2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4198b176b5d91ee5211ff53fe78483f2">&#9670;&nbsp;</a></span>Server() <span class="overload">[1/2]</span></h2>
 
@@ -201,8 +236,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a20c04f920e9b940f20ef428211c11041"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a20c04f920e9b940f20ef428211c11041">&#9670;&nbsp;</a></span>createANewRoom()</h2>
+<a id="a4c81e92e4c1e19f42777bd6425c8342c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c81e92e4c1e19f42777bd6425c8342c">&#9670;&nbsp;</a></span>createANewRoom()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -210,16 +245,21 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">unsigned short Server::createANewRoom </td>
           <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Create and add a new <a class="el" href="classserver__data_1_1_room.html" title="Place where the game run (Like a lobby). Hold all libraries instance.">Room</a> inside the room list. </p>
-<p>Id of the newly created room </p>
-<p>WILL BE REFACTO IN PART 2 TO AUTOMATIZE NEW FREE PORT DETECTION</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>of the room </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Id of the newly created room </dd></dl>
 
 </div>
 </div>
@@ -246,6 +286,25 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a5471d756c8a7406fa6918f96624623e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5471d756c8a7406fa6918f96624623e5">&#9670;&nbsp;</a></span>startHubLoop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Server::startHubLoop </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Start the hub global loop. </p>
 
 </div>
 </div>

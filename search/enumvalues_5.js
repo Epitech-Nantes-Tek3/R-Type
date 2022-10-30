@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['in_5fgame_1148',['IN_GAME',['../classecs_1_1_menu_states.html#a0d4dd57d2a1f5290f65d1288712f922aaab27d9217d9cad1c7d8df325764c196c',1,'ecs::MenuStates::IN_GAME()'],['../classclient__data_1_1_client_room.html#a8e238231449feaa8357997ae01f9f2ceaa210ef889c87133bb60b6cfd938f14d8',1,'client_data::ClientRoom::IN_GAME()'],['../classserver__data_1_1_room.html#a1af48f2f03799721c8ea726182e05786a9449ef586321613f0407f4ad03d78e31',1,'server_data::Room::IN_GAME()']]]
+  ['hub_1157',['HUB',['../classserver__data_1_1_server.html#afa18619a548a505dbae99d57e2e681b6a3e079c45250d4eae6f5dff1353bf44ae',1,'server_data::Server']]]
 ];

@@ -51,7 +51,7 @@ var searchData=
   ['controllerjoystickmapactions_108',['controllerJoystickMapActions',['../classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_controller_joystick_input_component.html#af0de8ba78fac2dfc51e2cede4405738f',1,'graphicECS::SFML::Components::ControllerJoystickInputComponent']]],
   ['createalliedprojectile_2ecpp_109',['CreateAlliedProjectile.cpp',['../_create_allied_projectile_8cpp.html',1,'']]],
   ['createalliedprojectile_2ehpp_110',['CreateAlliedProjectile.hpp',['../_create_allied_projectile_8hpp.html',1,'']]],
-  ['createanewroom_111',['createANewRoom',['../classserver__data_1_1_server.html#a20c04f920e9b940f20ef428211c11041',1,'server_data::Server']]],
+  ['createanewroom_111',['createANewRoom',['../classserver__data_1_1_server.html#a4c81e92e4c1e19f42777bd6425c8342c',1,'server_data::Server']]],
   ['createbackground_2ecpp_112',['CreateBackground.cpp',['../_create_background_8cpp.html',1,'']]],
   ['createbackground_2ehpp_113',['CreateBackground.hpp',['../_create_background_8hpp.html',1,'']]],
   ['createbutton_2ecpp_114',['CreateButton.cpp',['../_create_button_8cpp.html',1,'']]],
