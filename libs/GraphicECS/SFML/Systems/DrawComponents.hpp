@@ -11,6 +11,8 @@
 #include <SFML/Graphics.hpp>
 #include "System/System.hpp"
 #include "World/World.hpp"
+#include "R-TypeLogic/Global/Components/LayerLvL.hpp"
+#include "GraphicECS/SFML/Resources/RenderWindowResource.hpp"
 
 namespace graphicECS::SFML::Systems
 {
@@ -36,6 +38,7 @@ namespace graphicECS::SFML::Systems
         void _udpateProjectile(LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr);
         void _updateButton(World &world, LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr);
         void _updateEntities(World &world, std::shared_ptr<ecs::Entity> entityPtr);
+        void _drawComponent(World &world, std::shared_ptr<ecs::Entity> entityPtr, graphicECS::SFML::Resources::RenderWindowResource &windowResource);
     };
 } // namespace graphicECS::SFML::Systems
 

@@ -11,7 +11,6 @@
 #include "AnimationComponent.hpp"
 #include "AnimationFrequencyComponent.hpp"
 #include "GraphicECS/SFML/Resources/GraphicsFontResource.hpp"
-#include "GraphicECS/SFML/Resources/RenderWindowResource.hpp"
 #include "GraphicsRectangleComponent.hpp"
 #include "GraphicsTextComponent.hpp"
 #include "GraphicsTextureResource.hpp"
@@ -20,7 +19,6 @@
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/Components/DisplayState.hpp"
 #include "R-TypeLogic/Global/Components/AlliedProjectileComponent.hpp"
 #include "R-TypeLogic/Global/Components/EnemyProjectileComponent.hpp"
-#include "R-TypeLogic/Global/Components/LayerLvL.hpp"
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
 #include "R-TypeLogic/Global/Components/SizeComponent.hpp"
 
@@ -116,6 +114,46 @@ void DrawComponents::_updateEntities(World &world, std::shared_ptr<ecs::Entity> 
     }
 }
 
+void DrawComponents::_drawComponent(World &world, std::shared_ptr<ecs::Entity> entityPtr, RenderWindowResource &windowResource)
+{
+    auto entityGuard = std::lock_guard(*entityPtr.get());
+
+    if (entityPtr->contains<GraphicsRectangleComponent>() || entityPtr->contains<GraphicsTextComponent>()) {
+        if (entityPtr->contains<GraphicsRectangleComponent>()) {
+            if (world.containsResource<GraphicsTextureResource>()) {
+                GraphicsTextureResource &textureResource = world.getResource<GraphicsTextureResource>();
+                auto guard = std::lock_guard(textureResource);
+                if (entityPtr->contains<TextureName>()) {
+                    entityPtr->getComponent<GraphicsRectangleComponent>().shape.setTexture(
+                        textureResource._texturesList[entityPtr->getComponent<TextureName>().textureName].get());
+                } else if (entityPtr->contains<AnimationComponent>()) {
+                    entityPtr->getComponent<GraphicsRectangleComponent>().shape.setTexture(
+                        textureResource
+                            ._texturesList[entityPtr->getComponent<AnimationComponent>().textures
+                                               [entityPtr->getComponent<AnimationComponent>().currentTexturePos]]
+                            .get());
+                }
+            } else {
+                entityPtr->getComponent<GraphicsRectangleComponent>().shape.setFillColor(sf::Color::White);
+            }
+            if (entityPtr->getComponent<LayerLvL>().layer == LayerLvL::BUTTON
+                && world.getResource<MenuStates>().currentState
+                    == entityPtr->getComponent<DisplayState>().displayState) {
+                windowResource.window.draw(entityPtr->getComponent<GraphicsRectangleComponent>().shape);
+            } else if (entityPtr->getComponent<LayerLvL>().layer != LayerLvL::BUTTON) {
+                windowResource.window.draw(entityPtr->getComponent<GraphicsRectangleComponent>().shape);
+            }
+        }
+        if (entityPtr->contains<GraphicsTextComponent>()) {
+            if (world.getResource<MenuStates>().currentState == entityPtr->getComponent<DisplayState>().displayState) {
+                windowResource.window.draw(entityPtr->getComponent<GraphicsTextComponent>().text);
+            }
+        }
+        return;
+    }
+    _updateEntities(world, entityPtr);
+}
+
 void DrawComponents::run(World &world)
 {
     std::vector<std::shared_ptr<Entity>> Inputs = world.joinEntities<LayerLvL>();
@@ -126,44 +164,7 @@ void DrawComponents::run(World &world)
         windowResource.window.clear(sf::Color(0x151123));
         std::sort(Inputs.begin(), Inputs.end(), compareLayer);
         for (auto entityPtr : Inputs) {
-            auto entityGuard = std::lock_guard(*entityPtr.get());
-            if (entityPtr->contains<GraphicsRectangleComponent>() || entityPtr->contains<GraphicsTextComponent>()) {
-                if (entityPtr->contains<GraphicsRectangleComponent>()) {
-                    if (world.containsResource<GraphicsTextureResource>()) {
-                        GraphicsTextureResource &textureResource = world.getResource<GraphicsTextureResource>();
-                        auto guard = std::lock_guard(textureResource);
-                        if (entityPtr->contains<TextureName>()) {
-                            entityPtr->getComponent<GraphicsRectangleComponent>().shape.setTexture(
-                                textureResource._texturesList[entityPtr->getComponent<TextureName>().textureName]
-                                    .get());
-                        } else if (entityPtr->contains<AnimationComponent>()) {
-                            entityPtr->getComponent<GraphicsRectangleComponent>().shape.setTexture(
-                                textureResource
-                                    ._texturesList[entityPtr->getComponent<AnimationComponent>()
-                                                       .textures[entityPtr->getComponent<AnimationComponent>()
-                                                                     .currentTexturePos]]
-                                    .get());
-                        }
-                    } else {
-                        entityPtr->getComponent<GraphicsRectangleComponent>().shape.setFillColor(sf::Color::White);
-                    }
-                    if (entityPtr->getComponent<LayerLvL>().layer == LayerLvL::BUTTON
-                        && world.getResource<MenuStates>().currentState
-                            == entityPtr->getComponent<DisplayState>().displayState) {
-                        windowResource.window.draw(entityPtr->getComponent<GraphicsRectangleComponent>().shape);
-                    } else if (entityPtr->getComponent<LayerLvL>().layer != LayerLvL::BUTTON) {
-                        windowResource.window.draw(entityPtr->getComponent<GraphicsRectangleComponent>().shape);
-                    }
-                }
-                if (entityPtr->contains<GraphicsTextComponent>()) {
-                    if (world.getResource<MenuStates>().currentState
-                        == entityPtr->getComponent<DisplayState>().displayState) {
-                        windowResource.window.draw(entityPtr->getComponent<GraphicsTextComponent>().text);
-                    }
-                }
-                return;
-            }
-            _updateEntities(world, entityPtr);
+            _drawComponent(world, entityPtr, windowResource);
         }
         windowResource.window.display();
     }
