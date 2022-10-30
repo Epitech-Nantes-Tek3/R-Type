@@ -13,7 +13,6 @@
 
 namespace ecs
 {
-
     /// @brief SoundName stores the key as enum to the corresponding sound stored in shared resource SoundResource.
     class SoundName : public Component {
       public:
@@ -45,8 +44,7 @@ namespace ecs
 
         /// @brief This function set the name of the Sound
         inline void setName(SoundResource::soundName_e name) { soundName = name; };
-
-      private:
+        
         status_e _status;
     };
 } // namespace ecs
