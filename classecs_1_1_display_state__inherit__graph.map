@@ -1,0 +1,4 @@
+<map id="ecs::DisplayState" name="ecs::DisplayState">
+<area shape="rect" id="node1" title="This is the display Component. It&#39;s used for the Button Entities to choose the menu to be displayed." alt="" coords="5,80,140,107"/>
+<area shape="rect" id="node2" href="$classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone..." alt="" coords="9,5,136,32"/>
+</map>

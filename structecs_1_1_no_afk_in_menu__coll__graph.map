@@ -1,0 +1,4 @@
+<map id="ecs::NoAfkInMenu" name="ecs::NoAfkInMenu">
+<area shape="rect" id="node1" title="This is a system which makes the player &quot;connected&quot; to still have the client open while in menu." alt="" coords="5,80,145,107"/>
+<area shape="rect" id="node2" href="$classecs_1_1_system.html" title=" " alt="" coords="25,5,126,32"/>
+</map>

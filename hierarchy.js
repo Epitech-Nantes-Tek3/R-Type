@@ -24,6 +24,7 @@ var hierarchy =
       [ "ecs::DeathDamage", "classecs_1_1_death_damage.html", null ],
       [ "ecs::Destination", "classecs_1_1_destination.html", null ],
       [ "ecs::Disconnectable", "classecs_1_1_disconnectable.html", null ],
+      [ "ecs::DisplayState", "classecs_1_1_display_state.html", null ],
       [ "ecs::Enemy", "classecs_1_1_enemy.html", null ],
       [ "ecs::EnemyProjectile", "classecs_1_1_enemy_projectile.html", null ],
       [ "ecs::Equipment", "classecs_1_1_equipment.html", null ],
@@ -74,6 +75,7 @@ var hierarchy =
       [ "ecs::Resource", "classecs_1_1_resource.html", [
         [ "ecs::ButtonActionMap", "classecs_1_1_button_action_map.html", null ],
         [ "ecs::GameClock", "classecs_1_1_game_clock.html", null ],
+        [ "ecs::MenuStates", "classecs_1_1_menu_states.html", null ],
         [ "ecs::RandomDevice", "structecs_1_1_random_device.html", null ],
         [ "graphicECS::SFML::Resources::GraphicsFontResource", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_font_resource.html", null ],
         [ "graphicECS::SFML::Resources::GraphicsTextureResource", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html", null ],
@@ -97,6 +99,7 @@ var hierarchy =
       [ "ecs::EnemyShootSystem", "classecs_1_1_enemy_shoot_system.html", null ],
       [ "ecs::LifeTimeDeath", "structecs_1_1_life_time_death.html", null ],
       [ "ecs::Movement", "structecs_1_1_movement.html", null ],
+      [ "ecs::NoAfkInMenu", "structecs_1_1_no_afk_in_menu.html", null ],
       [ "ecs::RemoveAfkSystem", "structecs_1_1_remove_afk_system.html", null ],
       [ "ecs::UpdateClock", "structecs_1_1_update_clock.html", null ],
       [ "graphicECS::SFML::Systems::AnimationSystem", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_animation_system.html", null ],

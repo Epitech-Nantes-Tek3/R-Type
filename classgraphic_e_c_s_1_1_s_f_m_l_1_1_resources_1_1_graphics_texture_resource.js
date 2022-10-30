@@ -17,7 +17,7 @@ var classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource =
       [ "OBSTACLE_3", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html#aa8d3b383da5ddc1c6dd86c2c5efc035da657814b81c6d4b38fa7ff2250cad5295", null ],
       [ "PROJECTILE_ALLY", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html#aa8d3b383da5ddc1c6dd86c2c5efc035dab42d6b69fd8621cb6221403e07efcda8", null ],
       [ "PROJECTILE_ENEMY", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html#aa8d3b383da5ddc1c6dd86c2c5efc035dabfc1eecd3977b626d8678ad694584325", null ],
-      [ "EXIT_BUTTON", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html#aa8d3b383da5ddc1c6dd86c2c5efc035dab1a5372e07907cc39e5247c32a63508b", null ],
+      [ "BUTTON", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html#aa8d3b383da5ddc1c6dd86c2c5efc035da5fe5c1f4b5b8a5f25f9b3f2cb981af61", null ],
       [ "NATURAL_PROJECTILE", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html#aa8d3b383da5ddc1c6dd86c2c5efc035da12b295691854b82623983e4d56866f37", null ]
     ] ],
     [ "GraphicsTextureResource", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html#ad1e8e8cc6d910151277249725ad3be9a", null ],
