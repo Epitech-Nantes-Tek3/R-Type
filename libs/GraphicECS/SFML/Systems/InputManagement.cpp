@@ -15,7 +15,6 @@
 #include "AllowMouseAndKeyboardComponent.hpp"
 #include "ControllerButtonInputComponent.hpp"
 #include "ControllerJoystickInputComponent.hpp"
-#include "GraphicECS/SFML/Resources/RenderWindowResource.hpp"
 #include "KeyboardInputComponent.hpp"
 #include "MouseInputComponent.hpp"
 #include "World/World.hpp"
@@ -31,11 +30,9 @@ using namespace graphicECS::SFML::Components;
 
 namespace graphicECS::SFML::Systems
 {
-    void InputManagement::_closeWindow(sf::Event &event, World &world)
+    void InputManagement::_closeWindow(sf::Event &event, RenderWindowResource &windowResource)
     {
         if (event.type == sf::Event::Closed) {
-            RenderWindowResource &windowResource = world.getResource<RenderWindowResource>();
-            auto guard = std::lock_guard(windowResource);
             windowResource.window.close();
         }
     }
@@ -101,7 +98,7 @@ namespace graphicECS::SFML::Systems
             auto guard = std::lock_guard(windowResource);
             if (!windowResource.window.pollEvent(event))
                 break;
-            _closeWindow(event, world);
+            _closeWindow(event, windowResource);
             _keyPressedEvents(event, Inputs);
             _keyReleasedEvents(event, Inputs);
             _mouseEvents(event, Inputs);

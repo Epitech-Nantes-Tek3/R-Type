@@ -108,7 +108,7 @@ void ClientRoom::initEcsGameData(void)
 void ClientRoom::startConnexionProtocol(void)
 {
     _communicatorInstance.get()->startReceiverListening();
-    _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, nullptr, 0, 10);
+    _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, nullptr, 0, 14);
 }
 
 void ClientRoom::protocol12Answer(CommunicatorMessage connexionResponse)
@@ -121,15 +121,91 @@ void ClientRoom::protocol12Answer(CommunicatorMessage connexionResponse)
     clock.resetClock();
 }
 
+void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
+{
+    unsigned short roomNumber = 0;
+    std::size_t offset = sizeof(unsigned short);
+
+    std::memcpy(&roomNumber, connectionResponse.message.data, sizeof(unsigned short));
+    std::cerr << "Succesfully connected to the hub." << std::endl;
+    std::cerr << "Available Rooms : " << std::endl;
+    for (int i = 0; i < roomNumber; i++) {
+        unsigned short roomId = 0;
+        std::memcpy(&roomId, (void *)((char *)connectionResponse.message.data + offset), sizeof(unsigned short));
+        offset += sizeof(unsigned short);
+        char *tempRoomName = (char *)connectionResponse.message.data + offset;
+        std::string roomName(11, '\0');
+        for (int j = 0; j < 10; j++)
+            roomName[j] = tempRoomName[j];
+        offset += sizeof(char) * 10;
+        std::cerr << "\t" << roomId << " : " << roomName << " is available." << std::endl;
+    }
+
+    std::cerr << "If you want to join a existent room, please refer Y. Otherwise use N : ";
+    char choosedMod = '\0';
+
+    std::cin >> choosedMod;
+    if (choosedMod == 'Y') {
+        std::cerr << "Refer in the terminal the wanted room id : ";
+        unsigned short choosenRoomId = 0;
+
+        std::cin >> choosenRoomId; /// WILL BE REMOVED WHEN GRAPHICAL INTERACTION HAS BEEN IMPLEMENTED
+        std::cerr << "Waiting for room number " << choosenRoomId << " answer..." << std::endl;
+        void *networkData = std::malloc(sizeof(unsigned short));
+
+        if (networkData == nullptr)
+            throw std::logic_error("Malloc failed.");
+        std::memcpy(networkData, &choosenRoomId, sizeof(unsigned short));
+        _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, networkData, sizeof(unsigned short), 16);
+    } else if (choosedMod == 'N') {
+        std::cerr << "Refer in the terminal the wanted room name : ";
+        std::string roomName;
+
+        std::cin >> roomName; /// WILL BE REMOVED WHEN GRAPHICAL INTERACTION HAS BEEN IMPLEMENTEND
+        if (roomName.size() != 10) {
+            std::cerr << "Please refer a valid room name (10 characters)." << std::endl;
+            _state = ClientState::ENDED;
+            return;
+        }
+        void *networkData = std::malloc(sizeof(char) * 10);
+
+        if (networkData == nullptr)
+            throw std::logic_error("Malloc failed.");
+        std::memcpy(networkData, roomName.c_str(), sizeof(char) * 10);
+        _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, networkData, sizeof(char) * 10, 17);
+    } else {
+        std::cerr << "Not a valid option ;)" << std::endl;
+        _state = ClientState::ENDED;
+    }
+}
+
 void ClientRoom::startLobbyLoop(void)
 {
     CommunicatorMessage connectionOperation;
 
     std::signal(SIGINT, signalCallbackHandler);
     startConnexionProtocol();
-    initEcsGameData();
-
-    _state = ClientState::LOBBY;
+    while (_state != ClientState::ENDED && _state == ClientState::UNDEFINED) {
+        try {
+            connectionOperation = _communicatorInstance.get()->getLastMessage();
+            if (connectionOperation.message.type == 11) {
+                std::cerr << "No places left inside the hub. Please retry later" << std::endl;
+                return;
+            }
+            if (connectionOperation.message.type == 15)
+                _protocol15Answer(connectionOperation);
+            if (connectionOperation.message.type == 20) {
+                _serverEndpoint = _communicatorInstance->getClientByHisId(_communicatorInstance->getServerEndpointId());
+                break;
+            }
+        } catch (NetworkError &error) {
+        }
+    }
+    if (_state != ClientState::ENDED) {
+        initEcsGameData();
+        _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, nullptr, 0, 10);
+        _state = ClientState::LOBBY;
+    }
     while (_state != ClientState::ENDED && _state != ClientState::UNDEFINED) {
         try {
             connectionOperation = _communicatorInstance.get()->getLastMessage();

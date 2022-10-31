@@ -22,6 +22,9 @@ namespace server_data
     /// @brief Main class of the server part. Hold room process.
     class Server {
       public:
+        /// @brief All the possible state of a room
+        enum HubState { UNDEFINED, HUB, ENDED };
+
         /// @brief Construct a new server object
         /// @param address Ip address of the server
         /// @param port Listening port for network process
@@ -34,14 +37,21 @@ namespace server_data
         ~Server() = default;
 
         /// @brief Create and add a new Room inside the room list
-        /// @brief Id of the newly created room
-        unsigned short createANewRoom(void);
+        /// @param name of the room
+        /// @return Id of the newly created room
+        unsigned short createANewRoom(std::string name);
+
+        /// @brief Start the hub global loop
+        void startHubLoop();
 
         /// @brief Remove and delete a room of the list
         /// @param id of the room to be deleted
         void deleteARoom(unsigned short id);
 
       private:
+        /// @brief Current state of the server
+        HubState _state;
+
         /// @brief List of all the active room.
         std::vector<Room> _activeRoomList;
 
@@ -49,7 +59,36 @@ namespace server_data
         Client _networkInformations;
 
         /// @brief Instance of the communicator library
-        Communicator _communicatorInstance;
+        std::shared_ptr<Communicator> _communicatorInstance;
+
+        /// @brief Cross all machine port and find an empty one
+        /// @param actual port number (+ 101 per iteration)
+        /// @return the first empty port founded
+        unsigned short _getAFreePort(unsigned short actual);
+
+        /// @brief Start the connexion protocol and ask the server for a place inside the room
+        void _startConnexionProtocol();
+
+        /// @brief Handle a connection request. Send all rooms informations (id + name) to the client. Send a protocol
+        /// 15
+        /// @param connectionDemand actual message data
+        void _holdANewConnectionRequest(CommunicatorMessage connectionDemand);
+
+        /// @brief Handle a disconnection request. Send a protocol 13.
+        /// @param connectionDemand actual message data
+        void _holdADisconnectionRequest(CommunicatorMessage disconnectionDemand);
+
+        /// @brief Handle a joining room request. Identifiy the room and send a protocol 20
+        /// @param joinDemand actual message data
+        void _holdAJoinRoomRequest(CommunicatorMessage joinDemand);
+
+        /// @brief Handle a create room request. Check if the room already exist, otherwise launch it and send a
+        /// protocol 20
+        /// @param createDemand actual message data
+        void _holdACreateRoomRequest(CommunicatorMessage createDemand);
+
+        /// @brief Send to all clients the disconnection signal
+        void _disconnectionProcess();
     };
 } // namespace server_data
 
