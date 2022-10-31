@@ -40,21 +40,20 @@ namespace graphicECS::SFML::Systems
     void InputManagement::_keyPressedEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> &Inputs)
     {
         if (event.type == sf::Event::KeyPressed) {
-            auto keyPressed = [event](std::shared_ptr<Entity> entityPtr) {
+            for (auto entityPtr : Inputs) {
                 auto guard = std::lock_guard(*entityPtr.get());
                 if (entityPtr->getComponent<KeyboardInputComponent>().keyboardMapActions.contains(event.key.code)
                     && entityPtr->contains<AllowMouseAndKeyboardComponent>())
                     entityPtr->getComponent<ActionQueueComponent>().actions.push(
                         entityPtr->getComponent<KeyboardInputComponent>().keyboardMapActions[event.key.code]);
-            };
-            std::for_each(Inputs.begin(), Inputs.end(), keyPressed);
+            }
         }
     }
 
     void InputManagement::_keyReleasedEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> &Inputs)
     {
         if (event.type == sf::Event::KeyReleased) {
-            auto keyReleased = [event](std::shared_ptr<Entity> entityPtr) {
+            for (auto entityPtr : Inputs) {
                 auto guard = std::lock_guard(*entityPtr.get());
                 if (entityPtr->getComponent<KeyboardInputComponent>().keyboardMapActions.contains(event.key.code)
                     && entityPtr->contains<AllowMouseAndKeyboardComponent>()) {
@@ -65,23 +64,21 @@ namespace graphicECS::SFML::Systems
                                                                     .first),
                             0));
                 }
-            };
-            std::for_each(Inputs.begin(), Inputs.end(), keyReleased);
+            }
         }
     }
 
     void InputManagement::_mouseEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> &Inputs)
     {
         if (event.type == sf::Event::MouseButtonPressed) {
-            auto mouseButtonPressed = [event](std::shared_ptr<Entity> entityPtr) {
+            for (auto entityPtr : Inputs) {
                 auto guard = std::lock_guard(*entityPtr.get());
                 if (entityPtr->getComponent<MouseInputComponent>().MouseMapActions.contains(event.mouseButton.button)
                     && entityPtr->contains<AllowMouseAndKeyboardComponent>()) {
                     entityPtr->getComponent<ActionQueueComponent>().actions.push(
                         entityPtr->getComponent<MouseInputComponent>().MouseMapActions[event.mouseButton.button]);
                 }
-            };
-            std::for_each(Inputs.begin(), Inputs.end(), mouseButtonPressed);
+            }
         }
     }
 
