@@ -5,5 +5,7 @@ set(SRC_GRAPHIC_RESOURCE
     ${GRAPHIC_SRC_RESOURCE_ROOT}/GraphicsFontResource.hpp
     ${GRAPHIC_SRC_RESOURCE_ROOT}/GraphicsTextureResource.hpp
     ${GRAPHIC_SRC_RESOURCE_ROOT}/GraphicsTextureResource.cpp
+    ${GRAPHIC_SRC_RESOURCE_ROOT}/SoundResource.hpp
+    ${GRAPHIC_SRC_RESOURCE_ROOT}/SoundResource.cpp
     PARENT_SCOPE
 )
