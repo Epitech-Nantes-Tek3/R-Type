@@ -10,7 +10,7 @@
 
 #include "System/System.hpp"
 #include "World/World.hpp"
-//#include "GraphicECS/SFML/Components/SoundName.hpp"
+#include "GraphicECS/SFML/Components/SoundComponent.hpp"
 
 namespace graphicECS::SFML::Systems
 {
@@ -21,5 +21,4 @@ namespace graphicECS::SFML::Systems
         void run(World &world);
     };
 } // namespace graphicECS::SFML::Systems
-
 #endif /* !SOUNDMANAGEMENT_HPP_ */

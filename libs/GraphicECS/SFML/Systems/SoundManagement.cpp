@@ -14,21 +14,27 @@ namespace graphicECS::SFML::Systems
 {
     void SoundManagement::run(World &world)
     {
-        std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<SoundName>();
+        std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<SoundComponent>();
 
         auto stopSound = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
-            SoundName sound = entityPtr.get()->getComponent<SoundName>();
+            SoundComponent sound = entityPtr.get()->getComponent<SoundComponent>();
 
-         if (sound._status == SoundName::STOPED && world.getResource<SoundResource>()._soundsList.at(sound.soundName)->getStatus() != sf::Sound::Stopped) {
+            if (sound._status == SoundComponent::STOPED
+                && world.getResource<SoundResource>()._soundsList.at(sound.soundName)->getStatus()
+                    != sf::Sound::Stopped) {
                 world.getResource<SoundResource>()._soundsList.at(sound.soundName)->stop();
             }
-            if (sound._status == SoundName::PAUSED && world.getResource<SoundResource>()._soundsList.at(sound.soundName)->getStatus() != sf::Sound::Paused) {
+            if (sound._status == SoundComponent::PAUSED
+                && world.getResource<SoundResource>()._soundsList.at(sound.soundName)->getStatus()
+                    != sf::Sound::Paused) {
                 world.getResource<SoundResource>()._soundsList.at(sound.soundName)->pause();
             }
-            if (sound._status == SoundName::PLAYING && world.getResource<SoundResource>()._soundsList.at(sound.soundName)->getStatus() != sf::Sound::Playing) {
+            if (sound._status == SoundComponent::PLAYING
+                && world.getResource<SoundResource>()._soundsList.at(sound.soundName)->getStatus()
+                    != sf::Sound::Playing) {
                 world.getResource<SoundResource>()._soundsList.at(sound.soundName)->play();
             }
         };
         std::for_each(joined.begin(), joined.end(), stopSound);
     }
-} // soundNamespace graphicECS::SFML::Systems
+} // namespace graphicECS::SFML::Systems
