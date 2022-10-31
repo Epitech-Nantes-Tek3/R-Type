@@ -8,6 +8,7 @@
 /// @file libs/ArgumentHandler.hpp
 
 #include "ArgumentHandler.hpp"
+#include <boost/algorithm/string.hpp>
 #include <iostream>
 #include "Error/Error.hpp"
 
@@ -31,7 +32,7 @@ ArgumentHandler::ArgumentHandler(const int ac, char **av)
 
 void ArgumentHandler::bindAllHOptionText(void)
 {
-    _hTextList[ArgumentHandler::SERVER_EXECUTABLE] = "./r-type_server <IP_ADDRESS> <PORT>";
+    _hTextList[ArgumentHandler::SERVER_EXECUTABLE] = "./r-type_server <IP_ADDRESS> <PORT> [ROOM_BOOLEAN]";
     _hTextList[ArgumentHandler::CLIENT_EXECUTABLE] =
         "./r-type_server <CLIENT_IP_ADDRESS> <CLIENT_PORT> <SERVER_IP_ADDRESS> <SERVER_PORT + 1000>";
 }
@@ -53,15 +54,28 @@ ArgumentHandler::ServerInformation ArgumentHandler::extractServerInformation(voi
 
     if (processHOptionVerification(ArgumentHandler::SERVER_EXECUTABLE))
         throw ArgumentError("Use of a -h option", "extractServerInformation -> ArgumentHandler.cpp");
-    if (_argumentsToParse.size() != 2) {
+    if (_argumentsToParse.size() < 2) {
         std::cerr << _hTextList[ArgumentHandler::SERVER_EXECUTABLE] << std::endl;
-        throw ArgumentError(
-            "Invalid number of argument. 2 needed by the server.", "extractServerInformation -> ArgumentHandler.cpp");
+        throw ArgumentError("Invalid number of argument. At least 2 needed by the server.",
+            "extractServerInformation -> ArgumentHandler.cpp");
+    }
+    if (_argumentsToParse.size() > 3) {
+        std::cerr << _hTextList[ArgumentHandler::SERVER_EXECUTABLE] << std::endl;
+        throw ArgumentError("Invalid number of argument. A maximum of 3 arguments are needed by the server.",
+            "extractServerInformation -> ArgumentHandler.cpp");
     }
     serverInformation.address = std::string(_argumentsToParse.at(0));
     _argumentsToParse.erase(_argumentsToParse.begin());
     serverInformation.port = std::atoi(_argumentsToParse.at(0).c_str());
     _argumentsToParse.erase(_argumentsToParse.begin());
+    if (_argumentsToParse.size() >= 1) {
+        std::string value = std::string(_argumentsToParse.at(0));
+        boost::algorithm::to_lower(value);
+        serverInformation.room = ("true" == value || "1" == value || "yes" == value || "y" == value);
+    } else {
+        serverInformation.room = false;
+    }
+    std::cerr << "Server room : " << (serverInformation.room ? "True" : "False") << std::endl;
     if (serverInformation.port == 0) {
         std::cerr << _hTextList[ArgumentHandler::SERVER_EXECUTABLE] << std::endl;
         throw ArgumentError(
