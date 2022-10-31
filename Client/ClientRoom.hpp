@@ -78,6 +78,9 @@ namespace client_data
         /// @brief Current state of the client
         ClientState _state;
 
+        /// @brief Client pseudoname
+        std::string _pseudo;
+
         /// @brief Instance of the communicator library
         std::shared_ptr<Communicator> _communicatorInstance;
 

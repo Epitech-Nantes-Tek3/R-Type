@@ -77,6 +77,7 @@ ClientRoom::ClientRoom()
     _worldInstance.get()->setTransisthorBridge(_communicatorInstance.get()->getTransisthorBridge());
     _state = ClientState::UNDEFINED;
     clientRoomState = &_state;
+    _pseudo = "";
 }
 
 ClientRoom::ClientRoom(std::string address, unsigned short port, std::string serverAddress, unsigned short serverPort)
@@ -90,6 +91,7 @@ ClientRoom::ClientRoom(std::string address, unsigned short port, std::string ser
     _worldInstance.get()->setTransisthorBridge(_communicatorInstance.get()->getTransisthorBridge());
     _state = ClientState::UNDEFINED;
     clientRoomState = &_state;
+    _pseudo = "";
 }
 
 void ClientRoom::initEcsGameData(void)
