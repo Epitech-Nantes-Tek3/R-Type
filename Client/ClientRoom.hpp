@@ -95,6 +95,10 @@ namespace client_data
 
         /// @brief Answer the reception of a protocol 12
         void protocol12Answer(CommunicatorMessage connexionResponse);
+
+        /// @brief Answer the reception of a protocol 15
+        /// @param connectionResponse The received response
+        void _protocol15Answer(CommunicatorMessage connectionResponse);
     };
 } // namespace client_data
 

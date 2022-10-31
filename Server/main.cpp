@@ -18,6 +18,8 @@ int main(int ac, char **av)
     ArgumentHandler::ServerInformation serverInformation = argumentHandler.extractServerInformation();
     Server server = Server(serverInformation.address, serverInformation.port);
 
-    server.createANewRoom();
+    server.createANewRoom("SleepLucas");
+    server.createANewRoom("GetUpLucas");
+    server.startHubLoop();
     return 0;
 }
