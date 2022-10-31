@@ -92,6 +92,11 @@ namespace server_data
         /// If there is no active player and X remainingPlaces, put the room in lobby mode.
         void _activePlayerGestion();
 
+        /// @brief Extract player name from a protocol 10
+        /// @param connexionDemand actual message data
+        /// @return Extracted player name
+        std::string _getPlayerName(CommunicatorMessage connexionDemand);
+
         /// @brief Cross all the player entity and return the matched one
         /// @param networkId networkId of the player to match
         /// @return founded entity id

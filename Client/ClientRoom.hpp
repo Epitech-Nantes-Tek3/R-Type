@@ -72,6 +72,9 @@ namespace client_data
         /// @brief Ask the user to enter his Pseudonyme and password
         void _getClientPseudoAndPassword();
 
+        /// @brief Hold a room connection process
+        void _connectToARoom();
+
         /// @brief Network informations of the room.
         Client _networkInformations;
 

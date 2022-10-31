@@ -213,6 +213,16 @@ void ClientRoom::_getClientPseudoAndPassword()
     _password = password;
 }
 
+void ClientRoom::_connectToARoom()
+{
+    void *networkData = std::malloc(sizeof(char) * 5);
+
+    if (networkData == nullptr)
+        throw MallocError("Malloc failed.");
+    std::memcpy(networkData, _pseudo.c_str(), sizeof(char) * 5);
+    _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, networkData, sizeof(char) * 5, 10);
+}
+
 void ClientRoom::startLobbyLoop(void)
 {
     CommunicatorMessage connectionOperation;
@@ -239,12 +249,7 @@ void ClientRoom::startLobbyLoop(void)
     }
     if (_state != ClientState::ENDED) {
         initEcsGameData();
-        void *networkData = std::malloc(sizeof(char) * 5);
-
-        if (networkData == nullptr)
-            throw MallocError("Malloc failed.");
-        std::memcpy(networkData, _pseudo.c_str(), sizeof(char) * 5);
-        _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, networkData, sizeof(char) * 5, 10);
+        _connectToARoom();
         _state = ClientState::LOBBY;
     }
     while (_state != ClientState::ENDED && _state != ClientState::UNDEFINED) {
