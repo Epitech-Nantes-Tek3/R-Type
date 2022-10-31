@@ -12,6 +12,7 @@
 #include <filesystem>
 #include "Resource/Resource.hpp"
 #include <unordered_map>
+#include "Error/Error.hpp"
 
 namespace graphicECS::SFML::Resources
 {
@@ -40,8 +41,9 @@ namespace graphicECS::SFML::Resources
         /// @brief Default destructor
         ~SoundResource() = default;
 
+        /// @brief The map which contains Sounds
         SoundsList _soundsList;
     };
-} // namespace ecs
+} // namespace graphicECS::SFML::Resources
 
 #endif /* !SOUNDRESOURCES_HPP_ */

@@ -22,7 +22,14 @@ namespace graphicECS::SFML::Resources
         /// @brief Enumeration of all available Textures
         enum textureName_e {
             UNDEFINED,
-            PLAYER_STATIC,
+            PLAYER_STATIC_1,
+            PLAYER_STATIC_2,
+            PLAYER_STATIC_3,
+            PLAYER_STATIC_4,
+            PLAYER_STATIC_5,
+            PLAYER_STATIC_6,
+            PLAYER_STATIC_7,
+            PLAYER_STATIC_8,
             PLAYER_UP,
             PLAYER_DOWN,
             ENEMY_STATIC,
@@ -36,7 +43,7 @@ namespace graphicECS::SFML::Resources
             OBSTACLE_3,
             PROJECTILE_ALLY,
             PROJECTILE_ENEMY,
-            EXIT_BUTTON,
+            BUTTON,
             NATURAL_PROJECTILE
         };
 

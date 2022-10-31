@@ -18,6 +18,10 @@ namespace graphicECS::SFML::Systems
         /// @brief It is used by the world to run this system. It updates textures on shapes and AnimationFrequency.
         /// @param world The corresponding world on which run this system.
         void run(World &world) override final;
+
+      private:
+        void _updateFrequency(World &world, std::shared_ptr<ecs::Entity> entity);
+        void _updateAnimation(World &world, std::shared_ptr<ecs::Entity> entity);
     };
 } // namespace graphicECS::SFML::Systems
 

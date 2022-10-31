@@ -412,7 +412,7 @@ void Transisthor::entityConvertAlliedProjectileType(unsigned short id, void *byt
             std::vector<std::shared_ptr<Entity>> newlyCreated = _ecsWorld.joinEntities<NewlyCreated>();
             uuid[16] = '\0';
             for (std::shared_ptr<Entity> ptr : newlyCreated) {
-                auto guardNew = std::lock_guard(*ptr.get());
+                auto newGuard = std::lock_guard(*ptr.get());
                 if (ptr->getComponent<NewlyCreated>().uuid == uuid) {
                     ptr->getComponent<NewlyCreated>().uuid = "";
                     ptr->getComponent<Networkable>().id = id;

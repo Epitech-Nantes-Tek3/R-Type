@@ -9,14 +9,13 @@
 
 using namespace graphicECS::SFML::Resources;
 
-void SoundResource::addSound(const soundName_e sound_e, const std::filesystem::path &soundPath)
+void SoundResource::addSound(const SoundResource::soundName_e sound_e, const std::filesystem::path &soundPath)
 {
     sf::SoundBuffer buffer;
     sf::Sound sound;
 
     if (!buffer.loadFromFile(soundPath.string()))
-        // throw error
-        void();
+        throw std::logic_error("LoadFromFile for load song buffer failed.");
     sound.setBuffer(buffer);
     _soundsList.emplace(sound_e, std::make_shared<sf::Sound>(sound));
 }

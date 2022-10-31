@@ -10,6 +10,7 @@
 #include "SoundResource.hpp"
 
 using namespace ecs;
+using namespace graphicECS::SFML::Components;
 
 Test(SoundName, create_sound_undefined)
 {
