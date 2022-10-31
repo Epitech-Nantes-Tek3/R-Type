@@ -19,8 +19,8 @@
 #include "MouseInputComponent.hpp"
 #include "World/World.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/Components/ActionName.hpp"
-#include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/ButtonActionMap.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/Components/DisplayState.hpp"
+#include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/ButtonActionMap.hpp"
 #include "R-TypeLogic/Global/Components/ButtonComponent.hpp"
 #include "R-TypeLogic/Global/Components/ShootingFrequencyComponent.hpp"
 #include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
@@ -42,10 +42,12 @@ namespace graphicECS::SFML::Systems
         if (event.type == sf::Event::KeyPressed) {
             for (auto entityPtr : Inputs) {
                 auto guard = std::lock_guard(*entityPtr.get());
-                if (entityPtr->getComponent<KeyboardInputComponent>().keyboardMapActions.contains(event.key.code)
-                    && entityPtr->contains<AllowMouseAndKeyboardComponent>())
-                    entityPtr->getComponent<ActionQueueComponent>().actions.push(
-                        entityPtr->getComponent<KeyboardInputComponent>().keyboardMapActions[event.key.code]);
+                auto keyboardMapActions = entityPtr->getComponent<KeyboardInputComponent>().keyboardMapActions;
+
+                if (keyboardMapActions.contains(event.key.code)
+                    && entityPtr->contains<AllowMouseAndKeyboardComponent>()) {
+                    entityPtr->getComponent<ActionQueueComponent>().actions.push(keyboardMapActions[event.key.code]);
+                }
             }
         }
     }
@@ -55,14 +57,13 @@ namespace graphicECS::SFML::Systems
         if (event.type == sf::Event::KeyReleased) {
             for (auto entityPtr : Inputs) {
                 auto guard = std::lock_guard(*entityPtr.get());
-                if (entityPtr->getComponent<KeyboardInputComponent>().keyboardMapActions.contains(event.key.code)
+                auto keyboardMapActions = entityPtr->getComponent<KeyboardInputComponent>().keyboardMapActions;
+
+                if (keyboardMapActions.contains(event.key.code)
                     && entityPtr->contains<AllowMouseAndKeyboardComponent>()) {
                     entityPtr->getComponent<ActionQueueComponent>().actions.push(
                         std::make_pair<ActionQueueComponent::inputAction_e, float>(
-                            ActionQueueComponent::inputAction_e(entityPtr->getComponent<KeyboardInputComponent>()
-                                                                    .keyboardMapActions[event.key.code]
-                                                                    .first),
-                            0));
+                            ActionQueueComponent::inputAction_e(keyboardMapActions[event.key.code].first), 0));
                 }
             }
         }
