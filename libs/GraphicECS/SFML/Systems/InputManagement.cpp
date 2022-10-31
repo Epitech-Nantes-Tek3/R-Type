@@ -35,7 +35,7 @@ namespace graphicECS::SFML::Systems
     {
         if (event.type == sf::Event::Closed) {
             RenderWindowResource &windowResource = world.getResource<RenderWindowResource>();
-            auto guard = std::lock_guard(windowResource);
+            // auto guard = std::lock_guard(windowResource);
             windowResource.window.close();
         }
     }
