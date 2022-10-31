@@ -14,6 +14,7 @@
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateAlliedProjectile.hpp"
 #include "R-TypeLogic/Global/Components/ControlableComponent.hpp"
 #include "R-TypeLogic/Global/Components/VelocityComponent.hpp"
+#include "GraphicECS/SFML/Resources/RenderWindowResource.hpp"
 
 namespace graphicECS::SFML::Systems
 {
@@ -51,8 +52,8 @@ namespace graphicECS::SFML::Systems
       private:
         /// @brief This function closes the window when event type is sf::Event::Closed
         /// @param event Class event use to know SFML events
-        /// @param world The world on which get the shared resource renderWindow
-        void _closeWindow(sf::Event &event, World &world, RenderWindowResource &windowResource);
+        /// @param windowResource The window to be closed
+        void _closeWindow(sf::Event &event, graphicECS::SFML::Resources::RenderWindowResource &windowResource);
 
         /// @brief This function manages key pressed events. It adds an action to do in a queue depending on the key
         /// pressed type.
