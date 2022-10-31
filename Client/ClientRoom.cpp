@@ -63,6 +63,9 @@ void signalCallbackHandler(int signum)
 {
     (void)signum;
     std::cerr << "Client Room wanted to be closed." << std::endl;
+    if (*clientRoomState == ClientRoom::UNDEFINED)
+        throw SignalError(
+            "A sigint have been catched while the game have not started.", "ClientRoom.cpp -> signalCallbackHandler");
     *clientRoomState = ClientRoom::ENDED;
 }
 
@@ -183,7 +186,9 @@ void ClientRoom::_getClientPseudoAndPassword()
     std::string password;
 
     std::cerr << "Welcome to the R-Type game !" << std::endl;
-    std::cerr << "If there is no player with your pseudonyme inside the database a new one will be created with the given password." << std::endl;
+    std::cerr << "If there is no player with your pseudonyme inside the database a new one will be created with the "
+                 "given password."
+              << std::endl;
     std::cerr << "Please refer your pseudonyme : ";
     std::cin >> pseudo;
     std::cerr << "Welcome " << pseudo << ". Please now enter your password : ";
