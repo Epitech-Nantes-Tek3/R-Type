@@ -71,8 +71,9 @@ var NAVTREEINDEX =
 [
 "_action_name_8hpp.html",
 "_resource_8hpp_source.html",
-"classecs_1_1_invisible.html#a14d9e671fe6e6f24bff27e9610bc34a2",
-"classserver__data_1_1_room.html#afc9e8b9e239de624c78db44a0124c5bd"
+"classecs_1_1_invinsible.html#a336faf0b3e8378fd47d5a575476183fd",
+"classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_render_window_resource.html#a9eb3bbe66674679137388e3015777090",
+"structecs_1_1_remove_afk_system.html#a139f799aa6573739b5d3923cb64bdb1d"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

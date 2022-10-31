@@ -1,5 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone..." alt="" coords="5,1323,132,1349"/>
+<area shape="rect" id="node1" href="$classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone..." alt="" coords="5,1348,132,1375"/>
 <area shape="rect" id="node2" href="$classecs_1_1_action_name.html" title="Action Name stores the key as enum to the corresponding action It can be an exit action,..." alt="" coords="249,5,381,32"/>
 <area shape="rect" id="node3" href="$classecs_1_1_afk_frequency.html" title="The AfkFrequency class, how many seconds will pass before the entity will be considered has inactive." alt="" coords="245,56,386,83"/>
 <area shape="rect" id="node4" href="$classecs_1_1_allied_projectile.html" title="Allied Projectile Component allows an entity to be used as an Allied Projectile." alt="" coords="240,107,391,133"/>
@@ -52,5 +52,6 @@
 <area shape="rect" id="node51" href="$classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_keyboard_input_component.html" title="This component class stores an unsorted map of action/value pair. This class is created in order to f..." alt="" coords="201,2621,429,2662"/>
 <area shape="rect" id="node52" href="$classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_mouse_input_component.html" title="This component class stores an unsorted map of action/value pair. This class is created in order to f..." alt="" coords="201,2686,429,2727"/>
 <area shape="rect" id="node53" href="$classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_parallax_background.html" title="This component class create a sprite wich travel in the background." alt="" coords="201,2751,429,2793"/>
-<area shape="rect" id="node54" href="$classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_texture_name.html" title="TextureName store the key as enum to the corresponding texture stores in shared resource." alt="" coords="201,2817,429,2858"/>
+<area shape="rect" id="node54" href="$classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_sound_name.html" title="SoundName stores the key as enum to the corresponding sound stored in shared resource SoundResource." alt="" coords="201,2817,429,2858"/>
+<area shape="rect" id="node55" href="$classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_texture_name.html" title="TextureName store the key as enum to the corresponding texture stores in shared resource." alt="" coords="201,2882,429,2923"/>
 </map>

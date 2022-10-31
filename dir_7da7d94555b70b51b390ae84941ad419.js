@@ -39,6 +39,9 @@ var dir_7da7d94555b70b51b390ae84941ad419 =
     [ "ParallaxComponent.hpp", "_parallax_component_8hpp.html", [
       [ "ParallaxBackground", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_parallax_background.html", null ]
     ] ],
+    [ "SoundName.hpp", "_sound_name_8hpp.html", [
+      [ "SoundName", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_sound_name.html", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_sound_name" ]
+    ] ],
     [ "TextureName.hpp", "_texture_name_8hpp.html", [
       [ "TextureName", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_texture_name.html", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_texture_name" ]
     ] ]

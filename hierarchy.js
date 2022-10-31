@@ -59,6 +59,7 @@ var hierarchy =
       [ "graphicECS::SFML::Components::KeyboardInputComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_keyboard_input_component.html", null ],
       [ "graphicECS::SFML::Components::MouseInputComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_mouse_input_component.html", null ],
       [ "graphicECS::SFML::Components::ParallaxBackground", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_parallax_background.html", null ],
+      [ "graphicECS::SFML::Components::SoundName", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_sound_name.html", null ],
       [ "graphicECS::SFML::Components::TextureName", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_texture_name.html", null ]
     ] ],
     [ "exception", null, [
@@ -80,6 +81,7 @@ var hierarchy =
         [ "graphicECS::SFML::Resources::GraphicsFontResource", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_font_resource.html", null ],
         [ "graphicECS::SFML::Resources::GraphicsTextureResource", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html", null ],
         [ "graphicECS::SFML::Resources::RenderWindowResource", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_render_window_resource.html", null ],
+        [ "graphicECS::SFML::Resources::SoundResource", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_sound_resource.html", null ],
         [ "NetworkableIdGenerator", "class_networkable_id_generator.html", null ],
         [ "SendingFrequency", "class_sending_frequency.html", null ]
       ] ]
