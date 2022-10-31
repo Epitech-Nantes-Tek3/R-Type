@@ -35,6 +35,7 @@ namespace graphicECS::SFML::Components
         /// @brief Default destructor of MusicName component.
         ~MusicName() = default;
 
+        /// @brief  Status of the Music
         status_e _status;
     };
 } // namespace graphicECS::SFML::Components

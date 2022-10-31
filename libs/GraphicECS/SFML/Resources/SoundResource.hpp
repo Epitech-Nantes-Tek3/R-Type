@@ -41,6 +41,7 @@ namespace graphicECS::SFML::Resources
         /// @brief Default destructor
         ~SoundResource() = default;
 
+        /// @brief The map which contains Sounds
         SoundsList _soundsList;
     };
 } // namespace graphicECS::SFML::Resources

@@ -41,6 +41,7 @@ namespace graphicECS::SFML::Resources
         /// @brief Default destructor
         ~MusicResource() = default;
 
+        /// @brief The Map which countains Musics
         MusicsList _musicsList;
     };
 } // namespace graphicECS::SFML::Resources
