@@ -389,8 +389,10 @@ Test(transisthor_testing, transit_player_entity)
 
     std::size_t entityId = createNewPlayer(world, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, false, 2, "Lucas", "UUID");
 
+    std::string plyName = world.getEntity(entityId).getComponent<Player>().name;
+
     void *temp = transisthor.transitEcsDataToNetworkDataEntityPlayer(
-        entityId, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, false, 2, "Lucas", std::string("UUID"), {0});
+        entityId, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, false, 2, plyName, std::string("UUID"), {0});
     void *networkAnswer = transisthor.transitNetworkDataToEcsDataEntity({Client(), temp, 1, 31});
 
     int posX = 0;
@@ -476,8 +478,10 @@ Test(transisthor_testing, transit_player_entity_without_uuid)
 
     std::size_t entityId = createNewPlayer(world, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, false, 2, "Lucas", "", 1);
 
+    std::string plyName = world.getEntity(entityId).getComponent<Player>().name;
+
     void *temp = transisthor.transitEcsDataToNetworkDataEntityPlayer(
-        entityId, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, false, 2, "Lucas", std::string(""), {0});
+        entityId, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, false, 2, plyName, std::string(""), {0});
     void *networkAnswer = transisthor.transitNetworkDataToEcsDataEntity({Client(), temp, 1, 31});
 
     int posX = 0;
