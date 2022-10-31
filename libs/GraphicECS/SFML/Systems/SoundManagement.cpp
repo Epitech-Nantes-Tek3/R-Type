@@ -17,22 +17,19 @@ namespace graphicECS::SFML::Systems
         std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<SoundComponent>();
 
         auto stopSound = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
-            SoundComponent sound = entityPtr.get()->getComponent<SoundComponent>();
+            SoundComponent soundComponent = entityPtr.get()->getComponent<SoundComponent>();
+            sf::Sound sound;
 
-            if (sound._status == SoundComponent::STOPED
-                && world.getResource<SoundResource>()._soundsList.at(sound.soundName)->getStatus()
-                    != sf::Sound::Stopped) {
-                world.getResource<SoundResource>()._soundsList.at(sound.soundName)->stop();
+            sound.setBuffer(*world.getResource<SoundResource>()._soundsList.at(soundComponent.soundName));
+
+            if (soundComponent._status == SoundComponent::STOPED && sound.getStatus() != sf::Sound::Stopped) {
+                sound.stop();
             }
-            if (sound._status == SoundComponent::PAUSED
-                && world.getResource<SoundResource>()._soundsList.at(sound.soundName)->getStatus()
-                    != sf::Sound::Paused) {
-                world.getResource<SoundResource>()._soundsList.at(sound.soundName)->pause();
+            if (soundComponent._status == SoundComponent::PAUSED && sound.getStatus() != sf::Sound::Paused) {
+                sound.pause();
             }
-            if (sound._status == SoundComponent::PLAYING
-                && world.getResource<SoundResource>()._soundsList.at(sound.soundName)->getStatus()
-                    != sf::Sound::Playing) {
-                world.getResource<SoundResource>()._soundsList.at(sound.soundName)->play();
+            if (soundComponent._status == SoundComponent::PLAYING && sound.getStatus() != sf::Sound::Playing) {
+                sound.play();
             }
         };
         std::for_each(joined.begin(), joined.end(), stopSound);
