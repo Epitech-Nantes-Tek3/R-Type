@@ -21,22 +21,22 @@
 #include "GraphicECS/SFML/Components/GraphicsRectangleComponent.hpp"
 #include "GraphicECS/SFML/Components/KeyboardInputComponent.hpp"
 #include "GraphicECS/SFML/Components/MouseInputComponent.hpp"
-#include "GraphicECS/SFML/Components/ParallaxComponent.hpp"
-#include "GraphicECS/SFML/Components/TextureName.hpp"
 #include "GraphicECS/SFML/Components/MusicComponent.hpp"
+#include "GraphicECS/SFML/Components/ParallaxComponent.hpp"
 #include "GraphicECS/SFML/Components/SoundComponent.hpp"
+#include "GraphicECS/SFML/Components/TextureName.hpp"
 #include "GraphicECS/SFML/Resources/GraphicsFontResource.hpp"
 #include "GraphicECS/SFML/Resources/GraphicsTextureResource.hpp"
-#include "GraphicECS/SFML/Resources/RenderWindowResource.hpp"
 #include "GraphicECS/SFML/Resources/MusicResource.hpp"
+#include "GraphicECS/SFML/Resources/RenderWindowResource.hpp"
 #include "GraphicECS/SFML/Resources/SoundResource.hpp"
 #include "GraphicECS/SFML/Systems/AnimationSystem.hpp"
 #include "GraphicECS/SFML/Systems/DrawComponents.hpp"
 #include "GraphicECS/SFML/Systems/InputManagement.hpp"
-#include "GraphicECS/SFML/Systems/ParallaxSystem.hpp"
 #include "GraphicECS/SFML/Systems/MusicManagement.hpp"
-#include "GraphicECS/SFML/Systems/SoundManagement.hpp"
+#include "GraphicECS/SFML/Systems/ParallaxSystem.hpp"
 #include "GraphicECS/SFML/Systems/SfRectangleFollowEntitySystem.hpp"
+#include "GraphicECS/SFML/Systems/SoundManagement.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Components/NetworkServer.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Systems/SendNewlyCreatedToServer.hpp"
@@ -278,7 +278,8 @@ void ClientRoom::_initSharedResources()
     _worldInstance->addResource<RenderWindowResource>();
     _worldInstance->addResource<GraphicsFontResource>("assets/fonts/arial.ttf");
     _worldInstance->addResource<MenuStates>(MenuStates::IN_GAME);
-    _worldInstance->addResource<MusicResource>(MusicResource::music_e::BACKGROUNDTHEME, "assets/Musics/music_background.wav");
+    _worldInstance->addResource<MusicResource>(
+        MusicResource::music_e::BACKGROUNDTHEME, "assets/Musics/music_background.wav");
     _worldInstance->addResource<SoundResource>(SoundResource::sound_e::SHOOT, "assets/Sounds/sound.wav");
     _initSpritesForEntities();
 }
@@ -302,16 +303,17 @@ void ClientRoom::_initSystems()
 
 void ClientRoom::_initBackgroundEntities()
 {
-    size_t firstID = _worldInstance->addEntity()
-                         .addComponent<ParallaxBackground>()
-                         .addComponent<GraphicsRectangleComponent>(-1920, 0, 1920, 1080)
-                         .addComponent<Position>(1920, 0)
-                         .addComponent<Velocity>(-300, 0)
-                         .addComponent<LayerLvL>(LayerLvL::layer_e::DECORATION)
-                         .addComponent<TextureName>(GraphicsTextureResource::BACKGROUND_LAYER_1)
-                         .addComponent<MusicComponent>(MusicResource::music_e::BACKGROUNDTHEME, MusicComponent::status_e::PLAYING)
-                         .addComponent<SoundComponent>(SoundResource::sound_e::SHOOT, SoundComponent::status_e::PLAYING)
-                         .getId();
+    size_t firstID =
+        _worldInstance->addEntity()
+            .addComponent<ParallaxBackground>()
+            .addComponent<GraphicsRectangleComponent>(-1920, 0, 1920, 1080)
+            .addComponent<Position>(1920, 0)
+            .addComponent<Velocity>(-300, 0)
+            .addComponent<LayerLvL>(LayerLvL::layer_e::DECORATION)
+            .addComponent<TextureName>(GraphicsTextureResource::BACKGROUND_LAYER_1)
+            .addComponent<MusicComponent>(MusicResource::music_e::BACKGROUNDTHEME, MusicComponent::status_e::PLAYING)
+            .addComponent<SoundComponent>(SoundResource::sound_e::SHOOT, SoundComponent::status_e::PLAYING)
+            .getId();
 
     _worldInstance.get()->getEntity(firstID).getComponent<GraphicsRectangleComponent>().shape.setFillColor(
         sf::Color(0xA0A0A0ff));
