@@ -69,6 +69,9 @@ namespace client_data
         /// @brief Init all the Buttons and the linked actions
         void _initButtons();
 
+        /// @brief Ask the user to enter his Pseudonyme and password
+        void _getClientPseudoAndPassword();
+
         /// @brief Network informations of the room.
         Client _networkInformations;
 
@@ -80,6 +83,9 @@ namespace client_data
 
         /// @brief Client pseudoname
         std::string _pseudo;
+
+        /// @brief Client password
+        std::string _password;
 
         /// @brief Instance of the communicator library
         std::shared_ptr<Communicator> _communicatorInstance;

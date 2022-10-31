@@ -78,6 +78,7 @@ ClientRoom::ClientRoom()
     _state = ClientState::UNDEFINED;
     clientRoomState = &_state;
     _pseudo = "";
+    _password = "";
 }
 
 ClientRoom::ClientRoom(std::string address, unsigned short port, std::string serverAddress, unsigned short serverPort)
@@ -92,6 +93,7 @@ ClientRoom::ClientRoom(std::string address, unsigned short port, std::string ser
     _state = ClientState::UNDEFINED;
     clientRoomState = &_state;
     _pseudo = "";
+    _password = "";
 }
 
 void ClientRoom::initEcsGameData(void)
@@ -175,11 +177,25 @@ void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
     }
 }
 
+void ClientRoom::_getClientPseudoAndPassword()
+{
+    std::string pseudo;
+    std::string password;
+
+    std::cerr << "Welcome to the R-Type game !" << std::endl;
+    std::cerr << "If there is no player with your pseudonyme inside the database a new one will be created with the given password." << std::endl;
+    std::cerr << "Please refer your pseudonyme : ";
+    std::cin >> pseudo;
+    std::cerr << "Welcome " << pseudo << ". Please now enter your password : ";
+    std::cin >> password;
+}
+
 void ClientRoom::startLobbyLoop(void)
 {
     CommunicatorMessage connectionOperation;
 
     std::signal(SIGINT, signalCallbackHandler);
+    _getClientPseudoAndPassword();
     startConnexionProtocol();
     while (_state != ClientState::ENDED && _state == ClientState::UNDEFINED) {
         try {
