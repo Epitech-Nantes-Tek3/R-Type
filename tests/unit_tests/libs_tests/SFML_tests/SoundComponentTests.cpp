@@ -6,23 +6,23 @@
 */
 
 #include <criterion/criterion.h>
-#include "SoundName.hpp"
+#include "SoundComponent.hpp"
 #include "SoundResource.hpp"
 
 using namespace ecs;
 using namespace graphicECS::SFML::Components;
 using namespace graphicECS::SFML::Resources;
 
-Test(SoundName, create_sound_undefined)
+Test(SoundComponent, create_sound_undefined)
 {
-    SoundName sound;
+    SoundComponent sound;
 
     cr_assert_eq(0, sound.soundName);
 }
 
-Test(SoundName, create_sound_shoot)
+Test(SoundComponent, create_sound_shoot)
 {
-    SoundName sound(SoundResource::SHOOT);
+    SoundComponent sound(SoundResource::SHOOT);
 
     cr_assert_eq(SoundResource::SHOOT, sound.soundName);
 }

@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2022
 ** R-Type
 ** File description:
-** MusicName
+** MusicComponent
 */
 
 #ifndef MUSICNAME_HPP_
@@ -15,24 +15,26 @@ using namespace graphicECS::SFML::Resources;
 
 namespace graphicECS::SFML::Components
 {
-    /// @brief MusicName stores the key as enum to the corresponding music stored in shared resource MusicResource.
-    class MusicName : public ecs::Component {
+    /// @brief MusicComponent stores the key as enum to the corresponding music stored in shared resource
+    /// MusicResource.
+    class MusicComponent : public ecs::Component {
       public:
         /// @brief Enumeration of all status available for a Music.
         /// Status STOPED specify that a music is STOP but at it's begin
         enum status_e { STOPED, PAUSED, PLAYING };
 
         /// @brief The music name stores an enum to find which music it needs in MusicResources shared resource
-        graphicECS::SFML::Resources::MusicResource::musicName_e musicName;
+        MusicResource::music_e musicName;
 
-        /// @brief Constructor of the MusicName component
-        /// @param newMusicName The value to set in the musicName, corresponding
+        /// @brief Constructor of the MusicComponent component
+        /// @param newMusicComponent The value to set in the musicName, corresponding
         /// on the sf::Music load in shared resource Music.
-        MusicName(graphicECS::SFML::Resources::MusicResource::musicName_e newMusicName = graphicECS::SFML::Resources::MusicResource::UNDEFINED, status_e status = status_e::STOPED)
-            : musicName(newMusicName), _status(status) {};
+        MusicComponent(
+            MusicResource::music_e newMusicComponent = MusicResource::UNDEFINED, status_e status = status_e::STOPED)
+            : musicName(newMusicComponent), _status(status){};
 
-        /// @brief Default destructor of MusicName component.
-        ~MusicName() = default;
+        /// @brief Default destructor of MusicComponent component.
+        ~MusicComponent() = default;
 
         /// @brief Status of the Music
         status_e _status;

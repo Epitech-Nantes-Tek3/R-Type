@@ -10,9 +10,9 @@
 
 #include <SFML/Audio.hpp>
 #include <filesystem>
+#include "Error/Error.hpp"
 #include "Resource/Resource.hpp"
 #include <unordered_map>
-#include "Error/Error.hpp"
 
 namespace graphicECS::SFML::Resources
 {
@@ -20,15 +20,15 @@ namespace graphicECS::SFML::Resources
     class SoundResource : public ecs::Resource {
       public:
         /// @brief Enumeration of all available Sounds
-        enum soundName_e { UNDEFINED, SHOOT, DEATH, EXPLOSION };
+        enum sound_e { UNDEFINED, SHOOT, DEATH, EXPLOSION };
 
         /// @brief Name of map which contains Sounds.
-        using SoundsList = std::unordered_map<soundName_e, std::shared_ptr<sf::Sound>>;
+        using SoundsList = std::unordered_map<sound_e, std::shared_ptr<sf::Sound>>;
 
         /// @brief Add a Sound from it's Sound Path passed as parameter
         /// @param sound_e Enum of the Sound
         /// @param soundPath The sound path to be used.
-        inline SoundResource(const soundName_e sound_e, const std::filesystem::path &soundPath)
+        inline SoundResource(const sound_e sound_e, const std::filesystem::path &soundPath)
         {
             addSound(sound_e, soundPath);
         }
@@ -36,7 +36,7 @@ namespace graphicECS::SFML::Resources
         /// @brief Add a sound to the SoundsList
         /// @param sound_e Enum which give the name of the Sound
         /// @param soundPath Path of the Sound
-        void addSound(const soundName_e sound_e, const std::filesystem::path &soundPath);
+        void addSound(const sound_e sound_e, const std::filesystem::path &soundPath);
 
         /// @brief Default destructor
         ~SoundResource() = default;

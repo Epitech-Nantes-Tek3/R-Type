@@ -10,9 +10,9 @@
 
 #include <SFML/Audio.hpp>
 #include <filesystem>
+#include "Error/Error.hpp"
 #include "Resource/Resource.hpp"
 #include <unordered_map>
-#include "Error/Error.hpp"
 
 namespace graphicECS::SFML::Resources
 {
@@ -20,15 +20,15 @@ namespace graphicECS::SFML::Resources
     class MusicResource : public ecs::Resource {
       public:
         /// @brief Enumeration of all available Musics
-        enum musicName_e { UNDEFINED, MENUTHEME, COMBATTHEME };
+        enum music_e { UNDEFINED, MENUTHEME, COMBATTHEME };
 
         /// @brief Name of map which contains Musics.
-        using MusicsList = std::unordered_map<musicName_e, std::shared_ptr<sf::Music>>;
+        using MusicsList = std::unordered_map<music_e, std::shared_ptr<sf::Music>>;
 
         /// @brief Add a Music from it's Music Path passed as parameter
         /// @param music_e Enum of the Music
         /// @param musicPath The music path to be used.
-        inline MusicResource(const musicName_e music_e, const std::filesystem::path &musicPath)
+        inline MusicResource(const music_e music_e, const std::filesystem::path &musicPath)
         {
             addMusic(music_e, musicPath);
         }
@@ -36,7 +36,7 @@ namespace graphicECS::SFML::Resources
         /// @brief Add a music to the MusicsList
         /// @param music_e Enum which give the name of the Music
         /// @param musicPath Path of the Music
-        void addMusic(const musicName_e music_e, const std::filesystem::path &musicPath);
+        void addMusic(const music_e music_e, const std::filesystem::path &musicPath);
 
         /// @brief Default destructor
         ~MusicResource() = default;
