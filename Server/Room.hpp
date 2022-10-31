@@ -33,8 +33,9 @@ namespace server_data
 
         /// @brief Construct a new Room object
         /// @param id Id of the room
+        /// @param name of the room
         /// @param networkInformation Network informations of the room
-        Room(unsigned short id, Client networkInformations);
+        Room(unsigned short id, std::string name, Client networkInformations);
 
         /// @brief Destroy the Room object
         ~Room() = default;
@@ -43,12 +44,23 @@ namespace server_data
         /// @return The room id
         inline unsigned short getRoomId(void) const { return _id; };
 
+        /// @brief Get the room name
+        /// @return The room name
+        inline std::string getRoomName(void) const { return _name; };
+
+        /// @brief Get the networkInformations of the room
+        /// @return The room networkInformations
+        inline Client getNetworkInformations(void) const { return _networkInformations; };
+
         /// @brief Start the loop function of the room. Warning, call it inside a thread
         void startLobbyLoop(void);
 
       private:
         /// @brief Id of the room. (Used by the server)
         unsigned short _id;
+
+        /// @brief Name of the room.
+        std::string _name;
 
         /// @brief Network informations of the Room.
         Client _networkInformations;
@@ -104,6 +116,20 @@ namespace server_data
     /// @return true If the two rooms have the same id
     /// @return false If the two rooms have different id
     inline bool operator==(const Room &left, const Room &right) { return ((left.getRoomId() == right.getRoomId())); }
+
+    /// @brief Overload of the == operator to compare rooms with her id
+    /// @param left param of the comparison
+    /// @param right param of the comparison
+    /// @return true If the two rooms have the same id
+    /// @return false If the two rooms have different id
+    inline bool operator==(const Room &left, const unsigned short &right) { return ((left.getRoomId() == right)); }
+
+    /// @brief Overload of the == operator to compare rooms with her name
+    /// @param left param of the comparison
+    /// @param right param of the comparison
+    /// @return true If the room have the good name
+    /// @return false If the room haven't the good name
+    inline bool operator==(const Room &left, const std::string &right) { return ((left.getRoomName() == right)); }
 } // namespace server_data
 
 #endif /* !ROOM_HPP_ */
