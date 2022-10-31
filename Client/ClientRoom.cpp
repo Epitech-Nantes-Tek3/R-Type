@@ -35,6 +35,7 @@
 #include "GraphicECS/SFML/Systems/InputManagement.hpp"
 #include "GraphicECS/SFML/Systems/ParallaxSystem.hpp"
 #include "GraphicECS/SFML/Systems/MusicManagement.hpp"
+#include "GraphicECS/SFML/Systems/SoundManagement.hpp"
 #include "GraphicECS/SFML/Systems/SfRectangleFollowEntitySystem.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Components/NetworkServer.hpp"
@@ -277,8 +278,8 @@ void ClientRoom::_initSharedResources()
     _worldInstance->addResource<RenderWindowResource>();
     _worldInstance->addResource<GraphicsFontResource>("assets/fonts/arial.ttf");
     _worldInstance->addResource<MenuStates>(MenuStates::IN_GAME);
-    _worldinstance->addResource<MusicResource>(MusicResource::music_e::BACKGROUNDTHEME, "assets/Musics/music_background.mp3");
-    _worldinstance->addResource<SoundResource>();
+    _worldInstance->addResource<MusicResource>(MusicResource::music_e::BACKGROUNDTHEME, "assets/Musics/music_background.mp3");
+    _worldInstance->addResource<SoundResource>(SoundResource::sound_e::SHOOT, "assets/Sounds/sound.wav");
     _initSpritesForEntities();
 }
 
@@ -296,6 +297,7 @@ void ClientRoom::_initSystems()
     _worldInstance->addSystem<AnimationSystem>();
     _worldInstance->addSystem<NoAfkInMenu>();
     _worldInstance->addSystem<MusicManagement>();
+    _worldInstance->addSystem<SoundManagement>();
 }
 
 void ClientRoom::_initBackgroundEntities()
@@ -308,6 +310,7 @@ void ClientRoom::_initBackgroundEntities()
                          .addComponent<LayerLvL>(LayerLvL::layer_e::DECORATION)
                          .addComponent<TextureName>(GraphicsTextureResource::BACKGROUND_LAYER_1)
                          .addComponent<MusicComponent>(MusicResource::music_e::BACKGROUNDTHEME, MusicComponent::status_e::PLAYING)
+                         .addComponent<SoundComponent>(SoundResource::sound_e::SHOOT, SoundComponent::status_e::PLAYING)
                          .getId();
 
     _worldInstance.get()->getEntity(firstID).getComponent<GraphicsRectangleComponent>().shape.setFillColor(
