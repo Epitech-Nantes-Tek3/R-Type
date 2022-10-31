@@ -52,7 +52,7 @@ namespace graphicECS::SFML::Systems
         /// @brief This function closes the window when event type is sf::Event::Closed
         /// @param event Class event use to know SFML events
         /// @param world The world on which get the shared resource renderWindow
-        void _closeWindow(sf::Event &event, World &world);
+        void _closeWindow(sf::Event &event, World &world, RenderWindowResource &windowResource);
 
         /// @brief This function manages key pressed events. It adds an action to do in a queue depending on the key
         /// pressed type.
