@@ -116,6 +116,7 @@ void ClientRoom::startConnexionProtocol(void)
     std::memcpy((void *)((char *)networkData + sizeof(char) * 5), _password.c_str(), sizeof(char) * 5);
     _communicatorInstance.get()->startReceiverListening();
     _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, networkData, sizeof(char) * 10, 14);
+    std::free(networkData);
 }
 
 void ClientRoom::protocol12Answer(CommunicatorMessage connexionResponse)
@@ -221,6 +222,7 @@ void ClientRoom::_connectToARoom()
         throw MallocError("Malloc failed.");
     std::memcpy(networkData, _pseudo.c_str(), sizeof(char) * 5);
     _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, networkData, sizeof(char) * 5, 10);
+    std::free(networkData);
 }
 
 void ClientRoom::startLobbyLoop(void)
