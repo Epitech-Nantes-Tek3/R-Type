@@ -19,5 +19,6 @@ int main(int ac, char **av)
         clientInformation.serverAddress, clientInformation.serverPort);
 
     client.startLobbyLoop();
+//    client.startSoloLoop();
     return (0);
 }
