@@ -278,7 +278,7 @@ void ClientRoom::_initSharedResources()
     _worldInstance->addResource<RenderWindowResource>();
     _worldInstance->addResource<GraphicsFontResource>("assets/fonts/arial.ttf");
     _worldInstance->addResource<MenuStates>(MenuStates::IN_GAME);
-    _worldInstance->addResource<MusicResource>(MusicResource::music_e::BACKGROUNDTHEME, "assets/Musics/music_background.mp3");
+    _worldInstance->addResource<MusicResource>(MusicResource::music_e::BACKGROUNDTHEME, "assets/Musics/music_background.wav");
     _worldInstance->addResource<SoundResource>(SoundResource::sound_e::SHOOT, "assets/Sounds/sound.wav");
     _initSpritesForEntities();
 }
