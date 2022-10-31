@@ -5,8 +5,8 @@
 ** MusicComponent
 */
 
-#ifndef MUSICNAME_HPP_
-#define MUSICNAME_HPP_
+#ifndef MUSICCOMPONENT_HPP_
+#define MUSICCOMPONENT_HPP_
 
 #include "Component/Component.hpp"
 #include "GraphicECS/SFML/Resources/MusicResource.hpp"
@@ -41,4 +41,4 @@ namespace graphicECS::SFML::Components
     };
 } // namespace graphicECS::SFML::Components
 
-#endif /* !MUSICNAME_HPP_ */
+#endif /* !MUSICCOMPONENT_HPP_ */

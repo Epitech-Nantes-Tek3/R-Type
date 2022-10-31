@@ -5,8 +5,8 @@
 ** SoundComponent
 */
 
-#ifndef SOUNDNAME_HPP_
-#define SOUNDNAME_HPP_
+#ifndef SOUNDCOMPONENT_HPP_
+#define SOUNDCOMPONENT_HPP_
 
 #include "Component/Component.hpp"
 #include "GraphicECS/SFML/Resources/SoundResource.hpp"
@@ -41,4 +41,4 @@ namespace graphicECS::SFML::Components
     };
 } // namespace graphicECS::SFML::Components
 
-#endif /* !SOUNDNAME_HPP_ */
+#endif /* !SOUNDCOMPONENT_HPP_ */
