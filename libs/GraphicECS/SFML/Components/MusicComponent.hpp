@@ -15,8 +15,7 @@ using namespace graphicECS::SFML::Resources;
 
 namespace graphicECS::SFML::Components
 {
-    /// @brief MusicComponent stores the key as enum to the corresponding music stored in shared resource
-    /// MusicResource.
+    /// @brief MusicComponent stores the key as enum to the corresponding music stored in shared resource MusicResource.
     class MusicComponent : public ecs::Component {
       public:
         /// @brief Enumeration of all status available for a Music.
