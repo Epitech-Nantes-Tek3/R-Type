@@ -9,7 +9,7 @@
 
 using namespace graphicECS::SFML::Resources;
 
-void SoundResource::addSound(const SoundResource::soundName_e sound_e, const std::filesystem::path &soundPath)
+void SoundResource::addSound(const SoundResource::sound_e sound_e, const std::filesystem::path &soundPath)
 {
     sf::SoundBuffer buffer;
     sf::Sound sound;
