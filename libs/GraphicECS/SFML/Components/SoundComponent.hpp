@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2022
 ** R-Type
 ** File description:
-** SoundName
+** SoundComponent
 */
 
 #ifndef SOUNDNAME_HPP_
@@ -15,8 +15,9 @@ using namespace graphicECS::SFML::Resources;
 
 namespace graphicECS::SFML::Components
 {
-    /// @brief SoundName stores the key as enum to the corresponding sound stored in shared resource SoundResource.
-    class SoundName : public ecs::Component {
+    /// @brief SoundComponent stores the key as enum to the corresponding sound stored in shared resource
+    /// SoundResource.
+    class SoundComponent : public ecs::Component {
       public:
         /// @brief Enumeration of all status available for a Sound.
         /// Status STOPED specify that a sound is STOP but at it's begin
@@ -25,14 +26,15 @@ namespace graphicECS::SFML::Components
         /// @brief The sound name stores an enum to find which sound it needs in SoundResources shared resource
         SoundResource::sound_e soundName;
 
-        /// @brief Constructor of the SoundName component
-        /// @param newSoundName The value to set in the soundName, corresponding
+        /// @brief Constructor of the SoundComponent component
+        /// @param newSoundComponent The value to set in the soundName, corresponding
         /// on the sf::Sound load in shared resource Sound.
-        SoundName(SoundResource::sound_e newSoundName = SoundResource::UNDEFINED, status_e status = status_e::STOPED)
-            : soundName(newSoundName), _status(status){};
+        SoundComponent(
+            SoundResource::sound_e newSoundComponent = SoundResource::UNDEFINED, status_e status = status_e::STOPED)
+            : soundName(newSoundComponent), _status(status){};
 
-        /// @brief Default destructor of SoundName component.
-        ~SoundName() = default;
+        /// @brief Default destructor of SoundComponent component.
+        ~SoundComponent() = default;
 
         /// @brief Status of the Sound
         status_e _status;

@@ -6,22 +6,22 @@
 */
 
 #include <criterion/criterion.h>
-#include "MusicName.hpp"
+#include "MusicComponent.hpp"
 #include "MusicResource.hpp"
 
 using namespace ecs;
 using namespace graphicECS::SFML::Components;
 
-Test(MusicName, create_music_undefined)
+Test(MusicComponent, create_music_undefined)
 {
-    MusicName music;
+    MusicComponent music;
 
     cr_assert_eq(0, music.musicName);
 }
 
-Test(MusicName, create_music_shoot)
+Test(MusicComponent, create_music_shoot)
 {
-    MusicName music(MusicResource::COMBATTHEME);
+    MusicComponent music(MusicResource::COMBATTHEME);
 
     cr_assert_eq(MusicResource::COMBATTHEME, music.musicName);
 }
