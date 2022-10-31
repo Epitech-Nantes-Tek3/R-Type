@@ -108,8 +108,14 @@ void ClientRoom::initEcsGameData(void)
 
 void ClientRoom::startConnexionProtocol(void)
 {
+    void *networkData = std::malloc(sizeof(char) * 10);
+
+    if (networkData == nullptr)
+        throw MallocError("Malloc failed.");
+    std::memcpy(networkData, _name.c_str(), sizeof(char) * 5);
+    std::memcpy((void *)((char *)networkData + sizeof(char) * 5), _password.c_str(), sizeof(char) * 5);
     _communicatorInstance.get()->startReceiverListening();
-    _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, nullptr, 0, 14);
+    _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, networkData, sizeof(char) * 10, 14);
 }
 
 void ClientRoom::protocol12Answer(CommunicatorMessage connexionResponse)
