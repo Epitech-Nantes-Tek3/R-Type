@@ -23,13 +23,18 @@
 #include "GraphicECS/SFML/Components/MouseInputComponent.hpp"
 #include "GraphicECS/SFML/Components/ParallaxComponent.hpp"
 #include "GraphicECS/SFML/Components/TextureName.hpp"
+#include "GraphicECS/SFML/Components/MusicComponent.hpp"
+#include "GraphicECS/SFML/Components/SoundComponent.hpp"
 #include "GraphicECS/SFML/Resources/GraphicsFontResource.hpp"
 #include "GraphicECS/SFML/Resources/GraphicsTextureResource.hpp"
 #include "GraphicECS/SFML/Resources/RenderWindowResource.hpp"
+#include "GraphicECS/SFML/Resources/MusicResource.hpp"
+#include "GraphicECS/SFML/Resources/SoundResource.hpp"
 #include "GraphicECS/SFML/Systems/AnimationSystem.hpp"
 #include "GraphicECS/SFML/Systems/DrawComponents.hpp"
 #include "GraphicECS/SFML/Systems/InputManagement.hpp"
 #include "GraphicECS/SFML/Systems/ParallaxSystem.hpp"
+#include "GraphicECS/SFML/Systems/MusicManagement.hpp"
 #include "GraphicECS/SFML/Systems/SfRectangleFollowEntitySystem.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Components/NetworkServer.hpp"
@@ -54,6 +59,7 @@ using namespace client_data;
 using namespace ecs;
 using namespace graphicECS::SFML::Systems;
 using namespace graphicECS::SFML::Components;
+using namespace graphicECS::SFML::Resources;
 
 static ClientRoom::ClientState *clientRoomState(nullptr);
 
@@ -122,6 +128,7 @@ void ClientRoom::startLobbyLoop(void)
     std::signal(SIGINT, signalCallbackHandler);
     startConnexionProtocol();
     initEcsGameData();
+
     _state = ClientState::LOBBY;
     while (_state != ClientState::ENDED && _state != ClientState::UNDEFINED) {
         try {
@@ -194,6 +201,8 @@ void ClientRoom::_initSharedResources()
     _worldInstance->addResource<RenderWindowResource>();
     _worldInstance->addResource<GraphicsFontResource>("assets/fonts/arial.ttf");
     _worldInstance->addResource<MenuStates>(MenuStates::IN_GAME);
+    _worldinstance->addResource<MusicResource>(MusicResource::music_e::BACKGROUNDTHEME, "assets/Musics/music_background.mp3");
+    _worldinstance->addResource<SoundResource>();
     _initSpritesForEntities();
 }
 
@@ -210,6 +219,7 @@ void ClientRoom::_initSystems()
     _worldInstance->addSystem<Movement>();
     _worldInstance->addSystem<AnimationSystem>();
     _worldInstance->addSystem<NoAfkInMenu>();
+    _worldInstance->addSystem<MusicManagement>();
 }
 
 void ClientRoom::_initBackgroundEntities()
@@ -221,6 +231,7 @@ void ClientRoom::_initBackgroundEntities()
                          .addComponent<Velocity>(-300, 0)
                          .addComponent<LayerLvL>(LayerLvL::layer_e::DECORATION)
                          .addComponent<TextureName>(GraphicsTextureResource::BACKGROUND_LAYER_1)
+                         .addComponent<MusicComponent>(MusicResource::music_e::BACKGROUNDTHEME, MusicComponent::status_e::PLAYING)
                          .getId();
 
     _worldInstance.get()->getEntity(firstID).getComponent<GraphicsRectangleComponent>().shape.setFillColor(

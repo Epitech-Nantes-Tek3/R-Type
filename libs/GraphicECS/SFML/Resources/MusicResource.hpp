@@ -20,7 +20,7 @@ namespace graphicECS::SFML::Resources
     class MusicResource : public ecs::Resource {
       public:
         /// @brief Enumeration of all available Musics
-        enum music_e { UNDEFINED, MENUTHEME, COMBATTHEME };
+        enum music_e { UNDEFINED, MENUTHEME, COMBATTHEME, BACKGROUNDTHEME};
 
         /// @brief Name of map which contains Musics.
         using MusicsList = std::unordered_map<music_e, std::shared_ptr<sf::Music>>;
