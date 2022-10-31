@@ -23,7 +23,7 @@ namespace graphicECS::SFML::Resources
         enum sound_e { UNDEFINED, SHOOT, DEATH, EXPLOSION };
 
         /// @brief Name of map which contains Sounds.
-        using SoundsList = std::unordered_map<sound_e, std::shared_ptr<sf::Sound>>;
+        using SoundsList = std::unordered_map<sound_e, std::shared_ptr<sf::SoundBuffer>>;
 
         /// @brief Add a Sound from it's Sound Path passed as parameter
         /// @param sound_e Enum of the Sound
