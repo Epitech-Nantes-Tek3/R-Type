@@ -33,14 +33,54 @@ namespace graphicECS::SFML::Systems
         void run(World &world) override final;
 
       private:
+        /// @brief Update entities which have a LayerLvL component set to PLAYER.
+        /// @param layerType The layer type of the entity.
+        /// @param entityPtr The entity to udpate.
         void _updatePlayer(LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr);
+
+        /// @brief Update entities which have a LayerLvL component set to ENEMY.
+        /// @param layerType The layer type of the entity.
+        /// @param entityPtr The entity to update.
         void _updateEnemy(LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr);
+
+        /// @brief Update entities which have a LayerLvL component set to PROJECTILE.
+        /// @param layerType The layer type of the entity.
+        /// @param entityPtr The entity to update.
         void _udpateProjectile(LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr);
+
+        /// @brief Update entities which have a LayerLvL component set to BUTTON.
+        /// @param world The world on which the entity is.
+        /// @param layerType The layer type of the entity.
+        /// @param entityPtr The entity to update.
         void _updateButton(World &world, LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr);
+
+        /// @brief Call all the update entities functions to.
+        /// @param world The world on which entities are.
+        /// @param entityPtr The entity to update.
         void _updateEntities(World &world, std::shared_ptr<ecs::Entity> entityPtr);
+
+        /// @brief Draw a component on the window.
+        /// @param world The world on which the entity is.
+        /// @param entityPtr The entity to draw.
+        /// @param renderWindow The window on which the entity will be drawn.
         void _drawComponent(World &world, std::shared_ptr<ecs::Entity> entityPtr, graphicECS::SFML::Resources::RenderWindowResource &windowResource);
+
+        /// @brief Draw a rectangle on the window.
+        /// @param world The world on which the entity is.
+        /// @param entityPtr The entity to draw.
+        /// @param windowResource The window on which the entity will be drawn.
         void _drawRectangle(World &world, std::shared_ptr<ecs::Entity> entityPtr, graphicECS::SFML::Resources::RenderWindowResource &windowResource);
+
+        /// @brief Draw a text on the window.
+        /// @param world The world on which the entity is.
+        /// @param entityPtr The entity to draw.
+        /// @param windowResource The window on which the entity will be drawn.
         void _drawText(World &world, std::shared_ptr<ecs::Entity> entityPtr, graphicECS::SFML::Resources::RenderWindowResource &windowResource);
+
+        /// @brief Update texture on a shape.
+        /// @param world The world on which the entity is.
+        /// @param entityPtr The entity to update.
+        /// @param windowResource The window on which the entity will be drawn.
         void _updateTexture(World &world, std::shared_ptr<ecs::Entity> entityPtr, graphicECS::SFML::Resources::RenderWindowResource &windowResource);
     };
 } // namespace graphicECS::SFML::Systems
