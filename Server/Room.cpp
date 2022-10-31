@@ -197,7 +197,7 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
     NetworkableIdGenerator &generator = _worldInstance->getResource<NetworkableIdGenerator>();
     auto guard = std::lock_guard(generator);
     std::size_t playerId = createNewPlayer(*_worldInstance.get(), 20, 500, 0, 0, 1, 102, 102, 100, 10, 4, false,
-        _remainingPlaces + 1, "", generator.generateNewNetworkableId());
+        _remainingPlaces + 1, "Lucas", "", generator.generateNewNetworkableId());
     std::size_t enemyId = createNewEnemyRandom(
         *_worldInstance.get(), 0, 0, 1, 85, 85, 50, 10, 5, "", generator.generateNewNetworkableId());
     std::vector<std::shared_ptr<ecs::Entity>> clients = _worldInstance.get()->joinEntities<ecs::NetworkClient>();
@@ -227,18 +227,18 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
                 entityPtr->getComponent<Networkable>().id, pos.x, pos.y, vel.multiplierAbscissa, vel.multiplierOrdinate,
                 entityPtr->getComponent<Weight>().weight, size.x, size.y, entityPtr->getComponent<Life>().lifePoint,
                 entityPtr->getComponent<Damage>().damagePoint, entityPtr->getComponent<DamageRadius>().radius, false,
-                entityPtr->getComponent<Player>().playerIdentifier, "", {connexionDemand.message.clientInfo.getId()}));
+                entityPtr->getComponent<Player>().playerIdentifier, entityPtr->getComponent<Player>().name, "", {connexionDemand.message.clientInfo.getId()}));
         } else {
             std::free(_worldInstance.get()->getTransisthorBridge()->transitEcsDataToNetworkDataEntityPlayer(
                 entityPtr->getComponent<Networkable>().id, pos.x, pos.y, vel.multiplierAbscissa, vel.multiplierOrdinate,
                 entityPtr->getComponent<Weight>().weight, size.x, size.y, entityPtr->getComponent<Life>().lifePoint,
                 entityPtr->getComponent<Damage>().damagePoint, entityPtr->getComponent<DamageRadius>().radius, true,
-                entityPtr->getComponent<Player>().playerIdentifier, "", {connexionDemand.message.clientInfo.getId()}));
+                entityPtr->getComponent<Player>().playerIdentifier, entityPtr->getComponent<Player>().name, "", {connexionDemand.message.clientInfo.getId()}));
             std::free(_worldInstance.get()->getTransisthorBridge()->transitEcsDataToNetworkDataEntityPlayer(
                 entityPtr->getComponent<Networkable>().id, pos.x, pos.y, vel.multiplierAbscissa, vel.multiplierOrdinate,
                 entityPtr->getComponent<Weight>().weight, size.x, size.y, entityPtr->getComponent<Life>().lifePoint,
                 entityPtr->getComponent<Damage>().damagePoint, entityPtr->getComponent<DamageRadius>().radius, false,
-                entityPtr->getComponent<Player>().playerIdentifier, "", clientIdList));
+                entityPtr->getComponent<Player>().playerIdentifier, entityPtr->getComponent<Player>().name, "", clientIdList));
             entityPtr->getComponent<NewlyCreated>().sended = true;
         }
     }

@@ -100,7 +100,7 @@ void SendNewlyCreatedToClients::runSystem(ecs::World &world)
                 entityPtr->getComponent<Networkable>().id, pos.x, pos.y, vel.multiplierAbscissa, vel.multiplierOrdinate,
                 entityPtr->getComponent<Weight>().weight, size.x, size.y, entityPtr->getComponent<Life>().lifePoint,
                 entityPtr->getComponent<Damage>().damagePoint, entityPtr->getComponent<DamageRadius>().radius, false,
-                entityPtr->getComponent<Player>().playerIdentifier, newlyCreated.uuid, clientIdList));
+                entityPtr->getComponent<Player>().playerIdentifier, entityPtr->getComponent<Player>().name, newlyCreated.uuid, clientIdList));
         }
         if (entityPtr->contains<ecs::Projectile>()) {
             Position &pos = entityPtr->getComponent<Position>();
