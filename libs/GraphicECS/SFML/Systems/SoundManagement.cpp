@@ -29,7 +29,6 @@ namespace graphicECS::SFML::Systems
                 world.getResource<SoundResource>()._soundsList.at(sound.soundName)->play();
             }
         };
-
         std::for_each(joined.begin(), joined.end(), stopSound);
     }
 } // soundNamespace graphicECS::SFML::Systems
