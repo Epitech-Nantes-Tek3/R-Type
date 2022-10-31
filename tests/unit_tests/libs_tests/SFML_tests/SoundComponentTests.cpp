@@ -11,17 +11,18 @@
 
 using namespace ecs;
 using namespace graphicECS::SFML::Components;
+using namespace graphicECS::SFML::Resources;
 
 Test(SoundName, create_sound_undefined)
 {
-    graphicECS::SFML::Components::SoundName sound;
+    SoundName sound;
 
     cr_assert_eq(0, sound.soundName);
 }
 
 Test(SoundName, create_sound_shoot)
 {
-    graphicECS::SFML::Components::SoundName sound(graphicECS::SFML::Resources::SoundResource::SHOOT);
+    SoundName sound(SoundResource::SHOOT);
 
-    cr_assert_eq(graphicECS::SFML::Resources::SoundResource::SHOOT, sound.soundName);
+    cr_assert_eq(SoundResource::SHOOT, sound.soundName);
 }

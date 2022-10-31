@@ -11,6 +11,7 @@
 
 using namespace ecs;
 using namespace graphicECS::SFML::Components;
+using namespace graphicECS::SFML::Resources;
 
 Test(MusicName, create_music_undefined)
 {
