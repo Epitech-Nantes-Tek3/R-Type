@@ -574,7 +574,7 @@ void Transisthor::entityConvertPlayerType(unsigned short id, void *byteCode)
         sizeof(unsigned short));
 
     std::string uuidStr(uuid);
-    std::string playerNameStr(6, '\0');
+    std::string playerNameStr(5, '\0');
 
     for (int i = 0; i < 5; i++)
         playerNameStr[i] = playerName[i];

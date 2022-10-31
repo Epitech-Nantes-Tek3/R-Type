@@ -30,7 +30,7 @@
 #include "GraphicECS/SFML/Systems/DrawComponents.hpp"
 #include "GraphicECS/SFML/Systems/InputManagement.hpp"
 #include "GraphicECS/SFML/Systems/ParallaxSystem.hpp"
-#include "GraphicECS/SFML/Systems/SfRectangleFollowEntitySystem.hpp"
+#include "GraphicECS/SFML/Systems/SfObjectFollowEntitySystem.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Components/NetworkServer.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Systems/SendNewlyCreatedToServer.hpp"
@@ -318,7 +318,7 @@ void ClientRoom::_initSystems()
     _worldInstance->addSystem<InputManagement>();
     _worldInstance->addSystem<SendToServer>();
     _worldInstance->addSystem<SendNewlyCreatedToServer>();
-    _worldInstance->addSystem<SfRectangleFollowEntitySystem>();
+    _worldInstance->addSystem<SfObjectFollowEntitySystem>();
     _worldInstance->addSystem<Parallax>();
     _worldInstance->addSystem<Movement>();
     _worldInstance->addSystem<AnimationSystem>();
