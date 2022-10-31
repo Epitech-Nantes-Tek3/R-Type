@@ -10,7 +10,7 @@
 
 #include "System/System.hpp"
 #include "World/World.hpp"
-//#include "GraphicECS/SFML/Components/MusicName.hpp"
+#include "GraphicECS/SFML/Components/MusicComponent.hpp"
 
 namespace graphicECS::SFML::Systems
 {
