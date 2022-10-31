@@ -26,6 +26,9 @@ namespace argument_handler
 
             /// @brief Port to bind to.
             unsigned short port;
+
+            /// @brief Know if this instance is the main server or a room
+            bool room;
         };
 
         /// @brief Struct containing all Arguments needs by the client executable
