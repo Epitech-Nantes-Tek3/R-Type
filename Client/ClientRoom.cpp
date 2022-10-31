@@ -189,10 +189,22 @@ void ClientRoom::_getClientPseudoAndPassword()
     std::cerr << "If there is no player with your pseudonyme inside the database a new one will be created with the "
                  "given password."
               << std::endl;
-    std::cerr << "Please refer your pseudonyme : ";
+    std::cerr << "Please refer your pseudonyme (5 characters): ";
     std::cin >> pseudo;
-    std::cerr << "Welcome " << pseudo << ". Please now enter your password : ";
+    if (pseudo.size() != 5) {
+        std::cerr << "Nop ! Please enter a 5 characters pseudonyme.";
+        _state = ClientState::ENDED;
+        return;
+    }
+    std::cerr << "Welcome " << pseudo << ". Please now enter your password (5 characters): ";
     std::cin >> password;
+    if (password.size() != 5) {
+        std::cerr << "Nop ! Please enter a 5 characters password.";
+        _state = ClientState::ENDED;
+        return;
+    }
+    _pseudo = pseudo;
+    _password = password;
 }
 
 void ClientRoom::startLobbyLoop(void)
@@ -201,7 +213,8 @@ void ClientRoom::startLobbyLoop(void)
 
     std::signal(SIGINT, signalCallbackHandler);
     _getClientPseudoAndPassword();
-    startConnexionProtocol();
+    if (_state != ClientState::ENDED)
+        startConnexionProtocol();
     while (_state != ClientState::ENDED && _state == ClientState::UNDEFINED) {
         try {
             connectionOperation = _communicatorInstance.get()->getLastMessage();
