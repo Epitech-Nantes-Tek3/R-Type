@@ -114,8 +114,7 @@ void DrawComponents::_updateEntities(World &world, std::shared_ptr<ecs::Entity> 
     }
 }
 
-void DrawComponents::_updateTexture(World &world, std::shared_ptr<ecs::Entity> entityPtr,
-    graphicECS::SFML::Resources::RenderWindowResource &windowResource)
+void DrawComponents::_updateTexture(World &world, std::shared_ptr<ecs::Entity> entityPtr)
 {
     if (world.containsResource<GraphicsTextureResource>()) {
         GraphicsTextureResource &textureResource = world.getResource<GraphicsTextureResource>();
@@ -139,7 +138,7 @@ void DrawComponents::_drawRectangle(World &world, std::shared_ptr<ecs::Entity> e
     graphicECS::SFML::Resources::RenderWindowResource &windowResource)
 {
     if (entityPtr->contains<GraphicsRectangleComponent>()) {
-        _updateTexture(world, entityPtr, windowResource);
+        _updateTexture(world, entityPtr);
         if (entityPtr->getComponent<LayerLvL>().layer == LayerLvL::BUTTON
             && world.getResource<MenuStates>().currentState == entityPtr->getComponent<DisplayState>().displayState) {
             windowResource.window.draw(entityPtr->getComponent<GraphicsRectangleComponent>().shape);

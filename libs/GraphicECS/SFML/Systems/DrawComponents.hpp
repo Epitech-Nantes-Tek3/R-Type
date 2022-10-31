@@ -81,7 +81,7 @@ namespace graphicECS::SFML::Systems
         /// @param world The world on which the entity is.
         /// @param entityPtr The entity to update.
         /// @param windowResource The window on which the entity will be drawn.
-        void _updateTexture(World &world, std::shared_ptr<ecs::Entity> entityPtr, graphicECS::SFML::Resources::RenderWindowResource &windowResource);
+        void _updateTexture(World &world, std::shared_ptr<ecs::Entity> entityPtr);
     };
 } // namespace graphicECS::SFML::Systems
 
