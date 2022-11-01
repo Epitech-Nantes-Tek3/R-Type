@@ -15,7 +15,6 @@
 namespace graphicECS::SFML::Systems
 {
     struct SoundManagement : public ecs::System {
-      public:
         /// @brief The run function of this system. It will be used by the world in the function runSystems.
         /// @param world The corresponding world on which run this system.
         void run(World &world);
