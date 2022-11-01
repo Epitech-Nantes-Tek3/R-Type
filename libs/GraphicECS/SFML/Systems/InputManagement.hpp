@@ -48,7 +48,7 @@ namespace graphicECS::SFML::Systems
         /// @param world The world where the click occurs
         /// @param action The click action
         void clickHandle(World &world, float action);
-
+        void shoot(World &world);
       private:
         /// @brief This function closes the window when event type is sf::Event::Closed
         /// @param event Class event use to know SFML events

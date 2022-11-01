@@ -13,7 +13,7 @@
 namespace graphicECS::SFML::Components
 {
     /// @brief Component to know if a player is shooting.
-    class IsShootingComponent : ecs::Component {};
+    class IsShootingComponent : public ecs::Component {};
 } // namespace graphicECS::SFML::Components
 
 #endif /* !ISSHOOTINGCOMPONENT_HPP_ */
