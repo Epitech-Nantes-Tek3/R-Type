@@ -16,8 +16,8 @@ var dir_cbf7d74840da66ee0c9a24bf60bc6994 =
     [ "ParallaxSystem.hpp", "_parallax_system_8hpp.html", [
       [ "Parallax", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_parallax.html", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_parallax" ]
     ] ],
-    [ "SfRectangleFollowEntitySystem.cpp", "_sf_rectangle_follow_entity_system_8cpp.html", null ],
-    [ "SfRectangleFollowEntitySystem.hpp", "_sf_rectangle_follow_entity_system_8hpp.html", [
-      [ "SfRectangleFollowEntitySystem", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sf_rectangle_follow_entity_system.html", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sf_rectangle_follow_entity_system" ]
+    [ "SfObjectFollowEntitySystem.cpp", "_sf_object_follow_entity_system_8cpp.html", null ],
+    [ "SfObjectFollowEntitySystem.hpp", "_sf_object_follow_entity_system_8hpp.html", [
+      [ "SfObjectFollowEntitySystem", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sf_object_follow_entity_system.html", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sf_object_follow_entity_system" ]
     ] ]
 ];

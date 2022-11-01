@@ -130,9 +130,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae3c0bfb9bf70cd9ec65428d4aaaf4eed"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtransisthor__lib_1_1_transisthor.html#ae3c0bfb9bf70cd9ec65428d4aaaf4eed">transitEcsDataToNetworkDataEntityObstacle</a> (unsigned short id, int posX, int posY, unsigned short damage, std::string uuid, std::vector&lt; unsigned short &gt; destination)</td></tr>
 <tr class="memdesc:ae3c0bfb9bf70cd9ec65428d4aaaf4eed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function called by the ECS to transfer an order of creation for an Obstacle entity.  <a href="classtransisthor__lib_1_1_transisthor.html#ae3c0bfb9bf70cd9ec65428d4aaaf4eed">More...</a><br /></td></tr>
 <tr class="separator:ae3c0bfb9bf70cd9ec65428d4aaaf4eed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af38d9b392bb0c51fea30dcd8ed57628d"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtransisthor__lib_1_1_transisthor.html#af38d9b392bb0c51fea30dcd8ed57628d">transitEcsDataToNetworkDataEntityPlayer</a> (unsigned short id, int posX, int posY, double multiplierAbscissa, double multiplierOrdinate, short weight, int sizeX, int sizeY, short life, unsigned short damage, unsigned short damageRadius, bool isControlable, unsigned short playerIdentifier, std::string uuid, std::vector&lt; unsigned short &gt; destination)</td></tr>
-<tr class="memdesc:af38d9b392bb0c51fea30dcd8ed57628d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function called by the ECS to transfer an order of creation for an Player entity.  <a href="classtransisthor__lib_1_1_transisthor.html#af38d9b392bb0c51fea30dcd8ed57628d">More...</a><br /></td></tr>
-<tr class="separator:af38d9b392bb0c51fea30dcd8ed57628d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20dcaa4ce0184a581b9a774f79da07cf"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtransisthor__lib_1_1_transisthor.html#a20dcaa4ce0184a581b9a774f79da07cf">transitEcsDataToNetworkDataEntityPlayer</a> (unsigned short id, int posX, int posY, double multiplierAbscissa, double multiplierOrdinate, short weight, int sizeX, int sizeY, short life, unsigned short damage, unsigned short damageRadius, bool isControlable, unsigned short playerIdentifier, std::string playerName, std::string uuid, std::vector&lt; unsigned short &gt; destination)</td></tr>
+<tr class="memdesc:a20dcaa4ce0184a581b9a774f79da07cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function called by the ECS to transfer an order of creation for an Player entity.  <a href="classtransisthor__lib_1_1_transisthor.html#a20dcaa4ce0184a581b9a774f79da07cf">More...</a><br /></td></tr>
+<tr class="separator:a20dcaa4ce0184a581b9a774f79da07cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb12dc1d95be66a046836e21814f50e4"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtransisthor__lib_1_1_transisthor.html#aeb12dc1d95be66a046836e21814f50e4">transitEcsDataToNetworkDataEntityProjectile</a> (unsigned short id, int posX, int posY, double velAbsc, double velOrd, unsigned short damage, std::string uuid, std::vector&lt; unsigned short &gt; destination)</td></tr>
 <tr class="memdesc:aeb12dc1d95be66a046836e21814f50e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function called by the ECS to transfer an order of creation for an Projectile entity.  <a href="classtransisthor__lib_1_1_transisthor.html#aeb12dc1d95be66a046836e21814f50e4">More...</a><br /></td></tr>
 <tr class="separator:aeb12dc1d95be66a046836e21814f50e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -716,8 +716,8 @@ template&lt;std::derived_from&lt; Component &gt; C&gt; </div>
 
 </div>
 </div>
-<a id="af38d9b392bb0c51fea30dcd8ed57628d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af38d9b392bb0c51fea30dcd8ed57628d">&#9670;&nbsp;</a></span>transitEcsDataToNetworkDataEntityPlayer()</h2>
+<a id="a20dcaa4ce0184a581b9a774f79da07cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20dcaa4ce0184a581b9a774f79da07cf">&#9670;&nbsp;</a></span>transitEcsDataToNetworkDataEntityPlayer()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -804,6 +804,12 @@ template&lt;std::derived_from&lt; Component &gt; C&gt; </div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>playerName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
           <td class="paramname"><em>uuid</em>, </td>
         </tr>
         <tr>
@@ -836,6 +842,7 @@ template&lt;std::derived_from&lt; Component &gt; C&gt; </div>
     <tr><td class="paramname">damageRadius</td><td>DamageRadius of projectiles fired by this Enemy </td></tr>
     <tr><td class="paramname">isControlable</td><td>Controlable component value </td></tr>
     <tr><td class="paramname">playerIdentifier</td><td>Identification number used for player identification </td></tr>
+    <tr><td class="paramname">playerName</td><td>name of the player </td></tr>
     <tr><td class="paramname">uuid</td><td>string representing the entity uuid (Used only for a first sync process in client side) </td></tr>
     <tr><td class="paramname">destination</td><td>of the message </td></tr>
   </table>

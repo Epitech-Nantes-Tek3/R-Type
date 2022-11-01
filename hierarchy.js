@@ -67,7 +67,8 @@ var hierarchy =
         [ "error_lib::ArgumentError", "classerror__lib_1_1_argument_error.html", null ],
         [ "error_lib::EcsError", "classerror__lib_1_1_ecs_error.html", null ],
         [ "error_lib::MallocError", "classerror__lib_1_1_malloc_error.html", null ],
-        [ "error_lib::NetworkError", "classerror__lib_1_1_network_error.html", null ]
+        [ "error_lib::NetworkError", "classerror__lib_1_1_network_error.html", null ],
+        [ "error_lib::SignalError", "classerror__lib_1_1_signal_error.html", null ]
       ] ]
     ] ],
     [ "communicator_lib::Message", "structcommunicator__lib_1_1_message.html", null ],
@@ -108,7 +109,7 @@ var hierarchy =
       [ "graphicECS::SFML::Systems::DrawComponents", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_draw_components.html", null ],
       [ "graphicECS::SFML::Systems::InputManagement", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_input_management.html", null ],
       [ "graphicECS::SFML::Systems::Parallax", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_parallax.html", null ],
-      [ "graphicECS::SFML::Systems::SfRectangleFollowEntitySystem", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sf_rectangle_follow_entity_system.html", null ],
+      [ "graphicECS::SFML::Systems::SfObjectFollowEntitySystem", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sf_object_follow_entity_system.html", null ],
       [ "SendNewlyCreatedToClients", "struct_send_newly_created_to_clients.html", null ],
       [ "SendNewlyCreatedToServer", "struct_send_newly_created_to_server.html", null ],
       [ "SendToClient", "struct_send_to_client.html", null ],

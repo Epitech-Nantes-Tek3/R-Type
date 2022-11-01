@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>R-Type: libs/GraphicECS/SFML/Systems/SfRectangleFollowEntitySystem.hpp Source File</title>
+<title>R-Type: libs/GraphicECS/SFML/Systems/SfObjectFollowEntitySystem.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,7 +64,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('_sf_rectangle_follow_entity_system_8hpp_source.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('_sf_object_follow_entity_system_8hpp_source.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -84,14 +84,14 @@ $(document).ready(function(){initNavTree('_sf_rectangle_follow_entity_system_8hp
 
 <div class="header">
   <div class="headertitle">
-<div class="title">SfRectangleFollowEntitySystem.hpp</div>  </div>
+<div class="title">SfObjectFollowEntitySystem.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="_sf_rectangle_follow_entity_system_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<a href="_sf_object_follow_entity_system_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">** EPITECH PROJECT, 2022</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">** R-Type</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">** File description:</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">** SfRectangleFollowEntitySystem</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">** SfObjectFollowEntitySystem</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">*/</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef SFRECTANGLEFOLLOWENTITYSYSTEM_HPP_</span></div>
@@ -100,34 +100,40 @@ $(document).ready(function(){initNavTree('_sf_rectangle_follow_entity_system_8hp
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;SFML/Graphics.hpp&gt;</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_component_8hpp.html">Component/Component.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_graphics_rectangle_component_8hpp.html">GraphicECS/SFML/Components/GraphicsRectangleComponent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_system_8hpp.html">System/System.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_world_8hpp.html">World/World.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_position_component_8hpp.html">R-TypeLogic/Global/Components/PositionComponent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacegraphic_e_c_s_1_1_s_f_m_l_1_1_systems.html">graphicECS::SFML::Systems</a></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;{</div>
-<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sf_rectangle_follow_entity_system.html">   22</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sf_rectangle_follow_entity_system.html">SfRectangleFollowEntitySystem</a> : <span class="keyword">public</span> <a class="code" href="classecs_1_1_system.html">System</a> {</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sf_rectangle_follow_entity_system.html#a9c48c9d93aecee1e199db7abc9b04bc7">run</a>(<a class="code" href="classecs_1_1_world.html">World</a> &amp;world) <span class="keyword">override</span> <span class="keyword">final</span>;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    };</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;} <span class="comment">// namespace graphicECS::SFML::Systems</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !SFRECTANGLEFOLLOWENTITYSYSTEM_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_graphics_text_component_8hpp.html">GraphicECS/SFML/Components/GraphicsTextComponent.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_system_8hpp.html">System/System.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_world_8hpp.html">World/World.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_position_component_8hpp.html">R-TypeLogic/Global/Components/PositionComponent.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_size_component_8hpp.html">R-TypeLogic/Global/Components/SizeComponent.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_velocity_component_8hpp.html">R-TypeLogic/Global/Components/VelocityComponent.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacegraphic_e_c_s_1_1_s_f_m_l_1_1_systems.html">graphicECS::SFML::Systems</a></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;{</div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sf_object_follow_entity_system.html">   25</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sf_object_follow_entity_system.html">SfObjectFollowEntitySystem</a> : <span class="keyword">public</span> <a class="code" href="classecs_1_1_system.html">System</a> {</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sf_object_follow_entity_system.html#a4229fd065478888644446d744aec7772">run</a>(<a class="code" href="classecs_1_1_world.html">World</a> &amp;world) <span class="keyword">override</span> <span class="keyword">final</span>;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    };</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;} <span class="comment">// namespace graphicECS::SFML::Systems</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !SFRECTANGLEFOLLOWENTITYSYSTEM_HPP_ */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
+<div class="ttc" id="astructgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sf_object_follow_entity_system_html"><div class="ttname"><a href="structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sf_object_follow_entity_system.html">graphicECS::SFML::Systems::SfObjectFollowEntitySystem</a></div><div class="ttdoc">This system class manage SFML Rectangle Shape to modify it's SfRectangleSahpePosition with the Positi...</div><div class="ttdef"><b>Definition:</b> SfObjectFollowEntitySystem.hpp:25</div></div>
 <div class="ttc" id="a_graphics_rectangle_component_8hpp_html"><div class="ttname"><a href="_graphics_rectangle_component_8hpp.html">GraphicsRectangleComponent.hpp</a></div></div>
+<div class="ttc" id="astructgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sf_object_follow_entity_system_html_a4229fd065478888644446d744aec7772"><div class="ttname"><a href="structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sf_object_follow_entity_system.html#a4229fd065478888644446d744aec7772">graphicECS::SFML::Systems::SfObjectFollowEntitySystem::run</a></div><div class="ttdeci">void run(World &amp;world) override final</div><div class="ttdoc">The run function of this system. It will be used by the world in the function runSystems.</div><div class="ttdef"><b>Definition:</b> SfObjectFollowEntitySystem.cpp:13</div></div>
+<div class="ttc" id="a_size_component_8hpp_html"><div class="ttname"><a href="_size_component_8hpp.html">SizeComponent.hpp</a></div></div>
 <div class="ttc" id="anamespacegraphic_e_c_s_1_1_s_f_m_l_1_1_systems_html"><div class="ttname"><a href="namespacegraphic_e_c_s_1_1_s_f_m_l_1_1_systems.html">graphicECS::SFML::Systems</a></div><div class="ttdef"><b>Definition:</b> AnimationSystem.hpp:14</div></div>
-<div class="ttc" id="astructgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sf_rectangle_follow_entity_system_html_a9c48c9d93aecee1e199db7abc9b04bc7"><div class="ttname"><a href="structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sf_rectangle_follow_entity_system.html#a9c48c9d93aecee1e199db7abc9b04bc7">graphicECS::SFML::Systems::SfRectangleFollowEntitySystem::run</a></div><div class="ttdeci">void run(World &amp;world) override final</div><div class="ttdoc">The run function of this system. It will be used by the world in the function runSystems.</div><div class="ttdef"><b>Definition:</b> SfRectangleFollowEntitySystem.cpp:13</div></div>
 <div class="ttc" id="a_component_8hpp_html"><div class="ttname"><a href="_component_8hpp.html">Component.hpp</a></div></div>
+<div class="ttc" id="a_graphics_text_component_8hpp_html"><div class="ttname"><a href="_graphics_text_component_8hpp.html">GraphicsTextComponent.hpp</a></div></div>
 <div class="ttc" id="a_world_8hpp_html"><div class="ttname"><a href="_world_8hpp.html">World.hpp</a></div></div>
-<div class="ttc" id="astructgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sf_rectangle_follow_entity_system_html"><div class="ttname"><a href="structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sf_rectangle_follow_entity_system.html">graphicECS::SFML::Systems::SfRectangleFollowEntitySystem</a></div><div class="ttdoc">This system class manage SFML Rectangle Shape to modify it's SfRectangleSahpePosition with the Positi...</div><div class="ttdef"><b>Definition:</b> SfRectangleFollowEntitySystem.hpp:22</div></div>
 <div class="ttc" id="a_system_8hpp_html"><div class="ttname"><a href="_system_8hpp.html">System.hpp</a></div></div>
 <div class="ttc" id="aclassecs_1_1_world_html"><div class="ttname"><a href="classecs_1_1_world.html">ecs::World</a></div><div class="ttdef"><b>Definition:</b> World.hpp:32</div></div>
 <div class="ttc" id="aclassecs_1_1_system_html"><div class="ttname"><a href="classecs_1_1_system.html">ecs::System</a></div><div class="ttdef"><b>Definition:</b> System.hpp:19</div></div>
 <div class="ttc" id="a_position_component_8hpp_html"><div class="ttname"><a href="_position_component_8hpp.html">PositionComponent.hpp</a></div></div>
+<div class="ttc" id="a_velocity_component_8hpp_html"><div class="ttname"><a href="_velocity_component_8hpp.html">VelocityComponent.hpp</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_6719ab1f1f7655efc2fa43f7eb574fd1.html">libs</a></li><li class="navelem"><a class="el" href="dir_fbdccee0f25d54ed050b3dfc8daf83af.html">GraphicECS</a></li><li class="navelem"><a class="el" href="dir_1dde4ce7c8ef5019cfcd1a59b754ba0c.html">SFML</a></li><li class="navelem"><a class="el" href="dir_cbf7d74840da66ee0c9a24bf60bc6994.html">Systems</a></li><li class="navelem"><a class="el" href="_sf_rectangle_follow_entity_system_8hpp.html">SfRectangleFollowEntitySystem.hpp</a></li>
+    <li class="navelem"><a class="el" href="dir_6719ab1f1f7655efc2fa43f7eb574fd1.html">libs</a></li><li class="navelem"><a class="el" href="dir_fbdccee0f25d54ed050b3dfc8daf83af.html">GraphicECS</a></li><li class="navelem"><a class="el" href="dir_1dde4ce7c8ef5019cfcd1a59b754ba0c.html">SFML</a></li><li class="navelem"><a class="el" href="dir_cbf7d74840da66ee0c9a24bf60bc6994.html">Systems</a></li><li class="navelem"><a class="el" href="_sf_object_follow_entity_system_8hpp.html">SfObjectFollowEntitySystem.hpp</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>

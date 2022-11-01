@@ -1,8 +1,9 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" title=" " alt="" coords="5,81,92,108"/>
-<area shape="rect" id="node2" href="$classerror__lib_1_1_r_type_error.html" title="Custom error class for rtype project." alt="" coords="140,81,293,108"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,107,92,133"/>
+<area shape="rect" id="node2" href="$classerror__lib_1_1_r_type_error.html" title="Custom error class for rtype project." alt="" coords="140,107,293,133"/>
 <area shape="rect" id="node3" href="$classerror__lib_1_1_argument_error.html" title="Error class for a argument fail." alt="" coords="341,5,520,32"/>
 <area shape="rect" id="node4" href="$classerror__lib_1_1_ecs_error.html" title="Error class for the ecs part." alt="" coords="362,56,499,83"/>
 <area shape="rect" id="node5" href="$classerror__lib_1_1_malloc_error.html" title="Error class for a malloc fail." alt="" coords="351,107,510,133"/>
 <area shape="rect" id="node6" href="$classerror__lib_1_1_network_error.html" title="Error class for the network part." alt="" coords="345,157,516,184"/>
+<area shape="rect" id="node7" href="$classerror__lib_1_1_signal_error.html" title="Error class for a signal detection." alt="" coords="353,208,508,235"/>
 </map>

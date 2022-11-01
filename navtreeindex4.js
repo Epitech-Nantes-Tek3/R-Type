@@ -1,5 +1,8 @@
 var NAVTREEINDEX4 =
 {
+"structecs_1_1_random_device.html#aca0972e8d6927808e436c02f92398a77":[4,0,3,50,1],
+"structecs_1_1_random_device.html#afd4b5cd3acf22fbfa115cbe6e9f7c2cf":[4,0,3,50,2],
+"structecs_1_1_remove_afk_system.html":[4,0,3,51],
 "structecs_1_1_remove_afk_system.html#a139f799aa6573739b5d3923cb64bdb1d":[4,0,3,51,0],
 "structecs_1_1_update_clock.html":[4,0,3,56],
 "structecs_1_1_update_clock.html#a133fd62e3d40359dcd79f4e6f956e6cf":[4,0,3,56,1],
@@ -17,6 +20,6 @@ var NAVTREEINDEX4 =
 "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_input_management.html#ab2e0d37503f1c35964c47d6225029cec":[4,0,5,0,2,2,3],
 "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_parallax.html":[4,0,5,0,2,3],
 "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_parallax.html#a96c20e149dede5b59f897f392aee7bb2":[4,0,5,0,2,3,0],
-"structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sf_rectangle_follow_entity_system.html":[4,0,5,0,2,4],
-"structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sf_rectangle_follow_entity_system.html#a9c48c9d93aecee1e199db7abc9b04bc7":[4,0,5,0,2,4,0]
+"structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sf_object_follow_entity_system.html":[4,0,5,0,2,4],
+"structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sf_object_follow_entity_system.html#a4229fd065478888644446d744aec7772":[4,0,5,0,2,4,0]
 };
