@@ -14,7 +14,7 @@
 
 namespace graphicECS::SFML::Systems
 {
-    /// @brief This System manage the status of all Music with the Music Component Status
+    /// @brief This System manages the status of all Music with the Music Component Status
     struct MusicManagement : public System {
         /// @brief The run function of this system. It will be used by the world in the function runSystems.
         /// @param world The corresponding world on which run this system.
