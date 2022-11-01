@@ -21,17 +21,9 @@ testExitStatus $? "mkdir"
 cd build
 testExitStatus $? "cd"
 
-value=`cat ~/.conan/conanfile.sha1`
-result=`sha1sum ../conanfile.txt`
-if [ $value -ne $resutl ]
-then
-    sha1sum ../conanfile.txt > ~/.conan/conanfile.sha1
-    testExitStatus $? "Create conanfile hashfile"
-
-    # Install conan dependencies
-    conan install .. --build=missing -s compiler.libcxx=libstdc++11 -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True
-    testExitStatus $? "conan install dependencies"
-fi
+# Install conan dependencies
+conan install .. --build=missing -s compiler.libcxx=libstdc++11 -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True
+testExitStatus $? "conan install dependencies"
 
 # Configure cmake
 cmake -DCMAKE_BUILD_TYPE=Debug ..
