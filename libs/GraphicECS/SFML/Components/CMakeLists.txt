@@ -17,5 +17,6 @@ set(SRC_GRAPHIC_COMPONENT
     ${GRAPHIC_SRC_COMPONENT_ROOT}/ParallaxComponent.hpp
     ${GRAPHIC_SRC_COMPONENT_ROOT}/AnimationComponent.hpp
     ${GRAPHIC_SRC_COMPONENT_ROOT}/AnimationFrequencyComponent.hpp
+    ${GRAPHIC_SRC_COMPONENT_ROOT}/IsShootingComponent.hpp
     PARENT_SCOPE
 )
