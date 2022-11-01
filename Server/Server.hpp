@@ -13,7 +13,7 @@
 #include <vector>
 #include "Communicator/Client.hpp"
 #include "Communicator/Communicator.hpp"
-#include "Room.hpp"
+#include "Room/Room.hpp"
 
 using namespace communicator_lib;
 
