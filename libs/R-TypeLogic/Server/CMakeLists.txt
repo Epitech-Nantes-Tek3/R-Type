@@ -6,7 +6,7 @@ set(INC_RTYPE_LOGIC_SYSTEMS_ROOT ${PROJECT_SOURCE_DIR}/libs/R-TypeLogic)
 set(TARGET ${PROJECT_NAME}_RTypeLogicServer)
 
 add_library(${TARGET}
-    SHARED
+    
     ${SRC_RTYPE_LOGIC_SERVER_SYSTEMS}
 )
 
