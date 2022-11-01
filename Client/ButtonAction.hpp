@@ -22,4 +22,8 @@ void pauseGame(World &world, Entity &entityPtr);
 /// @param world the world where the game will be resumed
 void resumeGame(World &world, Entity &entityPtr);
 
+/// @brief Select a writable entity, add / remove a selected component
+/// @param world the world where the entity his
+void selectAWritable(World &world, Entity &entityPtr);
+
 #endif /* !BUTTONACTION_HPP_ */

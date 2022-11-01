@@ -45,6 +45,7 @@ namespace graphicECS::SFML::Resources
             PROJECTILE_ENEMY,
             BUTTON,
             WRITABLE,
+            WRITABLE_SELECTED,
             NATURAL_PROJECTILE
         };
 
