@@ -35,8 +35,8 @@
 #include "GraphicECS/SFML/Systems/InputManagement.hpp"
 #include "GraphicECS/SFML/Systems/MusicManagement.hpp"
 #include "GraphicECS/SFML/Systems/ParallaxSystem.hpp"
-#include "GraphicECS/SFML/Systems/SfRectangleFollowEntitySystem.hpp"
 #include "GraphicECS/SFML/Systems/SoundManagement.hpp"
+#include "GraphicECS/SFML/Systems/SfObjectFollowEntitySystem.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Components/NetworkServer.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Systems/SendNewlyCreatedToServer.hpp"
@@ -70,6 +70,9 @@ void signalCallbackHandler(int signum)
 {
     (void)signum;
     std::cerr << "Client Room wanted to be closed." << std::endl;
+    if (*clientRoomState == ClientRoom::UNDEFINED)
+        throw SignalError(
+            "A sigint have been catched while the game have not started.", "ClientRoom.cpp -> signalCallbackHandler");
     *clientRoomState = ClientRoom::ENDED;
 }
 
@@ -84,6 +87,8 @@ ClientRoom::ClientRoom()
     _worldInstance.get()->setTransisthorBridge(_communicatorInstance.get()->getTransisthorBridge());
     _state = ClientState::UNDEFINED;
     clientRoomState = &_state;
+    _pseudo = "";
+    _password = "";
 }
 
 ClientRoom::ClientRoom(std::string address, unsigned short port, std::string serverAddress, unsigned short serverPort)
@@ -97,6 +102,8 @@ ClientRoom::ClientRoom(std::string address, unsigned short port, std::string ser
     _worldInstance.get()->setTransisthorBridge(_communicatorInstance.get()->getTransisthorBridge());
     _state = ClientState::UNDEFINED;
     clientRoomState = &_state;
+    _pseudo = "";
+    _password = "";
 }
 
 void ClientRoom::initEcsGameData(void)
@@ -108,8 +115,15 @@ void ClientRoom::initEcsGameData(void)
 
 void ClientRoom::startConnexionProtocol(void)
 {
+    void *networkData = std::malloc(sizeof(char) * 10);
+
+    if (networkData == nullptr)
+        throw MallocError("Malloc failed.");
+    std::memcpy(networkData, _pseudo.c_str(), sizeof(char) * 5);
+    std::memcpy((void *)((char *)networkData + sizeof(char) * 5), _password.c_str(), sizeof(char) * 5);
     _communicatorInstance.get()->startReceiverListening();
-    _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, nullptr, 0, 14);
+    _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, networkData, sizeof(char) * 10, 14);
+    std::free(networkData);
 }
 
 void ClientRoom::protocol12Answer(CommunicatorMessage connexionResponse)
@@ -180,12 +194,52 @@ void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
     }
 }
 
+void ClientRoom::_getClientPseudoAndPassword()
+{
+    std::string pseudo;
+    std::string password;
+
+    std::cerr << "Welcome to the R-Type game !" << std::endl;
+    std::cerr << "If there is no player with your pseudonyme inside the database a new one will be created with the "
+                 "given password."
+              << std::endl;
+    std::cerr << "Please refer your pseudonyme (5 characters): ";
+    std::cin >> pseudo;
+    if (pseudo.size() != 5) {
+        std::cerr << "Nop ! Please enter a 5 characters pseudonyme.";
+        _state = ClientState::ENDED;
+        return;
+    }
+    std::cerr << "Welcome " << pseudo << ". Please now enter your password (5 characters): ";
+    std::cin >> password;
+    if (password.size() != 5) {
+        std::cerr << "Nop ! Please enter a 5 characters password.";
+        _state = ClientState::ENDED;
+        return;
+    }
+    _pseudo = pseudo;
+    _password = password;
+}
+
+void ClientRoom::_connectToARoom()
+{
+    void *networkData = std::malloc(sizeof(char) * 5);
+
+    if (networkData == nullptr)
+        throw MallocError("Malloc failed.");
+    std::memcpy(networkData, _pseudo.c_str(), sizeof(char) * 5);
+    _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, networkData, sizeof(char) * 5, 10);
+    std::free(networkData);
+}
+
 void ClientRoom::startLobbyLoop(void)
 {
     CommunicatorMessage connectionOperation;
 
     std::signal(SIGINT, signalCallbackHandler);
-    startConnexionProtocol();
+    _getClientPseudoAndPassword();
+    if (_state != ClientState::ENDED)
+        startConnexionProtocol();
     while (_state != ClientState::ENDED && _state == ClientState::UNDEFINED) {
         try {
             connectionOperation = _communicatorInstance.get()->getLastMessage();
@@ -204,7 +258,7 @@ void ClientRoom::startLobbyLoop(void)
     }
     if (_state != ClientState::ENDED) {
         initEcsGameData();
-        _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, nullptr, 0, 10);
+        _connectToARoom();
         _state = ClientState::LOBBY;
     }
     while (_state != ClientState::ENDED && _state != ClientState::UNDEFINED) {
@@ -292,7 +346,7 @@ void ClientRoom::_initSystems()
     _worldInstance->addSystem<InputManagement>();
     _worldInstance->addSystem<SendToServer>();
     _worldInstance->addSystem<SendNewlyCreatedToServer>();
-    _worldInstance->addSystem<SfRectangleFollowEntitySystem>();
+    _worldInstance->addSystem<SfObjectFollowEntitySystem>();
     _worldInstance->addSystem<Parallax>();
     _worldInstance->addSystem<Movement>();
     _worldInstance->addSystem<AnimationSystem>();

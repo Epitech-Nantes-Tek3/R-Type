@@ -78,6 +78,16 @@ namespace error_lib
         inline ArgumentError(std::string const &message, std::string const &component = "ArgumentHandler")
             : RTypeError(message, component){};
     };
+
+    /// @brief Error class for a signal detection
+    class SignalError : public RTypeError {
+      public:
+        /// @brief Constructor of the Signal Error
+        /// @param message Error message (Some description and information about the error)
+        /// @param component Provenance of the error (File, function...)
+        inline SignalError(std::string const &message, std::string const &component = "SignalThrowing")
+            : RTypeError(message, component){};
+    };
 } // namespace error_lib
 
 #endif /* !ERROR_HPP_ */
