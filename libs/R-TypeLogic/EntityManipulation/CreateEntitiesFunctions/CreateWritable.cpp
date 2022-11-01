@@ -13,7 +13,6 @@
 #include "R-TypeLogic/Global/Components/ButtonComponent.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/Components/ActionName.hpp"
 #include "GraphicECS/SFML/Components/WritableContentComponent.hpp"
-#include "GraphicECS/SFML/Components/SelectableComponent.hpp"
 
 namespace ecs
 {
@@ -28,7 +27,7 @@ namespace ecs
             .addComponent<LayerLvL>(LayerLvL::BUTTON)
             .addComponent<ActionName>(ButtonActionMap::PAUSE)
             .addComponent<DisplayState>(state)
-            .addComponent<WritableContent>();
+            .addComponent<graphicECS::SFML::Components::WritableContent>();
         return entity.getId();
     }
 } // namespace ecs

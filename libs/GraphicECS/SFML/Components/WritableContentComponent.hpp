@@ -12,12 +12,12 @@ namespace graphicECS::SFML::Components
 {
     /// @brief This component class stores the content of a writable component
     class WritableContent : public ecs::Component {
-
+      public:
         /// @brief A string containing all the typed content
-        std::string content(400, '\0');
+        std::string content;
 
         /// @brief Default constructor of WritableContentComponent.
-        WritableContent() = default;
+        inline WritableContent() { content = std::string(400, '\0'); };
 
         /// @brief Destroy the Writable Content object
         ~WritableContent() = default;

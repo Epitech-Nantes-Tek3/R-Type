@@ -38,6 +38,7 @@
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/ButtonActionMap.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/MenuStates.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateButton.hpp"
+#include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateWritable.hpp"
 #include "R-TypeLogic/Global/Components/LayerLvL.hpp"
 #include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
@@ -441,6 +442,7 @@ void ClientRoom::_initEntities()
     }
     _initBackgroundEntities();
     _initButtons();
+    _initWritable();
 }
 
 void ClientRoom::_initButtons()
@@ -455,4 +457,9 @@ void ClientRoom::_initButtons()
         MenuStates::GAME_PAUSED);
     createNewButton(
         *(_worldInstance.get()), 909, 500, 102, 102, ButtonActionMap::EXIT, LayerLvL::BUTTON, MenuStates::GAME_PAUSED);
+}
+
+void ClientRoom::_initWritable()
+{
+    createNewWritable(*(_worldInstance.get()), 1700, 900, 200, 50, MenuStates::IN_GAME);
 }
