@@ -14,7 +14,7 @@ set(SRC
     ${SRC_GRAPHIC_SYSTEM}
 )
 
-add_library(${TARGET}  ${SRC})
+add_library(${TARGET} SHARED ${SRC})
 
 target_include_directories(${TARGET}
     PRIVATE ${CONAN_INCLUDE_DIRS_SFML}
