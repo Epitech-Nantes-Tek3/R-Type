@@ -52,7 +52,7 @@ namespace ecs
     std::size_t createNewEnemy(World &world, const int posX, const int posY, const double multiplierAbscissa,
         const double multiplierOrdinate, const short weight, const int sizeX, const int sizeY,
         const unsigned short life, const unsigned short damage, const unsigned short damageRadius,
-        Enemy::type_e type = Enemy::BASIC, const std::string uuid = "", const unsigned short networkId = 0);
+        unsigned short type, const std::string uuid = "", const unsigned short networkId = 0);
 
     /// @brief This function creates a new Enemy Entity with random position and with these parameters
     /// @param world The world in which the Enemy must be created
@@ -70,7 +70,7 @@ namespace ecs
     /// @return Id of the new Enemy in std::size_t
     std::size_t createNewEnemyRandom(World &world, const double multiplierAbscissa, const double multiplierOrdinate,
         const short weight, const int sizeX, const int sizeY, const unsigned short life, const unsigned short damage,
-        const unsigned short damageRadius, Enemy::type_e type = Enemy::BASIC, const std::string uuid = "",
+        const unsigned short damageRadius, unsigned short type, const std::string uuid = "",
         const unsigned short networkId = 0);
 } // namespace ecs
 #endif /* !CREATEENEMY_HPP_ */

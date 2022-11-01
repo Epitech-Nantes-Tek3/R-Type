@@ -162,7 +162,7 @@ void *Transisthor::transitEcsDataToNetworkDataEntityEnemy(unsigned short id, int
     for (auto it : destination) {
         temporaryClient = getClientByHisId(it);
         transisthor_lib::sendDataToAClientWithoutCommunicator(_communicator, temporaryClient, networkObject,
-            (sizeof(unsigned short) * 4 + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2
+            (sizeof(unsigned short) * 5 + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2
                 + sizeof(char) * uuid.size()),
             31);
     }
@@ -442,7 +442,7 @@ void Transisthor::entityConvertEnemyType(unsigned short id, void *byteCode)
     short life = 0;
     unsigned short damage = 0;
     unsigned short damageRadius = 0;
-    Enemy::type_e enemyType;
+    unsigned short enemyType = 0;
     char *uuid =
         (char *)byteCode + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2 + sizeof(unsigned short) * 3;
 
@@ -460,7 +460,7 @@ void Transisthor::entityConvertEnemyType(unsigned short id, void *byteCode)
     std::memcpy(&damageRadius,
         (void *)((char *)byteCode + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2 + sizeof(unsigned short)),
         sizeof(unsigned short));
-    std::memcpy(&enemyType, (void *)((char *)byteCode + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2 + 2 * sizeof(unsigned short)),
+    std::memcpy(&enemyType, (void *)((char *)byteCode + sizeof(int) * 4 + sizeof(double) * 2 + sizeof(short) * 2 + sizeof(unsigned short) * 2),
         sizeof(unsigned short));
 
     std::string uuidStr(uuid);
@@ -471,7 +471,7 @@ void Transisthor::entityConvertEnemyType(unsigned short id, void *byteCode)
             damage, damageRadius, enemyType, "", generator.generateNewNetworkableId());
     } else {
         ecs::Entity &entity = _ecsWorld.getEntity(createNewEnemy(_ecsWorld, posX, posY, multiplierAbscissa,
-            multiplierOrdinate, weight, sizeX, sizeY, life, damage, damageRadius));
+            multiplierOrdinate, weight, sizeX, sizeY, life, damage, damageRadius, enemyType));
         auto guard = std::lock_guard(entity);
         entity.addComponent<Networkable>(id);
     }
