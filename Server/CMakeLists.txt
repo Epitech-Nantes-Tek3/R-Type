@@ -1,5 +1,3 @@
-add_subdirectory(Room)
-
 set(SRC_ROOT ${PROJECT_SOURCE_DIR}/Server)
 set(INC_ROOT ${PROJECT_SOURCE_DIR}/Server)
 
@@ -7,10 +5,10 @@ set(TARGET_SERVER r-type_server)
 
 set(SRC_SERVER
     ${SRC_ROOT}/main.cpp
+    ${SRC_ROOT}/RoomInstance.cpp
+    ${INC_ROOT}/RoomInstance.hpp
     ${SRC_ROOT}/Server.cpp
     ${INC_ROOT}/Server.hpp
-    ${SRC_ROOT}/Room/Room.cpp
-    ${INC_ROOT}/Room/Room.hpp
 )
 
 add_executable(${TARGET_SERVER} ${SRC_SERVER})

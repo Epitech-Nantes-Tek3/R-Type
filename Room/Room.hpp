@@ -20,7 +20,7 @@ using namespace communicator_lib;
 using namespace ecs;
 using namespace transisthor_lib;
 
-namespace server_data
+namespace serverData
 {
     /// @brief Place where the game run (Like a lobby). Hold all libraries instance.
     class Room {
@@ -135,6 +135,6 @@ namespace server_data
     /// @return true If the room have the good name
     /// @return false If the room haven't the good name
     inline bool operator==(const Room &left, const std::string &right) { return ((left.getRoomName() == right)); }
-} // namespace server_data
+} // namespace serverData
 
 #endif /* !ROOM_HPP_ */

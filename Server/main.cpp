@@ -9,7 +9,7 @@
 #include "ArgumentHandler/ArgumentHandler.hpp"
 #include "Server.hpp"
 
-using namespace server_data;
+using namespace serverData;
 using namespace argument_handler;
 
 int main(int ac, char **av)
@@ -18,8 +18,6 @@ int main(int ac, char **av)
     ArgumentHandler::ServerInformation serverInformation = argumentHandler.extractServerInformation();
     Server server = Server(serverInformation.address, serverInformation.port);
 
-    server.createANewRoom("SleepLucas");
-    server.createANewRoom("GetUpLucas");
     server.startHubLoop();
     return 0;
 }
