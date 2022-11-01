@@ -17,12 +17,12 @@ Test(MusicComponent, create_music_undefined)
 {
     MusicComponent music;
 
-    cr_assert_eq(0, music.musicName);
+    cr_assert_eq(0, music.music_e);
 }
 
 Test(MusicComponent, create_music_shoot)
 {
     MusicComponent music(MusicResource::COMBATTHEME);
 
-    cr_assert_eq(MusicResource::COMBATTHEME, music.musicName);
+    cr_assert_eq(MusicResource::COMBATTHEME, music.music_e);
 }

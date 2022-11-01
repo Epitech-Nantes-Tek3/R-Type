@@ -22,15 +22,15 @@ namespace graphicECS::SFML::Components
         /// Status STOPED specify that a music is STOP but at it's begin
         enum status_e { STOPED, PAUSED, PLAYING };
 
-        /// @brief The music name stores an enum to find which music it needs in MusicResources shared resource
-        MusicResource::music_e musicName;
+        /// @brief The music stores an enum to find which music it needs in MusicResources shared resource
+        MusicResource::music_e music_e;
 
         /// @brief Constructor of the MusicComponent component
-        /// @param newMusicComponent The value to set in the musicName, corresponding
+        /// @param newMusicComponent The value to set in the music_e, corresponding
         /// on the sf::Music load in shared resource Music.
         MusicComponent(
             MusicResource::music_e newMusicComponent = MusicResource::UNDEFINED, status_e status = status_e::STOPED)
-            : musicName(newMusicComponent), _status(status){};
+            : music_e(newMusicComponent), _status(status){};
 
         /// @brief Default destructor of MusicComponent component.
         ~MusicComponent() = default;

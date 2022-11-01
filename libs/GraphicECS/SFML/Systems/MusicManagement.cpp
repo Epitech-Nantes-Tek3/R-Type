@@ -19,19 +19,18 @@ namespace graphicECS::SFML::Systems
             MusicComponent music = entityPtr.get()->getComponent<MusicComponent>();
 
             if (music._status == MusicComponent::STOPED
-                && world.getResource<MusicResource>()._musicsList.at(music.musicName)->getStatus()
+                && world.getResource<MusicResource>()._musicsList.at(music.music_e)->getStatus()
                     != sf::Music::Stopped) {
-                world.getResource<MusicResource>()._musicsList.at(music.musicName)->stop();
+                world.getResource<MusicResource>()._musicsList.at(music.music_e)->stop();
             }
             if (music._status == MusicComponent::PAUSED
-                && world.getResource<MusicResource>()._musicsList.at(music.musicName)->getStatus()
-                    != sf::Music::Paused) {
-                world.getResource<MusicResource>()._musicsList.at(music.musicName)->pause();
+                && world.getResource<MusicResource>()._musicsList.at(music.music_e)->getStatus() != sf::Music::Paused) {
+                world.getResource<MusicResource>()._musicsList.at(music.music_e)->pause();
             }
             if (music._status == MusicComponent::PLAYING
-                && world.getResource<MusicResource>()._musicsList.at(music.musicName)->getStatus()
+                && world.getResource<MusicResource>()._musicsList.at(music.music_e)->getStatus()
                     != sf::Music::Playing) {
-                world.getResource<MusicResource>()._musicsList.at(music.musicName)->play();
+                world.getResource<MusicResource>()._musicsList.at(music.music_e)->play();
             }
         };
         std::for_each(joined.begin(), joined.end(), stopMusic);
