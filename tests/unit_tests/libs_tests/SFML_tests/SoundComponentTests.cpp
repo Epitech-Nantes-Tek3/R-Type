@@ -17,12 +17,12 @@ Test(SoundComponent, create_sound_undefined)
 {
     SoundComponent sound;
 
-    cr_assert_eq(0, sound.soundName);
+    cr_assert_eq(0, sound.sound_e);
 }
 
 Test(SoundComponent, create_sound_shoot)
 {
     SoundComponent sound(SoundResource::SHOOT);
 
-    cr_assert_eq(SoundResource::SHOOT, sound.soundName);
+    cr_assert_eq(SoundResource::SHOOT, sound.sound_e);
 }

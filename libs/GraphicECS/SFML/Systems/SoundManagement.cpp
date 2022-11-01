@@ -20,7 +20,7 @@ namespace graphicECS::SFML::Systems
             SoundComponent soundComponent = entityPtr.get()->getComponent<SoundComponent>();
             sf::Sound sound;
 
-            sound.setBuffer(*world.getResource<SoundResource>()._soundsList.at(soundComponent.soundName));
+            sound.setBuffer(*world.getResource<SoundResource>()._soundsList.at(soundComponent.sound_e));
 
             if (soundComponent._status == SoundComponent::STOPED && sound.getStatus() != sf::Sound::Stopped) {
                 sound.stop();

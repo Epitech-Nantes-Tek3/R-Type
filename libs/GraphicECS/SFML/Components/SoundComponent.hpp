@@ -23,15 +23,15 @@ namespace graphicECS::SFML::Components
         /// Status STOPED specify that a sound is STOP but at it's begin
         enum status_e { STOPED, PAUSED, PLAYING };
 
-        /// @brief The sound name stores an enum to find which sound it needs in SoundResources shared resource
-        SoundResource::sound_e soundName;
+        /// @brief The sound stores an enum to find which sound it needs in SoundResources shared resource
+        SoundResource::sound_e sound_e;
 
         /// @brief Constructor of the SoundComponent component
-        /// @param newSoundComponent The value to set in the soundName, corresponding
+        /// @param newSoundComponent The value to set in the sound_e, corresponding
         /// on the sf::Sound load in shared resource Sound.
         SoundComponent(
             SoundResource::sound_e newSoundComponent = SoundResource::UNDEFINED, status_e status = status_e::STOPED)
-            : soundName(newSoundComponent), _status(status){};
+            : sound_e(newSoundComponent), _status(status){};
 
         /// @brief Default destructor of SoundComponent component.
         ~SoundComponent() = default;
