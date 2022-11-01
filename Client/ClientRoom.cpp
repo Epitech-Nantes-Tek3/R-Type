@@ -37,6 +37,7 @@
 #include "Transisthor/TransisthorECSLogic/Client/Systems/SendToServer.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/ButtonActionMap.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/MenuStates.hpp"
+#include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/GameStates.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateButton.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateWritable.hpp"
 #include "R-TypeLogic/Global/Components/LayerLvL.hpp"
@@ -330,6 +331,7 @@ void ClientRoom::_initSharedResources()
     _worldInstance->addResource<RenderWindowResource>();
     _worldInstance->addResource<GraphicsFontResource>("assets/fonts/arial.ttf");
     _worldInstance->addResource<MenuStates>(MenuStates::IN_GAME);
+    _worldInstance->addResource<GameStates>(GameStates::IN_GAME);
     _initSpritesForEntities();
 }
 
