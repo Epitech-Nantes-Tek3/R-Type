@@ -449,10 +449,10 @@ void ClientRoom::_initEntities()
 
 void ClientRoom::_initButtons()
 {
-    _worldInstance->addResource<ButtonActionMap>(ButtonActionMap::EXIT, std::function<void(World &)>(exitWindow));
+    _worldInstance->addResource<ButtonActionMap>(ButtonActionMap::EXIT, std::function<void(World &, Entity &)>(exitWindow));
     ButtonActionMap &actionsList = _worldInstance->getResource<ButtonActionMap>();
-    actionsList.addAction(ButtonActionMap::RESUME, std::function<void(World &)>(resumeGame));
-    actionsList.addAction(ButtonActionMap::PAUSE, std::function<void(World &)>(pauseGame));
+    actionsList.addAction(ButtonActionMap::RESUME, std::function<void(World &, Entity &)>(resumeGame));
+    actionsList.addAction(ButtonActionMap::PAUSE, std::function<void(World &, Entity &)>(pauseGame));
     createNewButton(
         *(_worldInstance.get()), 0, 0, 68, 68, ButtonActionMap::PAUSE, LayerLvL::BUTTON, MenuStates::IN_GAME);
     createNewButton(*(_worldInstance.get()), 909, 200, 102, 102, ButtonActionMap::RESUME, LayerLvL::BUTTON,

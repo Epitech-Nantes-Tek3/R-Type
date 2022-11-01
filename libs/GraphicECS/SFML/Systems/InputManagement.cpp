@@ -231,8 +231,8 @@ namespace graphicECS::SFML::Systems
                 ActionName &name = entityPtr.get()->getComponent<ActionName>();
                 ButtonActionMap &map = world.getResource<ButtonActionMap>();
 
-                std::function<void(World &)> fct = map.actionList.find(name.actionName)->second;
-                fct(world);
+                std::function<void(World &, Entity &)> fct = map.actionList.find(name.actionName)->second;
+                fct(world, *(entityPtr.get()));
             }
         };
         std::for_each(joined.begin(), joined.end(), clickInButton);

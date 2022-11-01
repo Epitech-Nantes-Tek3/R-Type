@@ -22,18 +22,18 @@ namespace ecs
         enum buttonAction_e { UNDEFINED, EXIT, PAUSE, RESUME };
 
         /// @brief Map's name which contains the actions
-        using ActionList = std::unordered_map<buttonAction_e, std::function<void(World &)>>;
+        using ActionList = std::unordered_map<buttonAction_e, std::function<void(World &, Entity &)>>;
 
         /// @brief Constructor of the map, calling the addAction Method
         /// PLEASE DO NOT USE THE DEFAULT CONSTRUCTOR
         /// @param action Enum of the Action
         /// @param fctPtr The fonction to be executed
-        ButtonActionMap(const buttonAction_e &action = ButtonActionMap::UNDEFINED, std::function<void(World &)> fctPtr = std::function<void(World &)>());
+        ButtonActionMap(const buttonAction_e &action = ButtonActionMap::UNDEFINED, std::function<void(World &, Entity &)> fctPtr = std::function<void(World &, Entity &)>());
 
         /// @brief Add a action to the ActionList
         /// @param action Enum of the Action
         /// @param fctPtr The fonction to be executed
-        void addAction(const buttonAction_e newAction, std::function<void(World &)> fctPtr);
+        void addAction(const buttonAction_e newAction, std::function<void(World &, Entity &)> fctPtr);
 
         /// @brief Default Constructor of the class
         ~ButtonActionMap() = default;
