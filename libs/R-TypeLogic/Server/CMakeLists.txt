@@ -10,7 +10,6 @@ if (CMAKE_COMPILER_IS_GNUCXX)
 elseif (MSVC)
    add_library(${TARGET} ${SRC_RTYPE_LOGIC_SERVER_SYSTEMS})
 else ()
-  set(COMPILER_TYPE "unknown")
   message(WARNING "Unknown compiler type, compilation may not work as expected")
 endif()
 

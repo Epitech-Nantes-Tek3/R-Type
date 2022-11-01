@@ -14,7 +14,6 @@ if (CMAKE_COMPILER_IS_GNUCXX)
 elseif (MSVC)
    add_library(${TARGET} ${SRC})
 else ()
-  set(COMPILER_TYPE "unknown")
   message(WARNING "Unknown compiler type, compilation may not work as expected")
 endif()
 
