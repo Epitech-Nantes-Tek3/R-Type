@@ -14,6 +14,7 @@
 
 namespace graphicECS::SFML::Systems
 {
+    /// @brief This System manage the status of all Sound with the Sound Component Status
     struct SoundManagement : public ecs::System {
         /// @brief The run function of this system. It will be used by the world in the function runSystems.
         /// @param world The corresponding world on which run this system.

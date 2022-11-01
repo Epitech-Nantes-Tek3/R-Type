@@ -20,7 +20,7 @@ namespace graphicECS::SFML::Components
     class SoundComponent : public ecs::Component {
       public:
         /// @brief Enumeration of all status available for a Sound.
-        /// Status STOPED specify that a sound is STOP but at it's begin
+        /// Status STOPED specify that a sound is STOP but at its begin
         enum status_e { STOPED, PAUSED, PLAYING };
 
         /// @brief The sound stores an enum to find which sound it needs in SoundResources shared resource

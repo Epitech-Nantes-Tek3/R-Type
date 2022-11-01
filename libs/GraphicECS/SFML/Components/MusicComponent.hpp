@@ -19,7 +19,7 @@ namespace graphicECS::SFML::Components
     class MusicComponent : public ecs::Component {
       public:
         /// @brief Enumeration of all status available for a Music.
-        /// Status STOPED specify that a music is STOP but at it's begin
+        /// Status STOPED specify that a music is STOP but at its begin
         enum status_e { STOPED, PAUSED, PLAYING };
 
         /// @brief The music stores an enum to find which music it needs in MusicResources shared resource
