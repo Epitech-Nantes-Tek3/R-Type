@@ -16,6 +16,7 @@ namespace graphicECS::SFML::Systems
         std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<MusicComponent>();
 
         auto stopMusic = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
+            auto guard = std::lock_guard(*entityPtr.get());
             MusicComponent music = entityPtr.get()->getComponent<MusicComponent>();
 
             if (music._status == MusicComponent::STOPED
