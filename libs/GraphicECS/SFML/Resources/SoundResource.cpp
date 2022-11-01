@@ -15,6 +15,5 @@ void SoundResource::addSound(const SoundResource::sound_e sound_e, const std::fi
    
     if (!buffer->loadFromFile(soundPath.string()))
         throw std::logic_error("LoadFromFile for load song buffer failed.");
-    // sound.setBuffer(buffer);
     _soundsList.emplace(sound_e, buffer);
 }
