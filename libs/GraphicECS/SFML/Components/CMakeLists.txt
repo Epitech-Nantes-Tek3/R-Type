@@ -18,5 +18,6 @@ set(SRC_GRAPHIC_COMPONENT
     ${GRAPHIC_SRC_COMPONENT_ROOT}/AnimationComponent.hpp
     ${GRAPHIC_SRC_COMPONENT_ROOT}/AnimationFrequencyComponent.hpp
     ${GRAPHIC_SRC_COMPONENT_ROOT}/IsShootingComponent.hpp
+    ${GRAPHIC_SRC_COMPONENT_ROOT}/SelectedComponent.hpp
     PARENT_SCOPE
 )
