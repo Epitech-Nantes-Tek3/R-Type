@@ -36,7 +36,8 @@ namespace graphicECS::SFML::Systems
         /// @brief Update entities which have a LayerLvL component set to PLAYER.
         /// @param layerType The layer type of the entity.
         /// @param entityPtr The entity to udpate.
-        void _updatePlayer(LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr);
+        /// @param newFont font used to display the player name
+        void _updatePlayer(LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr, const sf::Font &newFont);
 
         /// @brief Update entities which have a LayerLvL component set to ENEMY.
         /// @param layerType The layer type of the entity.

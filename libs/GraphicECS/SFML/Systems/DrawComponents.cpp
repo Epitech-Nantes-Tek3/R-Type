@@ -19,6 +19,7 @@
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/Components/DisplayState.hpp"
 #include "R-TypeLogic/Global/Components/AlliedProjectileComponent.hpp"
 #include "R-TypeLogic/Global/Components/EnemyProjectileComponent.hpp"
+#include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
 #include "R-TypeLogic/Global/Components/SizeComponent.hpp"
 
@@ -54,9 +55,12 @@ void DrawComponents::addButtonText(std::shared_ptr<Entity> buttonPtr, const sf::
     }
 }
 
-void DrawComponents::_updatePlayer(LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr)
+void DrawComponents::_updatePlayer(LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr, const sf::Font &newFont)
 {
     if (layerType.layer == LayerLvL::layer_e::PLAYER) {
+        Position &pos = entityPtr->getComponent<Position>();
+        Size &size = entityPtr->getComponent<Size>();
+
         entityPtr->addComponent<AnimationComponent>();
         entityPtr->addComponent<AnimationFrequencyComponent>(0.05);
         entityPtr->getComponent<AnimationComponent>().currentTexturePos = 0;
@@ -68,6 +72,9 @@ void DrawComponents::_updatePlayer(LayerLvL &layerType, std::shared_ptr<ecs::Ent
         entityPtr->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_6);
         entityPtr->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_7);
         entityPtr->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_8);
+        if (entityPtr->contains<Player>())
+            entityPtr->addComponent<GraphicsTextComponent>(
+                newFont, entityPtr->getComponent<Player>().name, pos.x + size.x * 0.5, pos.y, size.x * 0.2);
     }
 }
 
@@ -107,7 +114,7 @@ void DrawComponents::_updateEntities(World &world, std::shared_ptr<ecs::Entity> 
         auto entitySize = entityPtr->getComponent<Size>();
 
         entityPtr->addComponent<GraphicsRectangleComponent>(entityPos.x, entityPos.y, entitySize.x, entitySize.y);
-        _updatePlayer(layerType, entityPtr);
+        _updatePlayer(layerType, entityPtr, world.getResource<GraphicsFontResource>().font);
         _updateEnemy(layerType, entityPtr);
         _udpateProjectile(layerType, entityPtr);
         _updateButton(world, layerType, entityPtr);
@@ -152,7 +159,10 @@ void DrawComponents::_drawText(World &world, std::shared_ptr<ecs::Entity> entity
     graphicECS::SFML::Resources::RenderWindowResource &windowResource)
 {
     if (entityPtr->contains<GraphicsTextComponent>()) {
-        if (world.getResource<MenuStates>().currentState == entityPtr->getComponent<DisplayState>().displayState) {
+        if (entityPtr->contains<DisplayState>() && world.getResource<MenuStates>().currentState == entityPtr->getComponent<DisplayState>().displayState) {
+            windowResource.window.draw(entityPtr->getComponent<GraphicsTextComponent>().text);
+        }
+        if (entityPtr->contains<Player>()) {
             windowResource.window.draw(entityPtr->getComponent<GraphicsTextComponent>().text);
         }
     }
