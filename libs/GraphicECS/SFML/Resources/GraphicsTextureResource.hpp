@@ -44,6 +44,7 @@ namespace graphicECS::SFML::Resources
             PROJECTILE_ALLY,
             PROJECTILE_ENEMY,
             BUTTON,
+            WRITABLE,
             NATURAL_PROJECTILE
         };
 

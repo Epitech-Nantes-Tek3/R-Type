@@ -317,6 +317,8 @@ void ClientRoom::_initSpritesForEntities()
         sf::Vector2f(0, 0), sf::Vector2f(1920, 1080));
     spritesList.addTexture(GraphicsTextureResource::BUTTON, "assets/EpiSprite/r-typesheet11.gif", sf::Vector2f(34, 0),
         sf::Vector2f(34, 34));
+    spritesList.addTexture(GraphicsTextureResource::WRITABLE, "assets/EpiSprite/r-typesheet11.gif", sf::Vector2f(34, 0),
+        sf::Vector2f(34, 34));
 }
 
 void ClientRoom::_initSharedResources()
@@ -461,5 +463,5 @@ void ClientRoom::_initButtons()
 
 void ClientRoom::_initWritable()
 {
-    createNewWritable(*(_worldInstance.get()), 1700, 900, 200, 50, MenuStates::IN_GAME);
+    createNewWritable(*(_worldInstance.get()), 1450, 900, 350, 50, MenuStates::IN_GAME);
 }

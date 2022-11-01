@@ -24,7 +24,7 @@ namespace ecs
         entity.addComponent<Button>()
             .addComponent<Size>(sizeX, sizeY)
             .addComponent<Position>(posX, posY)
-            .addComponent<LayerLvL>(LayerLvL::BUTTON)
+            .addComponent<LayerLvL>(LayerLvL::WRITABLE)
             .addComponent<ActionName>(ButtonActionMap::PAUSE)
             .addComponent<DisplayState>(state)
             .addComponent<graphicECS::SFML::Components::WritableContent>();
