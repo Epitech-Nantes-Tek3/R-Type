@@ -15,6 +15,7 @@
 #include "AllowMouseAndKeyboardComponent.hpp"
 #include "ControllerButtonInputComponent.hpp"
 #include "ControllerJoystickInputComponent.hpp"
+#include "IsShootingComponent.hpp"
 #include "KeyboardInputComponent.hpp"
 #include "MouseInputComponent.hpp"
 #include "World/World.hpp"
@@ -24,7 +25,6 @@
 #include "R-TypeLogic/Global/Components/ButtonComponent.hpp"
 #include "R-TypeLogic/Global/Components/ShootingFrequencyComponent.hpp"
 #include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
-#include "IsShootingComponent.hpp"
 
 using namespace graphicECS::SFML::Resources;
 using namespace graphicECS::SFML::Components;
@@ -110,10 +110,8 @@ namespace graphicECS::SFML::Systems
             std::queue<std::pair<ActionQueueComponent::inputAction_e, float>> newActions;
 
             while (actions.size() > 0) {
-                std::cout << "debug3 start" << std::endl;
                 MenuStates &menuState = world.getResource<MenuStates>();
                 MenuStates::menuState_e currState = menuState.currentState;
-                std::cout << "debug3 after lock" << std::endl;
 
                 if (currState == MenuStates::IN_GAME) {
                     if (actions.front().first == ActionQueueComponent::MOVEY)
@@ -126,12 +124,10 @@ namespace graphicECS::SFML::Systems
                 if (actions.front().first == ActionQueueComponent::BUTTON_CLICK) {
                     clickHandle(world, actions.front().second);
                 }
-                std::cout << "debug3 pop" << std::endl;
                 {
                     auto entity_guard = std::lock_guard(*entityPtr.get());
                     actions.pop();
                 }
-                std::cout << "debug3 end" << std::endl;
             }
         }
         shoot(world);
@@ -145,7 +141,6 @@ namespace graphicECS::SFML::Systems
             return;
         auto shoot = [&world](std::shared_ptr<Entity> entityPtr) {
             if (entityPtr->contains<IsShootingComponent>()) {
-                std::cout << "debug2" << std::endl;
                 ShootingFrequency &freq = entityPtr.get()->getComponent<ShootingFrequency>();
                 const char hex_char[] = "0123456789ABCDEF";
                 RandomDevice &random = world.getResource<RandomDevice>();
@@ -169,13 +164,11 @@ namespace graphicECS::SFML::Systems
 
     void InputManagement::movePlayerX(World &world, float move)
     {
-        std::cout << "debug4 start" << std::endl;
         std::vector<std::shared_ptr<Entity>> player = world.joinEntities<Controlable>();
         double moveD = double(move);
 
         if (player.empty())
             return;
-        std::cout << "debug4 update" << std::endl;
         auto moveX = [moveD](std::shared_ptr<Entity> entityPtr) {
             auto guard = std::lock_guard(*entityPtr.get());
             entityPtr->getComponent<Velocity>().multiplierAbscissa = moveD;
@@ -183,18 +176,15 @@ namespace graphicECS::SFML::Systems
             entityPtr->getComponent<Position>().modified = true;
         };
         std::for_each(player.begin(), player.end(), moveX);
-        std::cout << "debug4 end" << std::endl;
     }
 
     void InputManagement::movePlayerY(World &world, float move)
     {
-        std::cout << "debug4 start" << std::endl;
         std::vector<std::shared_ptr<Entity>> player = world.joinEntities<Controlable>();
         double moveD = double(move);
 
         if (player.empty())
             return;
-        std::cout << "debug4 update" << std::endl;
         auto moveY = [moveD](std::shared_ptr<Entity> entityPtr) {
             auto guard = std::lock_guard(*entityPtr.get());
             entityPtr->getComponent<Velocity>().multiplierOrdinate = moveD;
@@ -202,7 +192,6 @@ namespace graphicECS::SFML::Systems
             entityPtr->getComponent<Position>().modified = true;
         };
         std::for_each(player.begin(), player.end(), moveY);
-        std::cout << "debug4 end" << std::endl;
     }
 
     void InputManagement::shootAction(World &world, float action)
@@ -212,11 +201,10 @@ namespace graphicECS::SFML::Systems
         if (player.empty())
             return;
         for (std::shared_ptr<ecs::Entity> p : player) {
-            std::cout << "debug1" << std::endl;
             if (action > 1 && !(p->contains<IsShootingComponent>())) {
                 std::lock_guard(*p.get());
                 p->addComponent<IsShootingComponent>();
-            } else if ( action < 1 && p->contains<IsShootingComponent>()) {
+            } else if (action < 1 && p->contains<IsShootingComponent>()) {
                 std::lock_guard(*p.get());
                 p->removeComponent<IsShootingComponent>();
             }
