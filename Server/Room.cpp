@@ -209,7 +209,7 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
     std::size_t playerId = createNewPlayer(*_worldInstance.get(), 20, 500, 0, 0, 1, 102, 102, 100, 10, 4, false,
         _remainingPlaces + 1, playerNameStr, "", generator.generateNewNetworkableId());
     std::size_t enemyId = createNewEnemyRandom(
-        *_worldInstance.get(), 0, 0, 1, 85, 85, 50, 10, 5, "", generator.generateNewNetworkableId());
+        *_worldInstance.get(), 0, 0, 1, 85, 85, 50, 10, 5, Enemy::BASIC, "", generator.generateNewNetworkableId());
     std::vector<std::shared_ptr<ecs::Entity>> clients = _worldInstance.get()->joinEntities<ecs::NetworkClient>();
     std::vector<unsigned short> clientIdList;
     auto addToClientList = [&clientIdList](std::shared_ptr<ecs::Entity> entityPtr) {
@@ -265,8 +265,8 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
             std::free(_worldInstance.get()->getTransisthorBridge()->transitEcsDataToNetworkDataEntityEnemy(
                 entityPtr->getComponent<Networkable>().id, pos.x, pos.y, vel.multiplierAbscissa, vel.multiplierOrdinate,
                 entityPtr->getComponent<Weight>().weight, size.x, size.y, entityPtr->getComponent<Life>().lifePoint,
-                entityPtr->getComponent<Damage>().damagePoint, entityPtr->getComponent<DamageRadius>().radius, "",
-                {connexionDemand.message.clientInfo.getId()}));
+                entityPtr->getComponent<Damage>().damagePoint, entityPtr->getComponent<DamageRadius>().radius,
+                entityPtr->getComponent<Enemy>().enemyType, "", {connexionDemand.message.clientInfo.getId()}));
         }
     }
     for (std::shared_ptr<Entity> entityPtr : obstacles) {

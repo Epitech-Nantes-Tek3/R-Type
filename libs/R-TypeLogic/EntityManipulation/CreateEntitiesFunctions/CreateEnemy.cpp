@@ -13,7 +13,7 @@ namespace ecs
     std::size_t createNewEnemy(World &world, const int posX, const int posY, const double multiplierAbscissa,
         const double multiplierOrdinate, const short weight, const int sizeX, const int sizeY,
         const unsigned short life, const unsigned short damage, const unsigned short damageRadius,
-        const std::string uuid, const unsigned short networkId)
+        Enemy::type_e type, const std::string uuid, const unsigned short networkId)
     {
         Entity &entity = world.addEntity();
         auto guard = std::lock_guard(entity);
@@ -25,7 +25,7 @@ namespace ecs
             .addComponent<DamageRadius>(damageRadius)
             .addComponent<Collidable>()
             .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate)
-            .addComponent<Enemy>();
+            .addComponent<Enemy>(type);
 
         if (networkId) {
             // Case : Creation in a server instance
@@ -49,7 +49,7 @@ namespace ecs
 
     std::size_t createNewEnemyRandom(World &world, const double multiplierAbscissa, const double multiplierOrdinate,
         const short weight, const int sizeX, const int sizeY, const unsigned short life, const unsigned short damage,
-        const unsigned short damageRadius, const std::string uuid, const unsigned short networkId)
+        const unsigned short damageRadius, Enemy::type_e type, const std::string uuid, const unsigned short networkId)
     {
         RandomDevice &random = world.getResource<RandomDevice>();
         random.lock();
@@ -57,6 +57,6 @@ namespace ecs
         int posY = random.randInt(MINIMUM_HEIGTH, MAXIMUM_HEIGTH);
         random.unlock();
         return createNewEnemy(world, posX, posY, multiplierAbscissa, multiplierOrdinate, weight, sizeX, sizeY, life,
-            damage, damageRadius, uuid, networkId);
+            damage, damageRadius, type, uuid, networkId);
     }
 } // namespace ecs
