@@ -9,6 +9,7 @@
 #include <mutex>
 #include "R-TypeLogic/Global/Components/DestinationComponent.hpp"
 #include "R-TypeLogic/Global/Components/EnemyComponent.hpp"
+#include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
 #include "R-TypeLogic/Global/Components/VelocityComponent.hpp"
 #include "R-TypeLogic/Global/SharedResources/Random.hpp"
@@ -25,6 +26,8 @@ using namespace ecs;
 /// @param enemy the enemy who's going to randomly move
 static void basicEnemyPatterns(World &world, std::shared_ptr<Entity> enemy)
 {
+    auto guard = std::lock_guard(*enemy.get());
+
     Position &pos = enemy.get()->getComponent<Position>();
     Velocity &vel = enemy.get()->getComponent<Velocity>();
     Destination &dest = enemy.get()->getComponent<Destination>();
@@ -50,9 +53,29 @@ static void basicEnemyPatterns(World &world, std::shared_ptr<Entity> enemy)
 /// @param enemy the enemy who's going to target the player
 static void fireEnemyPatterns(World &world, std::shared_ptr<Entity> enemy)
 {
-    (void)world;
-    (void)enemy;
-    /// Make him follow the player
+    std::vector<std::shared_ptr<Entity>> players = world.joinEntities<Player>();
+    auto guard = std::lock_guard(*enemy.get());
+    Velocity &vel = enemy.get()->getComponent<Velocity>();
+    Destination &dest = enemy.get()->getComponent<Destination>();
+
+    if (players.empty()) {
+        basicEnemyPatterns(world, enemy);
+        return;
+    }
+    auto playerGuard = std::lock_guard(*players.at(0).get());
+    Position &playerPos = players.at(0)->getComponent<Position>();
+    Position &enemyPos = enemy->getComponent<Position>();
+
+    if (playerPos.x - 20 <= dest.x && dest.x <= playerPos.x + 20)
+        return;
+
+    dest.x = playerPos.x;
+    dest.y = playerPos.y;
+    dest.modified = true;
+
+    vel.multiplierAbscissa = (dest.x - enemyPos.x) / 20;
+    vel.multiplierOrdinate = (dest.y - enemyPos.y) / 20;
+    vel.modified = true;
 }
 
 /// @brief Apply the electric Pattern (flash shape) to the enemy
@@ -76,6 +99,8 @@ static void iceEnemyPatterns(std::shared_ptr<Entity> enemy)
 /// @return true if the velocity hasn't been set before, false otherwise
 static bool firstVelocityNotSet(std::shared_ptr<Entity> enemy)
 {
+    auto guard = std::lock_guard(*enemy.get());
+
     Position &pos = enemy.get()->getComponent<Position>();
     Velocity &vel = enemy.get()->getComponent<Velocity>();
     Destination &dest = enemy.get()->getComponent<Destination>();
@@ -95,12 +120,14 @@ void EnemiesPatterns::run(World &world)
     std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Enemy, Position, Velocity, Destination>();
 
     auto applyPatterns = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
-        auto guard = std::lock_guard(*entityPtr.get());
-
+        unsigned short enemyType;
+        {
+            auto guard = std::lock_guard(*entityPtr.get());
+            enemyType = entityPtr.get()->getComponent<Enemy>().enemyType;
+        };
         if (firstVelocityNotSet(entityPtr))
             return;
-
-        switch (entityPtr.get()->getComponent<Enemy>().enemyType) {
+        switch (enemyType) {
             case Enemy::FIRE: fireEnemyPatterns(world, entityPtr); break;
             case Enemy::ELECTRIC: electricEnemyPatterns(entityPtr); break;
             case Enemy::ICE: iceEnemyPatterns(entityPtr); break;
