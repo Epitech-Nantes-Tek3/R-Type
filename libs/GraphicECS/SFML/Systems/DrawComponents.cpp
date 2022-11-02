@@ -82,7 +82,7 @@ void DrawComponents::_updatePlayer(LayerLvL &layerType, std::shared_ptr<ecs::Ent
 void DrawComponents::_updateEnemy(LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr)
 {
     if (layerType.layer == LayerLvL::layer_e::ENEMY)
-        entityPtr->addComponent<TextureName>(GraphicsTextureResource::ENEMY_STATIC);
+        entityPtr->addComponent<TextureName>(GraphicsTextureResource::BASIC_ENEMY);
 }
 
 void DrawComponents::_udpateProjectile(LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr)

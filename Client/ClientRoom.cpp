@@ -324,15 +324,26 @@ void ClientRoom::_initSpritesForBackgrounds(GraphicsTextureResource &spritesList
         sf::Vector2f(0, 0), sf::Vector2f(1920, 1080));
 }
 
+void ClientRoom::_initSpriteForEnemies(GraphicsTextureResource &spritesList)
+{
+    spritesList.addTexture(GraphicsTextureResource::FIRE_ENEMY,
+        "assets/EpiSprite/FireEnemySpriteSheet.gif", sf::Vector2f(0, 0), sf::Vector2f(34, 34));
+    spritesList.addTexture(GraphicsTextureResource::ELECTRIC_ENEMY,
+        "assets/EpiSprite/ElectricEnemySpriteSheet.gif", sf::Vector2f(0, 0), sf::Vector2f(34, 34));
+    spritesList.addTexture(GraphicsTextureResource::ICE_ENEMY,
+        "assets/EpiSprite/IceEnemySpriteSheet.gif", sf::Vector2f(0, 0), sf::Vector2f(34, 34));
+}
+
 void ClientRoom::_initSpritesForEntities()
 {
-    _worldInstance->addResource<GraphicsTextureResource>(GraphicsTextureResource::ENEMY_STATIC,
+    _worldInstance->addResource<GraphicsTextureResource>(GraphicsTextureResource::BASIC_ENEMY,
         "assets/EpiSprite/BasicEnemySpriteSheet.gif", sf::Vector2f(0, 0), sf::Vector2f(34, 34));
     GraphicsTextureResource &spritesList = _worldInstance->getResource<GraphicsTextureResource>();
     auto guard = std::lock_guard(spritesList);
 
     spritesList.addTexture(GraphicsTextureResource::BUTTON, "assets/EpiSprite/r-typesheet11.gif", sf::Vector2f(34, 0),
         sf::Vector2f(34, 34));
+    _initSpriteForEnemies(spritesList);
     _initSpritesForPlayer(spritesList);
     _initSpritesForProjectiles(spritesList);
     _initSpritesForBackgrounds(spritesList);
