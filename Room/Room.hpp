@@ -11,6 +11,7 @@
 #define ROOM_HPP_
 
 #include <memory>
+#include <pthread.h>
 #include "Communicator/Client.hpp"
 #include "Communicator/Communicator.hpp"
 #include "Transisthor/Transisthor.hpp"
@@ -38,7 +39,7 @@ namespace serverData
         Room(unsigned short id, std::string name, Client networkInformations);
 
         /// @brief Destroy the Room object
-        ~Room() = default;
+        inline ~Room() { _inputHandler.join(); };
 
         /// @brief Get the room id
         /// @return The room id
@@ -80,9 +81,14 @@ namespace serverData
         /// @brief Number of remaining places inside the room
         unsigned short _remainingPlaces;
 
+        /// @brief The thread used to read and manage interprocess communication
+        std::thread _inputHandler;
+
+        void _manageInterprocessCommunication();
+
         /// @brief Trait a disconnection request. Identify the player and add to it a disconnection component
         /// @param communicatorMessage actual message data
-        void _holdADisconnectionRequest(CommunicatorMessage disconectionDemand);
+        void _holdADisconnectionRequest(CommunicatorMessage disconnectionDemand);
 
         /// @brief Send to the server the disconnection signal
         void _disconectionProcess();
