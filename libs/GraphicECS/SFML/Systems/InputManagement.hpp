@@ -9,12 +9,12 @@
 #define INPUTMANAGEMENT_HPP_
 
 #include <SFML/Graphics.hpp>
+#include "GraphicECS/SFML/Resources/RenderWindowResource.hpp"
 #include "System/System.hpp"
 #include "World/World.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateAlliedProjectile.hpp"
 #include "R-TypeLogic/Global/Components/ControlableComponent.hpp"
 #include "R-TypeLogic/Global/Components/VelocityComponent.hpp"
-#include "GraphicECS/SFML/Resources/RenderWindowResource.hpp"
 
 namespace graphicECS::SFML::Systems
 {
@@ -49,6 +49,7 @@ namespace graphicECS::SFML::Systems
         /// @param action The click action
         void clickHandle(World &world, float action);
         void shoot(World &world);
+
       private:
         /// @brief This function closes the window when event type is sf::Event::Closed
         /// @param event Class event use to know SFML events
@@ -66,6 +67,12 @@ namespace graphicECS::SFML::Systems
         /// @param event Class event use to know SFML events
         /// @param Inputs Entity which contains inputs entity like mouse, keyboard and controller
         void _keyReleasedEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> &Inputs);
+
+        /// @brief This function manages text entered events. It cross all writable entity and add it the entered text
+        /// if there was selected
+        /// @param event Class event use to know SFML events
+        /// @param joined List of all selected writable entity
+        void _textEnteredEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> joined);
 
         /// @brief This function manages mouse button pressed events. It adds an action to do in a queue depending on
         /// the mouse button type.

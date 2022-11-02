@@ -13,6 +13,8 @@
 #include "ActionQueueComponent.hpp"
 #include "AllowControllerComponent.hpp"
 #include "AllowMouseAndKeyboardComponent.hpp"
+#include "SelectedComponent.hpp"
+#include "WritableContentComponent.hpp"
 #include "ControllerButtonInputComponent.hpp"
 #include "ControllerJoystickInputComponent.hpp"
 #include "IsShootingComponent.hpp"
@@ -70,6 +72,14 @@ namespace graphicECS::SFML::Systems
         }
     }
 
+    void InputManagement::_textEnteredEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> joined)
+    {
+        if (event.type == sf::Event::TextEntered) {
+            std::cerr << "Text entered : " << event.text.unicode << std::endl;
+        }
+        (void)joined;
+    }
+
     void InputManagement::_mouseEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> &Inputs)
     {
         if (event.type == sf::Event::MouseButtonPressed) {
@@ -99,9 +109,14 @@ namespace graphicECS::SFML::Systems
                 if (!windowResource.window.pollEvent(event))
                     break;
             }
+            std::vector<std::shared_ptr<Entity>> joined = world.joinEntities<WritableContent, Selected>();
             _closeWindow(event, windowResource);
-            _keyPressedEvents(event, Inputs);
-            _keyReleasedEvents(event, Inputs);
+            if (joined.empty()) {
+                _keyPressedEvents(event, Inputs);
+                _keyReleasedEvents(event, Inputs);
+            } else {
+                _textEnteredEvents(event, joined);
+            }
             _mouseEvents(event, Inputs);
         }
         for (auto &entityPtr : Inputs) {
