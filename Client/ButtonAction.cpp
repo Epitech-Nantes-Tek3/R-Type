@@ -10,8 +10,8 @@
 #include "GraphicECS/SFML/Components/SelectedComponent.hpp"
 #include "GraphicECS/SFML/Resources/RenderWindowResource.hpp"
 #include "TextureName.hpp"
-#include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/MenuStates.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/GameStates.hpp"
+#include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/MenuStates.hpp"
 
 using namespace graphicECS::SFML::Resources;
 using namespace graphicECS::SFML::Components;
