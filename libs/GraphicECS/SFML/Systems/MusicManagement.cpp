@@ -19,18 +19,18 @@ namespace graphicECS::SFML::Systems
             MusicComponent music = entityPtr.get()->getComponent<MusicComponent>();
             MusicResource &musicResource = world.getResource<MusicResource>();
 
-            if (music._status == MusicComponent::STOPED
+            if (music._status == sf::SoundSource::Status::Stopped
                 && musicResource._musicsList.at(music.music_e)->getStatus()
                     != sf::Music::Stopped) {
                 auto rguard = std::lock_guard(musicResource);
                 musicResource._musicsList.at(music.music_e)->stop();
             }
-            if (music._status == MusicComponent::PAUSED
+            if (music._status == sf::SoundSource::Status::Paused
                 && musicResource._musicsList.at(music.music_e)->getStatus() != sf::Music::Paused) {
                 auto rguard = std::lock_guard(musicResource);
                 musicResource._musicsList.at(music.music_e)->pause();
             }
-            if (music._status == MusicComponent::PLAYING
+            if (music._status == sf::SoundSource::Status::Playing
                 && musicResource._musicsList.at(music.music_e)->getStatus()
                     != sf::Music::Playing) {
                 auto rguard = std::lock_guard(musicResource);

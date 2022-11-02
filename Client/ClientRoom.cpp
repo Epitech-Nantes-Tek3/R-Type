@@ -365,8 +365,8 @@ void ClientRoom::_initBackgroundEntities()
             .addComponent<Velocity>(-300, 0)
             .addComponent<LayerLvL>(LayerLvL::layer_e::DECORATION)
             .addComponent<TextureName>(GraphicsTextureResource::BACKGROUND_LAYER_1)
-            .addComponent<MusicComponent>(MusicResource::music_e::BACKGROUNDTHEME, MusicComponent::status_e::PLAYING)
-            .addComponent<SoundComponent>(SoundResource::sound_e::SHOOT, SoundComponent::status_e::PLAYING)
+            .addComponent<MusicComponent>(MusicResource::music_e::BACKGROUNDTHEME, sf::SoundSource::Status::Playing)
+            .addComponent<SoundComponent>(SoundResource::sound_e::SHOOT, sf::SoundSource::Status::Playing)
             .getId();
 
     _worldInstance.get()->getEntity(firstID).getComponent<GraphicsRectangleComponent>().shape.setFillColor(

@@ -18,10 +18,6 @@ namespace graphicECS::SFML::Components
     /// @brief MusicComponent stores the key as enum to the corresponding music stored in shared resource MusicResource.
     class MusicComponent : public ecs::Component {
       public:
-        /// @brief Enumeration of all status available for a Music.
-        /// Status STOPED specify that a music is STOP but at its begin
-        enum status_e { STOPED, PAUSED, PLAYING };
-
         /// @brief The music stores an enum to find which music it needs in MusicResources shared resource
         MusicResource::music_e music_e;
 
@@ -29,15 +25,15 @@ namespace graphicECS::SFML::Components
         /// @param newMusicComponent The value to set in the music_e, corresponding
         /// @param status The status of the Music, STOPED by defaut
         /// on the sf::Music load in shared resource Music.
-        MusicComponent(
-            MusicResource::music_e newMusicComponent = MusicResource::UNDEFINED, status_e status = status_e::STOPED)
+        MusicComponent(MusicResource::music_e newMusicComponent = MusicResource::UNDEFINED,
+            sf::SoundSource::Status status = sf::SoundSource::Status::Stopped)
             : music_e(newMusicComponent), _status(status){};
 
         /// @brief Default destructor of MusicComponent component.
         ~MusicComponent() = default;
 
         /// @brief Status of the Music
-        status_e _status;
+        sf::SoundSource::Status _status;
     };
 } // namespace graphicECS::SFML::Components
 

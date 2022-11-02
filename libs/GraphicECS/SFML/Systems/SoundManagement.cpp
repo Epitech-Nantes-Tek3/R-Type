@@ -22,13 +22,13 @@ namespace graphicECS::SFML::Systems
 
             sound.setBuffer(*world.getResource<SoundResource>()._soundsList.at(soundComponent.sound_e));
 
-            if (soundComponent._status == SoundComponent::STOPED && sound.getStatus() != sf::Sound::Stopped) {
+            if (soundComponent._status == sf::SoundSource::Status::Stopped && sound.getStatus() != sf::Sound::Stopped) {
                 sound.stop();
             }
-            if (soundComponent._status == SoundComponent::PAUSED && sound.getStatus() != sf::Sound::Paused) {
+            if (soundComponent._status == sf::SoundSource::Status::Paused && sound.getStatus() != sf::Sound::Paused) {
                 sound.pause();
             }
-            if (soundComponent._status == SoundComponent::PLAYING && sound.getStatus() != sf::Sound::Playing) {
+            if (soundComponent._status == sf::SoundSource::Status::Playing && sound.getStatus() != sf::Sound::Playing) {
                  sound.play();
             }
         };
