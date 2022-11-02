@@ -71,7 +71,7 @@ namespace graphicECS::SFML::Systems
         /// @param Inputs Entity which contains inputs entity like mouse, keyboard and controller
         void _keyReleasedEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> &Inputs);
 
-        /// @brief This function manages text entered events. It cross all writable entity and add it the entered text
+        /// @brief This function manages text entered events. It crosses all writable entity and add it the entered text
         /// if there was selected
         /// @param event Class event use to know SFML events
         /// @param joined List of all selected writable entity
