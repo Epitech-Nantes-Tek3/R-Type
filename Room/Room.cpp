@@ -57,7 +57,7 @@ void signalCallbackHandler(int signum)
     roomState = Room::ENDED;
 }
 
-Room::Room()
+Room::Room() : _inputHandler(&Room::_manageInterprocessCommunication, this)
 {
     _id = 0;
     _networkInformations = Client();
@@ -71,7 +71,7 @@ Room::Room()
     _name = std::string(10, '\0');
 }
 
-Room::Room(unsigned short id, std::string name, Client networkInformations)
+Room::Room(unsigned short id, std::string name, Client networkInformations) : _inputHandler(&Room::_manageInterprocessCommunication, this)
 {
     _id = id;
     _networkInformations = networkInformations;
@@ -110,6 +110,8 @@ void Room::startConnexionProtocol(void) { _communicatorInstance.get()->startRece
 
 void Room::startLobbyLoop(void)
 {
+    std::cerr << "START A ROOM ERR" << std::endl;
+    std::cout << "START A ROOM OUT" << std::endl;
     CommunicatorMessage connectionOperation;
 
     std::signal(SIGINT, signalCallbackHandler);
@@ -320,5 +322,16 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
         auto guard = std::lock_guard(clock);
         clock.resetClock();
         clock.resetClock();
+    }
+}
+
+void Room::_manageInterprocessCommunication()
+{
+    std::string line;
+
+    std::cerr << "START TO LISTEN ERR" << std::endl;
+    std::cout << "START TO LISTEN OUT" << std::endl;
+    while (_state != ENDED && std::getline(std::cin, line) && !line.empty()) {
+        std::cerr << "Room " << _name << "received : \"" << line << "\"" << std::endl;
     }
 }

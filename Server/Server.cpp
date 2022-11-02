@@ -46,12 +46,10 @@ unsigned short Server::_getAFreePort(unsigned short actual)
 
 unsigned short Server::createANewRoom(std::string name)
 {
-    std::cerr << "SERVER Create a Room" << std::endl;
     std::shared_ptr<RoomInstance> ptr = std::make_shared<RoomInstance>(
         _nextRoomId, name, _networkInformations.getAddress(), _getAFreePort(_networkInformations.getPort() + 101));
     _activeRoomList.push_back(ptr);
     _nextRoomId++;
-    std::cerr << "SERVER ENd to create a Room" << std::endl;
     return (_nextRoomId - 1);
 }
 

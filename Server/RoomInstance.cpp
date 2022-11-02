@@ -27,27 +27,22 @@ namespace serverData
         _output = new boost::process::ipstream();
         _child = new boost::process::child("r-type_room", std::to_string(_id), _name, _networkInformations.getAddress(),
             std::to_string(_networkInformations.getPort()),
-            boost::process::std_in<*_input, boost::process::std_out> * _output);
+            boost::process::std_in<(*_input), boost::process::std_out>(std::string("vgcore_room_OUT_").append(_name)),
+            boost::process::std_err > (std::string("vgcore_room_ERR_").append(_name)));
     }
 
     RoomInstance::~RoomInstance()
     {
-        std::cerr << "1" << std::endl;
         if (_child) {
-            std::cerr << "1.1" << std::endl;
             if (_child->running()) {
-                std::cerr << "1.1.1" << std::endl;
                 terminate();
                 wait();
             }
             delete _child;
         }
-        std::cerr << "2" << std::endl;
         if (_input)
             delete _input;
-        std::cerr << "3" << std::endl;
         if (_output)
             delete _output;
-        std::cerr << "4" << std::endl;
     }
 } // namespace serverData

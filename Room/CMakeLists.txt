@@ -19,6 +19,6 @@ set_target_properties(${TARGET_ROOM}
 
 target_link_libraries(${TARGET_ROOM}
     ${PROJECT_NAME}_transisthor
-    ${PROJECT_NAME}_RTypeLogicServer
+    ${PROJECT_NAME}_RTypeLogicRoom
     ${PROJECT_NAME}_argumentHandler
 )
