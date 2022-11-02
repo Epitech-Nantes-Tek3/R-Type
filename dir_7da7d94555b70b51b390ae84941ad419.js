@@ -30,6 +30,9 @@ var dir_7da7d94555b70b51b390ae84941ad419 =
     [ "GraphicsTextComponent.hpp", "_graphics_text_component_8hpp.html", [
       [ "GraphicsTextComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_graphics_text_component.html", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_graphics_text_component" ]
     ] ],
+    [ "IsShootingComponent.hpp", "_is_shooting_component_8hpp.html", [
+      [ "IsShootingComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_is_shooting_component.html", null ]
+    ] ],
     [ "KeyboardInputComponent.hpp", "_keyboard_input_component_8hpp.html", [
       [ "KeyboardInputComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_keyboard_input_component.html", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_keyboard_input_component" ]
     ] ],

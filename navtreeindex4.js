@@ -1,5 +1,8 @@
 var NAVTREEINDEX4 =
 {
+"structecs_1_1_decrease_life_time.html#a05996d10812ad9c196190c1e51bd7314":[4,0,3,20,0],
+"structecs_1_1_disconnectable_system.html":[4,0,3,23],
+"structecs_1_1_disconnectable_system.html#adb7c816a9f3d01f63e3bc490596b0146":[4,0,3,23,0],
 "structecs_1_1_life_time_death.html":[4,0,3,37],
 "structecs_1_1_life_time_death.html#a69c55e0fcafc404178246cf9c0f25c2e":[4,0,3,37,0],
 "structecs_1_1_movement.html":[4,0,3,39],
