@@ -81,8 +81,14 @@ void DrawComponents::_updatePlayer(LayerLvL &layerType, std::shared_ptr<ecs::Ent
 
 void DrawComponents::_updateEnemy(LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr)
 {
-    if (layerType.layer == LayerLvL::layer_e::ENEMY)
-        entityPtr->addComponent<TextureName>(GraphicsTextureResource::BASIC_ENEMY);
+    if (layerType.layer == LayerLvL::layer_e::ENEMY) {
+        switch (entityPtr->getComponent<Enemy>().enemyType) {
+            case Enemy::FIRE: entityPtr->addComponent<TextureName>(GraphicsTextureResource::FIRE_ENEMY); break;
+            case Enemy::ELECTRIC: entityPtr->addComponent<TextureName>(GraphicsTextureResource::ELECTRIC_ENEMY); break;
+            case Enemy::ICE: entityPtr->addComponent<TextureName>(GraphicsTextureResource::ICE_ENEMY); break;
+            default: entityPtr->addComponent<TextureName>(GraphicsTextureResource::BASIC_ENEMY); break;
+        };
+    }
 }
 
 void DrawComponents::_udpateProjectile(LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr)
@@ -90,9 +96,15 @@ void DrawComponents::_udpateProjectile(LayerLvL &layerType, std::shared_ptr<ecs:
     if (layerType.layer == LayerLvL::layer_e::PROJECTILE) {
         if (entityPtr->contains<EnemyProjectile>()) {
             switch (entityPtr->getComponent<EnemyProjectileType>().parentType) {
-                case Enemy::FIRE: entityPtr->addComponent<TextureName>(GraphicsTextureResource::PROJECTILE_ENEMY_FIRE); break;
-                case Enemy::ELECTRIC: entityPtr->addComponent<TextureName>(GraphicsTextureResource::PROJECTILE_ENEMY_ELECTRIC); break;
-                case Enemy::ICE: entityPtr->addComponent<TextureName>(GraphicsTextureResource::PROJECTILE_ENEMY_ICE); break;
+                case Enemy::FIRE:
+                    entityPtr->addComponent<TextureName>(GraphicsTextureResource::PROJECTILE_ENEMY_FIRE);
+                    break;
+                case Enemy::ELECTRIC:
+                    entityPtr->addComponent<TextureName>(GraphicsTextureResource::PROJECTILE_ENEMY_ELECTRIC);
+                    break;
+                case Enemy::ICE:
+                    entityPtr->addComponent<TextureName>(GraphicsTextureResource::PROJECTILE_ENEMY_ICE);
+                    break;
                 default: entityPtr->addComponent<TextureName>(GraphicsTextureResource::PROJECTILE_ENEMY_BASIC); break;
             };
         }
