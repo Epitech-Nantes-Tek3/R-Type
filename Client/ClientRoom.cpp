@@ -36,8 +36,8 @@
 #include "Transisthor/TransisthorECSLogic/Client/Systems/SendNewlyCreatedToServer.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Systems/SendToServer.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/ButtonActionMap.hpp"
-#include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/MenuStates.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/GameStates.hpp"
+#include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/MenuStates.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateButton.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateWritable.hpp"
 #include "R-TypeLogic/Global/Components/LayerLvL.hpp"
@@ -453,7 +453,8 @@ void ClientRoom::_initEntities()
 
 void ClientRoom::_initButtons()
 {
-    _worldInstance->addResource<ButtonActionMap>(ButtonActionMap::EXIT, std::function<void(World &, Entity &)>(exitWindow));
+    _worldInstance->addResource<ButtonActionMap>(
+        ButtonActionMap::EXIT, std::function<void(World &, Entity &)>(exitWindow));
     ButtonActionMap &actionsList = _worldInstance->getResource<ButtonActionMap>();
     actionsList.addAction(ButtonActionMap::RESUME, std::function<void(World &, Entity &)>(resumeGame));
     actionsList.addAction(ButtonActionMap::PAUSE, std::function<void(World &, Entity &)>(pauseGame));
