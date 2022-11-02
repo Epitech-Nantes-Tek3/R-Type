@@ -23,6 +23,7 @@
 #include "R-TypeLogic/Global/Components/InvinsibleComponent.hpp"
 #include "R-TypeLogic/Global/Components/InvisibleComponent.hpp"
 #include "R-TypeLogic/Global/Components/LifeComponent.hpp"
+#include "R-TypeLogic/Global/Components/EnemyComponent.hpp"
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
 #include "R-TypeLogic/Global/Components/VelocityComponent.hpp"
 #include "R-TypeLogic/Global/SharedResources/Random.hpp"
@@ -631,6 +632,7 @@ Test(transisthor_testing, transit_enemyProjectile_entity)
         .addComponent<Position>(1, 2)
         .addComponent<Damage>(10)
         .addComponent<Velocity>(1, 1)
+        .addComponent<Enemy>(Enemy::BASIC)
         .getId();
 
     std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Damage>();
@@ -664,6 +666,7 @@ Test(transisthor_testing, transit_enemyProjectile_entity_without_uuid)
                             .addComponent<Position>(1, 2)
                             .addComponent<Damage>(10)
                             .addComponent<Velocity>(1, 1)
+                            .addComponent<Enemy>(Enemy::BASIC)
                             .getId();
 
     std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Damage>();

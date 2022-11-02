@@ -7,6 +7,7 @@
 
 #include <criterion/criterion.h>
 #include "World/World.hpp"
+#include "R-TypeLogic/Global/Components/EnemyComponent.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateEnemyProjectile.hpp"
 
 using namespace ecs;
@@ -16,6 +17,7 @@ Test(CreateEnemyProjectile_test, CreateEnemyProjectile)
     World world(1);
 
     world.addEntity()
+        .addComponent<Enemy>(Enemy::BASIC)
         .addComponent<Networkable>(10)
         .addComponent<Position>(1, 1)
         .addComponent<Damage>(10)

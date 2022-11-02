@@ -20,6 +20,7 @@
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/Components/DisplayState.hpp"
 #include "R-TypeLogic/Global/Components/AlliedProjectileComponent.hpp"
 #include "R-TypeLogic/Global/Components/EnemyProjectileComponent.hpp"
+#include "R-TypeLogic/Global/Components/EnemyProjectileType.hpp"
 #include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
 #include "R-TypeLogic/Global/Components/SizeComponent.hpp"
@@ -100,7 +101,12 @@ void DrawComponents::_udpateProjectile(LayerLvL &layerType, std::shared_ptr<ecs:
 {
     if (layerType.layer == LayerLvL::layer_e::PROJECTILE) {
         if (entityPtr->contains<EnemyProjectile>()) {
-            entityPtr->addComponent<TextureName>(GraphicsTextureResource::PROJECTILE_ENEMY);
+            switch (entityPtr->getComponent<EnemyProjectileType>().parentType) {
+                case Enemy::FIRE: entityPtr->addComponent<TextureName>(GraphicsTextureResource::PROJECTILE_ENEMY_FIRE); break;
+                case Enemy::ELECTRIC: entityPtr->addComponent<TextureName>(GraphicsTextureResource::PROJECTILE_ENEMY_ELECTRIC); break;
+                case Enemy::ICE: entityPtr->addComponent<TextureName>(GraphicsTextureResource::PROJECTILE_ENEMY_ICE); break;
+                default: entityPtr->addComponent<TextureName>(GraphicsTextureResource::PROJECTILE_ENEMY_BASIC); break;
+            };
         }
         if (entityPtr->contains<AlliedProjectile>()) {
             entityPtr->addComponent<TextureName>(GraphicsTextureResource::PROJECTILE_ALLY);
