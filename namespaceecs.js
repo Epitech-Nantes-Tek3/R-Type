@@ -28,6 +28,7 @@ var namespaceecs =
     [ "EnemiesGoRandom", "classecs_1_1_enemies_go_random.html", "classecs_1_1_enemies_go_random" ],
     [ "Enemy", "classecs_1_1_enemy.html", "classecs_1_1_enemy" ],
     [ "EnemyProjectile", "classecs_1_1_enemy_projectile.html", "classecs_1_1_enemy_projectile" ],
+    [ "EnemyProjectileType", "classecs_1_1_enemy_projectile_type.html", "classecs_1_1_enemy_projectile_type" ],
     [ "EnemyShootSystem", "classecs_1_1_enemy_shoot_system.html", null ],
     [ "Entity", "classecs_1_1_entity.html", "classecs_1_1_entity" ],
     [ "Equipment", "classecs_1_1_equipment.html", "classecs_1_1_equipment" ],

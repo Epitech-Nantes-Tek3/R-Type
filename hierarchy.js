@@ -27,6 +27,7 @@ var hierarchy =
       [ "ecs::DisplayState", "classecs_1_1_display_state.html", null ],
       [ "ecs::Enemy", "classecs_1_1_enemy.html", null ],
       [ "ecs::EnemyProjectile", "classecs_1_1_enemy_projectile.html", null ],
+      [ "ecs::EnemyProjectileType", "classecs_1_1_enemy_projectile_type.html", null ],
       [ "ecs::Equipment", "classecs_1_1_equipment.html", null ],
       [ "ecs::Invinsible", "classecs_1_1_invinsible.html", null ],
       [ "ecs::Invisible", "classecs_1_1_invisible.html", null ],

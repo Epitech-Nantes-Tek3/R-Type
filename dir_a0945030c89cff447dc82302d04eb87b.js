@@ -48,6 +48,9 @@ var dir_a0945030c89cff447dc82302d04eb87b =
     [ "EnemyProjectileComponent.hpp", "_enemy_projectile_component_8hpp.html", [
       [ "EnemyProjectile", "classecs_1_1_enemy_projectile.html", "classecs_1_1_enemy_projectile" ]
     ] ],
+    [ "EnemyProjectileType.hpp", "_enemy_projectile_type_8hpp.html", [
+      [ "EnemyProjectileType", "classecs_1_1_enemy_projectile_type.html", "classecs_1_1_enemy_projectile_type" ]
+    ] ],
     [ "EquipmentComponent.hpp", "_equipment_component_8hpp.html", [
       [ "Equipment", "classecs_1_1_equipment.html", "classecs_1_1_equipment" ]
     ] ],
