@@ -26,7 +26,8 @@ namespace ecs
     }
     /// @brief Create a fire projectile with specific values
     /// @param projectile a reference to the projectile entity to be modified
-    static void createFireProjectile(Entity &projectile) {
+    static void createFireProjectile(Entity &projectile)
+    {
         projectile.addComponent<Velocity>(-250, 0)
             .addComponent<Weight>(5)
             .addComponent<Size>(60, 60)
@@ -38,7 +39,8 @@ namespace ecs
 
     /// @brief Create a Electric projectile with specific values
     /// @param projectile a reference to the projectile entity to be modified
-    static void createElectricProjectile(Entity &projectile) {
+    static void createElectricProjectile(Entity &projectile)
+    {
         projectile.addComponent<Velocity>(-600, 0)
             .addComponent<Size>(30, 30)
             .addComponent<LifeTime>(3)
@@ -49,7 +51,8 @@ namespace ecs
 
     /// @brief Create a Ice projectile with specific values
     /// @param projectile a reference to the projectile entity to be modified
-    static void createIceProjectile(Entity &projectile) {
+    static void createIceProjectile(Entity &projectile)
+    {
         projectile.addComponent<Velocity>(-400, 0)
             .addComponent<Weight>(2)
             .addComponent<Size>(40, 40)
