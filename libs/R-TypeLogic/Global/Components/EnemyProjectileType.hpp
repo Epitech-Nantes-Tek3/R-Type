@@ -17,13 +17,13 @@ namespace ecs
     class EnemyProjectileType : public Component {
       public:
         /// @brief The enemy projectile type, given by its parent
-        Enemy::type_e parentType;
+        unsigned short parentType;
 
         /// @brief Construct the projectile component with the parent's type
-        EnemyProjectileType(Enemy::type_e newType = Enemy::BASIC) : parentType(newType) {};
+        EnemyProjectileType(unsigned short newType = Enemy::BASIC) : parentType(newType) {};
 
         /// @brief Default Destructor
-        ~EnemyProjectileType();
+        ~EnemyProjectileType() = default;
     };
 
 } // namespace ecs

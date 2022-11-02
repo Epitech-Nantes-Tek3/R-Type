@@ -7,6 +7,7 @@
 
 #include "CreateEnemyProjectile.hpp"
 #include <mutex>
+#include "R-TypeLogic/Global/Components/EnemyProjectileType.hpp"
 
 namespace ecs
 {
@@ -40,6 +41,7 @@ namespace ecs
                 entity.addComponent<NewlyCreated>(uuid, true);
             }
             entity.addComponent<LayerLvL>(LayerLvL::layer_e::PROJECTILE);
+            entity.addComponent<EnemyProjectileType>(enemy->getComponent<Enemy>().enemyType);
         }
         return entity.getId();
     }
