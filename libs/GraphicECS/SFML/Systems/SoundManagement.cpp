@@ -17,7 +17,6 @@ namespace graphicECS::SFML::Systems
         std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<SoundComponent>();
 
         auto stopSound = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
-            auto guard = std::lock_guard(*entityPtr.get());
             SoundComponent soundComponent = entityPtr.get()->getComponent<SoundComponent>();
             sf::Sound sound;
 
@@ -30,7 +29,7 @@ namespace graphicECS::SFML::Systems
                 sound.pause();
             }
             if (soundComponent._status == SoundComponent::PLAYING && sound.getStatus() != sf::Sound::Playing) {
-                sound.play();
+                 sound.play();
             }
         };
         std::for_each(joined.begin(), joined.end(), stopSound);

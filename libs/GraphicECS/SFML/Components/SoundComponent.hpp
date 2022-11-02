@@ -28,6 +28,7 @@ namespace graphicECS::SFML::Components
 
         /// @brief Constructor of the SoundComponent component
         /// @param newSoundComponent The value to set in the sound_e, corresponding
+        /// @param status The status of the song STOPED by default
         /// on the sf::Sound load in shared resource Sound.
         SoundComponent(
             SoundResource::sound_e newSoundComponent = SoundResource::UNDEFINED, status_e status = status_e::STOPED)

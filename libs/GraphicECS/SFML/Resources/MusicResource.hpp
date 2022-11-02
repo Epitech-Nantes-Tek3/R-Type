@@ -25,7 +25,7 @@ namespace graphicECS::SFML::Resources
         /// @brief Name of map which contains Musics.
         using MusicsList = std::unordered_map<music_e, std::shared_ptr<sf::Music>>;
 
-        /// @brief Constructor to add a Music from it's Music Path passed as parameter
+        /// @brief Constructor to add a Music from its Music Path passed as parameter
         /// @param music_e Enum of the Music
         /// @param musicPath The music path to be used.
         inline MusicResource(const music_e music_e, const std::filesystem::path &musicPath)

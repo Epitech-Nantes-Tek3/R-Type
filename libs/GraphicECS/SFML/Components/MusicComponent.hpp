@@ -27,6 +27,7 @@ namespace graphicECS::SFML::Components
 
         /// @brief Constructor of the MusicComponent component
         /// @param newMusicComponent The value to set in the music_e, corresponding
+        /// @param status The status of the Music, STOPED by defaut
         /// on the sf::Music load in shared resource Music.
         MusicComponent(
             MusicResource::music_e newMusicComponent = MusicResource::UNDEFINED, status_e status = status_e::STOPED)
