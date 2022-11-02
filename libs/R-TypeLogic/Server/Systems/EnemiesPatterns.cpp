@@ -2,10 +2,10 @@
 ** EPITECH PROJECT, 2022
 ** R-Type
 ** File description:
-** EnemiesGoRandom
+** EnemiesPatterns
 */
 
-#include "EnemiesGoRandom.hpp"
+#include "EnemiesPatterns.hpp"
 #include <mutex>
 #include "R-TypeLogic/Global/Components/DestinationComponent.hpp"
 #include "R-TypeLogic/Global/Components/EnemyComponent.hpp"
@@ -20,7 +20,7 @@
 
 using namespace ecs;
 
-void EnemiesGoRandom::run(World &world)
+void EnemiesPatterns::run(World &world)
 {
     std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Enemy, Position, Velocity, Destination>();
 
