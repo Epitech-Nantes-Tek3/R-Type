@@ -13,14 +13,15 @@
 #include "ActionQueueComponent.hpp"
 #include "AllowControllerComponent.hpp"
 #include "AllowMouseAndKeyboardComponent.hpp"
-#include "SelectedComponent.hpp"
-#include "WritableContentComponent.hpp"
 #include "ControllerButtonInputComponent.hpp"
 #include "ControllerJoystickInputComponent.hpp"
+#include "GraphicECS/SFML/Components/GraphicsTextComponent.hpp"
 #include "IsShootingComponent.hpp"
 #include "KeyboardInputComponent.hpp"
 #include "MouseInputComponent.hpp"
+#include "SelectedComponent.hpp"
 #include "World/World.hpp"
+#include "WritableContentComponent.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/Components/ActionName.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/Components/DisplayState.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/ButtonActionMap.hpp"
@@ -75,9 +76,28 @@ namespace graphicECS::SFML::Systems
     void InputManagement::_textEnteredEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> joined)
     {
         if (event.type == sf::Event::TextEntered) {
-            std::cerr << "Text entered : " << event.text.unicode << std::endl;
+            auto writeText = [&event](std::shared_ptr<Entity> entityPtr) {
+                auto guard = std::lock_guard(*entityPtr.get());
+                auto &writableContent = entityPtr->getComponent<WritableContent>();
+
+                if (event.text.unicode == 8 && writableContent.content.size() != 0) {
+                    writableContent.content.pop_back();
+                } else if (event.text.unicode != 8) {
+                    writableContent.content.resize(writableContent.content.size() + 1, (char)event.text.unicode);
+                }
+                if (entityPtr->contains<GraphicsTextComponent>()) {
+                    auto &textComponent = entityPtr->getComponent<GraphicsTextComponent>();
+                    unsigned short textLen = 0;
+                    std::string formatedText = writableContent.content;
+
+                    for (; writableContent.content[textLen] != '\0'; textLen++);
+                    formatedText.resize(textLen);
+                    textComponent.text.setString(formatedText);
+                }
+            };
+
+            std::for_each(joined.begin(), joined.end(), writeText);
         }
-        (void)joined;
     }
 
     void InputManagement::_mouseEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> &Inputs)
