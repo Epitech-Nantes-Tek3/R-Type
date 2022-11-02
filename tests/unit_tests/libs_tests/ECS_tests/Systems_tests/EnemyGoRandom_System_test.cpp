@@ -28,7 +28,7 @@ Test(EnemyGoRandom_System, move_randomly_rollback)
     world.addSystem<EnemiesGoRandom>();
     world.addSystem<UpdateClock>();
 
-    std::size_t id = createNewEnemy(world, 1400, 540, 0, 0, 5, 100, 10, 5, 10, 10, "", 15);
+    std::size_t id = createNewEnemy(world, 1400, 540, 0, 0, 5, 100, 10, 5, 10, 10, Enemy::BASIC,"", 15);
     Position &pos = world.getEntity(id).getComponent<Position>();
     int x = pos.x;
     int y = pos.y;
@@ -52,7 +52,7 @@ Test(EnemyGoRandom_System, move_randomly)
     world.addSystem<EnemiesGoRandom>();
     world.addSystem<UpdateClock>();
 
-    std::size_t id = createNewEnemy(world, 1400, 540, 0, 0, 5, 100, 10, 5, 10, 10, "", 15);
+    std::size_t id = createNewEnemy(world, 1400, 540, 0, 0, 5, 100, 10, 5, 10, 10, Enemy::BASIC, "", 15);
     Position &pos = world.getEntity(id).getComponent<Position>();
     int x = pos.x;
     int y = pos.y;
