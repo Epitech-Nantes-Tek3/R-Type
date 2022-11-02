@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['x_1159',['x',['../classecs_1_1_destination.html#a1e99b9972494a070507444d0eb4d016b',1,'ecs::Destination::x()'],['../classecs_1_1_position.html#ae6bb0651aa0e21e2b60da341d254a07a',1,'ecs::Position::x()'],['../classecs_1_1_size.html#a7358250c14623b98d54d6584a47a3dd0',1,'ecs::Size::x()']]]
+  ['weight_1167',['weight',['../classecs_1_1_weight.html#a5759518e89dec4efb88d38cd55ece123',1,'ecs::Weight']]],
+  ['window_1168',['window',['../classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_render_window_resource.html#a9eb3bbe66674679137388e3015777090',1,'graphicECS::SFML::Resources::RenderWindowResource']]]
 ];

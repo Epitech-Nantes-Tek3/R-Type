@@ -43,7 +43,7 @@ var dir_a0945030c89cff447dc82302d04eb87b =
       [ "Disconnectable", "classecs_1_1_disconnectable.html", null ]
     ] ],
     [ "EnemyComponent.hpp", "_enemy_component_8hpp.html", [
-      [ "Enemy", "classecs_1_1_enemy.html", null ]
+      [ "Enemy", "classecs_1_1_enemy.html", "classecs_1_1_enemy" ]
     ] ],
     [ "EnemyProjectileComponent.hpp", "_enemy_projectile_component_8hpp.html", [
       [ "EnemyProjectile", "classecs_1_1_enemy_projectile.html", "classecs_1_1_enemy_projectile" ]

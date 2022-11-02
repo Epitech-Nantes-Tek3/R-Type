@@ -1,5 +1,13 @@
 var NAVTREEINDEX4 =
 {
+"structecs_1_1_life_time_death.html":[4,0,3,37],
+"structecs_1_1_life_time_death.html#a69c55e0fcafc404178246cf9c0f25c2e":[4,0,3,37,0],
+"structecs_1_1_movement.html":[4,0,3,39],
+"structecs_1_1_movement.html#a3956c2d126f291e5d0949b9c720ea86c":[4,0,3,39,0],
+"structecs_1_1_no_afk_in_menu.html":[4,0,3,44],
+"structecs_1_1_no_afk_in_menu.html#a040868eca048132000391a837cf44885":[4,0,3,44,0],
+"structecs_1_1_random_device.html":[4,0,3,50],
+"structecs_1_1_random_device.html#a0ba1b9dd25fa48388322564b325acd24":[4,0,3,50,0],
 "structecs_1_1_random_device.html#aca0972e8d6927808e436c02f92398a77":[4,0,3,50,1],
 "structecs_1_1_random_device.html#afd4b5cd3acf22fbfa115cbe6e9f7c2cf":[4,0,3,50,2],
 "structecs_1_1_remove_afk_system.html":[4,0,3,51],

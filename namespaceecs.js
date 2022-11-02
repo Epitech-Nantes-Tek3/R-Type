@@ -26,7 +26,7 @@ var namespaceecs =
     [ "DisconnectableSystem", "structecs_1_1_disconnectable_system.html", "structecs_1_1_disconnectable_system" ],
     [ "DisplayState", "classecs_1_1_display_state.html", "classecs_1_1_display_state" ],
     [ "EnemiesGoRandom", "classecs_1_1_enemies_go_random.html", "classecs_1_1_enemies_go_random" ],
-    [ "Enemy", "classecs_1_1_enemy.html", null ],
+    [ "Enemy", "classecs_1_1_enemy.html", "classecs_1_1_enemy" ],
     [ "EnemyProjectile", "classecs_1_1_enemy_projectile.html", "classecs_1_1_enemy_projectile" ],
     [ "EnemyShootSystem", "classecs_1_1_enemy_shoot_system.html", null ],
     [ "Entity", "classecs_1_1_entity.html", "classecs_1_1_entity" ],

@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['id_1123',['id',['../classecs_1_1_networkable.html#ae27ad133ebb6f887f7533fc4eaf56d36',1,'ecs::Networkable::id()'],['../classecs_1_1_network_server.html#a284f6a83c9dc6b71830111eeee099c3b',1,'ecs::NetworkServer::id()'],['../classecs_1_1_network_client.html#a5cef85e73fa39999d85b41da8e45423d',1,'ecs::NetworkClient::id()']]],
-  ['isclicked_1124',['IsClicked',['../classecs_1_1_button.html#a49021e1ba07d18b8d9c24fa0a5d640e3',1,'ecs::Button']]],
-  ['isclientinstance_1125',['isClientInstance',['../classecs_1_1_newly_created.html#ae2ce1afd821f9d754121b50fcfdd02a1',1,'ecs::NewlyCreated']]],
-  ['ishovered_1126',['IsHovered',['../classecs_1_1_button.html#a08f741506b61b684bb5d79774fd67593',1,'ecs::Button']]]
+  ['font_1131',['font',['../classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_font_resource.html#afd6b521a28992108eeeae7a9b69b3760',1,'graphicECS::SFML::Resources::GraphicsFontResource']]],
+  ['frequency_1132',['frequency',['../classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_animation_frequency_component.html#a8fce39d80844eebf9cb82c82c1a0669d',1,'graphicECS::SFML::Components::AnimationFrequencyComponent::frequency()'],['../classecs_1_1_shooting_frequency.html#a7e740de3091edf4d0934e8c1f69d0144',1,'ecs::ShootingFrequency::frequency()'],['../classecs_1_1_afk_frequency.html#ad3b10fe59509b9f93007809253c68d7e',1,'ecs::AfkFrequency::frequency()']]]
 ];

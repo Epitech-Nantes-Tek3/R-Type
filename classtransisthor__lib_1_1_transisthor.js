@@ -8,7 +8,7 @@ var classtransisthor__lib_1_1_transisthor =
     [ "transitEcsDataToNetworkData", "classtransisthor__lib_1_1_transisthor.html#a94a0ac5ecec90ad113f65604403aa2cd", null ],
     [ "transitEcsDataToNetworkData", "classtransisthor__lib_1_1_transisthor.html#a9fe13e311dad7808e98bcf1f5516370a", null ],
     [ "transitEcsDataToNetworkDataEntityAlliedProjectile", "classtransisthor__lib_1_1_transisthor.html#a3da9082ddc11232a571f2ca5fbb445c0", null ],
-    [ "transitEcsDataToNetworkDataEntityEnemy", "classtransisthor__lib_1_1_transisthor.html#a6c14b0a42bc10e57d82db9487eb30d5e", null ],
+    [ "transitEcsDataToNetworkDataEntityEnemy", "classtransisthor__lib_1_1_transisthor.html#ac246707122b408492f9b80a95cb60f70", null ],
     [ "transitEcsDataToNetworkDataEntityEnemyProjectile", "classtransisthor__lib_1_1_transisthor.html#ae3a60a54e5e7e91d88c53d6e8575d104", null ],
     [ "transitEcsDataToNetworkDataEntityObstacle", "classtransisthor__lib_1_1_transisthor.html#ae3c0bfb9bf70cd9ec65428d4aaaf4eed", null ],
     [ "transitEcsDataToNetworkDataEntityPlayer", "classtransisthor__lib_1_1_transisthor.html#a20dcaa4ce0184a581b9a774f79da07cf", null ],
