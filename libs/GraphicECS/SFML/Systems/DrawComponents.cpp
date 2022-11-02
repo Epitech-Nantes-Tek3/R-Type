@@ -64,7 +64,7 @@ void DrawComponents::addWritableText(std::shared_ptr<Entity> writablePtr, const 
     if (writablePtr->contains<GraphicsTextComponent>())
         return;
     writablePtr->addComponent<GraphicsTextComponent>(
-        newFont, writablePtr->getComponent<WritableContent>().content, pos.x, pos.y + size.y * 0.4, size.x * 0.2);
+        newFont, writablePtr->getComponent<WritableContent>().content, pos.x + size.x * 0.05, pos.y + size.y * 0.2, size.y * 0.4);
 }
 
 void DrawComponents::_updatePlayer(LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr, const sf::Font &newFont)
