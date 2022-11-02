@@ -13,6 +13,7 @@
 #include <memory>
 #include "Communicator/Client.hpp"
 #include "Communicator/Communicator.hpp"
+#include "GraphicECS/SFML/Resources/GraphicsTextureResource.hpp"
 #include "Transisthor/Transisthor.hpp"
 #include "World/World.hpp"
 
@@ -74,6 +75,15 @@ namespace client_data
 
         /// @brief Hold a room connection process
         void _connectToARoom();
+
+        /// @brief Init all the sprites needed for the player
+        void _initSpritesForPlayer(graphicECS::SFML::Resources::GraphicsTextureResource &spritesList);
+
+        /// @brief Init all the sprites needed for the projectiles
+        void _initSpritesForProjectiles(graphicECS::SFML::Resources::GraphicsTextureResource &spritesList);
+
+        /// @brief Init all the sprites needed for the backgrounds
+        void _initSpritesForBackgrounds(graphicECS::SFML::Resources::GraphicsTextureResource &spritesList);
 
         /// @brief Network informations of the room.
         Client _networkInformations;
