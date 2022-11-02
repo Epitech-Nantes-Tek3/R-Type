@@ -304,7 +304,7 @@ void ClientRoom::_initSpritesForEntities()
         sf::Vector2f(534 / 16 * 14, 0), sf::Vector2f(534 / 16, 34));
     spritesList.addTexture(GraphicsTextureResource::PLAYER_STATIC_8, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
         sf::Vector2f(534 / 16 * 15, 0), sf::Vector2f(534 / 16, 34));
-    spritesList.addTexture(GraphicsTextureResource::PROJECTILE_ENEMY,
+    spritesList.addTexture(GraphicsTextureResource::PROJECTILE_ENEMY_BASIC,
         "assets/EpiSprite/BasicEnemyProjectileSpriteSheet.gif", sf::Vector2f(0, 0), sf::Vector2f(34, 34));
     spritesList.addTexture(GraphicsTextureResource::PROJECTILE_ALLY,
         "assets/EpiSprite/BasicAlliedProjectileSpriteSheet.gif", sf::Vector2f(0, 0), sf::Vector2f(20, 20));

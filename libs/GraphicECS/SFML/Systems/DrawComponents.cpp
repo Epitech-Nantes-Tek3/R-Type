@@ -88,7 +88,7 @@ void DrawComponents::_udpateProjectile(LayerLvL &layerType, std::shared_ptr<ecs:
 {
     if (layerType.layer == LayerLvL::layer_e::PROJECTILE) {
         if (entityPtr->contains<EnemyProjectile>()) {
-            entityPtr->addComponent<TextureName>(GraphicsTextureResource::PROJECTILE_ENEMY);
+            entityPtr->addComponent<TextureName>(GraphicsTextureResource::PROJECTILE_ENEMY_BASIC);
         }
         if (entityPtr->contains<AlliedProjectile>()) {
             entityPtr->addComponent<TextureName>(GraphicsTextureResource::PROJECTILE_ALLY);
