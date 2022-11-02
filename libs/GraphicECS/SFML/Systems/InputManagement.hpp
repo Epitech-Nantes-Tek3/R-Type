@@ -48,8 +48,12 @@ namespace graphicECS::SFML::Systems
         /// @param world The world where the click occurs
         /// @param action The click action
         void clickHandle(World &world, float action);
-
       private:
+
+        /// @brief This function shoot if the player is shooting and the frequency allow a shoot
+        /// @param world The world used to create a new projectile entity
+        void shoot(World &world);
+
         /// @brief This function closes the window when event type is sf::Event::Closed
         /// @param event Class event use to know SFML events
         /// @param windowResource The window to be closed
