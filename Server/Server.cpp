@@ -132,6 +132,7 @@ void Server::_holdACreateRoomRequest(CommunicatorMessage createDemand)
 
 void Server::_holdANewConnectionRequest(CommunicatorMessage connectionDemand)
 {
+    /// GET PLAYER NAME AND PASSWORD AND CHECK DATABASE FOR BAN + AUTH PROCESS
     void *networkData =
         std::malloc(sizeof(unsigned short) + _activeRoomList.size() * (sizeof(unsigned short) + sizeof(char) * 10));
     std::size_t offset = 0;

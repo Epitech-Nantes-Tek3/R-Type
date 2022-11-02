@@ -15,3 +15,5 @@ sfml:shared=True
 cmake
 
 [imports]
+bin, *.dll -> ./bin 
+bin, *.dll -> ./../ 
