@@ -120,12 +120,13 @@ namespace transisthor_lib
         /// @param life Life of the Enemy
         /// @param damage Damage of projectiles fired by this Enemy
         /// @param damageRadius DamageRadius of projectiles fired by this Enemy
+        /// @param type the type of the enemy, influencing projectiles and patterns
         /// @param uuid string representing the entity uuid (Used only for a first sync process in client side)
         /// @param destination of the message
         /// @return Return value his only used for testing (Unit and functional)
         void *transitEcsDataToNetworkDataEntityEnemy(unsigned short id, int posX, int posY, double multiplierAbscissa,
             double multiplierOrdinate, short weight, int sizeX, int sizeY, short life, unsigned short damage,
-            unsigned short damageRadius, std::string uuid, std::vector<unsigned short> destination);
+            unsigned short damageRadius, unsigned short type, std::string uuid, std::vector<unsigned short> destination);
 
         /// @brief Function called by the ECS to transfer an order of creation for an EnemyProjectile entity
         /// @param id Id of the new entity to create
