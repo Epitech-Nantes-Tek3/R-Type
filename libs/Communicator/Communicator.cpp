@@ -191,4 +191,27 @@ void Communicator::utilitarySendChatMessage(
     }
 }
 
+std::vector<std::string> Communicator::utilitaryReceiveChatMessage(CommunicatorMessage cryptedMessage)
+{
+    char *pseudo = nullptr;
+    char *messageContent = nullptr;
+    unsigned short pseudoLen = 0;
+    unsigned short messageLen = 0;
+    unsigned short offset = 0;
+
+    std::memcpy(&pseudoLen, cryptedMessage.message.data, sizeof(unsigned short));
+    offset += sizeof(unsigned short);
+    pseudo = (char *)cryptedMessage.message.data + offset;
+    std::string pseudoStr(pseudoLen, '\0');
+    for(int i = 0; i < pseudoLen; i++)
+        pseudoStr[i] = pseudo[i];
+    offset += sizeof(char) * pseudoLen;
+    messageContent = (char *)cryptedMessage.message.data + offset;
+    messageLen = cryptedMessage.message.size - offset;
+    std::string messageContentStr(messageLen, '\0');
+    for(int i = 0; i < messageLen; i++)
+        messageContentStr[i] = messageContent[i];
+    return {pseudoStr, messageContentStr};
+}
+
 Communicator::~Communicator() {}

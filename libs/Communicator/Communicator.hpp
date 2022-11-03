@@ -126,6 +126,11 @@ namespace communicator_lib
         /// @param destination of the message
         void utilitarySendChatMessage(std::string pseudo, std::string messageContent, std::vector<unsigned short> destination);
 
+        /// @brief Utilitary function used to extract a message received with a protocol 50
+        /// @param cryptedMessage the crypted message
+        /// @return std::vector<std::string> the decrypted pseudo + message
+        std::vector<std::string> utilitaryReceiveChatMessage(CommunicatorMessage cryptedMessage);
+
       private:
         /// @brief Send a protocol 20 to a client
         /// @param client The destination
