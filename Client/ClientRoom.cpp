@@ -514,5 +514,5 @@ void ClientRoom::_initWritable()
     std::size_t writableId = createNewWritable(*(_worldInstance.get()), 1450, 900, 350, 50, MenuStates::IN_GAME);
     std::cerr << "Entity is " << writableId << std::endl;
     createNewWritableButton(*(_worldInstance.get()), 1820, 900, 80, 50,
-        std::function < void(World &, Entity &, std::string &)>(publishNewChatMessage), MenuStates::IN_GAME, writableId);
+        std::function<void(World &, Entity &, std::string &)>(publishNewChatMessage), MenuStates::IN_GAME, writableId);
 }
