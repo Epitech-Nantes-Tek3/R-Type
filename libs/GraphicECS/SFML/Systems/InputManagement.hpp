@@ -72,7 +72,7 @@ namespace graphicECS::SFML::Systems
         void _keyReleasedEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> &Inputs);
 
         /// @brief This function manages text entered events. It crosses all writable entity and adds it the entered text
-        /// if there was selected
+        /// if there is selected
         /// @param event Class event use to know SFML events
         /// @param joined List of all selected writable entity
         void _textEnteredEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> joined);
