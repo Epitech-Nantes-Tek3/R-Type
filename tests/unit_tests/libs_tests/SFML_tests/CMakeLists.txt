@@ -8,6 +8,7 @@ set(TEST_SRC_ROOT
     ${SRC_ROOT}/GraphicsRectangleComponentTests.cpp
     ${SRC_ROOT}/GraphicsTextComponentTests.cpp
     ${SRC_ROOT}/SoundComponentTests.cpp
+    ${SRC_ROOT}/MusicComponentTests.cpp
     ${SFML_SYSTEMS_TESTS_SRC}
     ${SFML_COMPONENTS_TESTS_SRC}
 )
