@@ -27,7 +27,8 @@ namespace serverData
         _output = new boost::process::ipstream();
         _child = new boost::process::child("r-type_room", std::to_string(_id), _name, _networkInformations.getAddress(),
             std::to_string(_networkInformations.getPort()),
-            boost::process::std_in<(*_input), boost::process::std_out>(*_output));
+            boost::process::std_in<(*_input), boost::process::std_out>(*_output),
+            boost::process::std_err > std::string("vgcore_room_ERR").append(_name));
     }
 
     RoomInstance::~RoomInstance()
