@@ -33,7 +33,7 @@ namespace graphicECS::SFML::Resources
         }
 
         /// @brief Add a music to the MusicsList
-        /// @param music_e Enum which give the name of the Music
+        /// @param music_e Enum which gives the name of the Music
         /// @param musicPath Path of the Music
         void addMusic(const music_e music_e, const std::filesystem::path &musicPath);
 
