@@ -218,7 +218,8 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
         clientIdList.emplace_back(entityPtr.get()->getComponent<ecs::NetworkClient>().id);
     };
     std::for_each(clients.begin(), clients.end(), addToClientList);
-    _worldInstance.get()->getEntity(playerId).addComponent<NetworkClient>(connexionDemand.message.clientInfo.getId());
+    _worldInstance.get()->getEntity(playerId).addComponent<NetworkClient>(clientIdList.size());
+    connexionDemand.message.clientInfo.setId(clientIdList.size());
     std::vector<std::shared_ptr<Entity>> alliedProjectiles =
         _worldInstance.get()->joinEntities<Networkable, AlliedProjectile>();
     std::vector<std::shared_ptr<Entity>> enemies = _worldInstance.get()->joinEntities<Networkable, Enemy>();
