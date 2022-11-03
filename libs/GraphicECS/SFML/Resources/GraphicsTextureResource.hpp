@@ -47,6 +47,8 @@ namespace graphicECS::SFML::Resources
             PROJECTILE_ENEMY_ELECTRIC,
             PROJECTILE_ENEMY_ICE,
             BUTTON,
+            WRITABLE,
+            WRITABLE_SELECTED,
             NATURAL_PROJECTILE
         };
 

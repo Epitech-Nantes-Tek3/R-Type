@@ -5,6 +5,7 @@ set(SRC
     ${SRC_ROOT}/SharedResources/ButtonActionMap.cpp
     ${INC_ROOT}/SharedResources/ButtonActionMap.hpp
     ${INC_ROOT}/SharedResources/MenuStates.hpp
+    ${INC_ROOT}/SharedResources/GameStates.hpp
     ${INC_ROOT}/Components/DisplayState.hpp
     ${INC_ROOT}/Components/ActionName.hpp
 )
