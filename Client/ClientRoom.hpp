@@ -44,6 +44,16 @@ namespace client_data
         /// @brief Launch the lobby global loop
         void startLobbyLoop();
 
+        void signalSoloCallbackHandler(int signum);
+
+        void startSoloLoop();
+
+        void initSoloData();
+
+        void initSoloSystem();
+    
+        void startGame();
+
       private:
         /// @brief Init all shared resources of the world.
         void _initSharedResources();

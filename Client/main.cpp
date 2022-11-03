@@ -18,7 +18,8 @@ int main(int ac, char **av)
     ClientRoom client = ClientRoom(clientInformation.clientAddress, clientInformation.clientPort,
         clientInformation.serverAddress, clientInformation.serverPort);
 
-    client.startLobbyLoop();
+    client.startGame();
+//    client.startLobbyLoop();
 //    client.startSoloLoop();
     return (0);
 }

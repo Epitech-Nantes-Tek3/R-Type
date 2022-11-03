@@ -48,6 +48,25 @@
 #include "R-TypeLogic/Global/Systems/NoAfkInMenuSystem.hpp"
 #include "R-TypeLogic/Global/Systems/UpdateClockSystem.hpp"
 
+#include "R-TypeLogic/Server/Systems/CollidableSystem.hpp"
+#include "R-TypeLogic/Server/Systems/DeathLifeSystem.hpp"
+#include "R-TypeLogic/Server/Systems/DecreaseLifeTimeSystem.hpp"
+#include "R-TypeLogic/Server/Systems/DisconnectableSystem.hpp"
+#include "R-TypeLogic/Server/Systems/EnemiesGoRandom.hpp"
+#include "R-TypeLogic/Server/Systems/EnemyShootSystem.hpp"
+#include "R-TypeLogic/Server/Systems/LifeTimeDeathSystem.hpp"
+
+#include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateEnemy.hpp"
+#include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreatePlayer.hpp"
+#include "R-TypeLogic/Global/Components/AlliedProjectileComponent.hpp"
+#include "R-TypeLogic/Global/Components/DamageComponent.hpp"
+#include "R-TypeLogic/Global/Components/DamageRadiusComponent.hpp"
+#include "R-TypeLogic/Global/Components/DisconnectableComponent.hpp"
+#include "R-TypeLogic/Global/Components/EnemyComponent.hpp"
+#include "R-TypeLogic/Global/Components/EnemyProjectileComponent.hpp"
+#include "R-TypeLogic/Global/Components/ObstacleComponent.hpp"
+#include "R-TypeLogic/Global/Components/ProjectileComponent.hpp"
+
 using namespace error_lib;
 using namespace communicator_lib;
 using namespace client_data;
@@ -95,7 +114,9 @@ ClientRoom::ClientRoom(std::string address, unsigned short port, std::string ser
 void ClientRoom::initEcsGameData(void)
 {
     _initSharedResources();
-    _initSystems();
+    //initEcsGameData();
+    initSoloSystem();
+   // _initSystems();
     _initEntities();
 }
 
@@ -167,6 +188,69 @@ void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
             throw std::logic_error("Malloc failed.");
         std::memcpy(networkData, roomName.c_str(), sizeof(char) * 10);
         _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, networkData, sizeof(char) * 10, 17);
+    } else {
+        std::cerr << "Not a valid option ;)" << std::endl;
+        _state = ClientState::ENDED;
+    }
+}
+
+void ClientRoom::initSoloSystem(void)
+{
+    _worldInstance->addSystem<EnemiesGoRandom>();
+    _worldInstance->addSystem<EnemyShootSystem>();
+    _worldInstance->addSystem<Collide>();
+    _worldInstance->addSystem<DeathLife>();
+    _worldInstance->addSystem<LifeTimeDeath>();
+    _worldInstance->addSystem<DecreaseLifeTime>();
+
+    _worldInstance->addSystem<UpdateClock>();
+    _worldInstance->addSystem<DeathSystem>();
+    _worldInstance->addSystem<DrawComponents>();
+    _worldInstance->addSystem<InputManagement>();
+    _worldInstance->addSystem<SfRectangleFollowEntitySystem>();
+    _worldInstance->addSystem<Parallax>();
+    _worldInstance->addSystem<Movement>();
+    _worldInstance->addSystem<AnimationSystem>();
+}
+
+void ClientRoom::signalSoloCallbackHandler(int signum)
+{
+    (void)signum;
+    std::cerr << "Room ask to be closed." << std::endl;
+    _state = ClientState::ENDED;
+}
+
+void ClientRoom::initSoloData(void)
+{
+    createNewPlayer(*_worldInstance.get(), 20, 500, 0, 0, 1, 102, 102, 100, 10, 4, false, 1);
+    createNewEnemyRandom(*_worldInstance.get(), 0, 0, 1, 85, 85, 50, 10, 5);
+}
+
+void ClientRoom::startSoloLoop(void)
+{
+    initEcsGameData();
+    initSoloData();
+    _state = ClientState::IN_GAME;
+    std::signal(SIGINT, signalCallbackHandler);
+    while (_state != ClientState::ENDED && _state != ClientState::UNDEFINED) {
+        if (_state == ClientState::IN_GAME) {
+            _worldInstance.get()->runSystems(); /// WILL BE IMPROVED IN PART TWO (THREAD + CLOCK)
+        }
+    }
+    std::cerr << "TU ES SOLOOOOOOOOO !!!!!!" << std::endl;
+}
+
+void ClientRoom::startGame(void)
+{
+    std::cerr
+        << "If you want to play in Solo Mod, please refer S. Otherwise if you want to play in multiplayer use M : ";
+    char choosedMod = '\0';
+
+    std::cin >> choosedMod;
+    if (choosedMod == 'S') {
+        startSoloLoop();
+    } else if (choosedMod == 'M') {
+        startLobbyLoop();
     } else {
         std::cerr << "Not a valid option ;)" << std::endl;
         _state = ClientState::ENDED;
