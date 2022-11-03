@@ -45,13 +45,14 @@ namespace ecs
     /// @param life Life of the Enemy
     /// @param damage Damage of projectiles fired by this Enemy
     /// @param damageRadius DamageRadius of projectiles fired by this Enemy
+    /// @param type the type of the enemy, influencing projectiles and patterns
     /// @param uuid The uuid of the entity. Can be empty.
     /// @param networkId The id of the Networkable Component. In the client instance, it MUST NOT be filled in.
     /// @return Id of the new Enemy in std::size_t
     std::size_t createNewEnemy(World &world, const int posX, const int posY, const double multiplierAbscissa,
         const double multiplierOrdinate, const short weight, const int sizeX, const int sizeY,
         const unsigned short life, const unsigned short damage, const unsigned short damageRadius,
-        const std::string uuid = "", const unsigned short networkId = 0);
+        unsigned short type, const std::string uuid = "", const unsigned short networkId = 0);
 
     /// @brief This function creates a new Enemy Entity with random position and with these parameters
     /// @param world The world in which the Enemy must be created
@@ -63,12 +64,13 @@ namespace ecs
     /// @param life Life of the Enemy
     /// @param damage Damage of projectiles fired by this Enemy
     /// @param damageRadius DamageRadius of projectiles fired by this Enemy
+    /// @param type the type of the enemy, influencing projectiles and patterns
     /// @param uuid The uuid of the entity. Can be empty.
     /// @param networkId The id of the Networkable Component. In the client instance, it MUST NOT be filled in.
     /// @return Id of the new Enemy in std::size_t
-    std::size_t createNewEnemyRandom(World &world, const double multiplierAbscissa,
-        const double multiplierOrdinate, const short weight, const int sizeX, const int sizeY,
-        const unsigned short life, const unsigned short damage, const unsigned short damageRadius,
-        const std::string uuid = "", const unsigned short networkId = 0);
+    std::size_t createNewEnemyRandom(World &world, const double multiplierAbscissa, const double multiplierOrdinate,
+        const short weight, const int sizeX, const int sizeY, const unsigned short life, const unsigned short damage,
+        const unsigned short damageRadius, unsigned short type, const std::string uuid = "",
+        const unsigned short networkId = 0);
 } // namespace ecs
 #endif /* !CREATEENEMY_HPP_ */

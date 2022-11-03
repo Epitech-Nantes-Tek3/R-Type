@@ -30,6 +30,7 @@ namespace graphicECS::SFML::Resources
         {
             window.create(mode, title, style);
             window.setFramerateLimit(60);
+            window.setKeyRepeatEnabled(false);
         };
 
         /// @brief Default destructor.
