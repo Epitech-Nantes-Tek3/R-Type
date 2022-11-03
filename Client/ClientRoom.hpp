@@ -70,6 +70,9 @@ namespace client_data
         /// @brief Init all the Buttons and the linked actions
         void _initButtons();
 
+        /// @brief Init all the Writable and the linked actions
+        void _initWritable();
+
         /// @brief Ask the user to enter his Pseudonyme and password
         void _getClientPseudoAndPassword();
 

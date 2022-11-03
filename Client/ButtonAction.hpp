@@ -12,14 +12,22 @@
 
 /// @brief Exit the windows by disconecting the client
 /// @param world the world where the window will be closed
-void exitWindow(World &world);
+/// @param entityPtr the entity whoe's actioned the called
+void exitWindow(World &world, Entity &entityPtr);
 
 /// @brief Pause the game, changing the menu state resource
 /// @param world the world where the game will be paused
-void pauseGame(World &world);
+/// @param entityPtr the entity whoe's actioned the called
+void pauseGame(World &world, Entity &entityPtr);
 
 /// @brief Resume the game, changing the menu state resource
 /// @param world the world where the game will be resumed
-void resumeGame(World &world);
+/// @param entityPtr the entity whoe's actioned the called
+void resumeGame(World &world, Entity &entityPtr);
+
+/// @brief Select a writable entity, add / remove a selected component
+/// @param world the world where the entity his
+/// @param entityPtr the entity whoe's actioned the called
+void selectAWritable(World &world, Entity &entityPtr);
 
 #endif /* !BUTTONACTION_HPP_ */
