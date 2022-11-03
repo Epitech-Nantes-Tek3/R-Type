@@ -9,6 +9,7 @@
 #define INPUTMANAGEMENT_HPP_
 
 #include <SFML/Graphics.hpp>
+#include "GraphicECS/SFML/Resources/RenderWindowResource.hpp"
 #include "System/System.hpp"
 #include "World/World.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateAlliedProjectile.hpp"
@@ -47,12 +48,16 @@ namespace graphicECS::SFML::Systems
         /// @param world The world where the click occurs
         /// @param action The click action
         void clickHandle(World &world, float action);
-
       private:
+
+        /// @brief This function shoot if the player is shooting and the frequency allow a shoot
+        /// @param world The world used to create a new projectile entity
+        void shoot(World &world);
+
         /// @brief This function closes the window when event type is sf::Event::Closed
         /// @param event Class event use to know SFML events
-        /// @param world The world on which get the shared resource renderWindow
-        void _closeWindow(sf::Event &event, World &world);
+        /// @param windowResource The window to be closed
+        void _closeWindow(sf::Event &event, graphicECS::SFML::Resources::RenderWindowResource &windowResource);
 
         /// @brief This function manages key pressed events. It adds an action to do in a queue depending on the key
         /// pressed type.
@@ -65,6 +70,12 @@ namespace graphicECS::SFML::Systems
         /// @param event Class event use to know SFML events
         /// @param Inputs Entity which contains inputs entity like mouse, keyboard and controller
         void _keyReleasedEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> &Inputs);
+
+        /// @brief This function manages text entered events. It crosses all writable entity and adds it the entered text
+        /// if there is selected
+        /// @param event Class event uses to know SFML events
+        /// @param joined List of all selected writable entity
+        void _textEnteredEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> joined);
 
         /// @brief This function manages mouse button pressed events. It adds an action to do in a queue depending on
         /// the mouse button type.

@@ -10,8 +10,8 @@
 #include <mutex>
 #include "AnimationComponent.hpp"
 #include "AnimationFrequencyComponent.hpp"
+#include "GraphicECS/SFML/Components/WritableContentComponent.hpp"
 #include "GraphicECS/SFML/Resources/GraphicsFontResource.hpp"
-#include "GraphicECS/SFML/Resources/RenderWindowResource.hpp"
 #include "GraphicsRectangleComponent.hpp"
 #include "GraphicsTextComponent.hpp"
 #include "GraphicsTextureResource.hpp"
@@ -20,7 +20,8 @@
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/Components/DisplayState.hpp"
 #include "R-TypeLogic/Global/Components/AlliedProjectileComponent.hpp"
 #include "R-TypeLogic/Global/Components/EnemyProjectileComponent.hpp"
-#include "R-TypeLogic/Global/Components/LayerLvL.hpp"
+#include "R-TypeLogic/Global/Components/EnemyProjectileType.hpp"
+#include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
 #include "R-TypeLogic/Global/Components/SizeComponent.hpp"
 
@@ -56,6 +57,160 @@ void DrawComponents::addButtonText(std::shared_ptr<Entity> buttonPtr, const sf::
     }
 }
 
+void DrawComponents::addWritableText(std::shared_ptr<Entity> writablePtr, const sf::Font &newFont)
+{
+    Position &pos = writablePtr->getComponent<Position>();
+    Size &size = writablePtr->getComponent<Size>();
+
+    if (writablePtr->contains<GraphicsTextComponent>())
+        return;
+    writablePtr->addComponent<GraphicsTextComponent>(
+        newFont, writablePtr->getComponent<WritableContent>().content, pos.x + size.x * 0.05, pos.y + size.y * 0.2, size.y * 0.4);
+}
+
+void DrawComponents::_updatePlayer(LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr, const sf::Font &newFont)
+{
+    if (layerType.layer == LayerLvL::layer_e::PLAYER) {
+        Position &pos = entityPtr->getComponent<Position>();
+        Size &size = entityPtr->getComponent<Size>();
+
+        entityPtr->addComponent<AnimationComponent>();
+        entityPtr->addComponent<AnimationFrequencyComponent>(0.05);
+        entityPtr->getComponent<AnimationComponent>().currentTexturePos = 0;
+        entityPtr->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_1);
+        entityPtr->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_2);
+        entityPtr->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_3);
+        entityPtr->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_4);
+        entityPtr->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_5);
+        entityPtr->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_6);
+        entityPtr->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_7);
+        entityPtr->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_8);
+        if (entityPtr->contains<Player>())
+            entityPtr->addComponent<GraphicsTextComponent>(
+                newFont, entityPtr->getComponent<Player>().name, pos.x + size.x * 0.5, pos.y, size.x * 0.2);
+    }
+}
+
+void DrawComponents::_updateEnemy(LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr)
+{
+    if (layerType.layer == LayerLvL::layer_e::ENEMY)
+        entityPtr->addComponent<TextureName>(GraphicsTextureResource::ENEMY_STATIC);
+}
+
+void DrawComponents::_udpateProjectile(LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr)
+{
+    if (layerType.layer == LayerLvL::layer_e::PROJECTILE) {
+        if (entityPtr->contains<EnemyProjectile>()) {
+            switch (entityPtr->getComponent<EnemyProjectileType>().parentType) {
+                case Enemy::FIRE: entityPtr->addComponent<TextureName>(GraphicsTextureResource::PROJECTILE_ENEMY_FIRE); break;
+                case Enemy::ELECTRIC: entityPtr->addComponent<TextureName>(GraphicsTextureResource::PROJECTILE_ENEMY_ELECTRIC); break;
+                case Enemy::ICE: entityPtr->addComponent<TextureName>(GraphicsTextureResource::PROJECTILE_ENEMY_ICE); break;
+                default: entityPtr->addComponent<TextureName>(GraphicsTextureResource::PROJECTILE_ENEMY_BASIC); break;
+            };
+        }
+        if (entityPtr->contains<AlliedProjectile>()) {
+            entityPtr->addComponent<TextureName>(GraphicsTextureResource::PROJECTILE_ALLY);
+        }
+    }
+}
+
+void DrawComponents::_updateButton(World &world, LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr)
+{
+    if (layerType.layer == LayerLvL::BUTTON) {
+        entityPtr->addComponent<TextureName>(GraphicsTextureResource::BUTTON);
+        addButtonText(entityPtr, world.getResource<GraphicsFontResource>().font);
+    }
+}
+
+void DrawComponents::_updateWritable(World &world, LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr)
+{
+    if (layerType.layer == LayerLvL::WRITABLE) {
+        entityPtr->addComponent<TextureName>(GraphicsTextureResource::WRITABLE);
+        addWritableText(entityPtr, world.getResource<GraphicsFontResource>().font);
+    }
+}
+
+void DrawComponents::_updateEntities(World &world, std::shared_ptr<ecs::Entity> entityPtr)
+{
+    auto layerType = entityPtr->getComponent<LayerLvL>();
+    if (layerType.layer == LayerLvL::layer_e::OBSTACLE || layerType.layer == LayerLvL::layer_e::ENEMY
+        || layerType.layer == LayerLvL::layer_e::PLAYER || layerType.layer == LayerLvL::layer_e::PROJECTILE
+        || layerType.layer == LayerLvL::BUTTON || layerType.layer == LayerLvL::WRITABLE) {
+        auto entityPos = entityPtr->getComponent<Position>();
+        auto entitySize = entityPtr->getComponent<Size>();
+
+        entityPtr->addComponent<GraphicsRectangleComponent>(entityPos.x, entityPos.y, entitySize.x, entitySize.y);
+        _updatePlayer(layerType, entityPtr, world.getResource<GraphicsFontResource>().font);
+        _updateEnemy(layerType, entityPtr);
+        _udpateProjectile(layerType, entityPtr);
+        _updateButton(world, layerType, entityPtr);
+        _updateWritable(world, layerType, entityPtr);
+    }
+}
+
+void DrawComponents::_updateTexture(World &world, std::shared_ptr<ecs::Entity> entityPtr)
+{
+    if (world.containsResource<GraphicsTextureResource>()) {
+        GraphicsTextureResource &textureResource = world.getResource<GraphicsTextureResource>();
+        auto guard = std::lock_guard(textureResource);
+        if (entityPtr->contains<TextureName>()) {
+            entityPtr->getComponent<GraphicsRectangleComponent>().shape.setTexture(
+                textureResource._texturesList[entityPtr->getComponent<TextureName>().textureName].get());
+        } else if (entityPtr->contains<AnimationComponent>()) {
+            entityPtr->getComponent<GraphicsRectangleComponent>().shape.setTexture(
+                textureResource
+                    ._texturesList[entityPtr->getComponent<AnimationComponent>()
+                                       .textures[entityPtr->getComponent<AnimationComponent>().currentTexturePos]]
+                    .get());
+        }
+    } else {
+        entityPtr->getComponent<GraphicsRectangleComponent>().shape.setFillColor(sf::Color::White);
+    }
+}
+
+void DrawComponents::_drawRectangle(World &world, std::shared_ptr<ecs::Entity> entityPtr,
+    graphicECS::SFML::Resources::RenderWindowResource &windowResource)
+{
+    if (entityPtr->contains<GraphicsRectangleComponent>()) {
+        _updateTexture(world, entityPtr);
+        if ((entityPtr->getComponent<LayerLvL>().layer == LayerLvL::BUTTON
+                || entityPtr->getComponent<LayerLvL>().layer == LayerLvL::WRITABLE)
+            && world.getResource<MenuStates>().currentState == entityPtr->getComponent<DisplayState>().displayState) {
+            windowResource.window.draw(entityPtr->getComponent<GraphicsRectangleComponent>().shape);
+        } else if (entityPtr->getComponent<LayerLvL>().layer != LayerLvL::BUTTON
+            && entityPtr->getComponent<LayerLvL>().layer != LayerLvL::WRITABLE) {
+            windowResource.window.draw(entityPtr->getComponent<GraphicsRectangleComponent>().shape);
+        }
+    }
+}
+
+void DrawComponents::_drawText(World &world, std::shared_ptr<ecs::Entity> entityPtr,
+    graphicECS::SFML::Resources::RenderWindowResource &windowResource)
+{
+    if (entityPtr->contains<GraphicsTextComponent>()) {
+        if (entityPtr->contains<DisplayState>()
+            && world.getResource<MenuStates>().currentState == entityPtr->getComponent<DisplayState>().displayState) {
+            windowResource.window.draw(entityPtr->getComponent<GraphicsTextComponent>().text);
+        }
+        if (entityPtr->contains<Player>()) {
+            windowResource.window.draw(entityPtr->getComponent<GraphicsTextComponent>().text);
+        }
+    }
+}
+
+void DrawComponents::_drawComponent(
+    World &world, std::shared_ptr<ecs::Entity> entityPtr, RenderWindowResource &windowResource)
+{
+    auto entityGuard = std::lock_guard(*entityPtr.get());
+
+    if (entityPtr->contains<GraphicsRectangleComponent>() || entityPtr->contains<GraphicsTextComponent>()) {
+        _drawRectangle(world, entityPtr, windowResource);
+        _drawText(world, entityPtr, windowResource);
+    } else {
+        _updateEntities(world, entityPtr);
+    }
+}
+
 void DrawComponents::run(World &world)
 {
     std::vector<std::shared_ptr<Entity>> Inputs = world.joinEntities<LayerLvL>();
@@ -65,91 +220,9 @@ void DrawComponents::run(World &world)
     if (windowResource.window.isOpen()) {
         windowResource.window.clear(sf::Color(0x151123));
         std::sort(Inputs.begin(), Inputs.end(), compareLayer);
-        auto layer = [&world, &windowResource](std::shared_ptr<Entity> entityPtr) {
-            auto entityGuard = std::lock_guard(*entityPtr.get());
-            if (entityPtr->contains<GraphicsRectangleComponent>() || entityPtr->contains<GraphicsTextComponent>()) {
-                if (entityPtr->contains<GraphicsRectangleComponent>()) {
-                    if (world.containsResource<GraphicsTextureResource>()) {
-                        GraphicsTextureResource &textureResource = world.getResource<GraphicsTextureResource>();
-                        auto guard = std::lock_guard(textureResource);
-                        if (entityPtr->contains<TextureName>()) {
-                            entityPtr->getComponent<GraphicsRectangleComponent>().shape.setTexture(
-                                textureResource._texturesList[entityPtr->getComponent<TextureName>().textureName]
-                                    .get());
-                        } else if (entityPtr->contains<AnimationComponent>()) {
-                            entityPtr->getComponent<GraphicsRectangleComponent>().shape.setTexture(
-                                textureResource
-                                    ._texturesList[entityPtr->getComponent<AnimationComponent>()
-                                                       .textures[entityPtr->getComponent<AnimationComponent>()
-                                                                     .currentTexturePos]]
-                                    .get());
-                        }
-                    } else {
-                        entityPtr->getComponent<GraphicsRectangleComponent>().shape.setFillColor(sf::Color::White);
-                    }
-                    if (entityPtr->getComponent<LayerLvL>().layer == LayerLvL::BUTTON
-                        && world.getResource<MenuStates>().currentState
-                            == entityPtr->getComponent<DisplayState>().displayState) {
-                        windowResource.window.draw(entityPtr->getComponent<GraphicsRectangleComponent>().shape);
-                    } else if (entityPtr->getComponent<LayerLvL>().layer != LayerLvL::BUTTON) {
-                        windowResource.window.draw(entityPtr->getComponent<GraphicsRectangleComponent>().shape);
-                    }
-                }
-                if (entityPtr->contains<GraphicsTextComponent>()) {
-                    if (world.getResource<MenuStates>().currentState
-                        == entityPtr->getComponent<DisplayState>().displayState) {
-                        windowResource.window.draw(entityPtr->getComponent<GraphicsTextComponent>().text);
-                    }
-                }
-                return;
-            }
-            auto layerType = entityPtr->getComponent<LayerLvL>();
-            if (layerType.layer == LayerLvL::layer_e::OBSTACLE || layerType.layer == LayerLvL::layer_e::ENEMY
-                || layerType.layer == LayerLvL::layer_e::PLAYER || layerType.layer == LayerLvL::layer_e::PROJECTILE
-                || layerType.layer == LayerLvL::BUTTON) {
-                auto entityPos = entityPtr->getComponent<Position>();
-                auto entitySize = entityPtr->getComponent<Size>();
-
-                entityPtr->addComponent<GraphicsRectangleComponent>(
-                    entityPos.x, entityPos.y, entitySize.x, entitySize.y);
-                if (layerType.layer == LayerLvL::layer_e::PLAYER) {
-                    entityPtr->addComponent<AnimationComponent>();
-                    entityPtr->addComponent<AnimationFrequencyComponent>(0.05);
-                    entityPtr->getComponent<AnimationComponent>().currentTexturePos = 0;
-                    entityPtr->getComponent<AnimationComponent>().textures.push_back(
-                        GraphicsTextureResource::PLAYER_STATIC_1);
-                    entityPtr->getComponent<AnimationComponent>().textures.push_back(
-                        GraphicsTextureResource::PLAYER_STATIC_2);
-                    entityPtr->getComponent<AnimationComponent>().textures.push_back(
-                        GraphicsTextureResource::PLAYER_STATIC_3);
-                    entityPtr->getComponent<AnimationComponent>().textures.push_back(
-                        GraphicsTextureResource::PLAYER_STATIC_4);
-                    entityPtr->getComponent<AnimationComponent>().textures.push_back(
-                        GraphicsTextureResource::PLAYER_STATIC_5);
-                    entityPtr->getComponent<AnimationComponent>().textures.push_back(
-                        GraphicsTextureResource::PLAYER_STATIC_6);
-                    entityPtr->getComponent<AnimationComponent>().textures.push_back(
-                        GraphicsTextureResource::PLAYER_STATIC_7);
-                    entityPtr->getComponent<AnimationComponent>().textures.push_back(
-                        GraphicsTextureResource::PLAYER_STATIC_8);
-                }
-                if (layerType.layer == LayerLvL::layer_e::ENEMY)
-                    entityPtr->addComponent<TextureName>(GraphicsTextureResource::ENEMY_STATIC);
-                if (layerType.layer == LayerLvL::layer_e::PROJECTILE) {
-                    if (entityPtr->contains<EnemyProjectile>()) {
-                        entityPtr->addComponent<TextureName>(GraphicsTextureResource::PROJECTILE_ENEMY);
-                    }
-                    if (entityPtr->contains<AlliedProjectile>()) {
-                        entityPtr->addComponent<TextureName>(GraphicsTextureResource::PROJECTILE_ALLY);
-                    }
-                }
-                if (layerType.layer == LayerLvL::BUTTON) {
-                    entityPtr->addComponent<TextureName>(GraphicsTextureResource::BUTTON);
-                    addButtonText(entityPtr, world.getResource<GraphicsFontResource>().font);
-                }
-            }
-        };
-        std::for_each(Inputs.begin(), Inputs.end(), layer);
+        for (auto entityPtr : Inputs) {
+            _drawComponent(world, entityPtr, windowResource);
+        }
         windowResource.window.display();
     }
 }

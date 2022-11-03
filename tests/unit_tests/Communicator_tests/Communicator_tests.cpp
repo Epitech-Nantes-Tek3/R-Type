@@ -80,3 +80,29 @@ Test(communicator_testing, get_client)
         cr_assert_eq(1, 1);
     }
 }
+
+Test(communicator_testing, chat_message_operation)
+{
+    Communicator communicator = Communicator();
+    Client client = Client();
+    std::string pseudo = "Lucas";
+    std::string messageContent = "Je suis lucas !";
+
+    communicator.addClientToList(client);
+    communicator.utilitarySendChatMessage(pseudo, messageContent, {0});
+    void *networkObject = std::malloc(sizeof(char) * (pseudo.size() + messageContent.size()) + sizeof(unsigned short));
+    unsigned short pseudoLen = pseudo.size();
+
+    if (networkObject == nullptr)
+        throw MallocError("Malloc failed.");
+    std::memcpy(networkObject, &pseudoLen, sizeof(unsigned short));
+    std::memcpy((void *)((char *)networkObject + sizeof(unsigned short)), pseudo.c_str(), sizeof(char) * pseudoLen);
+    std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) + sizeof(char) * pseudoLen),
+        messageContent.c_str(), sizeof(char) * messageContent.size());
+    size_t messageSize = sizeof(unsigned short) + sizeof(char) * (pseudo.size() + messageContent.size());
+    CommunicatorMessage cryptedData = {{client, networkObject, messageSize, 50}, true};
+    std::vector<std::string> uncryptedData = communicator.utilitaryReceiveChatMessage(cryptedData);
+
+    cr_assert_eq(uncryptedData.at(0), pseudo);
+    cr_assert_eq(uncryptedData.at(1), messageContent);
+}

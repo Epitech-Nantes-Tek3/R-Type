@@ -17,7 +17,7 @@ namespace ecs
     class LayerLvL : public Component {
       public:
         /// @brief Enumeration of the different layers can be used
-        enum layer_e { UNKNOWN, BACKGROUND, MIDDLE, DECORATION, OBSTACLE, BUTTON, ENEMY, PLAYER, PROJECTILE, LAYER_NUMBER };
+        enum layer_e { UNKNOWN, BACKGROUND, MIDDLE, DECORATION, OBSTACLE, BUTTON, WRITABLE, ENEMY, PLAYER, PROJECTILE, LAYER_NUMBER };
 
         /// @brief The layer set on this component.
         layer_e layer;
