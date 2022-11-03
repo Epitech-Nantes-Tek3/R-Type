@@ -52,7 +52,7 @@ void resumeGame(World &world, Entity &entityPtr)
 
 void selectAWritable(World &world, Entity &entityPtr)
 {
-    (void)world;
+    RenderWindowResource &resource = world.getResource<RenderWindowResource>();
     if (entityPtr.contains<Selected>()) {
         entityPtr.removeComponent<Selected>();
         entityPtr.removeComponent<TextureName>();
@@ -60,8 +60,10 @@ void selectAWritable(World &world, Entity &entityPtr)
         auto &state = world.getResource<GameStates>();
         auto guard = std::lock_guard(state);
         state.currentState = GameStates::IN_GAME;
+        resource.window.setKeyRepeatEnabled(false);
         return;
     }
+    resource.window.setKeyRepeatEnabled(true);
     entityPtr.addComponent<Selected>();
     entityPtr.removeComponent<TextureName>();
     entityPtr.addComponent<TextureName>(GraphicsTextureResource::WRITABLE_SELECTED);
