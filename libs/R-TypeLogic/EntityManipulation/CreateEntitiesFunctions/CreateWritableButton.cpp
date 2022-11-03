@@ -11,6 +11,7 @@
 #include "R-TypeLogic/Global/Components/LayerLvL.hpp"
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
 #include "R-TypeLogic/Global/Components/SizeComponent.hpp"
+#include "GraphicECS/SFML/Components/AssociatedIdComponent.hpp"
 
 namespace ecs
 {
@@ -24,8 +25,8 @@ namespace ecs
             .addComponent<Position>(posX, posY)
             .addComponent<LayerLvL>(LayerLvL::WRITABLE_BUTTON)
             .addComponent<ActionName>(actionName)
-            .addComponent<DisplayState>(state);
-        (void)associatedWritableId;
+            .addComponent<DisplayState>(state)
+            .addComponent<graphicECS::SFML::Components::AssociatedId>(std::vector<std::size_t>(associatedWritableId));
         return entity.getId();
     }
 } // namespace ecs
