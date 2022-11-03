@@ -120,6 +120,12 @@ namespace communicator_lib
         /// @throw an error when no server can be found (Not in a client communicator), throw a NetworkError
         unsigned short getServerEndpointId(void);
 
+        /// @brief Utilitary function used for send a message with a protocol 50.
+        /// @param pseudo The pseudonyme of the author
+        /// @param messageContent Content of the message
+        /// @param destination of the message
+        void utilitarySendChatMessage(std::string pseudo, std::string messageContent, std::vector<unsigned short> destination);
+
       private:
         /// @brief Send a protocol 20 to a client
         /// @param client The destination

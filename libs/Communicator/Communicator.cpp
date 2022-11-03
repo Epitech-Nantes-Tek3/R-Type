@@ -171,4 +171,24 @@ unsigned short Communicator::getServerEndpointId(void)
     return _clientList.at(0).getId();
 }
 
+void Communicator::utilitarySendChatMessage(
+    std::string pseudo, std::string messageContent, std::vector<unsigned short> destination)
+{
+    Client temporaryClient;
+    void *networkObject = std::malloc(sizeof(char) * (pseudo.size() + messageContent.size()) + sizeof(unsigned short));
+    unsigned short pseudoLen = pseudo.size();
+
+    if (networkObject == nullptr)
+        throw MallocError("Malloc failed.");
+    std::memcpy(networkObject, &pseudoLen, sizeof(unsigned short));
+    std::memcpy((void *)((char *)networkObject + sizeof(unsigned short)), pseudo.c_str(), sizeof(char) * pseudoLen);
+    std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) + sizeof(char) * pseudoLen),
+        messageContent.c_str(), sizeof(char) * messageContent.size());
+    for (auto it : destination) {
+        temporaryClient = getClientByHisId(it);
+        sendDataToAClient(temporaryClient, networkObject,
+            sizeof(unsigned short) + sizeof(char) * (pseudo.size() + messageContent.size()), 50);
+    }
+}
+
 Communicator::~Communicator() {}
