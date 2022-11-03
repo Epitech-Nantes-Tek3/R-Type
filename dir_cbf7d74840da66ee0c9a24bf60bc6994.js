@@ -12,6 +12,10 @@ var dir_cbf7d74840da66ee0c9a24bf60bc6994 =
     [ "InputManagement.hpp", "_input_management_8hpp.html", [
       [ "InputManagement", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_input_management.html", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_input_management" ]
     ] ],
+    [ "MusicManagement.cpp", "_music_management_8cpp.html", null ],
+    [ "MusicManagement.hpp", "_music_management_8hpp.html", [
+      [ "MusicManagement", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_music_management.html", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_music_management" ]
+    ] ],
     [ "ParallaxSystem.cpp", "_parallax_system_8cpp.html", "_parallax_system_8cpp" ],
     [ "ParallaxSystem.hpp", "_parallax_system_8hpp.html", [
       [ "Parallax", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_parallax.html", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_parallax" ]
@@ -19,5 +23,9 @@ var dir_cbf7d74840da66ee0c9a24bf60bc6994 =
     [ "SfObjectFollowEntitySystem.cpp", "_sf_object_follow_entity_system_8cpp.html", null ],
     [ "SfObjectFollowEntitySystem.hpp", "_sf_object_follow_entity_system_8hpp.html", [
       [ "SfObjectFollowEntitySystem", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sf_object_follow_entity_system.html", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sf_object_follow_entity_system" ]
+    ] ],
+    [ "SoundManagement.cpp", "_sound_management_8cpp.html", null ],
+    [ "SoundManagement.hpp", "_sound_management_8hpp.html", [
+      [ "SoundManagement", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sound_management.html", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sound_management" ]
     ] ]
 ];

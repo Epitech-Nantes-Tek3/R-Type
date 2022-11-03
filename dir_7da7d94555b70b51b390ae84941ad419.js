@@ -39,14 +39,17 @@ var dir_7da7d94555b70b51b390ae84941ad419 =
     [ "MouseInputComponent.hpp", "_mouse_input_component_8hpp.html", [
       [ "MouseInputComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_mouse_input_component.html", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_mouse_input_component" ]
     ] ],
+    [ "MusicComponent.hpp", "_music_component_8hpp.html", [
+      [ "MusicComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_music_component.html", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_music_component" ]
+    ] ],
     [ "ParallaxComponent.hpp", "_parallax_component_8hpp.html", [
       [ "ParallaxBackground", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_parallax_background.html", null ]
     ] ],
     [ "SelectedComponent.hpp", "_selected_component_8hpp.html", [
       [ "Selected", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_selected.html", null ]
     ] ],
-    [ "SoundName.hpp", "_sound_name_8hpp.html", [
-      [ "SoundName", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_sound_name.html", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_sound_name" ]
+    [ "SoundComponent.hpp", "_sound_component_8hpp.html", [
+      [ "SoundComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_sound_component.html", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_sound_component" ]
     ] ],
     [ "TextureName.hpp", "_texture_name_8hpp.html", [
       [ "TextureName", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_texture_name.html", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_texture_name" ]

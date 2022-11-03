@@ -70,10 +70,10 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_action_name_8hpp.html",
-"_projectile_component_8hpp.html",
-"classecs_1_1_enemy_projectile_type.html",
-"classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_sound_name.html#a22cf6b7ea1efec3512bd4325875467ac",
-"namespaceserver__data.html"
+"_parallax_system_8hpp.html",
+"classecs_1_1_enemy.html#a444aee2e67fc44739943d9193363abbf",
+"classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_mouse_input_component.html#a45ccba577fd7abfb7b83a00892465f33",
+"namespaceclient__data.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
