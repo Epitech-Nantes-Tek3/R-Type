@@ -315,13 +315,13 @@ void Room::_manageInterprocessCommunication()
 
     while (_state != ENDED && std::getline(std::cin, line) && !line.empty()) {
         std::cerr << "Room " << _name << "received : \"" << line << "\"" << std::endl;
-        _manageStatusRequest(line);
+        _manageStateRequest(line);
         _manageSeatsRequest(line);
         _manageStopRequest(line);
     }
 }
 
-void Room::_manageStatusRequest(std::string line)
+void Room::_manageStateRequest(std::string line)
 {
     if (line == "11")
         std::cout << "21 " << std::to_string(_state) << std::endl;
