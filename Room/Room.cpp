@@ -71,7 +71,8 @@ Room::Room() : _inputHandler(&Room::_manageInterprocessCommunication, this)
     _name = std::string(10, '\0');
 }
 
-Room::Room(unsigned short id, std::string name, Client networkInformations) : _inputHandler(&Room::_manageInterprocessCommunication, this)
+Room::Room(unsigned short id, std::string name, Client networkInformations)
+    : _inputHandler(&Room::_manageInterprocessCommunication, this)
 {
     _id = id;
     _networkInformations = networkInformations;
@@ -110,8 +111,7 @@ void Room::startConnexionProtocol(void) { _communicatorInstance.get()->startRece
 
 void Room::startLobbyLoop(void)
 {
-    std::cerr << "START A ROOM ERR" << std::endl;
-    std::cout << "START A ROOM OUT" << std::endl;
+    std::cerr << "START THE ROOM " << _name << std::endl;
     CommunicatorMessage connectionOperation;
 
     std::signal(SIGINT, signalCallbackHandler);
@@ -329,9 +329,32 @@ void Room::_manageInterprocessCommunication()
 {
     std::string line;
 
-    std::cerr << "START TO LISTEN ERR" << std::endl;
-    std::cout << "START TO LISTEN OUT" << std::endl;
     while (_state != ENDED && std::getline(std::cin, line) && !line.empty()) {
         std::cerr << "Room " << _name << "received : \"" << line << "\"" << std::endl;
+        _manageStatusRequest(line);
+        _manageSeatsRequest(line);
+        _manageStopRequest(line);
     }
 }
+
+void Room::_manageStatusRequest(std::string line)
+{
+    if (line == "11")
+        std::cout << "21 " << std::to_string(_state) << std::endl;
+}
+
+void Room::_manageSeatsRequest(std::string line)
+{
+    if (line == "12")
+        std::cout << "22 " << std::to_string(_remainingPlaces) << std::endl;
+}
+
+void Room::_manageStopRequest(std::string line)
+{
+    if (line == "13") {
+        _state = ENDED;
+        std::cout << "23" << std::endl;
+    }
+}
+
+void Room::_SendEndGameToServer() { std::cout << "24" << std::endl; }
