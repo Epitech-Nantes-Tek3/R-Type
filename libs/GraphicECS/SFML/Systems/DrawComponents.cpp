@@ -64,8 +64,8 @@ void DrawComponents::addWritableText(std::shared_ptr<Entity> writablePtr, const 
 
     if (writablePtr->contains<GraphicsTextComponent>())
         return;
-    writablePtr->addComponent<GraphicsTextComponent>(
-        newFont, writablePtr->getComponent<WritableContent>().content, pos.x + size.x * 0.05, pos.y + size.y * 0.2, size.y * 0.4);
+    writablePtr->addComponent<GraphicsTextComponent>(newFont, writablePtr->getComponent<WritableContent>().content,
+        pos.x + size.x * 0.05, pos.y + size.y * 0.2, size.y * 0.4);
 }
 
 void DrawComponents::_updatePlayer(LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr, const sf::Font &newFont)
@@ -102,9 +102,15 @@ void DrawComponents::_udpateProjectile(LayerLvL &layerType, std::shared_ptr<ecs:
     if (layerType.layer == LayerLvL::layer_e::PROJECTILE) {
         if (entityPtr->contains<EnemyProjectile>()) {
             switch (entityPtr->getComponent<EnemyProjectileType>().parentType) {
-                case Enemy::FIRE: entityPtr->addComponent<TextureName>(GraphicsTextureResource::PROJECTILE_ENEMY_FIRE); break;
-                case Enemy::ELECTRIC: entityPtr->addComponent<TextureName>(GraphicsTextureResource::PROJECTILE_ENEMY_ELECTRIC); break;
-                case Enemy::ICE: entityPtr->addComponent<TextureName>(GraphicsTextureResource::PROJECTILE_ENEMY_ICE); break;
+                case Enemy::FIRE:
+                    entityPtr->addComponent<TextureName>(GraphicsTextureResource::PROJECTILE_ENEMY_FIRE);
+                    break;
+                case Enemy::ELECTRIC:
+                    entityPtr->addComponent<TextureName>(GraphicsTextureResource::PROJECTILE_ENEMY_ELECTRIC);
+                    break;
+                case Enemy::ICE:
+                    entityPtr->addComponent<TextureName>(GraphicsTextureResource::PROJECTILE_ENEMY_ICE);
+                    break;
                 default: entityPtr->addComponent<TextureName>(GraphicsTextureResource::PROJECTILE_ENEMY_BASIC); break;
             };
         }
@@ -119,6 +125,9 @@ void DrawComponents::_updateButton(World &world, LayerLvL &layerType, std::share
     if (layerType.layer == LayerLvL::BUTTON) {
         entityPtr->addComponent<TextureName>(GraphicsTextureResource::BUTTON);
         addButtonText(entityPtr, world.getResource<GraphicsFontResource>().font);
+    }
+    if (layerType.layer == LayerLvL::WRITABLE_BUTTON) {
+        entityPtr->addComponent<TextureName>(GraphicsTextureResource::WRITABLE_BUTTON);
     }
 }
 
@@ -135,7 +144,8 @@ void DrawComponents::_updateEntities(World &world, std::shared_ptr<ecs::Entity> 
     auto layerType = entityPtr->getComponent<LayerLvL>();
     if (layerType.layer == LayerLvL::layer_e::OBSTACLE || layerType.layer == LayerLvL::layer_e::ENEMY
         || layerType.layer == LayerLvL::layer_e::PLAYER || layerType.layer == LayerLvL::layer_e::PROJECTILE
-        || layerType.layer == LayerLvL::BUTTON || layerType.layer == LayerLvL::WRITABLE) {
+        || layerType.layer == LayerLvL::BUTTON || layerType.layer == LayerLvL::WRITABLE
+        || layerType.layer == LayerLvL::WRITABLE_BUTTON) {
         auto entityPos = entityPtr->getComponent<Position>();
         auto entitySize = entityPtr->getComponent<Size>();
 

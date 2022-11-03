@@ -27,7 +27,7 @@ namespace ecs
             .addComponent<LayerLvL>(LayerLvL::WRITABLE_BUTTON)
             .addComponent<ActionName>(ButtonActionMap::WRITABLE_BUTTON)
             .addComponent<DisplayState>(state)
-            .addComponent<graphicECS::SFML::Components::AssociatedId>(std::vector<std::size_t>(associatedWritableId))
+            .addComponent<graphicECS::SFML::Components::AssociatedId>(std::vector<std::size_t>{associatedWritableId})
             .addComponent<graphicECS::SFML::Components::WritableButtonAction>(actionFunction);
         return entity.getId();
     }

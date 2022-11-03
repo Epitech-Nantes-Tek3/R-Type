@@ -85,3 +85,10 @@ void writableButtonAction(World &world, Entity &entityPtr)
         return;
     entityPtr.getComponent<WritableButtonAction>().actionToExecute(world, entityPtr, writableContent);
 }
+
+void publishNewChatMessage(World &world, Entity &entityPtr, std::string &message)
+{
+    (void)world;
+    (void)entityPtr;
+    (void)message;
+}

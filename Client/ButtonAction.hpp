@@ -35,4 +35,10 @@ void selectAWritable(World &world, Entity &entityPtr);
 /// @param entityPtr the entity whoe's actioned the called
 void writableButtonAction(World &world, Entity &entityPtr);
 
+/// @brief publish a new message in the room chat
+/// @param world the world where the entity his
+/// @param entityPtr the entity whoe's actioned the called
+/// @param message message to send
+void publishNewChatMessage(World &world, Entity &entityPtr, std::string &message);
+
 #endif /* !BUTTONACTION_HPP_ */
