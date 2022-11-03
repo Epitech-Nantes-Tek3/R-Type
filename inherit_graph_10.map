@@ -27,9 +27,9 @@
 <area shape="rect" id="node26" href="$classecs_1_1_layer_lv_l.html" title="This class LayerLvL is created in order to know the layer level of display. It will be used to order ..." alt="" coords="260,1221,371,1248"/>
 <area shape="rect" id="node27" href="$classecs_1_1_life.html" title="The Life class, needed for every ennemies, bosses or players It&#39;s a networkable component." alt="" coords="277,1272,353,1299"/>
 <area shape="rect" id="node28" href="$classecs_1_1_life_time.html" title="The LifeTime class, telling how long an entity is going to live." alt="" coords="261,1323,370,1349"/>
-<area shape="rect" id="node29" href="$classecs_1_1_networkable.html" title="This component is used to know which entities must be the same in the server and in client...." alt="" coords="248,1373,383,1400"/>
-<area shape="rect" id="node30" href="$classecs_1_1_network_client.html" title="The component which will be used to link the Communicator Client&#39;ID." alt="" coords="243,1424,388,1451"/>
-<area shape="rect" id="node31" href="$classecs_1_1_network_server.html" title="The component which will be used to link the Communicator Server&#39;ID." alt="" coords="241,1475,390,1501"/>
+<area shape="rect" id="node29" href="$classecs_1_1_network_client.html" title="The component which will be used to link the Communicator Client&#39;ID." alt="" coords="243,1373,388,1400"/>
+<area shape="rect" id="node30" href="$classecs_1_1_network_server.html" title="The component which will be used to link the Communicator Server&#39;ID." alt="" coords="241,1424,390,1451"/>
+<area shape="rect" id="node31" href="$classecs_1_1_networkable.html" title="This component is used to know which entities must be the same in the server and in client...." alt="" coords="248,1475,383,1501"/>
 <area shape="rect" id="node32" href="$classecs_1_1_newly_created.html" title="This component is in order to give a unique id to an entity, it&#39;s used in the sending of the creation..." alt="" coords="243,1525,387,1552"/>
 <area shape="rect" id="node33" href="$classecs_1_1_obstacle.html" title="Obstacle Component allows an entity to be used as an Obstacle." alt="" coords="261,1576,370,1603"/>
 <area shape="rect" id="node34" href="$classecs_1_1_pattern.html" title="The Movement component, used for mobiles entities." alt="" coords="266,1627,365,1653"/>
@@ -55,7 +55,7 @@
 <area shape="rect" id="node54" href="$classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_mouse_input_component.html" title="This component class stores an unsorted map of action/value pair. This class is created in order to f..." alt="" coords="201,2802,429,2843"/>
 <area shape="rect" id="node55" href="$classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_music_component.html" title="MusicComponent stores the key as enum to the corresponding music stored in shared resource MusicResou..." alt="" coords="201,2867,429,2909"/>
 <area shape="rect" id="node56" href="$classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_parallax_background.html" title="This component class create a sprite wich travel in the background." alt="" coords="201,2933,429,2974"/>
-<area shape="rect" id="node57" href="$classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_selected.html" title="This component class allows to know if a writable entity is selected." alt="" coords="201,2998,429,3039"/>
+<area shape="rect" id="node57" href="$classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_selected.html" title="This component class allows to know if an entity is selected." alt="" coords="201,2998,429,3039"/>
 <area shape="rect" id="node58" href="$classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_sound_component.html" title="SoundComponent stores the key as enum to the corresponding sound stored in shared resource SoundResou..." alt="" coords="201,3063,429,3105"/>
 <area shape="rect" id="node59" href="$classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_texture_name.html" title="TextureName store the key as enum to the corresponding texture stores in shared resource." alt="" coords="201,3129,429,3170"/>
 <area shape="rect" id="node60" href="$classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_writable_content.html" title="This component class stores the content of a writable component." alt="" coords="201,3194,429,3235"/>

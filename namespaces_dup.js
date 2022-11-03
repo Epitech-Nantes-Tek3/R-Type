@@ -7,12 +7,12 @@ var namespaces_dup =
     [ "Committing Rules", "md__c_o_n_t_r_i_b_u_t_i_n_g.html#autotoc_md13", null ],
     [ "Testing Rules", "md__c_o_n_t_r_i_b_u_t_i_n_g.html#autotoc_md14", null ],
     [ "Pull Request Rules", "md__c_o_n_t_r_i_b_u_t_i_n_g.html#autotoc_md15", null ],
-    [ "argument_handler", "namespaceargument__handler.html", null ],
-    [ "client_data", "namespaceclient__data.html", null ],
-    [ "communicator_lib", "namespacecommunicator__lib.html", null ],
-    [ "ecs", "namespaceecs.html", null ],
-    [ "error_lib", "namespaceerror__lib.html", null ],
+    [ "argument_handler", "namespaceargument__handler.html", "namespaceargument__handler" ],
+    [ "client_data", "namespaceclient__data.html", "namespaceclient__data" ],
+    [ "communicator_lib", "namespacecommunicator__lib.html", "namespacecommunicator__lib" ],
+    [ "ecs", "namespaceecs.html", "namespaceecs" ],
+    [ "error_lib", "namespaceerror__lib.html", "namespaceerror__lib" ],
     [ "graphicECS", "namespacegraphic_e_c_s.html", "namespacegraphic_e_c_s" ],
-    [ "server_data", "namespaceserver__data.html", null ],
-    [ "transisthor_lib", "namespacetransisthor__lib.html", null ]
+    [ "server_data", "namespaceserver__data.html", "namespaceserver__data" ],
+    [ "transisthor_lib", "namespacetransisthor__lib.html", "namespacetransisthor__lib" ]
 ];

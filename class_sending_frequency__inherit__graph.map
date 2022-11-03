@@ -1,5 +1,5 @@
 <map id="SendingFrequency" name="SendingFrequency">
 <area shape="rect" id="node1" title=" " alt="" coords="5,155,147,181"/>
 <area shape="rect" id="node2" href="$classecs_1_1_resource.html" title="This is the Resource Class for ECS The base Resource type, all Resources must inherit from Resource...." alt="" coords="20,80,132,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="44,5,108,32"/>
+<area shape="rect" id="node3" title=" " alt="" coords="30,5,122,32"/>
 </map>

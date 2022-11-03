@@ -34,9 +34,9 @@ var hierarchy =
       [ "ecs::LayerLvL", "classecs_1_1_layer_lv_l.html", null ],
       [ "ecs::Life", "classecs_1_1_life.html", null ],
       [ "ecs::LifeTime", "classecs_1_1_life_time.html", null ],
-      [ "ecs::Networkable", "classecs_1_1_networkable.html", null ],
       [ "ecs::NetworkClient", "classecs_1_1_network_client.html", null ],
       [ "ecs::NetworkServer", "classecs_1_1_network_server.html", null ],
+      [ "ecs::Networkable", "classecs_1_1_networkable.html", null ],
       [ "ecs::NewlyCreated", "classecs_1_1_newly_created.html", null ],
       [ "ecs::Obstacle", "classecs_1_1_obstacle.html", null ],
       [ "ecs::Pattern", "classecs_1_1_pattern.html", null ],
@@ -67,7 +67,7 @@ var hierarchy =
       [ "graphicECS::SFML::Components::TextureName", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_texture_name.html", null ],
       [ "graphicECS::SFML::Components::WritableContent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_writable_content.html", null ]
     ] ],
-    [ "exception", null, [
+    [ "std::exception", null, [
       [ "error_lib::RTypeError", "classerror__lib_1_1_r_type_error.html", [
         [ "error_lib::ArgumentError", "classerror__lib_1_1_argument_error.html", null ],
         [ "error_lib::EcsError", "classerror__lib_1_1_ecs_error.html", null ],
@@ -77,9 +77,11 @@ var hierarchy =
       ] ]
     ] ],
     [ "communicator_lib::Message", "structcommunicator__lib_1_1_message.html", null ],
-    [ "mutex", null, [
+    [ "std::mutex", null, [
       [ "ecs::Entity", "classecs_1_1_entity.html", null ],
       [ "ecs::Resource", "classecs_1_1_resource.html", [
+        [ "NetworkableIdGenerator", "class_networkable_id_generator.html", null ],
+        [ "SendingFrequency", "class_sending_frequency.html", null ],
         [ "ecs::ButtonActionMap", "classecs_1_1_button_action_map.html", null ],
         [ "ecs::GameClock", "classecs_1_1_game_clock.html", null ],
         [ "ecs::GameStates", "classecs_1_1_game_states.html", null ],
@@ -89,9 +91,7 @@ var hierarchy =
         [ "graphicECS::SFML::Resources::GraphicsTextureResource", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html", null ],
         [ "graphicECS::SFML::Resources::MusicResource", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_music_resource.html", null ],
         [ "graphicECS::SFML::Resources::RenderWindowResource", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_render_window_resource.html", null ],
-        [ "graphicECS::SFML::Resources::SoundResource", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_sound_resource.html", null ],
-        [ "NetworkableIdGenerator", "class_networkable_id_generator.html", null ],
-        [ "SendingFrequency", "class_sending_frequency.html", null ]
+        [ "graphicECS::SFML::Resources::SoundResource", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_sound_resource.html", null ]
       ] ]
     ] ],
     [ "communicator_lib::Receiver", "classcommunicator__lib_1_1_receiver.html", null ],
@@ -100,6 +100,10 @@ var hierarchy =
     [ "server_data::Server", "classserver__data_1_1_server.html", null ],
     [ "argument_handler::ArgumentHandler::ServerInformation", "structargument__handler_1_1_argument_handler_1_1_server_information.html", null ],
     [ "ecs::System", "classecs_1_1_system.html", [
+      [ "SendNewlyCreatedToClients", "struct_send_newly_created_to_clients.html", null ],
+      [ "SendNewlyCreatedToServer", "struct_send_newly_created_to_server.html", null ],
+      [ "SendToClient", "struct_send_to_client.html", null ],
+      [ "SendToServer", "struct_send_to_server.html", null ],
       [ "ecs::Collide", "structecs_1_1_collide.html", null ],
       [ "ecs::DeathLife", "structecs_1_1_death_life.html", null ],
       [ "ecs::DeathSystem", "structecs_1_1_death_system.html", null ],
@@ -118,11 +122,7 @@ var hierarchy =
       [ "graphicECS::SFML::Systems::MusicManagement", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_music_management.html", null ],
       [ "graphicECS::SFML::Systems::Parallax", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_parallax.html", null ],
       [ "graphicECS::SFML::Systems::SfObjectFollowEntitySystem", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sf_object_follow_entity_system.html", null ],
-      [ "graphicECS::SFML::Systems::SoundManagement", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sound_management.html", null ],
-      [ "SendNewlyCreatedToClients", "struct_send_newly_created_to_clients.html", null ],
-      [ "SendNewlyCreatedToServer", "struct_send_newly_created_to_server.html", null ],
-      [ "SendToClient", "struct_send_to_client.html", null ],
-      [ "SendToServer", "struct_send_to_server.html", null ]
+      [ "graphicECS::SFML::Systems::SoundManagement", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sound_management.html", null ]
     ] ],
     [ "transisthor_lib::Transisthor", "classtransisthor__lib_1_1_transisthor.html", null ],
     [ "ecs::World", "classecs_1_1_world.html", null ]

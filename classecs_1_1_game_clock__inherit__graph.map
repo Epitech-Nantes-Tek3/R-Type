@@ -1,5 +1,5 @@
 <map id="ecs::GameClock" name="ecs::GameClock">
 <area shape="rect" id="node1" title="Shared Resource Clock for the Game." alt="" coords="5,155,132,181"/>
 <area shape="rect" id="node2" href="$classecs_1_1_resource.html" title="This is the Resource Class for ECS The base Resource type, all Resources must inherit from Resource...." alt="" coords="13,80,125,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="37,5,101,32"/>
+<area shape="rect" id="node3" title=" " alt="" coords="23,5,115,32"/>
 </map>
