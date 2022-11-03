@@ -35,8 +35,10 @@
 #include "Transisthor/TransisthorECSLogic/Client/Systems/SendNewlyCreatedToServer.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Systems/SendToServer.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/ButtonActionMap.hpp"
+#include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/GameStates.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/MenuStates.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateButton.hpp"
+#include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateWritable.hpp"
 #include "R-TypeLogic/Global/Components/LayerLvL.hpp"
 #include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
@@ -333,6 +335,10 @@ void ClientRoom::_initSpritesForEntities()
 
     spritesList.addTexture(GraphicsTextureResource::BUTTON, "assets/EpiSprite/r-typesheet11.gif", sf::Vector2f(34, 0),
         sf::Vector2f(34, 34));
+    spritesList.addTexture(GraphicsTextureResource::WRITABLE, "assets/EpiSprite/r-typesheet11.gif", sf::Vector2f(34, 0),
+        sf::Vector2f(34, 34));
+    spritesList.addTexture(GraphicsTextureResource::WRITABLE_SELECTED, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
+        sf::Vector2f(534 / 16 * 8, 0), sf::Vector2f(534 / 16, 34));
     _initSpritesForPlayer(spritesList);
     _initSpritesForProjectiles(spritesList);
     _initSpritesForBackgrounds(spritesList);
@@ -345,6 +351,7 @@ void ClientRoom::_initSharedResources()
     _worldInstance->addResource<RenderWindowResource>();
     _worldInstance->addResource<GraphicsFontResource>("assets/fonts/arial.ttf");
     _worldInstance->addResource<MenuStates>(MenuStates::IN_GAME);
+    _worldInstance->addResource<GameStates>(GameStates::IN_GAME);
     _initSpritesForEntities();
 }
 
@@ -461,18 +468,27 @@ void ClientRoom::_initEntities()
     }
     _initBackgroundEntities();
     _initButtons();
+    _initWritable();
 }
 
 void ClientRoom::_initButtons()
 {
-    _worldInstance->addResource<ButtonActionMap>(ButtonActionMap::EXIT, std::function<void(World &)>(exitWindow));
+    _worldInstance->addResource<ButtonActionMap>(
+        ButtonActionMap::EXIT, std::function<void(World &, Entity &)>(exitWindow));
     ButtonActionMap &actionsList = _worldInstance->getResource<ButtonActionMap>();
-    actionsList.addAction(ButtonActionMap::RESUME, std::function<void(World &)>(resumeGame));
-    actionsList.addAction(ButtonActionMap::PAUSE, std::function<void(World &)>(pauseGame));
+    actionsList.addAction(ButtonActionMap::RESUME, std::function<void(World &, Entity &)>(resumeGame));
+    actionsList.addAction(ButtonActionMap::PAUSE, std::function<void(World &, Entity &)>(pauseGame));
     createNewButton(
         *(_worldInstance.get()), 0, 0, 68, 68, ButtonActionMap::PAUSE, LayerLvL::BUTTON, MenuStates::IN_GAME);
     createNewButton(*(_worldInstance.get()), 909, 200, 102, 102, ButtonActionMap::RESUME, LayerLvL::BUTTON,
         MenuStates::GAME_PAUSED);
     createNewButton(
         *(_worldInstance.get()), 909, 500, 102, 102, ButtonActionMap::EXIT, LayerLvL::BUTTON, MenuStates::GAME_PAUSED);
+}
+
+void ClientRoom::_initWritable()
+{
+    ButtonActionMap &actionsList = _worldInstance->getResource<ButtonActionMap>();
+    actionsList.addAction(ButtonActionMap::WRITABLE, std::function<void(World &, Entity &)>(selectAWritable));
+    createNewWritable(*(_worldInstance.get()), 1450, 900, 350, 50, MenuStates::IN_GAME);
 }

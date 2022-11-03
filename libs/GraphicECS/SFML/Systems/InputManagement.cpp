@@ -15,10 +15,13 @@
 #include "AllowMouseAndKeyboardComponent.hpp"
 #include "ControllerButtonInputComponent.hpp"
 #include "ControllerJoystickInputComponent.hpp"
+#include "GraphicECS/SFML/Components/GraphicsTextComponent.hpp"
 #include "IsShootingComponent.hpp"
 #include "KeyboardInputComponent.hpp"
 #include "MouseInputComponent.hpp"
+#include "SelectedComponent.hpp"
 #include "World/World.hpp"
+#include "WritableContentComponent.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/Components/ActionName.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/Components/DisplayState.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/ButtonActionMap.hpp"
@@ -70,6 +73,34 @@ namespace graphicECS::SFML::Systems
         }
     }
 
+    void InputManagement::_textEnteredEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> joined)
+    {
+        if (event.type == sf::Event::TextEntered) {
+            auto writeText = [&event](std::shared_ptr<Entity> entityPtr) {
+                auto &writableContent = entityPtr->getComponent<WritableContent>();
+
+                if (event.text.unicode == 8 && writableContent.content.size() != 0) {
+                    auto guard = std::lock_guard(*entityPtr.get());
+                    writableContent.content.pop_back();
+                } else if (event.text.unicode != 8) {
+                    auto guard = std::lock_guard(*entityPtr.get());
+                    writableContent.content.resize(writableContent.content.size() + 1, (char)event.text.unicode);
+                }
+                if (entityPtr->contains<GraphicsTextComponent>()) {
+                    auto &textComponent = entityPtr->getComponent<GraphicsTextComponent>();
+                    unsigned short textLen = 0;
+                    std::string formatedText = writableContent.content;
+
+                    for (; writableContent.content[textLen] != '\0'; textLen++);
+                    formatedText.resize(textLen);
+                    textComponent.text.setString(formatedText);
+                }
+            };
+
+            std::for_each(joined.begin(), joined.end(), writeText);
+        }
+    }
+
     void InputManagement::_mouseEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> &Inputs)
     {
         if (event.type == sf::Event::MouseButtonPressed) {
@@ -99,9 +130,14 @@ namespace graphicECS::SFML::Systems
                 if (!windowResource.window.pollEvent(event))
                     break;
             }
+            std::vector<std::shared_ptr<Entity>> joined = world.joinEntities<WritableContent, Selected>();
             _closeWindow(event, windowResource);
-            _keyPressedEvents(event, Inputs);
-            _keyReleasedEvents(event, Inputs);
+            if (joined.empty()) {
+                _keyPressedEvents(event, Inputs);
+                _keyReleasedEvents(event, Inputs);
+            } else {
+                _textEnteredEvents(event, joined);
+            }
             _mouseEvents(event, Inputs);
         }
         for (auto &entityPtr : Inputs) {
@@ -233,8 +269,8 @@ namespace graphicECS::SFML::Systems
                 ActionName &name = entityPtr.get()->getComponent<ActionName>();
                 ButtonActionMap &map = world.getResource<ButtonActionMap>();
 
-                std::function<void(World &)> fct = map.actionList.find(name.actionName)->second;
-                fct(world);
+                std::function<void(World &, Entity &)> fct = map.actionList.find(name.actionName)->second;
+                fct(world, *(entityPtr.get()));
             }
         };
         std::for_each(joined.begin(), joined.end(), clickInButton);
