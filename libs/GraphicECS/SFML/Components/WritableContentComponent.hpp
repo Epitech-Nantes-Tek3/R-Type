@@ -16,7 +16,7 @@ namespace graphicECS::SFML::Components
         /// @brief A string containing all the typed content
         std::string content;
 
-        /// @brief Default constructor of WritableContentComponent.
+        /// @brief Constructor of WritableContentComponent.
         inline WritableContent() { content = std::string(0, '\0'); };
 
         /// @brief Destroy the Writable Content object
