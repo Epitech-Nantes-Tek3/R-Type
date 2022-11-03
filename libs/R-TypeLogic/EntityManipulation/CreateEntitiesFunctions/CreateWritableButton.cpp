@@ -17,7 +17,7 @@
 namespace ecs
 {
     std::size_t createNewWritableButton(World &world, const int posX, const int posY, const int sizeX, const int sizeY,
-        std::function<void(World &, Entity &)> actionFunction, MenuStates::menuState_e state, std::size_t associatedWritableId)
+        std::function<void(World &, Entity &, std::string &)> actionFunction, MenuStates::menuState_e state, std::size_t associatedWritableId)
     {
         Entity &entity = world.addEntity();
         auto guard = std::lock_guard(entity);
@@ -25,7 +25,7 @@ namespace ecs
             .addComponent<Size>(sizeX, sizeY)
             .addComponent<Position>(posX, posY)
             .addComponent<LayerLvL>(LayerLvL::WRITABLE_BUTTON)
-            .addComponent<ActionName>(ButtonActionMap::EXIT)
+            .addComponent<ActionName>(ButtonActionMap::WRITABLE_BUTTON)
             .addComponent<DisplayState>(state)
             .addComponent<graphicECS::SFML::Components::AssociatedId>(std::vector<std::size_t>(associatedWritableId))
             .addComponent<graphicECS::SFML::Components::WritableButtonAction>(actionFunction);

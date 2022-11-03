@@ -7,7 +7,10 @@
 
 #include "ButtonAction.hpp"
 #include <csignal>
+#include "GraphicECS/SFML/Components/AssociatedIdComponent.hpp"
 #include "GraphicECS/SFML/Components/SelectedComponent.hpp"
+#include "GraphicECS/SFML/Components/WritableButtonActionComponent.hpp"
+#include "GraphicECS/SFML/Components/WritableContentComponent.hpp"
 #include "GraphicECS/SFML/Resources/RenderWindowResource.hpp"
 #include "TextureName.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/GameStates.hpp"
@@ -70,4 +73,15 @@ void selectAWritable(World &world, Entity &entityPtr)
     auto &state = world.getResource<GameStates>();
     auto guard = std::lock_guard(state);
     state.currentState = GameStates::IN_WRITING;
+}
+
+void writableButtonAction(World &world, Entity &entityPtr)
+{
+    auto &idList = entityPtr.getComponent<AssociatedId>().idList;
+    if (idList.empty())
+        return;
+    std::string &writableContent = world.getEntity(idList.at(0)).getComponent<WritableContent>().content;
+    if (!writableContent.size())
+        return;
+    entityPtr.getComponent<WritableButtonAction>().actionToExecute(world, entityPtr, writableContent);
 }

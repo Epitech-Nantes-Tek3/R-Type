@@ -26,7 +26,7 @@ namespace ecs
     /// @param associatedWritableId id of the associated writable entity
     /// @return Id of the new WritableButton in std::size_t
     std::size_t createNewWritableButton(World &world, const int posX, const int posY, const int sizeX, const int sizeY,
-        std::function<void(World &, Entity &)> actionFunction, MenuStates::menuState_e state, std::size_t associatedWritableId);
+        std::function<void(World &, Entity &, std::string &)> actionFunction, MenuStates::menuState_e state, std::size_t associatedWritableId);
 } // namespace ecs
 
 #endif /* !CREATEWRITABLEBUTTON_HPP_ */

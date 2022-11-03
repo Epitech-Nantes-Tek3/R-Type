@@ -14,10 +14,10 @@ namespace graphicECS::SFML::Components
     class WritableButtonAction : public ecs::Component {
       public:
         /// @brief Function to execute when a writtable button entity is pressed
-        std::function<void(World &, Entity &)> actionToExecute;
+        std::function<void(World &, Entity &, std::string &)> actionToExecute;
 
         /// @brief Constructor of WritableButtonActionComponent.
-        inline WritableButtonAction(std::function<void(World &, Entity &)> actionParam)
+        inline WritableButtonAction(std::function<void(World &, Entity &, std::string &)> actionParam)
         {
             actionToExecute = actionParam;
         };

@@ -30,4 +30,9 @@ void resumeGame(World &world, Entity &entityPtr);
 /// @param entityPtr the entity whoe's actioned the called
 void selectAWritable(World &world, Entity &entityPtr);
 
+/// @brief Get the content of associated writable entity and called the action function
+/// @param world the world where the entity his
+/// @param entityPtr the entity whoe's actioned the called
+void writableButtonAction(World &world, Entity &entityPtr);
+
 #endif /* !BUTTONACTION_HPP_ */
