@@ -19,7 +19,5 @@ int main(int ac, char **av)
         clientInformation.serverAddress, clientInformation.serverPort);
 
     client.startGame();
-//    client.startLobbyLoop();
-//    client.startSoloLoop();
     return (0);
 }

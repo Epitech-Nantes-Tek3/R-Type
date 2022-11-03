@@ -111,13 +111,17 @@ ClientRoom::ClientRoom(std::string address, unsigned short port, std::string ser
     clientRoomState = &_state;
 }
 
-void ClientRoom::initEcsGameData(void)
+void ClientRoom::initEcsGameData(bool isSolo)
 {
-    _initSharedResources();
-    //initEcsGameData();
-    initSoloSystem();
-   // _initSystems();
-    _initEntities();
+    if (isSolo) {
+        _initSharedResources();
+        initSoloSystem();
+        _initEntities();
+    } else {
+        _initSharedResources();
+        _initSystems();
+        _initEntities();
+    }
 }
 
 void ClientRoom::startConnexionProtocol(void)
@@ -228,7 +232,7 @@ void ClientRoom::initSoloData(void)
 
 void ClientRoom::startSoloLoop(void)
 {
-    initEcsGameData();
+    initEcsGameData(true);
     initSoloData();
     _state = ClientState::IN_GAME;
     std::signal(SIGINT, signalCallbackHandler);
@@ -242,8 +246,8 @@ void ClientRoom::startSoloLoop(void)
 
 void ClientRoom::startGame(void)
 {
-    std::cerr
-        << "If you want to play in Solo Mod, please refer S. Otherwise if you want to play in multiplayer use M : ";
+    std::cerr << "If you want to play in Solo Mod, please refer S. Otherwise if you want to play in multiplayer use M "
+                 "and be shure that a server is runing : ";
     char choosedMod = '\0';
 
     std::cin >> choosedMod;
@@ -280,7 +284,7 @@ void ClientRoom::startLobbyLoop(void)
         }
     }
     if (_state != ClientState::ENDED) {
-        initEcsGameData();
+        initEcsGameData(false);
         _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, nullptr, 0, 10);
         _state = ClientState::LOBBY;
     }
