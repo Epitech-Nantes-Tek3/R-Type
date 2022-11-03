@@ -77,12 +77,13 @@ namespace graphicECS::SFML::Systems
     {
         if (event.type == sf::Event::TextEntered) {
             auto writeText = [&event](std::shared_ptr<Entity> entityPtr) {
-                auto guard = std::lock_guard(*entityPtr.get());
                 auto &writableContent = entityPtr->getComponent<WritableContent>();
 
                 if (event.text.unicode == 8 && writableContent.content.size() != 0) {
+                    auto guard = std::lock_guard(*entityPtr.get());
                     writableContent.content.pop_back();
                 } else if (event.text.unicode != 8) {
+                    auto guard = std::lock_guard(*entityPtr.get());
                     writableContent.content.resize(writableContent.content.size() + 1, (char)event.text.unicode);
                 }
                 if (entityPtr->contains<GraphicsTextComponent>()) {
