@@ -8,6 +8,7 @@
 #include "ButtonAction.hpp"
 #include <csignal>
 #include "GraphicECS/SFML/Components/AssociatedIdComponent.hpp"
+#include "GraphicECS/SFML/Components/GraphicsTextComponent.hpp"
 #include "GraphicECS/SFML/Components/SelectedComponent.hpp"
 #include "GraphicECS/SFML/Components/WritableButtonActionComponent.hpp"
 #include "GraphicECS/SFML/Components/WritableContentComponent.hpp"
@@ -80,9 +81,14 @@ void writableButtonAction(World &world, Entity &entityPtr)
     auto &idList = entityPtr.getComponent<AssociatedId>().idList;
     if (idList.empty())
         return;
-    std::string &writableContent = world.getEntity(idList.at(0)).getComponent<WritableContent>().content;
+    auto &entity = world.getEntity(idList.at(0));
+    std::string &writableContent = entity.getComponent<WritableContent>().content;
     if (!writableContent.size())
         return;
+    auto guard = std::lock_guard(entity);
+    auto &writableContentComponent = entity.getComponent<WritableContent>();
+    writableContentComponent.content = "";
+    entity.getComponent<GraphicsTextComponent>().text.setString("");
     entityPtr.getComponent<WritableButtonAction>().actionToExecute(world, entityPtr, writableContent);
 }
 
