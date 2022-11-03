@@ -12,7 +12,7 @@
 
 namespace graphicECS::SFML::Components
 {
-    /// @brief This component class permit to know if a writable entity is selected
+    /// @brief This component class allows to know if a writable entity is selected
     class Selected : public ecs::Component {};
 } // namespace graphicECS::SFML::Components
 
