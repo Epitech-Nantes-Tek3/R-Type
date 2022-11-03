@@ -1,0 +1,5 @@
+<map id="ecs::GameStates" name="ecs::GameStates">
+<area shape="rect" id="node1" title="This resource class stores the current game state of the client." alt="" coords="5,155,137,181"/>
+<area shape="rect" id="node2" href="$classecs_1_1_resource.html" title="This is the Resource Class for ECS The base Resource type, all Resources must inherit from Resource...." alt="" coords="15,80,127,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="25,5,117,32"/>
+</map>

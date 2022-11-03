@@ -15,5 +15,7 @@ var dir_d58d1756592902a6f2a860fa6a22a602 =
     [ "CreatePlayer.cpp", "_create_player_8cpp.html", "_create_player_8cpp" ],
     [ "CreatePlayer.hpp", "_create_player_8hpp.html", "_create_player_8hpp" ],
     [ "CreateProjectile.cpp", "_create_projectile_8cpp.html", "_create_projectile_8cpp" ],
-    [ "CreateProjectile.hpp", "_create_projectile_8hpp.html", "_create_projectile_8hpp" ]
+    [ "CreateProjectile.hpp", "_create_projectile_8hpp.html", "_create_projectile_8hpp" ],
+    [ "CreateWritable.cpp", "_create_writable_8cpp.html", "_create_writable_8cpp" ],
+    [ "CreateWritable.hpp", "_create_writable_8hpp.html", "_create_writable_8hpp" ]
 ];

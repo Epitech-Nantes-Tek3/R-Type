@@ -61,8 +61,10 @@ var hierarchy =
       [ "graphicECS::SFML::Components::KeyboardInputComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_keyboard_input_component.html", null ],
       [ "graphicECS::SFML::Components::MouseInputComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_mouse_input_component.html", null ],
       [ "graphicECS::SFML::Components::ParallaxBackground", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_parallax_background.html", null ],
+      [ "graphicECS::SFML::Components::Selected", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_selected.html", null ],
       [ "graphicECS::SFML::Components::SoundName", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_sound_name.html", null ],
-      [ "graphicECS::SFML::Components::TextureName", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_texture_name.html", null ]
+      [ "graphicECS::SFML::Components::TextureName", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_texture_name.html", null ],
+      [ "graphicECS::SFML::Components::WritableContent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_writable_content.html", null ]
     ] ],
     [ "exception", null, [
       [ "error_lib::RTypeError", "classerror__lib_1_1_r_type_error.html", [
@@ -79,6 +81,7 @@ var hierarchy =
       [ "ecs::Resource", "classecs_1_1_resource.html", [
         [ "ecs::ButtonActionMap", "classecs_1_1_button_action_map.html", null ],
         [ "ecs::GameClock", "classecs_1_1_game_clock.html", null ],
+        [ "ecs::GameStates", "classecs_1_1_game_states.html", null ],
         [ "ecs::MenuStates", "classecs_1_1_menu_states.html", null ],
         [ "ecs::RandomDevice", "structecs_1_1_random_device.html", null ],
         [ "graphicECS::SFML::Resources::GraphicsFontResource", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_font_resource.html", null ],

@@ -120,25 +120,29 @@ Collaboration diagram for ecs::ButtonActionMap:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a2adfe584fc3bdee70cf682983ce78b90"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90">buttonAction_e</a> { <a class="el" href="classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90a5b1db99ef1657bb55e046bd589857c6d">UNDEFINED</a>, 
+<tr class="memitem:a2adfe584fc3bdee70cf682983ce78b90"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90">buttonAction_e</a> { <br />
+&#160;&#160;<a class="el" href="classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90a5b1db99ef1657bb55e046bd589857c6d">UNDEFINED</a>, 
 <a class="el" href="classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90a256599fa01466c76e6c68e182aa7f02e">EXIT</a>, 
 <a class="el" href="classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90ac1e13cff8cd3c0953c57dba2339893c2">PAUSE</a>, 
-<a class="el" href="classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90a50879d659e86395e4add9c119f03905d">RESUME</a>
+<a class="el" href="classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90a50879d659e86395e4add9c119f03905d">RESUME</a>, 
+<br />
+&#160;&#160;<a class="el" href="classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90abc8ce9aa5aede952eecc9710e0c530fc">WRITABLE</a>
+<br />
  }</td></tr>
 <tr class="memdesc:a2adfe584fc3bdee70cf682983ce78b90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumeration of all the available actions.  <a href="classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90">More...</a><br /></td></tr>
 <tr class="separator:a2adfe584fc3bdee70cf682983ce78b90"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49e5dce4510de07d33cd4ce8d78aeceb"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_button_action_map.html#a49e5dce4510de07d33cd4ce8d78aeceb">ActionList</a> = std::unordered_map&lt; <a class="el" href="classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90">buttonAction_e</a>, std::function&lt; void(<a class="el" href="classecs_1_1_world.html">World</a> &amp;)&gt; &gt;</td></tr>
-<tr class="memdesc:a49e5dce4510de07d33cd4ce8d78aeceb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map's name which contains the actions.  <a href="classecs_1_1_button_action_map.html#a49e5dce4510de07d33cd4ce8d78aeceb">More...</a><br /></td></tr>
-<tr class="separator:a49e5dce4510de07d33cd4ce8d78aeceb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80fc1e081a5866b3740b2aa636b498ce"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_button_action_map.html#a80fc1e081a5866b3740b2aa636b498ce">ActionList</a> = std::unordered_map&lt; <a class="el" href="classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90">buttonAction_e</a>, std::function&lt; void(<a class="el" href="classecs_1_1_world.html">World</a> &amp;, <a class="el" href="classecs_1_1_entity.html">Entity</a> &amp;)&gt; &gt;</td></tr>
+<tr class="memdesc:a80fc1e081a5866b3740b2aa636b498ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map's name which contains the actions.  <a href="classecs_1_1_button_action_map.html#a80fc1e081a5866b3740b2aa636b498ce">More...</a><br /></td></tr>
+<tr class="separator:a80fc1e081a5866b3740b2aa636b498ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a3d288303421f4ac57b7f88a06c45d398"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_button_action_map.html#a3d288303421f4ac57b7f88a06c45d398">ButtonActionMap</a> (const <a class="el" href="classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90">buttonAction_e</a> &amp;action=<a class="el" href="classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90a5b1db99ef1657bb55e046bd589857c6d">ButtonActionMap::UNDEFINED</a>, std::function&lt; void(<a class="el" href="classecs_1_1_world.html">World</a> &amp;)&gt; fctPtr=std::function&lt; void(<a class="el" href="classecs_1_1_world.html">World</a> &amp;)&gt;())</td></tr>
-<tr class="memdesc:a3d288303421f4ac57b7f88a06c45d398"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of the map, calling the addAction Method PLEASE DO NOT USE THE DEFAULT CONSTRUCTOR.  <a href="classecs_1_1_button_action_map.html#a3d288303421f4ac57b7f88a06c45d398">More...</a><br /></td></tr>
-<tr class="separator:a3d288303421f4ac57b7f88a06c45d398"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac268e6a25d11b45a70cc9901ae6b86ad"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_button_action_map.html#ac268e6a25d11b45a70cc9901ae6b86ad">addAction</a> (const <a class="el" href="classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90">buttonAction_e</a> newAction, std::function&lt; void(<a class="el" href="classecs_1_1_world.html">World</a> &amp;)&gt; fctPtr)</td></tr>
-<tr class="memdesc:ac268e6a25d11b45a70cc9901ae6b86ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a action to the ActionList.  <a href="classecs_1_1_button_action_map.html#ac268e6a25d11b45a70cc9901ae6b86ad">More...</a><br /></td></tr>
-<tr class="separator:ac268e6a25d11b45a70cc9901ae6b86ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a260a09fddf305e88359a125bc2509650"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_button_action_map.html#a260a09fddf305e88359a125bc2509650">ButtonActionMap</a> (const <a class="el" href="classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90">buttonAction_e</a> &amp;action=<a class="el" href="classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90a5b1db99ef1657bb55e046bd589857c6d">ButtonActionMap::UNDEFINED</a>, std::function&lt; void(<a class="el" href="classecs_1_1_world.html">World</a> &amp;, <a class="el" href="classecs_1_1_entity.html">Entity</a> &amp;)&gt; fctPtr=std::function&lt; void(<a class="el" href="classecs_1_1_world.html">World</a> &amp;, <a class="el" href="classecs_1_1_entity.html">Entity</a> &amp;)&gt;())</td></tr>
+<tr class="memdesc:a260a09fddf305e88359a125bc2509650"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of the map, calling the addAction Method PLEASE DO NOT USE THE DEFAULT CONSTRUCTOR.  <a href="classecs_1_1_button_action_map.html#a260a09fddf305e88359a125bc2509650">More...</a><br /></td></tr>
+<tr class="separator:a260a09fddf305e88359a125bc2509650"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea5f040773930fc25f9ad888d6acd2cd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_button_action_map.html#aea5f040773930fc25f9ad888d6acd2cd">addAction</a> (const <a class="el" href="classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90">buttonAction_e</a> newAction, std::function&lt; void(<a class="el" href="classecs_1_1_world.html">World</a> &amp;, <a class="el" href="classecs_1_1_entity.html">Entity</a> &amp;)&gt; fctPtr)</td></tr>
+<tr class="memdesc:aea5f040773930fc25f9ad888d6acd2cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a action to the ActionList.  <a href="classecs_1_1_button_action_map.html#aea5f040773930fc25f9ad888d6acd2cd">More...</a><br /></td></tr>
+<tr class="separator:aea5f040773930fc25f9ad888d6acd2cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4446282955322179f4522a65bad2348d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_button_action_map.html#a4446282955322179f4522a65bad2348d">~ButtonActionMap</a> ()=default</td></tr>
 <tr class="memdesc:a4446282955322179f4522a65bad2348d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default Constructor of the class.  <a href="classecs_1_1_button_action_map.html#a4446282955322179f4522a65bad2348d">More...</a><br /></td></tr>
 <tr class="separator:a4446282955322179f4522a65bad2348d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -152,7 +156,7 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:ab9352b4f19ec296a000e7d30226a40d5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classecs_1_1_button_action_map.html#a49e5dce4510de07d33cd4ce8d78aeceb">ActionList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_button_action_map.html#ab9352b4f19ec296a000e7d30226a40d5">actionList</a></td></tr>
+<tr class="memitem:ab9352b4f19ec296a000e7d30226a40d5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classecs_1_1_button_action_map.html#a80fc1e081a5866b3740b2aa636b498ce">ActionList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_button_action_map.html#ab9352b4f19ec296a000e7d30226a40d5">actionList</a></td></tr>
 <tr class="memdesc:ab9352b4f19ec296a000e7d30226a40d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">The map where the actions are stored.  <a href="classecs_1_1_button_action_map.html#ab9352b4f19ec296a000e7d30226a40d5">More...</a><br /></td></tr>
 <tr class="separator:ab9352b4f19ec296a000e7d30226a40d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -166,14 +170,14 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This resource class stores a map of button action to be executed on click. </p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="a49e5dce4510de07d33cd4ce8d78aeceb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a49e5dce4510de07d33cd4ce8d78aeceb">&#9670;&nbsp;</a></span>ActionList</h2>
+<a id="a80fc1e081a5866b3740b2aa636b498ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80fc1e081a5866b3740b2aa636b498ce">&#9670;&nbsp;</a></span>ActionList</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classecs_1_1_button_action_map.html#a49e5dce4510de07d33cd4ce8d78aeceb">ecs::ButtonActionMap::ActionList</a> =  std::unordered_map&lt;<a class="el" href="classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90">buttonAction_e</a>, std::function&lt;void(<a class="el" href="classecs_1_1_world.html">World</a> &amp;)&gt; &gt;</td>
+          <td class="memname">using <a class="el" href="classecs_1_1_button_action_map.html#a80fc1e081a5866b3740b2aa636b498ce">ecs::ButtonActionMap::ActionList</a> =  std::unordered_map&lt;<a class="el" href="classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90">buttonAction_e</a>, std::function&lt;void(<a class="el" href="classecs_1_1_world.html">World</a> &amp;, <a class="el" href="classecs_1_1_entity.html">Entity</a> &amp;)&gt; &gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -201,13 +205,14 @@ Additional Inherited Members</h2></td></tr>
 <tr><td class="fieldname"><a id="a2adfe584fc3bdee70cf682983ce78b90a256599fa01466c76e6c68e182aa7f02e"></a>EXIT&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a2adfe584fc3bdee70cf682983ce78b90ac1e13cff8cd3c0953c57dba2339893c2"></a>PAUSE&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a2adfe584fc3bdee70cf682983ce78b90a50879d659e86395e4add9c119f03905d"></a>RESUME&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2adfe584fc3bdee70cf682983ce78b90abc8ce9aa5aede952eecc9710e0c530fc"></a>WRITABLE&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
 </div>
 </div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a3d288303421f4ac57b7f88a06c45d398"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3d288303421f4ac57b7f88a06c45d398">&#9670;&nbsp;</a></span>ButtonActionMap()</h2>
+<a id="a260a09fddf305e88359a125bc2509650"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a260a09fddf305e88359a125bc2509650">&#9670;&nbsp;</a></span>ButtonActionMap()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -221,8 +226,8 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::function&lt; void(<a class="el" href="classecs_1_1_world.html">World</a> &amp;)&gt;&#160;</td>
-          <td class="paramname"><em>fctPtr</em> = <code>std::function&lt;void(<a class="el" href="classecs_1_1_world.html">World</a>&#160;&amp;)&gt;()</code>&#160;</td>
+          <td class="paramtype">std::function&lt; void(<a class="el" href="classecs_1_1_world.html">World</a> &amp;, <a class="el" href="classecs_1_1_entity.html">Entity</a> &amp;)&gt;&#160;</td>
+          <td class="paramname"><em>fctPtr</em> = <code>std::function&lt;void(<a class="el" href="classecs_1_1_world.html">World</a>&#160;&amp;,&#160;<a class="el" href="classecs_1_1_entity.html">Entity</a>&#160;&amp;)&gt;()</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -271,8 +276,8 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ac268e6a25d11b45a70cc9901ae6b86ad"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac268e6a25d11b45a70cc9901ae6b86ad">&#9670;&nbsp;</a></span>addAction()</h2>
+<a id="aea5f040773930fc25f9ad888d6acd2cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea5f040773930fc25f9ad888d6acd2cd">&#9670;&nbsp;</a></span>addAction()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -286,7 +291,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::function&lt; void(<a class="el" href="classecs_1_1_world.html">World</a> &amp;)&gt;&#160;</td>
+          <td class="paramtype">std::function&lt; void(<a class="el" href="classecs_1_1_world.html">World</a> &amp;, <a class="el" href="classecs_1_1_entity.html">Entity</a> &amp;)&gt;&#160;</td>
           <td class="paramname"><em>fctPtr</em>&#160;</td>
         </tr>
         <tr>
@@ -316,7 +321,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classecs_1_1_button_action_map.html#a49e5dce4510de07d33cd4ce8d78aeceb">ActionList</a> ecs::ButtonActionMap::actionList</td>
+          <td class="memname"><a class="el" href="classecs_1_1_button_action_map.html#a80fc1e081a5866b3740b2aa636b498ce">ActionList</a> ecs::ButtonActionMap::actionList</td>
         </tr>
       </table>
 </div><div class="memdoc">

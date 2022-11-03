@@ -33,6 +33,7 @@ var namespaceecs =
     [ "Entity", "classecs_1_1_entity.html", "classecs_1_1_entity" ],
     [ "Equipment", "classecs_1_1_equipment.html", "classecs_1_1_equipment" ],
     [ "GameClock", "classecs_1_1_game_clock.html", "classecs_1_1_game_clock" ],
+    [ "GameStates", "classecs_1_1_game_states.html", "classecs_1_1_game_states" ],
     [ "Invinsible", "classecs_1_1_invinsible.html", "classecs_1_1_invinsible" ],
     [ "Invisible", "classecs_1_1_invisible.html", "classecs_1_1_invisible" ],
     [ "LayerLvL", "classecs_1_1_layer_lv_l.html", "classecs_1_1_layer_lv_l" ],

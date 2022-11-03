@@ -13,6 +13,8 @@ var namespacegraphic_e_c_s_1_1_s_f_m_l_1_1_components =
     [ "KeyboardInputComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_keyboard_input_component.html", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_keyboard_input_component" ],
     [ "MouseInputComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_mouse_input_component.html", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_mouse_input_component" ],
     [ "ParallaxBackground", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_parallax_background.html", null ],
+    [ "Selected", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_selected.html", null ],
     [ "SoundName", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_sound_name.html", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_sound_name" ],
-    [ "TextureName", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_texture_name.html", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_texture_name" ]
+    [ "TextureName", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_texture_name.html", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_texture_name" ],
+    [ "WritableContent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_writable_content.html", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_writable_content" ]
 ];

@@ -28,6 +28,8 @@ var classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource =
       [ "PROJECTILE_ENEMY_ELECTRIC", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html#aa8d3b383da5ddc1c6dd86c2c5efc035da89954e80be49ce63edaaf514468ac801", null ],
       [ "PROJECTILE_ENEMY_ICE", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html#aa8d3b383da5ddc1c6dd86c2c5efc035da906f22afc35fd919894e129afbcad4c9", null ],
       [ "BUTTON", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html#aa8d3b383da5ddc1c6dd86c2c5efc035da5fe5c1f4b5b8a5f25f9b3f2cb981af61", null ],
+      [ "WRITABLE", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html#aa8d3b383da5ddc1c6dd86c2c5efc035da516586a8e5daac786d6c98885c644144", null ],
+      [ "WRITABLE_SELECTED", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html#aa8d3b383da5ddc1c6dd86c2c5efc035da84b4c053248cfbe4651c6e8b6fb47707", null ],
       [ "NATURAL_PROJECTILE", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html#aa8d3b383da5ddc1c6dd86c2c5efc035da12b295691854b82623983e4d56866f37", null ]
     ] ],
     [ "GraphicsTextureResource", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html#ad1e8e8cc6d910151277249725ad3be9a", null ],
