@@ -28,6 +28,10 @@ namespace graphicECS::SFML::Systems
         /// @param buttonPtr A Button Entity
         static void addButtonText(std::shared_ptr<Entity> buttonPtr, const sf::Font &newFont);
 
+        /// @brief Add corresponding texts to the writable thanks to its content
+        /// @param buttonPtr A Writable Entity
+        static void addWritableText(std::shared_ptr<Entity> writablePtr, const sf::Font &newFont);
+
         /// @brief The run function of this system. It will be used by the world in the function runSystems.
         /// @param world The corresponding world on which run this system.
         void run(World &world) override final;
@@ -54,6 +58,12 @@ namespace graphicECS::SFML::Systems
         /// @param layerType The layer type of the entity.
         /// @param entityPtr The entity to update.
         void _updateButton(World &world, LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr);
+
+        /// @brief Update entities which have a LayerLvL component set to WRITABLE.
+        /// @param world The world on which the entity is.
+        /// @param layerType The layer type of the entity.
+        /// @param entityPtr The entity to update.
+        void _updateWritable(World &world, LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr);
 
         /// @brief Call all the update entities functions to.
         /// @param world The world on which entities are.

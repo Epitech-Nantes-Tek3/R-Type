@@ -19,6 +19,8 @@ set(SRC
     ${SRC_RTYPE_LOGIC_ENTITY_CREATION_ROOT}/CreateBackground.cpp
     ${SRC_RTYPE_LOGIC_ENTITY_CREATION_ROOT}/CreateButton.hpp
     ${SRC_RTYPE_LOGIC_ENTITY_CREATION_ROOT}/CreateButton.cpp
+    ${SRC_RTYPE_LOGIC_ENTITY_CREATION_ROOT}/CreateWritable.hpp
+    ${SRC_RTYPE_LOGIC_ENTITY_CREATION_ROOT}/CreateWritable.cpp
 )
 
 add_library(${TARGET} ${SRC})
