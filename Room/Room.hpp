@@ -10,8 +10,8 @@
 #ifndef ROOM_HPP_
 #define ROOM_HPP_
 
+#include <boost/thread.hpp>
 #include <memory>
-#include <pthread.h>
 #include "Communicator/Client.hpp"
 #include "Communicator/Communicator.hpp"
 #include "Transisthor/Transisthor.hpp"
@@ -81,17 +81,25 @@ namespace serverData
         /// @brief Number of remaining places inside the room
         unsigned short _remainingPlaces;
 
-        /// @brief The thread used to read and manage interprocess communication
-        std::thread _inputHandler;
+        /// @brief The thread used to read and manage interprocess communications
+        boost::thread _inputHandler;
 
+        /// @brief The function used by _inputHandler to manage the interproccess communications
         void _manageInterprocessCommunication();
 
-        void _manageStatusRequest(std::string line);
+        /// @brief It sends the current state of the room to the server
+        /// @param line the line received from the server
+        void _manageStateRequest(std::string line);
 
+        /// @brief It sends the number of remaining places in the room to the server
+        /// @param line the line received from the server
         void _manageSeatsRequest(std::string line);
 
+        /// @brief It manages the stop request
+        /// @param line the line received from the server
         void _manageStopRequest(std::string line);
 
+        /// @brief tell server that the game is ended
         void _SendEndGameToServer();
 
         /// @brief Trait a disconnection request. Identify the player and add to it a disconnection component
