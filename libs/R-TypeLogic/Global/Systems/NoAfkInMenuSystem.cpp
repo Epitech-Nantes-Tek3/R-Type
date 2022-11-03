@@ -18,10 +18,9 @@ void NoAfkInMenu::run(World &world)
 {
     std::vector<std::shared_ptr<Entity>> joined = world.joinEntities<AfkFrequency>();
 
+    auto &guard = std::lock_guard(gameState);
     GameStates &gameState = world.getResource<GameStates>();
-    gameState.lock();
     GameStates::gameState_e currState = gameState.currentState;
-    gameState.unlock();
     if (currState == GameStates::IN_GAME)
         return;
     auto updatePlayersInMenu = [&world](std::shared_ptr<Entity> entityPtr) {
