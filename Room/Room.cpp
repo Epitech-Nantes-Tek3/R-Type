@@ -111,7 +111,6 @@ void Room::startConnexionProtocol(void) { _communicatorInstance.get()->startRece
 
 void Room::startLobbyLoop(void)
 {
-    std::cerr << "START THE ROOM " << _name << std::endl;
     CommunicatorMessage connectionOperation;
 
     std::signal(SIGINT, signalCallbackHandler);
@@ -315,7 +314,6 @@ void Room::_manageInterprocessCommunication()
     std::string line;
 
     while (_state != ENDED && std::getline(std::cin, line) && !line.empty()) {
-        std::cerr << "Room " << _name << "received : \"" << line << "\"" << std::endl;
         _manageStateRequest(line);
         _manageSeatsRequest(line);
         _manageStopRequest(line);
