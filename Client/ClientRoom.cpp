@@ -139,6 +139,13 @@ void ClientRoom::protocol12Answer(CommunicatorMessage connexionResponse)
     clock.resetClock();
 }
 
+void ClientRoom::_holdAChatRequest(CommunicatorMessage chatRequest)
+{
+    std::vector<std::string> chatInformation = _communicatorInstance->utilitaryReceiveChatMessage(chatRequest);
+
+    std::cerr << "Receiving a new chat from " << chatInformation.at(0) << " : " << chatInformation.at(1) << std::endl;
+}
+
 void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
 {
     unsigned short roomNumber = 0;
@@ -275,6 +282,8 @@ void ClientRoom::startLobbyLoop(void)
                 protocol12Answer(connectionOperation);
             if (connectionOperation.message.type == 13)
                 _holdADisconnectionRequest();
+            if (connectionOperation.message.type == 50)
+                _holdAChatRequest(connectionOperation);
         } catch (NetworkError &error) {
         }
         if (_state == ClientState::IN_GAME) {

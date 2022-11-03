@@ -85,7 +85,7 @@ void writableButtonAction(World &world, Entity &entityPtr)
     if (idList.empty())
         return;
     auto &entity = world.getEntity(idList.at(0));
-    std::string &writableContent = entity.getComponent<WritableContent>().content;
+    std::string writableContent = entity.getComponent<WritableContent>().content;
     if (!writableContent.size())
         return;
     auto guard = std::lock_guard(entity);

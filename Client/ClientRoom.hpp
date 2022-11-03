@@ -58,6 +58,10 @@ namespace client_data
         /// @brief Handle a disconnection request. Identify the player and add to it a disconnection component
         void _holdADisconnectionRequest();
 
+        /// @brief Handle a new chat request. Display it on the screen.
+        /// @param chatRequest actual message data
+        void _holdAChatRequest(CommunicatorMessage chatRequest);
+
         /// @brief Send to the server the disconnection signal
         void _disconectionProcess();
 
