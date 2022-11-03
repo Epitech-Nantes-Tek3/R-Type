@@ -86,6 +86,14 @@ namespace serverData
 
         void _manageInterprocessCommunication();
 
+        void _manageStatusRequest(std::string line);
+
+        void _manageSeatsRequest(std::string line);
+
+        void _manageStopRequest(std::string line);
+
+        void _SendEndGameToServer();
+
         /// @brief Trait a disconnection request. Identify the player and add to it a disconnection component
         /// @param communicatorMessage actual message data
         void _holdADisconnectionRequest(CommunicatorMessage disconnectionDemand);
