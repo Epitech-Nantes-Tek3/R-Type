@@ -171,4 +171,81 @@ unsigned short Communicator::getServerEndpointId(void)
     return _clientList.at(0).getId();
 }
 
+void Communicator::utilitarySendRoomConfiguration(std::string roomName, short *configs, Client endpoint)
+{
+    Client temporaryClient;
+    int size = sizeof(char) * 10 + sizeof(short) * 6;
+    void *networkObject = std::malloc(size);
+
+    if (networkObject == nullptr)
+        throw MallocError("Malloc failed.");
+    std::memcpy(networkObject, roomName.c_str(), sizeof(char) * 10);
+    for (int i = 0; i < 6; i++) {
+        std::memcpy((void *)((char *)networkObject + sizeof(short) * i + sizeof(char) * 10), (void *)&configs[i], sizeof(short));
+    }
+    sendDataToAClient(endpoint, networkObject, size, 17);
+}
+
+RoomConfiguration Communicator::utilitaryReceiveRoomConfiguration(CommunicatorMessage cryptedMessage)
+{
+    short roomNameLen = 10;
+    char *roomName = nullptr;
+    RoomConfiguration room;
+    short offset = 0;
+
+    roomName = (char *)cryptedMessage.message.data + offset;
+    room.roomName = std::string(roomNameLen, '\0');
+    for (int i = 0; i < roomNameLen; i++)
+        room.roomName[i] = roomName[i];
+    offset += sizeof(char) * roomNameLen;
+    for (int i = 0; i < 6; i++) {
+        std::memcpy((void *)&room.configs[i], (void *)((char *)cryptedMessage.message.data + offset), sizeof(short));
+        offset += sizeof(short);
+    }
+    return room;
+}
+
+void Communicator::utilitarySendChatMessage(
+    std::string pseudo, std::string messageContent, std::vector<unsigned short> destination)
+{
+    Client temporaryClient;
+    void *networkObject = std::malloc(sizeof(char) * (pseudo.size() + messageContent.size()) + sizeof(unsigned short));
+    unsigned short pseudoLen = pseudo.size();
+
+    if (networkObject == nullptr)
+        throw MallocError("Malloc failed.");
+    std::memcpy(networkObject, &pseudoLen, sizeof(unsigned short));
+    std::memcpy((void *)((char *)networkObject + sizeof(unsigned short)), pseudo.c_str(), sizeof(char) * pseudoLen);
+    std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) + sizeof(char) * pseudoLen),
+        messageContent.c_str(), sizeof(char) * messageContent.size());
+    for (auto it : destination) {
+        temporaryClient = getClientByHisId(it);
+        sendDataToAClient(temporaryClient, networkObject,
+            sizeof(unsigned short) + sizeof(char) * (pseudo.size() + messageContent.size()), 50);
+    }
+}
+
+std::vector<std::string> Communicator::utilitaryReceiveChatMessage(CommunicatorMessage cryptedMessage)
+{
+    char *pseudo = nullptr;
+    char *messageContent = nullptr;
+    unsigned short pseudoLen = 0;
+    unsigned short messageLen = 0;
+    unsigned short offset = 0;
+
+    std::memcpy(&pseudoLen, cryptedMessage.message.data, sizeof(unsigned short));
+    offset += sizeof(unsigned short);
+    pseudo = (char *)cryptedMessage.message.data + offset;
+    std::string pseudoStr(pseudoLen, '\0');
+    for(int i = 0; i < pseudoLen; i++)
+        pseudoStr[i] = pseudo[i];
+    offset += sizeof(char) * pseudoLen;
+    messageContent = (char *)cryptedMessage.message.data + offset;
+    messageLen = cryptedMessage.message.size - offset;
+    std::string messageContentStr(messageLen, '\0');
+    for(int i = 0; i < messageLen; i++)
+        messageContentStr[i] = messageContent[i];
+    return {pseudoStr, messageContentStr};
+}
+
 Communicator::~Communicator() {}

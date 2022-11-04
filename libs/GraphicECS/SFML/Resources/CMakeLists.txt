@@ -7,5 +7,7 @@ set(SRC_GRAPHIC_RESOURCE
     ${GRAPHIC_SRC_RESOURCE_ROOT}/GraphicsTextureResource.cpp
     ${GRAPHIC_SRC_RESOURCE_ROOT}/SoundResource.hpp
     ${GRAPHIC_SRC_RESOURCE_ROOT}/SoundResource.cpp
+    ${GRAPHIC_SRC_RESOURCE_ROOT}/MusicResource.hpp
+    ${GRAPHIC_SRC_RESOURCE_ROOT}/MusicResource.cpp
     PARENT_SCOPE
 )

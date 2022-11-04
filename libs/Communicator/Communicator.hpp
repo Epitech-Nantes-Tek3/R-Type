@@ -34,6 +34,11 @@ namespace communicator_lib
         bool newClient;
     };
 
+    struct RoomConfiguration {
+        std::string roomName;
+        unsigned short configs[6];
+    };
+
     /// @brief Network gestionner
     class Communicator {
       public:
@@ -120,6 +125,27 @@ namespace communicator_lib
         /// @throw an error when no server can be found (Not in a client communicator), throw a NetworkError
         unsigned short getServerEndpointId(void);
 
+        /// @brief Utilitary function used to send a message with a protocol 50.
+        /// @param pseudo The pseudonyme of the author
+        /// @param messageContent Content of the message
+        /// @param destination of the message
+        void utilitarySendChatMessage(std::string pseudo, std::string messageContent, std::vector<unsigned short> destination);
+
+        /// @brief Utilitary function used to extract a message received by a protocol 50
+        /// @param cryptedMessage the crypted message
+        /// @return std::vector<std::string> the decrypted pseudo + message
+        std::vector<std::string> utilitaryReceiveChatMessage(CommunicatorMessage cryptedMessage);
+
+        /// @brief Utilitary function used to send a message with a protocol 17.
+        /// @param roomName The name of the room configuration.
+        /// @param configs Array of modificator used to update some server configuration.
+        /// @param newEndPoint The endpoint used to send the configuration.
+        void utilitarySendRoomConfiguration(std::string roomName, short *configs, Client newEndpoint);
+
+        /// @brief Utilitary function used to extract a message received by a protocol 17.
+        /// @param cryptedMessage The crypted message which contains informations.
+        /// @return RoomConfiguration The configuration of the room.
+        RoomConfiguration utilitaryReceiveRoomConfiguration(CommunicatorMessage cryptedMessage);
       private:
         /// @brief Send a protocol 20 to a client
         /// @param client The destination
