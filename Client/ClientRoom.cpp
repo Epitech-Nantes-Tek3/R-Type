@@ -14,6 +14,7 @@
 #include "ButtonAction.hpp"
 #include "Error/Error.hpp"
 #include "GraphicECS/SFML/Components/ActionQueueComponent.hpp"
+#include "GraphicECS/SFML/Components/ChatMessageComponent.hpp"
 #include "GraphicECS/SFML/Components/AllowControllerComponent.hpp"
 #include "GraphicECS/SFML/Components/AllowMouseAndKeyboardComponent.hpp"
 #include "GraphicECS/SFML/Components/ControllerButtonInputComponent.hpp"
@@ -45,6 +46,7 @@
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/GameStates.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/MenuStates.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateButton.hpp"
+#include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateChatMessage.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateWritable.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateWritableButton.hpp"
 #include "R-TypeLogic/Global/Components/LayerLvL.hpp"
@@ -142,6 +144,10 @@ void ClientRoom::protocol12Answer(CommunicatorMessage connexionResponse)
 void ClientRoom::_holdAChatRequest(CommunicatorMessage chatRequest)
 {
     std::vector<std::string> chatInformation = _communicatorInstance->utilitaryReceiveChatMessage(chatRequest);
+    std::vector<std::shared_ptr<ecs::Entity>> joined = _worldInstance->joinEntities<ChatMessage>();
+
+    createNewChatMessage(*(_worldInstance.get()), 1470, 840 - (joined.size() * 50), 310, 45, 5.0, chatInformation.at(0),
+        chatInformation.at(1));
 
     std::cerr << "Receiving a new chat from " << chatInformation.at(0) << " : " << chatInformation.at(1) << std::endl;
 }
@@ -351,8 +357,6 @@ void ClientRoom::_initSpritesForWritable(GraphicsTextureResource &spritesList)
     spritesList.addTexture(GraphicsTextureResource::WRITABLE_SELECTED, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
         sf::Vector2f(534 / 16 * 8, 0), sf::Vector2f(534 / 16, 34));
     spritesList.addTexture(GraphicsTextureResource::WRITABLE_BUTTON, "assets/EpiSprite/r-typesheet11.gif",
-        sf::Vector2f(34, 0), sf::Vector2f(34, 34));
-    spritesList.addTexture(GraphicsTextureResource::CHAT_MESSAGE, "assets/EpiSprite/r-typesheet11.gif",
         sf::Vector2f(34, 0), sf::Vector2f(34, 34));
 }
 

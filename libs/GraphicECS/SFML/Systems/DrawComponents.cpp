@@ -152,7 +152,7 @@ void DrawComponents::_updateWritable(World &world, LayerLvL &layerType, std::sha
         addWritableText(entityPtr, world.getResource<GraphicsFontResource>().font);
     }
     if (layerType.layer == LayerLvL::CHAT_MESSAGE) {
-        entityPtr->addComponent<TextureName>(GraphicsTextureResource::CHAT_MESSAGE);
+        entityPtr->removeComponent<GraphicsRectangleComponent>();
         addChatMessageText(entityPtr, world.getResource<GraphicsFontResource>().font);
     }
 }
@@ -220,7 +220,7 @@ void DrawComponents::_drawText(World &world, std::shared_ptr<ecs::Entity> entity
             && world.getResource<MenuStates>().currentState == entityPtr->getComponent<DisplayState>().displayState) {
             windowResource.window.draw(entityPtr->getComponent<GraphicsTextComponent>().text);
         }
-        if (entityPtr->contains<Player>()) {
+        if (entityPtr->contains<Player>() || entityPtr->contains<ChatMessage>()) {
             windowResource.window.draw(entityPtr->getComponent<GraphicsTextComponent>().text);
         }
     }
