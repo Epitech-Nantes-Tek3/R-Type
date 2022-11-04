@@ -50,6 +50,7 @@ namespace graphicECS::SFML::Resources
             WRITABLE,
             WRITABLE_SELECTED,
             WRITABLE_BUTTON,
+            CHAT_MESSAGE,
             NATURAL_PROJECTILE
         };
 

@@ -10,6 +10,7 @@
 #include <mutex>
 #include "AnimationComponent.hpp"
 #include "AnimationFrequencyComponent.hpp"
+#include "GraphicECS/SFML/Components/ChatMessageComponent.hpp"
 #include "GraphicECS/SFML/Components/WritableContentComponent.hpp"
 #include "GraphicECS/SFML/Resources/GraphicsFontResource.hpp"
 #include "GraphicsRectangleComponent.hpp"
@@ -65,6 +66,19 @@ void DrawComponents::addWritableText(std::shared_ptr<Entity> writablePtr, const 
     if (writablePtr->contains<GraphicsTextComponent>())
         return;
     writablePtr->addComponent<GraphicsTextComponent>(newFont, writablePtr->getComponent<WritableContent>().content,
+        pos.x + size.x * 0.05, pos.y + size.y * 0.2, size.y * 0.4);
+}
+
+void DrawComponents::addChatMessageText(std::shared_ptr<Entity> chatMessagePtr, const sf::Font &newFont)
+{
+    Position &pos = chatMessagePtr->getComponent<Position>();
+    Size &size = chatMessagePtr->getComponent<Size>();
+
+    if (chatMessagePtr->contains<GraphicsTextComponent>())
+        return;
+    chatMessagePtr->addComponent<GraphicsTextComponent>(newFont,
+        chatMessagePtr->getComponent<ChatMessage>().author + std::string(" : ")
+            + chatMessagePtr->getComponent<ChatMessage>().message,
         pos.x + size.x * 0.05, pos.y + size.y * 0.2, size.y * 0.4);
 }
 
@@ -137,6 +151,10 @@ void DrawComponents::_updateWritable(World &world, LayerLvL &layerType, std::sha
         entityPtr->addComponent<TextureName>(GraphicsTextureResource::WRITABLE);
         addWritableText(entityPtr, world.getResource<GraphicsFontResource>().font);
     }
+    if (layerType.layer == LayerLvL::CHAT_MESSAGE) {
+        entityPtr->addComponent<TextureName>(GraphicsTextureResource::CHAT_MESSAGE);
+        addChatMessageText(entityPtr, world.getResource<GraphicsFontResource>().font);
+    }
 }
 
 void DrawComponents::_updateEntities(World &world, std::shared_ptr<ecs::Entity> entityPtr)
@@ -145,7 +163,7 @@ void DrawComponents::_updateEntities(World &world, std::shared_ptr<ecs::Entity> 
     if (layerType.layer == LayerLvL::layer_e::OBSTACLE || layerType.layer == LayerLvL::layer_e::ENEMY
         || layerType.layer == LayerLvL::layer_e::PLAYER || layerType.layer == LayerLvL::layer_e::PROJECTILE
         || layerType.layer == LayerLvL::BUTTON || layerType.layer == LayerLvL::WRITABLE
-        || layerType.layer == LayerLvL::WRITABLE_BUTTON) {
+        || layerType.layer == LayerLvL::WRITABLE_BUTTON || layerType.layer == LayerLvL::CHAT_MESSAGE) {
         auto entityPos = entityPtr->getComponent<Position>();
         auto entitySize = entityPtr->getComponent<Size>();
 

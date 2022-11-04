@@ -352,6 +352,8 @@ void ClientRoom::_initSpritesForWritable(GraphicsTextureResource &spritesList)
         sf::Vector2f(534 / 16 * 8, 0), sf::Vector2f(534 / 16, 34));
     spritesList.addTexture(GraphicsTextureResource::WRITABLE_BUTTON, "assets/EpiSprite/r-typesheet11.gif",
         sf::Vector2f(34, 0), sf::Vector2f(34, 34));
+    spritesList.addTexture(GraphicsTextureResource::CHAT_MESSAGE, "assets/EpiSprite/r-typesheet11.gif",
+        sf::Vector2f(34, 0), sf::Vector2f(34, 34));
 }
 
 void ClientRoom::_initSpritesForEntities()
@@ -526,7 +528,6 @@ void ClientRoom::_initWritable()
     actionsList.addAction(
         ButtonActionMap::WRITABLE_BUTTON, std::function<void(World &, Entity &)>(writableButtonAction));
     std::size_t writableId = createNewWritable(*(_worldInstance.get()), 1450, 900, 350, 50, MenuStates::IN_GAME);
-    std::cerr << "Entity is " << writableId << std::endl;
     createNewWritableButton(*(_worldInstance.get()), 1820, 900, 80, 50,
         std::function<void(World &, Entity &, std::string &)>(publishNewChatMessage), MenuStates::IN_GAME, writableId);
 }
