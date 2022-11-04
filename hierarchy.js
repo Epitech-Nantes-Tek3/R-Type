@@ -96,6 +96,7 @@ var hierarchy =
     ] ],
     [ "communicator_lib::Receiver", "classcommunicator__lib_1_1_receiver.html", null ],
     [ "server_data::Room", "classserver__data_1_1_room.html", null ],
+    [ "communicator_lib::RoomConfiguration", "structcommunicator__lib_1_1_room_configuration.html", null ],
     [ "communicator_lib::Sender", "classcommunicator__lib_1_1_sender.html", null ],
     [ "server_data::Server", "classserver__data_1_1_server.html", null ],
     [ "argument_handler::ArgumentHandler::ServerInformation", "structargument__handler_1_1_argument_handler_1_1_server_information.html", null ],

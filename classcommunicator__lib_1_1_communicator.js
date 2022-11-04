@@ -17,5 +17,7 @@ var classcommunicator__lib_1_1_communicator =
     [ "setTransisthorBridge", "classcommunicator__lib_1_1_communicator.html#a8dba9adea6f7c334f752fde1124ffaca", null ],
     [ "startReceiverListening", "classcommunicator__lib_1_1_communicator.html#aed7f706b345fd016c70d970e084b591f", null ],
     [ "utilitaryReceiveChatMessage", "classcommunicator__lib_1_1_communicator.html#ab00365fedf51638bed645d5337d1c348", null ],
-    [ "utilitarySendChatMessage", "classcommunicator__lib_1_1_communicator.html#a90c0f487c40fbd15b4ed1d36929267b5", null ]
+    [ "utilitaryReceiveRoomConfiguration", "classcommunicator__lib_1_1_communicator.html#a8a57e9dfcd8e168df0fd76694c9f6110", null ],
+    [ "utilitarySendChatMessage", "classcommunicator__lib_1_1_communicator.html#a90c0f487c40fbd15b4ed1d36929267b5", null ],
+    [ "utilitarySendRoomConfiguration", "classcommunicator__lib_1_1_communicator.html#a79af1fddb0ff4747e40bf998945d7dd5", null ]
 ];

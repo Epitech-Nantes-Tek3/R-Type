@@ -5,6 +5,7 @@ var dir_c716df74a2270b8c630d5273b2104e9b =
     [ "Communicator.cpp", "_communicator_8cpp.html", null ],
     [ "Communicator.hpp", "_communicator_8hpp.html", [
       [ "CommunicatorMessage", "structcommunicator__lib_1_1_communicator_message.html", "structcommunicator__lib_1_1_communicator_message" ],
+      [ "RoomConfiguration", "structcommunicator__lib_1_1_room_configuration.html", "structcommunicator__lib_1_1_room_configuration" ],
       [ "Communicator", "classcommunicator__lib_1_1_communicator.html", "classcommunicator__lib_1_1_communicator" ]
     ] ],
     [ "Receiver.cpp", "_receiver_8cpp.html", null ],

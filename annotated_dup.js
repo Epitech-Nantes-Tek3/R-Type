@@ -9,6 +9,7 @@ var annotated_dup =
     [ "communicator_lib", "namespacecommunicator__lib.html", [
       [ "Client", "classcommunicator__lib_1_1_client.html", "classcommunicator__lib_1_1_client" ],
       [ "CommunicatorMessage", "structcommunicator__lib_1_1_communicator_message.html", "structcommunicator__lib_1_1_communicator_message" ],
+      [ "RoomConfiguration", "structcommunicator__lib_1_1_room_configuration.html", "structcommunicator__lib_1_1_room_configuration" ],
       [ "Communicator", "classcommunicator__lib_1_1_communicator.html", "classcommunicator__lib_1_1_communicator" ],
       [ "Message", "structcommunicator__lib_1_1_message.html", "structcommunicator__lib_1_1_message" ],
       [ "Receiver", "classcommunicator__lib_1_1_receiver.html", "classcommunicator__lib_1_1_receiver" ],

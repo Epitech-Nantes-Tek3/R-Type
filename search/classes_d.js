@@ -1,10 +1,11 @@
 var searchData=
 [
-  ['randomdevice_737',['RandomDevice',['../structecs_1_1_random_device.html',1,'ecs']]],
-  ['receiver_738',['Receiver',['../classcommunicator__lib_1_1_receiver.html',1,'communicator_lib']]],
-  ['removeafksystem_739',['RemoveAfkSystem',['../structecs_1_1_remove_afk_system.html',1,'ecs']]],
-  ['renderwindowresource_740',['RenderWindowResource',['../classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_render_window_resource.html',1,'graphicECS::SFML::Resources']]],
-  ['resource_741',['Resource',['../classecs_1_1_resource.html',1,'ecs']]],
-  ['room_742',['Room',['../classserver__data_1_1_room.html',1,'server_data']]],
-  ['rtypeerror_743',['RTypeError',['../classerror__lib_1_1_r_type_error.html',1,'error_lib']]]
+  ['randomdevice_746',['RandomDevice',['../structecs_1_1_random_device.html',1,'ecs']]],
+  ['receiver_747',['Receiver',['../classcommunicator__lib_1_1_receiver.html',1,'communicator_lib']]],
+  ['removeafksystem_748',['RemoveAfkSystem',['../structecs_1_1_remove_afk_system.html',1,'ecs']]],
+  ['renderwindowresource_749',['RenderWindowResource',['../classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_render_window_resource.html',1,'graphicECS::SFML::Resources']]],
+  ['resource_750',['Resource',['../classecs_1_1_resource.html',1,'ecs']]],
+  ['room_751',['Room',['../classserver__data_1_1_room.html',1,'server_data']]],
+  ['roomconfiguration_752',['RoomConfiguration',['../structcommunicator__lib_1_1_room_configuration.html',1,'communicator_lib']]],
+  ['rtypeerror_753',['RTypeError',['../classerror__lib_1_1_r_type_error.html',1,'error_lib']]]
 ];
