@@ -15,13 +15,16 @@
 #include "AllowMouseAndKeyboardComponent.hpp"
 #include "ControllerButtonInputComponent.hpp"
 #include "ControllerJoystickInputComponent.hpp"
-#include "GraphicECS/SFML/Resources/RenderWindowResource.hpp"
+#include "GraphicECS/SFML/Components/GraphicsTextComponent.hpp"
+#include "IsShootingComponent.hpp"
 #include "KeyboardInputComponent.hpp"
 #include "MouseInputComponent.hpp"
+#include "SelectedComponent.hpp"
 #include "World/World.hpp"
+#include "WritableContentComponent.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/Components/ActionName.hpp"
-#include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/ButtonActionMap.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/Components/DisplayState.hpp"
+#include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/ButtonActionMap.hpp"
 #include "R-TypeLogic/Global/Components/ButtonComponent.hpp"
 #include "R-TypeLogic/Global/Components/ShootingFrequencyComponent.hpp"
 #include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
@@ -31,11 +34,9 @@ using namespace graphicECS::SFML::Components;
 
 namespace graphicECS::SFML::Systems
 {
-    void InputManagement::_closeWindow(sf::Event &event, World &world)
+    void InputManagement::_closeWindow(sf::Event &event, RenderWindowResource &windowResource)
     {
         if (event.type == sf::Event::Closed) {
-            RenderWindowResource &windowResource = world.getResource<RenderWindowResource>();
-            auto guard = std::lock_guard(windowResource);
             windowResource.window.close();
         }
     }
@@ -43,48 +44,74 @@ namespace graphicECS::SFML::Systems
     void InputManagement::_keyPressedEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> &Inputs)
     {
         if (event.type == sf::Event::KeyPressed) {
-            auto keyPressed = [event](std::shared_ptr<Entity> entityPtr) {
-                auto guard = std::lock_guard(*entityPtr.get());
-                if (entityPtr->getComponent<KeyboardInputComponent>().keyboardMapActions.contains(event.key.code)
-                    && entityPtr->contains<AllowMouseAndKeyboardComponent>())
-                    entityPtr->getComponent<ActionQueueComponent>().actions.push(
-                        entityPtr->getComponent<KeyboardInputComponent>().keyboardMapActions[event.key.code]);
-            };
-            std::for_each(Inputs.begin(), Inputs.end(), keyPressed);
+            for (auto entityPtr : Inputs) {
+                auto keyboardMapActions = entityPtr->getComponent<KeyboardInputComponent>().keyboardMapActions;
+
+                if (keyboardMapActions.contains(event.key.code)
+                    && entityPtr->contains<AllowMouseAndKeyboardComponent>()) {
+                    auto guard = std::lock_guard(*entityPtr.get());
+                    entityPtr->getComponent<ActionQueueComponent>().actions.push(keyboardMapActions[event.key.code]);
+                }
+            }
         }
     }
 
     void InputManagement::_keyReleasedEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> &Inputs)
     {
         if (event.type == sf::Event::KeyReleased) {
-            auto keyReleased = [event](std::shared_ptr<Entity> entityPtr) {
-                auto guard = std::lock_guard(*entityPtr.get());
-                if (entityPtr->getComponent<KeyboardInputComponent>().keyboardMapActions.contains(event.key.code)
+            for (auto entityPtr : Inputs) {
+                auto keyboardMapActions = entityPtr->getComponent<KeyboardInputComponent>().keyboardMapActions;
+
+                if (keyboardMapActions.contains(event.key.code)
                     && entityPtr->contains<AllowMouseAndKeyboardComponent>()) {
+                    auto guard = std::lock_guard(*entityPtr.get());
                     entityPtr->getComponent<ActionQueueComponent>().actions.push(
                         std::make_pair<ActionQueueComponent::inputAction_e, float>(
-                            ActionQueueComponent::inputAction_e(entityPtr->getComponent<KeyboardInputComponent>()
-                                                                    .keyboardMapActions[event.key.code]
-                                                                    .first),
-                            0));
+                            ActionQueueComponent::inputAction_e(keyboardMapActions[event.key.code].first), 0));
+                }
+            }
+        }
+    }
+
+    void InputManagement::_textEnteredEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> joined)
+    {
+        if (event.type == sf::Event::TextEntered) {
+            auto writeText = [&event](std::shared_ptr<Entity> entityPtr) {
+                auto &writableContent = entityPtr->getComponent<WritableContent>();
+
+                if (event.text.unicode == 8 && writableContent.content.size() != 0) {
+                    auto guard = std::lock_guard(*entityPtr.get());
+                    writableContent.content.pop_back();
+                } else if (event.text.unicode != 8) {
+                    auto guard = std::lock_guard(*entityPtr.get());
+                    writableContent.content.resize(writableContent.content.size() + 1, (char)event.text.unicode);
+                }
+                if (entityPtr->contains<GraphicsTextComponent>()) {
+                    auto &textComponent = entityPtr->getComponent<GraphicsTextComponent>();
+                    unsigned short textLen = 0;
+                    std::string formatedText = writableContent.content;
+
+                    for (; writableContent.content[textLen] != '\0'; textLen++);
+                    formatedText.resize(textLen);
+                    textComponent.text.setString(formatedText);
                 }
             };
-            std::for_each(Inputs.begin(), Inputs.end(), keyReleased);
+
+            std::for_each(joined.begin(), joined.end(), writeText);
         }
     }
 
     void InputManagement::_mouseEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> &Inputs)
     {
         if (event.type == sf::Event::MouseButtonPressed) {
-            auto mouseButtonPressed = [event](std::shared_ptr<Entity> entityPtr) {
-                auto guard = std::lock_guard(*entityPtr.get());
+            for (auto entityPtr : Inputs) {
                 if (entityPtr->getComponent<MouseInputComponent>().MouseMapActions.contains(event.mouseButton.button)
                     && entityPtr->contains<AllowMouseAndKeyboardComponent>()) {
+                    auto guard = std::lock_guard(*entityPtr.get());
                     entityPtr->getComponent<ActionQueueComponent>().actions.push(
                         entityPtr->getComponent<MouseInputComponent>().MouseMapActions[event.mouseButton.button]);
                 }
-            };
-            std::for_each(Inputs.begin(), Inputs.end(), mouseButtonPressed);
+            }
         }
     }
 
@@ -98,24 +125,30 @@ namespace graphicECS::SFML::Systems
             return;
         while (world.containsResource<RenderWindowResource>()) {
             RenderWindowResource &windowResource = world.getResource<RenderWindowResource>();
-            auto guard = std::lock_guard(windowResource);
-            if (!windowResource.window.pollEvent(event))
-                break;
-            _closeWindow(event, world);
-            _keyPressedEvents(event, Inputs);
-            _keyReleasedEvents(event, Inputs);
+            {
+                auto guard = std::lock_guard(windowResource);
+                if (!windowResource.window.pollEvent(event))
+                    break;
+            }
+            std::vector<std::shared_ptr<Entity>> joined = world.joinEntities<WritableContent, Selected>();
+            _closeWindow(event, windowResource);
+            if (joined.empty()) {
+                _keyPressedEvents(event, Inputs);
+                _keyReleasedEvents(event, Inputs);
+            } else {
+                _textEnteredEvents(event, joined);
+            }
             _mouseEvents(event, Inputs);
         }
         for (auto &entityPtr : Inputs) {
-            entityPtr->lock();
             std::queue<std::pair<ActionQueueComponent::inputAction_e, float>> &actions =
                 entityPtr->getComponent<ActionQueueComponent>().actions;
-            entityPtr->unlock();
+            std::queue<std::pair<ActionQueueComponent::inputAction_e, float>> newActions;
+
             while (actions.size() > 0) {
                 MenuStates &menuState = world.getResource<MenuStates>();
-                menuState.lock();
                 MenuStates::menuState_e currState = menuState.currentState;
-                menuState.unlock();
+
                 if (currState == MenuStates::IN_GAME) {
                     if (actions.front().first == ActionQueueComponent::MOVEY)
                         movePlayerY(world, actions.front().second);
@@ -127,9 +160,44 @@ namespace graphicECS::SFML::Systems
                 if (actions.front().first == ActionQueueComponent::BUTTON_CLICK) {
                     clickHandle(world, actions.front().second);
                 }
-                actions.pop();
+                {
+                    auto entity_guard = std::lock_guard(*entityPtr.get());
+                    actions.pop();
+                }
             }
         }
+        shoot(world);
+    }
+
+    void InputManagement::shoot(World &world)
+    {
+        std::vector<std::shared_ptr<Entity>> player = world.joinEntities<Controlable>();
+
+        if (player.empty())
+            return;
+        auto shoot = [&world](std::shared_ptr<Entity> entityPtr) {
+            if (entityPtr->contains<IsShootingComponent>()) {
+                ShootingFrequency &freq = entityPtr.get()->getComponent<ShootingFrequency>();
+                const char hex_char[] = "0123456789ABCDEF";
+                RandomDevice &random = world.getResource<RandomDevice>();
+                std::string uuid(16, '\0');
+
+                if (freq.frequency == duration<double>(0.0)) {
+                    {
+                        auto guard = std::lock_guard(random);
+                        for (auto &c : uuid) {
+                            c = hex_char[random.randInt<int>(0, 15)];
+                        }
+                    }
+                    createNewAlliedProjectile(world, *entityPtr, uuid);
+                    {
+                        auto entityGuard = std::lock_guard(*entityPtr.get());
+                        freq.frequency = freq.baseFrequency;
+                    }
+                }
+            }
+        };
+        std::for_each(player.begin(), player.end(), shoot);
     }
 
     void InputManagement::movePlayerX(World &world, float move)
@@ -168,24 +236,17 @@ namespace graphicECS::SFML::Systems
     {
         std::vector<std::shared_ptr<Entity>> player = world.joinEntities<Controlable>();
 
-        if (player.empty() || action < 1)
+        if (player.empty())
             return;
-        auto shoot = [&world](std::shared_ptr<Entity> entityPtr) {
-            auto entityGuard = std::lock_guard(*entityPtr.get());
-            ShootingFrequency &freq = entityPtr.get()->getComponent<ShootingFrequency>();
-            const char hex_char[] = "0123456789ABCDEF";
-            RandomDevice &random = world.getResource<RandomDevice>();
-            auto guard = std::lock_guard(random);
-            std::string uuid(16, '\0');
-
-            if (freq.frequency == duration<double>(0.0)) {
-                for (auto &c : uuid)
-                    c = hex_char[random.randInt<int>(0, 15)];
-                createNewAlliedProjectile(world, *entityPtr, uuid);
-                freq.frequency = freq.baseFrequency;
+        for (std::shared_ptr<ecs::Entity> p : player) {
+            if (action > 1 && !(p->contains<IsShootingComponent>())) {
+                std::lock_guard(*p.get());
+                p->addComponent<IsShootingComponent>();
+            } else if (action < 1 && p->contains<IsShootingComponent>()) {
+                std::lock_guard(*p.get());
+                p->removeComponent<IsShootingComponent>();
             }
-        };
-        std::for_each(player.begin(), player.end(), shoot);
+        }
     }
 
     void InputManagement::clickHandle(World &world, float action)
@@ -193,11 +254,9 @@ namespace graphicECS::SFML::Systems
         (void)action;
         std::vector<std::shared_ptr<Entity>> joined = world.joinEntities<Button, Position, Size>();
         RenderWindowResource &windowResource = world.getResource<RenderWindowResource>();
-        auto guard = std::lock_guard(windowResource);
         sf::Vector2i mousePos = sf::Mouse::getPosition(windowResource.window);
 
         auto clickInButton = [this, &world, &mousePos](std::shared_ptr<Entity> entityPtr) {
-            auto entityGuard = std::lock_guard(*entityPtr.get());
             Position &pos = entityPtr.get()->getComponent<Position>();
             Size &size = entityPtr.get()->getComponent<Size>();
             DisplayState &state = entityPtr.get()->getComponent<DisplayState>();
@@ -205,16 +264,13 @@ namespace graphicECS::SFML::Systems
             bool sameWidth = pos.y <= mousePos.y && mousePos.y <= pos.y + size.y;
             bool sameHeigth = pos.x <= mousePos.x && mousePos.x <= pos.x + size.x;
             MenuStates &menuState = world.getResource<MenuStates>();
-            menuState.lock();
             MenuStates::menuState_e currState = menuState.currentState;
-            menuState.unlock();
             if (sameHeigth && sameWidth && state.displayState == currState) {
                 ActionName &name = entityPtr.get()->getComponent<ActionName>();
                 ButtonActionMap &map = world.getResource<ButtonActionMap>();
-                auto guard = std::lock_guard(map);
 
-                std::function<void(World &)> fct = map.actionList.find(name.actionName)->second;
-                fct(world);
+                std::function<void(World &, Entity &)> fct = map.actionList.find(name.actionName)->second;
+                fct(world, *(entityPtr.get()));
             }
         };
         std::for_each(joined.begin(), joined.end(), clickInButton);

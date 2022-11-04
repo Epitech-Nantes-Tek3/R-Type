@@ -12,6 +12,7 @@
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
 #include "R-TypeLogic/Global/Components/VelocityComponent.hpp"
 #include "R-TypeLogic/Global/SharedResources/Random.hpp"
+#include <iostream>
 
 #define MINIMUM_WIDTH  1400
 #define MAXIMUM_WIDTH  1700
@@ -24,6 +25,7 @@ void EnemiesGoRandom::run(World &world)
 {
     std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Enemy, Position, Velocity, Destination>();
 
+    std::cout << "test system go random";
     auto randomMove = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
         auto guard = std::lock_guard(*entityPtr.get());
         Position &pos = entityPtr.get()->getComponent<Position>();

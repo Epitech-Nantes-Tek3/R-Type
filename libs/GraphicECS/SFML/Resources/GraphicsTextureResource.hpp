@@ -42,8 +42,13 @@ namespace graphicECS::SFML::Resources
             OBSTACLE_2,
             OBSTACLE_3,
             PROJECTILE_ALLY,
-            PROJECTILE_ENEMY,
+            PROJECTILE_ENEMY_BASIC,
+            PROJECTILE_ENEMY_FIRE,
+            PROJECTILE_ENEMY_ELECTRIC,
+            PROJECTILE_ENEMY_ICE,
             BUTTON,
+            WRITABLE,
+            WRITABLE_SELECTED,
             NATURAL_PROJECTILE
         };
 

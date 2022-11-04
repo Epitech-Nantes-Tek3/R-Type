@@ -13,12 +13,13 @@
 #include "R-TypeLogic/Global/Components/EnemyComponent.hpp"
 #include "R-TypeLogic/Global/Components/ShootingFrequencyComponent.hpp"
 #include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
-
+#include <iostream>
 using namespace ecs;
 using namespace std::chrono;
 
 void EnemyShootSystem::run(World &world)
 {
+     std::cout << "test system enemyshoot\n";
     std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Enemy, ShootingFrequency>();
 
     auto enemiesMayShoot = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
@@ -32,5 +33,7 @@ void EnemyShootSystem::run(World &world)
             freq.frequency = freq.baseFrequency;
         }
     };
+    std::cout << "test system enemyshoot mid\n";
     std::for_each(joined.begin(), joined.end(), enemiesMayShoot);
+    std::cout << "test system enemyshoot end\n";
 }

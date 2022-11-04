@@ -14,7 +14,13 @@ set(SRC
     ${SRC_GRAPHIC_SYSTEM}
 )
 
-add_library(${TARGET} SHARED ${SRC})
+if (CMAKE_COMPILER_IS_GNUCXX)
+    add_library(${TARGET} SHARED ${SRC})
+elseif (MSVC)
+   add_library(${TARGET} ${SRC})
+else ()
+  message(WARNING "Unknown compiler type, compilation may not work as expected")
+endif()
 
 target_include_directories(${TARGET}
     PRIVATE ${CONAN_INCLUDE_DIRS_SFML}

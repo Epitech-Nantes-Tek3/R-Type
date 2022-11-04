@@ -26,9 +26,13 @@ namespace ecs
             .addComponent<Life>(1)
             .addComponent<Damage>(damage)
             .addComponent<DamageRadius>(5)
-            .addComponent<Collidable>()
-            .addComponent<AlliedProjectile>(ally.getComponent<Networkable>().id);
-
+            .addComponent<Collidable>();
+        
+        if (ally.contains<Networkable>()) {
+            entity.addComponent<AlliedProjectile>(ally.getComponent<Networkable>().id);
+        } else {
+            entity.addComponent<AlliedProjectile>(ally.getComponent<Player>().playerIdentifier);
+        }
         if (networkId) {
             // Case : Creation in a server instance
             entity.addComponent<NewlyCreated>(uuid, false);

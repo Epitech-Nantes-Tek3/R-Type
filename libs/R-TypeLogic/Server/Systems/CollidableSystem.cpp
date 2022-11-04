@@ -92,6 +92,7 @@ void Collide::allyCollide(std::vector<std::shared_ptr<ecs::Entity>> &allyEntitie
 
 void Collide::run(World &world)
 {
+    std::cout << "test01 collide system\n";
     std::vector<std::shared_ptr<ecs::Entity>> players =
         world.joinEntities<Position, Size, Collidable, Damage, Player>();
     std::vector<std::shared_ptr<ecs::Entity>> alliedProjectiles =

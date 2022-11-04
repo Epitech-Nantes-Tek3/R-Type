@@ -13,7 +13,7 @@ namespace ecs
     std::size_t createNewPlayer(World &world, const int posX, const int posY, const double multiplierAbscissa,
         const double multiplierOrdinate, const short weight, const int sizeX, const int sizeY,
         const unsigned short life, const unsigned short damage, const unsigned short damageRadius, bool controlable,
-        unsigned short playerIdentifier, const std::string uuid, unsigned short networkId)
+        unsigned short playerIdentifier, std::string playerName, const std::string uuid, unsigned short networkId)
     {
         Entity &entity = world.addEntity();
         auto guard = std::lock_guard(entity);
@@ -27,7 +27,7 @@ namespace ecs
             .addComponent<ShootingFrequency>(0.25)
             .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate)
             .addComponent<AfkFrequency>(10.0)
-            .addComponent<Player>(playerIdentifier);
+            .addComponent<Player>(playerIdentifier, playerName);
         if (controlable == true) {
             entity.addComponent<Controlable>();
         }

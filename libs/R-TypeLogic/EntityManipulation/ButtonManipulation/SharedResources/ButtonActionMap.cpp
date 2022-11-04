@@ -9,12 +9,12 @@
 
 using namespace ecs;
 
-ButtonActionMap::ButtonActionMap(const buttonAction_e &action, std::function<void(World &)> fctPtr)
+ButtonActionMap::ButtonActionMap(const buttonAction_e &action, std::function<void(World &, Entity &)> fctPtr)
 {
     addAction(action, fctPtr);
 }
 
-void ButtonActionMap::addAction(const buttonAction_e newAction, std::function<void(World &)> fctPtr)
+void ButtonActionMap::addAction(const buttonAction_e newAction, std::function<void(World &, Entity &)> fctPtr)
 {
     actionList.emplace(newAction, fctPtr);
 }
