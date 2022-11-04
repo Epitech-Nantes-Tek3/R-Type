@@ -18,8 +18,6 @@ int main(int ac, char **av)
 
     serverData::Room room(
         roomInformations.id, roomInformations.name, Client(roomInformations.address, roomInformations.port));
-    std::cout << "Room " << room.getRoomName() << " started" << std::endl;
     room.startLobbyLoop();
-    std::cout << "Room " << room.getRoomName() << " ended" << std::endl;
     return 0;
 }

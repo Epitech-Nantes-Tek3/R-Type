@@ -89,7 +89,7 @@ namespace argument_handler
         /// @return A struct containing all wanted informations.
         ClientInformation extractClientInformation(void);
 
-        /// @brief Extract all wanted value by the room from stored arguments.
+        /// @brief Extract all wanted values by the room from stored arguments.
         /// @return A struct containing all wanted informations.
         RoomInformation extractRoomInformations(void);
 
