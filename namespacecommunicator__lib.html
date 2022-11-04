@@ -85,6 +85,7 @@ $(document).ready(function(){initNavTree('namespacecommunicator__lib.html',''); 
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">communicator_lib Namespace Reference</div>  </div>
@@ -100,6 +101,7 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bridge between communicator and server for message.  <a href="structcommunicator__lib_1_1_communicator_message.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcommunicator__lib_1_1_room_configuration.html">RoomConfiguration</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration of a room. It contains a name and 6 modifiers.  <a href="structcommunicator__lib_1_1_room_configuration.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcommunicator__lib_1_1_communicator.html">Communicator</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Network gestionner.  <a href="classcommunicator__lib_1_1_communicator.html#details">More...</a><br /></td></tr>
@@ -114,12 +116,52 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sending data module.  <a href="classcommunicator__lib_1_1_sender.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a0d43fcddd252f7a46c52ae55cd18d55d"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecommunicator__lib.html#a0d43fcddd252f7a46c52ae55cd18d55d">roomConfiguration_e</a> { <br />
+&#160;&#160;<a class="el" href="namespacecommunicator__lib.html#a0d43fcddd252f7a46c52ae55cd18d55da3b433fa3a9525fb173131e7cb92c6857">PLAYER_NUMBER</a>
+, <a class="el" href="namespacecommunicator__lib.html#a0d43fcddd252f7a46c52ae55cd18d55da501de8a9772dbc4d6c6b8ce993511a9f">PLAYER_VELOCITY</a>
+, <a class="el" href="namespacecommunicator__lib.html#a0d43fcddd252f7a46c52ae55cd18d55da3554ef0da8a8e6652d576c649d0890ac">PLAYER_SHOOT_FREQUENCY</a>
+, <a class="el" href="namespacecommunicator__lib.html#a0d43fcddd252f7a46c52ae55cd18d55dadc1027cbfd79d7b3e56ca369daf4a6fd">ENNEMI_VELOCITY</a>
+, <br />
+&#160;&#160;<a class="el" href="namespacecommunicator__lib.html#a0d43fcddd252f7a46c52ae55cd18d55da0d8efea773469e5876131e8770a46bc3">ENNEMI_SHOOT_FREQUENCY</a>
+, <a class="el" href="namespacecommunicator__lib.html#a0d43fcddd252f7a46c52ae55cd18d55da700633ace7d2d315d93c62c2374ef6a7">TIME_ACCELERATION</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:a0d43fcddd252f7a46c52ae55cd18d55d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumeration to know the type of configuration.  <a href="namespacecommunicator__lib.html#a0d43fcddd252f7a46c52ae55cd18d55d">More...</a><br /></td></tr>
+<tr class="separator:a0d43fcddd252f7a46c52ae55cd18d55d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a09b5d088e66a5c9af9461003c1781016"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecommunicator__lib.html#a09b5d088e66a5c9af9461003c1781016">operator==</a> (const <a class="el" href="classcommunicator__lib_1_1_client.html">Client</a> &amp;left, const <a class="el" href="classcommunicator__lib_1_1_client.html">Client</a> &amp;right)</td></tr>
 <tr class="memdesc:a09b5d088e66a5c9af9461003c1781016"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overload of the == operator to compare two clients.  <a href="namespacecommunicator__lib.html#a09b5d088e66a5c9af9461003c1781016">More...</a><br /></td></tr>
 <tr class="separator:a09b5d088e66a5c9af9461003c1781016"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="a0d43fcddd252f7a46c52ae55cd18d55d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d43fcddd252f7a46c52ae55cd18d55d">&#9670;&nbsp;</a></span>roomConfiguration_e</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="namespacecommunicator__lib.html#a0d43fcddd252f7a46c52ae55cd18d55d">communicator_lib::roomConfiguration_e</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enumeration to know the type of configuration. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a0d43fcddd252f7a46c52ae55cd18d55da3b433fa3a9525fb173131e7cb92c6857"></a>PLAYER_NUMBER&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a0d43fcddd252f7a46c52ae55cd18d55da501de8a9772dbc4d6c6b8ce993511a9f"></a>PLAYER_VELOCITY&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a0d43fcddd252f7a46c52ae55cd18d55da3554ef0da8a8e6652d576c649d0890ac"></a>PLAYER_SHOOT_FREQUENCY&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a0d43fcddd252f7a46c52ae55cd18d55dadc1027cbfd79d7b3e56ca369daf4a6fd"></a>ENNEMI_VELOCITY&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a0d43fcddd252f7a46c52ae55cd18d55da0d8efea773469e5876131e8770a46bc3"></a>ENNEMI_SHOOT_FREQUENCY&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a0d43fcddd252f7a46c52ae55cd18d55da700633ace7d2d315d93c62c2374ef6a7"></a>TIME_ACCELERATION&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a09b5d088e66a5c9af9461003c1781016"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a09b5d088e66a5c9af9461003c1781016">&#9670;&nbsp;</a></span>operator==()</h2>
