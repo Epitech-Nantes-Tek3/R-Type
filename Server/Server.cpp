@@ -109,18 +109,15 @@ void Server::_holdAJoinRoomRequest(CommunicatorMessage joinDemand)
 
 void Server::_holdACreateRoomRequest(CommunicatorMessage createDemand)
 {
-    char *tempRoomName = (char *)createDemand.message.data;
-    std::string roomName(11, '\0');
+    RoomConfiguration room = _communicatorInstance->utilitaryReceiveRoomConfiguration(createDemand);
 
-    for (int i = 0; i < 10; i++)
-        roomName[i] = tempRoomName[i];
     for (auto it : _activeRoomList) {
-        if (it == roomName) {
+        if (it == room.roomName) {
             _communicatorInstance.get()->sendDataToAClient(createDemand.message.clientInfo, nullptr, 0, 11);
             return;
         }
     }
-    unsigned short roomId = createANewRoom(roomName);
+    unsigned short roomId = createANewRoom(room.roomName);
     for (auto it : _activeRoomList) {
         if (it == roomId) {
             _communicatorInstance.get()->kickAClient(createDemand.message.clientInfo, it.getNetworkInformations());

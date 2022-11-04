@@ -171,6 +171,40 @@ unsigned short Communicator::getServerEndpointId(void)
     return _clientList.at(0).getId();
 }
 
+void Communicator::utilitarySendRoomConfiguration(std::string roomName, short *configs, Client endpoint)
+{
+    Client temporaryClient;
+    int size = sizeof(char) * 10 + sizeof(short) * 6;
+    void *networkObject = std::malloc(size);
+
+    if (networkObject == nullptr)
+        throw MallocError("Malloc failed.");
+    std::memcpy(networkObject, roomName.c_str(), sizeof(char) * 10);
+    for (int i = 0; i < 6; i++) {
+        std::memcpy((void *)((char *)networkObject + sizeof(short) * i + sizeof(char) * 10), (void *)&configs[i], sizeof(short));
+    }
+    sendDataToAClient(endpoint, networkObject, size, 17);
+}
+
+RoomConfiguration Communicator::utilitaryReceiveRoomConfiguration(CommunicatorMessage cryptedMessage)
+{
+    short roomNameLen = 10;
+    char *roomName = nullptr;
+    RoomConfiguration room;
+    short offset = 0;
+
+    roomName = (char *)cryptedMessage.message.data + offset;
+    room.roomName = std::string(roomNameLen, '\0');
+    for (int i = 0; i < roomNameLen; i++)
+        room.roomName[i] = roomName[i];
+    offset += sizeof(char) * roomNameLen;
+    for (int i = 0; i < 6; i++) {
+        std::memcpy((void *)&room.configs[i], (void *)((char *)cryptedMessage.message.data + offset), sizeof(short));
+        offset += sizeof(short);
+    }
+    return room;
+}
+
 void Communicator::utilitarySendChatMessage(
     std::string pseudo, std::string messageContent, std::vector<unsigned short> destination)
 {

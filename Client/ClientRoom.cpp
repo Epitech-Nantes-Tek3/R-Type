@@ -184,12 +184,8 @@ void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
             _state = ClientState::ENDED;
             return;
         }
-        void *networkData = std::malloc(sizeof(char) * 10);
-
-        if (networkData == nullptr)
-            throw std::logic_error("Malloc failed.");
-        std::memcpy(networkData, roomName.c_str(), sizeof(char) * 10);
-        _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, networkData, sizeof(char) * 10, 17);
+        short configs[6] = {120, 121, 122, 123, 124, 125};
+        _communicatorInstance.get()->utilitarySendRoomConfiguration(roomName, configs, _serverEndpoint);
     } else {
         std::cerr << "Not a valid option ;)" << std::endl;
         _state = ClientState::ENDED;
