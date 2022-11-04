@@ -206,7 +206,7 @@ RoomConfiguration Communicator::utilitaryReceiveRoomConfiguration(CommunicatorMe
         room.roomName[i] = roomName[i];
     offset += sizeof(char) * roomNameLen;
     for (int i = 0; i < 6; i++) {
-        std::memcpy(&room.configs[i], cryptedMessage.message.data + offset, sizeof(unsigned short));
+        std::memcpy((void *)&room.configs[i], (void *)((char *)cryptedMessage.message.data + offset), sizeof(unsigned short));
         offset += sizeof(unsigned short);
     }
     return room;
