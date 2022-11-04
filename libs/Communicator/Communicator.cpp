@@ -171,6 +171,47 @@ unsigned short Communicator::getServerEndpointId(void)
     return _clientList.at(0).getId();
 }
 
+void Communicator::utilitarySendRoomConfiguration(std::vector<unsigned short> destination)
+{
+    Client temporaryClient;
+    int size = 1;
+    void *networkObject = std::malloc(sizeof(char) * (size));
+
+    if (networkObject == nullptr)
+        throw MallocError("Malloc failed.");
+    // room name
+    // player number
+    // player velocity
+    // player shoot frequency
+    // ennemi velocity
+    // ennemi shoot frequency
+    // time acceleration
+    for (auto it : destination) {
+        temporaryClient = getClientByHisId(it);
+        sendDataToAClient(temporaryClient, networkObject,
+            sizeof(unsigned short) + sizeof(char) * (size), 17);
+    }
+}
+
+std::vector<std::string> Communicator::utilitaryReceiveRoomConfiguration(CommunicatorMessage cryptedMessage)
+{
+    unsigned short roomNameLen = 10;
+    char *roomName = nullptr;
+    unsigned short configs[6];
+    unsigned short offset = 0;
+
+    roomName = (char *)cryptedMessage.message.data + offset;
+    std::string roomNameStr(roomNameLen, '\0');
+    for (int i = 0; i < roomNameLen; i++)
+        roomNameStr[i] = roomName[i];
+    offset += sizeof(char) * roomNameLen;
+    for (int i = 0; i < 6; i++) {
+        std::memcpy(&configs[i], cryptedMessage.message.data + offset, sizeof(unsigned short));
+        offset += sizeof(unsigned short);
+    }
+    return {roomName, configs};
+}
+
 void Communicator::utilitarySendChatMessage(
     std::string pseudo, std::string messageContent, std::vector<unsigned short> destination)
 {
