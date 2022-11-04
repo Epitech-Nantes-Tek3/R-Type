@@ -111,13 +111,6 @@ void Server::_holdACreateRoomRequest(CommunicatorMessage createDemand)
 {
     RoomConfiguration room = _communicatorInstance->utilitaryReceiveRoomConfiguration(createDemand);
 
-    /*
-    char *tempRoomName = (char *)createDemand.message.data;
-
-    room.roomName = std::string(11, '\0');
-    for (int i = 0; i < 10; i++)
-        room.roomName[i] = tempRoomName[i];
-    */
     for (auto it : _activeRoomList) {
         if (it == room.roomName) {
             _communicatorInstance.get()->sendDataToAClient(createDemand.message.clientInfo, nullptr, 0, 11);

@@ -137,11 +137,14 @@ namespace communicator_lib
         std::vector<std::string> utilitaryReceiveChatMessage(CommunicatorMessage cryptedMessage);
 
         /// @brief Utilitary function used to send a message with a protocol 17.
-        void utilitarySendRoomConfiguration(std::string roomName, unsigned short *configs, Client newEndpoint);
+        /// @param roomName The name of the room configuration.
+        /// @param configs Array of modificator used to update some server configuration.
+        /// @param newEndPoint The endpoint used to send the configuration.
+        void utilitarySendRoomConfiguration(std::string roomName, short *configs, Client newEndpoint);
 
         /// @brief Utilitary function used to extract a message received by a protocol 17.
         /// @param cryptedMessage The crypted message which contains informations.
-        /// @return Nothing for the moment.
+        /// @return RoomConfiguration The configuration of the room.
         RoomConfiguration utilitaryReceiveRoomConfiguration(CommunicatorMessage cryptedMessage);
       private:
         /// @brief Send a protocol 20 to a client
