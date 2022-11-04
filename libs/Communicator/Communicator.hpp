@@ -26,6 +26,9 @@ using namespace transisthor_lib;
 
 namespace communicator_lib
 {
+    /// @brief Enumeration to know the type of configuration.
+    enum roomConfiguration_e {PLAYER_NUMBER, PLAYER_VELOCITY, PLAYER_SHOOT_FREQUENCY, ENNEMI_VELOCITY, ENNEMI_SHOOT_FREQUENCY, TIME_ACCELERATION};
+
     /// @brief Bridge between communicator and server for message
     struct CommunicatorMessage {
         /// @brief The network message
@@ -34,9 +37,13 @@ namespace communicator_lib
         bool newClient;
     };
 
+    /// @brief Configuration of a room. It contains a name and 6 modifiers.
     struct RoomConfiguration {
+        /// @brief Name of the room.
         std::string roomName;
-        unsigned short configs[6];
+        /// @brief Configuration (6 modifiers).
+        /// Use enumerator roomConfiguration_e to set value at the good index.
+        short configs[6];
     };
 
     /// @brief Network gestionner
