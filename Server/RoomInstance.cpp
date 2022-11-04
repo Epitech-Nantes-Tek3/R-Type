@@ -7,7 +7,6 @@
 
 #include "Error/Error.hpp"
 #include "Server.hpp"
-#include <iostream>
 
 namespace serverData
 {
