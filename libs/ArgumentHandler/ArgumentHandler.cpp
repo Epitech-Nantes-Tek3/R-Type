@@ -8,7 +8,6 @@
 /// @file libs/ArgumentHandler.hpp
 
 #include "ArgumentHandler.hpp"
-#include <boost/algorithm/string.hpp>
 #include <iostream>
 #include "Error/Error.hpp"
 
