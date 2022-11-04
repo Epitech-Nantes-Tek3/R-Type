@@ -150,6 +150,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a6bee2d5bf9be209cbf638ef307b49799"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_button_action_8hpp.html#a6bee2d5bf9be209cbf638ef307b49799">selectAWritable</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, <a class="el" href="classecs_1_1_entity.html">Entity</a> &amp;entityPtr)</td></tr>
 <tr class="memdesc:a6bee2d5bf9be209cbf638ef307b49799"><td class="mdescLeft">&#160;</td><td class="mdescRight">Select a writable entity, add / remove a selected component.  <a href="_button_action_8hpp.html#a6bee2d5bf9be209cbf638ef307b49799">More...</a><br /></td></tr>
 <tr class="separator:a6bee2d5bf9be209cbf638ef307b49799"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a6aa45a8f9a5171aceac9b3130ae601"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_button_action_8hpp.html#a9a6aa45a8f9a5171aceac9b3130ae601">writableButtonAction</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, <a class="el" href="classecs_1_1_entity.html">Entity</a> &amp;entityPtr)</td></tr>
+<tr class="memdesc:a9a6aa45a8f9a5171aceac9b3130ae601"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the content of associated writable entity and called the action function.  <a href="_button_action_8hpp.html#a9a6aa45a8f9a5171aceac9b3130ae601">More...</a><br /></td></tr>
+<tr class="separator:a9a6aa45a8f9a5171aceac9b3130ae601"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a689fcb9ef4253b89b170f837f5d09bb0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_button_action_8hpp.html#a689fcb9ef4253b89b170f837f5d09bb0">publishNewChatMessage</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, <a class="el" href="classecs_1_1_entity.html">Entity</a> &amp;entityPtr, std::string &amp;message)</td></tr>
+<tr class="memdesc:a689fcb9ef4253b89b170f837f5d09bb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">publish a new message in the room chat  <a href="_button_action_8hpp.html#a689fcb9ef4253b89b170f837f5d09bb0">More...</a><br /></td></tr>
+<tr class="separator:a689fcb9ef4253b89b170f837f5d09bb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a6375ef4598b4a132abe906fe3c7ace77"></a>
@@ -182,7 +188,7 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">world</td><td>the world where the window will be closed </td></tr>
-    <tr><td class="paramname">entityPtr</td><td>the entity whoe's actioned the called </td></tr>
+    <tr><td class="paramname">entityPtr</td><td>the entity who actioned the called </td></tr>
   </table>
   </dd>
 </dl>
@@ -219,7 +225,51 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">world</td><td>the world where the game will be paused </td></tr>
-    <tr><td class="paramname">entityPtr</td><td>the entity whoe's actioned the called </td></tr>
+    <tr><td class="paramname">entityPtr</td><td>the entity who actioned the called </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a689fcb9ef4253b89b170f837f5d09bb0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a689fcb9ef4253b89b170f837f5d09bb0">&#9670;&nbsp;</a></span>publishNewChatMessage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void publishNewChatMessage </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classecs_1_1_world.html">World</a> &amp;&#160;</td>
+          <td class="paramname"><em>world</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classecs_1_1_entity.html">Entity</a> &amp;&#160;</td>
+          <td class="paramname"><em>entityPtr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string &amp;&#160;</td>
+          <td class="paramname"><em>message</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>publish a new message in the room chat </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">world</td><td>the world where the entity is </td></tr>
+    <tr><td class="paramname">entityPtr</td><td>the entity who actioned the called </td></tr>
+    <tr><td class="paramname">message</td><td>message to send </td></tr>
   </table>
   </dd>
 </dl>
@@ -292,8 +342,45 @@ Functions</h2></td></tr>
 <p>Select a writable entity, add / remove a selected component. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">world</td><td>the world where the entity his </td></tr>
-    <tr><td class="paramname">entityPtr</td><td>the entity whoe's actioned the called </td></tr>
+    <tr><td class="paramname">world</td><td>the world where the entity is </td></tr>
+    <tr><td class="paramname">entityPtr</td><td>the entity who actioned the called </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9a6aa45a8f9a5171aceac9b3130ae601"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a6aa45a8f9a5171aceac9b3130ae601">&#9670;&nbsp;</a></span>writableButtonAction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void writableButtonAction </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classecs_1_1_world.html">World</a> &amp;&#160;</td>
+          <td class="paramname"><em>world</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classecs_1_1_entity.html">Entity</a> &amp;&#160;</td>
+          <td class="paramname"><em>entityPtr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the content of associated writable entity and called the action function. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">world</td><td>the world where the entity is </td></tr>
+    <tr><td class="paramname">entityPtr</td><td>the entity who actioned the called </td></tr>
   </table>
   </dd>
 </dl>

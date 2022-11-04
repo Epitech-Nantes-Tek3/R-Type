@@ -91,7 +91,11 @@ $(document).ready(function(){initNavTree('_button_action_8cpp.html',''); initRes
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="_button_action_8hpp_source.html">ButtonAction.hpp</a>&quot;</code><br />
 <code>#include &lt;csignal&gt;</code><br />
+<code>#include &quot;<a class="el" href="_associated_id_component_8hpp_source.html">GraphicECS/SFML/Components/AssociatedIdComponent.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_graphics_text_component_8hpp_source.html">GraphicECS/SFML/Components/GraphicsTextComponent.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_selected_component_8hpp_source.html">GraphicECS/SFML/Components/SelectedComponent.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_writable_button_action_component_8hpp_source.html">GraphicECS/SFML/Components/WritableButtonActionComponent.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_writable_content_component_8hpp_source.html">GraphicECS/SFML/Components/WritableContentComponent.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_render_window_resource_8hpp_source.html">GraphicECS/SFML/Resources/RenderWindowResource.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_texture_name_8hpp_source.html">TextureName.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_game_states_8hpp_source.html">R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/GameStates.hpp</a>&quot;</code><br />
@@ -101,42 +105,46 @@ Include dependency graph for ButtonAction.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="_button_action_8cpp__incl.png" border="0" usemap="#a_client_2_button_action_8cpp" alt=""/></div>
 <map name="a_client_2_button_action_8cpp" id="a_client_2_button_action_8cpp">
-<area shape="rect" title=" " alt="" coords="1355,5,1529,32"/>
-<area shape="rect" href="_button_action_8hpp.html" title=" " alt="" coords="793,95,928,121"/>
-<area shape="rect" title=" " alt="" coords="1637,95,1705,121"/>
-<area shape="rect" href="_selected_component_8hpp.html" title=" " alt="" coords="1780,191,2003,233"/>
-<area shape="rect" href="_render_window_resource_8hpp.html" title=" " alt="" coords="1495,191,1707,233"/>
-<area shape="rect" href="_texture_name_8hpp.html" title=" " alt="" coords="1373,95,1511,121"/>
-<area shape="rect" href="_game_states_8hpp.html" title=" " alt="" coords="905,184,1176,240"/>
-<area shape="rect" href="_menu_states_8hpp.html" title=" " alt="" coords="1079,80,1349,136"/>
-<area shape="rect" href="_world_8hpp.html" title=" " alt="" coords="703,199,831,225"/>
-<area shape="rect" title=" " alt="" coords="1321,437,1401,464"/>
-<area shape="rect" title=" " alt="" coords="809,363,880,389"/>
-<area shape="rect" title=" " alt="" coords="30,512,81,539"/>
-<area shape="rect" title=" " alt="" coords="623,437,701,464"/>
-<area shape="rect" title=" " alt="" coords="1110,363,1174,389"/>
-<area shape="rect" title=" " alt="" coords="699,363,785,389"/>
-<area shape="rect" title=" " alt="" coords="393,512,456,539"/>
-<area shape="rect" href="_entity_8hpp.html" title=" " alt="" coords="830,288,958,315"/>
-<area shape="rect" title=" " alt="" coords="1199,363,1323,389"/>
-<area shape="rect" href="_resource_8hpp.html" title=" " alt="" coords="1135,288,1309,315"/>
-<area shape="rect" href="_system_8hpp.html" title=" " alt="" coords="151,288,303,315"/>
-<area shape="rect" href="_transisthor_8hpp.html" title=" " alt="" coords="403,288,598,315"/>
-<area shape="rect" title=" " alt="" coords="1006,363,1086,389"/>
-<area shape="rect" href="_component_8hpp.html" title=" " alt="" coords="1721,363,1925,389"/>
-<area shape="rect" title=" " alt="" coords="1790,437,1857,464"/>
-<area shape="rect" href="_communicator_8hpp.html" title=" " alt="" coords="378,363,623,389"/>
-<area shape="rect" href="_error_8hpp.html" title=" " alt="" coords="93,363,207,389"/>
-<area shape="rect" href="_client_8hpp.html" title=" " alt="" coords="481,512,569,539"/>
-<area shape="rect" href="_receiver_8hpp.html" title=" " alt="" coords="211,437,318,464"/>
-<area shape="rect" href="_sender_8hpp.html" title=" " alt="" coords="453,437,548,464"/>
-<area shape="rect" title=" " alt="" coords="495,587,554,613"/>
-<area shape="rect" title=" " alt="" coords="105,512,227,539"/>
-<area shape="rect" title=" " alt="" coords="251,512,369,539"/>
-<area shape="rect" title=" " alt="" coords="100,437,187,464"/>
-<area shape="rect" title=" " alt="" coords="1499,288,1646,315"/>
-<area shape="rect" href="_graphics_texture_resource_8hpp.html" title=" " alt="" coords="1251,191,1470,233"/>
-<area shape="rect" title=" " alt="" coords="1385,288,1475,315"/>
+<area shape="rect" title=" " alt="" coords="1149,5,1323,32"/>
+<area shape="rect" href="_button_action_8hpp.html" title=" " alt="" coords="841,87,975,114"/>
+<area shape="rect" title=" " alt="" coords="749,87,817,114"/>
+<area shape="rect" href="_associated_id_component_8hpp.html" title=" " alt="" coords="342,80,565,121"/>
+<area shape="rect" href="_graphics_text_component_8hpp.html" title=" " alt="" coords="1927,177,2150,218"/>
+<area shape="rect" href="_selected_component_8hpp.html" title=" " alt="" coords="2223,177,2446,218"/>
+<area shape="rect" href="_writable_button_action_component_8hpp.html" title=" " alt="" coords="1102,80,1370,121"/>
+<area shape="rect" href="_writable_content_component_8hpp.html" title=" " alt="" coords="1395,80,1629,121"/>
+<area shape="rect" href="_render_window_resource_8hpp.html" title=" " alt="" coords="1447,177,1659,218"/>
+<area shape="rect" href="_texture_name_8hpp.html" title=" " alt="" coords="1725,87,1862,114"/>
+<area shape="rect" href="_game_states_8hpp.html" title=" " alt="" coords="858,169,1129,225"/>
+<area shape="rect" href="_menu_states_8hpp.html" title=" " alt="" coords="1153,169,1423,225"/>
+<area shape="rect" href="_world_8hpp.html" title=" " alt="" coords="705,184,833,211"/>
+<area shape="rect" title=" " alt="" coords="1231,423,1311,449"/>
+<area shape="rect" title=" " alt="" coords="897,348,967,375"/>
+<area shape="rect" title=" " alt="" coords="5,497,56,524"/>
+<area shape="rect" title=" " alt="" coords="771,423,848,449"/>
+<area shape="rect" title=" " alt="" coords="1308,348,1372,375"/>
+<area shape="rect" title=" " alt="" coords="991,348,1078,375"/>
+<area shape="rect" title=" " alt="" coords="369,497,431,524"/>
+<area shape="rect" href="_entity_8hpp.html" title=" " alt="" coords="1052,273,1180,300"/>
+<area shape="rect" title=" " alt="" coords="1397,348,1521,375"/>
+<area shape="rect" href="_resource_8hpp.html" title=" " alt="" coords="1306,273,1481,300"/>
+<area shape="rect" href="_system_8hpp.html" title=" " alt="" coords="400,273,552,300"/>
+<area shape="rect" href="_transisthor_8hpp.html" title=" " alt="" coords="576,273,771,300"/>
+<area shape="rect" title=" " alt="" coords="1153,348,1233,375"/>
+<area shape="rect" href="_component_8hpp.html" title=" " alt="" coords="1937,348,2141,375"/>
+<area shape="rect" title=" " alt="" coords="2005,423,2072,449"/>
+<area shape="rect" href="_communicator_8hpp.html" title=" " alt="" coords="387,348,632,375"/>
+<area shape="rect" href="_error_8hpp.html" title=" " alt="" coords="656,348,771,375"/>
+<area shape="rect" href="_client_8hpp.html" title=" " alt="" coords="492,497,580,524"/>
+<area shape="rect" href="_receiver_8hpp.html" title=" " alt="" coords="155,423,261,449"/>
+<area shape="rect" href="_sender_8hpp.html" title=" " alt="" coords="438,423,533,449"/>
+<area shape="rect" title=" " alt="" coords="704,572,763,599"/>
+<area shape="rect" title=" " alt="" coords="221,497,344,524"/>
+<area shape="rect" title=" " alt="" coords="80,497,197,524"/>
+<area shape="rect" title=" " alt="" coords="609,423,695,449"/>
+<area shape="rect" title=" " alt="" coords="1605,273,1752,300"/>
+<area shape="rect" href="_graphics_texture_resource_8hpp.html" title=" " alt="" coords="1684,177,1903,218"/>
+<area shape="rect" title=" " alt="" coords="1827,273,1917,300"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -154,6 +162,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a6bee2d5bf9be209cbf638ef307b49799"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_button_action_8cpp.html#a6bee2d5bf9be209cbf638ef307b49799">selectAWritable</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, <a class="el" href="classecs_1_1_entity.html">Entity</a> &amp;entityPtr)</td></tr>
 <tr class="memdesc:a6bee2d5bf9be209cbf638ef307b49799"><td class="mdescLeft">&#160;</td><td class="mdescRight">Select a writable entity, add / remove a selected component.  <a href="_button_action_8cpp.html#a6bee2d5bf9be209cbf638ef307b49799">More...</a><br /></td></tr>
 <tr class="separator:a6bee2d5bf9be209cbf638ef307b49799"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a6aa45a8f9a5171aceac9b3130ae601"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_button_action_8cpp.html#a9a6aa45a8f9a5171aceac9b3130ae601">writableButtonAction</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, <a class="el" href="classecs_1_1_entity.html">Entity</a> &amp;entityPtr)</td></tr>
+<tr class="memdesc:a9a6aa45a8f9a5171aceac9b3130ae601"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the content of associated writable entity and called the action function.  <a href="_button_action_8cpp.html#a9a6aa45a8f9a5171aceac9b3130ae601">More...</a><br /></td></tr>
+<tr class="separator:a9a6aa45a8f9a5171aceac9b3130ae601"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a689fcb9ef4253b89b170f837f5d09bb0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_button_action_8cpp.html#a689fcb9ef4253b89b170f837f5d09bb0">publishNewChatMessage</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, <a class="el" href="classecs_1_1_entity.html">Entity</a> &amp;entityPtr, std::string &amp;message)</td></tr>
+<tr class="memdesc:a689fcb9ef4253b89b170f837f5d09bb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">publish a new message in the room chat  <a href="_button_action_8cpp.html#a689fcb9ef4253b89b170f837f5d09bb0">More...</a><br /></td></tr>
+<tr class="separator:a689fcb9ef4253b89b170f837f5d09bb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a6375ef4598b4a132abe906fe3c7ace77"></a>
@@ -186,7 +200,7 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">world</td><td>the world where the window will be closed </td></tr>
-    <tr><td class="paramname">entityPtr</td><td>the entity whoe's actioned the called </td></tr>
+    <tr><td class="paramname">entityPtr</td><td>the entity who actioned the called </td></tr>
   </table>
   </dd>
 </dl>
@@ -223,7 +237,51 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">world</td><td>the world where the game will be paused </td></tr>
-    <tr><td class="paramname">entityPtr</td><td>the entity whoe's actioned the called </td></tr>
+    <tr><td class="paramname">entityPtr</td><td>the entity who actioned the called </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a689fcb9ef4253b89b170f837f5d09bb0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a689fcb9ef4253b89b170f837f5d09bb0">&#9670;&nbsp;</a></span>publishNewChatMessage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void publishNewChatMessage </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classecs_1_1_world.html">World</a> &amp;&#160;</td>
+          <td class="paramname"><em>world</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classecs_1_1_entity.html">Entity</a> &amp;&#160;</td>
+          <td class="paramname"><em>entityPtr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string &amp;&#160;</td>
+          <td class="paramname"><em>message</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>publish a new message in the room chat </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">world</td><td>the world where the entity is </td></tr>
+    <tr><td class="paramname">entityPtr</td><td>the entity who actioned the called </td></tr>
+    <tr><td class="paramname">message</td><td>message to send </td></tr>
   </table>
   </dd>
 </dl>
@@ -296,8 +354,45 @@ Functions</h2></td></tr>
 <p>Select a writable entity, add / remove a selected component. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">world</td><td>the world where the entity his </td></tr>
-    <tr><td class="paramname">entityPtr</td><td>the entity whoe's actioned the called </td></tr>
+    <tr><td class="paramname">world</td><td>the world where the entity is </td></tr>
+    <tr><td class="paramname">entityPtr</td><td>the entity who actioned the called </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9a6aa45a8f9a5171aceac9b3130ae601"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a6aa45a8f9a5171aceac9b3130ae601">&#9670;&nbsp;</a></span>writableButtonAction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void writableButtonAction </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classecs_1_1_world.html">World</a> &amp;&#160;</td>
+          <td class="paramname"><em>world</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classecs_1_1_entity.html">Entity</a> &amp;&#160;</td>
+          <td class="paramname"><em>entityPtr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the content of associated writable entity and called the action function. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">world</td><td>the world where the entity is </td></tr>
+    <tr><td class="paramname">entityPtr</td><td>the entity who actioned the called </td></tr>
   </table>
   </dd>
 </dl>

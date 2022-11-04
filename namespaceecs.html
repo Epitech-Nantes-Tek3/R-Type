@@ -323,6 +323,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ac03f7dc7f534fd1a768d747f7551d5c7"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceecs.html#ac03f7dc7f534fd1a768d747f7551d5c7">createNewWritable</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, const int posX, const int posY, const int sizeX, const int sizeY, <a class="el" href="classecs_1_1_menu_states.html#a0d4dd57d2a1f5290f65d1288712f922a">MenuStates::menuState_e</a> state)</td></tr>
 <tr class="memdesc:ac03f7dc7f534fd1a768d747f7551d5c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function creates a new Writable <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components The std::mutex inheritance is in...">Entity</a> with these parameters.  <a href="namespaceecs.html#ac03f7dc7f534fd1a768d747f7551d5c7">More...</a><br /></td></tr>
 <tr class="separator:ac03f7dc7f534fd1a768d747f7551d5c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55e49d1c9612050d392f74bac140252a"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceecs.html#a55e49d1c9612050d392f74bac140252a">createNewWritableButton</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, const int posX, const int posY, const int sizeX, const int sizeY, std::function&lt; void(<a class="el" href="classecs_1_1_world.html">World</a> &amp;, <a class="el" href="classecs_1_1_entity.html">Entity</a> &amp;, std::string &amp;)&gt; actionFunction, <a class="el" href="classecs_1_1_menu_states.html#a0d4dd57d2a1f5290f65d1288712f922a">MenuStates::menuState_e</a> state, std::size_t associatedWritableId)</td></tr>
+<tr class="memdesc:a55e49d1c9612050d392f74bac140252a"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function creates a new WritableButton <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components The std::mutex inheritance is in...">Entity</a> with these parameters.  <a href="namespaceecs.html#a55e49d1c9612050d392f74bac140252a">More...</a><br /></td></tr>
+<tr class="separator:a55e49d1c9612050d392f74bac140252a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeee4701ee1fc0ba5daf07543c83ea2da"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceecs.html#aeee4701ee1fc0ba5daf07543c83ea2da">operator==</a> (const <a class="el" href="classecs_1_1_newly_created.html">NewlyCreated</a> &amp;one, const <a class="el" href="classecs_1_1_newly_created.html">NewlyCreated</a> &amp;two)</td></tr>
 <tr class="separator:aeee4701ee1fc0ba5daf07543c83ea2da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a102705ce465733035dfb209936d15883"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceecs.html#a102705ce465733035dfb209936d15883">operator==</a> (const <a class="el" href="classecs_1_1_networkable.html">Networkable</a> &amp;one, const <a class="el" href="classecs_1_1_networkable.html">Networkable</a> &amp;two)</td></tr>
@@ -1203,6 +1206,86 @@ template&lt;std::derived_from&lt; Component &gt; C&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Id of the new Writable in std::size_t </dd></dl>
+
+</div>
+</div>
+<a id="a55e49d1c9612050d392f74bac140252a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55e49d1c9612050d392f74bac140252a">&#9670;&nbsp;</a></span>createNewWritableButton()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::size_t ecs::createNewWritableButton </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classecs_1_1_world.html">World</a> &amp;&#160;</td>
+          <td class="paramname"><em>world</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>posX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>posY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>sizeX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>sizeY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::function&lt; void(<a class="el" href="classecs_1_1_world.html">World</a> &amp;, <a class="el" href="classecs_1_1_entity.html">Entity</a> &amp;, std::string &amp;)&gt;&#160;</td>
+          <td class="paramname"><em>actionFunction</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classecs_1_1_menu_states.html#a0d4dd57d2a1f5290f65d1288712f922a">MenuStates::menuState_e</a>&#160;</td>
+          <td class="paramname"><em>state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>associatedWritableId</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function creates a new WritableButton <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components The std::mutex inheritance is in...">Entity</a> with these parameters. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">world</td><td>The world in which the WritableButton must be created </td></tr>
+    <tr><td class="paramname">posX</td><td><a class="el" href="classecs_1_1_position.html" title="The Position component, almost used for every entities It&#39;s a networkable component.">Position</a> x of the WritableButton </td></tr>
+    <tr><td class="paramname">posY</td><td><a class="el" href="classecs_1_1_position.html" title="The Position component, almost used for every entities It&#39;s a networkable component.">Position</a> y of the WritableButton </td></tr>
+    <tr><td class="paramname">sizeX</td><td><a class="el" href="classecs_1_1_size.html" title="The Size component, almost used for everything.">Size</a> x of the WritableButton </td></tr>
+    <tr><td class="paramname">sizeY</td><td><a class="el" href="classecs_1_1_size.html" title="The Size component, almost used for everything.">Size</a> y of the WritableButton </td></tr>
+    <tr><td class="paramname">actionFunction</td><td>The action function to use for the WritableButton </td></tr>
+    <tr><td class="paramname">state</td><td>The associated state to decide when the writableButton will be displayed </td></tr>
+    <tr><td class="paramname">associatedWritableId</td><td>id of the associated writable entity </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Id of the new WritableButton in std::size_t </dd></dl>
 
 </div>
 </div>
