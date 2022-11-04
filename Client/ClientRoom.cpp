@@ -38,6 +38,7 @@
 #include "GraphicECS/SFML/Systems/ParallaxSystem.hpp"
 #include "GraphicECS/SFML/Systems/SfObjectFollowEntitySystem.hpp"
 #include "GraphicECS/SFML/Systems/SoundManagement.hpp"
+#include "GraphicECS/SFML/Systems/RemoveChatSystem.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Components/NetworkServer.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Systems/SendNewlyCreatedToServer.hpp"
@@ -404,6 +405,7 @@ void ClientRoom::_initSystems()
     _worldInstance->addSystem<NoAfkInMenu>();
     _worldInstance->addSystem<MusicManagement>();
     _worldInstance->addSystem<SoundManagement>();
+    _worldInstance->addSystem<RemoveChatSystem>();
 }
 
 void ClientRoom::_initBackgroundEntities()
