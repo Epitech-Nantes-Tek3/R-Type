@@ -78,6 +78,8 @@ void selectAWritable(World &world, Entity &entityPtr)
 
 void writableButtonAction(World &world, Entity &entityPtr)
 {
+    if (!entityPtr.contains<AssociatedId>())
+        return;
     auto &idList = entityPtr.getComponent<AssociatedId>().idList;
     if (idList.empty())
         return;
