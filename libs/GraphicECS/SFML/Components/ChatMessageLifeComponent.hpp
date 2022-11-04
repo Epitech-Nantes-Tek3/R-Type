@@ -5,11 +5,8 @@
 ** ChatMessageLifeComponent
 */
 
-#ifndef CHATMESSAGECOMPONENT_HPP_
-#define CHATMESSAGECOMPONENT_HPP_
-
-#include <vector>
-#include "Component/Component.hpp"
+#ifndef CHATMESSAGELIFECOMPONENT_HPP_
+#define CHATMESSAGELIFECOMPONENT_HPP_
 
 namespace graphicECS::SFML::Components
 {
@@ -23,6 +20,7 @@ namespace graphicECS::SFML::Components
         const std::chrono::duration<double> baseFrequency;
 
         /// @brief Default constructor of ChatMessageLife.
+        /// @param d Frequency to set the baseFrequency of the animation. Default value is 0.5 seconds.
         ChatMessageLife(const double &d = 5)
             : frequency(std::chrono::duration<double>(d)), baseFrequency(std::chrono::duration<double>(d)){};
 

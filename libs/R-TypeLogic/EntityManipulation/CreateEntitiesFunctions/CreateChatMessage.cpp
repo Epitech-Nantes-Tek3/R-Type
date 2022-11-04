@@ -12,6 +12,8 @@
 #include "R-TypeLogic/Global/Components/SizeComponent.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/MenuStates.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/Components/DisplayState.hpp"
+#include "GraphicECS/SFML/Components/ChatMessageComponent.hpp"
+#include "GraphicECS/SFML/Components/ChatMessageLifeComponent.hpp"
 
 namespace ecs
 {
@@ -23,10 +25,9 @@ namespace ecs
         entity.addComponent<Size>(sizeX, sizeY)
             .addComponent<Position>(posX, posY)
             .addComponent<LayerLvL>(LayerLvL::CHAT_MESSAGE)
-            .addComponent<DisplayState>(MenuStates::IN_GAME);
-        (void)frequency;
-        (void)author;
-        (void)content;
+            .addComponent<DisplayState>(MenuStates::IN_GAME)
+            .addComponent<graphicECS::SFML::Components::ChatMessage>(author, content)
+            .addComponent<graphicECS::SFML::Components::ChatMessageLife>(frequency);
         return entity.getId();
     }
 } // namespace ecs

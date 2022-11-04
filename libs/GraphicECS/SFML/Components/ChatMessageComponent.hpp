@@ -20,11 +20,9 @@ namespace graphicECS::SFML::Components
         std::string message;
 
         /// @brief Constructor of ChatMessage object.
-        inline ChatMessage()
-        {
-            author = "";
-            message = "";
-        };
+        /// @param auth Author name
+        /// @param msg sended by the author
+        ChatMessage(std::string auth, std::string msg) : author(auth), message(msg){};
 
         /// @brief Destroy the Writable Content object
         ~ChatMessage() = default;
