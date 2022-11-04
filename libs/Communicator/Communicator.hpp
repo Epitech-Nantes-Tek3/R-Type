@@ -34,6 +34,11 @@ namespace communicator_lib
         bool newClient;
     };
 
+    struct RoomConfiguration {
+        std::string roomName;
+        unsigned short configs[6];
+    };
+
     /// @brief Network gestionner
     class Communicator {
       public:
@@ -131,6 +136,13 @@ namespace communicator_lib
         /// @return std::vector<std::string> the decrypted pseudo + message
         std::vector<std::string> utilitaryReceiveChatMessage(CommunicatorMessage cryptedMessage);
 
+        /// @brief Utilitary function used to send a message with a protocol 17.
+        void utilitarySendRoomConfiguration(std::vector<unsigned short> destination);
+
+        /// @brief Utilitary function used to extract a message received by a protocol 17.
+        /// @param cryptedMessage The crypted message which contains informations.
+        /// @return Nothing for the moment.
+        std::vector<std::string> utilitaryReceiveRoomConfiguration(CommunicatorMessage cryptedMessage);
       private:
         /// @brief Send a protocol 20 to a client
         /// @param client The destination
