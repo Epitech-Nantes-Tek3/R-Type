@@ -21,6 +21,8 @@ set(SRC
     ${SRC_RTYPE_LOGIC_ENTITY_CREATION_ROOT}/CreateButton.cpp
     ${SRC_RTYPE_LOGIC_ENTITY_CREATION_ROOT}/CreateWritable.hpp
     ${SRC_RTYPE_LOGIC_ENTITY_CREATION_ROOT}/CreateWritable.cpp
+    ${SRC_RTYPE_LOGIC_ENTITY_CREATION_ROOT}/CreateWritableButton.hpp
+    ${SRC_RTYPE_LOGIC_ENTITY_CREATION_ROOT}/CreateWritableButton.cpp
 )
 
 add_library(${TARGET} ${SRC})

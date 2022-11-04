@@ -21,5 +21,7 @@ set(SRC_GRAPHIC_COMPONENT
     ${GRAPHIC_SRC_COMPONENT_ROOT}/IsShootingComponent.hpp
     ${GRAPHIC_SRC_COMPONENT_ROOT}/SelectedComponent.hpp
     ${GRAPHIC_SRC_COMPONENT_ROOT}/WritableContentComponent.hpp
+    ${GRAPHIC_SRC_COMPONENT_ROOT}/AssociatedIdComponent.hpp
+    ${GRAPHIC_SRC_COMPONENT_ROOT}/WritableButtonActionComponent.hpp
     PARENT_SCOPE
 )

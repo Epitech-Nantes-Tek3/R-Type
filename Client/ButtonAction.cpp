@@ -7,7 +7,11 @@
 
 #include "ButtonAction.hpp"
 #include <csignal>
+#include "GraphicECS/SFML/Components/AssociatedIdComponent.hpp"
+#include "GraphicECS/SFML/Components/GraphicsTextComponent.hpp"
 #include "GraphicECS/SFML/Components/SelectedComponent.hpp"
+#include "GraphicECS/SFML/Components/WritableButtonActionComponent.hpp"
+#include "GraphicECS/SFML/Components/WritableContentComponent.hpp"
 #include "GraphicECS/SFML/Resources/RenderWindowResource.hpp"
 #include "TextureName.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/GameStates.hpp"
@@ -70,4 +74,29 @@ void selectAWritable(World &world, Entity &entityPtr)
     auto &state = world.getResource<GameStates>();
     auto guard = std::lock_guard(state);
     state.currentState = GameStates::IN_WRITING;
+}
+
+void writableButtonAction(World &world, Entity &entityPtr)
+{
+    if (!entityPtr.contains<AssociatedId>())
+        return;
+    auto &idList = entityPtr.getComponent<AssociatedId>().idList;
+    if (idList.empty())
+        return;
+    auto &entity = world.getEntity(idList.at(0));
+    std::string &writableContent = entity.getComponent<WritableContent>().content;
+    if (!writableContent.size())
+        return;
+    auto guard = std::lock_guard(entity);
+    auto &writableContentComponent = entity.getComponent<WritableContent>();
+    writableContentComponent.content = "";
+    entity.getComponent<GraphicsTextComponent>().text.setString("");
+    entityPtr.getComponent<WritableButtonAction>().actionToExecute(world, entityPtr, writableContent);
+}
+
+void publishNewChatMessage(World &world, Entity &entityPtr, std::string &message)
+{
+    (void)world;
+    (void)entityPtr;
+    (void)message;
 }

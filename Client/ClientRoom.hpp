@@ -91,6 +91,10 @@ namespace client_data
         /// @param spritesList texture's map holding the texture and the corresponding key
         void _initSpritesForBackgrounds(graphicECS::SFML::Resources::GraphicsTextureResource &spritesList);
 
+        /// @brief Init all the sprites needed for the Writable object
+        /// @param spritesList texture's map holding the texture and the corresponding key
+        void _initSpritesForWritable(graphicECS::SFML::Resources::GraphicsTextureResource &spritesList);
+
         /// @brief Network informations of the room.
         Client _networkInformations;
 
