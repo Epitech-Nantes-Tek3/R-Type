@@ -24,5 +24,6 @@ set(SRC_GRAPHIC_COMPONENT
     ${GRAPHIC_SRC_COMPONENT_ROOT}/AssociatedIdComponent.hpp
     ${GRAPHIC_SRC_COMPONENT_ROOT}/WritableButtonActionComponent.hpp
     ${GRAPHIC_SRC_COMPONENT_ROOT}/ChatMessageComponent.hpp
+    ${GRAPHIC_SRC_COMPONENT_ROOT}/ChatMessageLifeComponent.hpp
     PARENT_SCOPE
 )
