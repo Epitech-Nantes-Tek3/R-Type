@@ -193,23 +193,23 @@ void Communicator::utilitarySendRoomConfiguration(std::vector<unsigned short> de
     }
 }
 
-std::vector<std::string> Communicator::utilitaryReceiveRoomConfiguration(CommunicatorMessage cryptedMessage)
+RoomConfiguration Communicator::utilitaryReceiveRoomConfiguration(CommunicatorMessage cryptedMessage)
 {
     unsigned short roomNameLen = 10;
     char *roomName = nullptr;
-    unsigned short configs[6];
+    RoomConfiguration room;
     unsigned short offset = 0;
 
     roomName = (char *)cryptedMessage.message.data + offset;
-    std::string roomNameStr(roomNameLen, '\0');
+    room.roomName = std::string(roomNameLen, '\0');
     for (int i = 0; i < roomNameLen; i++)
-        roomNameStr[i] = roomName[i];
+        room.roomName[i] = roomName[i];
     offset += sizeof(char) * roomNameLen;
     for (int i = 0; i < 6; i++) {
-        std::memcpy(&configs[i], cryptedMessage.message.data + offset, sizeof(unsigned short));
+        std::memcpy(&room.configs[i], cryptedMessage.message.data + offset, sizeof(unsigned short));
         offset += sizeof(unsigned short);
     }
-    return {roomName, configs};
+    return room;
 }
 
 void Communicator::utilitarySendChatMessage(

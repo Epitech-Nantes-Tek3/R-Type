@@ -142,7 +142,7 @@ namespace communicator_lib
         /// @brief Utilitary function used to extract a message received by a protocol 17.
         /// @param cryptedMessage The crypted message which contains informations.
         /// @return Nothing for the moment.
-        std::vector<std::string> utilitaryReceiveRoomConfiguration(CommunicatorMessage cryptedMessage);
+        RoomConfiguration utilitaryReceiveRoomConfiguration(CommunicatorMessage cryptedMessage);
       private:
         /// @brief Send a protocol 20 to a client
         /// @param client The destination
