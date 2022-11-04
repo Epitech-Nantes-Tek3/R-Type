@@ -234,7 +234,7 @@ void ClientRoom::initSoloSystem(void)
     _worldInstance->addSystem<DeathSystem>();
     _worldInstance->addSystem<DrawComponents>();
     _worldInstance->addSystem<InputManagement>();
-    _worldInstance->addSystem<SfRectangleFollowEntitySystem>();
+    _worldInstance->addSystem<SfObjectFollowEntitySystem>();
     _worldInstance->addSystem<Parallax>();
     _worldInstance->addSystem<Movement>();
     _worldInstance->addSystem<AnimationSystem>();
@@ -249,8 +249,9 @@ void ClientRoom::signalSoloCallbackHandler(int signum)
 
 void ClientRoom::initSoloData(void)
 {
-    createNewPlayer(*_worldInstance.get(), 20, 500, 0, 0, 1, 102, 102, 100, 10, 4, false, 1);
-    createNewEnemyRandom(*_worldInstance.get(), 0, 0, 1, 85, 85, 50, 10, 5);
+    createNewPlayer(*_worldInstance.get(), 20, 500, 0, 0, 1, 102, 102, 100, 10, 4, true, 1, "NAME");
+
+    createNewEnemyRandom(*_worldInstance.get(), 0, 0, 1, 85, 85, 50, 10, 5, 1);
 }
 
 void ClientRoom::startSoloLoop(void)
@@ -282,6 +283,7 @@ void ClientRoom::startGame(void)
         std::cerr << "Not a valid option ;)" << std::endl;
         _state = ClientState::ENDED;
     }
+}
 void ClientRoom::_getClientPseudoAndPassword()
 {
     std::string pseudo;
@@ -346,7 +348,7 @@ void ClientRoom::startLobbyLoop(void)
     }
     if (_state != ClientState::ENDED) {
         _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, nullptr, 0, 10);
-        initEcsGameData();
+        initEcsGameData(false);
         _connectToARoom();
         _state = ClientState::LOBBY;
     }

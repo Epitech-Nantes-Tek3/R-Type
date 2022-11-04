@@ -5,8 +5,8 @@
 ** SfObjectFollowEntitySystem
 */
 
-#ifndef SFRECTANGLEFOLLOWENTITYSYSTEM_HPP_
-#define SFRECTANGLEFOLLOWENTITYSYSTEM_HPP_
+#ifndef _SFOBJECTFOLLOWENTITY_HPP_
+#define _SFOBJECTFOLLOWENTITY_HPP_
 
 #include <SFML/Graphics.hpp>
 #include "Component/Component.hpp"
@@ -29,4 +29,4 @@ namespace graphicECS::SFML::Systems
     };
 } // namespace graphicECS::SFML::Systems
 
-#endif /* !SFRECTANGLEFOLLOWENTITYSYSTEM_HPP_ */
+#endif /* !_SFOBJECTFOLLOWENTITY_HPP_ */
