@@ -171,7 +171,7 @@ unsigned short Communicator::getServerEndpointId(void)
     return _clientList.at(0).getId();
 }
 
-void Communicator::utilitarySendRoomConfiguration(std::string roomName, unsigned short *configs, std::vector<unsigned short> destination)
+void Communicator::utilitarySendRoomConfiguration(std::string roomName, unsigned short *configs, Client endpoint)
 {
     Client temporaryClient;
     int size = sizeof(char) * 10 + sizeof(unsigned short) * 6;
@@ -183,11 +183,7 @@ void Communicator::utilitarySendRoomConfiguration(std::string roomName, unsigned
     for (int i = 0; i < 6; i++) {
         std::memcpy((void *)((char *)networkObject + sizeof(unsigned short) * i + sizeof(char) * 10), (void *)&configs[i], sizeof(unsigned short));
     }
-    for (auto it : destination) {
-        temporaryClient = getClientByHisId(it);
-        sendDataToAClient(temporaryClient, networkObject,
-            sizeof(unsigned short) + sizeof(char) * (size), 17);
-    }
+    sendDataToAClient(endpoint, networkObject, size, 17);
 }
 
 RoomConfiguration Communicator::utilitaryReceiveRoomConfiguration(CommunicatorMessage cryptedMessage)
