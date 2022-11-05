@@ -205,6 +205,7 @@ void ClientRoom::_getClientPseudoAndPassword()
     world.addResource<ButtonActionMap>(ButtonActionMap::WRITABLE_BUTTON);
     world.getResource<ButtonActionMap>().addAction(ButtonActionMap::WRITABLE, std::function<void(World &, Entity &)>(selectAWritable));
     world.getResource<ButtonActionMap>().addAction(ButtonActionMap::WRITABLE_BUTTON, std::function<void(World &, Entity &)>(writableButtonAction));
+    world.addResource<MenuStates>();
     world.addSystem<UpdateClock>();
     world.addSystem<DeathSystem>();
     world.addSystem<DrawComponents>();
@@ -215,7 +216,6 @@ void ClientRoom::_getClientPseudoAndPassword()
     world.addSystem<Parallax>();
     world.addSystem<Movement>();
     world.addSystem<AnimationSystem>();
-    world.addSystem<NoAfkInMenu>();
     world.addSystem<MusicManagement>();
     world.addSystem<SoundManagement>();
     world.addEntity()
@@ -229,7 +229,10 @@ void ClientRoom::_getClientPseudoAndPassword()
 
     _initBackgroundEntities();
     std::size_t writableId = createNewWritable(world, 100, 100, 200, 50, MenuStates::IN_GAME);
+    std::cerr << "Entity is " << writableId << std::endl;
 
+    while (world.containsResource<RenderWindowResource>() && world.getResource<RenderWindowResource>().window.isOpen())
+        world.runSystems();
     std::string pseudo;
     std::string password;
 
