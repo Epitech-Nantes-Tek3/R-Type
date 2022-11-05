@@ -169,7 +169,8 @@ void Room::_holdADatabaseValueRequest(CommunicatorMessage databaseRequest)
     std::vector<std::string> requestContent =
         _communicatorInstance->utilitaryReceiveAskingForDatabaseValue(databaseRequest);
     auto apiAnswer = _databaseApi.selectUsers("UserName = '" + requestContent.at(0) + "'");
-    _communicatorInstance->utilitarySendDatabaseValue(apiAnswer.at(0)[requestContent.at(1)], databaseRequest.message.clientInfo);
+    _communicatorInstance->utilitarySendDatabaseValue(
+        apiAnswer.at(0)[requestContent.at(1)], databaseRequest.message.clientInfo);
 }
 
 void Room::_holdADatabaseSetRequest(CommunicatorMessage databaseRequest)
@@ -179,12 +180,15 @@ void Room::_holdADatabaseSetRequest(CommunicatorMessage databaseRequest)
 
     if (requestContent.at(1) == "1")
         keyStr = "Banned";
-    if (requestContent.at(1) == "2")
+    if (requestContent.at(1) == "2") {
         keyStr = "Muted";
+        Client tempClient = _findClientByHisName(requestContent.at(1));
+        _communicatorInstance->utilitarySendDatabaseValue(
+            requestContent.at(2), tempClient);
+    }
     if (requestContent.at(1) == "3")
         keyStr = "Moderator";
-    _databaseApi.updateUsers(keyStr + " = " + requestContent.at(2),
-        "UserName = '" + requestContent.at(0) + "'");
+    _databaseApi.updateUsers(keyStr + " = " + requestContent.at(2), "UserName = '" + requestContent.at(0) + "'");
 }
 
 void Room::_holdAChatRequest(CommunicatorMessage chatRequest)
@@ -227,6 +231,17 @@ size_t Room::getEntityPlayerByHisNetworkId(unsigned short networkId)
     if (temporary == 0)
         throw EcsError("No matching player founded.", "World.cpp -> getEntityPlayerByHisNetworkId");
     return temporary;
+}
+
+Client Room::_findClientByHisName(std::string name)
+{
+    std::vector<std::shared_ptr<ecs::Entity>> joined = _worldInstance->joinEntities<NetworkClient, Player>();
+
+    for (auto it : joined) {
+        if (it->getComponent<Player>().name == name)
+            return _communicatorInstance->getClientByHisId(it->getComponent<NetworkClient>().id);
+    }
+    return Client();
 }
 
 std::string Room::_getPlayerName(CommunicatorMessage connexionDemand)

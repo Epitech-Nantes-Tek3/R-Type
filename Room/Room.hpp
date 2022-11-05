@@ -142,6 +142,11 @@ namespace server_data
         /// @throw an ECSError if no player was found.
         size_t getEntityPlayerByHisNetworkId(unsigned short networkId);
 
+        /// @brief Cross all the player entity and return the matched one
+        /// @param name the wanted player name
+        /// @return founded client
+        Client _findClientByHisName(std::string name);
+
         /// @brief Trait a connexion request. If there is less than 3 players already in the room, send a protocol 22 to
         /// the client. Otherwise, send a 21.
         /// @param communicatorMessage actual message data
