@@ -358,12 +358,12 @@ void ClientRoom::_initSpritesForBackgrounds(GraphicsTextureResource &spritesList
 
 void ClientRoom::_initSpriteForEnemies(GraphicsTextureResource &spritesList)
 {
-    spritesList.addTexture(GraphicsTextureResource::FIRE_ENEMY,
-        "assets/EpiSprite/FireEnemySpriteSheet.gif", sf::Vector2f(0, 0), sf::Vector2f(34, 34));
-    spritesList.addTexture(GraphicsTextureResource::ELECTRIC_ENEMY,
-        "assets/EpiSprite/ElectricEnemySpriteSheet.gif", sf::Vector2f(0, 0), sf::Vector2f(34, 34));
-    spritesList.addTexture(GraphicsTextureResource::ICE_ENEMY,
-        "assets/EpiSprite/IceEnemySpriteSheet.gif", sf::Vector2f(0, 0), sf::Vector2f(34, 34));
+    spritesList.addTexture(GraphicsTextureResource::FIRE_ENEMY, "assets/EpiSprite/FireEnemySpriteSheet.gif",
+        sf::Vector2f(0, 0), sf::Vector2f(34, 34));
+    spritesList.addTexture(GraphicsTextureResource::ELECTRIC_ENEMY, "assets/EpiSprite/ElectricEnemySpriteSheet.gif",
+        sf::Vector2f(0, 0), sf::Vector2f(34, 34));
+    spritesList.addTexture(GraphicsTextureResource::ICE_ENEMY, "assets/EpiSprite/IceEnemySpriteSheet.gif",
+        sf::Vector2f(0, 0), sf::Vector2f(34, 34));
 }
 
 void ClientRoom::_initSpritesForWritable(GraphicsTextureResource &spritesList)
