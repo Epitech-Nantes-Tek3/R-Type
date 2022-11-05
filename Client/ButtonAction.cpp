@@ -128,4 +128,3 @@ void setPassword(World &world, Entity &entity, std::string &password)
     (void)entity;
     (void)password;
 }
-
