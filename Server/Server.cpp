@@ -46,8 +46,8 @@ unsigned short Server::_getAFreePort(unsigned short actual)
 
 unsigned short Server::createANewRoom(std::string name)
 {
-    std::shared_ptr<RoomInstance> ptr = std::make_shared<RoomInstance>(
-        _nextRoomId, name, _networkInformations.getAddress(), _getAFreePort(_networkInformations.getPort() + 101));
+    std::shared_ptr<RoomInstance> ptr = std::make_shared<RoomInstance>(this, _nextRoomId, name,
+        _networkInformations.getAddress(), _getAFreePort(_networkInformations.getPort() + 101));
     _activeRoomList.push_back(ptr);
     _nextRoomId++;
     return (_nextRoomId - 1);
@@ -100,7 +100,7 @@ void Server::_holdAJoinRoomRequest(CommunicatorMessage joinDemand)
 
     std::memcpy(&choosenRoom, joinDemand.message.data, sizeof(unsigned short));
     for (auto &it : _activeRoomList) {
-        if (*it.get() == choosenRoom) {
+        if (it->getId() == choosenRoom) {
             _communicatorInstance.get()->kickAClient(joinDemand.message.clientInfo, it->getNetworkInfos());
             return;
         }
@@ -156,10 +156,10 @@ void Server::deleteARoom(unsigned short id)
 {
     int pos = 0;
 
-    std::cerr << "SERVER Delete Room " << id << std::endl;
     for (auto &it : _activeRoomList) {
-        if (it->getId() == id)
+        if (it->getId() == id) {
             _activeRoomList.erase(_activeRoomList.begin() + pos);
+        }
         pos++;
     }
 }
