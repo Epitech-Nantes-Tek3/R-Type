@@ -10,7 +10,7 @@
 #include "Server.hpp"
 #include "Error/Error.hpp"
 
-using namespace serverData;
+using namespace server_data;
 using namespace error_lib;
 using namespace communicator_lib;
 

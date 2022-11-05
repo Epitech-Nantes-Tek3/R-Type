@@ -41,12 +41,12 @@
 #include "R-TypeLogic/Server/Systems/LifeTimeDeathSystem.hpp"
 #include "R-TypeLogic/Server/Systems/RemoveAfkSystem.hpp"
 
-using namespace serverData;
+using namespace server_data;
 using namespace error_lib;
 using namespace communicator_lib;
 using namespace ecs;
 
-static serverData::Room::RoomState roomState(Room::RoomState::UNDEFINED);
+static server_data::Room::RoomState roomState(Room::RoomState::UNDEFINED);
 
 /// @brief Useful function called when a sigint received.
 /// @param signum Value of the received signal
