@@ -184,3 +184,13 @@ void UserConnection::userConnection()
         }
     }
 }
+
+const std::string &UserConnection::getPseudo() const
+{
+    return _pseudo;
+}
+
+const std::string &UserConnection::getPassword() const
+{
+    return _password;
+}
