@@ -108,7 +108,6 @@ void publishNewChatMessage(World &world, Entity &entityPtr, std::string &message
     Communicator &communicator = world.getTransisthorBridge()->getCommunicatorInstance();
 
     (void)entityPtr;
-    (void)message;
     if (!servers.size() || !players.size())
         return;
     communicator.utilitarySendChatMessage(players.at(0)->getComponent<ecs::Player>().name, message,
