@@ -266,6 +266,7 @@ namespace graphicECS::SFML::Systems
             MenuStates &menuState = world.getResource<MenuStates>();
             MenuStates::menuState_e currState = menuState.currentState;
             if (sameHeigth && sameWidth && state.displayState == currState) {
+                entityPtr->getComponent<Button>().IsClicked = true;
                 ActionName &name = entityPtr.get()->getComponent<ActionName>();
                 ButtonActionMap &map = world.getResource<ButtonActionMap>();
 
