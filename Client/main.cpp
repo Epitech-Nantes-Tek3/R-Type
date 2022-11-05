@@ -20,6 +20,8 @@ int main(int ac, char **av)
     ClientRoom client = ClientRoom(clientInformation.clientAddress, clientInformation.clientPort,
         clientInformation.serverAddress, clientInformation.serverPort);
     UserConnection connection;
+    std::string pseudo;
+    std::string password;
 
     try {
         connection.userConnection();
@@ -27,7 +29,8 @@ int main(int ac, char **av)
         std::cerr << e.what() << std::endl;
         return 84;
     }
-    connection.~UserConnection();
-    client.startLobbyLoop();
+    pseudo = connection.getPseudo();
+    password = connection.getPassword();
+    client.startLobbyLoop(pseudo, password);
     return (0);
 }

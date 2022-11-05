@@ -43,7 +43,7 @@ namespace client_data
         ~ClientRoom() = default;
 
         /// @brief Launch the lobby global loop
-        void startLobbyLoop();
+        void startLobbyLoop(const std::string &pseudo, const std::string &password);
 
       private:
         /// @brief Init all shared resources of the world.

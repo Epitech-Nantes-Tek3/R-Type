@@ -24,6 +24,11 @@ namespace client_data
         /// @brief Launch a user connection GUI.
         void userConnection();
 
+        /// @brief Get the pseudo of the user.
+        const std::string &getPseudo() const;
+
+        /// @brief Get the password of the user.
+        const std::string &getPassword() const;
       private:
         /// @brief Init all shared resources of the world.
         void _loadResourcesUserConnection();

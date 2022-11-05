@@ -60,6 +60,7 @@
 #include "R-TypeLogic/Global/Systems/MovementSystem.hpp"
 #include "R-TypeLogic/Global/Systems/NoAfkInMenuSystem.hpp"
 #include "R-TypeLogic/Global/Systems/UpdateClockSystem.hpp"
+
 using namespace error_lib;
 using namespace communicator_lib;
 using namespace client_data;
@@ -227,10 +228,12 @@ void ClientRoom::_connectToARoom()
     std::free(networkData);
 }
 
-void ClientRoom::startLobbyLoop(void)
+void ClientRoom::startLobbyLoop(const std::string &pseudo, const std::string &password)
 {
     CommunicatorMessage connectionOperation;
 
+    _pseudo = pseudo;
+    _password = password;
     std::signal(SIGINT, signalCallbackHandler);
     if (_state != ClientState::ENDED)
         _startConnexionProtocol();
