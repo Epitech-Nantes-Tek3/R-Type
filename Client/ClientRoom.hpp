@@ -48,10 +48,10 @@ namespace client_data
         void userConnection();
 
       private:
-
         void _loadResourcesUserConnection(World &world);
         void _loadSystemsUserConnection(World &world);
-        void _loadEntitiesUserConnection(World &world, std::size_t &buttonSendId, std::size_t &buttonPseudoId, std::size_t &buttonPasswordId);
+        void _loadEntitiesUserConnection(
+            World &world, std::size_t &buttonSendId, std::size_t &buttonPseudoId, std::size_t &buttonPasswordId);
         void _setInputUserConnection(ecs::Entity &entity);
         void _runSystemsUserConnection(World &world, std::size_t buttonSendId);
         /// @brief Init all shared resources of the world.

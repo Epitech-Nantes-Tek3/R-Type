@@ -582,19 +582,19 @@ void ClientRoom::_loadEntitiesUserConnection(
         .addComponent<LayerLvL>(LayerLvL::WRITABLE)
         .addComponent<ActionName>(ButtonActionMap::WRITABLE)
         .addComponent<DisplayState>(MenuStates::IN_GAME);
-    createNewWritableButton(*(_worldInstance.get()), 1820, 900, 80, 50,
-        std::function<void(World &, Entity &, std::string &)>(setPseudo), MenuStates::IN_GAME, buttonPseudoId);
-    createNewWritableButton(*(_worldInstance.get()), 1820, 900, 80, 50,
-        std::function<void(World &, Entity &, std::string &)>(setPassword), MenuStates::IN_GAME, buttonPasswordId);
 }
 
 void ClientRoom::_runSystemsUserConnection(World &world, std::size_t buttonSendId)
 {
     ecs::Entity &buttonSend = world.getEntity(buttonSendId);
 
-    while (world.containsResource<RenderWindowResource>() && world.getResource<RenderWindowResource>().window.isOpen()
-        && !buttonSend.getComponent<Button>().IsClicked)
+    while (world.containsResource<RenderWindowResource>() && world.getResource<RenderWindowResource>().window.isOpen()) {
         world.runSystems();
+        if (buttonSend.getComponent<Button>().IsClicked) {
+            buttonSend.getComponent<Button>().IsClicked = false;
+            break;
+        }
+    }
 }
 
 void ClientRoom::userConnection()

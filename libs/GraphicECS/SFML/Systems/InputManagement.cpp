@@ -273,8 +273,6 @@ namespace graphicECS::SFML::Systems
 
                 std::function<void(World &, Entity &)> fct = map.actionList.find(name.actionName)->second;
                 fct(world, *(entityPtr.get()));
-            } else {
-                entityPtr->getComponent<Button>().IsClicked = false;
             }
         };
         std::for_each(joined.begin(), joined.end(), clickInButton);
