@@ -14,8 +14,11 @@
 #include "GraphicECS/SFML/Components/WritableContentComponent.hpp"
 #include "GraphicECS/SFML/Resources/RenderWindowResource.hpp"
 #include "TextureName.hpp"
+#include "Transisthor/TransisthorECSLogic/Client/Components/NetworkServer.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/GameStates.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/MenuStates.hpp"
+#include "R-TypeLogic/Global/Components/ControlableComponent.hpp"
+#include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
 
 using namespace graphicECS::SFML::Resources;
 using namespace graphicECS::SFML::Components;
@@ -84,7 +87,7 @@ void writableButtonAction(World &world, Entity &entityPtr)
     if (idList.empty())
         return;
     auto &entity = world.getEntity(idList.at(0));
-    std::string &writableContent = entity.getComponent<WritableContent>().content;
+    std::string writableContent = entity.getComponent<WritableContent>().content;
     if (!writableContent.size())
         return;
     auto guard = std::lock_guard(entity);
@@ -96,7 +99,13 @@ void writableButtonAction(World &world, Entity &entityPtr)
 
 void publishNewChatMessage(World &world, Entity &entityPtr, std::string &message)
 {
-    (void)world;
+    std::vector<std::shared_ptr<ecs::Entity>> servers = world.joinEntities<ecs::NetworkServer>();
+    std::vector<std::shared_ptr<ecs::Entity>> players = world.joinEntities<ecs::Controlable>();
+    Communicator &communicator = world.getTransisthorBridge()->getCommunicatorInstance();
+
     (void)entityPtr;
-    (void)message;
+    if (!servers.size() || !players.size())
+        return;
+    communicator.utilitarySendChatMessage(players.at(0)->getComponent<ecs::Player>().name, message,
+        {servers.at(0)->getComponent<ecs::NetworkServer>().id});
 }
