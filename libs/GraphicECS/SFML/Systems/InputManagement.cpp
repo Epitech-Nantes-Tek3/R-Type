@@ -91,7 +91,8 @@ namespace graphicECS::SFML::Systems
                     unsigned short textLen = 0;
                     std::string formatedText = writableContent.content;
 
-                    for (; writableContent.content[textLen] != '\0'; textLen++);
+                    for (; writableContent.content[textLen] != '\0'; textLen++)
+                        ;
                     formatedText.resize(textLen);
                     textComponent.text.setString(formatedText);
                 }
@@ -272,6 +273,8 @@ namespace graphicECS::SFML::Systems
 
                 std::function<void(World &, Entity &)> fct = map.actionList.find(name.actionName)->second;
                 fct(world, *(entityPtr.get()));
+            } else {
+                entityPtr->getComponent<Button>().IsClicked = false;
             }
         };
         std::for_each(joined.begin(), joined.end(), clickInButton);
