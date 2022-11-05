@@ -201,12 +201,10 @@ void ClientRoom::_getClientPseudoAndPassword()
     world.addResource<GameClock>();
     world.addResource<RenderWindowResource>();
     world.addResource<GraphicsFontResource>("assets/fonts/arial.ttf");
-    // world.addResource<MenuStates>(MenuStates::IN_GAME);
-    world.addResource<MusicResource>(
-        MusicResource::music_e::BACKGROUNDTHEME, "assets/Musics/music_background.wav");
-    // world.addResource<SoundResource>(SoundResource::sound_e::SHOOT, "assets/Sounds/sound.wav");
-    // world.addResource<GameStates>(GameStates::IN_GAME);
-
+    world.addResource<MusicResource>(MusicResource::music_e::BACKGROUNDTHEME, "assets/Musics/music_background.wav");
+    world.addResource<ButtonActionMap>(ButtonActionMap::WRITABLE_BUTTON);
+    world.getResource<ButtonActionMap>().addAction(ButtonActionMap::WRITABLE, std::function<void(World &, Entity &)>(selectAWritable));
+    world.getResource<ButtonActionMap>().addAction(ButtonActionMap::WRITABLE_BUTTON, std::function<void(World &, Entity &)>(writableButtonAction));
     world.addSystem<UpdateClock>();
     world.addSystem<DeathSystem>();
     world.addSystem<DrawComponents>();
@@ -220,7 +218,6 @@ void ClientRoom::_getClientPseudoAndPassword()
     world.addSystem<NoAfkInMenu>();
     world.addSystem<MusicManagement>();
     world.addSystem<SoundManagement>();
-
     world.addEntity()
         .addComponent<MouseInputComponent>()
         .addComponent<KeyboardInputComponent>()
@@ -229,6 +226,9 @@ void ClientRoom::_getClientPseudoAndPassword()
         .addComponent<ActionQueueComponent>()
         .addComponent<AllowMouseAndKeyboardComponent>()
         .addComponent<AllowControllerComponent>();
+
+    _initBackgroundEntities();
+    std::size_t writableId = createNewWritable(world, 100, 100, 200, 50, MenuStates::IN_GAME);
 
     std::string pseudo;
     std::string password;
