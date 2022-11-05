@@ -195,6 +195,41 @@ void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
 
 void ClientRoom::_getClientPseudoAndPassword()
 {
+    World world(2);
+
+    world.addResource<RandomDevice>();
+    world.addResource<GameClock>();
+    world.addResource<RenderWindowResource>();
+    world.addResource<GraphicsFontResource>("assets/fonts/arial.ttf");
+    // world.addResource<MenuStates>(MenuStates::IN_GAME);
+    world.addResource<MusicResource>(
+        MusicResource::music_e::BACKGROUNDTHEME, "assets/Musics/music_background.wav");
+    // world.addResource<SoundResource>(SoundResource::sound_e::SHOOT, "assets/Sounds/sound.wav");
+    // world.addResource<GameStates>(GameStates::IN_GAME);
+
+    world.addSystem<UpdateClock>();
+    world.addSystem<DeathSystem>();
+    world.addSystem<DrawComponents>();
+    world.addSystem<InputManagement>();
+    world.addSystem<SendToServer>();
+    world.addSystem<SendNewlyCreatedToServer>();
+    world.addSystem<SfObjectFollowEntitySystem>();
+    world.addSystem<Parallax>();
+    world.addSystem<Movement>();
+    world.addSystem<AnimationSystem>();
+    world.addSystem<NoAfkInMenu>();
+    world.addSystem<MusicManagement>();
+    world.addSystem<SoundManagement>();
+
+    world.addEntity()
+        .addComponent<MouseInputComponent>()
+        .addComponent<KeyboardInputComponent>()
+        .addComponent<ControllerButtonInputComponent>()
+        .addComponent<ControllerJoystickInputComponent>()
+        .addComponent<ActionQueueComponent>()
+        .addComponent<AllowMouseAndKeyboardComponent>()
+        .addComponent<AllowControllerComponent>();
+
     std::string pseudo;
     std::string password;
 
