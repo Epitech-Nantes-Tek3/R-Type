@@ -43,6 +43,8 @@ namespace client_data
         ~ClientRoom() = default;
 
         /// @brief Launch the lobby global loop
+        /// @param pseudo The pseudo of the user
+        /// @param password The password of the user
         void startLobbyLoop(const std::string &pseudo, const std::string &password);
 
       private:
