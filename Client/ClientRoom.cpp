@@ -195,93 +195,8 @@ void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
 
 void ClientRoom::_getClientPseudoAndPassword()
 {
-    world.addEntity()
-        .addComponent<MouseInputComponent>()
-        .addComponent<KeyboardInputComponent>()
-        .addComponent<ControllerButtonInputComponent>()
-        .addComponent<ControllerJoystickInputComponent>()
-        .addComponent<ActionQueueComponent>()
-        .addComponent<AllowMouseAndKeyboardComponent>()
-        .addComponent<AllowControllerComponent>();
-    auto entities = world.joinEntities<KeyboardInputComponent>();
-
-    for (auto &it : entities) {
-        it->getComponent<KeyboardInputComponent>().keyboardMapActions.emplace(
-            std::make_pair<sf::Keyboard::Key, std::pair<ActionQueueComponent::inputAction_e, float>>(sf::Keyboard::Z,
-                std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEY, -200)));
-        it->getComponent<KeyboardInputComponent>().keyboardMapActions.emplace(
-            std::make_pair<sf::Keyboard::Key, std::pair<ActionQueueComponent::inputAction_e, float>>(sf::Keyboard::S,
-                std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEY, 200)));
-        it->getComponent<KeyboardInputComponent>().keyboardMapActions.emplace(
-            std::make_pair<sf::Keyboard::Key, std::pair<ActionQueueComponent::inputAction_e, float>>(sf::Keyboard::Q,
-                std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEX, -200)));
-        it->getComponent<KeyboardInputComponent>().keyboardMapActions.emplace(
-            std::make_pair<sf::Keyboard::Key, std::pair<ActionQueueComponent::inputAction_e, float>>(sf::Keyboard::D,
-                std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEX, 200)));
-        it->getComponent<KeyboardInputComponent>().keyboardMapActions.emplace(
-            std::make_pair<sf::Keyboard::Key, std::pair<ActionQueueComponent::inputAction_e, float>>(
-                sf::Keyboard::Enter,
-                std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::SHOOT, 10)));
-        it->getComponent<ControllerJoystickInputComponent>().controllerJoystickMapActions.emplace(
-            std::make_pair<unsigned int, std::pair<ActionQueueComponent::inputAction_e, float>>(
-                1, std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEY, 0)));
-        it->getComponent<MouseInputComponent>().MouseMapActions.emplace(
-            std::make_pair<sf::Mouse::Button, std::pair<ActionQueueComponent::inputAction_e, float>>(
-                sf::Mouse::Button::Left,
-                std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::BUTTON_CLICK, 0)));
-    }
-    world.addResource<GraphicsTextureResource>(GraphicsTextureResource::BUTTON, "assets/EpiSprite/r-typesheet11.gif",
-        sf::Vector2f(34, 0), sf::Vector2f(34, 34));
-    _initSpritesForWritable(world.getResource<GraphicsTextureResource>());
-    _initBackgroundEntities();
-    std::size_t buttonPseudo = createNewWritable(world, 100, 100, 200, 50, MenuStates::IN_GAME);
-    world.addEntity()
-        .addComponent<Button>()
-        .addComponent<GraphicsTextComponent>(world.getResource<GraphicsFontResource>().font, "Select pseudo", 100, 100)
-        .addComponent<Size>(10, 10)
-        .addComponent<Position>(100, 100)
-        .addComponent<LayerLvL>(LayerLvL::WRITABLE)
-        .addComponent<ActionName>(ButtonActionMap::WRITABLE)
-        .addComponent<DisplayState>(MenuStates::IN_GAME);
-    std::cerr << "Entity is " << buttonPseudo << std::endl;
-    createNewWritableButton(*(_worldInstance.get()), 1820, 900, 80, 50,
-        std::function<void(World &, Entity &, std::string &)>(setPseudo), MenuStates::IN_GAME, buttonPseudo);
-    std::size_t buttonPassword = createNewWritable(world, 500, 100, 200, 50, MenuStates::IN_GAME);
-    world.addEntity()
-        .addComponent<Button>()
-        .addComponent<GraphicsTextComponent>(
-            world.getResource<GraphicsFontResource>().font, "Select password", 500, 100)
-        .addComponent<Size>(10, 10)
-        .addComponent<Position>(500, 100)
-        .addComponent<LayerLvL>(LayerLvL::WRITABLE)
-        .addComponent<ActionName>(ButtonActionMap::WRITABLE)
-        .addComponent<DisplayState>(MenuStates::IN_GAME);
-    std::cerr << "Entity is " << buttonPassword << std::endl;
-    createNewWritableButton(*(_worldInstance.get()), 1820, 900, 80, 50,
-        std::function<void(World &, Entity &, std::string &)>(setPassword), MenuStates::IN_GAME, buttonPassword);
-    std::size_t buttonSend =
-        world.addEntity()
-            .addComponent<Button>()
-            .addComponent<TextureName>(GraphicsTextureResource::BUTTON)
-            .addComponent<GraphicsRectangleComponent>()
-            .addComponent<GraphicsTextComponent>(world.getResource<GraphicsFontResource>().font, "Send", 500, 500)
-            .addComponent<Size>(100, 100)
-            .addComponent<Position>(500, 500)
-            .addComponent<LayerLvL>(LayerLvL::WRITABLE)
-            .addComponent<ActionName>(ButtonActionMap::WRITABLE)
-            .addComponent<DisplayState>(MenuStates::IN_GAME)
-            .getId();
-    while (world.containsResource<RenderWindowResource>() && world.getResource<RenderWindowResource>().window.isOpen()
-        && !world.getEntity(buttonSend).getComponent<Button>().IsClicked)
-        world.runSystems();
-    _pseudo = world.getEntity(buttonPseudo).getComponent<WritableContent>().content;
-    _password = world.getEntity(buttonPassword).getComponent<WritableContent>().content;
-
-    if (_pseudo.size() != 5 || _password.size() != 5) {
-        std::cerr << "Invalide size" << std::endl;
-        _pseudo = "";
-        _password = "";
-    }
+    // _initSpritesForWritable(world.getResource<GraphicsTextureResource>());
+    // _initBackgroundEntities();
 }
 
 void ClientRoom::_connectToARoom()
@@ -592,7 +507,9 @@ void ClientRoom::_loadResourcesUserConnection(World &world)
         .addResource<MusicResource>(MusicResource::music_e::BACKGROUNDTHEME, "assets/Musics/music_background.wav")
         .addResource<MenuStates>(MenuStates::IN_GAME)
         .addResource<ButtonActionMap>(
-            ButtonActionMap::WRITABLE_BUTTON, std::function<void(World &, Entity &)>(writableButtonAction));
+            ButtonActionMap::WRITABLE_BUTTON, std::function<void(World &, Entity &)>(writableButtonAction))
+        .addResource<GraphicsTextureResource>(GraphicsTextureResource::BUTTON, "assets/EpiSprite/r-typesheet11.gif",
+            sf::Vector2f(34, 0), sf::Vector2f(34, 34));
     world.getResource<ButtonActionMap>().addAction(
         ButtonActionMap::WRITABLE, std::function<void(World &, Entity &)>(selectAWritable));
 }
@@ -600,24 +517,107 @@ void ClientRoom::_loadResourcesUserConnection(World &world)
 void ClientRoom::_loadSystemsUserConnection(World &world)
 {
     world.addSystem<UpdateClock>()
-    .addSystem<DeathSystem>()
-    .addSystem<DrawComponents>()
-    .addSystem<InputManagement>()
-    .addSystem<SendToServer>()
-    .addSystem<SendNewlyCreatedToServer>()
-    .addSystem<SfObjectFollowEntitySystem>()
-    .addSystem<Parallax>()
-    .addSystem<Movement>()
-    .addSystem<AnimationSystem>()
-    .addSystem<MusicManagement>()
-    .addSystem<SoundManagement>();
+        .addSystem<DeathSystem>()
+        .addSystem<DrawComponents>()
+        .addSystem<InputManagement>()
+        .addSystem<SendToServer>()
+        .addSystem<SendNewlyCreatedToServer>()
+        .addSystem<SfObjectFollowEntitySystem>()
+        .addSystem<Parallax>()
+        .addSystem<Movement>()
+        .addSystem<AnimationSystem>()
+        .addSystem<MusicManagement>()
+        .addSystem<SoundManagement>();
+}
+
+void ClientRoom::_setInputUserConnection(ecs::Entity &entity)
+{
+    entity.getComponent<MouseInputComponent>().MouseMapActions.emplace(
+        std::make_pair<sf::Mouse::Button, std::pair<ActionQueueComponent::inputAction_e, float>>(
+            sf::Mouse::Button::Left,
+            std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::BUTTON_CLICK, 0)));
+}
+
+void ClientRoom::_loadEntitiesUserConnection(
+    World &world, std::size_t &buttonSendId, std::size_t &buttonPseudoId, std::size_t &buttonPasswordId)
+{
+    ecs::Entity &inputsEntity = world.addEntity()
+                                    .addComponent<MouseInputComponent>()
+                                    .addComponent<KeyboardInputComponent>()
+                                    .addComponent<ControllerButtonInputComponent>()
+                                    .addComponent<ControllerJoystickInputComponent>()
+                                    .addComponent<ActionQueueComponent>()
+                                    .addComponent<AllowMouseAndKeyboardComponent>()
+                                    .addComponent<AllowControllerComponent>();
+
+    _setInputUserConnection(inputsEntity);
+    buttonPseudoId = createNewWritable(world, 100, 100, 200, 50, MenuStates::IN_GAME);
+    buttonPasswordId = createNewWritable(world, 500, 100, 200, 50, MenuStates::IN_GAME);
+    buttonSendId =
+        world.addEntity()
+            .addComponent<Button>()
+            .addComponent<TextureName>(GraphicsTextureResource::BUTTON)
+            .addComponent<GraphicsRectangleComponent>()
+            .addComponent<GraphicsTextComponent>(world.getResource<GraphicsFontResource>().font, "Send", 500, 500)
+            .addComponent<Size>(100, 100)
+            .addComponent<Position>(500, 500)
+            .addComponent<LayerLvL>(LayerLvL::WRITABLE)
+            .addComponent<ActionName>(ButtonActionMap::WRITABLE)
+            .addComponent<DisplayState>(MenuStates::IN_GAME)
+            .getId();
+    world.addEntity()
+        .addComponent<Button>()
+        .addComponent<GraphicsTextComponent>(
+            world.getResource<GraphicsFontResource>().font, "Select password", 500, 100)
+        .addComponent<Size>(10, 10)
+        .addComponent<Position>(500, 100)
+        .addComponent<LayerLvL>(LayerLvL::WRITABLE)
+        .addComponent<ActionName>(ButtonActionMap::WRITABLE)
+        .addComponent<DisplayState>(MenuStates::IN_GAME);
+    world.addEntity()
+        .addComponent<Button>()
+        .addComponent<GraphicsTextComponent>(world.getResource<GraphicsFontResource>().font, "Select pseudo", 100, 100)
+        .addComponent<Size>(10, 10)
+        .addComponent<Position>(100, 100)
+        .addComponent<LayerLvL>(LayerLvL::WRITABLE)
+        .addComponent<ActionName>(ButtonActionMap::WRITABLE)
+        .addComponent<DisplayState>(MenuStates::IN_GAME);
+    createNewWritableButton(*(_worldInstance.get()), 1820, 900, 80, 50,
+        std::function<void(World &, Entity &, std::string &)>(setPseudo), MenuStates::IN_GAME, buttonPseudoId);
+    createNewWritableButton(*(_worldInstance.get()), 1820, 900, 80, 50,
+        std::function<void(World &, Entity &, std::string &)>(setPassword), MenuStates::IN_GAME, buttonPasswordId);
+}
+
+void ClientRoom::_runSystemsUserConnection(World &world, std::size_t buttonSendId)
+{
+    ecs::Entity &buttonSend = world.getEntity(buttonSendId);
+
+    while (world.containsResource<RenderWindowResource>() && world.getResource<RenderWindowResource>().window.isOpen()
+        && !buttonSend.getComponent<Button>().IsClicked)
+        world.runSystems();
 }
 
 void ClientRoom::userConnection()
 {
     World world(2);
+    std::size_t buttonSendId = 0;
+    std::size_t buttonPseudoId = 0;
+    std::size_t buttonPasswordId = 0;
+    bool validUserInformation = false;
 
     _loadResourcesUserConnection(world);
     _loadSystemsUserConnection(world);
-    _loadEntitiesUserConnection(world);
+    _loadEntitiesUserConnection(world, buttonSendId, buttonPseudoId, buttonPasswordId);
+    while (!validUserInformation) {
+        _runSystemsUserConnection(world, buttonSendId);
+        _pseudo = world.getEntity(buttonPseudoId).getComponent<WritableContent>().content;
+        _password = world.getEntity(buttonPasswordId).getComponent<WritableContent>().content;
+        if (_pseudo.size() != 5 || _password.size() != 5) {
+            _pseudo = "";
+            _password = "";
+            std::cerr << "Invalide size" << std::endl;
+        } else {
+            validUserInformation = true;
+        }
+    }
 }
