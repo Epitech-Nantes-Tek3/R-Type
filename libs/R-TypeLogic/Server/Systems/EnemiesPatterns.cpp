@@ -168,63 +168,56 @@ static void iceEnemyPatterns(std::vector<std::shared_ptr<ecs::Entity>> allEnemie
         }
     }
 
-    // std::size_t nbEnemies = iceEnemies.size();
+    std::size_t nbEnemies = iceEnemies.size();
 
-    // auto applySquarePatterns = [](std::shared_ptr<Entity> currEnemy, std::shared_ptr<Entity> previousEnemy) {
-    //     auto firstGuard = std::lock_guard(*currEnemy.get());
-    //     Position &pos = currEnemy.get()->getComponent<Position>();
-    //     Destination &dest = currEnemy.get()->getComponent<Destination>();
-    //     Velocity &vel = currEnemy.get()->getComponent<Velocity>();
+    auto applySquarePatterns = [](std::shared_ptr<Entity> currEnemy, std::shared_ptr<Entity> previousEnemy) {
+        auto firstGuard = std::lock_guard(*currEnemy.get());
+        Position &pos = currEnemy.get()->getComponent<Position>();
+        Destination &dest = currEnemy.get()->getComponent<Destination>();
+        Velocity &vel = currEnemy.get()->getComponent<Velocity>();
 
-    //     if (pos.x - 10 <= dest.x && dest.x <= pos.x + 10 && pos.y - 10 <= dest.y && dest.y <= pos.y + 10) {
-    //         auto secondGuard = std::lock_guard(*previousEnemy.get());
-    //         Destination &newDest = previousEnemy.get()->getComponent<Destination>();
+        if (pos.x - 10 <= dest.x && dest.x <= pos.x + 10 && pos.y - 10 <= dest.y && dest.y <= pos.y + 10) {
+            auto secondGuard = std::lock_guard(*previousEnemy.get());
+            Destination &newDest = previousEnemy.get()->getComponent<Destination>();
 
-    //         dest.x = newDest.x;
-    //         dest.y = newDest.y;
-    //         dest.modified = true;
-    //         vel.multiplierAbscissa = 0;
-    //         vel.multiplierOrdinate = 0;
-    //         vel.modified = true;
+            dest.x = newDest.x;
+            dest.y = newDest.y;
+            vel.multiplierAbscissa = 0;
+            vel.multiplierOrdinate = 0;
+            vel.modified = true;
+            dest.modified = true;
 
-    //     } else if (vel.multiplierAbscissa == 0 && vel.multiplierOrdinate == 0) {
-    //         vel.multiplierAbscissa = (dest.x - pos.x) / 10;
-    //         vel.multiplierOrdinate = (dest.y - pos.y) / 10;
-    //         vel.modified = true;
-    //     }
-    // };
+        } else if (vel.multiplierAbscissa == 0 && vel.multiplierOrdinate == 0) {
+            vel.multiplierAbscissa = (dest.x - pos.x) / 10;
+            vel.multiplierOrdinate = (dest.y - pos.y) / 10;
+            vel.modified = true;
+        }
+    };
 
-    // for (std::size_t x = 0; x < nbEnemies; x += 4) {
-    //     bool firstHasBeenModified = false;
-    //     if (x + 3 < nbEnemies) {
-    //         applySquarePatterns(iceEnemies.at(x), iceEnemies.at(x + 3));
-    //         firstHasBeenModified = true;
-    //     }
-    //     if (x + 2 < nbEnemies) {
-    //         if (firstHasBeenModified) {
-    //             applySquarePatterns(iceEnemies.at(x + 3), iceEnemies.at(x + 2));
-    //         } else {
-    //             applySquarePatterns(iceEnemies.at(x), iceEnemies.at(x + 2));
-    //             firstHasBeenModified = true;
-    //         }
-    //     }
-    //     if (x + 1 < nbEnemies) {
-    //         if (firstHasBeenModified) {
-    //             applySquarePatterns(iceEnemies.at(x + 2), iceEnemies.at(x + 1));
-    //         } else {
-    //             applySquarePatterns(iceEnemies.at(x), iceEnemies.at(x + 1));
-    //             firstHasBeenModified = true;
-    //         }
-    //     }
-    //     if (firstHasBeenModified) {
-    //         applySquarePatterns(iceEnemies.at(x + 1), iceEnemies.at(x));
-    //     } else {
-    //         {
-    //             auto lastGuard = std::lock_guard(*iceEnemies.at(x).get());
-    //             iceEnemies.at(x)->getComponent<Life>().lifePoint = 0;
-    //         };
-    //     }
-    // }
+    for (std::size_t x = 0; x < nbEnemies; x += 4) {
+        if (x + 3 < nbEnemies) {
+            applySquarePatterns(iceEnemies.at(x), iceEnemies.at(x + 3));
+            applySquarePatterns(iceEnemies.at(x + 3), iceEnemies.at(x + 2));
+            applySquarePatterns(iceEnemies.at(x + 2), iceEnemies.at(x + 1));
+            applySquarePatterns(iceEnemies.at(x + 1), iceEnemies.at(x));
+            continue;
+        }
+        if (x + 2 < nbEnemies) {
+            applySquarePatterns(iceEnemies.at(x), iceEnemies.at(x + 2));
+            applySquarePatterns(iceEnemies.at(x + 2), iceEnemies.at(x + 1));
+            applySquarePatterns(iceEnemies.at(x + 1), iceEnemies.at(x));
+            continue;
+        }
+        if (x + 1 < nbEnemies) {
+            applySquarePatterns(iceEnemies.at(x), iceEnemies.at(x + 1));
+            applySquarePatterns(iceEnemies.at(x + 1), iceEnemies.at(x));
+            continue;
+        }
+        {
+            auto lastGuard = std::lock_guard(*iceEnemies.at(x).get());
+            iceEnemies.at(x)->getComponent<Life>().lifePoint = 0;
+        };
+    }
 }
 
 /// @brief Check if the first velocity of the Enemy as been set
