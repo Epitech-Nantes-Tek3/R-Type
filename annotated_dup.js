@@ -84,6 +84,7 @@ var annotated_dup =
       [ "RTypeError", "classerror__lib_1_1_r_type_error.html", "classerror__lib_1_1_r_type_error" ],
       [ "NetworkError", "classerror__lib_1_1_network_error.html", "classerror__lib_1_1_network_error" ],
       [ "EcsError", "classerror__lib_1_1_ecs_error.html", "classerror__lib_1_1_ecs_error" ],
+      [ "RoomError", "classerror__lib_1_1_room_error.html", "classerror__lib_1_1_room_error" ],
       [ "MallocError", "classerror__lib_1_1_malloc_error.html", "classerror__lib_1_1_malloc_error" ],
       [ "ArgumentError", "classerror__lib_1_1_argument_error.html", "classerror__lib_1_1_argument_error" ],
       [ "SignalError", "classerror__lib_1_1_signal_error.html", "classerror__lib_1_1_signal_error" ]
@@ -134,7 +135,7 @@ var annotated_dup =
       ] ]
     ] ],
     [ "server_data", "namespaceserver__data.html", [
-      [ "Room", "classserver__data_1_1_room.html", "classserver__data_1_1_room" ],
+      [ "RoomInstance", "classserver__data_1_1_room_instance.html", "classserver__data_1_1_room_instance" ],
       [ "Server", "classserver__data_1_1_server.html", "classserver__data_1_1_server" ]
     ] ],
     [ "transisthor_lib", "namespacetransisthor__lib.html", [

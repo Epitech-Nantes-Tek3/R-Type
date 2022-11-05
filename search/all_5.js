@@ -1,16 +1,15 @@
 var searchData=
 [
-  ['ecs_206',['ecs',['../namespaceecs.html',1,'']]],
-  ['ecsactions_2ehpp_207',['ECSActions.hpp',['../_e_c_s_actions_8hpp.html',1,'']]],
-  ['ecserror_208',['EcsError',['../classerror__lib_1_1_ecs_error.html#a1bbd1ef9697acadf2ffccabc1183c4a5',1,'error_lib::EcsError::EcsError()'],['../classerror__lib_1_1_ecs_error.html',1,'error_lib::EcsError']]],
-  ['electric_209',['ELECTRIC',['../classecs_1_1_enemy.html#adc6689719988f8eb8deb51435b521efcaf118492bc9e0d9fafafb0e0947c69d90',1,'ecs::Enemy']]],
-  ['ended_210',['ENDED',['../classserver__data_1_1_server.html#afa18619a548a505dbae99d57e2e681b6a9b95fc3e1791b61e150b9d0ed4782e1d',1,'server_data::Server::ENDED()'],['../classserver__data_1_1_room.html#a1af48f2f03799721c8ea726182e05786a77611e9eeea5ac7b75b7a1b6fc9c0352',1,'server_data::Room::ENDED()'],['../classclient__data_1_1_client_room.html#a8e238231449feaa8357997ae01f9f2cea813cb4e5ad16ad700c47ba48bd3e23e5',1,'client_data::ClientRoom::ENDED()']]],
-  ['enemiesgorandom_211',['EnemiesGoRandom',['../classecs_1_1_enemies_go_random.html',1,'ecs']]],
-  ['enemiesgorandom_2ecpp_212',['EnemiesGoRandom.cpp',['../_enemies_go_random_8cpp.html',1,'']]],
-  ['enemiesgorandom_2ehpp_213',['EnemiesGoRandom.hpp',['../_enemies_go_random_8hpp.html',1,'']]],
-  ['enemy_214',['Enemy',['../classecs_1_1_enemy.html',1,'ecs']]],
-  ['enemy_215',['ENEMY',['../classecs_1_1_layer_lv_l.html#a3d249124964fcfd2525e3ccc99313799a44b3c00aea6e4bca7e6baa0d9ee63037',1,'ecs::LayerLvL']]],
-  ['enemy_216',['Enemy',['../classecs_1_1_enemy.html#a19efbe264c87a4878164923e3d27d34f',1,'ecs::Enemy']]],
+  ['ecs_207',['ecs',['../namespaceecs.html',1,'']]],
+  ['ecsactions_2ehpp_208',['ECSActions.hpp',['../_e_c_s_actions_8hpp.html',1,'']]],
+  ['ecserror_209',['EcsError',['../classerror__lib_1_1_ecs_error.html#a1bbd1ef9697acadf2ffccabc1183c4a5',1,'error_lib::EcsError::EcsError()'],['../classerror__lib_1_1_ecs_error.html',1,'error_lib::EcsError']]],
+  ['electric_210',['ELECTRIC',['../classecs_1_1_enemy.html#adc6689719988f8eb8deb51435b521efcaf118492bc9e0d9fafafb0e0947c69d90',1,'ecs::Enemy']]],
+  ['ended_211',['ENDED',['../classserver__data_1_1_server.html#afa18619a548a505dbae99d57e2e681b6a9b95fc3e1791b61e150b9d0ed4782e1d',1,'server_data::Server::ENDED()'],['../classserver__data_1_1_room_instance.html#a19df4a1bc605ac8472873a2ca4814efea6797e58251941b251adcf9434e56663c',1,'server_data::RoomInstance::ENDED()'],['../classclient__data_1_1_client_room.html#a8e238231449feaa8357997ae01f9f2cea813cb4e5ad16ad700c47ba48bd3e23e5',1,'client_data::ClientRoom::ENDED()']]],
+  ['enemiesgorandom_212',['EnemiesGoRandom',['../classecs_1_1_enemies_go_random.html',1,'ecs']]],
+  ['enemiesgorandom_2ecpp_213',['EnemiesGoRandom.cpp',['../_enemies_go_random_8cpp.html',1,'']]],
+  ['enemiesgorandom_2ehpp_214',['EnemiesGoRandom.hpp',['../_enemies_go_random_8hpp.html',1,'']]],
+  ['enemy_215',['Enemy',['../classecs_1_1_enemy.html',1,'ecs::Enemy'],['../classecs_1_1_enemy.html#a19efbe264c87a4878164923e3d27d34f',1,'ecs::Enemy::Enemy()']]],
+  ['enemy_216',['ENEMY',['../classecs_1_1_layer_lv_l.html#a3d249124964fcfd2525e3ccc99313799a44b3c00aea6e4bca7e6baa0d9ee63037',1,'ecs::LayerLvL']]],
   ['enemy_5fdown_217',['ENEMY_DOWN',['../classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html#aa8d3b383da5ddc1c6dd86c2c5efc035daafb79c352dfb0b2d38a787d05df46c3d',1,'graphicECS::SFML::Resources::GraphicsTextureResource']]],
   ['enemy_5fstatic_218',['ENEMY_STATIC',['../classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html#aa8d3b383da5ddc1c6dd86c2c5efc035da40e732fa6b922ad8f57310914422219f',1,'graphicECS::SFML::Resources::GraphicsTextureResource']]],
   ['enemy_5fup_219',['ENEMY_UP',['../classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html#aa8d3b383da5ddc1c6dd86c2c5efc035da260e573dee2bbc6a0e89fb185756b186',1,'graphicECS::SFML::Resources::GraphicsTextureResource']]],
@@ -38,5 +37,6 @@ var searchData=
   ['exitwindow_241',['exitWindow',['../_button_action_8cpp.html#a6375ef4598b4a132abe906fe3c7ace77',1,'exitWindow(World &amp;world, Entity &amp;entityPtr):&#160;ButtonAction.cpp'],['../_button_action_8hpp.html#a6375ef4598b4a132abe906fe3c7ace77',1,'exitWindow(World &amp;world, Entity &amp;entityPtr):&#160;ButtonAction.cpp']]],
   ['explosion_242',['EXPLOSION',['../classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_sound_resource.html#a66c5c45700b991570d534c94587fad88a00ed14c16c66f22cb4bfebf85fad87a7',1,'graphicECS::SFML::Resources::SoundResource']]],
   ['extractclientinformation_243',['extractClientInformation',['../classargument__handler_1_1_argument_handler.html#a1d834aa08e9550824428e1bfb3213848',1,'argument_handler::ArgumentHandler']]],
-  ['extractserverinformation_244',['extractServerInformation',['../classargument__handler_1_1_argument_handler.html#a8753c47efcc2a52a4ec1aebdd64c5c63',1,'argument_handler::ArgumentHandler']]]
+  ['extractroominformations_244',['extractRoomInformations',['../classargument__handler_1_1_argument_handler.html#a0f600e378aef1d453507037c89e9c94b',1,'argument_handler::ArgumentHandler']]],
+  ['extractserverinformation_245',['extractServerInformation',['../classargument__handler_1_1_argument_handler.html#a8753c47efcc2a52a4ec1aebdd64c5c63',1,'argument_handler::ArgumentHandler']]]
 ];

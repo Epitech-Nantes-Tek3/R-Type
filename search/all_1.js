@@ -18,7 +18,7 @@ var searchData=
   ['addmessage_19',['addMessage',['../classcommunicator__lib_1_1_receiver.html#a921a1626a4b94539b60dbc2a5a76a105',1,'communicator_lib::Receiver']]],
   ['addmusic_20',['addMusic',['../classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_music_resource.html#aa24abd3793ca23723c870a09ad47047a',1,'graphicECS::SFML::Resources::MusicResource']]],
   ['addresource_21',['addResource',['../classecs_1_1_world.html#a2cf2545a86db752628a00bef7b572fb6',1,'ecs::World']]],
-  ['address_22',['address',['../structargument__handler_1_1_argument_handler_1_1_server_information.html#ab359fc22fef0824cf134b1b4858e686e',1,'argument_handler::ArgumentHandler::ServerInformation']]],
+  ['address_22',['address',['../structargument__handler_1_1_argument_handler_1_1_room_information.html#aee23efda76fa5659f7905f3e8002faaf',1,'argument_handler::ArgumentHandler::RoomInformation::address()'],['../structargument__handler_1_1_argument_handler_1_1_server_information.html#ab359fc22fef0824cf134b1b4858e686e',1,'argument_handler::ArgumentHandler::ServerInformation::address()']]],
   ['addsound_23',['addSound',['../classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_sound_resource.html#a2ee8c23dd9c9a49c2f25f431c9310e09',1,'graphicECS::SFML::Resources::SoundResource']]],
   ['addsystem_24',['addSystem',['../classecs_1_1_world.html#aab0537eccec241d5b749a47937d091c5',1,'ecs::World']]],
   ['addtexture_25',['addTexture',['../classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html#a97ac38e6f9b0bb08758438444e2b8d7b',1,'graphicECS::SFML::Resources::GraphicsTextureResource']]],

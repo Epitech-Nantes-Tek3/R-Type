@@ -103,6 +103,9 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structargument__handler_1_1_argument_handler_1_1_client_information.html">ClientInformation</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Struct containing all Arguments needs by the client executable.  <a href="structargument__handler_1_1_argument_handler_1_1_client_information.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structargument__handler_1_1_argument_handler_1_1_room_information.html">RoomInformation</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Struct containing all Arguments needs by the room executable.  <a href="structargument__handler_1_1_argument_handler_1_1_room_information.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structargument__handler_1_1_argument_handler_1_1_server_information.html">ServerInformation</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Struct containing all Arguments needs by the server executable.  <a href="structargument__handler_1_1_argument_handler_1_1_server_information.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -112,6 +115,7 @@ Public Types</h2></td></tr>
 <tr class="memitem:ade7b92c1c2885408ad21f61d3d8faa05"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classargument__handler_1_1_argument_handler.html#ade7b92c1c2885408ad21f61d3d8faa05">ArgumentFunctionType</a> { <a class="el" href="classargument__handler_1_1_argument_handler.html#ade7b92c1c2885408ad21f61d3d8faa05a638271303e33d8e2a9118bdb3740c653">UNDEFINED</a>
 , <a class="el" href="classargument__handler_1_1_argument_handler.html#ade7b92c1c2885408ad21f61d3d8faa05a815f04046e358caf924b54930a07d4ea">SERVER_EXECUTABLE</a>
 , <a class="el" href="classargument__handler_1_1_argument_handler.html#ade7b92c1c2885408ad21f61d3d8faa05a7ed04c353f6be8ce211022b92d42d8b1">CLIENT_EXECUTABLE</a>
+, <a class="el" href="classargument__handler_1_1_argument_handler.html#ade7b92c1c2885408ad21f61d3d8faa05aca4b50f6212542beb5451a17b54855e8">ROOM_EXECUTABLE</a>
  }</td></tr>
 <tr class="memdesc:ade7b92c1c2885408ad21f61d3d8faa05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type list of all the possible use of <a class="el" href="classargument__handler_1_1_argument_handler.html" title="Class holding parse of arguments from main. Possibility of extract the data to create some other clas...">ArgumentHandler</a> class.  <a href="classargument__handler_1_1_argument_handler.html#ade7b92c1c2885408ad21f61d3d8faa05">More...</a><br /></td></tr>
 <tr class="separator:ade7b92c1c2885408ad21f61d3d8faa05"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -139,6 +143,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1d834aa08e9550824428e1bfb3213848"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structargument__handler_1_1_argument_handler_1_1_client_information.html">ClientInformation</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classargument__handler_1_1_argument_handler.html#a1d834aa08e9550824428e1bfb3213848">extractClientInformation</a> (void)</td></tr>
 <tr class="memdesc:a1d834aa08e9550824428e1bfb3213848"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extract all wanted value by client from stored arguments.  <a href="classargument__handler_1_1_argument_handler.html#a1d834aa08e9550824428e1bfb3213848">More...</a><br /></td></tr>
 <tr class="separator:a1d834aa08e9550824428e1bfb3213848"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f600e378aef1d453507037c89e9c94b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structargument__handler_1_1_argument_handler_1_1_room_information.html">RoomInformation</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classargument__handler_1_1_argument_handler.html#a0f600e378aef1d453507037c89e9c94b">extractRoomInformations</a> (void)</td></tr>
+<tr class="memdesc:a0f600e378aef1d453507037c89e9c94b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extract all wanted values by the room from stored arguments.  <a href="classargument__handler_1_1_argument_handler.html#a0f600e378aef1d453507037c89e9c94b">More...</a><br /></td></tr>
+<tr class="separator:a0f600e378aef1d453507037c89e9c94b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class holding parse of arguments from main. Possibility of extract the data to create some other class. </p>
@@ -160,6 +167,7 @@ Public Member Functions</h2></td></tr>
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ade7b92c1c2885408ad21f61d3d8faa05a638271303e33d8e2a9118bdb3740c653"></a>UNDEFINED&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="ade7b92c1c2885408ad21f61d3d8faa05a815f04046e358caf924b54930a07d4ea"></a>SERVER_EXECUTABLE&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="ade7b92c1c2885408ad21f61d3d8faa05a7ed04c353f6be8ce211022b92d42d8b1"></a>CLIENT_EXECUTABLE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ade7b92c1c2885408ad21f61d3d8faa05aca4b50f6212542beb5451a17b54855e8"></a>ROOM_EXECUTABLE&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
 </div>
@@ -286,6 +294,27 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Extract all wanted value by client from stored arguments. </p>
+<dl class="section return"><dt>Returns</dt><dd>A struct containing all wanted informations. </dd></dl>
+
+</div>
+</div>
+<a id="a0f600e378aef1d453507037c89e9c94b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f600e378aef1d453507037c89e9c94b">&#9670;&nbsp;</a></span>extractRoomInformations()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structargument__handler_1_1_argument_handler_1_1_room_information.html">ArgumentHandler::RoomInformation</a> ArgumentHandler::extractRoomInformations </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Extract all wanted values by the room from stored arguments. </p>
 <dl class="section return"><dt>Returns</dt><dd>A struct containing all wanted informations. </dd></dl>
 
 </div>

@@ -77,6 +77,7 @@ var hierarchy =
         [ "error_lib::EcsError", "classerror__lib_1_1_ecs_error.html", null ],
         [ "error_lib::MallocError", "classerror__lib_1_1_malloc_error.html", null ],
         [ "error_lib::NetworkError", "classerror__lib_1_1_network_error.html", null ],
+        [ "error_lib::RoomError", "classerror__lib_1_1_room_error.html", null ],
         [ "error_lib::SignalError", "classerror__lib_1_1_signal_error.html", null ]
       ] ]
     ] ],
@@ -99,8 +100,9 @@ var hierarchy =
       ] ]
     ] ],
     [ "communicator_lib::Receiver", "classcommunicator__lib_1_1_receiver.html", null ],
-    [ "server_data::Room", "classserver__data_1_1_room.html", null ],
     [ "communicator_lib::RoomConfiguration", "structcommunicator__lib_1_1_room_configuration.html", null ],
+    [ "argument_handler::ArgumentHandler::RoomInformation", "structargument__handler_1_1_argument_handler_1_1_room_information.html", null ],
+    [ "server_data::RoomInstance", "classserver__data_1_1_room_instance.html", null ],
     [ "communicator_lib::Sender", "classcommunicator__lib_1_1_sender.html", null ],
     [ "server_data::Server", "classserver__data_1_1_server.html", null ],
     [ "argument_handler::ArgumentHandler::ServerInformation", "structargument__handler_1_1_argument_handler_1_1_server_information.html", null ],

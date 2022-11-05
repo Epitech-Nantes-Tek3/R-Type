@@ -1,7 +1,6 @@
 <map id="libs/Transisthor/TransisthorECSLogic/Both/Resources/SendingFrequency.hpp" name="libs/Transisthor/TransisthorECSLogic/Both/Resources/SendingFrequency.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="365,5,560,61"/>
+<area shape="rect" id="node1" title=" " alt="" coords="245,5,440,61"/>
 <area shape="rect" id="node2" href="$_sending_frequency_8cpp.html" title=" " alt="" coords="5,109,200,165"/>
 <area shape="rect" id="node3" href="$_send_newly_created_to_clients_8cpp.html" title=" " alt="" coords="225,109,461,165"/>
 <area shape="rect" id="node4" href="$_send_to_client_8cpp.html" title=" " alt="" coords="485,109,680,165"/>
-<area shape="rect" id="node5" href="$_room_8cpp.html" title=" " alt="" coords="704,124,837,151"/>
 </map>

@@ -101,7 +101,7 @@ $(document).ready(function(){initNavTree('_server_8hpp_source.html',''); initRes
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_client_8hpp.html">Communicator/Client.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_communicator_8hpp.html">Communicator/Communicator.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_room_8hpp.html">Room.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_room_instance_8hpp.html">RoomInstance.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">using namespace </span><a class="code" href="namespacecommunicator__lib.html">communicator_lib</a>;</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
@@ -126,38 +126,40 @@ $(document).ready(function(){initNavTree('_server_8hpp_source.html',''); initRes
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;      <span class="keyword">private</span>:</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <a class="code" href="classserver__data_1_1_server.html#afa18619a548a505dbae99d57e2e681b6">HubState</a> _state;</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        std::vector&lt;Room&gt; _activeRoomList;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        std::vector&lt;std::shared_ptr&lt;RoomInstance&gt;&gt; _activeRoomList;</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <a class="code" href="classcommunicator__lib_1_1_client.html">Client</a> _networkInformations;</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        std::shared_ptr&lt;Communicator&gt; _communicatorInstance;</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> _getAFreePort(<span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> actual);</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordtype">void</span> _startConnexionProtocol();</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> _nextRoomId;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> _getAFreePort(<span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> actual);</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordtype">void</span> _holdANewConnectionRequest(<a class="code" href="structcommunicator__lib_1_1_communicator_message.html">CommunicatorMessage</a> connectionDemand);</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="keywordtype">void</span> _holdADisconnectionRequest(<a class="code" href="structcommunicator__lib_1_1_communicator_message.html">CommunicatorMessage</a> disconnectionDemand);</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keywordtype">void</span> _holdAJoinRoomRequest(<a class="code" href="structcommunicator__lib_1_1_communicator_message.html">CommunicatorMessage</a> joinDemand);</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="keywordtype">void</span> _holdACreateRoomRequest(<a class="code" href="structcommunicator__lib_1_1_communicator_message.html">CommunicatorMessage</a> createDemand);</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="keywordtype">void</span> _disconnectionProcess();</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    };</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;} <span class="comment">// namespace server_data</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !SERVER_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordtype">void</span> _startConnexionProtocol();</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordtype">void</span> _holdANewConnectionRequest(<a class="code" href="structcommunicator__lib_1_1_communicator_message.html">CommunicatorMessage</a> connectionDemand);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="keywordtype">void</span> _holdADisconnectionRequest(<a class="code" href="structcommunicator__lib_1_1_communicator_message.html">CommunicatorMessage</a> disconnectionDemand);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="keywordtype">void</span> _holdAJoinRoomRequest(<a class="code" href="structcommunicator__lib_1_1_communicator_message.html">CommunicatorMessage</a> joinDemand);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="keywordtype">void</span> _holdACreateRoomRequest(<a class="code" href="structcommunicator__lib_1_1_communicator_message.html">CommunicatorMessage</a> createDemand);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <span class="keywordtype">void</span> _disconnectionProcess();</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    };</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;} <span class="comment">// namespace server_data</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !SERVER_HPP_ */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="a_client_8hpp_html"><div class="ttname"><a href="_client_8hpp.html">Client.hpp</a></div></div>
 <div class="ttc" id="a_communicator_8hpp_html"><div class="ttname"><a href="_communicator_8hpp.html">Communicator.hpp</a></div></div>
-<div class="ttc" id="a_room_8hpp_html"><div class="ttname"><a href="_room_8hpp.html">Room.hpp</a></div></div>
+<div class="ttc" id="a_room_instance_8hpp_html"><div class="ttname"><a href="_room_instance_8hpp.html">RoomInstance.hpp</a></div></div>
 <div class="ttc" id="aclasscommunicator__lib_1_1_client_html"><div class="ttname"><a href="classcommunicator__lib_1_1_client.html">communicator_lib::Client</a></div><div class="ttdoc">A representation of a client (Address + Port)</div><div class="ttdef"><b>Definition:</b> Client.hpp:19</div></div>
 <div class="ttc" id="aclassserver__data_1_1_server_html"><div class="ttname"><a href="classserver__data_1_1_server.html">server_data::Server</a></div><div class="ttdoc">Main class of the server part. Hold room process.</div><div class="ttdef"><b>Definition:</b> Server.hpp:23</div></div>
 <div class="ttc" id="aclassserver__data_1_1_server_html_aaf4c1749ab9802025359c962b33aead0"><div class="ttname"><a href="classserver__data_1_1_server.html#aaf4c1749ab9802025359c962b33aead0">server_data::Server::~Server</a></div><div class="ttdeci">~Server()=default</div><div class="ttdoc">Destroy the Server object.</div></div>
 <div class="ttc" id="aclassserver__data_1_1_server_html_afa18619a548a505dbae99d57e2e681b6"><div class="ttname"><a href="classserver__data_1_1_server.html#afa18619a548a505dbae99d57e2e681b6">server_data::Server::HubState</a></div><div class="ttdeci">HubState</div><div class="ttdoc">All the possible state of a room.</div><div class="ttdef"><b>Definition:</b> Server.hpp:26</div></div>
 <div class="ttc" id="anamespacecommunicator__lib_html"><div class="ttname"><a href="namespacecommunicator__lib.html">communicator_lib</a></div><div class="ttdef"><b>Definition:</b> Client.hpp:17</div></div>
-<div class="ttc" id="anamespaceserver__data_html"><div class="ttname"><a href="namespaceserver__data.html">server_data</a></div><div class="ttdef"><b>Definition:</b> Room.hpp:24</div></div>
+<div class="ttc" id="anamespaceserver__data_html"><div class="ttname"><a href="namespaceserver__data.html">server_data</a></div><div class="ttdef"><b>Definition:</b> RoomInstance.cpp:12</div></div>
 <div class="ttc" id="astructcommunicator__lib_1_1_communicator_message_html"><div class="ttname"><a href="structcommunicator__lib_1_1_communicator_message.html">communicator_lib::CommunicatorMessage</a></div><div class="ttdoc">Bridge between communicator and server for message.</div><div class="ttdef"><b>Definition:</b> Communicator.hpp:40</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
