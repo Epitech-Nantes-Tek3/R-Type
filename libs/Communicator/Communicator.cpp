@@ -185,6 +185,7 @@ void Communicator::utilitarySendRoomConfiguration(std::string roomName, short *c
             sizeof(short));
     }
     sendDataToAClient(endpoint, networkObject, size, 17);
+    std::free(networkObject);
 }
 
 RoomConfiguration Communicator::utilitaryReceiveRoomConfiguration(CommunicatorMessage cryptedMessage)
@@ -224,6 +225,7 @@ void Communicator::utilitarySendChatMessage(
         sendDataToAClient(temporaryClient, networkObject,
             sizeof(unsigned short) + sizeof(char) * (pseudo.size() + messageContent.size()), 50);
     }
+    std::free(networkObject);
 }
 
 std::vector<std::string> Communicator::utilitaryReceiveChatMessage(CommunicatorMessage cryptedMessage)
@@ -265,6 +267,7 @@ void Communicator::utilitaryAskForADatabaseValue(
         sendDataToAClient(temporaryClient, networkObject,
             sizeof(char) * (pseudo.size() + key.size()), 40);
     }
+    std::free(networkObject);
 }
 
 std::vector<std::string> Communicator::utilitaryReceiveAskingForDatabaseValue(CommunicatorMessage cryptedMessage)
@@ -285,6 +288,30 @@ std::vector<std::string> Communicator::utilitaryReceiveAskingForDatabaseValue(Co
     for (int i = 0; i < keyLen; i++)
         keyContentStr[i] = keyContent[i];
     return {pseudoStr, keyContentStr};
+}
+
+void Communicator::utilitaryAskForADatabaseValue(std::string value, std::vector<unsigned short> destination)
+{
+    Client temporaryClient;
+    void *networkObject = std::malloc(sizeof(char) * (value.size()));
+
+    if (networkObject == nullptr)
+        throw MallocError("Malloc failed.");
+    std::memcpy(networkObject, value.c_str(), sizeof(char) * value.size());
+    for (auto it : destination) {
+        temporaryClient = getClientByHisId(it);
+        sendDataToAClient(temporaryClient, networkObject,
+            sizeof(char) * (value.size()), 41);
+    }
+    std::free(networkObject);
+}
+
+std::string Communicator::utilitaryReceiveDatabaseValue(CommunicatorMessage cryptedMessage)
+{
+    char *valueContent = nullptr;
+
+    valueContent = (char *)cryptedMessage.message.data;
+    return std::string(valueContent);
 }
 
 Communicator::~Communicator() {}
