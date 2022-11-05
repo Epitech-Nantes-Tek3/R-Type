@@ -45,6 +45,8 @@ namespace client_data
         /// @brief Launch the lobby global loop
         void startLobbyLoop();
 
+        void userConnection();
+
       private:
         /// @brief Init all shared resources of the world.
         void _initSharedResources();
