@@ -26,7 +26,7 @@ void EnemyShootSystem::run(World &world)
         auto guard = std::lock_guard(*entityPtr.get());
         ShootingFrequency &freq = entityPtr.get()->getComponent<ShootingFrequency>();
 
-        if (freq.frequency == duration<double>(0)) {
+       if (freq.frequency == duration<double>(0)) {
             if (world.containsResource<NetworkableIdGenerator>()) {
                 NetworkableIdGenerator &generator = world.getResource<NetworkableIdGenerator>();
                 auto guard = std::lock_guard(generator);
@@ -36,9 +36,7 @@ void EnemyShootSystem::run(World &world)
                 createNewEnemyProjectile(world, entityPtr, "");
                 freq.frequency = freq.baseFrequency;
             }
-    }
-};
-std::cout << "test system enemyshoot mid\n";
-std::for_each(joined.begin(), joined.end(), enemiesMayShoot);
-std::cout << "test system enemyshoot end\n";
-}
+        }
+    };
+    std::for_each(joined.begin(), joined.end(), enemiesMayShoot);
+ }
