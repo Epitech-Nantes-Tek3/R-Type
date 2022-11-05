@@ -152,10 +152,22 @@ namespace communicator_lib
         void utilitarySendChatMessage(
             std::string pseudo, std::string messageContent, std::vector<unsigned short> destination);
 
+        /// @brief Utilitary function used to send a database request with a protocol 40
+        /// @param pseudo The wanted client name
+        /// @param key The wanted value key
+        /// @param destination of the message
+        void utilitaryAskForADatabaseValue(
+            std::string pseudo, std::string key, std::vector<unsigned short> destination);
+
         /// @brief Utilitary function used to extract a message received by a protocol 50
         /// @param cryptedMessage the crypted message
         /// @return std::vector<std::string> the decrypted pseudo + message
         std::vector<std::string> utilitaryReceiveChatMessage(CommunicatorMessage cryptedMessage);
+
+        /// @brief Utilitary function used to extract a request received by a protocol 40
+        /// @param cryptedMessage the crypted message
+        /// @return std::vector<std::string> the decrypted pseudo + key
+        std::vector<std::string> utilitaryReceiveAskingForDatabaseValue(CommunicatorMessage cryptedMessage);
 
         /// @brief Utilitary function used to send a message with a protocol 17.
         /// @param roomName The name of the room configuration.
