@@ -502,7 +502,7 @@ void ClientRoom::_loadResourcesUserConnection(World &world)
     world.addResource<RandomDevice>()
         .addResource<GameClock>()
         .addResource<GameStates>()
-        .addResource<RenderWindowResource>()
+        .addResource<RenderWindowResource>("Login", sf::VideoMode(360, 640, 32))
         .addResource<GraphicsFontResource>("assets/fonts/arial.ttf")
         .addResource<MusicResource>(MusicResource::music_e::BACKGROUNDTHEME, "assets/Musics/music_background.wav")
         .addResource<MenuStates>(MenuStates::IN_GAME)
@@ -551,16 +551,17 @@ void ClientRoom::_loadEntitiesUserConnection(
                                     .addComponent<AllowControllerComponent>();
 
     _setInputUserConnection(inputsEntity);
-    buttonPseudoId = createNewWritable(world, 100, 100, 200, 50, MenuStates::IN_GAME);
-    buttonPasswordId = createNewWritable(world, 500, 100, 200, 50, MenuStates::IN_GAME);
+    sf::RenderWindow &window = world.getResource<RenderWindowResource>().window;
+    buttonPseudoId = createNewWritable(world, window.getSize().x / 2 - 100, window.getSize().y / 5 - 25, 200, 50, MenuStates::IN_GAME);
+    buttonPasswordId = createNewWritable(world, window.getSize().x / 2 - 100, window.getSize().y / 5 * 2 - 25, 200, 50, MenuStates::IN_GAME);
     buttonSendId =
         world.addEntity()
             .addComponent<Button>()
             .addComponent<TextureName>(GraphicsTextureResource::BUTTON)
             .addComponent<GraphicsRectangleComponent>()
-            .addComponent<GraphicsTextComponent>(world.getResource<GraphicsFontResource>().font, "Send", 500, 500)
-            .addComponent<Size>(100, 100)
-            .addComponent<Position>(500, 500)
+            .addComponent<GraphicsTextComponent>(world.getResource<GraphicsFontResource>().font, "Send", window.getSize().x / 2 - 100, window.getSize().y / 5 * 4 - 25)
+            .addComponent<Size>(200, 50)
+            .addComponent<Position>(window.getSize().x / 2 - 100, window.getSize().y / 5 * 4 - 25)
             .addComponent<LayerLvL>(LayerLvL::WRITABLE)
             .addComponent<ActionName>(ButtonActionMap::WRITABLE)
             .addComponent<DisplayState>(MenuStates::IN_GAME)
@@ -568,17 +569,17 @@ void ClientRoom::_loadEntitiesUserConnection(
     world.addEntity()
         .addComponent<Button>()
         .addComponent<GraphicsTextComponent>(
-            world.getResource<GraphicsFontResource>().font, "Select password", 500, 100)
-        .addComponent<Size>(10, 10)
-        .addComponent<Position>(500, 100)
+            world.getResource<GraphicsFontResource>().font, "Select password", window.getSize().x / 2 - 100, window.getSize().y / 5 * 2 - 25)
+        .addComponent<Size>(200, 50)
+        .addComponent<Position>(window.getSize().x / 2 - 100, window.getSize().y / 5 * 2 - 25)
         .addComponent<LayerLvL>(LayerLvL::WRITABLE)
         .addComponent<ActionName>(ButtonActionMap::WRITABLE)
         .addComponent<DisplayState>(MenuStates::IN_GAME);
     world.addEntity()
         .addComponent<Button>()
-        .addComponent<GraphicsTextComponent>(world.getResource<GraphicsFontResource>().font, "Select pseudo", 100, 100)
-        .addComponent<Size>(10, 10)
-        .addComponent<Position>(100, 100)
+        .addComponent<GraphicsTextComponent>(world.getResource<GraphicsFontResource>().font, "Select pseudo", window.getSize().x / 2 - 100, window.getSize().y / 5 - 25)
+        .addComponent<Size>(200, 50)
+        .addComponent<Position>(window.getSize().x / 2 - 100, window.getSize().y / 5 - 25)
         .addComponent<LayerLvL>(LayerLvL::WRITABLE)
         .addComponent<ActionName>(ButtonActionMap::WRITABLE)
         .addComponent<DisplayState>(MenuStates::IN_GAME);
@@ -608,14 +609,14 @@ void ClientRoom::userConnection()
     _loadResourcesUserConnection(world);
     _loadSystemsUserConnection(world);
     _loadEntitiesUserConnection(world, buttonSendId, buttonPseudoId, buttonPasswordId);
-    while (!validUserInformation) {
+    while (!validUserInformation && world.containsResource<RenderWindowResource>() && world.getResource<RenderWindowResource>().window.isOpen()) {
         _runSystemsUserConnection(world, buttonSendId);
         _pseudo = world.getEntity(buttonPseudoId).getComponent<WritableContent>().content;
         _password = world.getEntity(buttonPasswordId).getComponent<WritableContent>().content;
         if (_pseudo.size() != 5 || _password.size() != 5) {
             _pseudo = "";
             _password = "";
-            std::cerr << "Invalide size" << std::endl;
+            throw RTypeError("User connection invalid size");
         } else {
             validUserInformation = true;
         }
