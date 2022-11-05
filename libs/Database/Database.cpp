@@ -8,7 +8,7 @@
 #include "Database.hpp"
 #include <iostream>
 
-Database::Database(const std::filesystem::path &fileName) : _db(NULL), _fileName(fileName) { _open(_fileName); }
+Database::Database(const std::filesystem::path &fileName) : _db(nullptr), _fileName(fileName) { _open(_fileName); }
 
 Database::~Database() { sqlite3_close(_db); }
 
