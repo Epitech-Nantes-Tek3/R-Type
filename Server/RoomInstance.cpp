@@ -24,9 +24,9 @@ namespace server_data
             throw error_lib::RoomError("Try to create a room with a null port.", "RoomInstance.cpp -> RoomInstance");
         _networkInformations = communicator_lib::Client(address, port);
         _terminated = false;
-        std::cerr << "LOL" << std::endl;
         _input = new boost::process::opstream();
         _output = new boost::process::ipstream();
+        std::cerr << "LOL" << std::endl;
         _child = new boost::process::child("r-type_room", std::to_string(_id), _name, _networkInformations.getAddress(),
             std::to_string(_networkInformations.getPort()),
             boost::process::std_in<(*_input), boost::process::std_out>(*_output),

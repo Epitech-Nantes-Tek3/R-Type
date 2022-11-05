@@ -13,6 +13,7 @@
 #include <memory>
 #include <vector>
 #include "Client.hpp"
+#include "Database/Database.hpp"
 #include "Receiver.hpp"
 #include "Sender.hpp"
 #include "Transisthor/Transisthor.hpp"
@@ -23,6 +24,7 @@ namespace transisthor_lib
 }
 
 using namespace transisthor_lib;
+using namespace database;
 
 namespace communicator_lib
 {
@@ -128,6 +130,10 @@ namespace communicator_lib
         /// @return The transisthor bridge
         inline std::shared_ptr<Transisthor> getTransisthorBridge(void) { return _transisthorBridge; }
 
+        /// @brief Get the DatabaseApi bridge
+        /// @return The databaseApi bridge
+        inline Database &getDatabaseApi() { return _databaseApi; };
+
         /// @brief Cross all client list and return the matched client
         /// @param id matched id
         /// @return founded client
@@ -192,6 +198,9 @@ namespace communicator_lib
 
         /// @brief Bridge to the transisthor instance
         std::shared_ptr<Transisthor> _transisthorBridge;
+
+        /// @brief Bridge to communicate with the database
+        Database _databaseApi;
     };
 } // namespace communicator_lib
 
