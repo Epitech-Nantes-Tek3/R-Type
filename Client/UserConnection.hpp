@@ -25,6 +25,8 @@ namespace client_data
         void _setInputUserConnection(ecs::Entity &entity);
         void _runSystemsUserConnection(std::size_t buttonSendId);
         ecs::World _world;
+        std::string _pseudo;
+        std::string _password;
     };
 } // namespace client_data
 
