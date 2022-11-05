@@ -274,7 +274,8 @@ void ClientRoom::_getClientPseudoAndPassword()
     std::size_t buttonPassword = createNewWritable(world, 500, 100, 200, 50, MenuStates::IN_GAME);
     world.addEntity()
         .addComponent<Button>()
-        .addComponent<GraphicsTextComponent>(world.getResource<GraphicsFontResource>().font, "Select password", 500, 100)
+        .addComponent<GraphicsTextComponent>(
+            world.getResource<GraphicsFontResource>().font, "Select password", 500, 100)
         .addComponent<Size>(10, 10)
         .addComponent<Position>(500, 100)
         .addComponent<LayerLvL>(LayerLvL::WRITABLE)
@@ -283,17 +284,20 @@ void ClientRoom::_getClientPseudoAndPassword()
     std::cerr << "Entity is " << buttonPassword << std::endl;
     createNewWritableButton(*(_worldInstance.get()), 1820, 900, 80, 50,
         std::function<void(World &, Entity &, std::string &)>(setPassword), MenuStates::IN_GAME, buttonPassword);
-    std::size_t buttonSend = world.addEntity()
-        .addComponent<Button>()
-        .addComponent<TextureName>(GraphicsTextureResource::BUTTON)
-        .addComponent<GraphicsRectangleComponent>()
-        .addComponent<GraphicsTextComponent>(world.getResource<GraphicsFontResource>().font, "Send", 500, 500)
-        .addComponent<Size>(100, 100)
-        .addComponent<Position>(500, 500)
-        .addComponent<LayerLvL>(LayerLvL::WRITABLE)
-        .addComponent<ActionName>(ButtonActionMap::WRITABLE)
-        .addComponent<DisplayState>(MenuStates::IN_GAME).getId();
-    while (world.containsResource<RenderWindowResource>() && world.getResource<RenderWindowResource>().window.isOpen() && !world.getEntity(buttonSend).getComponent<Button>().IsClicked)
+    std::size_t buttonSend =
+        world.addEntity()
+            .addComponent<Button>()
+            .addComponent<TextureName>(GraphicsTextureResource::BUTTON)
+            .addComponent<GraphicsRectangleComponent>()
+            .addComponent<GraphicsTextComponent>(world.getResource<GraphicsFontResource>().font, "Send", 500, 500)
+            .addComponent<Size>(100, 100)
+            .addComponent<Position>(500, 500)
+            .addComponent<LayerLvL>(LayerLvL::WRITABLE)
+            .addComponent<ActionName>(ButtonActionMap::WRITABLE)
+            .addComponent<DisplayState>(MenuStates::IN_GAME)
+            .getId();
+    while (world.containsResource<RenderWindowResource>() && world.getResource<RenderWindowResource>().window.isOpen()
+        && !world.getEntity(buttonSend).getComponent<Button>().IsClicked)
         world.runSystems();
     _pseudo = world.getEntity(buttonPseudo).getComponent<WritableContent>().content;
     _password = world.getEntity(buttonPassword).getComponent<WritableContent>().content;
