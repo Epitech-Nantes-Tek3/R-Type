@@ -7,6 +7,7 @@
 
 #include "CollidableSystem.hpp"
 #include <mutex>
+#include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "R-TypeLogic/Global/Components/AlliedProjectileComponent.hpp"
 #include "R-TypeLogic/Global/Components/CollidableComponent.hpp"
 #include "R-TypeLogic/Global/Components/DamageComponent.hpp"
@@ -38,8 +39,23 @@ bool Collide::isSameHeight(Position &fstPos, Position &sndPos, Size &fstSize, Si
     return fstToTheRightSnd || fstToTheLeftSnd || sndToTheRightFst || sndToTheLeftFst;
 }
 
-void Collide::collide(
-    std::vector<std::shared_ptr<ecs::Entity>> &fstEntities, std::vector<std::shared_ptr<ecs::Entity>> &sndEntities)
+/// @brief Cross all the players and return the name of the projectile parent
+/// @param world The game world
+/// @param networkId Networkable id of the parent
+/// @return The parent name
+static std::string getParentNameFromProjectile(World &world, unsigned short networkId)
+{
+    auto playerList = world.joinEntities<Player, Networkable>();
+
+    for (auto it : playerList) {
+        if (it->getComponent<Networkable>().id == networkId)
+            return it->getComponent<Player>().name;
+    }
+    return "";
+}
+
+void Collide::collide(World &world, std::vector<std::shared_ptr<ecs::Entity>> &fstEntities,
+    std::vector<std::shared_ptr<ecs::Entity>> &sndEntities)
 {
     for (std::shared_ptr<ecs::Entity> fstEntity : fstEntities) {
         auto fstGuard = std::lock_guard(*fstEntity.get());
@@ -69,25 +85,50 @@ void Collide::collide(
                         sndLife.lifePoint = fstDamage.damagePoint;
                     sndLife.lifePoint -= fstDamage.damagePoint;
                     sndLife.modified = true;
+                    if (sndLife.lifePoint == 0 && fstEntity->contains<Player>() && sndEntity->contains<Enemy>()) {
+                        auto apiAnswer =
+                            world.getTransisthorBridge()->getCommunicatorInstance().getDatabaseApi().selectUsers(
+                                "UserName = '" + fstEntity->getComponent<Player>().name + "'");
+                        world.getTransisthorBridge()->getCommunicatorInstance().getDatabaseApi().updateUsers(
+                            "KilledEnemies = "
+                                + std::to_string(std::atoi(apiAnswer.at(0)["KilledEnemies"].c_str()) + 1),
+                            "UserName = '" + fstEntity->getComponent<Player>().name + "'");
+                    }
+                    if (sndLife.lifePoint == 0 && fstEntity->contains<AlliedProjectile>()
+                        && sndEntity->contains<Enemy>()) {
+                        auto apiAnswer =
+                            world.getTransisthorBridge()->getCommunicatorInstance().getDatabaseApi().selectUsers(
+                                "UserName = '"
+                                + getParentNameFromProjectile(
+                                    world, fstEntity->getComponent<AlliedProjectile>().parentNetworkId)
+                                + "'");
+                        world.getTransisthorBridge()->getCommunicatorInstance().getDatabaseApi().updateUsers(
+                            "KilledEnemies = "
+                                + std::to_string(std::atoi(apiAnswer.at(0)["KilledEnemies"].c_str()) + 1),
+                            "UserName = '"
+                                + getParentNameFromProjectile(
+                                    world, fstEntity->getComponent<AlliedProjectile>().parentNetworkId)
+                                + "'");
+                    }
                 }
             }
         }
     }
 }
 
-void Collide::enemyCollide(
-    std::vector<std::shared_ptr<ecs::Entity>> &enemiesProjectiles, std::vector<std::shared_ptr<ecs::Entity>> &obstacles)
+void Collide::enemyCollide(World &world, std::vector<std::shared_ptr<ecs::Entity>> &enemiesProjectiles,
+    std::vector<std::shared_ptr<ecs::Entity>> &obstacles)
 {
-    collide(enemiesProjectiles, obstacles);
+    collide(world, enemiesProjectiles, obstacles);
 }
 
-void Collide::allyCollide(std::vector<std::shared_ptr<ecs::Entity>> &allyEntities,
+void Collide::allyCollide(World &world, std::vector<std::shared_ptr<ecs::Entity>> &allyEntities,
     std::vector<std::shared_ptr<ecs::Entity>> &enemies, std::vector<std::shared_ptr<ecs::Entity>> &enemiesProjectiles,
     std::vector<std::shared_ptr<ecs::Entity>> &obstacles)
 {
-    collide(allyEntities, enemies);
-    collide(allyEntities, enemiesProjectiles);
-    collide(allyEntities, obstacles);
+    collide(world, allyEntities, enemies);
+    collide(world, allyEntities, enemiesProjectiles);
+    collide(world, allyEntities, obstacles);
 }
 
 void Collide::run(World &world)
@@ -102,7 +143,7 @@ void Collide::run(World &world)
     std::vector<std::shared_ptr<ecs::Entity>> obstacles =
         world.joinEntities<Position, Size, Collidable, Damage, Obstacle>();
 
-    allyCollide(players, enemies, enemiesProjectiles, obstacles);
-    allyCollide(alliedProjectiles, enemies, enemiesProjectiles, obstacles);
-    enemyCollide(enemiesProjectiles, obstacles);
+    allyCollide(world, players, enemies, enemiesProjectiles, obstacles);
+    allyCollide(world, alliedProjectiles, enemies, enemiesProjectiles, obstacles);
+    enemyCollide(world, enemiesProjectiles, obstacles);
 }

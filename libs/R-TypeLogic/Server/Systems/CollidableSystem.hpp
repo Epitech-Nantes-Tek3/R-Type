@@ -36,26 +36,29 @@ namespace ecs
 
         /// @brief Collide Function
         /// This function checks all the given entities passed in params, to see if they collide
+        /// @param world the world game
         /// @param fstEntities first vector of entities to be checked
         /// @param sndEntities second vector of Entities to be checked
-        void collide(std::vector<std::shared_ptr<ecs::Entity>> &fstEntities,
+        void collide(World &world, std::vector<std::shared_ptr<ecs::Entity>> &fstEntities,
             std::vector<std::shared_ptr<ecs::Entity>> &sndEntities);
 
         /// @brief enemyCollide Function
         /// Check for enemy entities if they collide with obstacles
+        /// @param world the world game
         /// @param enemiesProjectiles vector of entities containing the enemies' projectiles
         /// @param obstacles vector of entities containing the obstacles
-        void enemyCollide(std::vector<std::shared_ptr<ecs::Entity>> &enemiesProjectiles,
+        void enemyCollide(World &world, std::vector<std::shared_ptr<ecs::Entity>> &enemiesProjectiles,
             std::vector<std::shared_ptr<ecs::Entity>> &obstacles);
 
         /// @brief AllyCollide Function
         /// Check for every alliedEntities if they collide with enemyEntities
+        /// @param world the world game
         /// @param allyEntities vector of entities which need to be checked if there is collision with the following
         /// params
         /// @param enemies vector of entities containing the enemies
         /// @param enemiesProjectiles vector of entities containing the enemies' projectiles
         /// @param obstacles vector of entities containing the obstacles
-        void allyCollide(std::vector<std::shared_ptr<ecs::Entity>> &allyEntities,
+        void allyCollide(World &world, std::vector<std::shared_ptr<ecs::Entity>> &allyEntities,
             std::vector<std::shared_ptr<ecs::Entity>> &enemies,
             std::vector<std::shared_ptr<ecs::Entity>> &enemiesProjectiles,
             std::vector<std::shared_ptr<ecs::Entity>> &obstacles);
