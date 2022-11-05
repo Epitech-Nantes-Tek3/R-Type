@@ -288,18 +288,14 @@ std::vector<std::string> Communicator::utilitaryReceiveAskingForDatabaseValue(Co
     return {pseudoStr, keyContentStr};
 }
 
-void Communicator::utilitarySendDatabaseValue(std::string value, std::vector<unsigned short> destination)
+void Communicator::utilitarySendDatabaseValue(std::string value, Client &destination)
 {
-    Client temporaryClient;
     void *networkObject = std::malloc(sizeof(char) * (value.size()));
 
     if (networkObject == nullptr)
         throw MallocError("Malloc failed.");
     std::memcpy(networkObject, value.c_str(), sizeof(char) * value.size());
-    for (auto it : destination) {
-        temporaryClient = getClientByHisId(it);
-        sendDataToAClient(temporaryClient, networkObject, sizeof(char) * (value.size()), 41);
-    }
+    sendDataToAClient(destination, networkObject, sizeof(char) * (value.size()), 41);
     std::free(networkObject);
 }
 
@@ -313,10 +309,12 @@ void Communicator::utilitarySetADatabaseValue(
         throw MallocError("Malloc failed.");
     std::memcpy(networkObject, pseudo.c_str(), sizeof(char) * pseudo.size());
     std::memcpy((void *)((char *)networkObject + sizeof(char) * pseudo.size()), &key, sizeof(unsigned short));
-    std::memcpy((void *)((char *)networkObject + sizeof(char) * pseudo.size() + sizeof(unsigned short)), &value, sizeof(unsigned short));
+    std::memcpy((void *)((char *)networkObject + sizeof(char) * pseudo.size() + sizeof(unsigned short)), &value,
+        sizeof(unsigned short));
     for (auto it : destination) {
         temporaryClient = getClientByHisId(it);
-        sendDataToAClient(temporaryClient, networkObject, sizeof(char) * pseudo.size() + sizeof(unsigned short) * 2, 42);
+        sendDataToAClient(
+            temporaryClient, networkObject, sizeof(char) * pseudo.size() + sizeof(unsigned short) * 2, 42);
     }
     std::free(networkObject);
 }

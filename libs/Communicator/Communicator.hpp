@@ -162,7 +162,7 @@ namespace communicator_lib
         /// @brief Utilitary function used to send a database value with a protocol 41
         /// @param value the database value
         /// @param destination of the message
-        void utilitarySendDatabaseValue(std::string value, std::vector<unsigned short> destination);
+        void utilitarySendDatabaseValue(std::string value, Client &destination);
 
         /// @brief Utilitary function used to set a value inside the database with a protocol 42
         /// @param pseudo The wanted client name

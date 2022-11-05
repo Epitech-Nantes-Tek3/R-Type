@@ -168,13 +168,23 @@ void Room::_holdADatabaseValueRequest(CommunicatorMessage databaseRequest)
 {
     std::vector<std::string> requestContent =
         _communicatorInstance->utilitaryReceiveAskingForDatabaseValue(databaseRequest);
-    (void)requestContent;
+    auto apiAnswer = _databaseApi.selectUsers("UserName = '" + requestContent.at(0) + "'");
+    _communicatorInstance->utilitarySendDatabaseValue(apiAnswer.at(0)[requestContent.at(1)], databaseRequest.message.clientInfo);
 }
 
 void Room::_holdADatabaseSetRequest(CommunicatorMessage databaseRequest)
 {
     std::vector<std::string> requestContent = _communicatorInstance->utilitaryReceiveSetDatabaseValue(databaseRequest);
-    (void)requestContent;
+    std::string keyStr = "";
+
+    if (requestContent.at(1) == "1")
+        keyStr = "Banned";
+    if (requestContent.at(1) == "2")
+        keyStr = "Muted";
+    if (requestContent.at(1) == "3")
+        keyStr = "Moderator";
+    _databaseApi.updateUsers(keyStr + " = " + requestContent.at(2),
+        "UserName = '" + requestContent.at(0) + "'");
 }
 
 void Room::_holdAChatRequest(CommunicatorMessage chatRequest)
