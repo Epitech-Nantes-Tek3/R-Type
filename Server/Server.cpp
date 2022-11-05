@@ -127,7 +127,10 @@ void Server::_holdACreateRoomRequest(CommunicatorMessage createDemand)
         }
     }
 
+    std::cerr << "C" << std::endl;
     unsigned short roomId = createANewRoom(room.roomName);
+    std::cerr << "B" << std::endl;
+
     for (auto &it : _activeRoomList) {
         if (it->getId() == roomId) {
             _communicatorInstance->kickAClient(createDemand.message.clientInfo, it->getNetworkInfos());
@@ -156,7 +159,6 @@ void Server::_holdANewConnectionRequest(CommunicatorMessage connectionDemand)
             return;
         }
     }
-    std::cerr << "WESH" << std::endl;
     void *networkData =
         std::malloc(sizeof(unsigned short) + _activeRoomList.size() * (sizeof(unsigned short) + sizeof(char) * 10));
     std::size_t offset = 0;

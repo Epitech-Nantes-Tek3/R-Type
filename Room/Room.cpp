@@ -69,7 +69,6 @@ Room::Room() : _inputHandler(&Room::_manageInterprocessCommunication, this)
     _state = RoomState::UNDEFINED;
     _remainingPlaces = 4;
     _name = std::string(10, '\0');
-    //_databaseApi.createUserTable();
 }
 
 Room::Room(unsigned short id, std::string name, Client networkInformations)
@@ -85,7 +84,6 @@ Room::Room(unsigned short id, std::string name, Client networkInformations)
     _state = RoomState::UNDEFINED;
     _remainingPlaces = 4;
     _name = name;
-    //_databaseApi.createUserTable();
 }
 
 void Room::initEcsGameData(void)
@@ -318,6 +316,9 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
             entityPtr->getComponent<Networkable>().id, entityPtr->getComponent<EnemyProjectile>().parentNetworkId, "",
             {connexionDemand.message.clientInfo.getId()}));
     }
+    auto apiAnswer = _databaseApi.selectUsers("UserName = '" + playerNameStr + "'");
+    _databaseApi.updateUsers("GamesPlayed = " + std::to_string(std::atoi(apiAnswer.at(0)["GamesPlayed"].c_str()) + 1),
+        "UserName = '" + playerNameStr + "'");
     _communicatorInstance.get()->sendDataToAClient(connexionDemand.message.clientInfo, nullptr, 0, 12);
     if (_remainingPlaces == 3) {
         GameClock &clock = _worldInstance->getResource<GameClock>();

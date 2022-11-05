@@ -87,7 +87,7 @@ namespace server_data
         boost::thread _inputHandler;
 
         /// @brief Bridge to communicate with the database
-        //Database _databaseApi;
+        Database _databaseApi;
 
         /// @brief The function used by _inputHandler to manage the interproccess communications
         void _manageInterprocessCommunication();
