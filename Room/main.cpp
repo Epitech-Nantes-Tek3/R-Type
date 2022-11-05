@@ -16,8 +16,10 @@ int main(int ac, char **av)
     ArgumentHandler argumentHandler = ArgumentHandler(ac, av);
     ArgumentHandler::RoomInformation roomInformations = argumentHandler.extractRoomInformations();
 
-    server_data::Room room(
+    serverData::Room room(
         roomInformations.id, roomInformations.name, Client(roomInformations.address, roomInformations.port));
+    std::cout << "Room " << room.getRoomName() << " started" << std::endl;
     room.startLobbyLoop();
+    std::cout << "Room " << room.getRoomName() << " ended" << std::endl;
     return 0;
 }

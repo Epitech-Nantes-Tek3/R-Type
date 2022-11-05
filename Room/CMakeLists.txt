@@ -1,6 +1,6 @@
 
-set(SRC_ROOT ${PROJECT_SOURCE_DIR}/Server/Room)
-set(INC_ROOT ${PROJECT_SOURCE_DIR}/Server/Room)
+set(SRC_ROOT ${PROJECT_SOURCE_DIR}/Room)
+set(INC_ROOT ${PROJECT_SOURCE_DIR}/Room)
 
 set(TARGET_ROOM r-type_room)
 

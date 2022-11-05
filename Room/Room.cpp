@@ -41,12 +41,12 @@
 #include "R-TypeLogic/Server/Systems/LifeTimeDeathSystem.hpp"
 #include "R-TypeLogic/Server/Systems/RemoveAfkSystem.hpp"
 
-using namespace server_data;
+using namespace serverData;
 using namespace error_lib;
 using namespace communicator_lib;
 using namespace ecs;
 
-static server_data::Room::RoomState roomState(Room::RoomState::UNDEFINED);
+static serverData::Room::RoomState roomState(Room::RoomState::UNDEFINED);
 
 /// @brief Useful function called when a sigint received.
 /// @param signum Value of the received signal
@@ -113,14 +113,10 @@ void Room::startLobbyLoop(void)
     CommunicatorMessage connectionOperation;
 
     std::signal(SIGINT, signalCallbackHandler);
-    std::cerr << "1" << std::endl;
     startConnexionProtocol();
-    std::cerr << "2" << std::endl;
     initEcsGameData();
-    std::cerr << "3" << std::endl;
     _state = RoomState::LOBBY;
     while (_state != RoomState::ENDED && _state != RoomState::UNDEFINED && roomState != RoomState::ENDED) {
-        //std::cerr << "3.1" << std::endl;
         try {
             connectionOperation = _communicatorInstance.get()->getLastMessage();
             if (connectionOperation.message.type == 10)
@@ -132,15 +128,11 @@ void Room::startLobbyLoop(void)
         } catch (NetworkError &error) {
         }
         if (_state == RoomState::IN_GAME) {
-            std::cerr << "3.2" << std::endl;
             _worldInstance.get()->runSystems();
         } /// WILL BE IMPROVED IN PART TWO (THREAD + CLOCK)
-        //std::cerr << "3.3" << std::endl;
         _activePlayerGestion();
     }
-    std::cerr << "4" << std::endl;
     _disconectionProcess();
-    std::cerr << "5" << std::endl;
 }
 
 void Room::_disconectionProcess()

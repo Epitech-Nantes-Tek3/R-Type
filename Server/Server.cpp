@@ -10,16 +10,16 @@
 #include "Server.hpp"
 #include "Error/Error.hpp"
 
-using namespace server_data;
+using namespace serverData;
 using namespace error_lib;
 using namespace communicator_lib;
 
 Server::Server(std::string address, unsigned short port)
 {
-    _activeRoomList = {};
     _networkInformations = Client(address, port);
     _state = HubState::UNDEFINED;
     _communicatorInstance = std::make_shared<Communicator>(_networkInformations);
+    _nextRoomId = 0;
 }
 
 Server::Server()
@@ -46,9 +46,13 @@ unsigned short Server::_getAFreePort(unsigned short actual)
 
 unsigned short Server::createANewRoom(std::string name)
 {
-    _activeRoomList.push_back(Room(_activeRoomList.size() + 1, name,
-        Client(_networkInformations.getAddress(), _getAFreePort(_networkInformations.getPort() + 101))));
-    return _activeRoomList.size();
+    std::cerr << "SERVER Create a Room" << std::endl;
+    std::shared_ptr<RoomInstance> ptr = std::make_shared<RoomInstance>(
+        _nextRoomId, name, _networkInformations.getAddress(), _getAFreePort(_networkInformations.getPort() + 101));
+    _activeRoomList.push_back(ptr);
+    _nextRoomId++;
+    std::cerr << "SERVER ENd to create a Room" << std::endl;
+    return (_nextRoomId - 1);
 }
 
 void Server::_startConnexionProtocol()
@@ -97,10 +101,9 @@ void Server::_holdAJoinRoomRequest(CommunicatorMessage joinDemand)
     unsigned short choosenRoom = 0;
 
     std::memcpy(&choosenRoom, joinDemand.message.data, sizeof(unsigned short));
-    for (auto it : _activeRoomList) {
-        if (it == choosenRoom) {
-            _communicatorInstance.get()->kickAClient(joinDemand.message.clientInfo, it.getNetworkInformations());
-            it.startLobbyLoop(); /// WILL BE REMOVED WITH PROCESS IMPLEMENTATION
+    for (auto &it : _activeRoomList) {
+        if (*it.get() == choosenRoom) {
+            _communicatorInstance.get()->kickAClient(joinDemand.message.clientInfo, it->getNetworkInfos());
             return;
         }
     }
@@ -111,17 +114,17 @@ void Server::_holdACreateRoomRequest(CommunicatorMessage createDemand)
 {
     RoomConfiguration room = _communicatorInstance->utilitaryReceiveRoomConfiguration(createDemand);
 
-    for (auto it : _activeRoomList) {
-        if (it == room.roomName) {
-            _communicatorInstance.get()->sendDataToAClient(createDemand.message.clientInfo, nullptr, 0, 11);
+    for (auto &it : _activeRoomList) {
+        if (it->getName() == room.roomName) {
+            _communicatorInstance->sendDataToAClient(createDemand.message.clientInfo, nullptr, 0, 11);
             return;
         }
     }
+
     unsigned short roomId = createANewRoom(room.roomName);
-    for (auto it : _activeRoomList) {
-        if (it == roomId) {
-            _communicatorInstance.get()->kickAClient(createDemand.message.clientInfo, it.getNetworkInformations());
-            it.startLobbyLoop(); /// WILL BE REMOVED WITH PROCESS IMPLEMENTATION
+    for (auto &it : _activeRoomList) {
+        if (it->getId() == roomId) {
+            _communicatorInstance->kickAClient(createDemand.message.clientInfo, it->getNetworkInfos());
             return;
         }
     }
@@ -139,9 +142,9 @@ void Server::_holdANewConnectionRequest(CommunicatorMessage connectionDemand)
         throw std::logic_error("Malloc failed.");
     std::memcpy(networkData, &roomListSize, sizeof(unsigned short));
     offset += sizeof(unsigned short);
-    for (auto it : _activeRoomList) {
-        unsigned short roomId = it.getRoomId();
-        std::string roomName = it.getRoomName();
+    for (auto &it : _activeRoomList) {
+        unsigned short roomId = it->getId();
+        std::string roomName = it->getName();
 
         std::memcpy((void *)((char *)networkData + offset), &roomId, sizeof(unsigned short));
         offset += sizeof(unsigned short);
@@ -155,8 +158,9 @@ void Server::deleteARoom(unsigned short id)
 {
     int pos = 0;
 
-    for (auto i : _activeRoomList) {
-        if (i.getRoomId() == id)
+    std::cerr << "SERVER Delete Room " << id << std::endl;
+    for (auto &it : _activeRoomList) {
+        if (it->getId() == id)
             _activeRoomList.erase(_activeRoomList.begin() + pos);
         pos++;
     }
