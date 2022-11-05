@@ -6,6 +6,7 @@
 */
 
 #include "UserConnection.hpp"
+#include "ButtonAction.hpp"
 #include "Error/Error.hpp"
 #include "GraphicECS/SFML/Components/ActionQueueComponent.hpp"
 #include "GraphicECS/SFML/Components/AllowControllerComponent.hpp"
@@ -39,7 +40,6 @@
 #include "R-TypeLogic/Global/Systems/DeathSystem.hpp"
 #include "R-TypeLogic/Global/Systems/MovementSystem.hpp"
 #include "R-TypeLogic/Global/Systems/UpdateClockSystem.hpp"
-#include "ButtonAction.hpp"
 
 using namespace client_data;
 using namespace graphicECS::SFML::Resources;
@@ -53,9 +53,7 @@ UserConnection::UserConnection()
     _world = std::make_shared<World>(1);
 }
 
-UserConnection::~UserConnection()
-{
-}
+UserConnection::~UserConnection() {}
 
 void UserConnection::_loadResourcesUserConnection()
 {
@@ -152,8 +150,8 @@ void UserConnection::_runSystemsUserConnection(std::size_t buttonSendId)
 {
     ecs::Entity &buttonSend = _world->getEntity(buttonSendId);
 
-    while (
-        _world->containsResource<RenderWindowResource>() && _world->getResource<RenderWindowResource>().window.isOpen()) {
+    while (_world->containsResource<RenderWindowResource>()
+        && _world->getResource<RenderWindowResource>().window.isOpen()) {
         _world->runSystems();
         if (buttonSend.getComponent<Button>().IsClicked) {
             buttonSend.getComponent<Button>().IsClicked = false;

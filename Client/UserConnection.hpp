@@ -35,7 +35,8 @@ namespace client_data
         /// @param buttonSendId The id of the button send.
         /// @param buttonPseudoId The id of the button pseudo.
         /// @param buttonPasswordId The id of the button password.
-        void _loadEntitiesUserConnection(std::size_t &buttonSendId, std::size_t &buttonPseudoId, std::size_t &buttonPasswordId);
+        void _loadEntitiesUserConnection(
+            std::size_t &buttonSendId, std::size_t &buttonPseudoId, std::size_t &buttonPasswordId);
 
         /// @brief Set inputs of the user connection GUI.
         /// @param entity The entity to set.
