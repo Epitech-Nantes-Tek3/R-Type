@@ -2,6 +2,7 @@
 sfml/2.5.1
 boost/1.80.0
 zlib/1.2.13
+sqlite3/3.39.4
 
 [options]
 boost:shared=True
@@ -15,5 +16,5 @@ sfml:shared=True
 cmake
 
 [imports]
-bin, *.dll -> ./bin 
-bin, *.dll -> ./../ 
+bin, *.dll -> ./bin
+bin, *.dll -> ./../
