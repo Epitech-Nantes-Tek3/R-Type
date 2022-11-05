@@ -440,7 +440,7 @@ void ClientRoom::_initSharedResources()
 void ClientRoom::initSoloSystem(void)
 {
     _worldInstance->addSystem<EnemiesGoRandom>();
-    ///_worldInstance->addSystem<EnemyShootSystem>();
+    _worldInstance->addSystem<EnemyShootSystem>();
     _worldInstance->addSystem<Collide>();
     _worldInstance->addSystem<DeathLife>();
     _worldInstance->addSystem<LifeTimeDeath>();
