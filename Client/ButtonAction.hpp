@@ -41,7 +41,4 @@ void writableButtonAction(World &world, Entity &entityPtr);
 /// @param message message to send
 void publishNewChatMessage(World &world, Entity &entityPtr, std::string &message);
 
-void setPseudo(World &, Entity &, std::string &);
-void setPassword(World &, Entity &, std::string &);
-
 #endif /* !BUTTONACTION_HPP_ */

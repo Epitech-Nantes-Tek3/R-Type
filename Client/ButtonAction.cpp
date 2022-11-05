@@ -113,17 +113,3 @@ void publishNewChatMessage(World &world, Entity &entityPtr, std::string &message
     communicator.utilitarySendChatMessage(players.at(0)->getComponent<ecs::Player>().name, message,
         {servers.at(0)->getComponent<ecs::NetworkServer>().id});
 }
-
-void setPseudo(World &world, Entity &entity, std::string &pseudo)
-{
-    (void)world;
-    (void)entity;
-    (void)pseudo;
-}
-
-void setPassword(World &world, Entity &entity, std::string &password)
-{
-    (void)world;
-    (void)entity;
-    (void)password;
-}
