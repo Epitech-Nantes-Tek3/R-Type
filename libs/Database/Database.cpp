@@ -12,10 +12,9 @@ Database::Database(const std::filesystem::path &fileName) : _db(NULL), _fileName
 
 Database::~Database() { sqlite3_close(_db); }
 
-
 bool Database::_open(const std::filesystem::path &fileName)
 {
-    if (sqlite3_open(_fileName.c_str(), &_db) != SQLITE_OK) {
+    if (sqlite3_open(fileName.c_str(), &_db) != SQLITE_OK) {
         throw std::logic_error(sqlite3_errmsg(_db));
     }
     std::cerr << "Opened database successfully" << std::endl;
@@ -28,7 +27,7 @@ bool Database::createUserTable()
                                 "UserID INTEGER PRIMARY KEY AUTOINCREMENT,"
                                 "CreationDate DATETIME NOT NULL,"
                                 "UserName CHAR(50) NOT NULL,"
-                                "Password BINARY(64) NOT NULL,"
+                                "Password CHAR(64) NOT NULL,"
                                 "Moderator BIT NOT NULL,"
                                 "Banned BIT NOT NULL,"
                                 "Muted BIT NOT NULL,"
