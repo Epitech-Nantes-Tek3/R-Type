@@ -191,6 +191,8 @@ void DrawComponents::_updateTexture(World &world, std::shared_ptr<ecs::Entity> e
                                        .textures[entityPtr->getComponent<AnimationComponent>().currentTexturePos]]
                     .get());
         }
+        if (entityPtr->contains<Size>())
+            entityPtr->getComponent<GraphicsRectangleComponent>().shape.setSize(sf::Vector2f(entityPtr->getComponent<Size>().x, entityPtr->getComponent<Size>().y));
     } else {
         entityPtr->getComponent<GraphicsRectangleComponent>().shape.setFillColor(sf::Color::White);
     }
