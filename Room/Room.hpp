@@ -147,6 +147,11 @@ namespace server_data
         /// @return founded client
         Client _findClientByHisName(std::string name);
 
+        /// @brief Cross all the player entity and return the matched one
+        /// @param name the wanted player id
+        /// @return founded entity
+        Entity &_findClientByHisId(unsigned short clientId);
+
         /// @brief Trait a connexion request. If there is less than 3 players already in the room, send a protocol 22 to
         /// the client. Otherwise, send a 21.
         /// @param communicatorMessage actual message data

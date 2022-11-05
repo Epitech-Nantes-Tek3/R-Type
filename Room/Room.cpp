@@ -182,9 +182,6 @@ void Room::_holdADatabaseSetRequest(CommunicatorMessage databaseRequest)
         keyStr = "Banned";
     if (requestContent.at(1) == "2") {
         keyStr = "Muted";
-        Client tempClient = _findClientByHisName(requestContent.at(1));
-        _communicatorInstance->utilitarySendDatabaseValue(
-            requestContent.at(2), tempClient);
     }
     if (requestContent.at(1) == "3")
         keyStr = "Moderator";
@@ -201,6 +198,11 @@ void Room::_holdAChatRequest(CommunicatorMessage chatRequest)
         clientIdList.emplace_back(entityPtr.get()->getComponent<ecs::NetworkClient>().id);
     };
 
+    Entity &senderPlayer = _findClientByHisId(chatRequest.message.clientInfo.getId());
+    auto apiAnswer = _databaseApi.selectUsers("UserName = '" + senderPlayer.getComponent<Player>().name + "'");
+
+    if (apiAnswer.at(0)["Muted"] != "0")
+        return;
     std::for_each(clients.begin(), clients.end(), addToClientList);
     _communicatorInstance->utilitarySendChatMessage(chatContent.at(0), chatContent.at(1), clientIdList);
 }
@@ -242,6 +244,17 @@ Client Room::_findClientByHisName(std::string name)
             return _communicatorInstance->getClientByHisId(it->getComponent<NetworkClient>().id);
     }
     return Client();
+}
+
+Entity &Room::_findClientByHisId(unsigned short clientId)
+{
+    std::vector<std::shared_ptr<ecs::Entity>> joined = _worldInstance->joinEntities<NetworkClient, Player>();
+
+    for (auto it : joined) {
+        if (it->getComponent<NetworkClient>().id == clientId)
+            return *it;
+    }
+    return *(joined.at(0));
 }
 
 std::string Room::_getPlayerName(CommunicatorMessage connexionDemand)
