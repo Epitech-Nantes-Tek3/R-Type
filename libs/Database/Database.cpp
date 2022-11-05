@@ -96,7 +96,7 @@ namespace database
 
     std::vector<Row> Database::selectUsers(const std::string specifiedResearch)
     {
-        std::vector<Row> results;
+        std::vector<Row> results = {};
         std::string query = "SELECT * FROM Users";
 
         if (specifiedResearch != "") {

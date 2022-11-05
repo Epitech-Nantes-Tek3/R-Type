@@ -21,7 +21,9 @@ Server::Server(std::string address, unsigned short port)
     _communicatorInstance = std::make_shared<Communicator>(_networkInformations);
     _nextRoomId = 0;
     _databaseApi.createUserTable();
-    _databaseApi.addUser("admin", "admin", true, false, false);
+    auto apiAnswer = _databaseApi.selectUsers("UserName = 'admin'");
+    if (apiAnswer.empty())
+        _databaseApi.addUser("admin", "admin", true, false, false);
 }
 
 Server::Server()
@@ -31,7 +33,9 @@ Server::Server()
     _state = HubState::UNDEFINED;
     _communicatorInstance = std::make_shared<Communicator>(_networkInformations);
     _databaseApi.createUserTable();
-    _databaseApi.addUser("admin", "admin", true, false, false);
+    auto apiAnswer = _databaseApi.selectUsers("UserName = 'admin'");
+    if (apiAnswer.empty())
+        _databaseApi.addUser("admin", "admin", true, false, false);
 }
 
 unsigned short Server::_getAFreePort(unsigned short actual)
@@ -134,7 +138,24 @@ void Server::_holdACreateRoomRequest(CommunicatorMessage createDemand)
 
 void Server::_holdANewConnectionRequest(CommunicatorMessage connectionDemand)
 {
-    /// GET PLAYER NAME AND PASSWORD AND CHECK DATABASE FOR BAN + AUTH PROCESS
+    char *pseudo = (char *)connectionDemand.message.data;
+    char *password = (char *)connectionDemand.message.data + sizeof(char) * 5;
+    std::string pseudoStr = std::string(5, '\0');
+    std::string passwordStr = std::string(5, '\0');
+
+    for (int i = 0; i < 5; i++) {
+        pseudoStr[i] += pseudo[i];
+        passwordStr[i] += password[i];
+    }
+    auto apiAnswer = _databaseApi.selectUsers("UserName = '" + pseudoStr + "'");
+    if (apiAnswer.empty()) {
+        _databaseApi.addUser(pseudoStr, passwordStr, false, false, false);
+    } else {
+        if (apiAnswer.at(0)["Password"] != passwordStr) {
+            _communicatorInstance.get()->sendDataToAClient(connectionDemand.message.clientInfo, nullptr, 0, 11);
+            return;
+        }
+    }
     void *networkData =
         std::malloc(sizeof(unsigned short) + _activeRoomList.size() * (sizeof(unsigned short) + sizeof(char) * 10));
     std::size_t offset = 0;

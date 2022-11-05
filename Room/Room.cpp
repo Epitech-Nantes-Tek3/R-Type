@@ -69,6 +69,7 @@ Room::Room() : _inputHandler(&Room::_manageInterprocessCommunication, this)
     _state = RoomState::UNDEFINED;
     _remainingPlaces = 4;
     _name = std::string(10, '\0');
+    //_databaseApi.createUserTable();
 }
 
 Room::Room(unsigned short id, std::string name, Client networkInformations)
@@ -84,6 +85,7 @@ Room::Room(unsigned short id, std::string name, Client networkInformations)
     _state = RoomState::UNDEFINED;
     _remainingPlaces = 4;
     _name = name;
+    //_databaseApi.createUserTable();
 }
 
 void Room::initEcsGameData(void)

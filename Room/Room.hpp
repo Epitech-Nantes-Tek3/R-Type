@@ -16,10 +16,12 @@
 #include "Communicator/Communicator.hpp"
 #include "Transisthor/Transisthor.hpp"
 #include "World/World.hpp"
+#include "Database/Database.hpp"
 
 using namespace communicator_lib;
 using namespace ecs;
 using namespace transisthor_lib;
+using namespace database;
 
 namespace server_data
 {
@@ -83,6 +85,9 @@ namespace server_data
 
         /// @brief The thread used to read and manage interprocess communications
         boost::thread _inputHandler;
+
+        /// @brief Bridge to communicate with the database
+        //Database _databaseApi;
 
         /// @brief The function used by _inputHandler to manage the interproccess communications
         void _manageInterprocessCommunication();
