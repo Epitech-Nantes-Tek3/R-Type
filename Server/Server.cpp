@@ -20,6 +20,7 @@ Server::Server(std::string address, unsigned short port)
     _state = HubState::UNDEFINED;
     _communicatorInstance = std::make_shared<Communicator>(_networkInformations);
     _nextRoomId = 0;
+    _databaseApi.createUserTable();
 }
 
 Server::Server()
@@ -28,6 +29,7 @@ Server::Server()
     _networkInformations = Client();
     _state = HubState::UNDEFINED;
     _communicatorInstance = std::make_shared<Communicator>(_networkInformations);
+    _databaseApi.createUserTable();
 }
 
 unsigned short Server::_getAFreePort(unsigned short actual)
