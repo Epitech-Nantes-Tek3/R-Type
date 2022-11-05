@@ -221,25 +221,6 @@ void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
     }
 }
 
-void ClientRoom::initSoloSystem(void)
-{
-    _worldInstance->addSystem<EnemiesGoRandom>();
-    _worldInstance->addSystem<EnemyShootSystem>();
-    _worldInstance->addSystem<Collide>();
-    _worldInstance->addSystem<DeathLife>();
-    _worldInstance->addSystem<LifeTimeDeath>();
-    _worldInstance->addSystem<DecreaseLifeTime>();
-
-    _worldInstance->addSystem<UpdateClock>();
-    _worldInstance->addSystem<DeathSystem>();
-    _worldInstance->addSystem<DrawComponents>();
-    _worldInstance->addSystem<InputManagement>();
-    _worldInstance->addSystem<SfObjectFollowEntitySystem>();
-    _worldInstance->addSystem<Parallax>();
-    _worldInstance->addSystem<Movement>();
-    _worldInstance->addSystem<AnimationSystem>();
-}
-
 void ClientRoom::signalSoloCallbackHandler(int signum)
 {
     (void)signum;
@@ -276,6 +257,7 @@ void ClientRoom::startGame(void)
 
     std::cin >> choosedMod;
     if (choosedMod == 'S') {
+        _getClientPseudoAndPassword();
         startSoloLoop();
     } else if (choosedMod == 'M') {
         startLobbyLoop();
@@ -453,6 +435,26 @@ void ClientRoom::_initSharedResources()
     _worldInstance->addResource<SoundResource>(SoundResource::sound_e::SHOOT, "assets/Sounds/sound.wav");
     _worldInstance->addResource<GameStates>(GameStates::IN_GAME);
     _initSpritesForEntities();
+}
+
+void ClientRoom::initSoloSystem(void)
+{
+    _worldInstance->addSystem<EnemiesGoRandom>();
+    ///_worldInstance->addSystem<EnemyShootSystem>();
+    _worldInstance->addSystem<Collide>();
+    _worldInstance->addSystem<DeathLife>();
+    _worldInstance->addSystem<LifeTimeDeath>();
+    _worldInstance->addSystem<DecreaseLifeTime>();
+    _worldInstance->addSystem<UpdateClock>();
+    _worldInstance->addSystem<DeathSystem>();
+    _worldInstance->addSystem<DrawComponents>();
+    _worldInstance->addSystem<InputManagement>();
+    _worldInstance->addSystem<SfObjectFollowEntitySystem>();
+    _worldInstance->addSystem<Parallax>();
+    _worldInstance->addSystem<Movement>();
+    _worldInstance->addSystem<AnimationSystem>();
+    _worldInstance->addSystem<MusicManagement>();
+    _worldInstance->addSystem<SoundManagement>();
 }
 
 void ClientRoom::_initSystems()
