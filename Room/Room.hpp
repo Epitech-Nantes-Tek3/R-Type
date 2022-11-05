@@ -10,6 +10,7 @@
 #ifndef ROOM_HPP_
 #define ROOM_HPP_
 
+#include <boost/thread.hpp>
 #include <memory>
 #include "Communicator/Client.hpp"
 #include "Communicator/Communicator.hpp"
@@ -38,7 +39,7 @@ namespace server_data
         Room(unsigned short id, std::string name, Client networkInformations);
 
         /// @brief Destroy the Room object
-        ~Room() = default;
+        inline ~Room() { _inputHandler.join(); };
 
         /// @brief Get the room id
         /// @return The room id
@@ -80,9 +81,30 @@ namespace server_data
         /// @brief Number of remaining places inside the room
         unsigned short _remainingPlaces;
 
+        /// @brief The thread used to read and manage interprocess communications
+        boost::thread _inputHandler;
+
+        /// @brief The function used by _inputHandler to manage the interproccess communications
+        void _manageInterprocessCommunication();
+
+        /// @brief It sends the current state of the room to the server
+        /// @param line the line received from the server
+        void _manageStateRequest(std::string line);
+
+        /// @brief It sends the number of remaining places in the room to the server
+        /// @param line the line received from the server
+        void _manageSeatsRequest(std::string line);
+
+        /// @brief It manages the stop request
+        /// @param line the line received from the server
+        void _manageStopRequest(std::string line);
+
+        /// @brief tell server that the game is ended
+        void _SendEndGameToServer();
+
         /// @brief Trait a disconnection request. Identify the player and add to it a disconnection component
         /// @param communicatorMessage actual message data
-        void _holdADisconnectionRequest(CommunicatorMessage disconectionDemand);
+        void _holdADisconnectionRequest(CommunicatorMessage disconnectionDemand);
 
         /// @brief Hold a chat request. Read it and send it to all the clients
         /// @param chatRequest actual message data

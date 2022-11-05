@@ -28,6 +28,21 @@ namespace argument_handler
             unsigned short port;
         };
 
+        /// @brief Struct containing all Arguments needs by the room executable
+        struct RoomInformation {
+            /// @brief Id of the room.
+            std::size_t id;
+
+            /// @brief The name of the room.
+            std::string name;
+
+            /// @brief Ip address to bind to.
+            std::string address;
+
+            /// @brief Port to bind to.
+            unsigned short port;
+        };
+
         /// @brief Struct containing all Arguments needs by the client executable
         struct ClientInformation {
             /// @brief Ip address to connect to.
@@ -44,7 +59,7 @@ namespace argument_handler
         };
 
         /// @brief Type list of all the possible use of ArgumentHandler class
-        enum ArgumentFunctionType { UNDEFINED, SERVER_EXECUTABLE, CLIENT_EXECUTABLE };
+        enum ArgumentFunctionType { UNDEFINED, SERVER_EXECUTABLE, CLIENT_EXECUTABLE, ROOM_EXECUTABLE };
 
         /// @brief Construct a new ArgumentHandler object with default value
         ArgumentHandler();
@@ -73,6 +88,10 @@ namespace argument_handler
         /// @brief Extract all wanted value by client from stored arguments.
         /// @return A struct containing all wanted informations.
         ClientInformation extractClientInformation(void);
+
+        /// @brief Extract all wanted values by the room from stored arguments.
+        /// @return A struct containing all wanted informations.
+        RoomInformation extractRoomInformations(void);
 
       private:
         /// @brief List of all the arguments to parse

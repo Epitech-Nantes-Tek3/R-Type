@@ -32,6 +32,7 @@
 *.app
 r-type_client
 r-type_server
+r-type_room
 
 # CMake
 build

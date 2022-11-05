@@ -34,6 +34,7 @@ void ArgumentHandler::bindAllHOptionText(void)
     _hTextList[ArgumentHandler::SERVER_EXECUTABLE] = "./r-type_server <IP_ADDRESS> <PORT>";
     _hTextList[ArgumentHandler::CLIENT_EXECUTABLE] =
         "./r-type_server <CLIENT_IP_ADDRESS> <CLIENT_PORT> <SERVER_IP_ADDRESS> <SERVER_PORT + 1000>";
+    _hTextList[ArgumentHandler::ROOM_EXECUTABLE] = "./r-type_room <ID> <NAME> <IP_ADDRESS> <PORT>";
 }
 
 bool ArgumentHandler::processHOptionVerification(ArgumentHandler::ArgumentFunctionType functionType)
@@ -95,4 +96,40 @@ ArgumentHandler::ClientInformation ArgumentHandler::extractClientInformation(voi
             "Invalid args type. Please refer to -h option", "extractClientInformation -> ArgumentHandler.cpp");
     }
     return clientInformation;
+}
+
+ArgumentHandler::RoomInformation ArgumentHandler::extractRoomInformations(void)
+{
+    ArgumentHandler::RoomInformation roomInformations;
+
+    if (processHOptionVerification(ArgumentHandler::ROOM_EXECUTABLE))
+        throw ArgumentError("Use of a -h option", "extractRoomInformations -> ArgumentHandler.cpp");
+    if (_argumentsToParse.size() != 4) {
+        std::cerr << _hTextList[ArgumentHandler::ROOM_EXECUTABLE] << std::endl;
+        throw ArgumentError(
+            "Invalid number of argument. 4 needed by the server.", "extractRoomInformations -> ArgumentHandler.cpp");
+    }
+    long id = std::atol(_argumentsToParse.at(0).c_str());
+    if (id < 0) {
+        throw ArgumentError("Invalid ID. An ID must be positive.", "extractRoomInformations -> ArgumentHandler.cpp");
+    }
+    roomInformations.id = id;
+    _argumentsToParse.erase(_argumentsToParse.begin());
+    std::string name = std::string(_argumentsToParse.at(0).c_str());
+    if (name == "") {
+        throw ArgumentError(
+            "Invalid name. Please enter a non-null name", "extractRoomInformations -> ArgumentHandler.cpp");
+    }
+    roomInformations.name = name;
+    _argumentsToParse.erase(_argumentsToParse.begin());
+    roomInformations.address = std::string(_argumentsToParse.at(0));
+    _argumentsToParse.erase(_argumentsToParse.begin());
+    roomInformations.port = std::atoi(_argumentsToParse.at(0).c_str());
+    _argumentsToParse.erase(_argumentsToParse.begin());
+    if (roomInformations.port == 0) {
+        std::cerr << _hTextList[ArgumentHandler::ROOM_EXECUTABLE] << std::endl;
+        throw ArgumentError(
+            "Invalid args type. Please refer to -h option", "extractRoomInformations -> ArgumentHandler.cpp");
+    }
+    return roomInformations;
 }
