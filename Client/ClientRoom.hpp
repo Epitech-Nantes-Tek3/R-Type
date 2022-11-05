@@ -58,6 +58,10 @@ namespace client_data
         /// @brief Handle a disconnection request. Identify the player and add to it a disconnection component
         void _holdADisconnectionRequest();
 
+        /// @brief Handle a new chat request. Display it on the screen.
+        /// @param chatRequest actual message data
+        void _holdAChatRequest(CommunicatorMessage chatRequest);
+
         /// @brief Send to the server the disconnection signal
         void _disconectionProcess();
 
@@ -94,6 +98,10 @@ namespace client_data
         /// @brief Init all the sprites needed for the backgrounds
         /// @param spritesList texture's map holding the texture and the corresponding key
         void _initSpritesForBackgrounds(graphicECS::SFML::Resources::GraphicsTextureResource &spritesList);
+
+        /// @brief Init all the sprites needed for the Writable object
+        /// @param spritesList texture's map holding the texture and the corresponding key
+        void _initSpritesForWritable(graphicECS::SFML::Resources::GraphicsTextureResource &spritesList);
 
         /// @brief Network informations of the room.
         Client _networkInformations;

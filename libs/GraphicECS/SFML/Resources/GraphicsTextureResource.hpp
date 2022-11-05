@@ -52,6 +52,7 @@ namespace graphicECS::SFML::Resources
             BUTTON,
             WRITABLE,
             WRITABLE_SELECTED,
+            WRITABLE_BUTTON,
             NATURAL_PROJECTILE
         };
 

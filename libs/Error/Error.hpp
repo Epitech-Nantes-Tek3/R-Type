@@ -59,6 +59,16 @@ namespace error_lib
             : RTypeError(message, component){};
     };
 
+    /// @brief Error class for the room part
+    class RoomError : public RTypeError {
+      public:
+        /// @brief Constructor of the Room Error
+        /// @param message Error message (Some description and information about the error)
+        /// @param component Provenance of the error (File, function...)
+        inline RoomError(std::string const &message, std::string const &component = "Room")
+            : RTypeError(message, component){};
+    };
+
     /// @brief Error class for a malloc fail
     class MallocError : public RTypeError {
       public:

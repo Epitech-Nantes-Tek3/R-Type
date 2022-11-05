@@ -57,7 +57,7 @@ void signalCallbackHandler(int signum)
     roomState = Room::ENDED;
 }
 
-Room::Room()
+Room::Room() : _inputHandler(&Room::_manageInterprocessCommunication, this)
 {
     _id = 0;
     _networkInformations = Client();
@@ -72,6 +72,7 @@ Room::Room()
 }
 
 Room::Room(unsigned short id, std::string name, Client networkInformations)
+    : _inputHandler(&Room::_manageInterprocessCommunication, this)
 {
     _id = id;
     _networkInformations = networkInformations;
@@ -123,6 +124,8 @@ void Room::startLobbyLoop(void)
                 holdANewConnexionRequest(connectionOperation);
             if (connectionOperation.message.type == 13)
                 _holdADisconnectionRequest(connectionOperation);
+            if (connectionOperation.message.type == 50)
+                _holdAChatRequest(connectionOperation);
         } catch (NetworkError &error) {
         }
         if (_state == RoomState::IN_GAME) {
@@ -155,6 +158,20 @@ void Room::_holdADisconnectionRequest(CommunicatorMessage disconnectionDemand)
     }
     _worldInstance->getEntity(clientId).addComponent<Disconnectable>();
     std::cerr << "Player succesfully disconnected." << std::endl;
+}
+
+void Room::_holdAChatRequest(CommunicatorMessage chatRequest)
+{
+    std::vector<std::string> chatContent = _communicatorInstance->utilitaryReceiveChatMessage(chatRequest);
+    std::vector<std::shared_ptr<ecs::Entity>> clients = _worldInstance.get()->joinEntities<ecs::NetworkClient>();
+    std::vector<unsigned short> clientIdList;
+
+    auto addToClientList = [&clientIdList](std::shared_ptr<ecs::Entity> entityPtr) {
+        clientIdList.emplace_back(entityPtr.get()->getComponent<ecs::NetworkClient>().id);
+    };
+
+    std::for_each(clients.begin(), clients.end(), addToClientList);
+    _communicatorInstance->utilitarySendChatMessage(chatContent.at(0), chatContent.at(1), clientIdList);
 }
 
 void Room::_activePlayerGestion()
@@ -222,7 +239,8 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
         clientIdList.emplace_back(entityPtr.get()->getComponent<ecs::NetworkClient>().id);
     };
     std::for_each(clients.begin(), clients.end(), addToClientList);
-    _worldInstance.get()->getEntity(playerId).addComponent<NetworkClient>(connexionDemand.message.clientInfo.getId());
+    _worldInstance.get()->getEntity(playerId).addComponent<NetworkClient>(clientIdList.size());
+    connexionDemand.message.clientInfo.setId(clientIdList.size());
     std::vector<std::shared_ptr<Entity>> alliedProjectiles =
         _worldInstance.get()->joinEntities<Networkable, AlliedProjectile>();
     std::vector<std::shared_ptr<Entity>> enemies = _worldInstance.get()->joinEntities<Networkable, Enemy>();
@@ -312,3 +330,36 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
         clock.resetClock();
     }
 }
+
+void Room::_manageInterprocessCommunication()
+{
+    std::string line;
+
+    while (_state != ENDED && std::getline(std::cin, line) && !line.empty()) {
+        _manageStateRequest(line);
+        _manageSeatsRequest(line);
+        _manageStopRequest(line);
+    }
+}
+
+void Room::_manageStateRequest(std::string line)
+{
+    if (line == "11")
+        std::cout << "21 " << std::to_string(_state) << std::endl;
+}
+
+void Room::_manageSeatsRequest(std::string line)
+{
+    if (line == "12")
+        std::cout << "22 " << std::to_string(_remainingPlaces) << std::endl;
+}
+
+void Room::_manageStopRequest(std::string line)
+{
+    if (line == "13") {
+        _state = ENDED;
+        std::cout << "23" << std::endl;
+    }
+}
+
+void Room::_SendEndGameToServer() { std::cout << "24" << std::endl; }

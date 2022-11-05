@@ -26,12 +26,31 @@ using namespace transisthor_lib;
 
 namespace communicator_lib
 {
+    /// @brief Enumeration to know the type of configuration.
+    enum roomConfiguration_e {
+        PLAYER_NUMBER,
+        PLAYER_VELOCITY,
+        PLAYER_SHOOT_FREQUENCY,
+        ENNEMI_VELOCITY,
+        ENNEMI_SHOOT_FREQUENCY,
+        TIME_ACCELERATION
+    };
+
     /// @brief Bridge between communicator and server for message
     struct CommunicatorMessage {
         /// @brief The network message
         Message message;
         /// @brief First communication of this client ?
         bool newClient;
+    };
+
+    /// @brief Configuration of a room. It contains a name and 6 modifiers.
+    struct RoomConfiguration {
+        /// @brief Name of the room.
+        std::string roomName;
+        /// @brief Configuration (6 modifiers).
+        /// Use enumerator roomConfiguration_e to set value at the good index.
+        short configs[6];
     };
 
     /// @brief Network gestionner
@@ -119,6 +138,29 @@ namespace communicator_lib
         /// @return The server endpoint id
         /// @throw an error when no server can be found (Not in a client communicator), throw a NetworkError
         unsigned short getServerEndpointId(void);
+
+        /// @brief Utilitary function used to send a message with a protocol 50.
+        /// @param pseudo The pseudonyme of the author
+        /// @param messageContent Content of the message
+        /// @param destination of the message
+        void utilitarySendChatMessage(
+            std::string pseudo, std::string messageContent, std::vector<unsigned short> destination);
+
+        /// @brief Utilitary function used to extract a message received by a protocol 50
+        /// @param cryptedMessage the crypted message
+        /// @return std::vector<std::string> the decrypted pseudo + message
+        std::vector<std::string> utilitaryReceiveChatMessage(CommunicatorMessage cryptedMessage);
+
+        /// @brief Utilitary function used to send a message with a protocol 17.
+        /// @param roomName The name of the room configuration.
+        /// @param configs Array of modificator used to update some server configuration.
+        /// @param newEndPoint The endpoint used to send the configuration.
+        void utilitarySendRoomConfiguration(std::string roomName, short *configs, Client newEndpoint);
+
+        /// @brief Utilitary function used to extract a message received by a protocol 17.
+        /// @param cryptedMessage The crypted message which contains informations.
+        /// @return RoomConfiguration The configuration of the room.
+        RoomConfiguration utilitaryReceiveRoomConfiguration(CommunicatorMessage cryptedMessage);
 
       private:
         /// @brief Send a protocol 20 to a client
