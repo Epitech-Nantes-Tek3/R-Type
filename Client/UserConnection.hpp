@@ -29,6 +29,7 @@ namespace client_data
 
         /// @brief Get the password of the user.
         const std::string &getPassword() const;
+
       private:
         /// @brief Init all shared resources of the world.
         void _loadResourcesUserConnection();
