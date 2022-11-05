@@ -4,5 +4,7 @@ set(SFML_COMPONENTS_TESTS_SRC
     ${SRC_COMPONENT_ROOT}/AnimationComponent_tests.cpp
     ${SRC_COMPONENT_ROOT}/SelectedComponent_tests.cpp
     ${SRC_COMPONENT_ROOT}/WritableContentComponent_tests.cpp
+    ${SRC_COMPONENT_ROOT}/WritableButtonActionComponent_tests.cpp
+    ${SRC_COMPONENT_ROOT}/AssociatedIdComponent_tests.cpp
     PARENT_SCOPE
 )

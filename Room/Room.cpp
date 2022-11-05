@@ -124,6 +124,8 @@ void Room::startLobbyLoop(void)
                 holdANewConnexionRequest(connectionOperation);
             if (connectionOperation.message.type == 13)
                 _holdADisconnectionRequest(connectionOperation);
+            if (connectionOperation.message.type == 50)
+                _holdAChatRequest(connectionOperation);
         } catch (NetworkError &error) {
         }
         if (_state == RoomState::IN_GAME) {
@@ -156,6 +158,20 @@ void Room::_holdADisconnectionRequest(CommunicatorMessage disconnectionDemand)
     }
     _worldInstance->getEntity(clientId).addComponent<Disconnectable>();
     std::cerr << "Player succesfully disconnected." << std::endl;
+}
+
+void Room::_holdAChatRequest(CommunicatorMessage chatRequest)
+{
+    std::vector<std::string> chatContent = _communicatorInstance->utilitaryReceiveChatMessage(chatRequest);
+    std::vector<std::shared_ptr<ecs::Entity>> clients = _worldInstance.get()->joinEntities<ecs::NetworkClient>();
+    std::vector<unsigned short> clientIdList;
+
+    auto addToClientList = [&clientIdList](std::shared_ptr<ecs::Entity> entityPtr) {
+        clientIdList.emplace_back(entityPtr.get()->getComponent<ecs::NetworkClient>().id);
+    };
+
+    std::for_each(clients.begin(), clients.end(), addToClientList);
+    _communicatorInstance->utilitarySendChatMessage(chatContent.at(0), chatContent.at(1), clientIdList);
 }
 
 void Room::_activePlayerGestion()

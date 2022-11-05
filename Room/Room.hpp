@@ -106,6 +106,10 @@ namespace serverData
         /// @param communicatorMessage actual message data
         void _holdADisconnectionRequest(CommunicatorMessage disconnectionDemand);
 
+        /// @brief Hold a chat request. Read it and send it to all the clients
+        /// @param chatRequest actual message data
+        void _holdAChatRequest(CommunicatorMessage chatRequest);
+
         /// @brief Send to the server the disconnection signal
         void _disconectionProcess();
 

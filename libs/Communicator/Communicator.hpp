@@ -26,6 +26,16 @@ using namespace transisthor_lib;
 
 namespace communicator_lib
 {
+    /// @brief Enumeration to know the type of configuration.
+    enum roomConfiguration_e {
+        PLAYER_NUMBER,
+        PLAYER_VELOCITY,
+        PLAYER_SHOOT_FREQUENCY,
+        ENNEMI_VELOCITY,
+        ENNEMI_SHOOT_FREQUENCY,
+        TIME_ACCELERATION
+    };
+
     /// @brief Bridge between communicator and server for message
     struct CommunicatorMessage {
         /// @brief The network message
@@ -34,9 +44,13 @@ namespace communicator_lib
         bool newClient;
     };
 
+    /// @brief Configuration of a room. It contains a name and 6 modifiers.
     struct RoomConfiguration {
+        /// @brief Name of the room.
         std::string roomName;
-        unsigned short configs[6];
+        /// @brief Configuration (6 modifiers).
+        /// Use enumerator roomConfiguration_e to set value at the good index.
+        short configs[6];
     };
 
     /// @brief Network gestionner
@@ -129,7 +143,8 @@ namespace communicator_lib
         /// @param pseudo The pseudonyme of the author
         /// @param messageContent Content of the message
         /// @param destination of the message
-        void utilitarySendChatMessage(std::string pseudo, std::string messageContent, std::vector<unsigned short> destination);
+        void utilitarySendChatMessage(
+            std::string pseudo, std::string messageContent, std::vector<unsigned short> destination);
 
         /// @brief Utilitary function used to extract a message received by a protocol 50
         /// @param cryptedMessage the crypted message
@@ -146,6 +161,7 @@ namespace communicator_lib
         /// @param cryptedMessage The crypted message which contains informations.
         /// @return RoomConfiguration The configuration of the room.
         RoomConfiguration utilitaryReceiveRoomConfiguration(CommunicatorMessage cryptedMessage);
+
       private:
         /// @brief Send a protocol 20 to a client
         /// @param client The destination
