@@ -46,9 +46,20 @@ using namespace graphicECS::SFML::Resources;
 using namespace graphicECS::SFML::Systems;
 using namespace graphicECS::SFML::Components;
 
+UserConnection::UserConnection()
+{
+    _pseudo = "";
+    _password = "";
+    _world = std::make_shared<World>(1);
+}
+
+UserConnection::~UserConnection()
+{
+}
+
 void UserConnection::_loadResourcesUserConnection()
 {
-    _world.addResource<RandomDevice>()
+    _world->addResource<RandomDevice>()
         .addResource<GameClock>()
         .addResource<GameStates>()
         .addResource<RenderWindowResource>("Login", sf::VideoMode(360, 640, 32))
@@ -59,13 +70,13 @@ void UserConnection::_loadResourcesUserConnection()
             ButtonActionMap::WRITABLE_BUTTON, std::function<void(World &, Entity &)>(writableButtonAction))
         .addResource<GraphicsTextureResource>(GraphicsTextureResource::BUTTON, "assets/EpiSprite/r-typesheet11.gif",
             sf::Vector2f(34, 0), sf::Vector2f(34, 34));
-    _world.getResource<ButtonActionMap>().addAction(
+    _world->getResource<ButtonActionMap>().addAction(
         ButtonActionMap::WRITABLE, std::function<void(World &, Entity &)>(selectAWritable));
 }
 
 void UserConnection::_loadSystemsUserConnection()
 {
-    _world.addSystem<UpdateClock>()
+    _world->addSystem<UpdateClock>()
         .addSystem<DeathSystem>()
         .addSystem<DrawComponents>()
         .addSystem<InputManagement>()
@@ -90,7 +101,7 @@ void UserConnection::_setInputUserConnection(ecs::Entity &entity)
 void UserConnection::_loadEntitiesUserConnection(
     std::size_t &buttonSendId, std::size_t &buttonPseudoId, std::size_t &buttonPasswordId)
 {
-    ecs::Entity &inputsEntity = _world.addEntity()
+    ecs::Entity &inputsEntity = _world->addEntity()
                                     .addComponent<MouseInputComponent>()
                                     .addComponent<KeyboardInputComponent>()
                                     .addComponent<ControllerButtonInputComponent>()
@@ -100,16 +111,16 @@ void UserConnection::_loadEntitiesUserConnection(
                                     .addComponent<AllowControllerComponent>();
 
     _setInputUserConnection(inputsEntity);
-    sf::RenderWindow &window = _world.getResource<RenderWindowResource>().window;
+    sf::RenderWindow &window = _world->getResource<RenderWindowResource>().window;
     buttonPseudoId = createNewWritable(
-        _world, window.getSize().x / 2 - 100, window.getSize().y / 5 - 25, 200, 50, MenuStates::IN_GAME);
+        *(_world.get()), window.getSize().x / 2 - 100, window.getSize().y / 5 - 25, 200, 50, MenuStates::IN_GAME);
     buttonPasswordId = createNewWritable(
-        _world, window.getSize().x / 2 - 100, window.getSize().y / 5 * 2 - 25, 200, 50, MenuStates::IN_GAME);
-    buttonSendId = _world.addEntity()
+        *(_world.get()), window.getSize().x / 2 - 100, window.getSize().y / 5 * 2 - 25, 200, 50, MenuStates::IN_GAME);
+    buttonSendId = _world->addEntity()
                        .addComponent<Button>()
                        .addComponent<TextureName>(GraphicsTextureResource::BUTTON)
                        .addComponent<GraphicsRectangleComponent>()
-                       .addComponent<GraphicsTextComponent>(_world.getResource<GraphicsFontResource>().font, "Send",
+                       .addComponent<GraphicsTextComponent>(_world->getResource<GraphicsFontResource>().font, "Send",
                            window.getSize().x / 2 - 100, window.getSize().y / 5 * 4 - 25)
                        .addComponent<Size>(200, 50)
                        .addComponent<Position>(window.getSize().x / 2 - 100, window.getSize().y / 5 * 4 - 25)
@@ -117,18 +128,18 @@ void UserConnection::_loadEntitiesUserConnection(
                        .addComponent<ActionName>(ButtonActionMap::WRITABLE)
                        .addComponent<DisplayState>(MenuStates::IN_GAME)
                        .getId();
-    _world.addEntity()
+    _world->addEntity()
         .addComponent<Button>()
-        .addComponent<GraphicsTextComponent>(_world.getResource<GraphicsFontResource>().font, "Select password",
+        .addComponent<GraphicsTextComponent>(_world->getResource<GraphicsFontResource>().font, "Select password",
             window.getSize().x / 2 - 100, window.getSize().y / 5 * 2 - 25)
         .addComponent<Size>(200, 50)
         .addComponent<Position>(window.getSize().x / 2 - 100, window.getSize().y / 5 * 2 - 25)
         .addComponent<LayerLvL>(LayerLvL::WRITABLE)
         .addComponent<ActionName>(ButtonActionMap::WRITABLE)
         .addComponent<DisplayState>(MenuStates::IN_GAME);
-    _world.addEntity()
+    _world->addEntity()
         .addComponent<Button>()
-        .addComponent<GraphicsTextComponent>(_world.getResource<GraphicsFontResource>().font, "Select pseudo",
+        .addComponent<GraphicsTextComponent>(_world->getResource<GraphicsFontResource>().font, "Select pseudo",
             window.getSize().x / 2 - 100, window.getSize().y / 5 - 25)
         .addComponent<Size>(200, 50)
         .addComponent<Position>(window.getSize().x / 2 - 100, window.getSize().y / 5 - 25)
@@ -139,11 +150,11 @@ void UserConnection::_loadEntitiesUserConnection(
 
 void UserConnection::_runSystemsUserConnection(std::size_t buttonSendId)
 {
-    ecs::Entity &buttonSend = _world.getEntity(buttonSendId);
+    ecs::Entity &buttonSend = _world->getEntity(buttonSendId);
 
     while (
-        _world.containsResource<RenderWindowResource>() && _world.getResource<RenderWindowResource>().window.isOpen()) {
-        _world.runSystems();
+        _world->containsResource<RenderWindowResource>() && _world->getResource<RenderWindowResource>().window.isOpen()) {
+        _world->runSystems();
         if (buttonSend.getComponent<Button>().IsClicked) {
             buttonSend.getComponent<Button>().IsClicked = false;
             break;
@@ -153,7 +164,6 @@ void UserConnection::_runSystemsUserConnection(std::size_t buttonSendId)
 
 void UserConnection::userConnection()
 {
-    World world(2);
     std::size_t buttonSendId = 0;
     std::size_t buttonPseudoId = 0;
     std::size_t buttonPasswordId = 0;
@@ -162,11 +172,11 @@ void UserConnection::userConnection()
     _loadResourcesUserConnection();
     _loadSystemsUserConnection();
     _loadEntitiesUserConnection(buttonSendId, buttonPseudoId, buttonPasswordId);
-    while (!validUserInformation && world.containsResource<RenderWindowResource>()
-        && world.getResource<RenderWindowResource>().window.isOpen()) {
+    while (!validUserInformation && _world->containsResource<RenderWindowResource>()
+        && _world->getResource<RenderWindowResource>().window.isOpen()) {
         _runSystemsUserConnection(buttonSendId);
-        _pseudo = world.getEntity(buttonPseudoId).getComponent<WritableContent>().content;
-        _password = world.getEntity(buttonPasswordId).getComponent<WritableContent>().content;
+        _pseudo = _world->getEntity(buttonPseudoId).getComponent<WritableContent>().content;
+        _password = _world->getEntity(buttonPasswordId).getComponent<WritableContent>().content;
         if (_pseudo.size() != 5 || _password.size() != 5) {
             _pseudo = "";
             _password = "";
