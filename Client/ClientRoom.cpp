@@ -216,12 +216,6 @@ void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
     }
 }
 
-void ClientRoom::_getClientPseudoAndPassword()
-{
-    // _initSpritesForWritable(world.getResource<GraphicsTextureResource>());
-    // _initBackgroundEntities();
-}
-
 void ClientRoom::_connectToARoom()
 {
     void *networkData = std::malloc(sizeof(char) * 5);
@@ -238,7 +232,6 @@ void ClientRoom::startLobbyLoop(void)
     CommunicatorMessage connectionOperation;
 
     std::signal(SIGINT, signalCallbackHandler);
-    _getClientPseudoAndPassword();
     if (_state != ClientState::ENDED)
         startConnexionProtocol();
     while (_state != ClientState::ENDED && _state == ClientState::UNDEFINED) {
