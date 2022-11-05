@@ -17,9 +17,9 @@
 
 #define MINIMUM_WIDTH  1200
 #define MAXIMUM_WIDTH  1500
-#define MINIMUM_HEIGTH 200
-#define MAXIMUM_HEIGTH 800
-#define SQUARE_SPACE 300
+#define MINIMUM_HEIGTH 400
+#define MAXIMUM_HEIGTH 900
+#define SQUARE_SPACE   300
 
 using namespace ecs;
 
@@ -126,7 +126,8 @@ static void initIcePatterns(std::vector<std::shared_ptr<ecs::Entity>> iceEnemies
                 std::pair<int, int>(baseSquareX + SQUARE_SPACE, baseSquareY - SQUARE_SPACE));
         }
         if (x + 2 < nbEnemies) {
-            setIceEnemyBaseParam(iceEnemies.at(x + 2), std::pair<int, int>(baseSquareX + SQUARE_SPACE, baseSquareY - SQUARE_SPACE),
+            setIceEnemyBaseParam(iceEnemies.at(x + 2),
+                std::pair<int, int>(baseSquareX + SQUARE_SPACE, baseSquareY - SQUARE_SPACE),
                 std::pair<int, int>(baseSquareX, baseSquareY - SQUARE_SPACE));
         }
         if (x + 3 < nbEnemies) {
@@ -176,9 +177,9 @@ static void iceEnemyPatterns(std::vector<std::shared_ptr<ecs::Entity>> allEnemie
         Destination &dest = currEnemy.get()->getComponent<Destination>();
         Velocity &vel = currEnemy.get()->getComponent<Velocity>();
 
-        if (pos.x - 10 <= dest.x && dest.x <= pos.x + 10 && pos.y - 10 <= dest.y && dest.y <= pos.y + 10) {
+        if (pos.x - 5 <= dest.x && dest.x <= pos.x + 5 && pos.y - 5 <= dest.y && dest.y <= pos.y + 5) {
             auto secondGuard = std::lock_guard(*previousEnemy.get());
-            Destination &newDest = previousEnemy.get()->getComponent<Destination>();
+            Position &newDest = previousEnemy.get()->getComponent<Position>();
 
             dest.x = newDest.x;
             dest.y = newDest.y;
