@@ -6,6 +6,8 @@ var dir_d58d1756592902a6f2a860fa6a22a602 =
     [ "CreateBackground.hpp", "_create_background_8hpp.html", "_create_background_8hpp" ],
     [ "CreateButton.cpp", "_create_button_8cpp.html", "_create_button_8cpp" ],
     [ "CreateButton.hpp", "_create_button_8hpp.html", "_create_button_8hpp" ],
+    [ "CreateChatMessage.cpp", "_create_chat_message_8cpp.html", "_create_chat_message_8cpp" ],
+    [ "CreateChatMessage.hpp", "_create_chat_message_8hpp.html", "_create_chat_message_8hpp" ],
     [ "CreateEnemy.cpp", "_create_enemy_8cpp.html", "_create_enemy_8cpp" ],
     [ "CreateEnemy.hpp", "_create_enemy_8hpp.html", "_create_enemy_8hpp" ],
     [ "CreateEnemyProjectile.cpp", "_create_enemy_projectile_8cpp.html", "_create_enemy_projectile_8cpp" ],

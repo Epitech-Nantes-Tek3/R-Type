@@ -98,6 +98,7 @@ $(document).ready(function(){initNavTree('_client_room_8cpp.html',''); initResiz
 <code>#include &quot;<a class="el" href="_action_queue_component_8hpp_source.html">GraphicECS/SFML/Components/ActionQueueComponent.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_allow_controller_component_8hpp_source.html">GraphicECS/SFML/Components/AllowControllerComponent.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_allow_mouse_and_keyboard_component_8hpp_source.html">GraphicECS/SFML/Components/AllowMouseAndKeyboardComponent.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_chat_message_component_8hpp_source.html">GraphicECS/SFML/Components/ChatMessageComponent.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_controller_button_input_component_8hpp_source.html">GraphicECS/SFML/Components/ControllerButtonInputComponent.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_controller_joystick_input_component_8hpp_source.html">GraphicECS/SFML/Components/ControllerJoystickInputComponent.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_graphics_rectangle_component_8hpp_source.html">GraphicECS/SFML/Components/GraphicsRectangleComponent.hpp</a>&quot;</code><br />
@@ -117,6 +118,7 @@ $(document).ready(function(){initNavTree('_client_room_8cpp.html',''); initResiz
 <code>#include &quot;<a class="el" href="_input_management_8hpp_source.html">GraphicECS/SFML/Systems/InputManagement.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_music_management_8hpp_source.html">GraphicECS/SFML/Systems/MusicManagement.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_parallax_system_8hpp_source.html">GraphicECS/SFML/Systems/ParallaxSystem.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_remove_chat_system_8hpp_source.html">GraphicECS/SFML/Systems/RemoveChatSystem.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_sf_object_follow_entity_system_8hpp_source.html">GraphicECS/SFML/Systems/SfObjectFollowEntitySystem.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_sound_management_8hpp_source.html">GraphicECS/SFML/Systems/SoundManagement.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_networkable_8hpp_source.html">Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp</a>&quot;</code><br />
@@ -127,6 +129,7 @@ $(document).ready(function(){initNavTree('_client_room_8cpp.html',''); initResiz
 <code>#include &quot;<a class="el" href="_game_states_8hpp_source.html">R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/GameStates.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_menu_states_8hpp_source.html">R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/MenuStates.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_create_button_8hpp_source.html">R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateButton.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_create_chat_message_8hpp_source.html">R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateChatMessage.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_create_writable_8hpp_source.html">R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateWritable.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_create_writable_button_8hpp_source.html">R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateWritableButton.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_layer_lv_l_8hpp_source.html">R-TypeLogic/Global/Components/LayerLvL.hpp</a>&quot;</code><br />
@@ -138,63 +141,6 @@ $(document).ready(function(){initNavTree('_client_room_8cpp.html',''); initResiz
 <code>#include &quot;<a class="el" href="_movement_system_8hpp_source.html">R-TypeLogic/Global/Systems/MovementSystem.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_no_afk_in_menu_system_8hpp_source.html">R-TypeLogic/Global/Systems/NoAfkInMenuSystem.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_update_clock_system_8hpp_source.html">R-TypeLogic/Global/Systems/UpdateClockSystem.hpp</a>&quot;</code><br />
-</div><div class="textblock"><div class="dynheader">
-Include dependency graph for ClientRoom.cpp:</div>
-<div class="dyncontent">
-<div class="center"><img src="_client_room_8cpp__incl.png" border="0" usemap="#a_client_2_client_room_8cpp" alt=""/></div>
-<map name="a_client_2_client_room_8cpp" id="a_client_2_client_room_8cpp">
-<area shape="rect" title=" " alt="" coords="3650,5,3817,32"/>
-<area shape="rect" href="_client_room_8hpp.html" title=" " alt="" coords="238,95,365,121"/>
-<area shape="rect" href="_graphics_texture_resource_8hpp.html" title=" " alt="" coords="5,191,224,233"/>
-<area shape="rect" title=" " alt="" coords="686,95,754,121"/>
-<area shape="rect" title=" " alt="" coords="1054,295,1141,322"/>
-<area shape="rect" title=" " alt="" coords="1719,199,1783,225"/>
-<area shape="rect" href="_button_action_8hpp.html" title=" " alt="" coords="1858,95,1993,121"/>
-<area shape="rect" href="_error_8hpp.html" title=" " alt="" coords="2017,95,2132,121"/>
-<area shape="rect" href="_action_queue_component_8hpp.html" title=" " alt="" coords="1185,191,1407,233"/>
-<area shape="rect" href="_allow_controller_component_8hpp.html" title=" " alt="" coords="2156,87,2385,129"/>
-<area shape="rect" href="_allow_mouse_and_keyboard_component_8hpp.html" title=" " alt="" coords="2410,87,2705,129"/>
-<area shape="rect" href="_controller_button_input_component_8hpp.html" title=" " alt="" coords="248,191,517,233"/>
-<area shape="rect" href="_controller_joystick_input_component_8hpp.html" title=" " alt="" coords="981,87,1259,129"/>
-<area shape="rect" href="_graphics_rectangle_component_8hpp.html" title=" " alt="" coords="2631,191,2881,233"/>
-<area shape="rect" href="_keyboard_input_component_8hpp.html" title=" " alt="" coords="1333,87,1555,129"/>
-<area shape="rect" href="_mouse_input_component_8hpp.html" title=" " alt="" coords="542,191,765,233"/>
-<area shape="rect" href="_music_component_8hpp.html" title=" " alt="" coords="3857,191,4079,233"/>
-<area shape="rect" href="_music_resource_8hpp.html" title=" " alt="" coords="3790,288,3997,329"/>
-<area shape="rect" href="_parallax_component_8hpp.html" title=" " alt="" coords="4042,87,4265,129"/>
-<area shape="rect" href="_sound_component_8hpp.html" title=" " alt="" coords="4338,191,4561,233"/>
-<area shape="rect" href="_sound_resource_8hpp.html" title=" " alt="" coords="4271,288,4478,329"/>
-<area shape="rect" href="_texture_name_8hpp.html" title=" " alt="" coords="422,87,645,129"/>
-<area shape="rect" href="_graphics_font_resource_8hpp.html" title=" " alt="" coords="4611,87,4818,129"/>
-<area shape="rect" href="_render_window_resource_8hpp.html" title=" " alt="" coords="4970,191,5182,233"/>
-<area shape="rect" href="_animation_system_8hpp.html" title=" " alt="" coords="5709,87,5905,129"/>
-<area shape="rect" href="_draw_components_8hpp.html" title=" " alt="" coords="5114,87,5310,129"/>
-<area shape="rect" href="_layer_lv_l_8hpp.html" title=" " alt="" coords="5385,191,5583,233"/>
-<area shape="rect" href="_input_management_8hpp.html" title=" " alt="" coords="4842,87,5038,129"/>
-<area shape="rect" href="_music_management_8hpp.html" title=" " alt="" coords="3771,87,3967,129"/>
-<area shape="rect" href="_parallax_system_8hpp.html" title=" " alt="" coords="5929,87,6125,129"/>
-<area shape="rect" href="_sf_object_follow_entity_system_8hpp.html" title=" " alt="" coords="2781,87,3019,129"/>
-<area shape="rect" href="_position_component_8hpp.html" title=" " alt="" coords="2932,191,3199,233"/>
-<area shape="rect" href="_sound_management_8hpp.html" title=" " alt="" coords="4339,87,4535,129"/>
-<area shape="rect" href="_networkable_8hpp.html" title=" " alt="" coords="3223,191,3479,233"/>
-<area shape="rect" href="_network_server_8hpp.html" title=" " alt="" coords="3503,191,3782,233"/>
-<area shape="rect" href="_send_newly_created_to_server_8hpp.html" title=" " alt="" coords="6149,80,6416,136"/>
-<area shape="rect" href="_send_to_server_8hpp.html" title=" " alt="" coords="3403,87,3645,129"/>
-<area shape="rect" href="_button_action_map_8hpp.html" title=" " alt="" coords="789,184,1059,240"/>
-<area shape="rect" href="_game_states_8hpp.html" title=" " alt="" coords="6441,80,6711,136"/>
-<area shape="rect" href="_menu_states_8hpp.html" title=" " alt="" coords="6735,80,7006,136"/>
-<area shape="rect" href="_create_button_8hpp.html" title=" " alt="" coords="5335,87,5633,129"/>
-<area shape="rect" href="_create_writable_8hpp.html" title=" " alt="" coords="7030,87,7341,129"/>
-<area shape="rect" href="_create_writable_button_8hpp.html" title=" " alt="" coords="7365,80,7648,136"/>
-<area shape="rect" href="_player_component_8hpp.html" title=" " alt="" coords="7672,87,7928,129"/>
-<area shape="rect" href="_game_clock_8hpp.html" title=" " alt="" coords="8033,191,8279,233"/>
-<area shape="rect" href="_random_8hpp.html" title=" " alt="" coords="8273,87,8497,129"/>
-<area shape="rect" href="_death_system_8hpp.html" title=" " alt="" coords="1580,87,1783,129"/>
-<area shape="rect" href="_movement_system_8hpp.html" title=" " alt="" coords="3043,87,3277,129"/>
-<area shape="rect" href="_no_afk_in_menu_system_8hpp.html" title=" " alt="" coords="8521,87,8772,129"/>
-<area shape="rect" href="_update_clock_system_8hpp.html" title=" " alt="" coords="7953,87,8199,129"/>
-</map>
-</div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>

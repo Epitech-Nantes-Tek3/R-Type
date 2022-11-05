@@ -18,6 +18,12 @@ var dir_7da7d94555b70b51b390ae84941ad419 =
     [ "AssociatedIdComponent.hpp", "_associated_id_component_8hpp.html", [
       [ "AssociatedId", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_associated_id.html", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_associated_id" ]
     ] ],
+    [ "ChatMessageComponent.hpp", "_chat_message_component_8hpp.html", [
+      [ "ChatMessage", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_chat_message.html", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_chat_message" ]
+    ] ],
+    [ "ChatMessageLifeComponent.hpp", "_chat_message_life_component_8hpp.html", [
+      [ "ChatMessageLife", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_chat_message_life.html", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_chat_message_life" ]
+    ] ],
     [ "ControllerButtonInputComponent.hpp", "_controller_button_input_component_8hpp.html", [
       [ "ControllerButtonInputComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_controller_button_input_component.html", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_controller_button_input_component" ]
     ] ],

@@ -97,6 +97,8 @@ var annotated_dup =
           [ "AnimationComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_animation_component.html", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_animation_component" ],
           [ "AnimationFrequencyComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_animation_frequency_component.html", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_animation_frequency_component" ],
           [ "AssociatedId", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_associated_id.html", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_associated_id" ],
+          [ "ChatMessage", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_chat_message.html", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_chat_message" ],
+          [ "ChatMessageLife", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_chat_message_life.html", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_chat_message_life" ],
           [ "ControllerButtonInputComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_controller_button_input_component.html", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_controller_button_input_component" ],
           [ "ControllerJoystickInputComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_controller_joystick_input_component.html", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_controller_joystick_input_component" ],
           [ "GraphicsRectangleComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_graphics_rectangle_component.html", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_graphics_rectangle_component" ],
@@ -125,6 +127,7 @@ var annotated_dup =
           [ "InputManagement", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_input_management.html", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_input_management" ],
           [ "MusicManagement", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_music_management.html", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_music_management" ],
           [ "Parallax", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_parallax.html", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_parallax" ],
+          [ "RemoveChatSystem", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_remove_chat_system.html", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_remove_chat_system" ],
           [ "SfObjectFollowEntitySystem", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sf_object_follow_entity_system.html", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sf_object_follow_entity_system" ],
           [ "SoundManagement", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sound_management.html", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sound_management" ]
         ] ]

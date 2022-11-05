@@ -302,6 +302,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a655da926013873e0657e50b563901954"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceecs.html#a655da926013873e0657e50b563901954">createNewButton</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, const int posX, const int posY, const int sizeX, const int sizeY, <a class="el" href="classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90">ButtonActionMap::buttonAction_e</a> actionName, <a class="el" href="classecs_1_1_layer_lv_l.html#a3d249124964fcfd2525e3ccc99313799">LayerLvL::layer_e</a> layerLvl, <a class="el" href="classecs_1_1_menu_states.html#a0d4dd57d2a1f5290f65d1288712f922a">MenuStates::menuState_e</a> state)</td></tr>
 <tr class="memdesc:a655da926013873e0657e50b563901954"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function creates a new <a class="el" href="classecs_1_1_button.html" title="The Button Component, used to make the difference between the component.">Button</a> <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components The std::mutex inheritance is in...">Entity</a> with these parameters.  <a href="namespaceecs.html#a655da926013873e0657e50b563901954">More...</a><br /></td></tr>
 <tr class="separator:a655da926013873e0657e50b563901954"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13cb3c81cde2f4821d7149e3ce7d2540"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceecs.html#a13cb3c81cde2f4821d7149e3ce7d2540">createNewChatMessage</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, const int posX, const int posY, const int sizeX, const int sizeY, double frequency, std::string author, std::string content)</td></tr>
+<tr class="memdesc:a13cb3c81cde2f4821d7149e3ce7d2540"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function creates a new ChatMessage <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components The std::mutex inheritance is in...">Entity</a> with these parameters.  <a href="namespaceecs.html#a13cb3c81cde2f4821d7149e3ce7d2540">More...</a><br /></td></tr>
+<tr class="separator:a13cb3c81cde2f4821d7149e3ce7d2540"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af91a8a9fbcf319e1d07ae7e1600713d3"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceecs.html#af91a8a9fbcf319e1d07ae7e1600713d3">createNewEnemy</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, const int posX, const int posY, const double multiplierAbscissa, const double multiplierOrdinate, const short weight, const int sizeX, const int sizeY, const unsigned short life, const unsigned short damage, const unsigned short damageRadius, unsigned short type, const std::string uuid=&quot;&quot;, const unsigned short networkId=0)</td></tr>
 <tr class="memdesc:af91a8a9fbcf319e1d07ae7e1600713d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function creates a new <a class="el" href="classecs_1_1_enemy.html" title="Enemy Component allows an entity to be used as an Enemy.">Enemy</a> <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components The std::mutex inheritance is in...">Entity</a> with these parameters.  <a href="namespaceecs.html#af91a8a9fbcf319e1d07ae7e1600713d3">More...</a><br /></td></tr>
 <tr class="separator:af91a8a9fbcf319e1d07ae7e1600713d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -576,6 +579,86 @@ template&lt;std::derived_from&lt; Component &gt; C&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Id of the new <a class="el" href="classecs_1_1_button.html" title="The Button Component, used to make the difference between the component.">Button</a> in std::size_t </dd></dl>
+
+</div>
+</div>
+<a id="a13cb3c81cde2f4821d7149e3ce7d2540"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13cb3c81cde2f4821d7149e3ce7d2540">&#9670;&nbsp;</a></span>createNewChatMessage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::size_t ecs::createNewChatMessage </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classecs_1_1_world.html">World</a> &amp;&#160;</td>
+          <td class="paramname"><em>world</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>posX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>posY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>sizeX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>sizeY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>frequency</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>author</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>content</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function creates a new ChatMessage <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components The std::mutex inheritance is in...">Entity</a> with these parameters. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">world</td><td>The world in which the ChatMessage must be created </td></tr>
+    <tr><td class="paramname">posX</td><td><a class="el" href="classecs_1_1_position.html" title="The Position component, almost used for every entities It&#39;s a networkable component.">Position</a> x of the ChatMessage </td></tr>
+    <tr><td class="paramname">posY</td><td><a class="el" href="classecs_1_1_position.html" title="The Position component, almost used for every entities It&#39;s a networkable component.">Position</a> y of the ChatMessage </td></tr>
+    <tr><td class="paramname">sizeX</td><td><a class="el" href="classecs_1_1_size.html" title="The Size component, almost used for everything.">Size</a> x of the ChatMessage </td></tr>
+    <tr><td class="paramname">sizeY</td><td><a class="el" href="classecs_1_1_size.html" title="The Size component, almost used for everything.">Size</a> y of the ChatMessage </td></tr>
+    <tr><td class="paramname">frequency</td><td>time's before the message disparition </td></tr>
+    <tr><td class="paramname">author</td><td>of the message </td></tr>
+    <tr><td class="paramname">content</td><td>of the message </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Id of the new ChatMessage in std::size_t </dd></dl>
 
 </div>
 </div>

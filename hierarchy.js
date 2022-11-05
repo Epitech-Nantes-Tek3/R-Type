@@ -54,6 +54,8 @@ var hierarchy =
       [ "graphicECS::SFML::Components::AnimationComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_animation_component.html", null ],
       [ "graphicECS::SFML::Components::AnimationFrequencyComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_animation_frequency_component.html", null ],
       [ "graphicECS::SFML::Components::AssociatedId", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_associated_id.html", null ],
+      [ "graphicECS::SFML::Components::ChatMessage", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_chat_message.html", null ],
+      [ "graphicECS::SFML::Components::ChatMessageLife", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_chat_message_life.html", null ],
       [ "graphicECS::SFML::Components::ControllerButtonInputComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_controller_button_input_component.html", null ],
       [ "graphicECS::SFML::Components::ControllerJoystickInputComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_controller_joystick_input_component.html", null ],
       [ "graphicECS::SFML::Components::GraphicsRectangleComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_graphics_rectangle_component.html", null ],
@@ -124,6 +126,7 @@ var hierarchy =
       [ "graphicECS::SFML::Systems::InputManagement", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_input_management.html", null ],
       [ "graphicECS::SFML::Systems::MusicManagement", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_music_management.html", null ],
       [ "graphicECS::SFML::Systems::Parallax", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_parallax.html", null ],
+      [ "graphicECS::SFML::Systems::RemoveChatSystem", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_remove_chat_system.html", null ],
       [ "graphicECS::SFML::Systems::SfObjectFollowEntitySystem", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sf_object_follow_entity_system.html", null ],
       [ "graphicECS::SFML::Systems::SoundManagement", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sound_management.html", null ]
     ] ],

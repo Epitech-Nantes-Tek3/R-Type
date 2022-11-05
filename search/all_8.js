@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['hub_288',['HUB',['../classserver__data_1_1_server.html#afa18619a548a505dbae99d57e2e681b6a3e079c45250d4eae6f5dff1353bf44ae',1,'server_data::Server']]],
-  ['hubstate_289',['HubState',['../classserver__data_1_1_server.html#afa18619a548a505dbae99d57e2e681b6',1,'server_data::Server']]]
+  ['hub_297',['HUB',['../classserver__data_1_1_server.html#afa18619a548a505dbae99d57e2e681b6a3e079c45250d4eae6f5dff1353bf44ae',1,'server_data::Server']]],
+  ['hubstate_298',['HubState',['../classserver__data_1_1_server.html#afa18619a548a505dbae99d57e2e681b6',1,'server_data::Server']]]
 ];

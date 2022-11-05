@@ -67,6 +67,7 @@ var namespaceecs =
     [ "createNewAlliedProjectile", "namespaceecs.html#abcc3b846d3de6b0dbb16a17e319cb594", null ],
     [ "createNewBackGround", "namespaceecs.html#a761c48420b9ed05874533d36511531b6", null ],
     [ "createNewButton", "namespaceecs.html#a655da926013873e0657e50b563901954", null ],
+    [ "createNewChatMessage", "namespaceecs.html#a13cb3c81cde2f4821d7149e3ce7d2540", null ],
     [ "createNewEnemy", "namespaceecs.html#af91a8a9fbcf319e1d07ae7e1600713d3", null ],
     [ "createNewEnemyProjectile", "namespaceecs.html#aa62e95c47f17c08d6077518fbf890fb9", null ],
     [ "createNewEnemyRandom", "namespaceecs.html#ab7fa4b5b5616ea9a84351bcc96cb7b16", null ],

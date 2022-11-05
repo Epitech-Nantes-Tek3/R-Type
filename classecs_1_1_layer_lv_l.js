@@ -9,6 +9,7 @@ var classecs_1_1_layer_lv_l =
       [ "BUTTON", "classecs_1_1_layer_lv_l.html#a3d249124964fcfd2525e3ccc99313799a44581141ac4f240ee7ddf8713cf57f11", null ],
       [ "WRITABLE", "classecs_1_1_layer_lv_l.html#a3d249124964fcfd2525e3ccc99313799a1a600d5c1b4e70b91db3c3313ced4d90", null ],
       [ "WRITABLE_BUTTON", "classecs_1_1_layer_lv_l.html#a3d249124964fcfd2525e3ccc99313799a0783902fb83ed4dbd4a76a1fc8bbec14", null ],
+      [ "CHAT_MESSAGE", "classecs_1_1_layer_lv_l.html#a3d249124964fcfd2525e3ccc99313799a32922626c35c022084ffc72f62d0863a", null ],
       [ "ENEMY", "classecs_1_1_layer_lv_l.html#a3d249124964fcfd2525e3ccc99313799a44b3c00aea6e4bca7e6baa0d9ee63037", null ],
       [ "PLAYER", "classecs_1_1_layer_lv_l.html#a3d249124964fcfd2525e3ccc99313799a44419a19202de3a25c455f6c91fdd20f", null ],
       [ "PROJECTILE", "classecs_1_1_layer_lv_l.html#a3d249124964fcfd2525e3ccc99313799a1163826042e27f3e0535dc06548cc4ef", null ],

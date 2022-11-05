@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['name_1303',['name',['../classecs_1_1_player.html#a2a351f26375b37ff72057b2d41159530',1,'ecs::Player']]],
-  ['newclient_1304',['newClient',['../structcommunicator__lib_1_1_communicator_message.html#a9231e1a6f87aa36c75c9557e8bae72cd',1,'communicator_lib::CommunicatorMessage']]]
+  ['name_1331',['name',['../classecs_1_1_player.html#a2a351f26375b37ff72057b2d41159530',1,'ecs::Player']]],
+  ['newclient_1332',['newClient',['../structcommunicator__lib_1_1_communicator_message.html#a9231e1a6f87aa36c75c9557e8bae72cd',1,'communicator_lib::CommunicatorMessage']]]
 ];

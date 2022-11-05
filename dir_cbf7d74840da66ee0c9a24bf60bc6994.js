@@ -20,6 +20,10 @@ var dir_cbf7d74840da66ee0c9a24bf60bc6994 =
     [ "ParallaxSystem.hpp", "_parallax_system_8hpp.html", [
       [ "Parallax", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_parallax.html", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_parallax" ]
     ] ],
+    [ "RemoveChatSystem.cpp", "_remove_chat_system_8cpp.html", null ],
+    [ "RemoveChatSystem.hpp", "_remove_chat_system_8hpp.html", [
+      [ "RemoveChatSystem", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_remove_chat_system.html", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_remove_chat_system" ]
+    ] ],
     [ "SfObjectFollowEntitySystem.cpp", "_sf_object_follow_entity_system_8cpp.html", null ],
     [ "SfObjectFollowEntitySystem.hpp", "_sf_object_follow_entity_system_8hpp.html", [
       [ "SfObjectFollowEntitySystem", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sf_object_follow_entity_system.html", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sf_object_follow_entity_system" ]

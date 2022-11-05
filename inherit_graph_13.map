@@ -1,5 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classecs_1_1_system.html" title=" " alt="" coords="5,563,107,589"/>
+<area shape="rect" id="node1" href="$classecs_1_1_system.html" title=" " alt="" coords="5,588,107,615"/>
 <area shape="rect" id="node2" href="$struct_send_newly_created_to_clients.html" title=" " alt="" coords="159,5,365,32"/>
 <area shape="rect" id="node3" href="$struct_send_newly_created_to_server.html" title=" " alt="" coords="161,56,363,83"/>
 <area shape="rect" id="node4" href="$struct_send_to_client.html" title="SendToClient is a system that sends Networkable Entities datas to clients" alt="" coords="209,107,315,133"/>
@@ -21,6 +21,7 @@
 <area shape="rect" id="node20" href="$structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_input_management.html" title="This system class manage SFML input to link them to an action." alt="" coords="161,947,363,989"/>
 <area shape="rect" id="node21" href="$structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_music_management.html" title="This System manages the status of all Music with the Music Component Status." alt="" coords="161,1013,363,1054"/>
 <area shape="rect" id="node22" href="$structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_parallax.html" title="Parallax System. Make a moving background to make an &quot;infinite map&quot;." alt="" coords="161,1078,363,1119"/>
-<area shape="rect" id="node23" href="$structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sf_object_follow_entity_system.html" title="This system class manage SFML Rectangle Shape to modify it&#39;s SfRectangleSahpePosition with the Positi..." alt="" coords="155,1143,369,1185"/>
-<area shape="rect" id="node24" href="$structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sound_management.html" title="This System manages the status of all Sound with the Sound Component Status." alt="" coords="161,1209,363,1250"/>
+<area shape="rect" id="node23" href="$structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_remove_chat_system.html" title="This structure system updates the ChatMessageLife frequency and remove the dead one." alt="" coords="161,1143,363,1185"/>
+<area shape="rect" id="node24" href="$structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sf_object_follow_entity_system.html" title="This system class manage SFML Rectangle Shape to modify it&#39;s SfRectangleSahpePosition with the Positi..." alt="" coords="155,1209,369,1250"/>
+<area shape="rect" id="node25" href="$structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sound_management.html" title="This System manages the status of all Sound with the Sound Component Status." alt="" coords="161,1274,363,1315"/>
 </map>
