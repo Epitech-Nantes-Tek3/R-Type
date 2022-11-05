@@ -124,6 +124,10 @@ void Room::startLobbyLoop(void)
                 holdANewConnexionRequest(connectionOperation);
             if (connectionOperation.message.type == 13)
                 _holdADisconnectionRequest(connectionOperation);
+            if (connectionOperation.message.type == 40)
+                _holdADatabaseValueRequest(connectionOperation);
+            if (connectionOperation.message.type == 42)
+                _holdADatabaseSetRequest(connectionOperation);
             if (connectionOperation.message.type == 50)
                 _holdAChatRequest(connectionOperation);
         } catch (NetworkError &error) {
@@ -158,6 +162,19 @@ void Room::_holdADisconnectionRequest(CommunicatorMessage disconnectionDemand)
     }
     _worldInstance->getEntity(clientId).addComponent<Disconnectable>();
     std::cerr << "Player succesfully disconnected." << std::endl;
+}
+
+void Room::_holdADatabaseValueRequest(CommunicatorMessage databaseRequest)
+{
+    std::vector<std::string> requestContent =
+        _communicatorInstance->utilitaryReceiveAskingForDatabaseValue(databaseRequest);
+    (void)requestContent;
+}
+
+void Room::_holdADatabaseSetRequest(CommunicatorMessage databaseRequest)
+{
+    std::vector<std::string> requestContent = _communicatorInstance->utilitaryReceiveSetDatabaseValue(databaseRequest);
+    (void)requestContent;
 }
 
 void Room::_holdAChatRequest(CommunicatorMessage chatRequest)

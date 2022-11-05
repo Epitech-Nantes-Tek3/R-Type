@@ -108,8 +108,16 @@ namespace server_data
         void _SendEndGameToServer();
 
         /// @brief Trait a disconnection request. Identify the player and add to it a disconnection component
-        /// @param communicatorMessage actual message data
+        /// @param disconnectionDemand actual message data
         void _holdADisconnectionRequest(CommunicatorMessage disconnectionDemand);
+
+        /// @brief Trait a get value request. Ask the database for this value and reply it with the 41 protocol.
+        /// @param databaseRequest actual request data
+        void _holdADatabaseValueRequest(CommunicatorMessage databaseRequest);
+
+        /// @brief Trait a set value request. Change inside the database the value.
+        /// @param databaseRequest actual request data
+        void _holdADatabaseSetRequest(CommunicatorMessage databaseRequest);
 
         /// @brief Hold a chat request. Read it and send it to all the clients
         /// @param chatRequest actual message data
