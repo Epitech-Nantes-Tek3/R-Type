@@ -33,6 +33,7 @@
 r-type_client
 r-type_server
 r-type_room
+R-TypeDatabase
 
 # CMake
 build

@@ -13,9 +13,11 @@
 #include <vector>
 #include "Communicator/Client.hpp"
 #include "Communicator/Communicator.hpp"
+#include "Database/Database.hpp"
 #include "RoomInstance.hpp"
 
 using namespace communicator_lib;
+using namespace database;
 
 namespace server_data
 {
@@ -63,6 +65,9 @@ namespace server_data
 
         /// @brief Id of the next room to create
         unsigned short _nextRoomId;
+
+        /// @brief Bridge to communicate with the database
+        Database _databaseApi;
 
         /// @brief Cross all machine port and find an empty one
         /// @param actual port number (+ 101 per iteration)

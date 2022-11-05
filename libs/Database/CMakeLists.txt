@@ -19,4 +19,12 @@ endif()
 target_include_directories(${TARGET}
     PUBLIC ${INC_ROOT}
     PRIVATE ${SRC_ROOT}
+    PRIVATE ${CONAN_INCLUDE_DIRS_SQLITE3}
 )
+
+target_link_libraries(${TARGET}
+    CONAN_PKG::sqlite3
+)
+
+include(${PROJECT_SOURCE_DIR}/build/conanbuildinfo.cmake)
+conan_basic_setup(TARGETS)
