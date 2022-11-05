@@ -162,7 +162,15 @@ namespace communicator_lib
         /// @brief Utilitary function used to send a database value with a protocol 41
         /// @param value the database value
         /// @param destination of the message
-        void utilitaryAskForADatabaseValue(std::string value, std::vector<unsigned short> destination);
+        void utilitarySendDatabaseValue(std::string value, std::vector<unsigned short> destination);
+
+        /// @brief Utilitary function used to set a value inside the database with a protocol 42
+        /// @param pseudo The wanted client name
+        /// @param key The wanted value key
+        /// @param value The new value to set
+        /// @param destination of the message
+        void utilitarySetADatabaseValue(
+            std::string pseudo, unsigned short key, unsigned short value, std::vector<unsigned short> destination);
 
         /// @brief Utilitary function used to extract a message received by a protocol 50
         /// @param cryptedMessage the crypted message
@@ -178,6 +186,11 @@ namespace communicator_lib
         /// @param cryptedMessage the crypted message
         /// @return std::string the value
         std::string utilitaryReceiveDatabaseValue(CommunicatorMessage cryptedMessage);
+
+        /// @brief Utilitary function used to extract the set request received by a protocol 42
+        /// @param cryptedMessage the crypted message
+        /// @return std::vector<std::string> the decrypted pseudo + type + value
+        std::vector<std::string> utilitaryReceiveSetDatabaseValue(CommunicatorMessage cryptedMessage);
 
         /// @brief Utilitary function used to send a message with a protocol 17.
         /// @param roomName The name of the room configuration.
