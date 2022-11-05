@@ -124,10 +124,10 @@ namespace client_data
         std::shared_ptr<World> _worldInstance;
 
         /// @brief Init the Ressources and Systems of the ECS
-        void initEcsGameData(void);
+        void _initEcsGameData(void);
 
         /// @brief Start the connexion protocol and ask the server for a place inside the room
-        void startConnexionProtocol(void);
+        void _startConnexionProtocol(void);
 
         /// @brief Answer the reception of a protocol 12
         void protocol12Answer(CommunicatorMessage connexionResponse);

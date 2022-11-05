@@ -112,14 +112,14 @@ ClientRoom::ClientRoom(std::string address, unsigned short port, std::string ser
     _password = "";
 }
 
-void ClientRoom::initEcsGameData(void)
+void ClientRoom::_initEcsGameData(void)
 {
     _initSharedResources();
     _initSystems();
     _initEntities();
 }
 
-void ClientRoom::startConnexionProtocol(void)
+void ClientRoom::_startConnexionProtocol(void)
 {
     void *networkData = std::malloc(sizeof(char) * 10);
 
@@ -233,7 +233,7 @@ void ClientRoom::startLobbyLoop(void)
 
     std::signal(SIGINT, signalCallbackHandler);
     if (_state != ClientState::ENDED)
-        startConnexionProtocol();
+        _startConnexionProtocol();
     while (_state != ClientState::ENDED && _state == ClientState::UNDEFINED) {
         try {
             connectionOperation = _communicatorInstance.get()->getLastMessage();
@@ -251,7 +251,7 @@ void ClientRoom::startLobbyLoop(void)
         }
     }
     if (_state != ClientState::ENDED) {
-        initEcsGameData();
+        _initEcsGameData();
         _connectToARoom();
         _state = ClientState::LOBBY;
     }
