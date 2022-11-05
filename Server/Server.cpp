@@ -151,11 +151,12 @@ void Server::_holdANewConnectionRequest(CommunicatorMessage connectionDemand)
     if (apiAnswer.empty()) {
         _databaseApi.addUser(pseudoStr, passwordStr, false, false, false);
     } else {
-        if (apiAnswer.at(0)["Password"] != passwordStr) {
+        if (apiAnswer.at(0)["Password"] != passwordStr || apiAnswer.at(0)["Banned"] != "0") {
             _communicatorInstance.get()->sendDataToAClient(connectionDemand.message.clientInfo, nullptr, 0, 11);
             return;
         }
     }
+    std::cerr << "WESH" << std::endl;
     void *networkData =
         std::malloc(sizeof(unsigned short) + _activeRoomList.size() * (sizeof(unsigned short) + sizeof(char) * 10));
     std::size_t offset = 0;
