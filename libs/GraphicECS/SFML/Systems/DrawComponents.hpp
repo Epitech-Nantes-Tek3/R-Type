@@ -29,8 +29,12 @@ namespace graphicECS::SFML::Systems
         static void addButtonText(std::shared_ptr<Entity> buttonPtr, const sf::Font &newFont);
 
         /// @brief Add corresponding texts to the writable thanks to its content
-        /// @param buttonPtr A Writable Entity
+        /// @param writablePtr A Writable Entity
         static void addWritableText(std::shared_ptr<Entity> writablePtr, const sf::Font &newFont);
+
+        /// @brief Add corresponding texts to the chat message thanks to its chatMessage component
+        /// @param chatMessagePtr A ChatMessage Entity
+        static void addChatMessageText(std::shared_ptr<Entity> chatMessagePtr, const sf::Font &newFont);
 
         /// @brief The run function of this system. It will be used by the world in the function runSystems.
         /// @param world The corresponding world on which run this system.
