@@ -2,7 +2,7 @@
 sfml/2.5.1
 boost/1.80.0
 zlib/1.2.13
-sqlite3/3.39.4
+sqlitecpp/3.2.0
 
 [options]
 boost:shared=True
