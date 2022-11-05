@@ -8,7 +8,7 @@
 #include "Error/Error.hpp"
 #include "Server.hpp"
 
-namespace serverData
+namespace server_data
 {
     RoomInstance::RoomInstance(
         Server *server, unsigned short id, std::string name, std::string address, unsigned short port)
@@ -95,4 +95,4 @@ namespace serverData
         if (boost::this_thread::get_id() != _inputHandler.get_id())
             _inputHandler.join();
     }
-} // namespace serverData
+} // namespace server_data

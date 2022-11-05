@@ -17,7 +17,7 @@
 
 using namespace communicator_lib;
 
-namespace serverData
+namespace server_data
 {
     /// @brief Main class of the server part. Hold room process.
     class Server {
@@ -93,6 +93,6 @@ namespace serverData
         /// @brief Send to all clients the disconnection signal
         void _disconnectionProcess();
     };
-} // namespace serverData
+} // namespace server_data
 
 #endif /* !SERVER_HPP_ */

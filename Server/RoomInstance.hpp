@@ -11,7 +11,7 @@
 #include <boost/thread.hpp>
 #include "Communicator/Client.hpp"
 
-namespace serverData
+namespace server_data
 {
     /// The class declared in the Server.hpp header file
     class Server;
@@ -142,4 +142,4 @@ namespace serverData
     /// @return false If the room haven't the good name
     inline bool operator==(const RoomInstance &left, const std::string &right) { return (left.getName() == right); }
 
-} // namespace serverData
+} // namespace server_data
