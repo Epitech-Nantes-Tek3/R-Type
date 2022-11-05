@@ -195,31 +195,6 @@ void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
 
 void ClientRoom::_getClientPseudoAndPassword()
 {
-    World world(2);
-
-    world.addResource<RandomDevice>();
-    world.addResource<GameClock>();
-    world.addResource<GameStates>();
-    world.addResource<RenderWindowResource>();
-    world.addResource<GraphicsFontResource>("assets/fonts/arial.ttf");
-    world.addResource<MusicResource>(MusicResource::music_e::BACKGROUNDTHEME, "assets/Musics/music_background.wav");
-    world.addResource<MenuStates>(MenuStates::IN_GAME);
-    world.addResource<ButtonActionMap>(
-        ButtonActionMap::WRITABLE_BUTTON, std::function<void(World &, Entity &)>(writableButtonAction));
-    world.getResource<ButtonActionMap>().addAction(
-        ButtonActionMap::WRITABLE, std::function<void(World &, Entity &)>(selectAWritable));
-    world.addSystem<UpdateClock>();
-    world.addSystem<DeathSystem>();
-    world.addSystem<DrawComponents>();
-    world.addSystem<InputManagement>();
-    world.addSystem<SendToServer>();
-    world.addSystem<SendNewlyCreatedToServer>();
-    world.addSystem<SfObjectFollowEntitySystem>();
-    world.addSystem<Parallax>();
-    world.addSystem<Movement>();
-    world.addSystem<AnimationSystem>();
-    world.addSystem<MusicManagement>();
-    world.addSystem<SoundManagement>();
     world.addEntity()
         .addComponent<MouseInputComponent>()
         .addComponent<KeyboardInputComponent>()
@@ -605,4 +580,44 @@ void ClientRoom::_initWritable()
     std::cerr << "Entity is " << writableId << std::endl;
     createNewWritableButton(*(_worldInstance.get()), 1820, 900, 80, 50,
         std::function<void(World &, Entity &, std::string &)>(publishNewChatMessage), MenuStates::IN_GAME, writableId);
+}
+
+void ClientRoom::_loadResourcesUserConnection(World &world)
+{
+    world.addResource<RandomDevice>()
+        .addResource<GameClock>()
+        .addResource<GameStates>()
+        .addResource<RenderWindowResource>()
+        .addResource<GraphicsFontResource>("assets/fonts/arial.ttf")
+        .addResource<MusicResource>(MusicResource::music_e::BACKGROUNDTHEME, "assets/Musics/music_background.wav")
+        .addResource<MenuStates>(MenuStates::IN_GAME)
+        .addResource<ButtonActionMap>(
+            ButtonActionMap::WRITABLE_BUTTON, std::function<void(World &, Entity &)>(writableButtonAction));
+    world.getResource<ButtonActionMap>().addAction(
+        ButtonActionMap::WRITABLE, std::function<void(World &, Entity &)>(selectAWritable));
+}
+
+void ClientRoom::_loadSystemsUserConnection(World &world)
+{
+    world.addSystem<UpdateClock>()
+    .addSystem<DeathSystem>()
+    .addSystem<DrawComponents>()
+    .addSystem<InputManagement>()
+    .addSystem<SendToServer>()
+    .addSystem<SendNewlyCreatedToServer>()
+    .addSystem<SfObjectFollowEntitySystem>()
+    .addSystem<Parallax>()
+    .addSystem<Movement>()
+    .addSystem<AnimationSystem>()
+    .addSystem<MusicManagement>()
+    .addSystem<SoundManagement>();
+}
+
+void ClientRoom::userConnection()
+{
+    World world(2);
+
+    _loadResourcesUserConnection(world);
+    _loadSystemsUserConnection(world);
+    _loadEntitiesUserConnection(world);
 }

@@ -48,6 +48,9 @@ namespace client_data
         void userConnection();
 
       private:
+
+        void _loadResourcesUserConnection(World &world);
+        void _loadSystemsUserConnection(World &world);
         /// @brief Init all shared resources of the world.
         void _initSharedResources();
 
