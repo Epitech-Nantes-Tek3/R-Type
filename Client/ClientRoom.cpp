@@ -306,7 +306,7 @@ void ClientRoom::_getClientPseudoAndPassword()
     _password = password;
 }
 
-int ClientRoom::_startGame()
+int ClientRoom::startGame()
 {
     std::cerr << "If you want to play in Solo Mod, please refer S. Otherwise if you want to play in multiplayer use M "
                  "and be sure that a server is running : ";
