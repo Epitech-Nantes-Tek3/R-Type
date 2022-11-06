@@ -42,21 +42,24 @@ namespace client_data
         /// @brief Destroy the ClientRoom object
         ~ClientRoom() = default;
 
-        /// @brief Launch the lobby global loop
+        /// @brief Launch the lobby global loop for a multiplayer game
         /// @param pseudo The pseudo of the user
         /// @param password The password of the user
         void startLobbyLoop(const std::string &pseudo, const std::string &password);
 
+        /// @brief Get call back handler for a solo game
         void signalSoloCallbackHandler(int signum);
 
+        /// @brief Launch the lobby global loop for a solo game
         void startSoloLoop();
 
+        /// @brief This function create all entities needed for a solo game
         void initSoloData();
-
-        void initSoloSystem();
     
+        /// @brief This function start the game
         void startGame();
 
+        /// @brief This function allows to get name and pwd of the player for the server
         void choosePlayerInfosForServer();
 
       private:
