@@ -26,16 +26,16 @@ namespace ecs
             .addComponent<Collidable>()
             .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate)
             .addComponent<Enemy>(type);
+            RandomDevice &random = world.getResource<RandomDevice>();
+            auto guardRandom = std::lock_guard(random);
+            entity.addComponent<Destination>(
+                random.randInt(MINIMUM_WIDTH, MAXIMUM_WIDTH), random.randInt(MINIMUM_HEIGTH, MAXIMUM_HEIGTH));
 
         if (networkId) {
             // Case : Creation in a server instance
-            RandomDevice &random = world.getResource<RandomDevice>();
-            auto guard = std::lock_guard(random);
             entity.addComponent<NewlyCreated>(uuid, false);
             entity.addComponent<Networkable>(networkId);
             entity.addComponent<ShootingFrequency>(1.3);
-            entity.addComponent<Destination>(
-                random.randInt(MINIMUM_WIDTH, MAXIMUM_WIDTH), random.randInt(MINIMUM_HEIGTH, MAXIMUM_HEIGTH));
         } else {
             // Case : Creation in a Client instance
             if (uuid != "") {

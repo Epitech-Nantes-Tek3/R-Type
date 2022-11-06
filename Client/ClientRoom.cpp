@@ -58,6 +58,7 @@
 #include "R-TypeLogic/Global/SharedResources/Random.hpp"
 #include "R-TypeLogic/Global/Systems/DeathSystem.hpp"
 #include "R-TypeLogic/Global/Systems/MovementSystem.hpp"
+#include "R-TypeLogic/Global/Systems/ElectricInvisibleEnemySystem.hpp"
 #include "R-TypeLogic/Global/Systems/NoAfkInMenuSystem.hpp"
 #include "R-TypeLogic/Global/Systems/UpdateClockSystem.hpp"
 
@@ -397,6 +398,7 @@ void ClientRoom::_initSystems()
     _worldInstance->addSystem<MusicManagement>();
     _worldInstance->addSystem<SoundManagement>();
     _worldInstance->addSystem<RemoveChatSystem>();
+    _worldInstance->addSystem<ElectricInvisibleEnemy>();
 }
 
 void ClientRoom::_initBackgroundEntities()
