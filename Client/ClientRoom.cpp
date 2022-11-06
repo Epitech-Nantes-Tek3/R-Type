@@ -305,14 +305,86 @@ void ClientRoom::_updateEcsResources()
         _loadTextures();
 }
 
+void ClientRoom::_initInputsEntity()
+{
+    ecs::Entity &entity = _worldInstance->addEntity()
+        .addComponent<MouseInputComponent>()
+        .addComponent<KeyboardInputComponent>()
+        .addComponent<ControllerButtonInputComponent>()
+        .addComponent<ControllerJoystickInputComponent>()
+        .addComponent<ActionQueueComponent>()
+        .addComponent<AllowMouseAndKeyboardComponent>()
+        .addComponent<AllowControllerComponent>();
+
+    entity.getComponent<KeyboardInputComponent>().keyboardMapActions.emplace(
+        std::make_pair<sf::Keyboard::Key, std::pair<ActionQueueComponent::inputAction_e, float>>(sf::Keyboard::Z,
+            std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEY, -200)));
+    entity.getComponent<KeyboardInputComponent>().keyboardMapActions.emplace(
+        std::make_pair<sf::Keyboard::Key, std::pair<ActionQueueComponent::inputAction_e, float>>(sf::Keyboard::S,
+            std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEY, 200)));
+    entity.getComponent<KeyboardInputComponent>().keyboardMapActions.emplace(
+        std::make_pair<sf::Keyboard::Key, std::pair<ActionQueueComponent::inputAction_e, float>>(sf::Keyboard::Q,
+            std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEX, -200)));
+    entity.getComponent<KeyboardInputComponent>().keyboardMapActions.emplace(
+        std::make_pair<sf::Keyboard::Key, std::pair<ActionQueueComponent::inputAction_e, float>>(sf::Keyboard::D,
+            std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEX, 200)));
+    entity.getComponent<KeyboardInputComponent>().keyboardMapActions.emplace(
+        std::make_pair<sf::Keyboard::Key, std::pair<ActionQueueComponent::inputAction_e, float>>(
+            sf::Keyboard::Enter,
+            std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::SHOOT, 10)));
+    entity.getComponent<ControllerJoystickInputComponent>().controllerJoystickMapActions.emplace(
+        std::make_pair<unsigned int, std::pair<ActionQueueComponent::inputAction_e, float>>(
+            1, std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEY, 0)));
+    entity.getComponent<MouseInputComponent>().MouseMapActions.emplace(
+        std::make_pair<sf::Mouse::Button, std::pair<ActionQueueComponent::inputAction_e, float>>(
+            sf::Mouse::Button::Left,
+            std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::BUTTON_CLICK, 0)));
+}
+
 void ClientRoom::_updateEcsEntities()
 {
+    _initInputsEntity();
+    if (_state == ClientState::MAIN_MENU) {
 
+    }
+    if (_state == ClientState::LOBBY) {
+
+    }
+    if (_state == ClientState::IN_GAME) {
+
+    }
 }
 
 void ClientRoom::_updateEcsSystems()
 {
-
+    if (!_worldInstance->containsSystem<UpdateClock>())
+        _worldInstance->addSystem<UpdateClock>();
+    if (!_worldInstance->containsSystem<DrawComponents>())
+        _worldInstance->addSystem<DrawComponents>();
+    if (!_worldInstance->containsSystem<InputManagement>())
+        _worldInstance->addSystem<InputManagement>();
+    if (!_worldInstance->containsSystem<SendToServer>())
+        _worldInstance->addSystem<SendToServer>();
+    if (!_worldInstance->containsSystem<SendNewlyCreatedToServer>())
+        _worldInstance->addSystem<SendNewlyCreatedToServer>();
+    if (!_worldInstance->containsSystem<Parallax>())
+        _worldInstance->addSystem<Parallax>();
+    if (!_worldInstance->containsSystem<MusicManagement>())
+        _worldInstance->addSystem<MusicManagement>();
+    if (!_worldInstance->containsSystem<SoundManagement>())
+        _worldInstance->addSystem<SoundManagement>();
+    if (!_worldInstance->containsSystem<DeathSystem>())
+        _worldInstance->addSystem<DeathSystem>();
+    if (!_worldInstance->containsSystem<SfObjectFollowEntitySystem>())
+        _worldInstance->addSystem<SfObjectFollowEntitySystem>();
+    if (!_worldInstance->containsSystem<Movement>())
+        _worldInstance->addSystem<Movement>();
+    if (!_worldInstance->containsSystem<AnimationSystem>())
+        _worldInstance->addSystem<AnimationSystem>();
+    if (!_worldInstance->containsSystem<AnimationSystem>())
+        _worldInstance->addSystem<NoAfkInMenu>();
+    if (!_worldInstance->containsSystem<RemoveChatSystem>())
+        _worldInstance->addSystem<RemoveChatSystem>();
 }
 
 void ClientRoom::_updateEcsData()
@@ -400,44 +472,6 @@ void ClientRoom::_initWritableTextures(GraphicsTextureResource &textureResource)
         sf::Vector2f(34, 0), sf::Vector2f(34, 34));
 }
 
-void ClientRoom::_initSpritesForEntities()
-{
-    _worldInstance->addResource<GraphicsTextureResource>(GraphicsTextureResource::ENEMY_STATIC,
-        "assets/EpiSprite/BasicEnemySpriteSheet.gif", sf::Vector2f(0, 0), sf::Vector2f(34, 34));
-    GraphicsTextureResource &spritesList = _worldInstance->getResource<GraphicsTextureResource>();
-    auto guard = std::lock_guard(spritesList);
-
-    spritesList.addTexture(GraphicsTextureResource::BUTTON, "assets/EpiSprite/r-typesheet11.gif", sf::Vector2f(34, 0),
-        sf::Vector2f(34, 34));
-    _initWritableTextures(spritesList);
-    _initPlayerTextures(spritesList);
-    _initProjectilesTextures(spritesList);
-    _initBackgroundsTextures(spritesList);
-}
-
-void ClientRoom::_initSharedResources()
-{
-    _initSpritesForEntities();
-}
-
-void ClientRoom::_initSystems()
-{
-    _worldInstance->addSystem<UpdateClock>();
-    _worldInstance->addSystem<DeathSystem>();
-    _worldInstance->addSystem<DrawComponents>();
-    _worldInstance->addSystem<InputManagement>();
-    _worldInstance->addSystem<SendToServer>();
-    _worldInstance->addSystem<SendNewlyCreatedToServer>();
-    _worldInstance->addSystem<SfObjectFollowEntitySystem>();
-    _worldInstance->addSystem<Parallax>();
-    _worldInstance->addSystem<Movement>();
-    _worldInstance->addSystem<AnimationSystem>();
-    _worldInstance->addSystem<NoAfkInMenu>();
-    _worldInstance->addSystem<MusicManagement>();
-    _worldInstance->addSystem<SoundManagement>();
-    _worldInstance->addSystem<RemoveChatSystem>();
-}
-
 void ClientRoom::_initBackgroundEntities()
 {
     size_t firstID =
@@ -502,41 +536,6 @@ void ClientRoom::_initBackgroundEntities()
 
 void ClientRoom::_initEntities()
 {
-    _worldInstance->addEntity()
-        .addComponent<MouseInputComponent>()
-        .addComponent<KeyboardInputComponent>()
-        .addComponent<ControllerButtonInputComponent>()
-        .addComponent<ControllerJoystickInputComponent>()
-        .addComponent<ActionQueueComponent>()
-        .addComponent<AllowMouseAndKeyboardComponent>()
-        .addComponent<AllowControllerComponent>();
-    auto entities = _worldInstance->joinEntities<KeyboardInputComponent>();
-
-    for (auto &it : entities) {
-        it->getComponent<KeyboardInputComponent>().keyboardMapActions.emplace(
-            std::make_pair<sf::Keyboard::Key, std::pair<ActionQueueComponent::inputAction_e, float>>(sf::Keyboard::Z,
-                std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEY, -200)));
-        it->getComponent<KeyboardInputComponent>().keyboardMapActions.emplace(
-            std::make_pair<sf::Keyboard::Key, std::pair<ActionQueueComponent::inputAction_e, float>>(sf::Keyboard::S,
-                std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEY, 200)));
-        it->getComponent<KeyboardInputComponent>().keyboardMapActions.emplace(
-            std::make_pair<sf::Keyboard::Key, std::pair<ActionQueueComponent::inputAction_e, float>>(sf::Keyboard::Q,
-                std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEX, -200)));
-        it->getComponent<KeyboardInputComponent>().keyboardMapActions.emplace(
-            std::make_pair<sf::Keyboard::Key, std::pair<ActionQueueComponent::inputAction_e, float>>(sf::Keyboard::D,
-                std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEX, 200)));
-        it->getComponent<KeyboardInputComponent>().keyboardMapActions.emplace(
-            std::make_pair<sf::Keyboard::Key, std::pair<ActionQueueComponent::inputAction_e, float>>(
-                sf::Keyboard::Enter,
-                std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::SHOOT, 10)));
-        it->getComponent<ControllerJoystickInputComponent>().controllerJoystickMapActions.emplace(
-            std::make_pair<unsigned int, std::pair<ActionQueueComponent::inputAction_e, float>>(
-                1, std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEY, 0)));
-        it->getComponent<MouseInputComponent>().MouseMapActions.emplace(
-            std::make_pair<sf::Mouse::Button, std::pair<ActionQueueComponent::inputAction_e, float>>(
-                sf::Mouse::Button::Left,
-                std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::BUTTON_CLICK, 0)));
-    }
     _initBackgroundEntities();
     _initButtons();
     _initWritable();
