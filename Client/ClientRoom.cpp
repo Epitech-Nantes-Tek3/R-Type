@@ -244,16 +244,17 @@ void ClientRoom::_signalSoloCallbackHandler(int signum)
 
 void ClientRoom::_initSoloData(void)
 {
-    createNewPlayer(*_worldInstance.get(), 20, 500, 0, 0, 1, 102, 102, 100, 10, 4, true, 1, "NAME");
+    _getClientPseudoAndPassword();
+    createNewPlayer(*_worldInstance.get(), 20, 500, 0, 0, 1, 102, 102, 100, 10, 4, true, 1, _pseudo);
     createNewEnemyRandom(*_worldInstance.get(), 0, 0, 1, 85, 85, 50, 10, 5, 1);
 }
 
 void ClientRoom::_startSoloLoop()
 {
+    std::signal(SIGINT, signalCallbackHandler);
     _initEcsGameData(true);
     initSoloData();
     _state = ClientState::IN_GAME;
-    std::signal(SIGINT, signalCallbackHandler);
     while (_state != ClientState::ENDED && _state != ClientState::UNDEFINED) {
         if (_state == ClientState::IN_GAME) {
             _worldInstance.get()->runSystems(); /// WILL BE IMPROVED IN PART TWO (THREAD + CLOCK)
@@ -261,7 +262,7 @@ void ClientRoom::_startSoloLoop()
     }
 }
 
-void ClientRoom::_choosePlayerInfosForServer()
+int ClientRoom::_choosePlayerInfosForServer()
 {
     UserConnection connection;
     std::string pseudo;
@@ -271,14 +272,41 @@ void ClientRoom::_choosePlayerInfosForServer()
         connection.userConnection();
     } catch (error_lib::RTypeError &e) {
         std::cerr << e.what() << std::endl;
-        exit(84);
+        return(84);
     }
     pseudo = connection.getPseudo();
     password = connection.getPassword();
     startLobbyLoop(pseudo, password);
 }
 
-void ClientRoom::_startGame()
+void ClientRoom::_getClientPseudoAndPassword()
+{
+    std::string pseudo;
+    std::string password;
+
+    std::cerr << "Welcome to the R-Type game !" << std::endl;
+    std::cerr << "If there is no player with your pseudonyme inside the database a new one will be created with the "
+                 "given password."
+              << std::endl;
+    std::cerr << "Please refer your pseudonyme (5 characters): ";
+    std::cin >> pseudo;
+    if (pseudo.size() != 5) {
+        std::cerr << "Nop ! Please enter a 5 characters pseudonyme.";
+        _state = ClientState::ENDED;
+        return;
+    }
+    std::cerr << "Welcome " << pseudo << ". Please now enter your password (5 characters): ";
+    std::cin >> password;
+    if (password.size() != 5) {
+        std::cerr << "Nop ! Please enter a 5 characters password.";
+        _state = ClientState::ENDED;
+        return;
+    }
+    _pseudo = pseudo;
+    _password = password;
+}
+
+int ClientRoom::_startGame()
 {
     std::cerr << "If you want to play in Solo Mod, please refer S. Otherwise if you want to play in multiplayer use M "
                  "and be sure that a server is running : ";
@@ -288,7 +316,8 @@ void ClientRoom::_startGame()
     if (choosedMod == 'S') {
         _startSoloLoop();
     } else if (choosedMod == 'M') {
-        _choosePlayerInfosForServer();
+        if (_choosePlayerInfosForServer() == 84)
+            return 84;
     } else {
         std::cerr << "Not a valid option ;)" << std::endl;
         _state = ClientState::ENDED;

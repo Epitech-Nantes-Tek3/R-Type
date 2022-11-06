@@ -38,4 +38,4 @@ void EnemyShootSystem::run(World &world)
         }
     };
     std::for_each(joined.begin(), joined.end(), enemiesMayShoot);
- }
+}

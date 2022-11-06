@@ -55,13 +55,16 @@ namespace client_data
         void _startSoloLoop();
 
         /// @brief This function start the game
-        void _startGame();
-        
+        int _startGame();
+
         /// @brief Init all shared resources of the world.
         void _initSharedResources();
 
-        /// @brief This function allows to get name and pwd of the player for the server
-        void _choosePlayerInfosForServer();
+        /// @brief Get Name and password of the player
+        void _getClientPseudoAndPassword();
+
+        /// @brief This function allows to get name and password of the player for the server
+        int _choosePlayerInfosForServer();
 
         /// @brief This function create all entities needed for a solo game
         void _initSoloData();
