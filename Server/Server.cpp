@@ -109,9 +109,8 @@ void Server::_holdADatabaseSetRequest(CommunicatorMessage databaseRequest)
 
     if (requestContent.at(1) == "1")
         keyStr = "Banned";
-    if (requestContent.at(1) == "2") {
+    if (requestContent.at(1) == "2")
         keyStr = "Muted";
-    }
     if (requestContent.at(1) == "3")
         keyStr = "Moderator";
     _databaseApi.updateUsers(keyStr + " = " + requestContent.at(2), "UserName = '" + requestContent.at(0) + "'");

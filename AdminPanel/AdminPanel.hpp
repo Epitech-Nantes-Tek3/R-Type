@@ -64,6 +64,9 @@ namespace admin_panel
         /// @brief Current panel state. True for running and False for ended.
         bool _state;
 
+        /// @brief List of all the requested action.
+        std::map<std::string, std::function<void(AdminPanel::PanelCommand)>> _requestAction;
+
         /// @brief Start the authentification process
         void _authentificationProcess();
 
@@ -78,6 +81,22 @@ namespace admin_panel
         /// @param clientRequest The client request
         /// @return the parsed request
         AdminPanel::PanelCommand _parseAClientRequest(std::string clientRequest);
+
+        /// @brief Update the specified user password in the Database
+        /// @param parsedRequest The parsed request.
+        void _updatePasswordAction(AdminPanel::PanelCommand parsedRequest);
+
+        /// @brief Update the specified user name in the Database
+        /// @param parsedRequest The parsed request.
+        void _updateNameAction(AdminPanel::PanelCommand parsedRequest);
+
+        /// @brief Ban the specified user in the Database
+        /// @param parsedRequest The parsed request.
+        void _banAction(AdminPanel::PanelCommand parsedRequest);
+
+        /// @brief Unban the specified user in the Database
+        /// @param parsedRequest The parsed request.
+        void _unbanAction(AdminPanel::PanelCommand parsedRequest);
     };
 } // namespace admin_panel
 

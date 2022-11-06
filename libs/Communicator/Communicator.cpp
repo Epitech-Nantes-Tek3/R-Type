@@ -331,9 +331,9 @@ std::vector<std::string> Communicator::utilitaryReceiveSetDatabaseValue(Communic
     for (int i = 0; i < 5; i++)
         pseudoStr[i] = pseudo[i];
     offset += sizeof(char) * 5;
-    std::memcpy((void *)((char *)cryptedMessage.message.data + offset), &key, sizeof(unsigned short));
+    std::memcpy(&key, (void *)((char *)cryptedMessage.message.data + offset), sizeof(unsigned short));
     offset += sizeof(unsigned short);
-    std::memcpy((void *)((char *)cryptedMessage.message.data + offset), &value, sizeof(unsigned short));
+    std::memcpy(&value, (void *)((char *)cryptedMessage.message.data + offset), sizeof(unsigned short));
     return {pseudoStr, std::to_string(key), std::to_string(value)};
 }
 

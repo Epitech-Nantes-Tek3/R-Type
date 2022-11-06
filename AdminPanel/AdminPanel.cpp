@@ -25,6 +25,10 @@ AdminPanel::AdminPanel(std::string address, unsigned short port, std::string ser
     _isAuth = false;
     _pseudo = "";
     _state = true;
+    _requestAction["updatePassword"] = std::bind(&AdminPanel::_updatePasswordAction, this, std::placeholders::_1);
+    _requestAction["updateName"] = std::bind(&AdminPanel::_updateNameAction, this, std::placeholders::_1);
+    _requestAction["ban"] = std::bind(&AdminPanel::_banAction, this, std::placeholders::_1);
+    _requestAction["unban"] = std::bind(&AdminPanel::_unbanAction, this, std::placeholders::_1);
 }
 
 void AdminPanel::startLoop()
@@ -96,8 +100,30 @@ void AdminPanel::_handleAReceivedData(CommunicatorMessage databaseAnswer)
 
 AdminPanel::PanelCommand AdminPanel::_parseAClientRequest(std::string clientRequest)
 {
-    (void)clientRequest;
-    return AdminPanel::PanelCommand();
+    AdminPanel::PanelCommand panelCommand;
+    std::string delimiter = " ";
+    size_t pos = 0;
+    std::string token;
+    std::size_t counter = 0;
+
+    while ((pos = clientRequest.find(delimiter)) != std::string::npos) {
+        token = clientRequest.substr(0, pos);
+        if (counter == 0)
+            panelCommand.keyWord = std::string(token);
+        if (counter == 1)
+            panelCommand.userName = std::string(token);
+        if (counter >= 2)
+            panelCommand.options.push_back(std::string(token));
+        clientRequest.erase(0, pos + delimiter.length());
+        counter++;
+    }
+    if (counter == 0)
+        panelCommand.keyWord = std::string(clientRequest);
+    if (counter == 1)
+        panelCommand.userName = std::string(clientRequest);
+    if (counter >= 2)
+        panelCommand.options.push_back(std::string(clientRequest));
+    return panelCommand;
 }
 
 void AdminPanel::_getARequest()
@@ -105,7 +131,47 @@ void AdminPanel::_getARequest()
     std::string clientRequest;
 
     std::cout << "Enter your request : ";
-    std::cin >> clientRequest;
+    std::getline(std::cin, clientRequest);
     AdminPanel::PanelCommand parsedRequest = _parseAClientRequest(clientRequest);
-    (void)parsedRequest;
+    if (_requestAction.find(parsedRequest.keyWord) == _requestAction.end()) {
+        std::cout << "This is not a valid command. Please refer to the Notion protocol." << std::endl;
+        return;
+    }
+    _requestAction[parsedRequest.keyWord](parsedRequest);
+}
+
+void AdminPanel::_updatePasswordAction(AdminPanel::PanelCommand parsedRequest)
+{
+    if (parsedRequest.options.size() != 2) {
+        std::cout << "Invalid command parameters. Please refer to the Notion protocol." << std::endl;
+    }
+    //_communicatorInstance->utilitarySetADatabaseValue(
+    // parsedRequest.userName, "Password", parsedRequest.options.at(1), {0});
+    /// WILL BE ADDED LATER
+}
+
+void AdminPanel::_updateNameAction(AdminPanel::PanelCommand parsedRequest)
+{
+    if (parsedRequest.options.size() != 1) {
+        std::cout << "Invalid command parameters. Please refer to the Notion protocol." << std::endl;
+    }
+    //_communicatorInstance->utilitarySetADatabaseValue(
+    // parsedRequest.userName, "UserName", parsedRequest.options.at(0), {0});
+    /// WILL BE ADDED LATER
+}
+
+void AdminPanel::_banAction(AdminPanel::PanelCommand parsedRequest)
+{
+    if (parsedRequest.userName == "") {
+        std::cout << "Invalid command parameters. Please refer to the Notion protocol." << std::endl;
+    }
+    _communicatorInstance->utilitarySetADatabaseValue(parsedRequest.userName, 1, 1, {0});
+}
+
+void AdminPanel::_unbanAction(AdminPanel::PanelCommand parsedRequest)
+{
+    if (parsedRequest.userName == "") {
+        std::cout << "Invalid command parameters. Please refer to the Notion protocol." << std::endl;
+    }
+    _communicatorInstance->utilitarySetADatabaseValue(parsedRequest.userName, 1, 0, {0});
 }
