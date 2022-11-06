@@ -244,7 +244,6 @@ void ClientRoom::_signalSoloCallbackHandler(int signum)
 
 void ClientRoom::_initSoloData(void)
 {
-    _getClientPseudoAndPassword();
     createNewPlayer(*_worldInstance.get(), 20, 500, 0, 0, 1, 102, 102, 100, 10, 4, true, 1, _pseudo);
     createNewEnemyRandom(*_worldInstance.get(), 0, 0, 1, 85, 85, 50, 10, 5, 1);
 }
@@ -253,7 +252,7 @@ void ClientRoom::_startSoloLoop()
 {
     std::signal(SIGINT, signalCallbackHandler);
     _initEcsGameData(true);
-    initSoloData();
+    _initSoloData();
     _state = ClientState::IN_GAME;
     while (_state != ClientState::ENDED && _state != ClientState::UNDEFINED) {
         if (_state == ClientState::IN_GAME) {
@@ -277,6 +276,7 @@ int ClientRoom::_choosePlayerInfosForServer()
     pseudo = connection.getPseudo();
     password = connection.getPassword();
     startLobbyLoop(pseudo, password);
+    return 0;
 }
 
 void ClientRoom::_getClientPseudoAndPassword()
@@ -314,6 +314,7 @@ int ClientRoom::startGame()
 
     std::cin >> choosedMod;
     if (choosedMod == 'S') {
+        _getClientPseudoAndPassword();
         _startSoloLoop();
     } else if (choosedMod == 'M') {
         if (_choosePlayerInfosForServer() == 84)
@@ -322,6 +323,7 @@ int ClientRoom::startGame()
         std::cerr << "Not a valid option ;)" << std::endl;
         _state = ClientState::ENDED;
     }
+    return 0;
 }
 
 void ClientRoom::_connectToARoom()
