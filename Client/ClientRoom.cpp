@@ -61,7 +61,6 @@
 #include "R-TypeLogic/Global/Systems/MovementSystem.hpp"
 #include "R-TypeLogic/Global/Systems/NoAfkInMenuSystem.hpp"
 #include "R-TypeLogic/Global/Systems/UpdateClockSystem.hpp"
-
 #include "R-TypeLogic/Server/Systems/CollidableSystem.hpp"
 #include "R-TypeLogic/Server/Systems/DeathLifeSystem.hpp"
 #include "R-TypeLogic/Server/Systems/DecreaseLifeTimeSystem.hpp"
@@ -69,7 +68,6 @@
 #include "R-TypeLogic/Server/Systems/EnemiesGoRandom.hpp"
 #include "R-TypeLogic/Server/Systems/EnemyShootSystem.hpp"
 #include "R-TypeLogic/Server/Systems/LifeTimeDeathSystem.hpp"
-
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateEnemy.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreatePlayer.hpp"
 #include "R-TypeLogic/Global/Components/AlliedProjectileComponent.hpp"

@@ -27,7 +27,6 @@ namespace ecs
             .addComponent<Damage>(damage)
             .addComponent<DamageRadius>(5)
             .addComponent<Collidable>();
-        
         if (ally.contains<Networkable>()) {
             entity.addComponent<AlliedProjectile>(ally.getComponent<Networkable>().id);
         } else {

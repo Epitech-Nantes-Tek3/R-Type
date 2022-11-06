@@ -12,7 +12,6 @@
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
 #include "R-TypeLogic/Global/Components/VelocityComponent.hpp"
 #include "R-TypeLogic/Global/SharedResources/Random.hpp"
-#include <iostream>
 
 #define MINIMUM_WIDTH  1400
 #define MAXIMUM_WIDTH  1700

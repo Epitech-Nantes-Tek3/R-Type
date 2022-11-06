@@ -14,7 +14,6 @@
 #include "R-TypeLogic/Global/Components/DeathComponent.hpp"
 #include "R-TypeLogic/Global/Components/LifeComponent.hpp"
 #include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
-#include <iostream>
 namespace ecs
 {
     /// @brief This is the DeathLife System.

@@ -31,10 +31,8 @@ namespace ecs
             .addComponent<ShootingFrequency>(1.3)
             .addComponent<Destination>(
                 random.randInt(MINIMUM_WIDTH, MAXIMUM_WIDTH), random.randInt(MINIMUM_HEIGTH, MAXIMUM_HEIGTH));
-
         if (networkId) {
             // Case : Creation in a server instance
-            
             entity.addComponent<NewlyCreated>(uuid, false);
             entity.addComponent<Networkable>(networkId);
         } else {
