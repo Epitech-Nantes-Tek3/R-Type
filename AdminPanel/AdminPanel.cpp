@@ -21,7 +21,7 @@ AdminPanel::AdminPanel(std::string address, unsigned short port, std::string ser
     _networkInformations = Client(address, port);
     _communicatorInstance = std::make_shared<Communicator>(_networkInformations);
     _serverEndpoint = Client(serverAddress, serverPort);
-    _waitingForAnswer = false;
+    _waitingForAnswer = 0;
     _isAuth = false;
     _pseudo = "";
     _state = true;
@@ -33,6 +33,7 @@ AdminPanel::AdminPanel(std::string address, unsigned short port, std::string ser
     _requestAction["unmute"] = std::bind(&AdminPanel::_unmuteAction, this, std::placeholders::_1);
     _requestAction["promote"] = std::bind(&AdminPanel::_promoteAction, this, std::placeholders::_1);
     _requestAction["unpromote"] = std::bind(&AdminPanel::_unpromoteAction, this, std::placeholders::_1);
+    _requestAction["get"] = std::bind(&AdminPanel::_getStatsAction, this, std::placeholders::_1);
 }
 
 void AdminPanel::startLoop()
@@ -81,7 +82,7 @@ void AdminPanel::_authentificationProcess()
     _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, networkData, sizeof(char) * 10, 14);
     std::free(networkData);
     _pseudo = pseudo;
-    _waitingForAnswer = true;
+    _waitingForAnswer = 1;
     std::cout << "Request send to the server, please wait." << std::endl;
 }
 
@@ -89,7 +90,7 @@ void AdminPanel::_handleAReceivedData(CommunicatorMessage databaseAnswer)
 {
     std::string value = _communicatorInstance->utilitaryReceiveDatabaseValue(databaseAnswer);
 
-    _waitingForAnswer = false;
+    _waitingForAnswer -= 1;
     if (!_isAuth) {
         if (value != "1") {
             std::cout << "Your note an admin user ;)" << std::endl;
@@ -210,4 +211,15 @@ void AdminPanel::_unpromoteAction(AdminPanel::PanelCommand parsedRequest)
         std::cout << "Invalid command parameters. Please refer to the Notion protocol." << std::endl;
     }
     _communicatorInstance->utilitarySetADatabaseValue(parsedRequest.userName, 3, 0, {0});
+}
+
+void AdminPanel::_getStatsAction(AdminPanel::PanelCommand parsedRequest)
+{
+    if (parsedRequest.userName == "") {
+        std::cout << "Invalid command parameters. Please refer to the Notion protocol." << std::endl;
+    }
+    for (auto it : parsedRequest.options) {
+        _waitingForAnswer += 1;
+        _communicatorInstance->utilitaryAskForADatabaseValue(parsedRequest.userName, it, {0});
+    }
 }

@@ -49,8 +49,8 @@ namespace admin_panel
         /// @brief Instance of the communicator library
         std::shared_ptr<Communicator> _communicatorInstance;
 
-        /// @brief Tell if the AdminPanel is waiting for a Database response
-        bool _waitingForAnswer;
+        /// @brief Tell if the AdminPanel is waiting for a Database response and for how much
+        std::size_t _waitingForAnswer;
 
         /// @brief Tell if the AdminPanel is authentified.
         bool _isAuth;
@@ -113,6 +113,10 @@ namespace admin_panel
         /// @brief Unpromote the specified user in the Database
         /// @param parsedRequest The parsed request.
         void _unpromoteAction(AdminPanel::PanelCommand parsedRequest);
+
+        /// @brief Get stats of the specified user in the Database
+        /// @param parsedRequest The parsed request.
+        void _getStatsAction(AdminPanel::PanelCommand parsedRequest);
     };
 } // namespace admin_panel
 
