@@ -275,10 +275,23 @@ void ClientRoom::_loadTextures()
     _initBackgroundsTextures(textureResource);
 }
 
+void ClientRoom::_loadButtonActionMap()
+{
+    ButtonActionMap &actionsList = _worldInstance->getResource<ButtonActionMap>();
+
+    actionsList.addAction(ButtonActionMap::PAUSE, std::function<void(World &, Entity &)>(pauseGame));
+    actionsList.addAction(ButtonActionMap::RESUME, std::function<void(World &, Entity &)>(resumeGame));
+    actionsList.addAction(ButtonActionMap::EXIT, std::function<void(World &, Entity &)>(exitWindow));
+    actionsList.addAction(ButtonActionMap::WRITABLE, std::function<void(World &, Entity &)>(selectAWritable));
+    actionsList.addAction(
+        ButtonActionMap::WRITABLE_BUTTON, std::function<void(World &, Entity &)>(writableButtonAction));
+}
+
 void ClientRoom::_updateEcsResources()
 {
     // MusicResource::music_e::BACKGROUNDTHEME, "assets/Musics/music_background.wav"
     // SoundResource::sound_e::SHOOT, "assets/Sounds/sound.wav"
+
     if (!_worldInstance->containsResource<RandomDevice>())
         _worldInstance->addResource<RandomDevice>();
     if (!_worldInstance->containsResource<GameClock>())
@@ -297,8 +310,12 @@ void ClientRoom::_updateEcsResources()
         _worldInstance->addResource<GameStates>(GameStates::IN_GAME);
     if (!_worldInstance->containsResource<GraphicsTextureResource>())
         _worldInstance->addResource<GraphicsTextureResource>();
+    if (!_worldInstance->containsResource<ButtonActionMap>())
+        _worldInstance->addResource<ButtonActionMap>();
     if (_worldInstance->containsResource<GraphicsTextureResource>())
         _loadTextures();
+    if (_worldInstance->containsResource<ButtonActionMap>())
+        _loadButtonActionMap();
 }
 
 void ClientRoom::_initInputsEntity()
@@ -336,12 +353,21 @@ void ClientRoom::_initInputsEntity()
             std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::BUTTON_CLICK, 0)));
 }
 
+void ClientRoom::_initInGameBackgrounds()
+{
+
+}
+
 void ClientRoom::_updateEcsEntities()
 {
     _initInputsEntity();
     if (_state == ClientState::MAIN_MENU) {}
     if (_state == ClientState::LOBBY) {}
-    if (_state == ClientState::IN_GAME) {}
+    if (_state == ClientState::IN_GAME) {
+        _initInGameButtons();
+        _initInGameWritables();
+        _initInGameBackgrounds();
+    }
 }
 
 void ClientRoom::_updateEcsSystems()
@@ -526,17 +552,10 @@ void ClientRoom::_initBackgroundEntities()
 void ClientRoom::_initEntities()
 {
     _initBackgroundEntities();
-    _initButtons();
-    _initWritable();
 }
 
-void ClientRoom::_initButtons()
+void ClientRoom::_initInGameButtons()
 {
-    _worldInstance->addResource<ButtonActionMap>(
-        ButtonActionMap::EXIT, std::function<void(World &, Entity &)>(exitWindow));
-    ButtonActionMap &actionsList = _worldInstance->getResource<ButtonActionMap>();
-    actionsList.addAction(ButtonActionMap::RESUME, std::function<void(World &, Entity &)>(resumeGame));
-    actionsList.addAction(ButtonActionMap::PAUSE, std::function<void(World &, Entity &)>(pauseGame));
     createNewButton(
         *(_worldInstance.get()), 0, 0, 68, 68, ButtonActionMap::PAUSE, LayerLvL::BUTTON, MenuStates::IN_GAME);
     createNewButton(*(_worldInstance.get()), 909, 200, 102, 102, ButtonActionMap::RESUME, LayerLvL::BUTTON,
@@ -545,13 +564,10 @@ void ClientRoom::_initButtons()
         *(_worldInstance.get()), 909, 500, 102, 102, ButtonActionMap::EXIT, LayerLvL::BUTTON, MenuStates::GAME_PAUSED);
 }
 
-void ClientRoom::_initWritable()
+void ClientRoom::_initInGameWritables()
 {
-    ButtonActionMap &actionsList = _worldInstance->getResource<ButtonActionMap>();
-    actionsList.addAction(ButtonActionMap::WRITABLE, std::function<void(World &, Entity &)>(selectAWritable));
-    actionsList.addAction(
-        ButtonActionMap::WRITABLE_BUTTON, std::function<void(World &, Entity &)>(writableButtonAction));
     std::size_t writableId = createNewWritable(*(_worldInstance.get()), 1450, 900, 350, 50, MenuStates::IN_GAME);
+
     createNewWritableButton(*(_worldInstance.get()), 1820, 900, 80, 50,
         std::function<void(World &, Entity &, std::string &)>(publishNewChatMessage), MenuStates::IN_GAME, writableId);
 }

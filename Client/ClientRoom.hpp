@@ -48,6 +48,8 @@ namespace client_data
         void startLobbyLoop(const std::string &pseudo, const std::string &password);
 
       private:
+        void _initInGameBackgrounds();
+        void _loadButtonActionMap();
         void _initInputsEntity();
         void _loadTextures();
         void _updateEcsData();
@@ -81,10 +83,10 @@ namespace client_data
         void _initBackgroundEntities();
 
         /// @brief Init all the Buttons and the linked actions
-        void _initButtons();
+        void _initInGameButtons();
 
         /// @brief Init all the Writable and the linked actions
-        void _initWritable();
+        void _initInGameWritables();
 
         /// @brief Ask the user to enter his Pseudonyme and password
         void _getClientPseudoAndPassword();
