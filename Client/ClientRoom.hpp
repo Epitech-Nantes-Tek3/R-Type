@@ -48,6 +48,7 @@ namespace client_data
         void startLobbyLoop(const std::string &pseudo, const std::string &password);
 
       private:
+        void _loadTextures();
         void _updateEcsData();
         void _updateEcsResources();
         void _updateEcsEntities();

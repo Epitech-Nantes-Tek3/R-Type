@@ -264,9 +264,34 @@ bool ClientRoom::_answerProtocols()
     return true;
 }
 
-void ClientRoom::_updateEcsResources()
+void ClientRoom::_loadTextures()
 {
 
+}
+
+void ClientRoom::_updateEcsResources()
+{
+    // MusicResource::music_e::BACKGROUNDTHEME, "assets/Musics/music_background.wav"
+    // SoundResource::sound_e::SHOOT, "assets/Sounds/sound.wav"
+    if (!_worldInstance->containsResource<RandomDevice>())
+        _worldInstance->addResource<RandomDevice>();
+    if (!_worldInstance->containsResource<GameClock>())
+        _worldInstance->addResource<GameClock>();
+    if (!_worldInstance->containsResource<RenderWindowResource>())
+        _worldInstance->addResource<RenderWindowResource>();
+    if (!_worldInstance->containsResource<GraphicsFontResource>())
+        _worldInstance->addResource<GraphicsFontResource>("assets/fonts/arial.ttf");
+    if (!_worldInstance->containsResource<MenuStates>())
+        _worldInstance->addResource<MenuStates>(MenuStates::IN_GAME);
+    if (!_worldInstance->containsResource<MusicResource>())
+        _worldInstance->addResource<MusicResource>();
+    if (!_worldInstance->containsResource<SoundResource>())
+        _worldInstance->addResource<SoundResource>();
+    if (!_worldInstance->containsResource<GameStates>())
+        _worldInstance->addResource<GameStates>(GameStates::IN_GAME);
+    if (!_worldInstance->containsResource<GraphicsTextureResource>())
+        _worldInstance->addResource<GraphicsTextureResource>();
+    _loadTextures();
 }
 
 void ClientRoom::_updateEcsEntities()
@@ -381,15 +406,6 @@ void ClientRoom::_initSpritesForEntities()
 
 void ClientRoom::_initSharedResources()
 {
-    _worldInstance->addResource<RandomDevice>();
-    _worldInstance->addResource<GameClock>();
-    _worldInstance->addResource<RenderWindowResource>();
-    _worldInstance->addResource<GraphicsFontResource>("assets/fonts/arial.ttf");
-    _worldInstance->addResource<MenuStates>(MenuStates::IN_GAME);
-    _worldInstance->addResource<MusicResource>(
-        MusicResource::music_e::BACKGROUNDTHEME, "assets/Musics/music_background.wav");
-    _worldInstance->addResource<SoundResource>(SoundResource::sound_e::SHOOT, "assets/Sounds/sound.wav");
-    _worldInstance->addResource<GameStates>(GameStates::IN_GAME);
     _initSpritesForEntities();
 }
 
