@@ -41,6 +41,7 @@
 #include "R-TypeLogic/Server/Systems/EnemyShootSystem.hpp"
 #include "R-TypeLogic/Server/Systems/LifeTimeDeathSystem.hpp"
 #include "R-TypeLogic/Server/Systems/RemoveAfkSystem.hpp"
+#include "R-TypeLogic/Server/Systems/MobGenerationSystem.hpp"
 
 using namespace server_data;
 using namespace error_lib;
@@ -107,6 +108,7 @@ void Room::initEcsGameData(void)
     _worldInstance->addSystem<DecreaseLifeTime>();
     _worldInstance->addSystem<DisconnectableSystem>();
     _worldInstance->addSystem<RemoveAfkSystem>();
+    _worldInstance->addSystem<MobGeneration>();
 }
 
 void Room::startConnexionProtocol(void) { _communicatorInstance.get()->startReceiverListening(); }
@@ -227,14 +229,6 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
     std::string playerNameStr = _getPlayerName(connexionDemand);
     std::size_t playerId = createNewPlayer(*_worldInstance.get(), 20, 500, 0, 0, 1, 102, 102, 100, 10, 4, false,
         _remainingPlaces + 1, playerNameStr, "", generator.generateNewNetworkableId());
-    // TO BE REMOVED WHEN TRUE MOB GENERATION WILL BE IMPLEMENTED
-    RandomDevice &random = _worldInstance->getResource<RandomDevice>();
-    random.lock();
-    /// Enemy::BASIC and Enemy::ICE
-    unsigned short randType = random.randInt(0, 3);
-    random.unlock();
-    std::size_t enemyId = createNewEnemyRandom(
-        *_worldInstance.get(), 0, 0, 1, 85, 85, 50, 10, 5, randType, "", generator.generateNewNetworkableId());
     std::vector<std::shared_ptr<ecs::Entity>> clients = _worldInstance.get()->joinEntities<ecs::NetworkClient>();
     std::vector<unsigned short> clientIdList;
     auto addToClientList = [&clientIdList](std::shared_ptr<ecs::Entity> entityPtr) {
@@ -287,13 +281,11 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
         Velocity &vel = entityPtr->getComponent<Velocity>();
         Size &size = entityPtr->getComponent<Size>();
 
-        if (enemyId != entityPtr->getId()) {
-            std::free(_worldInstance.get()->getTransisthorBridge()->transitEcsDataToNetworkDataEntityEnemy(
-                entityPtr->getComponent<Networkable>().id, pos.x, pos.y, vel.multiplierAbscissa, vel.multiplierOrdinate,
-                entityPtr->getComponent<Weight>().weight, size.x, size.y, entityPtr->getComponent<Life>().lifePoint,
-                entityPtr->getComponent<Damage>().damagePoint, entityPtr->getComponent<DamageRadius>().radius,
-                entityPtr->getComponent<Enemy>().enemyType, "", {connexionDemand.message.clientInfo.getId()}));
-        }
+        std::free(_worldInstance.get()->getTransisthorBridge()->transitEcsDataToNetworkDataEntityEnemy(
+            entityPtr->getComponent<Networkable>().id, pos.x, pos.y, vel.multiplierAbscissa, vel.multiplierOrdinate,
+            entityPtr->getComponent<Weight>().weight, size.x, size.y, entityPtr->getComponent<Life>().lifePoint,
+            entityPtr->getComponent<Damage>().damagePoint, entityPtr->getComponent<DamageRadius>().radius,
+            entityPtr->getComponent<Enemy>().enemyType, "", {connexionDemand.message.clientInfo.getId()}));
     }
     for (std::shared_ptr<Entity> entityPtr : obstacles) {
         auto guard = std::lock_guard(*entityPtr.get());
