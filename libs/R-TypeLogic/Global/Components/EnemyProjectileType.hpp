@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2022
 ** R-Type
 ** File description:
-** ProjectileType
+** R-TypeileType
 */
 
 #ifndef ENEMYPROJECTILETYPE_HPP_
