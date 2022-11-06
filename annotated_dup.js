@@ -4,7 +4,8 @@ var annotated_dup =
       [ "ArgumentHandler", "classargument__handler_1_1_argument_handler.html", "classargument__handler_1_1_argument_handler" ]
     ] ],
     [ "client_data", "namespaceclient__data.html", [
-      [ "ClientRoom", "classclient__data_1_1_client_room.html", "classclient__data_1_1_client_room" ]
+      [ "ClientRoom", "classclient__data_1_1_client_room.html", "classclient__data_1_1_client_room" ],
+      [ "UserConnection", "classclient__data_1_1_user_connection.html", "classclient__data_1_1_user_connection" ]
     ] ],
     [ "communicator_lib", "namespacecommunicator__lib.html", [
       [ "Client", "classcommunicator__lib_1_1_client.html", "classcommunicator__lib_1_1_client" ],

@@ -133,5 +133,6 @@ var hierarchy =
       [ "graphicECS::SFML::Systems::SoundManagement", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sound_management.html", null ]
     ] ],
     [ "transisthor_lib::Transisthor", "classtransisthor__lib_1_1_transisthor.html", null ],
+    [ "client_data::UserConnection", "classclient__data_1_1_user_connection.html", null ],
     [ "ecs::World", "classecs_1_1_world.html", null ]
 ];

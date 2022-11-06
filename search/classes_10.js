@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['updateclock_820',['UpdateClock',['../structecs_1_1_update_clock.html',1,'ecs']]]
+  ['updateclock_825',['UpdateClock',['../structecs_1_1_update_clock.html',1,'ecs']]],
+  ['userconnection_826',['UserConnection',['../classclient__data_1_1_user_connection.html',1,'client_data']]]
 ];

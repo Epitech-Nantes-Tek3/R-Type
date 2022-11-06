@@ -9,5 +9,5 @@ var classclient__data_1_1_client_room =
     [ "ClientRoom", "classclient__data_1_1_client_room.html#a8b4feb3feb94d8c7043b631439fd2de1", null ],
     [ "ClientRoom", "classclient__data_1_1_client_room.html#a220b68d8091608139a1d8f5890877eca", null ],
     [ "~ClientRoom", "classclient__data_1_1_client_room.html#af6b8ea1652d5151256486f98daf36286", null ],
-    [ "startLobbyLoop", "classclient__data_1_1_client_room.html#ad551d4b6cf019577812e76e46079a51d", null ]
+    [ "startLobbyLoop", "classclient__data_1_1_client_room.html#ad1913bdec0ba3c43af174530274d3618", null ]
 ];

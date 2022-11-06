@@ -6,5 +6,9 @@ var dir_922c588100a187620fdc1533bc178f73 =
     [ "ClientRoom.hpp", "_client_room_8hpp.html", [
       [ "ClientRoom", "classclient__data_1_1_client_room.html", "classclient__data_1_1_client_room" ]
     ] ],
-    [ "main.cpp", "_client_2main_8cpp.html", "_client_2main_8cpp" ]
+    [ "main.cpp", "_client_2main_8cpp.html", "_client_2main_8cpp" ],
+    [ "UserConnection.cpp", "_user_connection_8cpp.html", null ],
+    [ "UserConnection.hpp", "_user_connection_8hpp.html", [
+      [ "UserConnection", "classclient__data_1_1_user_connection.html", "classclient__data_1_1_user_connection" ]
+    ] ]
 ];

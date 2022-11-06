@@ -1,5 +1,6 @@
 <map id="libs/GraphicECS/SFML/Systems/SfObjectFollowEntitySystem.hpp" name="libs/GraphicECS/SFML/Systems/SfObjectFollowEntitySystem.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="115,5,336,61"/>
+<area shape="rect" id="node1" title=" " alt="" coords="224,5,445,61"/>
 <area shape="rect" id="node2" href="$_sf_object_follow_entity_system_8cpp.html" title=" " alt="" coords="5,109,227,165"/>
 <area shape="rect" id="node3" href="$_client_room_8cpp.html" title=" " alt="" coords="251,124,418,151"/>
+<area shape="rect" id="node4" href="$_user_connection_8cpp.html" title=" " alt="" coords="443,124,637,151"/>
 </map>

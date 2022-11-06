@@ -118,9 +118,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af6b8ea1652d5151256486f98daf36286"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classclient__data_1_1_client_room.html#af6b8ea1652d5151256486f98daf36286">~ClientRoom</a> ()=default</td></tr>
 <tr class="memdesc:af6b8ea1652d5151256486f98daf36286"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy the <a class="el" href="classclient__data_1_1_client_room.html" title="Place where the game run (Like a lobby). Hold all libraries instance,.">ClientRoom</a> object.  <a href="classclient__data_1_1_client_room.html#af6b8ea1652d5151256486f98daf36286">More...</a><br /></td></tr>
 <tr class="separator:af6b8ea1652d5151256486f98daf36286"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad551d4b6cf019577812e76e46079a51d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classclient__data_1_1_client_room.html#ad551d4b6cf019577812e76e46079a51d">startLobbyLoop</a> ()</td></tr>
-<tr class="memdesc:ad551d4b6cf019577812e76e46079a51d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Launch the lobby global loop.  <a href="classclient__data_1_1_client_room.html#ad551d4b6cf019577812e76e46079a51d">More...</a><br /></td></tr>
-<tr class="separator:ad551d4b6cf019577812e76e46079a51d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1913bdec0ba3c43af174530274d3618"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classclient__data_1_1_client_room.html#ad1913bdec0ba3c43af174530274d3618">startLobbyLoop</a> (const std::string &amp;pseudo, const std::string &amp;password)</td></tr>
+<tr class="memdesc:ad1913bdec0ba3c43af174530274d3618"><td class="mdescLeft">&#160;</td><td class="mdescRight">Launch the lobby global loop.  <a href="classclient__data_1_1_client_room.html#ad1913bdec0ba3c43af174530274d3618">More...</a><br /></td></tr>
+<tr class="separator:ad1913bdec0ba3c43af174530274d3618"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Place where the game run (Like a lobby). Hold all libraries instance,. </p>
@@ -246,8 +246,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ad551d4b6cf019577812e76e46079a51d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad551d4b6cf019577812e76e46079a51d">&#9670;&nbsp;</a></span>startLobbyLoop()</h2>
+<a id="ad1913bdec0ba3c43af174530274d3618"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1913bdec0ba3c43af174530274d3618">&#9670;&nbsp;</a></span>startLobbyLoop()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -255,14 +255,31 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void ClientRoom::startLobbyLoop </td>
           <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>pseudo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>password</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Launch the lobby global loop. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pseudo</td><td>The pseudo of the user </td></tr>
+    <tr><td class="paramname">password</td><td>The password of the user </td></tr>
+  </table>
+  </dd>
+</dl>
 <p>WILL BE IMPROVED IN PART TWO (THREAD + CLOCK)</p>
 
 </div>
