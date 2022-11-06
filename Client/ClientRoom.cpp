@@ -228,10 +228,44 @@ void ClientRoom::_connectToARoom()
     std::free(networkData);
 }
 
-void ClientRoom::startLobbyLoop(const std::string &pseudo, const std::string &password)
+bool ClientRoom::_answerProtocols()
 {
     CommunicatorMessage connectionOperation;
 
+    try {
+        connectionOperation = _communicatorInstance.get()->getLastMessage();
+        switch (connectionOperation.message.type) {
+            case 11:
+                std::cerr << "No places left inside the hub. Please retry later" << std::endl;
+                return false;
+            case 13:
+                _holdADisconnectionRequest();
+                break;
+            case 20:
+                _serverEndpoint = _communicatorInstance->getClientByHisId(_communicatorInstance->getServerEndpointId());
+                _initEcsGameData();
+                _connectToARoom();
+                break;
+            case 15:
+                if (_state == ClientState::MAIN_MENU)
+                    _protocol15Answer(connectionOperation);
+                break;
+            case 12:
+                if (_state == ClientState::MAIN_MENU)
+                    protocol12Answer(connectionOperation);
+                break;
+            case 50:
+                if (_state == ClientState::IN_GAME)
+                _holdAChatRequest(connectionOperation);
+                break;
+        }
+    } catch (NetworkError &error) {
+    }
+    return true;
+}
+
+void ClientRoom::startLobbyLoop(const std::string &pseudo, const std::string &password)
+{
     _pseudo = pseudo;
     _password = password;
     std::signal(SIGINT, signalCallbackHandler);
@@ -239,38 +273,9 @@ void ClientRoom::startLobbyLoop(const std::string &pseudo, const std::string &pa
         _startConnexionProtocol();
     _state = ClientState::MAIN_MENU;
     while (_state != ClientState::ENDED) {
-        try {
-            connectionOperation = _communicatorInstance.get()->getLastMessage();
-            if (connectionOperation.message.type == 11) {
-                std::cerr << "No places left inside the hub. Please retry later" << std::endl;
-                return;
-            }
-            if (connectionOperation.message.type == 13)
-                _holdADisconnectionRequest();
-            if (connectionOperation.message.type == 20) {
-                _serverEndpoint = _communicatorInstance->getClientByHisId(_communicatorInstance->getServerEndpointId());
-                _initEcsGameData();
-                _connectToARoom();
-            }
-            if (_state == ClientState::MAIN_MENU) {
-                if (connectionOperation.message.type == 15)
-                    _protocol15Answer(connectionOperation);
-                if (connectionOperation.message.type == 12)
-                    protocol12Answer(connectionOperation);
-            }
-        } catch (NetworkError &error) {
-        }
-        if (_state == ClientState::LOBBY) {
-            _state = ClientState::IN_GAME;
-        }
-        if (_state == ClientState::IN_GAME) {
-            try {
-                if (connectionOperation.message.type == 50)
-                    _holdAChatRequest(connectionOperation);
-            } catch (NetworkError &e) {
-            }
-            _worldInstance.get()->runSystems(); /// WILL BE IMPROVED IN PART TWO (THREAD + CLOCK)
-        }
+        if (!_answerProtocols())
+            return;
+        _worldInstance.get()->runSystems(); /// WILL BE IMPROVED IN PART TWO (THREAD + CLOCK)
     }
     _disconectionProcess();
 }

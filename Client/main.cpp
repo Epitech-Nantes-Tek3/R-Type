@@ -31,6 +31,7 @@ int main(int ac, char **av)
     }
     pseudo = connection.getPseudo();
     password = connection.getPassword();
+    connection.~UserConnection();
     client.startLobbyLoop(pseudo, password);
     return (0);
 }

@@ -48,6 +48,7 @@ namespace client_data
         void startLobbyLoop(const std::string &pseudo, const std::string &password);
 
       private:
+        bool _answerProtocols();
         /// @brief Init all shared resources of the world.
         void _initSharedResources();
 
