@@ -29,6 +29,8 @@ AdminPanel::AdminPanel(std::string address, unsigned short port, std::string ser
     _requestAction["updateName"] = std::bind(&AdminPanel::_updateNameAction, this, std::placeholders::_1);
     _requestAction["ban"] = std::bind(&AdminPanel::_banAction, this, std::placeholders::_1);
     _requestAction["unban"] = std::bind(&AdminPanel::_unbanAction, this, std::placeholders::_1);
+    _requestAction["mute"] = std::bind(&AdminPanel::_muteAction, this, std::placeholders::_1);
+    _requestAction["unmute"] = std::bind(&AdminPanel::_unmuteAction, this, std::placeholders::_1);
 }
 
 void AdminPanel::startLoop()
@@ -174,4 +176,20 @@ void AdminPanel::_unbanAction(AdminPanel::PanelCommand parsedRequest)
         std::cout << "Invalid command parameters. Please refer to the Notion protocol." << std::endl;
     }
     _communicatorInstance->utilitarySetADatabaseValue(parsedRequest.userName, 1, 0, {0});
+}
+
+void AdminPanel::_muteAction(AdminPanel::PanelCommand parsedRequest)
+{
+    if (parsedRequest.userName == "") {
+        std::cout << "Invalid command parameters. Please refer to the Notion protocol." << std::endl;
+    }
+    _communicatorInstance->utilitarySetADatabaseValue(parsedRequest.userName, 2, 1, {0});
+}
+
+void AdminPanel::_unmuteAction(AdminPanel::PanelCommand parsedRequest)
+{
+    if (parsedRequest.userName == "") {
+        std::cout << "Invalid command parameters. Please refer to the Notion protocol." << std::endl;
+    }
+    _communicatorInstance->utilitarySetADatabaseValue(parsedRequest.userName, 2, 0, {0});
 }

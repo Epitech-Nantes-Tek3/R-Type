@@ -97,6 +97,14 @@ namespace admin_panel
         /// @brief Unban the specified user in the Database
         /// @param parsedRequest The parsed request.
         void _unbanAction(AdminPanel::PanelCommand parsedRequest);
+
+        /// @brief Mute the specified user in the Database
+        /// @param parsedRequest The parsed request.
+        void _muteAction(AdminPanel::PanelCommand parsedRequest);
+
+        /// @brief Unmute the specified user in the Database
+        /// @param parsedRequest The parsed request.
+        void _unmuteAction(AdminPanel::PanelCommand parsedRequest);
     };
 } // namespace admin_panel
 
