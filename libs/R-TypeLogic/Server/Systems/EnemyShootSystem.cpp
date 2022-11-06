@@ -7,7 +7,6 @@
 
 #include "EnemyShootSystem.hpp"
 #include <chrono>
-#include <iostream>
 #include <mutex>
 #include "Transisthor/TransisthorECSLogic/Server/Resources/NetworkableIdGenerator.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateEnemyProjectile.hpp"
