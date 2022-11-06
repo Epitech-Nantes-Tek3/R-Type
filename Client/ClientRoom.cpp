@@ -272,15 +272,15 @@ void ClientRoom::startLobbyLoop(void)
             }
             if (connectionOperation.message.type == 13)
                 _holdADisconnectionRequest();
+            if (connectionOperation.message.type == 20) {
+                _serverEndpoint =
+                    _communicatorInstance->getClientByHisId(_communicatorInstance->getServerEndpointId());
+                initEcsGameData();
+                _connectToARoom();
+            }
             if (_state == ClientState::MAIN_MENU) {
                 if (connectionOperation.message.type == 15)
                     _protocol15Answer(connectionOperation);
-                if (connectionOperation.message.type == 20) {
-                    _serverEndpoint =
-                        _communicatorInstance->getClientByHisId(_communicatorInstance->getServerEndpointId());
-                    initEcsGameData();
-                    _connectToARoom();
-                }
                 if (connectionOperation.message.type == 12)
                     protocol12Answer(connectionOperation);
             } else if (_state == ClientState::LOBBY) {
