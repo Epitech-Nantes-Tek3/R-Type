@@ -6,8 +6,8 @@
 */
 
 #include <iostream>
-#include "ArgumentHandler/ArgumentHandler.hpp"
 #include "AdminPanel.hpp"
+#include "ArgumentHandler/ArgumentHandler.hpp"
 
 using namespace argument_handler;
 using namespace admin_panel;
@@ -15,8 +15,9 @@ using namespace admin_panel;
 int main(int ac, char **av)
 {
     ArgumentHandler argumentHandler = ArgumentHandler(ac, av);
-    ArgumentHandler::ServerInformation serverInformation = argumentHandler.extractServerInformation();
-    AdminPanel adminPanel = AdminPanel(serverInformation.address, serverInformation.port);
+    ArgumentHandler::ClientInformation clientInformation = argumentHandler.extractClientInformation();
+    AdminPanel adminPanel = AdminPanel(clientInformation.clientAddress, clientInformation.clientPort,
+        clientInformation.serverAddress, clientInformation.serverPort);
 
     adminPanel.startLoop();
     return 0;

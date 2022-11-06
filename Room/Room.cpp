@@ -124,10 +124,6 @@ void Room::startLobbyLoop(void)
                 holdANewConnexionRequest(connectionOperation);
             if (connectionOperation.message.type == 13)
                 _holdADisconnectionRequest(connectionOperation);
-            if (connectionOperation.message.type == 40)
-                _holdADatabaseValueRequest(connectionOperation);
-            if (connectionOperation.message.type == 42)
-                _holdADatabaseSetRequest(connectionOperation);
             if (connectionOperation.message.type == 50)
                 _holdAChatRequest(connectionOperation);
         } catch (NetworkError &error) {
@@ -162,30 +158,6 @@ void Room::_holdADisconnectionRequest(CommunicatorMessage disconnectionDemand)
     }
     _worldInstance->getEntity(clientId).addComponent<Disconnectable>();
     std::cerr << "Player succesfully disconnected." << std::endl;
-}
-
-void Room::_holdADatabaseValueRequest(CommunicatorMessage databaseRequest)
-{
-    std::vector<std::string> requestContent =
-        _communicatorInstance->utilitaryReceiveAskingForDatabaseValue(databaseRequest);
-    auto apiAnswer = _databaseApi.selectUsers("UserName = '" + requestContent.at(0) + "'");
-    _communicatorInstance->utilitarySendDatabaseValue(
-        apiAnswer.at(0)[requestContent.at(1)], databaseRequest.message.clientInfo);
-}
-
-void Room::_holdADatabaseSetRequest(CommunicatorMessage databaseRequest)
-{
-    std::vector<std::string> requestContent = _communicatorInstance->utilitaryReceiveSetDatabaseValue(databaseRequest);
-    std::string keyStr = "";
-
-    if (requestContent.at(1) == "1")
-        keyStr = "Banned";
-    if (requestContent.at(1) == "2") {
-        keyStr = "Muted";
-    }
-    if (requestContent.at(1) == "3")
-        keyStr = "Moderator";
-    _databaseApi.updateUsers(keyStr + " = " + requestContent.at(2), "UserName = '" + requestContent.at(0) + "'");
 }
 
 void Room::_holdAChatRequest(CommunicatorMessage chatRequest)
