@@ -27,7 +27,7 @@ namespace client_data
     class ClientRoom {
       public:
         /// @brief All the possible state of a client
-        enum ClientState { UNDEFINED, LOBBY, IN_GAME, ENDED };
+        enum ClientState { UNDEFINED, LOBBY, IN_GAME, ENDED, MAIN_MENU };
 
         /// @brief Construct a new ClientRoom with default value
         ClientRoom();
