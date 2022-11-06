@@ -47,7 +47,7 @@ static void makeEnemyGoRandom(World &world, std::shared_ptr<Entity> enemy, std::
         vel.multiplierAbscissa = newVelX;
         vel.multiplierOrdinate = newVelY;
         vel.modified = true;
-        pos.modified = true;
+        dest.modified = true;
     }
 }
 
@@ -243,7 +243,6 @@ static bool firstVelocityNotSet(std::shared_ptr<Entity> enemy)
         vel.multiplierAbscissa = dest.x - (int)pos.x;
         vel.multiplierOrdinate = dest.y - (int)pos.y;
         vel.modified = true;
-        pos.modified = true;
         return true;
     }
     return false;
