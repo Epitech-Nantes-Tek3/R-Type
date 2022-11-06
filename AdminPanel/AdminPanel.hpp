@@ -105,6 +105,14 @@ namespace admin_panel
         /// @brief Unmute the specified user in the Database
         /// @param parsedRequest The parsed request.
         void _unmuteAction(AdminPanel::PanelCommand parsedRequest);
+
+        /// @brief Promote the specified user in the Database
+        /// @param parsedRequest The parsed request.
+        void _promoteAction(AdminPanel::PanelCommand parsedRequest);
+
+        /// @brief Unpromote the specified user in the Database
+        /// @param parsedRequest The parsed request.
+        void _unpromoteAction(AdminPanel::PanelCommand parsedRequest);
     };
 } // namespace admin_panel
 
