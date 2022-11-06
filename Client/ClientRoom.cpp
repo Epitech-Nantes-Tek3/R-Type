@@ -45,6 +45,7 @@
 #include "Transisthor/TransisthorECSLogic/Client/Systems/SendNewlyCreatedToServer.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Systems/SendToServer.hpp"
 #include "UserConnection.hpp"
+#include "R-TypeLogic/Server/Systems/EnemiesPatterns.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/ButtonActionMap.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/GameStates.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/MenuStates.hpp"
@@ -76,7 +77,6 @@
 #include "R-TypeLogic/Server/Systems/DeathLifeSystem.hpp"
 #include "R-TypeLogic/Server/Systems/DecreaseLifeTimeSystem.hpp"
 #include "R-TypeLogic/Server/Systems/DisconnectableSystem.hpp"
-#include "R-TypeLogic/Server/Systems/EnemiesGoRandom.hpp"
 #include "R-TypeLogic/Server/Systems/EnemyShootSystem.hpp"
 #include "R-TypeLogic/Server/Systems/LifeTimeDeathSystem.hpp"
 
@@ -496,7 +496,7 @@ void ClientRoom::_initSystems(bool isSolo)
     _worldInstance->addSystem<RemoveChatSystem>();
     _worldInstance->addSystem<ElectricInvisibleEnemy>();
     if (isSolo) {
-        _worldInstance->addSystem<EnemiesGoRandom>();
+        _worldInstance->addSystem<EnemiesPatterns>();
         _worldInstance->addSystem<EnemyShootSystem>();
         _worldInstance->addSystem<Collide>();
         _worldInstance->addSystem<DeathLife>();
