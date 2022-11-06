@@ -235,12 +235,8 @@ bool ClientRoom::_answerProtocols()
     try {
         connectionOperation = _communicatorInstance.get()->getLastMessage();
         switch (connectionOperation.message.type) {
-            case 11:
-                std::cerr << "No places left inside the hub. Please retry later" << std::endl;
-                return false;
-            case 13:
-                _holdADisconnectionRequest();
-                break;
+            case 11: std::cerr << "No places left inside the hub. Please retry later" << std::endl; return false;
+            case 13: _holdADisconnectionRequest(); break;
             case 20:
                 _serverEndpoint = _communicatorInstance->getClientByHisId(_communicatorInstance->getServerEndpointId());
                 _initEcsGameData();
@@ -256,7 +252,7 @@ bool ClientRoom::_answerProtocols()
                 break;
             case 50:
                 if (_state == ClientState::IN_GAME)
-                _holdAChatRequest(connectionOperation);
+                    _holdAChatRequest(connectionOperation);
                 break;
         }
     } catch (NetworkError &error) {
@@ -269,10 +265,10 @@ void ClientRoom::_loadTextures()
     GraphicsTextureResource &textureResource = _worldInstance->getResource<GraphicsTextureResource>();
     auto guard = std::lock_guard(textureResource);
 
-    textureResource.addTexture(GraphicsTextureResource::BUTTON, "assets/EpiSprite/r-typesheet11.gif", sf::Vector2f(34, 0),
-        sf::Vector2f(34, 34));
-    textureResource.addTexture(GraphicsTextureResource::ENEMY_STATIC,
-        "assets/EpiSprite/BasicEnemySpriteSheet.gif", sf::Vector2f(0, 0), sf::Vector2f(34, 34));
+    textureResource.addTexture(GraphicsTextureResource::BUTTON, "assets/EpiSprite/r-typesheet11.gif",
+        sf::Vector2f(34, 0), sf::Vector2f(34, 34));
+    textureResource.addTexture(GraphicsTextureResource::ENEMY_STATIC, "assets/EpiSprite/BasicEnemySpriteSheet.gif",
+        sf::Vector2f(0, 0), sf::Vector2f(34, 34));
     _initWritableTextures(textureResource);
     _initPlayerTextures(textureResource);
     _initProjectilesTextures(textureResource);
@@ -308,13 +304,13 @@ void ClientRoom::_updateEcsResources()
 void ClientRoom::_initInputsEntity()
 {
     ecs::Entity &entity = _worldInstance->addEntity()
-        .addComponent<MouseInputComponent>()
-        .addComponent<KeyboardInputComponent>()
-        .addComponent<ControllerButtonInputComponent>()
-        .addComponent<ControllerJoystickInputComponent>()
-        .addComponent<ActionQueueComponent>()
-        .addComponent<AllowMouseAndKeyboardComponent>()
-        .addComponent<AllowControllerComponent>();
+                              .addComponent<MouseInputComponent>()
+                              .addComponent<KeyboardInputComponent>()
+                              .addComponent<ControllerButtonInputComponent>()
+                              .addComponent<ControllerJoystickInputComponent>()
+                              .addComponent<ActionQueueComponent>()
+                              .addComponent<AllowMouseAndKeyboardComponent>()
+                              .addComponent<AllowControllerComponent>();
 
     entity.getComponent<KeyboardInputComponent>().keyboardMapActions.emplace(
         std::make_pair<sf::Keyboard::Key, std::pair<ActionQueueComponent::inputAction_e, float>>(sf::Keyboard::Z,
@@ -329,8 +325,7 @@ void ClientRoom::_initInputsEntity()
         std::make_pair<sf::Keyboard::Key, std::pair<ActionQueueComponent::inputAction_e, float>>(sf::Keyboard::D,
             std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEX, 200)));
     entity.getComponent<KeyboardInputComponent>().keyboardMapActions.emplace(
-        std::make_pair<sf::Keyboard::Key, std::pair<ActionQueueComponent::inputAction_e, float>>(
-            sf::Keyboard::Enter,
+        std::make_pair<sf::Keyboard::Key, std::pair<ActionQueueComponent::inputAction_e, float>>(sf::Keyboard::Enter,
             std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::SHOOT, 10)));
     entity.getComponent<ControllerJoystickInputComponent>().controllerJoystickMapActions.emplace(
         std::make_pair<unsigned int, std::pair<ActionQueueComponent::inputAction_e, float>>(
@@ -344,15 +339,9 @@ void ClientRoom::_initInputsEntity()
 void ClientRoom::_updateEcsEntities()
 {
     _initInputsEntity();
-    if (_state == ClientState::MAIN_MENU) {
-
-    }
-    if (_state == ClientState::LOBBY) {
-
-    }
-    if (_state == ClientState::IN_GAME) {
-
-    }
+    if (_state == ClientState::MAIN_MENU) {}
+    if (_state == ClientState::LOBBY) {}
+    if (_state == ClientState::IN_GAME) {}
 }
 
 void ClientRoom::_updateEcsSystems()
@@ -464,10 +453,10 @@ void ClientRoom::_initBackgroundsTextures(GraphicsTextureResource &textureResour
 
 void ClientRoom::_initWritableTextures(GraphicsTextureResource &textureResource)
 {
-    textureResource.addTexture(GraphicsTextureResource::WRITABLE, "assets/EpiSprite/r-typesheet11.gif", sf::Vector2f(34, 0),
-        sf::Vector2f(34, 34));
-    textureResource.addTexture(GraphicsTextureResource::WRITABLE_SELECTED, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
-        sf::Vector2f(534 / 16 * 8, 0), sf::Vector2f(534 / 16, 34));
+    textureResource.addTexture(GraphicsTextureResource::WRITABLE, "assets/EpiSprite/r-typesheet11.gif",
+        sf::Vector2f(34, 0), sf::Vector2f(34, 34));
+    textureResource.addTexture(GraphicsTextureResource::WRITABLE_SELECTED,
+        "assets/EpiSprite/BasicPlayerSpriteSheet.gif", sf::Vector2f(534 / 16 * 8, 0), sf::Vector2f(534 / 16, 34));
     textureResource.addTexture(GraphicsTextureResource::WRITABLE_BUTTON, "assets/EpiSprite/r-typesheet11.gif",
         sf::Vector2f(34, 0), sf::Vector2f(34, 34));
 }
