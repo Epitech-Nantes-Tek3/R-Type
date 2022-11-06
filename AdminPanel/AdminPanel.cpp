@@ -12,6 +12,10 @@ using namespace error_lib;
 using namespace communicator_lib;
 using namespace admin_panel;
 
+std::vector<AdminPanel::PanelCommand> commandList = {{"updatePassword", "", {}}, {"updateName", "", {}},
+    {"ban", "", {}}, {"mute", "", {}}, {"unban", "", {}}, {"unmute", "", {}}, {"delete", "", {}}, {"promote", "", {}},
+    {"unpromote", "", {}}, {"get", "", {}}};
+
 AdminPanel::AdminPanel(std::string address, unsigned short port, std::string serverAddress, unsigned short serverPort)
 {
     _networkInformations = Client(address, port);
@@ -90,7 +94,18 @@ void AdminPanel::_handleAReceivedData(CommunicatorMessage databaseAnswer)
     std::cout << value << std::endl;
 }
 
+AdminPanel::PanelCommand AdminPanel::_parseAClientRequest(std::string clientRequest)
+{
+    (void)clientRequest;
+    return AdminPanel::PanelCommand();
+}
+
 void AdminPanel::_getARequest()
 {
-    
+    std::string clientRequest;
+
+    std::cout << "Enter your request : ";
+    std::cin >> clientRequest;
+    AdminPanel::PanelCommand parsedRequest = _parseAClientRequest(clientRequest);
+    (void)parsedRequest;
 }

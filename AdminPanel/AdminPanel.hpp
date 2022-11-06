@@ -19,14 +19,14 @@ namespace admin_panel
       public:
 
         /// @brief A basic struct representing a panel command
-        typedef struct panelCommandS {
+        struct PanelCommand {
             /// @brief The command keyword
             std::string keyWord;
             /// @brief The targeted user
             std::string userName;
             /// @brief List of all additional option
             std::vector<std::string> options;
-        } panelCommandT;
+        };
 
         /// @brief Construct a new AdminPanel object
         /// @param address Ip address of the admin panel
@@ -73,6 +73,11 @@ namespace admin_panel
 
         /// @brief Ask the user for a new request
         void _getARequest();
+
+        /// @brief Parse a client request and return it in PanelCommand format
+        /// @param clientRequest The client request
+        /// @return the parsed request
+        AdminPanel::PanelCommand _parseAClientRequest(std::string clientRequest);
     };
 } // namespace admin_panel
 
