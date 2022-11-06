@@ -19,7 +19,6 @@ using namespace std::chrono;
 
 void EnemyShootSystem::run(World &world)
 {
-    std::cout << "test system enemyshoot\n";
     std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Enemy, ShootingFrequency>();
 
     auto enemiesMayShoot = [&world](std::shared_ptr<ecs::Entity> entityPtr) {

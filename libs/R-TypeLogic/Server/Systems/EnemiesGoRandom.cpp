@@ -25,7 +25,6 @@ void EnemiesGoRandom::run(World &world)
 {
     std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<Enemy, Position, Velocity, Destination>();
 
-    std::cout << "test system go random";
     auto randomMove = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
         auto guard = std::lock_guard(*entityPtr.get());
         Position &pos = entityPtr.get()->getComponent<Position>();
