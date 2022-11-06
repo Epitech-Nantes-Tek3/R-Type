@@ -141,7 +141,7 @@ namespace client_data
         void _startConnexionProtocol(void);
 
         /// @brief Answer the reception of a protocol 12
-        void protocol12Answer(CommunicatorMessage connexionResponse);
+        void _protocol12Answer(CommunicatorMessage connexionResponse);
 
         /// @brief Answer the reception of a protocol 15
         /// @param connectionResponse The received response

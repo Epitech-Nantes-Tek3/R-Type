@@ -24,9 +24,6 @@ namespace ecs
         /// @brief Map's name which contains the actions
         using ActionList = std::unordered_map<buttonAction_e, std::function<void(World &, Entity &)>>;
 
-        /// @brief Default constructor of ButtonActionMap.
-        ButtonActionMap() = default;
-
         /// @brief Constructor of the map, calling the addAction Method
         /// PLEASE DO NOT USE THE DEFAULT CONSTRUCTOR
         /// @param action Enum of the Action

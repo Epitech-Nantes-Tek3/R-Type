@@ -19,6 +19,8 @@ namespace graphicECS::SFML::Systems
             MusicComponent music = entityPtr.get()->getComponent<MusicComponent>();
             MusicResource &musicResource = world.getResource<MusicResource>();
 
+            if (!musicResource._musicsList.contains(music.music_e))
+                return;
             if (music._status == sf::SoundSource::Status::Stopped
                 && musicResource._musicsList.at(music.music_e)->getStatus()
                     != sf::Music::Stopped) {
