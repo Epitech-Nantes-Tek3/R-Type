@@ -160,9 +160,8 @@ void AdminPanel::_updateNameAction(AdminPanel::PanelCommand parsedRequest)
     if (parsedRequest.options.size() != 1) {
         std::cout << "Invalid command parameters. Please refer to the Notion protocol." << std::endl;
     }
-    //_communicatorInstance->utilitarySetADatabaseValue(
-    // parsedRequest.userName, "UserName", parsedRequest.options.at(0), {0});
-    /// WILL BE ADDED LATER
+    _communicatorInstance->utilitarySetADatabaseValue(
+        parsedRequest.userName, 4, parsedRequest.options.at(0), {0});
 }
 
 void AdminPanel::_banAction(AdminPanel::PanelCommand parsedRequest)
@@ -170,7 +169,7 @@ void AdminPanel::_banAction(AdminPanel::PanelCommand parsedRequest)
     if (parsedRequest.userName == "") {
         std::cout << "Invalid command parameters. Please refer to the Notion protocol." << std::endl;
     }
-    _communicatorInstance->utilitarySetADatabaseValue(parsedRequest.userName, 1, 1, {0});
+    _communicatorInstance->utilitarySetADatabaseValue(parsedRequest.userName, 1, "1", {0});
 }
 
 void AdminPanel::_unbanAction(AdminPanel::PanelCommand parsedRequest)
@@ -178,7 +177,7 @@ void AdminPanel::_unbanAction(AdminPanel::PanelCommand parsedRequest)
     if (parsedRequest.userName == "") {
         std::cout << "Invalid command parameters. Please refer to the Notion protocol." << std::endl;
     }
-    _communicatorInstance->utilitarySetADatabaseValue(parsedRequest.userName, 1, 0, {0});
+    _communicatorInstance->utilitarySetADatabaseValue(parsedRequest.userName, 1, "0", {0});
 }
 
 void AdminPanel::_muteAction(AdminPanel::PanelCommand parsedRequest)
@@ -186,7 +185,7 @@ void AdminPanel::_muteAction(AdminPanel::PanelCommand parsedRequest)
     if (parsedRequest.userName == "") {
         std::cout << "Invalid command parameters. Please refer to the Notion protocol." << std::endl;
     }
-    _communicatorInstance->utilitarySetADatabaseValue(parsedRequest.userName, 2, 1, {0});
+    _communicatorInstance->utilitarySetADatabaseValue(parsedRequest.userName, 2, "1", {0});
 }
 
 void AdminPanel::_unmuteAction(AdminPanel::PanelCommand parsedRequest)
@@ -194,7 +193,7 @@ void AdminPanel::_unmuteAction(AdminPanel::PanelCommand parsedRequest)
     if (parsedRequest.userName == "") {
         std::cout << "Invalid command parameters. Please refer to the Notion protocol." << std::endl;
     }
-    _communicatorInstance->utilitarySetADatabaseValue(parsedRequest.userName, 2, 0, {0});
+    _communicatorInstance->utilitarySetADatabaseValue(parsedRequest.userName, 2, "0", {0});
 }
 
 void AdminPanel::_promoteAction(AdminPanel::PanelCommand parsedRequest)
@@ -202,7 +201,7 @@ void AdminPanel::_promoteAction(AdminPanel::PanelCommand parsedRequest)
     if (parsedRequest.userName == "") {
         std::cout << "Invalid command parameters. Please refer to the Notion protocol." << std::endl;
     }
-    _communicatorInstance->utilitarySetADatabaseValue(parsedRequest.userName, 3, 1, {0});
+    _communicatorInstance->utilitarySetADatabaseValue(parsedRequest.userName, 3, "1", {0});
 }
 
 void AdminPanel::_unpromoteAction(AdminPanel::PanelCommand parsedRequest)
@@ -210,7 +209,7 @@ void AdminPanel::_unpromoteAction(AdminPanel::PanelCommand parsedRequest)
     if (parsedRequest.userName == "") {
         std::cout << "Invalid command parameters. Please refer to the Notion protocol." << std::endl;
     }
-    _communicatorInstance->utilitarySetADatabaseValue(parsedRequest.userName, 3, 0, {0});
+    _communicatorInstance->utilitarySetADatabaseValue(parsedRequest.userName, 3, "0", {0});
 }
 
 void AdminPanel::_getStatsAction(AdminPanel::PanelCommand parsedRequest)

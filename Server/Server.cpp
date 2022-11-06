@@ -113,6 +113,8 @@ void Server::_holdADatabaseSetRequest(CommunicatorMessage databaseRequest)
         keyStr = "Muted";
     if (requestContent.at(1) == "3")
         keyStr = "Moderator";
+    if (requestContent.at(1) == "4")
+        keyStr = "UserName";
     _databaseApi.updateUsers(keyStr + " = " + requestContent.at(2), "UserName = '" + requestContent.at(0) + "'");
 }
 

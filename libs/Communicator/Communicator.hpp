@@ -170,7 +170,7 @@ namespace communicator_lib
         /// @param value The new value to set
         /// @param destination of the message
         void utilitarySetADatabaseValue(
-            std::string pseudo, unsigned short key, unsigned short value, std::vector<unsigned short> destination);
+            std::string pseudo, unsigned short key, std::string value, std::vector<unsigned short> destination);
 
         /// @brief Utilitary function used to extract a message received by a protocol 50
         /// @param cryptedMessage the crypted message
