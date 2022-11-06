@@ -10,10 +10,12 @@
 
 #include <mutex>
 #include "Transisthor/TransisthorECSLogic/Server/Components/NetworkClient.hpp"
+#include "TransisthorECSLogic/Server/Resources/NetworkableIdGenerator.hpp"
 #include "World/World.hpp"
 #include "R-TypeLogic/Global/Components/DeathComponent.hpp"
 #include "R-TypeLogic/Global/Components/LifeComponent.hpp"
 #include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
+
 namespace ecs
 {
     /// @brief This is the DeathLife System.
