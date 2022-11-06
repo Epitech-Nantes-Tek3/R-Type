@@ -49,20 +49,23 @@ namespace client_data
 
         void signalSoloCallbackHandler(int signum);
 
-        void startSoloLoop(const std::string &pseudo, const std::string &password);
+        void startSoloLoop();
 
         void initSoloData();
 
         void initSoloSystem();
     
-        void startGame(const std::string &pseudo, const std::string &password);
+        void startGame();
+
+        void choosePlayerInfosForServer();
 
       private:
         /// @brief Init all shared resources of the world.
         void _initSharedResources();
 
         /// @brief Init all systems of the world.
-        void _initSystems();
+        /// @param isSolo Init all systems if the player play in solo mod or in multiplayer mod
+        void _initSystems(bool isSolo);
 
         /// @brief Init some entities only created by the client.
         void _initEntities();

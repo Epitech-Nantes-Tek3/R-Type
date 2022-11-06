@@ -11,6 +11,7 @@
 #include <csignal>
 #include <functional>
 #include <mutex>
+#include "UserConnection.hpp"
 #include "ButtonAction.hpp"
 #include "Error/Error.hpp"
 #include "GraphicECS/SFML/Components/ActionQueueComponent.hpp"
@@ -136,11 +137,11 @@ void ClientRoom::_initEcsGameData(bool isSolo)
 {
     if (isSolo) {
         _initSharedResources();
-        initSoloSystem();
+        _initSystems(isSolo);
         _initEntities();
     } else {
         _initSharedResources();
-        _initSystems();
+        _initSystems(isSolo);
         _initEntities();
     }
 }
@@ -255,10 +256,8 @@ void ClientRoom::initSoloData(void)
     createNewEnemyRandom(*_worldInstance.get(), 0, 0, 1, 85, 85, 50, 10, 5, 1);
 }
 
-void ClientRoom::startSoloLoop(const std::string &pseudo, const std::string &password)
+void ClientRoom::startSoloLoop()
 {
-    _pseudo = pseudo;
-    _password = password;
     _initEcsGameData(true);
     initSoloData();
     _state = ClientState::IN_GAME;
@@ -270,7 +269,24 @@ void ClientRoom::startSoloLoop(const std::string &pseudo, const std::string &pas
     }
 }
 
-void ClientRoom::startGame(const std::string &pseudo, const std::string &password)
+void ClientRoom::choosePlayerInfosForServer()
+{
+    UserConnection connection;
+    std::string pseudo;
+    std::string password;
+
+    try {
+        connection.userConnection();
+    } catch (error_lib::RTypeError &e) {
+        std::cerr << e.what() << std::endl;
+        exit(84);
+    }
+    pseudo = connection.getPseudo();
+    password = connection.getPassword();
+    startLobbyLoop(pseudo, password);
+}
+
+void ClientRoom::startGame()
 {
     std::cerr << "If you want to play in Solo Mod, please refer S. Otherwise if you want to play in multiplayer use M "
                  "and be shure that a server is runing : ";
@@ -278,10 +294,10 @@ void ClientRoom::startGame(const std::string &pseudo, const std::string &passwor
 
     std::cin >> choosedMod;
     if (choosedMod == 'S') {
-        //_getClientPseudoAndPassword();
-        startSoloLoop(pseudo, password);
+        _getClientPseudoAndPassword();
+        startSoloLoop();
     } else if (choosedMod == 'M') {
-        startLobbyLoop(pseudo, password);
+        choosePlayerInfosForServer();
     } else {
         std::cerr << "Not a valid option ;)" << std::endl;
         _state = ClientState::ENDED;
@@ -468,42 +484,41 @@ void ClientRoom::_initSharedResources()
     _initSpritesForEntities();
 }
 
-void ClientRoom::initSoloSystem(void)
+void ClientRoom::_initSystems(bool isSolo)
 {
-    _worldInstance->addSystem<EnemiesGoRandom>();
-    _worldInstance->addSystem<EnemyShootSystem>();
-    _worldInstance->addSystem<Collide>();
-    _worldInstance->addSystem<DeathLife>();
-    _worldInstance->addSystem<LifeTimeDeath>();
-    _worldInstance->addSystem<DecreaseLifeTime>();
-    _worldInstance->addSystem<UpdateClock>();
-    _worldInstance->addSystem<DeathSystem>();
-    _worldInstance->addSystem<DrawComponents>();
-    _worldInstance->addSystem<InputManagement>();
-    _worldInstance->addSystem<SfObjectFollowEntitySystem>();
-    _worldInstance->addSystem<Parallax>();
-    _worldInstance->addSystem<Movement>();
-    _worldInstance->addSystem<AnimationSystem>();
-    _worldInstance->addSystem<MusicManagement>();
-    _worldInstance->addSystem<SoundManagement>();
-}
-
-void ClientRoom::_initSystems()
-{
-    _worldInstance->addSystem<UpdateClock>();
-    _worldInstance->addSystem<DeathSystem>();
-    _worldInstance->addSystem<DrawComponents>();
-    _worldInstance->addSystem<InputManagement>();
-    _worldInstance->addSystem<SendToServer>();
-    _worldInstance->addSystem<SendNewlyCreatedToServer>();
-    _worldInstance->addSystem<SfObjectFollowEntitySystem>();
-    _worldInstance->addSystem<Parallax>();
-    _worldInstance->addSystem<Movement>();
-    _worldInstance->addSystem<AnimationSystem>();
-    _worldInstance->addSystem<NoAfkInMenu>();
-    _worldInstance->addSystem<MusicManagement>();
-    _worldInstance->addSystem<SoundManagement>();
-    _worldInstance->addSystem<RemoveChatSystem>();
+    if (isSolo) {
+        _worldInstance->addSystem<EnemiesGoRandom>();
+        _worldInstance->addSystem<EnemyShootSystem>();
+        _worldInstance->addSystem<Collide>();
+        _worldInstance->addSystem<DeathLife>();
+        _worldInstance->addSystem<LifeTimeDeath>();
+        _worldInstance->addSystem<DecreaseLifeTime>();
+        _worldInstance->addSystem<UpdateClock>();
+        _worldInstance->addSystem<DeathSystem>();
+        _worldInstance->addSystem<DrawComponents>();
+        _worldInstance->addSystem<InputManagement>();
+        _worldInstance->addSystem<SfObjectFollowEntitySystem>();
+        _worldInstance->addSystem<Parallax>();
+        _worldInstance->addSystem<Movement>();
+        _worldInstance->addSystem<AnimationSystem>();
+        _worldInstance->addSystem<MusicManagement>();
+        _worldInstance->addSystem<SoundManagement>();
+    } else {
+        _worldInstance->addSystem<UpdateClock>();
+        _worldInstance->addSystem<DeathSystem>();
+        _worldInstance->addSystem<DrawComponents>();
+        _worldInstance->addSystem<InputManagement>();
+        _worldInstance->addSystem<SendToServer>();
+        _worldInstance->addSystem<SendNewlyCreatedToServer>();
+        _worldInstance->addSystem<SfObjectFollowEntitySystem>();
+        _worldInstance->addSystem<Parallax>();
+        _worldInstance->addSystem<Movement>();
+        _worldInstance->addSystem<AnimationSystem>();
+        _worldInstance->addSystem<NoAfkInMenu>();
+        _worldInstance->addSystem<MusicManagement>();
+        _worldInstance->addSystem<SoundManagement>();
+        _worldInstance->addSystem<RemoveChatSystem>();
+    }
 }
 
 void ClientRoom::_initBackgroundEntities()
