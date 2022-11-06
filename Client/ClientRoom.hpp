@@ -92,20 +92,20 @@ namespace client_data
         void _connectToARoom();
 
         /// @brief Init all the sprites needed for the player
-        /// @param spritesList texture's map holding the texture and the corresponding key
-        void _initSpritesForPlayer(graphicECS::SFML::Resources::GraphicsTextureResource &spritesList);
+        /// @param textureResource texture's map holding the texture and the corresponding key
+        void _initPlayerTextures(graphicECS::SFML::Resources::GraphicsTextureResource &textureResource);
 
         /// @brief Init all the sprites needed for the projectiles
-        /// @param spritesList texture's map holding the texture and the corresponding key
-        void _initSpritesForProjectiles(graphicECS::SFML::Resources::GraphicsTextureResource &spritesList);
+        /// @param textureResource texture's map holding the texture and the corresponding key
+        void _initProjectilesTextures(graphicECS::SFML::Resources::GraphicsTextureResource &textureResource);
 
         /// @brief Init all the sprites needed for the backgrounds
-        /// @param spritesList texture's map holding the texture and the corresponding key
-        void _initSpritesForBackgrounds(graphicECS::SFML::Resources::GraphicsTextureResource &spritesList);
+        /// @param textureResource texture's map holding the texture and the corresponding key
+        void _initBackgroundsTextures(graphicECS::SFML::Resources::GraphicsTextureResource &textureResource);
 
         /// @brief Init all the sprites needed for the Writable object
-        /// @param spritesList texture's map holding the texture and the corresponding key
-        void _initSpritesForWritable(graphicECS::SFML::Resources::GraphicsTextureResource &spritesList);
+        /// @param textureResource texture's map holding the texture and the corresponding key
+        void _initWritableTextures(graphicECS::SFML::Resources::GraphicsTextureResource &textureResource);
 
         /// @brief Network informations of the room.
         Client _networkInformations;

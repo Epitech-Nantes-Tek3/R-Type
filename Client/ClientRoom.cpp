@@ -266,7 +266,17 @@ bool ClientRoom::_answerProtocols()
 
 void ClientRoom::_loadTextures()
 {
+    GraphicsTextureResource &textureResource = _worldInstance->getResource<GraphicsTextureResource>();
+    auto guard = std::lock_guard(textureResource);
 
+    textureResource.addTexture(GraphicsTextureResource::BUTTON, "assets/EpiSprite/r-typesheet11.gif", sf::Vector2f(34, 0),
+        sf::Vector2f(34, 34));
+    textureResource.addTexture(GraphicsTextureResource::ENEMY_STATIC,
+        "assets/EpiSprite/BasicEnemySpriteSheet.gif", sf::Vector2f(0, 0), sf::Vector2f(34, 34));
+    _initWritableTextures(textureResource);
+    _initPlayerTextures(textureResource);
+    _initProjectilesTextures(textureResource);
+    _initBackgroundsTextures(textureResource);
 }
 
 void ClientRoom::_updateEcsResources()
@@ -291,7 +301,8 @@ void ClientRoom::_updateEcsResources()
         _worldInstance->addResource<GameStates>(GameStates::IN_GAME);
     if (!_worldInstance->containsResource<GraphicsTextureResource>())
         _worldInstance->addResource<GraphicsTextureResource>();
-    _loadTextures();
+    if (_worldInstance->containsResource<GraphicsTextureResource>())
+        _loadTextures();
 }
 
 void ClientRoom::_updateEcsEntities()
@@ -335,57 +346,57 @@ void ClientRoom::_disconectionProcess()
 
 void ClientRoom::_holdADisconnectionRequest() { _state = ClientState::ENDED; }
 
-void ClientRoom::_initSpritesForPlayer(GraphicsTextureResource &spritesList)
+void ClientRoom::_initPlayerTextures(GraphicsTextureResource &textureResource)
 {
-    spritesList.addTexture(GraphicsTextureResource::PLAYER_STATIC_1, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
+    textureResource.addTexture(GraphicsTextureResource::PLAYER_STATIC_1, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
         sf::Vector2f(534 / 16 * 8, 0), sf::Vector2f(534 / 16, 34));
-    spritesList.addTexture(GraphicsTextureResource::PLAYER_STATIC_2, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
+    textureResource.addTexture(GraphicsTextureResource::PLAYER_STATIC_2, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
         sf::Vector2f(534 / 16 * 9, 0), sf::Vector2f(534 / 16, 34));
-    spritesList.addTexture(GraphicsTextureResource::PLAYER_STATIC_3, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
+    textureResource.addTexture(GraphicsTextureResource::PLAYER_STATIC_3, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
         sf::Vector2f(534 / 16 * 10, 0), sf::Vector2f(534 / 16, 34));
-    spritesList.addTexture(GraphicsTextureResource::PLAYER_STATIC_4, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
+    textureResource.addTexture(GraphicsTextureResource::PLAYER_STATIC_4, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
         sf::Vector2f(534 / 16 * 11, 0), sf::Vector2f(534 / 16, 34));
-    spritesList.addTexture(GraphicsTextureResource::PLAYER_STATIC_5, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
+    textureResource.addTexture(GraphicsTextureResource::PLAYER_STATIC_5, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
         sf::Vector2f(534 / 16 * 12, 0), sf::Vector2f(534 / 16, 34));
-    spritesList.addTexture(GraphicsTextureResource::PLAYER_STATIC_6, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
+    textureResource.addTexture(GraphicsTextureResource::PLAYER_STATIC_6, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
         sf::Vector2f(534 / 16 * 13, 0), sf::Vector2f(534 / 16, 34));
-    spritesList.addTexture(GraphicsTextureResource::PLAYER_STATIC_7, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
+    textureResource.addTexture(GraphicsTextureResource::PLAYER_STATIC_7, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
         sf::Vector2f(534 / 16 * 14, 0), sf::Vector2f(534 / 16, 34));
-    spritesList.addTexture(GraphicsTextureResource::PLAYER_STATIC_8, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
+    textureResource.addTexture(GraphicsTextureResource::PLAYER_STATIC_8, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
         sf::Vector2f(534 / 16 * 15, 0), sf::Vector2f(534 / 16, 34));
 }
 
-void ClientRoom::_initSpritesForProjectiles(GraphicsTextureResource &spritesList)
+void ClientRoom::_initProjectilesTextures(GraphicsTextureResource &textureResource)
 {
-    spritesList.addTexture(GraphicsTextureResource::PROJECTILE_ENEMY_BASIC,
+    textureResource.addTexture(GraphicsTextureResource::PROJECTILE_ENEMY_BASIC,
         "assets/EpiSprite/BasicEnemyProjectileSpriteSheet.gif", sf::Vector2f(0, 0), sf::Vector2f(34, 34));
-    spritesList.addTexture(GraphicsTextureResource::PROJECTILE_ENEMY_FIRE,
+    textureResource.addTexture(GraphicsTextureResource::PROJECTILE_ENEMY_FIRE,
         "assets/EpiSprite/FireEnemyProjectileSpriteSheet.gif", sf::Vector2f(0, 0), sf::Vector2f(34, 34));
-    spritesList.addTexture(GraphicsTextureResource::PROJECTILE_ENEMY_ELECTRIC,
+    textureResource.addTexture(GraphicsTextureResource::PROJECTILE_ENEMY_ELECTRIC,
         "assets/EpiSprite/ElectricEnemyProjectileSpriteSheet.gif", sf::Vector2f(0, 0), sf::Vector2f(34, 34));
-    spritesList.addTexture(GraphicsTextureResource::PROJECTILE_ENEMY_ICE,
+    textureResource.addTexture(GraphicsTextureResource::PROJECTILE_ENEMY_ICE,
         "assets/EpiSprite/IceEnemyProjectileSpriteSheet.gif", sf::Vector2f(0, 0), sf::Vector2f(34, 34));
-    spritesList.addTexture(GraphicsTextureResource::PROJECTILE_ALLY,
+    textureResource.addTexture(GraphicsTextureResource::PROJECTILE_ALLY,
         "assets/EpiSprite/BasicAlliedProjectileSpriteSheet.gif", sf::Vector2f(0, 0), sf::Vector2f(20, 20));
 }
 
-void ClientRoom::_initSpritesForBackgrounds(GraphicsTextureResource &spritesList)
+void ClientRoom::_initBackgroundsTextures(GraphicsTextureResource &textureResource)
 {
-    spritesList.addTexture(GraphicsTextureResource::BACKGROUND_LAYER_3, "assets/Backgrounds/back.png",
+    textureResource.addTexture(GraphicsTextureResource::BACKGROUND_LAYER_3, "assets/Backgrounds/back.png",
         sf::Vector2f(0, 0), sf::Vector2f(1920, 1080));
-    spritesList.addTexture(GraphicsTextureResource::BACKGROUND_LAYER_2, "assets/Backgrounds/far.png",
+    textureResource.addTexture(GraphicsTextureResource::BACKGROUND_LAYER_2, "assets/Backgrounds/far.png",
         sf::Vector2f(0, 0), sf::Vector2f(1920, 1080));
-    spritesList.addTexture(GraphicsTextureResource::BACKGROUND_LAYER_1, "assets/Backgrounds/middle.png",
+    textureResource.addTexture(GraphicsTextureResource::BACKGROUND_LAYER_1, "assets/Backgrounds/middle.png",
         sf::Vector2f(0, 0), sf::Vector2f(1920, 1080));
 }
 
-void ClientRoom::_initSpritesForWritable(GraphicsTextureResource &spritesList)
+void ClientRoom::_initWritableTextures(GraphicsTextureResource &textureResource)
 {
-    spritesList.addTexture(GraphicsTextureResource::WRITABLE, "assets/EpiSprite/r-typesheet11.gif", sf::Vector2f(34, 0),
+    textureResource.addTexture(GraphicsTextureResource::WRITABLE, "assets/EpiSprite/r-typesheet11.gif", sf::Vector2f(34, 0),
         sf::Vector2f(34, 34));
-    spritesList.addTexture(GraphicsTextureResource::WRITABLE_SELECTED, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
+    textureResource.addTexture(GraphicsTextureResource::WRITABLE_SELECTED, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
         sf::Vector2f(534 / 16 * 8, 0), sf::Vector2f(534 / 16, 34));
-    spritesList.addTexture(GraphicsTextureResource::WRITABLE_BUTTON, "assets/EpiSprite/r-typesheet11.gif",
+    textureResource.addTexture(GraphicsTextureResource::WRITABLE_BUTTON, "assets/EpiSprite/r-typesheet11.gif",
         sf::Vector2f(34, 0), sf::Vector2f(34, 34));
 }
 
@@ -398,10 +409,10 @@ void ClientRoom::_initSpritesForEntities()
 
     spritesList.addTexture(GraphicsTextureResource::BUTTON, "assets/EpiSprite/r-typesheet11.gif", sf::Vector2f(34, 0),
         sf::Vector2f(34, 34));
-    _initSpritesForWritable(spritesList);
-    _initSpritesForPlayer(spritesList);
-    _initSpritesForProjectiles(spritesList);
-    _initSpritesForBackgrounds(spritesList);
+    _initWritableTextures(spritesList);
+    _initPlayerTextures(spritesList);
+    _initProjectilesTextures(spritesList);
+    _initBackgroundsTextures(spritesList);
 }
 
 void ClientRoom::_initSharedResources()
