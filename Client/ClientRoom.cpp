@@ -16,6 +16,7 @@
 #include "GraphicECS/SFML/Components/ActionQueueComponent.hpp"
 #include "GraphicECS/SFML/Components/AllowControllerComponent.hpp"
 #include "GraphicECS/SFML/Components/AllowMouseAndKeyboardComponent.hpp"
+#include "GraphicECS/SFML/Components/ChatMessageComponent.hpp"
 #include "GraphicECS/SFML/Components/ControllerButtonInputComponent.hpp"
 #include "GraphicECS/SFML/Components/ControllerJoystickInputComponent.hpp"
 #include "GraphicECS/SFML/Components/GraphicsRectangleComponent.hpp"
@@ -25,6 +26,7 @@
 #include "GraphicECS/SFML/Components/ParallaxComponent.hpp"
 #include "GraphicECS/SFML/Components/SoundComponent.hpp"
 #include "GraphicECS/SFML/Components/TextureName.hpp"
+#include "GraphicECS/SFML/Components/WritableContentComponent.hpp"
 #include "GraphicECS/SFML/Resources/GraphicsFontResource.hpp"
 #include "GraphicECS/SFML/Resources/GraphicsTextureResource.hpp"
 #include "GraphicECS/SFML/Resources/MusicResource.hpp"
@@ -35,6 +37,7 @@
 #include "GraphicECS/SFML/Systems/InputManagement.hpp"
 #include "GraphicECS/SFML/Systems/MusicManagement.hpp"
 #include "GraphicECS/SFML/Systems/ParallaxSystem.hpp"
+#include "GraphicECS/SFML/Systems/RemoveChatSystem.hpp"
 #include "GraphicECS/SFML/Systems/SfObjectFollowEntitySystem.hpp"
 #include "GraphicECS/SFML/Systems/SoundManagement.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
@@ -45,7 +48,9 @@
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/GameStates.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/MenuStates.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateButton.hpp"
+#include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateChatMessage.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateWritable.hpp"
+#include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateWritableButton.hpp"
 #include "R-TypeLogic/Global/Components/LayerLvL.hpp"
 #include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
@@ -127,7 +132,7 @@ ClientRoom::ClientRoom(std::string address, unsigned short port, std::string ser
     _password = "";
 }
 
-void ClientRoom::initEcsGameData(bool isSolo)
+void ClientRoom::_initEcsGameData(bool isSolo)
 {
     if (isSolo) {
         _initSharedResources();
@@ -140,7 +145,7 @@ void ClientRoom::initEcsGameData(bool isSolo)
     }
 }
 
-void ClientRoom::startConnexionProtocol(void)
+void ClientRoom::_startConnexionProtocol(void)
 {
     void *networkData = std::malloc(sizeof(char) * 10);
 
@@ -161,6 +166,26 @@ void ClientRoom::protocol12Answer(CommunicatorMessage connexionResponse)
     auto guard = std::lock_guard(clock);
     clock.resetClock();
     clock.resetClock();
+}
+
+void ClientRoom::_holdAChatRequest(CommunicatorMessage chatRequest)
+{
+    std::vector<std::string> chatInformation = _communicatorInstance->utilitaryReceiveChatMessage(chatRequest);
+    std::vector<std::shared_ptr<ecs::Entity>> joined = _worldInstance->joinEntities<ChatMessage>();
+
+    auto moveChatPos = [](std::shared_ptr<ecs::Entity> entityPtr) {
+        auto &pos = entityPtr->getComponent<Position>();
+        auto &text = entityPtr->getComponent<GraphicsTextComponent>();
+
+        pos.y -= 50;
+        text.text.setPosition(text.text.getPosition().x, text.text.getPosition().y - 50);
+    };
+
+    std::for_each(joined.begin(), joined.end(), moveChatPos);
+    createNewChatMessage(
+        *(_worldInstance.get()), 1470, 840, 310, 45, 5.0, chatInformation.at(0), chatInformation.at(1));
+
+    std::cerr << "Receiving a new chat from " << chatInformation.at(0) << " : " << chatInformation.at(1) << std::endl;
 }
 
 void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
@@ -209,12 +234,8 @@ void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
             _state = ClientState::ENDED;
             return;
         }
-        void *networkData = std::malloc(sizeof(char) * 10);
-
-        if (networkData == nullptr)
-            throw std::logic_error("Malloc failed.");
-        std::memcpy(networkData, roomName.c_str(), sizeof(char) * 10);
-        _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, networkData, sizeof(char) * 10, 17);
+        short configs[6] = {120, 121, 122, 123, 124, 125};
+        _communicatorInstance.get()->utilitarySendRoomConfiguration(roomName, configs, _serverEndpoint);
     } else {
         std::cerr << "Not a valid option ;)" << std::endl;
         _state = ClientState::ENDED;
@@ -234,9 +255,11 @@ void ClientRoom::initSoloData(void)
     createNewEnemyRandom(*_worldInstance.get(), 0, 0, 1, 85, 85, 50, 10, 5, 1);
 }
 
-void ClientRoom::startSoloLoop(void)
+void ClientRoom::startSoloLoop(const std::string &pseudo, const std::string &password)
 {
-    initEcsGameData(true);
+    _pseudo = pseudo;
+    _password = password;
+    _initEcsGameData(true);
     initSoloData();
     _state = ClientState::IN_GAME;
     std::signal(SIGINT, signalCallbackHandler);
@@ -247,7 +270,7 @@ void ClientRoom::startSoloLoop(void)
     }
 }
 
-void ClientRoom::startGame(void)
+void ClientRoom::startGame(const std::string &pseudo, const std::string &password)
 {
     std::cerr << "If you want to play in Solo Mod, please refer S. Otherwise if you want to play in multiplayer use M "
                  "and be shure that a server is runing : ";
@@ -255,10 +278,10 @@ void ClientRoom::startGame(void)
 
     std::cin >> choosedMod;
     if (choosedMod == 'S') {
-        _getClientPseudoAndPassword();
-        startSoloLoop();
+        //_getClientPseudoAndPassword();
+        startSoloLoop(pseudo, password);
     } else if (choosedMod == 'M') {
-        startLobbyLoop();
+        startLobbyLoop(pseudo, password);
     } else {
         std::cerr << "Not a valid option ;)" << std::endl;
         _state = ClientState::ENDED;
@@ -302,14 +325,15 @@ void ClientRoom::_connectToARoom()
     std::free(networkData);
 }
 
-void ClientRoom::startLobbyLoop(void)
+void ClientRoom::startLobbyLoop(const std::string &pseudo, const std::string &password)
 {
     CommunicatorMessage connectionOperation;
 
+    _pseudo = pseudo;
+    _password = password;
     std::signal(SIGINT, signalCallbackHandler);
-    _getClientPseudoAndPassword();
     if (_state != ClientState::ENDED)
-        startConnexionProtocol();
+        _startConnexionProtocol();
     while (_state != ClientState::ENDED && _state == ClientState::UNDEFINED) {
         try {
             connectionOperation = _communicatorInstance.get()->getLastMessage();
@@ -328,7 +352,7 @@ void ClientRoom::startLobbyLoop(void)
     }
     if (_state != ClientState::ENDED) {
         _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, nullptr, 0, 10);
-        initEcsGameData(false);
+        _initEcsGameData(false);
         _connectToARoom();
         _state = ClientState::LOBBY;
     }
@@ -343,6 +367,8 @@ void ClientRoom::startLobbyLoop(void)
                 protocol12Answer(connectionOperation);
             if (connectionOperation.message.type == 13)
                 _holdADisconnectionRequest();
+            if (connectionOperation.message.type == 50)
+                _holdAChatRequest(connectionOperation);
         } catch (NetworkError &error) {
         }
         if (_state == ClientState::IN_GAME) {
@@ -403,6 +429,16 @@ void ClientRoom::_initSpritesForBackgrounds(GraphicsTextureResource &spritesList
         sf::Vector2f(0, 0), sf::Vector2f(1920, 1080));
 }
 
+void ClientRoom::_initSpritesForWritable(GraphicsTextureResource &spritesList)
+{
+    spritesList.addTexture(GraphicsTextureResource::WRITABLE, "assets/EpiSprite/r-typesheet11.gif", sf::Vector2f(34, 0),
+        sf::Vector2f(34, 34));
+    spritesList.addTexture(GraphicsTextureResource::WRITABLE_SELECTED, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
+        sf::Vector2f(534 / 16 * 8, 0), sf::Vector2f(534 / 16, 34));
+    spritesList.addTexture(GraphicsTextureResource::WRITABLE_BUTTON, "assets/EpiSprite/r-typesheet11.gif",
+        sf::Vector2f(34, 0), sf::Vector2f(34, 34));
+}
+
 void ClientRoom::_initSpritesForEntities()
 {
     _worldInstance->addResource<GraphicsTextureResource>(GraphicsTextureResource::ENEMY_STATIC,
@@ -412,10 +448,7 @@ void ClientRoom::_initSpritesForEntities()
 
     spritesList.addTexture(GraphicsTextureResource::BUTTON, "assets/EpiSprite/r-typesheet11.gif", sf::Vector2f(34, 0),
         sf::Vector2f(34, 34));
-    spritesList.addTexture(GraphicsTextureResource::WRITABLE, "assets/EpiSprite/r-typesheet11.gif", sf::Vector2f(34, 0),
-        sf::Vector2f(34, 34));
-    spritesList.addTexture(GraphicsTextureResource::WRITABLE_SELECTED, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
-        sf::Vector2f(534 / 16 * 8, 0), sf::Vector2f(534 / 16, 34));
+    _initSpritesForWritable(spritesList);
     _initSpritesForPlayer(spritesList);
     _initSpritesForProjectiles(spritesList);
     _initSpritesForBackgrounds(spritesList);
@@ -470,6 +503,7 @@ void ClientRoom::_initSystems()
     _worldInstance->addSystem<NoAfkInMenu>();
     _worldInstance->addSystem<MusicManagement>();
     _worldInstance->addSystem<SoundManagement>();
+    _worldInstance->addSystem<RemoveChatSystem>();
 }
 
 void ClientRoom::_initBackgroundEntities()
@@ -595,5 +629,9 @@ void ClientRoom::_initWritable()
 {
     ButtonActionMap &actionsList = _worldInstance->getResource<ButtonActionMap>();
     actionsList.addAction(ButtonActionMap::WRITABLE, std::function<void(World &, Entity &)>(selectAWritable));
-    createNewWritable(*(_worldInstance.get()), 1450, 900, 350, 50, MenuStates::IN_GAME);
+    actionsList.addAction(
+        ButtonActionMap::WRITABLE_BUTTON, std::function<void(World &, Entity &)>(writableButtonAction));
+    std::size_t writableId = createNewWritable(*(_worldInstance.get()), 1450, 900, 350, 50, MenuStates::IN_GAME);
+    createNewWritableButton(*(_worldInstance.get()), 1820, 900, 80, 50,
+        std::function<void(World &, Entity &, std::string &)>(publishNewChatMessage), MenuStates::IN_GAME, writableId);
 }

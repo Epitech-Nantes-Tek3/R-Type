@@ -43,17 +43,19 @@ namespace client_data
         ~ClientRoom() = default;
 
         /// @brief Launch the lobby global loop
-        void startLobbyLoop();
+        /// @param pseudo The pseudo of the user
+        /// @param password The password of the user
+        void startLobbyLoop(const std::string &pseudo, const std::string &password);
 
         void signalSoloCallbackHandler(int signum);
 
-        void startSoloLoop();
+        void startSoloLoop(const std::string &pseudo, const std::string &password);
 
         void initSoloData();
 
         void initSoloSystem();
     
-        void startGame();
+        void startGame(const std::string &pseudo, const std::string &password);
 
       private:
         /// @brief Init all shared resources of the world.
@@ -67,6 +69,10 @@ namespace client_data
 
         /// @brief Handle a disconnection request. Identify the player and add to it a disconnection component
         void _holdADisconnectionRequest();
+
+        /// @brief Handle a new chat request. Display it on the screen.
+        /// @param chatRequest actual message data
+        void _holdAChatRequest(CommunicatorMessage chatRequest);
 
         /// @brief Send to the server the disconnection signal
         void _disconectionProcess();
@@ -101,6 +107,10 @@ namespace client_data
         /// @param spritesList texture's map holding the texture and the corresponding key
         void _initSpritesForBackgrounds(graphicECS::SFML::Resources::GraphicsTextureResource &spritesList);
 
+        /// @brief Init all the sprites needed for the Writable object
+        /// @param spritesList texture's map holding the texture and the corresponding key
+        void _initSpritesForWritable(graphicECS::SFML::Resources::GraphicsTextureResource &spritesList);
+
         /// @brief Network informations of the room.
         Client _networkInformations;
 
@@ -127,10 +137,10 @@ namespace client_data
 
         /// @brief Init the Ressources and Systems of the ECS
         /// @param isSolo True if the player choose to play in solo. False if he want to play in multiplayer
-        void initEcsGameData(bool isSolo);
+        void _initEcsGameData(bool isSolo);
 
         /// @brief Start the connexion protocol and ask the server for a place inside the room
-        void startConnexionProtocol(void);
+        void _startConnexionProtocol(void);
 
         /// @brief Answer the reception of a protocol 12
         void protocol12Answer(CommunicatorMessage connexionResponse);

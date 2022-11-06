@@ -7,11 +7,18 @@
 
 #include "ButtonAction.hpp"
 #include <csignal>
+#include "GraphicECS/SFML/Components/AssociatedIdComponent.hpp"
+#include "GraphicECS/SFML/Components/GraphicsTextComponent.hpp"
 #include "GraphicECS/SFML/Components/SelectedComponent.hpp"
+#include "GraphicECS/SFML/Components/WritableButtonActionComponent.hpp"
+#include "GraphicECS/SFML/Components/WritableContentComponent.hpp"
 #include "GraphicECS/SFML/Resources/RenderWindowResource.hpp"
 #include "TextureName.hpp"
+#include "Transisthor/TransisthorECSLogic/Client/Components/NetworkServer.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/GameStates.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/MenuStates.hpp"
+#include "R-TypeLogic/Global/Components/ControlableComponent.hpp"
+#include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
 
 using namespace graphicECS::SFML::Resources;
 using namespace graphicECS::SFML::Components;
@@ -55,8 +62,10 @@ void selectAWritable(World &world, Entity &entityPtr)
     RenderWindowResource &resource = world.getResource<RenderWindowResource>();
     if (entityPtr.contains<Selected>()) {
         entityPtr.removeComponent<Selected>();
-        entityPtr.removeComponent<TextureName>();
-        entityPtr.addComponent<TextureName>(GraphicsTextureResource::WRITABLE);
+        if (entityPtr.contains<TextureName>()) {
+            entityPtr.removeComponent<TextureName>();
+            entityPtr.addComponent<TextureName>(GraphicsTextureResource::WRITABLE);
+        }
         auto &state = world.getResource<GameStates>();
         auto guard = std::lock_guard(state);
         state.currentState = GameStates::IN_GAME;
@@ -65,9 +74,42 @@ void selectAWritable(World &world, Entity &entityPtr)
     }
     resource.window.setKeyRepeatEnabled(true);
     entityPtr.addComponent<Selected>();
-    entityPtr.removeComponent<TextureName>();
-    entityPtr.addComponent<TextureName>(GraphicsTextureResource::WRITABLE_SELECTED);
+    if (entityPtr.contains<TextureName>()) {
+        entityPtr.removeComponent<TextureName>();
+        entityPtr.addComponent<TextureName>(GraphicsTextureResource::WRITABLE_SELECTED);
+    }
     auto &state = world.getResource<GameStates>();
     auto guard = std::lock_guard(state);
     state.currentState = GameStates::IN_WRITING;
+}
+
+void writableButtonAction(World &world, Entity &entityPtr)
+{
+    if (!entityPtr.contains<AssociatedId>())
+        return;
+    auto &idList = entityPtr.getComponent<AssociatedId>().idList;
+    if (idList.empty())
+        return;
+    auto &entity = world.getEntity(idList.at(0));
+    std::string writableContent = entity.getComponent<WritableContent>().content;
+    if (!writableContent.size())
+        return;
+    auto guard = std::lock_guard(entity);
+    auto &writableContentComponent = entity.getComponent<WritableContent>();
+    writableContentComponent.content = "";
+    entity.getComponent<GraphicsTextComponent>().text.setString("");
+    entityPtr.getComponent<WritableButtonAction>().actionToExecute(world, entityPtr, writableContent);
+}
+
+void publishNewChatMessage(World &world, Entity &entityPtr, std::string &message)
+{
+    std::vector<std::shared_ptr<ecs::Entity>> servers = world.joinEntities<ecs::NetworkServer>();
+    std::vector<std::shared_ptr<ecs::Entity>> players = world.joinEntities<ecs::Controlable>();
+    Communicator &communicator = world.getTransisthorBridge()->getCommunicatorInstance();
+
+    (void)entityPtr;
+    if (!servers.size() || !players.size())
+        return;
+    communicator.utilitarySendChatMessage(players.at(0)->getComponent<ecs::Player>().name, message,
+        {servers.at(0)->getComponent<ecs::NetworkServer>().id});
 }

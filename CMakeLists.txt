@@ -19,6 +19,7 @@ include(DetectCompiler)
 add_subdirectory(Server)
 add_subdirectory(Client)
 add_subdirectory(libs)
+add_subdirectory(Room)
 
 # Setup and include conan to build dependencies
 include(build/conanbuildinfo.cmake)

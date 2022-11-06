@@ -13,7 +13,7 @@
 #include <vector>
 #include "Communicator/Client.hpp"
 #include "Communicator/Communicator.hpp"
-#include "Room.hpp"
+#include "RoomInstance.hpp"
 
 using namespace communicator_lib;
 
@@ -53,13 +53,16 @@ namespace server_data
         HubState _state;
 
         /// @brief List of all the active room.
-        std::vector<Room> _activeRoomList;
+        std::vector<std::shared_ptr<RoomInstance>> _activeRoomList;
 
         /// @brief Network information of the server. Setup at the construction
         Client _networkInformations;
 
         /// @brief Instance of the communicator library
         std::shared_ptr<Communicator> _communicatorInstance;
+
+        /// @brief Id of the next room to create
+        unsigned short _nextRoomId;
 
         /// @brief Cross all machine port and find an empty one
         /// @param actual port number (+ 101 per iteration)

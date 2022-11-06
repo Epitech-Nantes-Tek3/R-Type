@@ -99,7 +99,6 @@ namespace ecs
 
             for (auto &it : _entitiesList) {
                 std::shared_ptr<Entity> entity = it.second;
-                auto guard = std::lock_guard(*entity.get());
                 if (entity.get()->contains<C...>())
                     joinedEntities.push_back(entity);
             }

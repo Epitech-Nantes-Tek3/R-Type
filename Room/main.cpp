@@ -7,17 +7,17 @@
 
 #include <iostream>
 #include "ArgumentHandler/ArgumentHandler.hpp"
-#include "Server.hpp"
+#include "Room.hpp"
 
-using namespace server_data;
 using namespace argument_handler;
 
 int main(int ac, char **av)
 {
     ArgumentHandler argumentHandler = ArgumentHandler(ac, av);
-    ArgumentHandler::ServerInformation serverInformation = argumentHandler.extractServerInformation();
-    Server server = Server(serverInformation.address, serverInformation.port);
+    ArgumentHandler::RoomInformation roomInformations = argumentHandler.extractRoomInformations();
 
-    server.startHubLoop();
+    server_data::Room room(
+        roomInformations.id, roomInformations.name, Client(roomInformations.address, roomInformations.port));
+    room.startLobbyLoop();
     return 0;
 }
