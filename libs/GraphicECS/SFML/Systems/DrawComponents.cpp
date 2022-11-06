@@ -25,6 +25,7 @@
 #include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
 #include "R-TypeLogic/Global/Components/SizeComponent.hpp"
+#include "R-TypeLogic/Global/Components/InvisibleComponent.hpp"
 
 using namespace graphicECS::SFML::Systems;
 using namespace graphicECS::SFML::Resources;
@@ -207,7 +208,7 @@ void DrawComponents::_updateTexture(World &world, std::shared_ptr<ecs::Entity> e
 void DrawComponents::_drawRectangle(World &world, std::shared_ptr<ecs::Entity> entityPtr,
     graphicECS::SFML::Resources::RenderWindowResource &windowResource)
 {
-    if (entityPtr->contains<GraphicsRectangleComponent>()) {
+    if (entityPtr->contains<GraphicsRectangleComponent>() && !(entityPtr->contains<Invisible>())) {
         _updateTexture(world, entityPtr);
         if ((entityPtr->getComponent<LayerLvL>().layer == LayerLvL::BUTTON
                 || entityPtr->getComponent<LayerLvL>().layer == LayerLvL::WRITABLE)
