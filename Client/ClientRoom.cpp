@@ -482,7 +482,7 @@ void ClientRoom::_initSystems(bool isSolo)
     _worldInstance->addSystem<DeathSystem>();
     _worldInstance->addSystem<DrawComponents>();
     _worldInstance->addSystem<InputManagement>();
-     _worldInstance->addSystem<SfObjectFollowEntitySystem>();
+    _worldInstance->addSystem<SfObjectFollowEntitySystem>();
     _worldInstance->addSystem<Parallax>();
     _worldInstance->addSystem<Movement>();
     _worldInstance->addSystem<AnimationSystem>();
