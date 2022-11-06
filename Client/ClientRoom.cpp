@@ -231,7 +231,6 @@ void ClientRoom::signalSoloCallbackHandler(int signum)
 void ClientRoom::initSoloData(void)
 {
     createNewPlayer(*_worldInstance.get(), 20, 500, 0, 0, 1, 102, 102, 100, 10, 4, true, 1, "NAME");
-
     createNewEnemyRandom(*_worldInstance.get(), 0, 0, 1, 85, 85, 50, 10, 5, 1);
 }
 
@@ -246,7 +245,6 @@ void ClientRoom::startSoloLoop(void)
             _worldInstance.get()->runSystems(); /// WILL BE IMPROVED IN PART TWO (THREAD + CLOCK)
         }
     }
-    std::cerr << "TU ES SOLOOOOOOOOO !!!!!!" << std::endl;
 }
 
 void ClientRoom::startGame(void)
