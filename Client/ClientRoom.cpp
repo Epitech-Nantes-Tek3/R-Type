@@ -202,10 +202,10 @@ void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
     }
 
     std::cerr << "If you want to join a existent room, please refer Y. Otherwise use N : ";
-    char choosedMod = '\0';
+    char choosedMode = '\0';
 
-    std::cin >> choosedMod;
-    if (choosedMod == 'Y') {
+    std::cin >> choosedMode;
+    if (choosedMode == 'Y') {
         std::cerr << "Refer in the terminal the wanted room id : ";
         unsigned short choosenRoomId = 0;
 
@@ -217,7 +217,7 @@ void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
             throw std::logic_error("Malloc failed.");
         std::memcpy(networkData, &choosenRoomId, sizeof(unsigned short));
         _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, networkData, sizeof(unsigned short), 16);
-    } else if (choosedMod == 'N') {
+    } else if (choosedMode == 'N') {
         std::cerr << "Refer in the terminal the wanted room name : ";
         std::string roomName;
 
@@ -284,7 +284,7 @@ void ClientRoom::_getClientPseudoAndPassword()
     std::string pseudo;
 
     std::cerr << "Welcome to the R-Type game !" << std::endl;
-    std::cerr << "You are in Solo mod ! Please enter your Pseudo"
+    std::cerr << "You are in Solo mode ! Please enter your Pseudo"
               << std::endl;
     std::cerr << "Please refer your pseudonyme (5 characters): ";
     std::cin >> pseudo;
@@ -298,15 +298,15 @@ void ClientRoom::_getClientPseudoAndPassword()
 
 int ClientRoom::startGame()
 {
-    std::cerr << "If you want to play in Solo Mod, please refer S. Otherwise if you want to play in multiplayer use M "
+    std::cerr << "If you want to play in Solo Mode, please refer S. Otherwise if you want to play in multiplayer use M "
                  "and be sure that a server is running : ";
-    char choosedMod = '\0';
+    char choosedMode = '\0';
 
-    std::cin >> choosedMod;
-    if (choosedMod == 'S') {
+    std::cin >> choosedMode;
+    if (choosedMode == 'S') {
         _getClientPseudoAndPassword();
         _startSoloLoop();
-    } else if (choosedMod == 'M') {
+    } else if (choosedMode == 'M') {
         if (_choosePlayerInfosForServer() == 84)
             return 84;
     } else {
