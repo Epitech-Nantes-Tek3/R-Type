@@ -29,6 +29,7 @@
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
 #include "R-TypeLogic/Global/Components/ProjectileComponent.hpp"
 #include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
+#include "R-TypeLogic/Global/SharedResources/GameLevel.hpp"
 #include "R-TypeLogic/Global/Systems/DeathSystem.hpp"
 #include "R-TypeLogic/Global/Systems/MovementSystem.hpp"
 #include "R-TypeLogic/Global/Systems/UpdateClockSystem.hpp"
@@ -90,6 +91,7 @@ void Room::initEcsGameData(void)
 {
     _worldInstance->addSystem<UpdateClock>();
     _worldInstance->addResource<NetworkableIdGenerator>();
+    _worldInstance->addResource<GameLevel>();
     _worldInstance->addResource<RandomDevice>();
     _worldInstance->addResource<GameClock>();
     _worldInstance->addResource<SendingFrequency>();

@@ -14,6 +14,7 @@
 #include "R-TypeLogic/Global/Components/DeathComponent.hpp"
 #include "R-TypeLogic/Global/Components/LifeComponent.hpp"
 #include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
+#include "R-TypeLogic/Global/SharedResources/GameLevel.hpp"
 
 namespace ecs
 {
@@ -36,6 +37,12 @@ namespace ecs
                             client, nullptr, 0, 13);
                         entityPtr->getComponent<Life>().lifePoint = 1000;
                     } else {
+                        if (entityPtr->contains<Enemy>()) {
+                            GameLevel &gameLevel = world.getResource<GameLevel>();
+                            gameLevel.lock();
+                            gameLevel.addNewKills();
+                            gameLevel.unlock();
+                        }
                         entityPtr.get()->addComponent<Death>();
                     }
                 }
