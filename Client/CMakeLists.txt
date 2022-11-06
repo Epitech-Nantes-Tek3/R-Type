@@ -13,6 +13,8 @@ set(SRC
     ${SRC_ROOT}/ClientRoom.cpp
     ${SRC_CLIENT_SYSTEM}
     ${SRC_ROOT}/ClientRoom.hpp
+    ${SRC_ROOT}/UserConnection.cpp
+    ${SRC_ROOT}/UserConnection.hpp
 )
 
 add_executable(${TARGET} ${SRC} ${BUTTON_ACTION_SRC})
