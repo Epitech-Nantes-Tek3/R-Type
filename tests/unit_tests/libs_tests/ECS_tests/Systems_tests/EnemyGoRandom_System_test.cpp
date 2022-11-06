@@ -39,10 +39,6 @@ Test(EnemyGoRandom_System, move_randomly_rollback)
 
     Position &newPos = world.getEntity(id).getComponent<Position>();
 
-    std::cerr << x << " x " << newPos.x << std::endl;
-
-    std::cerr << y << " y " << newPos.y << std::endl;
-
     cr_assert_eq(x == newPos.x && y == newPos.y, true);
 }
 
