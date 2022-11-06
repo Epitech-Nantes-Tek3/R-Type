@@ -17,6 +17,17 @@ namespace admin_panel
     /// @brief The global Admin panel class. Use for interact with the database.
     class AdminPanel {
       public:
+
+        /// @brief A basic struct representing a panel command
+        typedef struct panelCommandS {
+            /// @brief The command keyword
+            std::string keyWord;
+            /// @brief The targeted user
+            std::string userName;
+            /// @brief List of all additional option
+            std::vector<std::string> options;
+        } panelCommandT;
+
         /// @brief Construct a new AdminPanel object
         /// @param address Ip address of the admin panel
         /// @param port Listening port for network process
@@ -25,6 +36,7 @@ namespace admin_panel
         AdminPanel(std::string address = "127.0.0.1", unsigned short port = 0, std::string serverAddress = "127.0.0.1",
             unsigned short serverPort = 0);
 
+        /// @brief Destroy the Admin Panel object
         ~AdminPanel() = default;
 
         /// @brief Start the admin panel global loop

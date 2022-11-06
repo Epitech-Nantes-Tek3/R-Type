@@ -30,7 +30,7 @@ void AdminPanel::startLoop()
         try {
             auto databaseAnswer = _communicatorInstance.get()->getLastMessage();
             if (databaseAnswer.message.type == 11) {
-                std::cerr << "Invalid login, please retry." << std::endl;
+                std::cout << "Invalid login, please retry." << std::endl;
                 return;
             }
             if (databaseAnswer.message.type == 15) {
@@ -80,13 +80,17 @@ void AdminPanel::_handleAReceivedData(CommunicatorMessage databaseAnswer)
     _waitingForAnswer = false;
     if (!_isAuth) {
         if (value != "1") {
-            std::cerr << "Your note an admin user ;)" << std::endl;
+            std::cout << "Your note an admin user ;)" << std::endl;
         } else {
-            std::cerr << "Authentification succeed." << std::endl;
+            std::cout << "Authentification succeed." << std::endl;
             _isAuth = true;
         }
         return;
     }
+    std::cout << value << std::endl;
 }
 
-void AdminPanel::_getARequest() {}
+void AdminPanel::_getARequest()
+{
+    
+}
