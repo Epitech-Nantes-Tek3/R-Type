@@ -1,5 +1,6 @@
 add_subdirectory(Communicator)
 add_subdirectory(ECS)
+add_subdirectory(Database)
 add_subdirectory(Error)
 add_subdirectory(Transisthor)
 add_subdirectory(ArgumentHandler)
