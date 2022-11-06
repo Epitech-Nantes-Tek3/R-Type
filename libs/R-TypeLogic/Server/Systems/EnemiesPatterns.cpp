@@ -226,7 +226,6 @@ static void iceEnemyPatterns(std::vector<std::shared_ptr<ecs::Entity>> allEnemie
 /// @return true if the velocity hasn't been set before, false otherwise
 static bool firstVelocityNotSet(std::shared_ptr<Entity> enemy)
 {
-    return true;
     auto guard = std::lock_guard(*enemy.get());
 
     Position &pos = enemy.get()->getComponent<Position>();
@@ -253,13 +252,14 @@ void EnemiesPatterns::run(World &world)
             auto guard = std::lock_guard(*entityPtr.get());
             enemyType = entityPtr.get()->getComponent<Enemy>().enemyType;
         };
+        if (enemyType == Enemy::ICE)
+            return;
 
         if (firstVelocityNotSet(entityPtr))
             return;
         switch (enemyType) {
             case Enemy::FIRE: fireEnemyPatterns(world, entityPtr); break;
             case Enemy::ELECTRIC: electricEnemyPatterns(entityPtr); break;
-            case Enemy::ICE: break;
             default: basicEnemyPatterns(world, entityPtr); break;
         };
     };
