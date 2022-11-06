@@ -71,6 +71,7 @@ var hierarchy =
       [ "graphicECS::SFML::Components::WritableButtonAction", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_writable_button_action.html", null ],
       [ "graphicECS::SFML::Components::WritableContent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_writable_content.html", null ]
     ] ],
+    [ "database::Database", "classdatabase_1_1_database.html", null ],
     [ "std::exception", null, [
       [ "error_lib::RTypeError", "classerror__lib_1_1_r_type_error.html", [
         [ "error_lib::ArgumentError", "classerror__lib_1_1_argument_error.html", null ],

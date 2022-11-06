@@ -16,6 +16,9 @@ var annotated_dup =
       [ "Receiver", "classcommunicator__lib_1_1_receiver.html", "classcommunicator__lib_1_1_receiver" ],
       [ "Sender", "classcommunicator__lib_1_1_sender.html", "classcommunicator__lib_1_1_sender" ]
     ] ],
+    [ "database", "namespacedatabase.html", [
+      [ "Database", "classdatabase_1_1_database.html", "classdatabase_1_1_database" ]
+    ] ],
     [ "ecs", "namespaceecs.html", [
       [ "Component", "classecs_1_1_component.html", "classecs_1_1_component" ],
       [ "Entity", "classecs_1_1_entity.html", "classecs_1_1_entity" ],

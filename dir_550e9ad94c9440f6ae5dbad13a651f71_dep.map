@@ -1,10 +1,10 @@
 <map id="libs/R&#45;TypeLogic/EntityManipulation/ButtonManipulation" name="libs/R&#45;TypeLogic/EntityManipulation/ButtonManipulation">
 <area shape="rect" id="node2" href="dir_e779b17a142e9f74ddcf654569bf0a55.html" title="Components" alt="" coords="37,63,141,111"/>
 <area shape="rect" id="node3" href="dir_baaa0f2f172255e9662cea8e7b25b893.html" title="SharedResources" alt="" coords="38,159,173,207"/>
-<area shape="rect" id="edge1-headlabel" href="dir_000020_000021.html" title="2" alt="" coords="102,132,111,147"/>
+<area shape="rect" id="edge1-headlabel" href="dir_000021_000022.html" title="2" alt="" coords="102,132,111,147"/>
 <area shape="rect" id="node4" href="dir_ee0526d395d6e0f4a61b0d3fd4728c02.html" title="ECS" alt="" coords="121,255,193,303"/>
-<area shape="rect" id="edge2-headlabel" href="dir_000020_000005.html" title="2" alt="" coords="185,235,194,250"/>
-<area shape="rect" id="edge3-headlabel" href="dir_000021_000005.html" title="4" alt="" coords="139,227,148,242"/>
+<area shape="rect" id="edge2-headlabel" href="dir_000021_000006.html" title="2" alt="" coords="185,235,194,250"/>
+<area shape="rect" id="edge3-headlabel" href="dir_000022_000006.html" title="4" alt="" coords="139,227,148,242"/>
 <area shape="rect" id="clust2" href="dir_550e9ad94c9440f6ae5dbad13a651f71.html" alt="" coords="27,52,328,217"/>
 <area shape="rect" id="clust1" href="dir_689cc7405b831181d94d9b261ff1b9c4.html" title="EntityManipulation" alt="" coords="16,16,339,228"/>
 </map>
