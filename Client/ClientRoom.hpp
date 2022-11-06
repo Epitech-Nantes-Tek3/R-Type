@@ -55,7 +55,7 @@ namespace client_data
 
         /// @brief This function create all entities needed for a solo game
         void initSoloData();
-    
+
         /// @brief This function start the game
         void startGame();
 
