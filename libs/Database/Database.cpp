@@ -16,7 +16,7 @@ namespace database
 
     bool Database::_open(const std::filesystem::path &fileName)
     {
-        if (sqlite3_open(fileName.c_str(), &_db) != SQLITE_OK) {
+        if (sqlite3_open(fileName.string().c_str(), &_db) != SQLITE_OK) {
             throw std::logic_error(sqlite3_errmsg(_db));
         }
         std::cerr << "Opened database successfully" << std::endl;
