@@ -47,24 +47,24 @@ namespace client_data
         /// @param password The password of the user
         void startLobbyLoop(const std::string &pseudo, const std::string &password);
 
+      private:
         /// @brief Get call back handler for a solo game
-        void signalSoloCallbackHandler(int signum);
+        void _signalSoloCallbackHandler(int signum);
 
         /// @brief Launch the lobby global loop for a solo game
-        void startSoloLoop();
-
-        /// @brief This function create all entities needed for a solo game
-        void initSoloData();
+        void _startSoloLoop();
 
         /// @brief This function start the game
-        void startGame();
-
-        /// @brief This function allows to get name and pwd of the player for the server
-        void choosePlayerInfosForServer();
-
-      private:
+        void _startGame();
+        
         /// @brief Init all shared resources of the world.
         void _initSharedResources();
+
+        /// @brief This function allows to get name and pwd of the player for the server
+        void _choosePlayerInfosForServer();
+
+        /// @brief This function create all entities needed for a solo game
+        void _initSoloData();
 
         /// @brief Init all systems of the world.
         /// @param isSolo Tell if the game is in solo or multiplayer MODE

@@ -20,6 +20,6 @@ int main(int ac, char **av)
     ClientRoom client = ClientRoom(clientInformation.clientAddress, clientInformation.clientPort,
         clientInformation.serverAddress, clientInformation.serverPort);
 
-    client.startGame();
+    client._startGame();
     return (0);
 }

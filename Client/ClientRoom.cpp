@@ -235,20 +235,20 @@ void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
     }
 }
 
-void ClientRoom::signalSoloCallbackHandler(int signum)
+void ClientRoom::_signalSoloCallbackHandler(int signum)
 {
     (void)signum;
     std::cerr << "Room ask to be closed." << std::endl;
     _state = ClientState::ENDED;
 }
 
-void ClientRoom::initSoloData(void)
+void ClientRoom::_initSoloData(void)
 {
     createNewPlayer(*_worldInstance.get(), 20, 500, 0, 0, 1, 102, 102, 100, 10, 4, true, 1, "NAME");
     createNewEnemyRandom(*_worldInstance.get(), 0, 0, 1, 85, 85, 50, 10, 5, 1);
 }
 
-void ClientRoom::startSoloLoop()
+void ClientRoom::_startSoloLoop()
 {
     _initEcsGameData(true);
     initSoloData();
@@ -261,7 +261,7 @@ void ClientRoom::startSoloLoop()
     }
 }
 
-void ClientRoom::choosePlayerInfosForServer()
+void ClientRoom::_choosePlayerInfosForServer()
 {
     UserConnection connection;
     std::string pseudo;
@@ -278,7 +278,7 @@ void ClientRoom::choosePlayerInfosForServer()
     startLobbyLoop(pseudo, password);
 }
 
-void ClientRoom::startGame()
+void ClientRoom::_startGame()
 {
     std::cerr << "If you want to play in Solo Mod, please refer S. Otherwise if you want to play in multiplayer use M "
                  "and be sure that a server is running : ";
@@ -286,9 +286,9 @@ void ClientRoom::startGame()
 
     std::cin >> choosedMod;
     if (choosedMod == 'S') {
-        startSoloLoop();
+        _startSoloLoop();
     } else if (choosedMod == 'M') {
-        choosePlayerInfosForServer();
+        _choosePlayerInfosForServer();
     } else {
         std::cerr << "Not a valid option ;)" << std::endl;
         _state = ClientState::ENDED;
