@@ -14,9 +14,9 @@ var dir_87ce6f909970a886f6b56f0d273db6d4 =
     [ "DisconnectableSystem.hpp", "_disconnectable_system_8hpp.html", [
       [ "DisconnectableSystem", "structecs_1_1_disconnectable_system.html", "structecs_1_1_disconnectable_system" ]
     ] ],
-    [ "EnemiesGoRandom.cpp", "_enemies_go_random_8cpp.html", "_enemies_go_random_8cpp" ],
-    [ "EnemiesGoRandom.hpp", "_enemies_go_random_8hpp.html", [
-      [ "EnemiesGoRandom", "classecs_1_1_enemies_go_random.html", "classecs_1_1_enemies_go_random" ]
+    [ "EnemiesPatterns.cpp", "_enemies_patterns_8cpp.html", "_enemies_patterns_8cpp" ],
+    [ "EnemiesPatterns.hpp", "_enemies_patterns_8hpp.html", [
+      [ "EnemiesPatterns", "classecs_1_1_enemies_patterns.html", "classecs_1_1_enemies_patterns" ]
     ] ],
     [ "EnemyShootSystem.cpp", "_enemy_shoot_system_8cpp.html", null ],
     [ "EnemyShootSystem.hpp", "_enemy_shoot_system_8hpp.html", [

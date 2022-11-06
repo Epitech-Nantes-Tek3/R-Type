@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>R-Type: libs/R-TypeLogic/Server/Systems/EnemiesGoRandom.hpp Source File</title>
+<title>R-Type: libs/R-TypeLogic/Server/Systems/EnemiesPatterns.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,7 +64,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('_enemies_go_random_8hpp_source.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('_enemies_patterns_8hpp_source.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -84,18 +84,18 @@ $(document).ready(function(){initNavTree('_enemies_go_random_8hpp_source.html','
 
 <div class="header">
   <div class="headertitle">
-<div class="title">EnemiesGoRandom.hpp</div>  </div>
+<div class="title">EnemiesPatterns.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="_enemies_go_random_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<a href="_enemies_patterns_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">** EPITECH PROJECT, 2022</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">** Rt-Type</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">** File description:</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">** EnemiesGoRandom</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">** EnemiesPatterns</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">*/</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef ENEMIESGORANDOM_HPP_</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define ENEMIESGORANDOM_HPP_</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef ENEMIESPATTERNS_HPP_</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define ENEMIESPATTERNS_HPP_</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_world_8hpp.html">World/World.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_destination_component_8hpp.html">R-TypeLogic/Global/Components/DestinationComponent.hpp</a>&quot;</span></div>
@@ -105,20 +105,20 @@ $(document).ready(function(){initNavTree('_enemies_go_random_8hpp_source.html','
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceecs.html">ecs</a></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
-<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="classecs_1_1_enemies_go_random.html">   22</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classecs_1_1_enemies_go_random.html">EnemiesGoRandom</a> : <span class="keyword">public</span> <a class="code" href="classecs_1_1_system.html">System</a> {</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="classecs_1_1_enemies_patterns.html">   22</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classecs_1_1_enemies_patterns.html">EnemiesPatterns</a> : <span class="keyword">public</span> <a class="code" href="classecs_1_1_system.html">System</a> {</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;      <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classecs_1_1_enemies_go_random.html#a516ff1731c65364ac7d2caf6ff803e50">run</a>(<a class="code" href="classecs_1_1_world.html">World</a> &amp;world) <span class="keyword">override</span> <span class="keyword">final</span>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classecs_1_1_enemies_patterns.html#acbaa68489e93801ca5b1e3073560adb4">run</a>(<a class="code" href="classecs_1_1_world.html">World</a> &amp;world) <span class="keyword">override</span> <span class="keyword">final</span>;</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    };</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;} <span class="comment">// namespace ecs</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !ENEMIESGORANDOM_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !ENEMIESPATTERNS_HPP_ */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="a_destination_component_8hpp_html"><div class="ttname"><a href="_destination_component_8hpp.html">DestinationComponent.hpp</a></div></div>
 <div class="ttc" id="a_enemy_component_8hpp_html"><div class="ttname"><a href="_enemy_component_8hpp.html">EnemyComponent.hpp</a></div></div>
 <div class="ttc" id="a_position_component_8hpp_html"><div class="ttname"><a href="_position_component_8hpp.html">PositionComponent.hpp</a></div></div>
 <div class="ttc" id="a_velocity_component_8hpp_html"><div class="ttname"><a href="_velocity_component_8hpp.html">VelocityComponent.hpp</a></div></div>
 <div class="ttc" id="a_world_8hpp_html"><div class="ttname"><a href="_world_8hpp.html">World.hpp</a></div></div>
-<div class="ttc" id="aclassecs_1_1_enemies_go_random_html"><div class="ttname"><a href="classecs_1_1_enemies_go_random.html">ecs::EnemiesGoRandom</a></div><div class="ttdoc">This is the GoRandom System for enemies. This system check if the enemy is at its destination,...</div><div class="ttdef"><b>Definition:</b> EnemiesGoRandom.hpp:22</div></div>
-<div class="ttc" id="aclassecs_1_1_enemies_go_random_html_a516ff1731c65364ac7d2caf6ff803e50"><div class="ttname"><a href="classecs_1_1_enemies_go_random.html#a516ff1731c65364ac7d2caf6ff803e50">ecs::EnemiesGoRandom::run</a></div><div class="ttdeci">void run(World &amp;world) override final</div><div class="ttdoc">Run the GoRandom system.</div><div class="ttdef"><b>Definition:</b> EnemiesGoRandom.cpp:23</div></div>
+<div class="ttc" id="aclassecs_1_1_enemies_patterns_html"><div class="ttname"><a href="classecs_1_1_enemies_patterns.html">ecs::EnemiesPatterns</a></div><div class="ttdoc">This is the pattern System for enemies. This system check if the enemy is at its destination,...</div><div class="ttdef"><b>Definition:</b> EnemiesPatterns.hpp:22</div></div>
+<div class="ttc" id="aclassecs_1_1_enemies_patterns_html_acbaa68489e93801ca5b1e3073560adb4"><div class="ttname"><a href="classecs_1_1_enemies_patterns.html#acbaa68489e93801ca5b1e3073560adb4">ecs::EnemiesPatterns::run</a></div><div class="ttdeci">void run(World &amp;world) override final</div><div class="ttdoc">Run the patterns system.</div><div class="ttdef"><b>Definition:</b> EnemiesPatterns.cpp:251</div></div>
 <div class="ttc" id="aclassecs_1_1_system_html"><div class="ttname"><a href="classecs_1_1_system.html">ecs::System</a></div><div class="ttdef"><b>Definition:</b> System.hpp:19</div></div>
 <div class="ttc" id="aclassecs_1_1_world_html"><div class="ttname"><a href="classecs_1_1_world.html">ecs::World</a></div><div class="ttdef"><b>Definition:</b> World.hpp:32</div></div>
 <div class="ttc" id="anamespaceecs_html"><div class="ttname"><a href="namespaceecs.html">ecs</a></div><div class="ttdef"><b>Definition:</b> Component.hpp:13</div></div>
@@ -127,7 +127,7 @@ $(document).ready(function(){initNavTree('_enemies_go_random_8hpp_source.html','
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_6719ab1f1f7655efc2fa43f7eb574fd1.html">libs</a></li><li class="navelem"><a class="el" href="dir_549241b8e115e6634b5bc294a113a1b8.html">R-TypeLogic</a></li><li class="navelem"><a class="el" href="dir_2298b29a7161422fa8e14ae8896c8bd9.html">Server</a></li><li class="navelem"><a class="el" href="dir_87ce6f909970a886f6b56f0d273db6d4.html">Systems</a></li><li class="navelem"><a class="el" href="_enemies_go_random_8hpp.html">EnemiesGoRandom.hpp</a></li>
+    <li class="navelem"><a class="el" href="dir_6719ab1f1f7655efc2fa43f7eb574fd1.html">libs</a></li><li class="navelem"><a class="el" href="dir_549241b8e115e6634b5bc294a113a1b8.html">R-TypeLogic</a></li><li class="navelem"><a class="el" href="dir_2298b29a7161422fa8e14ae8896c8bd9.html">Server</a></li><li class="navelem"><a class="el" href="dir_87ce6f909970a886f6b56f0d273db6d4.html">Systems</a></li><li class="navelem"><a class="el" href="_enemies_patterns_8hpp.html">EnemiesPatterns.hpp</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
