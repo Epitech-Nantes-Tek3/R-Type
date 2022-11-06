@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2022
-** Project
+** R-Type
 ** File description:
 ** GameLevel
 */
@@ -25,6 +25,18 @@ namespace ecs
         };
         /// @brief Create the GameLevel Resource
         GameLevel() : _currLevel(LEVEL_ONE), _hasLevelChanged(true), _nbkills(0) {};
+
+        /// @brief Get the current level of the game
+        /// @return the level of the game
+        inline level_e getCurrentLevel() {return this->_currLevel;};
+
+        /// @brief Check if the game level has changed
+        /// @return true if the level has change, false otherwise
+        inline bool hasLevelChange() {return this->_hasLevelChanged;};
+
+        /// @brief Add new kills to the private value, increase the level if necessary
+        /// @param newKills the number of new kills
+        void addNewKills(unsigned int newKills = 1);
 
         /// @brief Default destructor
         ~GameLevel() = default;
