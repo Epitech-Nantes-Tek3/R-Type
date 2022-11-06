@@ -97,7 +97,7 @@ static void electricEnemyPatterns(World &world, std::shared_ptr<Entity> enemy)
     makeEnemyGoRandom(world, enemy, std::pair<int, int>(100, 1800), std::pair<int, int>(100, 900));
 }
 
-/// @brief  Init the Ice Pattern (hord squared shape pattern)
+/// @brief Init the Ice Pattern (hord squared shape pattern)
 /// @param iceEnemies all the enemies with the ice type
 /// @param world the world where the enemies are
 static void initIcePatterns(std::vector<std::shared_ptr<ecs::Entity>> iceEnemies, World &world)
@@ -145,7 +145,7 @@ static void initIcePatterns(std::vector<std::shared_ptr<ecs::Entity>> iceEnemies
     }
 }
 
-/// @brief  Apply the Ice Pattern (hord squared shape pattern)
+/// @brief Apply the Ice Pattern (hord squared shape pattern)
 /// @param allEnemies all the enemies in the world
 /// @param world the world where the enemies are
 static void iceEnemyPatterns(std::vector<std::shared_ptr<ecs::Entity>> allEnemies, World &world)
@@ -195,7 +195,6 @@ static void iceEnemyPatterns(std::vector<std::shared_ptr<ecs::Entity>> allEnemie
             vel.multiplierOrdinate = 0;
             vel.modified = true;
             dest.modified = true;
-
         } else if (vel.multiplierAbscissa == 0 && vel.multiplierOrdinate == 0) {
             vel.multiplierAbscissa = (dest.x - pos.x) / 10;
             vel.multiplierOrdinate = (dest.y - pos.y) / 10;
