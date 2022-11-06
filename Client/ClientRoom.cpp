@@ -26,6 +26,7 @@
 #include "GraphicECS/SFML/Components/ParallaxComponent.hpp"
 #include "GraphicECS/SFML/Components/SoundComponent.hpp"
 #include "GraphicECS/SFML/Components/TextureName.hpp"
+#include "GraphicECS/SFML/Components/WritableContentComponent.hpp"
 #include "GraphicECS/SFML/Resources/GraphicsFontResource.hpp"
 #include "GraphicECS/SFML/Resources/GraphicsTextureResource.hpp"
 #include "GraphicECS/SFML/Resources/MusicResource.hpp"
@@ -112,14 +113,14 @@ ClientRoom::ClientRoom(std::string address, unsigned short port, std::string ser
     _password = "";
 }
 
-void ClientRoom::initEcsGameData(void)
+void ClientRoom::_initEcsGameData(void)
 {
     _initSharedResources();
     _initSystems();
     _initEntities();
 }
 
-void ClientRoom::startConnexionProtocol(void)
+void ClientRoom::_startConnexionProtocol(void)
 {
     void *networkData = std::malloc(sizeof(char) * 10);
 
@@ -216,33 +217,6 @@ void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
     }
 }
 
-void ClientRoom::_getClientPseudoAndPassword()
-{
-    std::string pseudo;
-    std::string password;
-
-    std::cerr << "Welcome to the R-Type game !" << std::endl;
-    std::cerr << "If there is no player with your pseudonyme inside the database a new one will be created with the "
-                 "given password."
-              << std::endl;
-    std::cerr << "Please refer your pseudonyme (5 characters): ";
-    std::cin >> pseudo;
-    if (pseudo.size() != 5) {
-        std::cerr << "Nop ! Please enter a 5 characters pseudonyme.";
-        _state = ClientState::ENDED;
-        return;
-    }
-    std::cerr << "Welcome " << pseudo << ". Please now enter your password (5 characters): ";
-    std::cin >> password;
-    if (password.size() != 5) {
-        std::cerr << "Nop ! Please enter a 5 characters password.";
-        _state = ClientState::ENDED;
-        return;
-    }
-    _pseudo = pseudo;
-    _password = password;
-}
-
 void ClientRoom::_connectToARoom()
 {
     void *networkData = std::malloc(sizeof(char) * 5);
@@ -254,14 +228,15 @@ void ClientRoom::_connectToARoom()
     std::free(networkData);
 }
 
-void ClientRoom::startLobbyLoop(void)
+void ClientRoom::startLobbyLoop(const std::string &pseudo, const std::string &password)
 {
     CommunicatorMessage connectionOperation;
 
+    _pseudo = pseudo;
+    _password = password;
     std::signal(SIGINT, signalCallbackHandler);
-    _getClientPseudoAndPassword();
     if (_state != ClientState::ENDED)
-        startConnexionProtocol();
+        _startConnexionProtocol();
     _state = ClientState::MAIN_MENU;
     while (_state != ClientState::ENDED) {
         try {
@@ -274,7 +249,7 @@ void ClientRoom::startLobbyLoop(void)
                 _holdADisconnectionRequest();
             if (connectionOperation.message.type == 20) {
                 _serverEndpoint = _communicatorInstance->getClientByHisId(_communicatorInstance->getServerEndpointId());
-                initEcsGameData();
+                _initEcsGameData();
                 _connectToARoom();
             }
             if (_state == ClientState::MAIN_MENU) {
