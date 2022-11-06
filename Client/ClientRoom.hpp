@@ -56,7 +56,6 @@ namespace client_data
         /// @brief Launch the lobby global loop for a solo game
         void _startSoloLoop();
 
-
         /// @brief Init all shared resources of the world.
         void _initSharedResources();
 
