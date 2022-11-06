@@ -285,8 +285,7 @@ void ClientRoom::_getClientPseudoAndPassword()
     std::string pseudo;
 
     std::cerr << "Welcome to the R-Type game !" << std::endl;
-    std::cerr << "You are in Solo mode ! Please enter your Pseudo"
-              << std::endl;
+    std::cerr << "You are in Solo mode ! Please enter your Pseudo" << std::endl;
     std::cerr << "Please refer your pseudonyme (5 characters): ";
     std::cin >> pseudo;
     if (pseudo.size() != 5) {
