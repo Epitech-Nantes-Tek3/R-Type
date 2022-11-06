@@ -222,4 +222,18 @@ void AdminPanel::_getStatsAction(AdminPanel::PanelCommand parsedRequest)
         _waitingForAnswer += 1;
         _communicatorInstance->utilitaryAskForADatabaseValue(parsedRequest.userName, it, {0});
     }
+    if (parsedRequest.options.empty()) {
+        _communicatorInstance->utilitaryAskForADatabaseValue(parsedRequest.userName, "UserID", {0});
+        _communicatorInstance->utilitaryAskForADatabaseValue(parsedRequest.userName, "UserName", {0});
+        _communicatorInstance->utilitaryAskForADatabaseValue(parsedRequest.userName, "CreationDate", {0});
+        _communicatorInstance->utilitaryAskForADatabaseValue(parsedRequest.userName, "Password", {0});
+        _communicatorInstance->utilitaryAskForADatabaseValue(parsedRequest.userName, "Moderator", {0});
+        _communicatorInstance->utilitaryAskForADatabaseValue(parsedRequest.userName, "Banned", {0});
+        _communicatorInstance->utilitaryAskForADatabaseValue(parsedRequest.userName, "Muted", {0});
+        _communicatorInstance->utilitaryAskForADatabaseValue(parsedRequest.userName, "HighestScore", {0});
+        _communicatorInstance->utilitaryAskForADatabaseValue(parsedRequest.userName, "Deaths", {0});
+        _communicatorInstance->utilitaryAskForADatabaseValue(parsedRequest.userName, "KilledEnemies", {0});
+        _communicatorInstance->utilitaryAskForADatabaseValue(parsedRequest.userName, "GamesPlayed", {0});
+        _waitingForAnswer += 11;
+    }
 }
