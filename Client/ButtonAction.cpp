@@ -62,8 +62,10 @@ void selectAWritable(World &world, Entity &entityPtr)
     RenderWindowResource &resource = world.getResource<RenderWindowResource>();
     if (entityPtr.contains<Selected>()) {
         entityPtr.removeComponent<Selected>();
-        entityPtr.removeComponent<TextureName>();
-        entityPtr.addComponent<TextureName>(GraphicsTextureResource::WRITABLE);
+        if (entityPtr.contains<TextureName>()) {
+            entityPtr.removeComponent<TextureName>();
+            entityPtr.addComponent<TextureName>(GraphicsTextureResource::WRITABLE);
+        }
         auto &state = world.getResource<GameStates>();
         auto guard = std::lock_guard(state);
         state.currentState = GameStates::IN_GAME;
@@ -72,8 +74,10 @@ void selectAWritable(World &world, Entity &entityPtr)
     }
     resource.window.setKeyRepeatEnabled(true);
     entityPtr.addComponent<Selected>();
-    entityPtr.removeComponent<TextureName>();
-    entityPtr.addComponent<TextureName>(GraphicsTextureResource::WRITABLE_SELECTED);
+    if (entityPtr.contains<TextureName>()) {
+        entityPtr.removeComponent<TextureName>();
+        entityPtr.addComponent<TextureName>(GraphicsTextureResource::WRITABLE_SELECTED);
+    }
     auto &state = world.getResource<GameStates>();
     auto guard = std::lock_guard(state);
     state.currentState = GameStates::IN_WRITING;

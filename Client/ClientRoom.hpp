@@ -43,7 +43,9 @@ namespace client_data
         ~ClientRoom() = default;
 
         /// @brief Launch the lobby global loop
-        void startLobbyLoop();
+        /// @param pseudo The pseudo of the user
+        /// @param password The password of the user
+        void startLobbyLoop(const std::string &pseudo, const std::string &password);
 
       private:
         /// @brief Init all shared resources of the world.
@@ -124,10 +126,10 @@ namespace client_data
         std::shared_ptr<World> _worldInstance;
 
         /// @brief Init the Ressources and Systems of the ECS
-        void initEcsGameData(void);
+        void _initEcsGameData(void);
 
         /// @brief Start the connexion protocol and ask the server for a place inside the room
-        void startConnexionProtocol(void);
+        void _startConnexionProtocol(void);
 
         /// @brief Answer the reception of a protocol 12
         void protocol12Answer(CommunicatorMessage connexionResponse);

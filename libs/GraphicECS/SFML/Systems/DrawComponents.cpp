@@ -167,7 +167,7 @@ void DrawComponents::_updateEntities(World &world, std::shared_ptr<ecs::Entity> 
         auto entityPos = entityPtr->getComponent<Position>();
         auto entitySize = entityPtr->getComponent<Size>();
 
-        entityPtr->addComponent<GraphicsRectangleComponent>(entityPos.x, entityPos.y, entitySize.x, entitySize.y);
+        entityPtr->addComponent<GraphicsRectangleComponent>(entityPos.x, entityPos.y, entitySize.x, entitySize.y).getComponent<GraphicsRectangleComponent>().shape.setFillColor(sf::Color::Blue);
         _updatePlayer(layerType, entityPtr, world.getResource<GraphicsFontResource>().font);
         _updateEnemy(layerType, entityPtr);
         _udpateProjectile(layerType, entityPtr);
@@ -191,6 +191,8 @@ void DrawComponents::_updateTexture(World &world, std::shared_ptr<ecs::Entity> e
                                        .textures[entityPtr->getComponent<AnimationComponent>().currentTexturePos]]
                     .get());
         }
+        if (entityPtr->contains<Size>())
+            entityPtr->getComponent<GraphicsRectangleComponent>().shape.setSize(sf::Vector2f(entityPtr->getComponent<Size>().x, entityPtr->getComponent<Size>().y));
     } else {
         entityPtr->getComponent<GraphicsRectangleComponent>().shape.setFillColor(sf::Color::White);
     }
