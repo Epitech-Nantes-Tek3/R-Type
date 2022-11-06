@@ -335,7 +335,7 @@ std::vector<std::string> Communicator::utilitaryReceiveSetDatabaseValue(Communic
     offset += sizeof(unsigned short);
     value = (char *)cryptedMessage.message.data + offset;
     std::string valueStr;
-    if (key == 4) {
+    if (key == 4 || key == 5) {
         valueStr = std::string(7, '\'');
         for (std::size_t i = 1; i < 6; i++)
             valueStr[i] = value[i - 1];

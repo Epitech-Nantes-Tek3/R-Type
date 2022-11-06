@@ -147,12 +147,11 @@ void AdminPanel::_getARequest()
 
 void AdminPanel::_updatePasswordAction(AdminPanel::PanelCommand parsedRequest)
 {
-    if (parsedRequest.options.size() != 2) {
+    if (parsedRequest.options.size() != 1) {
         std::cout << "Invalid command parameters. Please refer to the Notion protocol." << std::endl;
     }
-    //_communicatorInstance->utilitarySetADatabaseValue(
-    // parsedRequest.userName, "Password", parsedRequest.options.at(1), {0});
-    /// WILL BE ADDED LATER
+    _communicatorInstance->utilitarySetADatabaseValue(
+        parsedRequest.userName, 5, parsedRequest.options.at(0), {0});
 }
 
 void AdminPanel::_updateNameAction(AdminPanel::PanelCommand parsedRequest)
@@ -160,8 +159,7 @@ void AdminPanel::_updateNameAction(AdminPanel::PanelCommand parsedRequest)
     if (parsedRequest.options.size() != 1) {
         std::cout << "Invalid command parameters. Please refer to the Notion protocol." << std::endl;
     }
-    _communicatorInstance->utilitarySetADatabaseValue(
-        parsedRequest.userName, 4, parsedRequest.options.at(0), {0});
+    _communicatorInstance->utilitarySetADatabaseValue(parsedRequest.userName, 4, parsedRequest.options.at(0), {0});
 }
 
 void AdminPanel::_banAction(AdminPanel::PanelCommand parsedRequest)

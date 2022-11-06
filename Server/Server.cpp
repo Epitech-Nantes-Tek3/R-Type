@@ -115,6 +115,8 @@ void Server::_holdADatabaseSetRequest(CommunicatorMessage databaseRequest)
         keyStr = "Moderator";
     if (requestContent.at(1) == "4")
         keyStr = "UserName";
+    if (requestContent.at(1) == "5")
+        keyStr = "Password";
     _databaseApi.updateUsers(keyStr + " = " + requestContent.at(2), "UserName = '" + requestContent.at(0) + "'");
 }
 
