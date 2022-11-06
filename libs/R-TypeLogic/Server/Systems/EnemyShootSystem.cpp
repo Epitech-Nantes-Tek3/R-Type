@@ -13,6 +13,7 @@
 #include "R-TypeLogic/Global/Components/EnemyComponent.hpp"
 #include "R-TypeLogic/Global/Components/ShootingFrequencyComponent.hpp"
 #include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
+
 using namespace ecs;
 using namespace std::chrono;
 

@@ -67,7 +67,7 @@ namespace client_data
         void _initSharedResources();
 
         /// @brief Init all systems of the world.
-        /// @param isSolo Init all systems if the player play in solo mod or in multiplayer mod
+        /// @param isSolo Tell if the game is in solo or multiplayer MODE
         void _initSystems(bool isSolo);
 
         /// @brief Init some entities only created by the client.

@@ -133,15 +133,9 @@ ClientRoom::ClientRoom(std::string address, unsigned short port, std::string ser
 
 void ClientRoom::_initEcsGameData(bool isSolo)
 {
-    if (isSolo) {
-        _initSharedResources();
-        _initSystems(isSolo);
-        _initEntities();
-    } else {
-        _initSharedResources();
-        _initSystems(isSolo);
-        _initEntities();
-    }
+    _initSharedResources();
+    _initSystems(isSolo);
+    _initEntities();
 }
 
 void ClientRoom::_startConnexionProtocol(void)
@@ -287,7 +281,7 @@ void ClientRoom::choosePlayerInfosForServer()
 void ClientRoom::startGame()
 {
     std::cerr << "If you want to play in Solo Mod, please refer S. Otherwise if you want to play in multiplayer use M "
-                 "and be shure that a server is runing : ";
+                 "and be sure that a server is running : ";
     char choosedMod = '\0';
 
     std::cin >> choosedMod;
@@ -484,6 +478,16 @@ void ClientRoom::_initSharedResources()
 
 void ClientRoom::_initSystems(bool isSolo)
 {
+    _worldInstance->addSystem<UpdateClock>();
+    _worldInstance->addSystem<DeathSystem>();
+    _worldInstance->addSystem<DrawComponents>();
+    _worldInstance->addSystem<InputManagement>();
+     _worldInstance->addSystem<SfObjectFollowEntitySystem>();
+    _worldInstance->addSystem<Parallax>();
+    _worldInstance->addSystem<Movement>();
+    _worldInstance->addSystem<AnimationSystem>();
+    _worldInstance->addSystem<MusicManagement>();
+    _worldInstance->addSystem<SoundManagement>();
     if (isSolo) {
         _worldInstance->addSystem<EnemiesGoRandom>();
         _worldInstance->addSystem<EnemyShootSystem>();
@@ -491,30 +495,10 @@ void ClientRoom::_initSystems(bool isSolo)
         _worldInstance->addSystem<DeathLife>();
         _worldInstance->addSystem<LifeTimeDeath>();
         _worldInstance->addSystem<DecreaseLifeTime>();
-        _worldInstance->addSystem<UpdateClock>();
-        _worldInstance->addSystem<DeathSystem>();
-        _worldInstance->addSystem<DrawComponents>();
-        _worldInstance->addSystem<InputManagement>();
-        _worldInstance->addSystem<SfObjectFollowEntitySystem>();
-        _worldInstance->addSystem<Parallax>();
-        _worldInstance->addSystem<Movement>();
-        _worldInstance->addSystem<AnimationSystem>();
-        _worldInstance->addSystem<MusicManagement>();
-        _worldInstance->addSystem<SoundManagement>();
     } else {
-        _worldInstance->addSystem<UpdateClock>();
-        _worldInstance->addSystem<DeathSystem>();
-        _worldInstance->addSystem<DrawComponents>();
-        _worldInstance->addSystem<InputManagement>();
         _worldInstance->addSystem<SendToServer>();
         _worldInstance->addSystem<SendNewlyCreatedToServer>();
         _worldInstance->addSystem<SfObjectFollowEntitySystem>();
-        _worldInstance->addSystem<Parallax>();
-        _worldInstance->addSystem<Movement>();
-        _worldInstance->addSystem<AnimationSystem>();
-        _worldInstance->addSystem<NoAfkInMenu>();
-        _worldInstance->addSystem<MusicManagement>();
-        _worldInstance->addSystem<SoundManagement>();
         _worldInstance->addSystem<RemoveChatSystem>();
     }
 }
