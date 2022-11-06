@@ -23,32 +23,40 @@
 
 using namespace ecs;
 
+/// @brief Make a enemy go random in defined limits
+/// @param world the world where the random resource is
+/// @param enemy the enemy who's going to randomly move
+/// @param widthLimit the width limit for the randomness
+/// @param heightLimit the height limit for the randomness
+static void makeEnemyGoRandom(World &world, std::shared_ptr<Entity> enemy, std::pair<int, int> widthLimit, std::pair<int, int> heightLimit)
+{
+    Position &pos = enemy.get()->getComponent<Position>();
+    Velocity &vel = enemy.get()->getComponent<Velocity>();
+    Destination &dest = enemy.get()->getComponent<Destination>();
+
+    if (pos.x >= dest.x - 10 && pos.x <= dest.x + 10 && pos.y >= dest.y - 10 && pos.y <= dest.y + 10) {
+        double newVelX = 0;
+        double newVelY = 0;
+        RandomDevice &random = world.getResource<RandomDevice>();
+        random.lock();
+        dest.x = random.randInt(widthLimit.first, widthLimit.second);
+        dest.y = random.randInt(heightLimit.first, heightLimit.second);
+        random.unlock();
+        newVelX = dest.x - (int)pos.x;
+        newVelY = dest.y - (int)pos.y;
+        vel.multiplierAbscissa = newVelX;
+        vel.multiplierOrdinate = newVelY;
+        vel.modified = true;
+        pos.modified = true;
+    }
+}
+
 /// @brief Apply the basic pattern (random one) to the enemy
 /// @param world the world where the random resource is
 /// @param enemy the enemy who's going to randomly move
 static void basicEnemyPatterns(World &world, std::shared_ptr<Entity> enemy)
 {
-    auto guard = std::lock_guard(*enemy.get());
-
-    Position &pos = enemy.get()->getComponent<Position>();
-    Velocity &vel = enemy.get()->getComponent<Velocity>();
-    Destination &dest = enemy.get()->getComponent<Destination>();
-
-    if (pos.x >= dest.x - 50 && pos.x <= dest.x + 50 && pos.y >= dest.y - 50 && pos.y <= dest.y + 50) {
-        double newVelX = 0;
-        double newVelY = 0;
-        RandomDevice &random = world.getResource<RandomDevice>();
-        random.lock();
-        dest.x = random.randInt(MINIMUM_WIDTH, MAXIMUM_WIDTH);
-        dest.y = random.randInt(MINIMUM_HEIGTH, MAXIMUM_HEIGTH);
-        random.unlock();
-        newVelX = dest.x - (int)pos.x;
-        newVelY = dest.y - (int)pos.y;
-        vel.multiplierAbscissa = (newVelX);
-        vel.multiplierOrdinate = (newVelY);
-        vel.modified = true;
-        pos.modified = true;
-    }
+    makeEnemyGoRandom(world, enemy, std::pair<int, int>(MINIMUM_WIDTH, MAXIMUM_WIDTH), std::pair<int, int>(MINIMUM_HEIGTH, MAXIMUM_HEIGTH));
 }
 
 /// @brief Apply the fire pattern (follow a player) to the enemy
@@ -86,9 +94,7 @@ static void fireEnemyPatterns(World &world, std::shared_ptr<Entity> enemy)
 /// @param enemy the super fast enemy
 static void electricEnemyPatterns(World &world, std::shared_ptr<Entity> enemy)
 {
-    (void)enemy;
-    (void)world;
-    /// Make him go super fast, in a flash shape if possible
+    makeEnemyGoRandom(world, enemy, std::pair<int, int>(100, 1800), std::pair<int, int>(100, 900));
 }
 
 /// @brief  Init the Ice Pattern (hord squared shape pattern)
