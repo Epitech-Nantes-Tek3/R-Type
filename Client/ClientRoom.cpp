@@ -271,7 +271,7 @@ int ClientRoom::_choosePlayerInfosForServer()
         connection.userConnection();
     } catch (error_lib::RTypeError &e) {
         std::cerr << e.what() << std::endl;
-        return(84);
+        return (84);
     }
     pseudo = connection.getPseudo();
     password = connection.getPassword();
