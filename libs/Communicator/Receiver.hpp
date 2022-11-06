@@ -162,6 +162,10 @@ namespace communicator_lib
         /// @param dataContent The transfered data (Client + Data)
         void dataTraitmentType42(Message dataContent);
 
+        /// @brief The function will process the data according to the protocol 43
+        /// @param dataContent The transfered data (Client + Data)
+        void dataTraitmentType43(Message dataContent);
+
         /// @brief The function will process the data according to the protocol 50
         /// @param dataContent The transfered data (Client + Data)
         void dataTraitmentType50(Message dataContent);

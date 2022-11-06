@@ -98,6 +98,10 @@ void Server::_holdADatabaseValueRequest(CommunicatorMessage databaseRequest)
     std::vector<std::string> requestContent =
         _communicatorInstance->utilitaryReceiveAskingForDatabaseValue(databaseRequest);
     auto apiAnswer = _databaseApi.selectUsers("UserName = '" + requestContent.at(0) + "'");
+    if (apiAnswer.empty()) {
+        _communicatorInstance->sendDataToAClient(databaseRequest.message.clientInfo, nullptr, 0, 43);
+        return;
+    }
     _communicatorInstance->utilitarySendDatabaseValue(
         apiAnswer.at(0)[requestContent.at(1)], databaseRequest.message.clientInfo);
 }

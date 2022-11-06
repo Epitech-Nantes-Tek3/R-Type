@@ -51,6 +51,10 @@ void AdminPanel::startLoop()
             }
             if (databaseAnswer.message.type == 41)
                 _handleAReceivedData(databaseAnswer);
+            if (databaseAnswer.message.type == 43) {
+                std::cout << "Wanted client doesn't exist inside the database." << std::endl;
+                _waitingForAnswer -= 1;
+            }
         } catch (NetworkError &error) {
         }
         if (!_waitingForAnswer) {
