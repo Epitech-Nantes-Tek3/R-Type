@@ -49,6 +49,7 @@ namespace client_data
 
         /// @brief This function start the game
         int startGame();
+
       private:
         /// @brief Get call back handler for a solo game
         void _signalSoloCallbackHandler(int signum);
