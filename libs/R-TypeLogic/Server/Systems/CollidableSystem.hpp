@@ -11,6 +11,7 @@
 #include "World/World.hpp"
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
 #include "R-TypeLogic/Global/Components/SizeComponent.hpp"
+#include "R-TypeLogic/Global/Components/LifeComponent.hpp"
 
 namespace ecs
 {
@@ -62,6 +63,22 @@ namespace ecs
             std::vector<std::shared_ptr<ecs::Entity>> &enemies,
             std::vector<std::shared_ptr<ecs::Entity>> &enemiesProjectiles,
             std::vector<std::shared_ptr<ecs::Entity>> &obstacles);
+
+        /// @brief Check if the entity is killed by an AlliedProjectile and increment the Killed data inside Database.
+        /// @param world the world game
+        /// @param fstEntity the Killer entity
+        /// @param sndEntity the Killed entity
+        /// @param sndLife life of the Killed entity
+        void enemiesKilledCounterByAlliedProjectile(
+            World &world, std::shared_ptr<ecs::Entity> fstEntity, std::shared_ptr<ecs::Entity> sndEntity, Life &sndLife);
+
+        /// @brief Check if the entity is killed by an Player and increment the Killed data inside Database.
+        /// @param world the world game
+        /// @param fstEntity the Killer entity
+        /// @param sndEntity the Killed entity
+        /// @param sndLife life of the Killed entity
+        void enemiesKilledCounterByPlayer(
+            World &world, std::shared_ptr<ecs::Entity> fstEntity, std::shared_ptr<ecs::Entity> sndEntity, Life &sndLife);
 
         /// @brief Run function for the Collide System
         /// @param world The world where the collisions will be checked

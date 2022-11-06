@@ -13,7 +13,6 @@
 #include "R-TypeLogic/Global/Components/DamageComponent.hpp"
 #include "R-TypeLogic/Global/Components/EnemyComponent.hpp"
 #include "R-TypeLogic/Global/Components/EnemyProjectileComponent.hpp"
-#include "R-TypeLogic/Global/Components/LifeComponent.hpp"
 #include "R-TypeLogic/Global/Components/ObstacleComponent.hpp"
 #include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
 
@@ -54,6 +53,33 @@ static std::string getParentNameFromProjectile(World &world, unsigned short netw
     return "";
 }
 
+void Collide::enemiesKilledCounterByPlayer(
+    World &world, std::shared_ptr<ecs::Entity> fstEntity, std::shared_ptr<ecs::Entity> sndEntity, Life &sndLife)
+{
+    if (sndLife.lifePoint == 0 && fstEntity->contains<Player>() && sndEntity->contains<Enemy>()) {
+        auto apiAnswer = world.getTransisthorBridge()->getCommunicatorInstance().getDatabaseApi().selectUsers(
+            "UserName = '" + fstEntity->getComponent<Player>().name + "'");
+        world.getTransisthorBridge()->getCommunicatorInstance().getDatabaseApi().updateUsers(
+            "KilledEnemies = " + std::to_string(std::atoi(apiAnswer.at(0)["KilledEnemies"].c_str()) + 1),
+            "UserName = '" + fstEntity->getComponent<Player>().name + "'");
+    }
+}
+
+void Collide::enemiesKilledCounterByAlliedProjectile(
+    World &world, std::shared_ptr<ecs::Entity> fstEntity, std::shared_ptr<ecs::Entity> sndEntity, Life &sndLife)
+{
+    if (sndLife.lifePoint == 0 && fstEntity->contains<AlliedProjectile>() && sndEntity->contains<Enemy>()) {
+        auto apiAnswer = world.getTransisthorBridge()->getCommunicatorInstance().getDatabaseApi().selectUsers(
+            "UserName = '"
+            + getParentNameFromProjectile(world, fstEntity->getComponent<AlliedProjectile>().parentNetworkId) + "'");
+        world.getTransisthorBridge()->getCommunicatorInstance().getDatabaseApi().updateUsers(
+            "KilledEnemies = " + std::to_string(std::atoi(apiAnswer.at(0)["KilledEnemies"].c_str()) + 1),
+            "UserName = '"
+                + getParentNameFromProjectile(world, fstEntity->getComponent<AlliedProjectile>().parentNetworkId)
+                + "'");
+    }
+}
+
 void Collide::collide(World &world, std::vector<std::shared_ptr<ecs::Entity>> &fstEntities,
     std::vector<std::shared_ptr<ecs::Entity>> &sndEntities)
 {
@@ -78,38 +104,14 @@ void Collide::collide(World &world, std::vector<std::shared_ptr<ecs::Entity>> &f
                     fstLife.lifePoint -= sndDamage.damagePoint;
                     fstLife.modified = true;
                 }
-
                 if (sndEntity->contains<Life>() && sndEntity->getComponent<Life>().lifePoint > 0) {
                     Life &sndLife = sndEntity->getComponent<Life>();
                     if (fstDamage.damagePoint >= sndLife.lifePoint)
                         sndLife.lifePoint = fstDamage.damagePoint;
                     sndLife.lifePoint -= fstDamage.damagePoint;
                     sndLife.modified = true;
-                    if (sndLife.lifePoint == 0 && fstEntity->contains<Player>() && sndEntity->contains<Enemy>()) {
-                        auto apiAnswer =
-                            world.getTransisthorBridge()->getCommunicatorInstance().getDatabaseApi().selectUsers(
-                                "UserName = '" + fstEntity->getComponent<Player>().name + "'");
-                        world.getTransisthorBridge()->getCommunicatorInstance().getDatabaseApi().updateUsers(
-                            "KilledEnemies = "
-                                + std::to_string(std::atoi(apiAnswer.at(0)["KilledEnemies"].c_str()) + 1),
-                            "UserName = '" + fstEntity->getComponent<Player>().name + "'");
-                    }
-                    if (sndLife.lifePoint == 0 && fstEntity->contains<AlliedProjectile>()
-                        && sndEntity->contains<Enemy>()) {
-                        auto apiAnswer =
-                            world.getTransisthorBridge()->getCommunicatorInstance().getDatabaseApi().selectUsers(
-                                "UserName = '"
-                                + getParentNameFromProjectile(
-                                    world, fstEntity->getComponent<AlliedProjectile>().parentNetworkId)
-                                + "'");
-                        world.getTransisthorBridge()->getCommunicatorInstance().getDatabaseApi().updateUsers(
-                            "KilledEnemies = "
-                                + std::to_string(std::atoi(apiAnswer.at(0)["KilledEnemies"].c_str()) + 1),
-                            "UserName = '"
-                                + getParentNameFromProjectile(
-                                    world, fstEntity->getComponent<AlliedProjectile>().parentNetworkId)
-                                + "'");
-                    }
+                    enemiesKilledCounterByPlayer(world, fstEntity, sndEntity, sndLife);
+                    enemiesKilledCounterByAlliedProjectile(world, fstEntity, sndEntity, sndLife);
                 }
             }
         }

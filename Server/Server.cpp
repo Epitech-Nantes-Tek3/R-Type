@@ -162,10 +162,7 @@ void Server::_holdACreateRoomRequest(CommunicatorMessage createDemand)
         }
     }
 
-    std::cerr << "C" << std::endl;
     unsigned short roomId = createANewRoom(room.roomName);
-    std::cerr << "B" << std::endl;
-
     for (auto &it : _activeRoomList) {
         if (it->getId() == roomId) {
             _communicatorInstance->kickAClient(createDemand.message.clientInfo, it->getNetworkInfos());
