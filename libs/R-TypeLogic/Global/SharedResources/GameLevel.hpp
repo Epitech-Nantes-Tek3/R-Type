@@ -18,10 +18,10 @@ namespace ecs
         /// @brief Enumeration of all possibles level states on the game
         enum level_e {
             LEVEL_ONE = 0,
-            LEVEL_TWO = 10,
-            LEVEL_THREE = 25,
-            LEVEL_FORTH = 50,
-            INFINITE = 100
+            LEVEL_TWO = 5,
+            LEVEL_THREE = 10,
+            LEVEL_FORTH = 20,
+            INFINITE = 25
         };
         /// @brief Create the GameLevel Resource
         GameLevel() : _currLevel(LEVEL_ONE), _hasLevelChanged(true), _nbkills(0) {};
@@ -32,7 +32,7 @@ namespace ecs
 
         /// @brief Check if the game level has changed
         /// @return true if the level has change, false otherwise
-        inline bool hasLevelChange() {return this->_hasLevelChanged;};
+        inline bool hasLevelChanged() {return this->_hasLevelChanged;};
 
         /// @brief Add new kills to the private value, increase the level if necessary
         /// @param newKills the number of new kills
