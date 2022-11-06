@@ -221,11 +221,6 @@ namespace transisthor_lib
         /// @param byteCode byte value of the Invinsible component
         void componentConvertInvinsibleType(unsigned short id, void *byteCode);
 
-        /// @brief Convert a byteCode data into a Invisible component and send it to the ECS
-        /// @param id Entity ID attached to the component
-        /// @param byteCode byte value of the Invisible component
-        void componentConvertInvisibleType(unsigned short id, void *byteCode);
-
         /// @brief Convert a byteCode data into a Life component and send it to the ECS
         /// @param id Entity ID attached to the component
         /// @param byteCode byte value of the Life component

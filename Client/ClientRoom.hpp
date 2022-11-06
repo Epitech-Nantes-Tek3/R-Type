@@ -89,6 +89,10 @@ namespace client_data
         /// @param spritesList texture's map holding the texture and the corresponding key
         void _initSpritesForPlayer(graphicECS::SFML::Resources::GraphicsTextureResource &spritesList);
 
+        /// @brief Init all the sprites needed for the enemies
+        /// @param spritesList texture's map holding the texture and the corresponding key
+        void _initSpriteForEnemies(graphicECS::SFML::Resources::GraphicsTextureResource &spritesList);
+
         /// @brief Init all the sprites needed for the projectiles
         /// @param spritesList texture's map holding the texture and the corresponding key
         void _initSpritesForProjectiles(graphicECS::SFML::Resources::GraphicsTextureResource &spritesList);

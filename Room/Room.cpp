@@ -36,7 +36,7 @@
 #include "R-TypeLogic/Server/Systems/DeathLifeSystem.hpp"
 #include "R-TypeLogic/Server/Systems/DecreaseLifeTimeSystem.hpp"
 #include "R-TypeLogic/Server/Systems/DisconnectableSystem.hpp"
-#include "R-TypeLogic/Server/Systems/EnemiesGoRandom.hpp"
+#include "R-TypeLogic/Server/Systems/EnemiesPatterns.hpp"
 #include "R-TypeLogic/Server/Systems/EnemyShootSystem.hpp"
 #include "R-TypeLogic/Server/Systems/LifeTimeDeathSystem.hpp"
 #include "R-TypeLogic/Server/Systems/RemoveAfkSystem.hpp"
@@ -96,7 +96,7 @@ void Room::initEcsGameData(void)
     _worldInstance->addSystem<SendToClient>();
     _worldInstance->addSystem<SendNewlyCreatedToClients>();
     _worldInstance->addSystem<Movement>();
-    _worldInstance->addSystem<EnemiesGoRandom>();
+    _worldInstance->addSystem<EnemiesPatterns>();
     _worldInstance->addSystem<EnemyShootSystem>();
     _worldInstance->addSystem<Collide>();
     _worldInstance->addSystem<DeathLife>();
@@ -225,8 +225,14 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
     std::string playerNameStr = _getPlayerName(connexionDemand);
     std::size_t playerId = createNewPlayer(*_worldInstance.get(), 20, 500, 0, 0, 1, 102, 102, 100, 10, 4, false,
         _remainingPlaces + 1, playerNameStr, "", generator.generateNewNetworkableId());
+    // TO BE REMOVED WHEN TRUE MOB GENERATION WILL BE IMPLEMENTED
+    RandomDevice &random = _worldInstance->getResource<RandomDevice>();
+    random.lock();
+    /// Enemy::BASIC and Enemy::ICE
+    unsigned short randType = random.randInt(0, 3);
+    random.unlock();
     std::size_t enemyId = createNewEnemyRandom(
-        *_worldInstance.get(), 0, 0, 1, 85, 85, 50, 10, 5, Enemy::BASIC, "", generator.generateNewNetworkableId());
+        *_worldInstance.get(), 0, 0, 1, 85, 85, 50, 10, 5, randType, "", generator.generateNewNetworkableId());
     std::vector<std::shared_ptr<ecs::Entity>> clients = _worldInstance.get()->joinEntities<ecs::NetworkClient>();
     std::vector<unsigned short> clientIdList;
     auto addToClientList = [&clientIdList](std::shared_ptr<ecs::Entity> entityPtr) {
