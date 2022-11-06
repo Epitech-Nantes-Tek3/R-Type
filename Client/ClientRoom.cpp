@@ -273,8 +273,7 @@ void ClientRoom::startLobbyLoop(void)
             if (connectionOperation.message.type == 13)
                 _holdADisconnectionRequest();
             if (connectionOperation.message.type == 20) {
-                _serverEndpoint =
-                    _communicatorInstance->getClientByHisId(_communicatorInstance->getServerEndpointId());
+                _serverEndpoint = _communicatorInstance->getClientByHisId(_communicatorInstance->getServerEndpointId());
                 initEcsGameData();
                 _connectToARoom();
             }
@@ -283,16 +282,19 @@ void ClientRoom::startLobbyLoop(void)
                     _protocol15Answer(connectionOperation);
                 if (connectionOperation.message.type == 12)
                     protocol12Answer(connectionOperation);
-            } else if (_state == ClientState::LOBBY) {
-                _state = ClientState::IN_GAME;
-            } else if (_state == ClientState::IN_GAME) {
-                if (connectionOperation.message.type == 50)
-                    _holdAChatRequest(connectionOperation);
-                _worldInstance.get()->runSystems(); /// WILL BE IMPROVED IN PART TWO (THREAD + CLOCK)
-            } else if (_state == ClientState::UNDEFINED) {
-            } else {
             }
         } catch (NetworkError &error) {
+        }
+        if (_state == ClientState::LOBBY) {
+            _state = ClientState::IN_GAME;
+        }
+        if (_state == ClientState::IN_GAME) {
+            try {
+                if (connectionOperation.message.type == 50)
+                    _holdAChatRequest(connectionOperation);
+            } catch (NetworkError &e) {
+            }
+            _worldInstance.get()->runSystems(); /// WILL BE IMPROVED IN PART TWO (THREAD + CLOCK)
         }
     }
     _disconectionProcess();
