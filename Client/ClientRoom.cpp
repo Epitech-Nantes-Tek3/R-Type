@@ -286,7 +286,6 @@ void ClientRoom::startGame()
 
     std::cin >> choosedMod;
     if (choosedMod == 'S') {
-        _getClientPseudoAndPassword();
         startSoloLoop();
     } else if (choosedMod == 'M') {
         choosePlayerInfosForServer();
@@ -294,32 +293,6 @@ void ClientRoom::startGame()
         std::cerr << "Not a valid option ;)" << std::endl;
         _state = ClientState::ENDED;
     }
-}
-void ClientRoom::_getClientPseudoAndPassword()
-{
-    std::string pseudo;
-    std::string password;
-
-    std::cerr << "Welcome to the R-Type game !" << std::endl;
-    std::cerr << "If there is no player with your pseudonyme inside the database a new one will be created with the "
-                 "given password."
-              << std::endl;
-    std::cerr << "Please refer your pseudonyme (5 characters): ";
-    std::cin >> pseudo;
-    if (pseudo.size() != 5) {
-        std::cerr << "Nop ! Please enter a 5 characters pseudonyme.";
-        _state = ClientState::ENDED;
-        return;
-    }
-    std::cerr << "Welcome " << pseudo << ". Please now enter your password (5 characters): ";
-    std::cin >> password;
-    if (password.size() != 5) {
-        std::cerr << "Nop ! Please enter a 5 characters password.";
-        _state = ClientState::ENDED;
-        return;
-    }
-    _pseudo = pseudo;
-    _password = password;
 }
 
 void ClientRoom::_connectToARoom()
