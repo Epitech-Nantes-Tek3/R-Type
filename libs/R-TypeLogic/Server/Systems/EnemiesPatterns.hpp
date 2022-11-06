@@ -2,11 +2,11 @@
 ** EPITECH PROJECT, 2022
 ** Rt-Type
 ** File description:
-** EnemiesGoRandom
+** EnemiesPatterns
 */
 
-#ifndef ENEMIESGORANDOM_HPP_
-#define ENEMIESGORANDOM_HPP_
+#ifndef ENEMIESPATTERNS_HPP_
+#define ENEMIESPATTERNS_HPP_
 
 #include "World/World.hpp"
 #include "R-TypeLogic/Global/Components/DestinationComponent.hpp"
@@ -16,15 +16,15 @@
 
 namespace ecs
 {
-    /// @brief This is the GoRandom System for enemies.
-    /// This system check if the enemy is at its destination, if so randomize a new one
+    /// @brief This is the pattern System for enemies.
+    /// This system check if the enemy is at its destination, if so set a new destination based on enemy type
     /// Otherwise compute a new velocity
-    class EnemiesGoRandom : public System {
+    class EnemiesPatterns : public System {
       public:
-        /// @brief Run the GoRandom system
-        /// @param world The world where the enemy will randomly move
+        /// @brief Run the patterns system
+        /// @param world The world where the enemy will move
         void run(World &world) override final;
     };
 } // namespace ecs
 
-#endif /* !ENEMIESGORANDOM_HPP_ */
+#endif /* !ENEMIESPATTERNS_HPP_ */

@@ -9,6 +9,7 @@
 #include "World/World.hpp"
 #include "R-TypeLogic/Global/SharedResources/Random.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateEnemy.hpp"
+#include "R-TypeLogic/Global/SharedResources/Random.hpp"
 
 using namespace ecs;
 

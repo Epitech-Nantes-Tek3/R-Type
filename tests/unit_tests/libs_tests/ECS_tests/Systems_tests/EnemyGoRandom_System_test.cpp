@@ -13,7 +13,7 @@
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateEnemy.hpp"
 #include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
 #include "R-TypeLogic/Global/SharedResources/Random.hpp"
-#include "R-TypeLogic/Server/Systems/EnemiesGoRandom.hpp"
+#include "R-TypeLogic/Server/Systems/EnemiesPatterns.hpp"
 #include "R-TypeLogic/Global/Systems/MovementSystem.hpp"
 #include "R-TypeLogic/Global/Systems/UpdateClockSystem.hpp"
 
@@ -25,7 +25,7 @@ Test(EnemyGoRandom_System, move_randomly_rollback)
 
     world.addResource<RandomDevice>();
     world.addResource<GameClock>();
-    world.addSystem<EnemiesGoRandom>();
+    world.addSystem<EnemiesPatterns>();
     world.addSystem<UpdateClock>();
 
     std::size_t id = createNewEnemy(world, 1400, 540, 0, 0, 5, 100, 10, 5, 10, 10, Enemy::BASIC,"", 15);
@@ -34,8 +34,7 @@ Test(EnemyGoRandom_System, move_randomly_rollback)
     int y = pos.y;
 
     world.runSystems();
-    std::this_thread::sleep_for(std::chrono::duration<int>(5));
-    world.addSystem<Movement>();
+    std::this_thread::sleep_for(std::chrono::duration<int>(5));;
     world.runSystems();
 
     Position &newPos = world.getEntity(id).getComponent<Position>();
@@ -49,7 +48,7 @@ Test(EnemyGoRandom_System, move_randomly)
 
     world.addResource<RandomDevice>();
     world.addResource<GameClock>();
-    world.addSystem<EnemiesGoRandom>();
+    world.addSystem<EnemiesPatterns>();
     world.addSystem<UpdateClock>();
 
     std::size_t id = createNewEnemy(world, 1400, 540, 0, 0, 5, 100, 10, 5, 10, 10, Enemy::BASIC, "", 15);

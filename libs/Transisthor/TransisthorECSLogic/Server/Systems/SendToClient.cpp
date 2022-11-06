@@ -23,7 +23,7 @@ void SendToClient::runSystem(ecs::World &world)
     auto update = [this, &world, &clientIdList](std::shared_ptr<ecs::Entity> entityPtr) {
         auto guard = std::lock_guard(*entityPtr.get());
         unsigned short networkId = entityPtr->getComponent<ecs::Networkable>().id;
-        sendToClients<ecs::Destination, ecs::Equipment, ecs::Invinsible, ecs::Invisible, ecs::Life, ecs::Position,
+        sendToClients<ecs::Destination, ecs::Equipment, ecs::Invinsible, ecs::Life, ecs::Position,
             ecs::Velocity, ecs::Death>(world, networkId, entityPtr, clientIdList);
         return;
     };

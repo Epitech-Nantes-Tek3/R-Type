@@ -68,6 +68,7 @@
 #include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
 #include "R-TypeLogic/Global/SharedResources/Random.hpp"
 #include "R-TypeLogic/Global/Systems/DeathSystem.hpp"
+#include "R-TypeLogic/Global/Systems/ElectricInvisibleEnemySystem.hpp"
 #include "R-TypeLogic/Global/Systems/MovementSystem.hpp"
 #include "R-TypeLogic/Global/Systems/NoAfkInMenuSystem.hpp"
 #include "R-TypeLogic/Global/Systems/UpdateClockSystem.hpp"
@@ -431,6 +432,16 @@ void ClientRoom::_initSpritesForBackgrounds(GraphicsTextureResource &spritesList
         sf::Vector2f(0, 0), sf::Vector2f(1920, 1080));
 }
 
+void ClientRoom::_initSpriteForEnemies(GraphicsTextureResource &spritesList)
+{
+    spritesList.addTexture(GraphicsTextureResource::FIRE_ENEMY, "assets/EpiSprite/FireEnemySpriteSheet.gif",
+        sf::Vector2f(0, 0), sf::Vector2f(34, 34));
+    spritesList.addTexture(GraphicsTextureResource::ELECTRIC_ENEMY, "assets/EpiSprite/ElectricEnemySpriteSheet.gif",
+        sf::Vector2f(0, 0), sf::Vector2f(34, 34));
+    spritesList.addTexture(GraphicsTextureResource::ICE_ENEMY, "assets/EpiSprite/IceEnemySpriteSheet.gif",
+        sf::Vector2f(0, 0), sf::Vector2f(34, 34));
+}
+
 void ClientRoom::_initSpritesForWritable(GraphicsTextureResource &spritesList)
 {
     spritesList.addTexture(GraphicsTextureResource::WRITABLE, "assets/EpiSprite/r-typesheet11.gif", sf::Vector2f(34, 0),
@@ -443,13 +454,14 @@ void ClientRoom::_initSpritesForWritable(GraphicsTextureResource &spritesList)
 
 void ClientRoom::_initSpritesForEntities()
 {
-    _worldInstance->addResource<GraphicsTextureResource>(GraphicsTextureResource::ENEMY_STATIC,
+    _worldInstance->addResource<GraphicsTextureResource>(GraphicsTextureResource::BASIC_ENEMY,
         "assets/EpiSprite/BasicEnemySpriteSheet.gif", sf::Vector2f(0, 0), sf::Vector2f(34, 34));
     GraphicsTextureResource &spritesList = _worldInstance->getResource<GraphicsTextureResource>();
     auto guard = std::lock_guard(spritesList);
 
     spritesList.addTexture(GraphicsTextureResource::BUTTON, "assets/EpiSprite/r-typesheet11.gif", sf::Vector2f(34, 0),
         sf::Vector2f(34, 34));
+    _initSpriteForEnemies(spritesList);
     _initSpritesForWritable(spritesList);
     _initSpritesForPlayer(spritesList);
     _initSpritesForProjectiles(spritesList);
@@ -482,6 +494,8 @@ void ClientRoom::_initSystems(bool isSolo)
     _worldInstance->addSystem<AnimationSystem>();
     _worldInstance->addSystem<MusicManagement>();
     _worldInstance->addSystem<SoundManagement>();
+    _worldInstance->addSystem<RemoveChatSystem>();
+    _worldInstance->addSystem<ElectricInvisibleEnemy>();
     if (isSolo) {
         _worldInstance->addSystem<EnemiesGoRandom>();
         _worldInstance->addSystem<EnemyShootSystem>();
