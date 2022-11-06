@@ -241,6 +241,8 @@ Test(transisthor_testing, transit_enemy_entity)
     Client temporaryClient = Client();
     communicator.addClientToList(temporaryClient);
 
+    world.addResource<RandomDevice>();
+
     std::size_t entityId = createNewEnemy(world, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, Enemy::FIRE, "UUID");
 
     Position entityPosition = world.getEntity(entityId).getComponent<Position>();
