@@ -21,7 +21,6 @@
 #include "R-TypeLogic/Global/Components/DestinationComponent.hpp"
 #include "R-TypeLogic/Global/Components/EquipmentComponent.hpp"
 #include "R-TypeLogic/Global/Components/InvinsibleComponent.hpp"
-#include "R-TypeLogic/Global/Components/InvisibleComponent.hpp"
 #include "R-TypeLogic/Global/Components/LifeComponent.hpp"
 #include "R-TypeLogic/Global/Components/EnemyComponent.hpp"
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
@@ -110,22 +109,6 @@ Test(transisthor_testing, transit_invinsible_component)
     void *networkAnswer = transisthor.transitNetworkDataToEcsDataComponent({Client(), temp, sizeof(Invinsible), 30});
 
     newPos = buildComponentFromByteCode<Invinsible>(networkAnswer);
-    cr_assert_eq(42, 42);
-}
-
-Test(transisthor_testing, transit_invisible_component)
-{
-    Communicator communicator = Communicator();
-    World world = World(2);
-    Transisthor transisthor = Transisthor(communicator, world);
-    Invisible pos = Invisible();
-    Invisible newPos;
-    Client temporaryClient = Client();
-    communicator.addClientToList(temporaryClient);
-    void *temp = transisthor.transitEcsDataToNetworkData<Invisible>(1, 4, pos, {0});
-    void *networkAnswer = transisthor.transitNetworkDataToEcsDataComponent({Client(), temp, sizeof(Invisible), 30});
-
-    newPos = buildComponentFromByteCode<Invisible>(networkAnswer);
     cr_assert_eq(42, 42);
 }
 
