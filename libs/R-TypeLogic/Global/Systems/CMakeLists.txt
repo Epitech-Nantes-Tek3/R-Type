@@ -8,5 +8,7 @@ set(SRC_RTYPE_LOGIC_GLOBAL_SYSTEMS
     ${SRC_RTYPE_LOGIC_SYSTEMS_ROOT}/UpdateClockSystem.cpp
     ${SRC_RTYPE_LOGIC_SYSTEMS_ROOT}/NoAfkInMenuSystem.hpp
     ${SRC_RTYPE_LOGIC_SYSTEMS_ROOT}/NoAfkInMenuSystem.cpp
+    ${SRC_RTYPE_LOGIC_SYSTEMS_ROOT}/ElectricInvisibleEnemySystem.cpp
+    ${SRC_RTYPE_LOGIC_SYSTEMS_ROOT}/ElectricInvisibleEnemySystem.hpp
     PARENT_SCOPE
 )
