@@ -82,10 +82,12 @@ static void fireEnemyPatterns(World &world, std::shared_ptr<Entity> enemy)
 }
 
 /// @brief Apply the electric Pattern (flash shape) to the enemy
+/// @param world the world where the super fast enemy is
 /// @param enemy the super fast enemy
-static void electricEnemyPatterns(std::shared_ptr<Entity> enemy)
+static void electricEnemyPatterns(World &world, std::shared_ptr<Entity> enemy)
 {
     (void)enemy;
+    (void)world;
     /// Make him go super fast, in a flash shape if possible
 }
 
@@ -259,7 +261,7 @@ void EnemiesPatterns::run(World &world)
             return;
         switch (enemyType) {
             case Enemy::FIRE: fireEnemyPatterns(world, entityPtr); break;
-            case Enemy::ELECTRIC: electricEnemyPatterns(entityPtr); break;
+            case Enemy::ELECTRIC: electricEnemyPatterns(world, entityPtr); break;
             default: basicEnemyPatterns(world, entityPtr); break;
         };
     };
