@@ -235,40 +235,6 @@ void ClientRoom::_disconectionProcess()
 
 void ClientRoom::_holdADisconnectionRequest() { _state = ClientState::ENDED; }
 
-bool ClientRoom::_answerProtocols()
-{
-    CommunicatorMessage connectionOperation;
-
-    try {
-        connectionOperation = _communicatorInstance.get()->getLastMessage();
-        switch (connectionOperation.message.type) {
-            case 11: std::cerr << "No places left inside the hub. Please retry later" << std::endl; return false;
-            case 13: _holdADisconnectionRequest(); break;
-            case 20:
-                _serverEndpoint = _communicatorInstance->getClientByHisId(_communicatorInstance->getServerEndpointId());
-                // _initEcsGameData();
-                _connectToARoom();
-                break;
-            case 15:
-                if (_state == ClientState::MAIN_MENU)
-                    _protocol15Answer(connectionOperation);
-                break;
-            case 12:
-                if (_state == ClientState::MAIN_MENU) {
-                    _protocol12Answer(connectionOperation);
-                    _updateEcsData();
-                }
-                break;
-            case 50:
-                if (_state == ClientState::IN_GAME)
-                    _holdAChatRequest(connectionOperation);
-                break;
-        }
-    } catch (NetworkError &error) {
-    }
-    return true;
-}
-
 void ClientRoom::_updateEcsResources()
 {
     // MusicResource::music_e::BACKGROUNDTHEME, "assets/Musics/music_background.wav"
@@ -283,13 +249,13 @@ void ClientRoom::_updateEcsResources()
     if (!_worldInstance->containsResource<GraphicsFontResource>())
         _worldInstance->addResource<GraphicsFontResource>("assets/fonts/arial.ttf");
     if (!_worldInstance->containsResource<MenuStates>())
-        _worldInstance->addResource<MenuStates>(MenuStates::IN_GAME);
+        _worldInstance->addResource<MenuStates>(MenuStates::GAME_PAUSED);
     if (!_worldInstance->containsResource<MusicResource>())
         _worldInstance->addResource<MusicResource>();
     if (!_worldInstance->containsResource<SoundResource>())
         _worldInstance->addResource<SoundResource>();
     if (!_worldInstance->containsResource<GameStates>())
-        _worldInstance->addResource<GameStates>(GameStates::IN_GAME);
+        _worldInstance->addResource<GameStates>(GameStates::IN_PAUSED);
     if (!_worldInstance->containsResource<GraphicsTextureResource>())
         _worldInstance->addResource<GraphicsTextureResource>();
     if (!_worldInstance->containsResource<ButtonActionMap>())
@@ -385,7 +351,9 @@ void ClientRoom::_updateEcsEntities()
 {
     if (_worldInstance->joinEntities<MouseInputComponent, KeyboardInputComponent, ControllerButtonInputComponent, ControllerJoystickInputComponent, ActionQueueComponent, AllowMouseAndKeyboardComponent, AllowControllerComponent>().empty())
         _initInputsEntity();
-    if (_state == ClientState::MAIN_MENU) {}
+    if (_state == ClientState::MAIN_MENU) {
+        _initMainMenuButtons();
+    }
     if (_state == ClientState::LOBBY) {}
     if (_state == ClientState::IN_GAME) {
         _initInGameButtons();
@@ -439,6 +407,12 @@ void ClientRoom::_initInGameButtons()
         *(_worldInstance.get()), 909, 500, 102, 102, ButtonActionMap::EXIT, LayerLvL::BUTTON, MenuStates::GAME_PAUSED);
 }
 
+void ClientRoom::_initMainMenuButtons()
+{
+    createNewButton(*(_worldInstance.get()), 0, 0, 200, 50, ButtonActionMap::LOBBY, LayerLvL::BUTTON, MenuStates::UNDEFINED);
+    createNewButton(*(_worldInstance.get()), 200, 0, 200, 50, ButtonActionMap::EXIT, LayerLvL::BUTTON, MenuStates::UNDEFINED);
+}
+
 void ClientRoom::_initInGameWritables()
 {
     std::size_t writableId = createNewWritable(*(_worldInstance.get()), 1450, 900, 350, 50, MenuStates::IN_GAME);
@@ -484,6 +458,45 @@ void ClientRoom::_updateEcsData()
     _updateEcsResources();
     _updateEcsEntities();
     _updateEcsSystems();
+}
+
+bool ClientRoom::_answerProtocols()
+{
+    CommunicatorMessage connectionOperation;
+
+    try {
+        connectionOperation = _communicatorInstance.get()->getLastMessage();
+        if (connectionOperation.message.type == 11) {
+            std::cerr << "No places left inside the hub. Please retry later" << std::endl;
+            return false;
+        }
+        if (connectionOperation.message.type == 13) {
+            _holdADisconnectionRequest();
+        }
+        if (connectionOperation.message.type == 20) {
+            _serverEndpoint = _communicatorInstance->getClientByHisId(_communicatorInstance->getServerEndpointId());
+            // _initEcsGameData();
+            _connectToARoom();
+        }
+        if (connectionOperation.message.type == 15) {
+            if (_state == ClientState::MAIN_MENU) {
+                // _protocol15Answer(connectionOperation);
+                sleep(1);
+            }
+        }
+        if (connectionOperation.message.type == 12) {
+            if (_state == ClientState::MAIN_MENU) {
+                _protocol12Answer(connectionOperation);
+                _updateEcsData();
+            }
+        }
+        if (connectionOperation.message.type == 50) {
+            if (_state == ClientState::IN_GAME)
+                _holdAChatRequest(connectionOperation);
+        }
+    } catch (NetworkError &error) {
+    }
+    return true;
 }
 
 void ClientRoom::startLobbyLoop(const std::string &pseudo, const std::string &password)

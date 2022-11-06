@@ -167,7 +167,9 @@ void DrawComponents::_updateEntities(World &world, std::shared_ptr<ecs::Entity> 
         auto entityPos = entityPtr->getComponent<Position>();
         auto entitySize = entityPtr->getComponent<Size>();
 
-        entityPtr->addComponent<GraphicsRectangleComponent>(entityPos.x, entityPos.y, entitySize.x, entitySize.y).getComponent<GraphicsRectangleComponent>().shape.setFillColor(sf::Color::Blue);
+        entityPtr->addComponent<GraphicsRectangleComponent>(entityPos.x, entityPos.y, entitySize.x, entitySize.y)
+            .getComponent<GraphicsRectangleComponent>()
+            .shape.setFillColor(sf::Color::Blue);
         _updatePlayer(layerType, entityPtr, world.getResource<GraphicsFontResource>().font);
         _updateEnemy(layerType, entityPtr);
         _udpateProjectile(layerType, entityPtr);
@@ -192,7 +194,8 @@ void DrawComponents::_updateTexture(World &world, std::shared_ptr<ecs::Entity> e
                     .get());
         }
         if (entityPtr->contains<Size>())
-            entityPtr->getComponent<GraphicsRectangleComponent>().shape.setSize(sf::Vector2f(entityPtr->getComponent<Size>().x, entityPtr->getComponent<Size>().y));
+            entityPtr->getComponent<GraphicsRectangleComponent>().shape.setSize(
+                sf::Vector2f(entityPtr->getComponent<Size>().x, entityPtr->getComponent<Size>().y));
     } else {
         entityPtr->getComponent<GraphicsRectangleComponent>().shape.setFillColor(sf::Color::White);
     }
@@ -205,7 +208,8 @@ void DrawComponents::_drawRectangle(World &world, std::shared_ptr<ecs::Entity> e
         _updateTexture(world, entityPtr);
         if ((entityPtr->getComponent<LayerLvL>().layer == LayerLvL::BUTTON
                 || entityPtr->getComponent<LayerLvL>().layer == LayerLvL::WRITABLE)
-            && world.getResource<MenuStates>().currentState == entityPtr->getComponent<DisplayState>().displayState) {
+            && (world.getResource<MenuStates>().currentState == entityPtr->getComponent<DisplayState>().displayState
+                || entityPtr->getComponent<DisplayState>().displayState == MenuStates::UNDEFINED)) {
             windowResource.window.draw(entityPtr->getComponent<GraphicsRectangleComponent>().shape);
         } else if (entityPtr->getComponent<LayerLvL>().layer != LayerLvL::BUTTON
             && entityPtr->getComponent<LayerLvL>().layer != LayerLvL::WRITABLE) {
@@ -219,7 +223,8 @@ void DrawComponents::_drawText(World &world, std::shared_ptr<ecs::Entity> entity
 {
     if (entityPtr->contains<GraphicsTextComponent>()) {
         if (entityPtr->contains<DisplayState>()
-            && world.getResource<MenuStates>().currentState == entityPtr->getComponent<DisplayState>().displayState) {
+            && (world.getResource<MenuStates>().currentState == entityPtr->getComponent<DisplayState>().displayState
+                || entityPtr->getComponent<DisplayState>().displayState == MenuStates::UNDEFINED)) {
             windowResource.window.draw(entityPtr->getComponent<GraphicsTextComponent>().text);
         }
         if (entityPtr->contains<Player>() || entityPtr->contains<ChatMessage>()) {

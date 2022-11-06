@@ -48,6 +48,7 @@ namespace client_data
         void startLobbyLoop(const std::string &pseudo, const std::string &password);
 
       private:
+        void _initMainMenuButtons();
         void _initInGameBackgrounds();
         void _loadButtonActionMap();
         void _initInputsEntity();

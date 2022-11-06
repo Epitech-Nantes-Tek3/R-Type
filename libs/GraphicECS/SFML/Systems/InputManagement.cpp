@@ -266,7 +266,7 @@ namespace graphicECS::SFML::Systems
             bool sameHeigth = pos.x <= mousePos.x && mousePos.x <= pos.x + size.x;
             MenuStates &menuState = world.getResource<MenuStates>();
             MenuStates::menuState_e currState = menuState.currentState;
-            if (sameHeigth && sameWidth && state.displayState == currState) {
+            if (sameHeigth && sameWidth && (state.displayState == currState || state.displayState == MenuStates::UNDEFINED)) {
                 entityPtr->getComponent<Button>().IsClicked = true;
                 ActionName &name = entityPtr.get()->getComponent<ActionName>();
                 ButtonActionMap &map = world.getResource<ButtonActionMap>();
