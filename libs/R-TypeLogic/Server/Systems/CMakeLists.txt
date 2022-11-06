@@ -14,5 +14,7 @@ set(SRC_RTYPE_LOGIC_SERVER_SYSTEMS
     ${SRC_RTYPE_LOGIC_SYSTEMS_ROOT}/DisconnectableSystem.hpp
     ${SRC_RTYPE_LOGIC_SYSTEMS_ROOT}/RemoveAfkSystem.cpp
     ${SRC_RTYPE_LOGIC_SYSTEMS_ROOT}/RemoveAfkSystem.hpp
+    ${SRC_RTYPE_LOGIC_SYSTEMS_ROOT}/MobGenerationSystem.cpp
+    ${SRC_RTYPE_LOGIC_SYSTEMS_ROOT}/MobGenerationSystem.hpp
     PARENT_SCOPE
 )
