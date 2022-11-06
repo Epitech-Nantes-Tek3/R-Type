@@ -48,6 +48,10 @@ namespace client_data
         void startLobbyLoop(const std::string &pseudo, const std::string &password);
 
       private:
+        void _updateEcsData();
+        void _updateEcsResources();
+        void _updateEcsEntities();
+        void _updateEcsSystems();
         bool _answerProtocols();
         /// @brief Init all shared resources of the world.
         void _initSharedResources();

@@ -264,6 +264,28 @@ bool ClientRoom::_answerProtocols()
     return true;
 }
 
+void ClientRoom::_updateEcsResources()
+{
+
+}
+
+void ClientRoom::_updateEcsEntities()
+{
+
+}
+
+void ClientRoom::_updateEcsSystems()
+{
+
+}
+
+void ClientRoom::_updateEcsData()
+{
+    _updateEcsResources();
+    _updateEcsEntities();
+    _updateEcsSystems();
+}
+
 void ClientRoom::startLobbyLoop(const std::string &pseudo, const std::string &password)
 {
     _pseudo = pseudo;
@@ -272,6 +294,7 @@ void ClientRoom::startLobbyLoop(const std::string &pseudo, const std::string &pa
     if (_state != ClientState::ENDED)
         _startConnexionProtocol();
     _state = ClientState::MAIN_MENU;
+    _updateEcsData();
     while (_state != ClientState::ENDED) {
         if (!_answerProtocols())
             return;
