@@ -256,7 +256,7 @@ void ClientRoom::_startSoloLoop()
     _state = ClientState::IN_GAME;
     while (_state != ClientState::ENDED && _state != ClientState::UNDEFINED) {
         if (_state == ClientState::IN_GAME) {
-            _worldInstance.get()->runSystems(); /// WILL BE IMPROVED IN PART TWO (THREAD + CLOCK)
+            _worldInstance.get()->runSystems();
         }
     }
 }
@@ -282,11 +282,9 @@ int ClientRoom::_choosePlayerInfosForServer()
 void ClientRoom::_getClientPseudoAndPassword()
 {
     std::string pseudo;
-    std::string password;
 
     std::cerr << "Welcome to the R-Type game !" << std::endl;
-    std::cerr << "If there is no player with your pseudonyme inside the database a new one will be created with the "
-                 "given password."
+    std::cerr << "You are in Solo mod ! Please enter your Pseudo"
               << std::endl;
     std::cerr << "Please refer your pseudonyme (5 characters): ";
     std::cin >> pseudo;
@@ -295,15 +293,7 @@ void ClientRoom::_getClientPseudoAndPassword()
         _state = ClientState::ENDED;
         return;
     }
-    std::cerr << "Welcome " << pseudo << ". Please now enter your password (5 characters): ";
-    std::cin >> password;
-    if (password.size() != 5) {
-        std::cerr << "Nop ! Please enter a 5 characters password.";
-        _state = ClientState::ENDED;
-        return;
-    }
     _pseudo = pseudo;
-    _password = password;
 }
 
 int ClientRoom::startGame()

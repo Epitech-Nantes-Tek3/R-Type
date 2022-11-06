@@ -47,7 +47,8 @@ namespace client_data
         /// @param password The password of the user
         void startLobbyLoop(const std::string &pseudo, const std::string &password);
 
-        /// @brief This function start the game
+        /// @brief This function start the game for the player to choose
+        /// if the player is in Solo or Multiplayer mod
         int startGame();
 
       private:
