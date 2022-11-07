@@ -352,7 +352,11 @@ void ClientRoom::_loadButtonActionMap()
 
 void ClientRoom::_updateEcsEntities()
 {
-    if (_worldInstance->joinEntities<MouseInputComponent, KeyboardInputComponent, ControllerButtonInputComponent, ControllerJoystickInputComponent, ActionQueueComponent, AllowMouseAndKeyboardComponent, AllowControllerComponent>().empty())
+    if (_worldInstance
+            ->joinEntities<MouseInputComponent, KeyboardInputComponent, ControllerButtonInputComponent,
+                ControllerJoystickInputComponent, ActionQueueComponent, AllowMouseAndKeyboardComponent,
+                AllowControllerComponent>()
+            .empty())
         _initInputsEntity();
     if (_state == ClientState::MAIN_MENU) {
         _initMainMenuButtons();
@@ -412,8 +416,10 @@ void ClientRoom::_initInGameButtons()
 
 void ClientRoom::_initMainMenuButtons()
 {
-    createNewButton(*(_worldInstance.get()), 0, 0, 200, 50, ButtonActionMap::LOBBY, LayerLvL::BUTTON, MenuStates::MAIN_MENU);
-    createNewButton(*(_worldInstance.get()), 200, 0, 200, 50, ButtonActionMap::EXIT, LayerLvL::BUTTON, MenuStates::MAIN_MENU);
+    createNewButton(
+        *(_worldInstance.get()), 0, 0, 200, 50, ButtonActionMap::LOBBY, LayerLvL::BUTTON, MenuStates::MAIN_MENU);
+    createNewButton(
+        *(_worldInstance.get()), 200, 0, 200, 50, ButtonActionMap::EXIT, LayerLvL::BUTTON, MenuStates::MAIN_MENU);
 }
 
 void ClientRoom::_initInGameWritables()
