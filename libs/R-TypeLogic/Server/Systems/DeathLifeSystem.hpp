@@ -38,6 +38,12 @@ namespace ecs
                                 client, nullptr, 0, 13);
                             entityPtr->getComponent<Life>().lifePoint = 1000;
                         } else {
+                            if (entityPtr->contains<Enemy>() && world.containsResource<GameLevel>()) {
+                                GameLevel &gameLevel = world.getResource<GameLevel>();
+                                gameLevel.lock();
+                                gameLevel.addNewKills();
+                                gameLevel.unlock();
+                            }
                             entityPtr.get()->addComponent<Death>();
                         }
                     } else {
