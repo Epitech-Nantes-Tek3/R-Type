@@ -59,7 +59,7 @@ static void infiniteSpawn(World &world, bool hasLevelChanged)
 
 /// @brief Generate the necessary mob for the level one (BASIC MOB)
 /// @param world the world where the mob will be generated
-static void createLevelOne(World &world, std::size_t nbplayers)
+static void createLevelOne(World &world, int nbplayers)
 {
     for (int x = 0; x < (10 * nbplayers); x++) {
         unsigned int networkId = 0;
@@ -77,7 +77,7 @@ static void createLevelOne(World &world, std::size_t nbplayers)
 
 /// @brief Generate the necessary mob for the level two (FIRE MOB)
 /// @param world the world where the mob will be generated
-static void createLevelTwo(World &world, std::size_t nbplayers)
+static void createLevelTwo(World &world, int nbplayers)
 {
     for (int x = 0; x < (10 * nbplayers); x++) {
         unsigned int networkId = 0;
@@ -99,7 +99,7 @@ static void createLevelTwo(World &world, std::size_t nbplayers)
 
 /// @brief Generate the necessary mob for the level three (ICE MOB)
 /// @param world the world where the mob will be generated
-static void createLevelThree(World &world, std::size_t nbplayers)
+static void createLevelThree(World &world, int nbplayers)
 {
     for (int x = 0; x < (20 * nbplayers); x++) {
         unsigned int networkId = 0;
@@ -121,7 +121,7 @@ static void createLevelThree(World &world, std::size_t nbplayers)
 
 /// @brief Generate the necessary mob for the forth level (ELECTRIC MOB)
 /// @param world the world where the mob will be generated
-static void createLevelFour(World &world, std::size_t nbplayers)
+static void createLevelFour(World &world, int nbplayers)
 {
     for (int x = 0; x < (10 * nbplayers); x++) {
         unsigned int networkId = 0;
