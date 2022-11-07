@@ -122,15 +122,21 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a421c368d5343e3d81b4897211b5848f2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structecs_1_1_collide.html#a421c368d5343e3d81b4897211b5848f2">isSameHeight</a> (<a class="el" href="classecs_1_1_position.html">Position</a> &amp;fstPos, <a class="el" href="classecs_1_1_position.html">Position</a> &amp;sndPos, <a class="el" href="classecs_1_1_size.html">Size</a> &amp;fstSize, <a class="el" href="classecs_1_1_size.html">Size</a> &amp;sndSize)</td></tr>
 <tr class="memdesc:a421c368d5343e3d81b4897211b5848f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">isSameHeight Function This function checks if two entities have a common part on the map's height  <a href="structecs_1_1_collide.html#a421c368d5343e3d81b4897211b5848f2">More...</a><br /></td></tr>
 <tr class="separator:a421c368d5343e3d81b4897211b5848f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2efa151f7700b0bc2836b7864cd87cc2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structecs_1_1_collide.html#a2efa151f7700b0bc2836b7864cd87cc2">collide</a> (std::vector&lt; std::shared_ptr&lt; <a class="el" href="classecs_1_1_entity.html">ecs::Entity</a> &gt;&gt; &amp;fstEntities, std::vector&lt; std::shared_ptr&lt; <a class="el" href="classecs_1_1_entity.html">ecs::Entity</a> &gt;&gt; &amp;sndEntities)</td></tr>
-<tr class="memdesc:a2efa151f7700b0bc2836b7864cd87cc2"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structecs_1_1_collide.html" title="This is the Collide System. This system will check every entities, see if they collide and apply dama...">Collide</a> Function This function checks all the given entities passed in params, to see if they collide.  <a href="structecs_1_1_collide.html#a2efa151f7700b0bc2836b7864cd87cc2">More...</a><br /></td></tr>
-<tr class="separator:a2efa151f7700b0bc2836b7864cd87cc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a384ecee85bf7d508c2f4e4b64525d4e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structecs_1_1_collide.html#a384ecee85bf7d508c2f4e4b64525d4e2">enemyCollide</a> (std::vector&lt; std::shared_ptr&lt; <a class="el" href="classecs_1_1_entity.html">ecs::Entity</a> &gt;&gt; &amp;enemiesProjectiles, std::vector&lt; std::shared_ptr&lt; <a class="el" href="classecs_1_1_entity.html">ecs::Entity</a> &gt;&gt; &amp;obstacles)</td></tr>
-<tr class="memdesc:a384ecee85bf7d508c2f4e4b64525d4e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">enemyCollide Function Check for enemy entities if they collide with obstacles  <a href="structecs_1_1_collide.html#a384ecee85bf7d508c2f4e4b64525d4e2">More...</a><br /></td></tr>
-<tr class="separator:a384ecee85bf7d508c2f4e4b64525d4e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a909746acf634eeda41fbfa2616a4fa44"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structecs_1_1_collide.html#a909746acf634eeda41fbfa2616a4fa44">allyCollide</a> (std::vector&lt; std::shared_ptr&lt; <a class="el" href="classecs_1_1_entity.html">ecs::Entity</a> &gt;&gt; &amp;allyEntities, std::vector&lt; std::shared_ptr&lt; <a class="el" href="classecs_1_1_entity.html">ecs::Entity</a> &gt;&gt; &amp;enemies, std::vector&lt; std::shared_ptr&lt; <a class="el" href="classecs_1_1_entity.html">ecs::Entity</a> &gt;&gt; &amp;enemiesProjectiles, std::vector&lt; std::shared_ptr&lt; <a class="el" href="classecs_1_1_entity.html">ecs::Entity</a> &gt;&gt; &amp;obstacles)</td></tr>
-<tr class="memdesc:a909746acf634eeda41fbfa2616a4fa44"><td class="mdescLeft">&#160;</td><td class="mdescRight">AllyCollide Function Check for every alliedEntities if they collide with enemyEntities.  <a href="structecs_1_1_collide.html#a909746acf634eeda41fbfa2616a4fa44">More...</a><br /></td></tr>
-<tr class="separator:a909746acf634eeda41fbfa2616a4fa44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a760db87e82a9ed297dd11da0b111f2d9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structecs_1_1_collide.html#a760db87e82a9ed297dd11da0b111f2d9">collide</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, std::vector&lt; std::shared_ptr&lt; <a class="el" href="classecs_1_1_entity.html">ecs::Entity</a> &gt;&gt; &amp;fstEntities, std::vector&lt; std::shared_ptr&lt; <a class="el" href="classecs_1_1_entity.html">ecs::Entity</a> &gt;&gt; &amp;sndEntities)</td></tr>
+<tr class="memdesc:a760db87e82a9ed297dd11da0b111f2d9"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structecs_1_1_collide.html" title="This is the Collide System. This system will check every entities, see if they collide and apply dama...">Collide</a> Function This function checks all the given entities passed in params, to see if they collide.  <a href="structecs_1_1_collide.html#a760db87e82a9ed297dd11da0b111f2d9">More...</a><br /></td></tr>
+<tr class="separator:a760db87e82a9ed297dd11da0b111f2d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5b2e019a7d144bd77edc837b0387e96"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structecs_1_1_collide.html#ac5b2e019a7d144bd77edc837b0387e96">enemyCollide</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, std::vector&lt; std::shared_ptr&lt; <a class="el" href="classecs_1_1_entity.html">ecs::Entity</a> &gt;&gt; &amp;enemiesProjectiles, std::vector&lt; std::shared_ptr&lt; <a class="el" href="classecs_1_1_entity.html">ecs::Entity</a> &gt;&gt; &amp;obstacles)</td></tr>
+<tr class="memdesc:ac5b2e019a7d144bd77edc837b0387e96"><td class="mdescLeft">&#160;</td><td class="mdescRight">enemyCollide Function Check for enemy entities if they collide with obstacles  <a href="structecs_1_1_collide.html#ac5b2e019a7d144bd77edc837b0387e96">More...</a><br /></td></tr>
+<tr class="separator:ac5b2e019a7d144bd77edc837b0387e96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae743b440386f68816572b9d1eda81847"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structecs_1_1_collide.html#ae743b440386f68816572b9d1eda81847">allyCollide</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, std::vector&lt; std::shared_ptr&lt; <a class="el" href="classecs_1_1_entity.html">ecs::Entity</a> &gt;&gt; &amp;allyEntities, std::vector&lt; std::shared_ptr&lt; <a class="el" href="classecs_1_1_entity.html">ecs::Entity</a> &gt;&gt; &amp;enemies, std::vector&lt; std::shared_ptr&lt; <a class="el" href="classecs_1_1_entity.html">ecs::Entity</a> &gt;&gt; &amp;enemiesProjectiles, std::vector&lt; std::shared_ptr&lt; <a class="el" href="classecs_1_1_entity.html">ecs::Entity</a> &gt;&gt; &amp;obstacles)</td></tr>
+<tr class="memdesc:ae743b440386f68816572b9d1eda81847"><td class="mdescLeft">&#160;</td><td class="mdescRight">AllyCollide Function Check for every alliedEntities if they collide with enemyEntities.  <a href="structecs_1_1_collide.html#ae743b440386f68816572b9d1eda81847">More...</a><br /></td></tr>
+<tr class="separator:ae743b440386f68816572b9d1eda81847"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58529c4128deb51c3e392753c21e5571"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structecs_1_1_collide.html#a58529c4128deb51c3e392753c21e5571">enemiesKilledCounterByAlliedProjectile</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, std::shared_ptr&lt; <a class="el" href="classecs_1_1_entity.html">ecs::Entity</a> &gt; fstEntity, std::shared_ptr&lt; <a class="el" href="classecs_1_1_entity.html">ecs::Entity</a> &gt; sndEntity, <a class="el" href="classecs_1_1_life.html">Life</a> &amp;sndLife)</td></tr>
+<tr class="memdesc:a58529c4128deb51c3e392753c21e5571"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the entity is killed by an <a class="el" href="classecs_1_1_allied_projectile.html" title="Allied Projectile Component allows an entity to be used as an Allied Projectile.">AlliedProjectile</a> and increment the Killed data inside Database.  <a href="structecs_1_1_collide.html#a58529c4128deb51c3e392753c21e5571">More...</a><br /></td></tr>
+<tr class="separator:a58529c4128deb51c3e392753c21e5571"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06dcd1a4e47f2c97a94f34c8059256ac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structecs_1_1_collide.html#a06dcd1a4e47f2c97a94f34c8059256ac">enemiesKilledCounterByPlayer</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, std::shared_ptr&lt; <a class="el" href="classecs_1_1_entity.html">ecs::Entity</a> &gt; fstEntity, std::shared_ptr&lt; <a class="el" href="classecs_1_1_entity.html">ecs::Entity</a> &gt; sndEntity, <a class="el" href="classecs_1_1_life.html">Life</a> &amp;sndLife)</td></tr>
+<tr class="memdesc:a06dcd1a4e47f2c97a94f34c8059256ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the entity is killed by an <a class="el" href="classecs_1_1_player.html" title="Player Component allows an entity to be used as a Player.">Player</a> and increment the Killed data inside Database.  <a href="structecs_1_1_collide.html#a06dcd1a4e47f2c97a94f34c8059256ac">More...</a><br /></td></tr>
+<tr class="separator:a06dcd1a4e47f2c97a94f34c8059256ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b31f7ed9bfde438999bd443ee5773a4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structecs_1_1_collide.html#a8b31f7ed9bfde438999bd443ee5773a4">run</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world) override final</td></tr>
 <tr class="memdesc:a8b31f7ed9bfde438999bd443ee5773a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run function for the <a class="el" href="structecs_1_1_collide.html" title="This is the Collide System. This system will check every entities, see if they collide and apply dama...">Collide</a> <a class="el" href="classecs_1_1_system.html">System</a>.  <a href="structecs_1_1_collide.html#a8b31f7ed9bfde438999bd443ee5773a4">More...</a><br /></td></tr>
 <tr class="separator:a8b31f7ed9bfde438999bd443ee5773a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -141,8 +147,8 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This is the <a class="el" href="structecs_1_1_collide.html" title="This is the Collide System. This system will check every entities, see if they collide and apply dama...">Collide</a> <a class="el" href="classecs_1_1_system.html">System</a>. This system will check every entities, see if they collide and apply damage on consequence Needed <a class="el" href="classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone...">Component</a> : <a class="el" href="classecs_1_1_collidable.html" title="The Collidable component, almost used for every entities.">Collidable</a>, <a class="el" href="classecs_1_1_position.html" title="The Position component, almost used for every entities It&#39;s a networkable component.">Position</a>, <a class="el" href="classecs_1_1_size.html" title="The Size component, almost used for everything.">Size</a>, <a class="el" href="classecs_1_1_damage.html" title="The Damage class, reducing the entity&#39;s life.">Damage</a>. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a909746acf634eeda41fbfa2616a4fa44"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a909746acf634eeda41fbfa2616a4fa44">&#9670;&nbsp;</a></span>allyCollide()</h2>
+<a id="ae743b440386f68816572b9d1eda81847"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae743b440386f68816572b9d1eda81847">&#9670;&nbsp;</a></span>allyCollide()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -150,6 +156,12 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void Collide::allyCollide </td>
           <td>(</td>
+          <td class="paramtype"><a class="el" href="classecs_1_1_world.html">World</a> &amp;&#160;</td>
+          <td class="paramname"><em>world</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">std::vector&lt; std::shared_ptr&lt; <a class="el" href="classecs_1_1_entity.html">ecs::Entity</a> &gt;&gt; &amp;&#160;</td>
           <td class="paramname"><em>allyEntities</em>, </td>
         </tr>
@@ -182,6 +194,7 @@ Public Member Functions</h2></td></tr>
 <p>AllyCollide Function Check for every alliedEntities if they collide with enemyEntities. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
+    <tr><td class="paramname">world</td><td>the world game </td></tr>
     <tr><td class="paramname">allyEntities</td><td>vector of entities which need to be checked if there is collision with the following params </td></tr>
     <tr><td class="paramname">enemies</td><td>vector of entities containing the enemies </td></tr>
     <tr><td class="paramname">enemiesProjectiles</td><td>vector of entities containing the enemies' projectiles </td></tr>
@@ -192,8 +205,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a2efa151f7700b0bc2836b7864cd87cc2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2efa151f7700b0bc2836b7864cd87cc2">&#9670;&nbsp;</a></span>collide()</h2>
+<a id="a760db87e82a9ed297dd11da0b111f2d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a760db87e82a9ed297dd11da0b111f2d9">&#9670;&nbsp;</a></span>collide()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -201,6 +214,12 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void Collide::collide </td>
           <td>(</td>
+          <td class="paramtype"><a class="el" href="classecs_1_1_world.html">World</a> &amp;&#160;</td>
+          <td class="paramname"><em>world</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">std::vector&lt; std::shared_ptr&lt; <a class="el" href="classecs_1_1_entity.html">ecs::Entity</a> &gt;&gt; &amp;&#160;</td>
           <td class="paramname"><em>fstEntities</em>, </td>
         </tr>
@@ -221,6 +240,7 @@ Public Member Functions</h2></td></tr>
 <p><a class="el" href="structecs_1_1_collide.html" title="This is the Collide System. This system will check every entities, see if they collide and apply dama...">Collide</a> Function This function checks all the given entities passed in params, to see if they collide. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
+    <tr><td class="paramname">world</td><td>the world game </td></tr>
     <tr><td class="paramname">fstEntities</td><td>first vector of entities to be checked </td></tr>
     <tr><td class="paramname">sndEntities</td><td>second vector of Entities to be checked </td></tr>
   </table>
@@ -229,8 +249,110 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a384ecee85bf7d508c2f4e4b64525d4e2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a384ecee85bf7d508c2f4e4b64525d4e2">&#9670;&nbsp;</a></span>enemyCollide()</h2>
+<a id="a58529c4128deb51c3e392753c21e5571"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58529c4128deb51c3e392753c21e5571">&#9670;&nbsp;</a></span>enemiesKilledCounterByAlliedProjectile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Collide::enemiesKilledCounterByAlliedProjectile </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classecs_1_1_world.html">World</a> &amp;&#160;</td>
+          <td class="paramname"><em>world</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classecs_1_1_entity.html">ecs::Entity</a> &gt;&#160;</td>
+          <td class="paramname"><em>fstEntity</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classecs_1_1_entity.html">ecs::Entity</a> &gt;&#160;</td>
+          <td class="paramname"><em>sndEntity</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classecs_1_1_life.html">Life</a> &amp;&#160;</td>
+          <td class="paramname"><em>sndLife</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check if the entity is killed by an <a class="el" href="classecs_1_1_allied_projectile.html" title="Allied Projectile Component allows an entity to be used as an Allied Projectile.">AlliedProjectile</a> and increment the Killed data inside Database. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">world</td><td>the world game </td></tr>
+    <tr><td class="paramname">fstEntity</td><td>the Killer entity </td></tr>
+    <tr><td class="paramname">sndEntity</td><td>the Killed entity </td></tr>
+    <tr><td class="paramname">sndLife</td><td>life of the Killed entity </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a06dcd1a4e47f2c97a94f34c8059256ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06dcd1a4e47f2c97a94f34c8059256ac">&#9670;&nbsp;</a></span>enemiesKilledCounterByPlayer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Collide::enemiesKilledCounterByPlayer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classecs_1_1_world.html">World</a> &amp;&#160;</td>
+          <td class="paramname"><em>world</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classecs_1_1_entity.html">ecs::Entity</a> &gt;&#160;</td>
+          <td class="paramname"><em>fstEntity</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classecs_1_1_entity.html">ecs::Entity</a> &gt;&#160;</td>
+          <td class="paramname"><em>sndEntity</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classecs_1_1_life.html">Life</a> &amp;&#160;</td>
+          <td class="paramname"><em>sndLife</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check if the entity is killed by an <a class="el" href="classecs_1_1_player.html" title="Player Component allows an entity to be used as a Player.">Player</a> and increment the Killed data inside Database. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">world</td><td>the world game </td></tr>
+    <tr><td class="paramname">fstEntity</td><td>the Killer entity </td></tr>
+    <tr><td class="paramname">sndEntity</td><td>the Killed entity </td></tr>
+    <tr><td class="paramname">sndLife</td><td>life of the Killed entity </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac5b2e019a7d144bd77edc837b0387e96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5b2e019a7d144bd77edc837b0387e96">&#9670;&nbsp;</a></span>enemyCollide()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -238,6 +360,12 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void Collide::enemyCollide </td>
           <td>(</td>
+          <td class="paramtype"><a class="el" href="classecs_1_1_world.html">World</a> &amp;&#160;</td>
+          <td class="paramname"><em>world</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">std::vector&lt; std::shared_ptr&lt; <a class="el" href="classecs_1_1_entity.html">ecs::Entity</a> &gt;&gt; &amp;&#160;</td>
           <td class="paramname"><em>enemiesProjectiles</em>, </td>
         </tr>
@@ -258,6 +386,7 @@ Public Member Functions</h2></td></tr>
 <p>enemyCollide Function Check for enemy entities if they collide with obstacles </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
+    <tr><td class="paramname">world</td><td>the world game </td></tr>
     <tr><td class="paramname">enemiesProjectiles</td><td>vector of entities containing the enemies' projectiles </td></tr>
     <tr><td class="paramname">obstacles</td><td>vector of entities containing the obstacles </td></tr>
   </table>

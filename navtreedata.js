@@ -76,9 +76,9 @@ var NAVTREEINDEX =
 [
 "_action_name_8hpp.html",
 "_menu_states_8hpp_source.html",
-"classecs_1_1_button.html#a08f741506b61b684bb5d79774fd67593",
-"classecs_1_1_world.html#ad021ed08ad584edb816e13e4a4d0fe7c",
-"dir_ac20753634332c5c148264bd387f8548.html"
+"classecs_1_1_allied_projectile.html#a3a2b8a42fe16cb5cb22a3aa3d11c30f8",
+"classecs_1_1_world.html#a8ced482c3db57a0932fc691aeef01935",
+"dir_87ce6f909970a886f6b56f0d273db6d4.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

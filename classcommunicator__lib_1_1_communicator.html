@@ -140,6 +140,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a55b0b0709cd59258ac0e118a719cfb4e"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classtransisthor__lib_1_1_transisthor.html">Transisthor</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcommunicator__lib_1_1_communicator.html#a55b0b0709cd59258ac0e118a719cfb4e">getTransisthorBridge</a> (void)</td></tr>
 <tr class="memdesc:a55b0b0709cd59258ac0e118a719cfb4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the transisthor bridge.  <a href="classcommunicator__lib_1_1_communicator.html#a55b0b0709cd59258ac0e118a719cfb4e">More...</a><br /></td></tr>
 <tr class="separator:a55b0b0709cd59258ac0e118a719cfb4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab88e98e873ebfb233a56d5f151a07bc6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classdatabase_1_1_database.html">Database</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcommunicator__lib_1_1_communicator.html#ab88e98e873ebfb233a56d5f151a07bc6">getDatabaseApi</a> ()</td></tr>
+<tr class="memdesc:ab88e98e873ebfb233a56d5f151a07bc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the DatabaseApi bridge.  <a href="classcommunicator__lib_1_1_communicator.html#ab88e98e873ebfb233a56d5f151a07bc6">More...</a><br /></td></tr>
+<tr class="separator:ab88e98e873ebfb233a56d5f151a07bc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5a48d831a65b934ff8f0798d64fdc011"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcommunicator__lib_1_1_client.html">Client</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcommunicator__lib_1_1_communicator.html#a5a48d831a65b934ff8f0798d64fdc011">getClientByHisId</a> (unsigned short id)</td></tr>
 <tr class="memdesc:a5a48d831a65b934ff8f0798d64fdc011"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cross all client list and return the matched client.  <a href="classcommunicator__lib_1_1_communicator.html#a5a48d831a65b934ff8f0798d64fdc011">More...</a><br /></td></tr>
 <tr class="separator:a5a48d831a65b934ff8f0798d64fdc011"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -149,9 +152,27 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a90c0f487c40fbd15b4ed1d36929267b5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcommunicator__lib_1_1_communicator.html#a90c0f487c40fbd15b4ed1d36929267b5">utilitarySendChatMessage</a> (std::string pseudo, std::string messageContent, std::vector&lt; unsigned short &gt; destination)</td></tr>
 <tr class="memdesc:a90c0f487c40fbd15b4ed1d36929267b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utilitary function used to send a message with a protocol 50.  <a href="classcommunicator__lib_1_1_communicator.html#a90c0f487c40fbd15b4ed1d36929267b5">More...</a><br /></td></tr>
 <tr class="separator:a90c0f487c40fbd15b4ed1d36929267b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75ba5b62a569ea67e32ceae73085dde5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcommunicator__lib_1_1_communicator.html#a75ba5b62a569ea67e32ceae73085dde5">utilitaryAskForADatabaseValue</a> (std::string pseudo, std::string key, std::vector&lt; unsigned short &gt; destination)</td></tr>
+<tr class="memdesc:a75ba5b62a569ea67e32ceae73085dde5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utilitary function used to send a database request with a protocol 40.  <a href="classcommunicator__lib_1_1_communicator.html#a75ba5b62a569ea67e32ceae73085dde5">More...</a><br /></td></tr>
+<tr class="separator:a75ba5b62a569ea67e32ceae73085dde5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a179a2200be882666b909db1de7dbee3b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcommunicator__lib_1_1_communicator.html#a179a2200be882666b909db1de7dbee3b">utilitarySendDatabaseValue</a> (std::string value, <a class="el" href="classcommunicator__lib_1_1_client.html">Client</a> &amp;destination)</td></tr>
+<tr class="memdesc:a179a2200be882666b909db1de7dbee3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utilitary function used to send a database value with a protocol 41.  <a href="classcommunicator__lib_1_1_communicator.html#a179a2200be882666b909db1de7dbee3b">More...</a><br /></td></tr>
+<tr class="separator:a179a2200be882666b909db1de7dbee3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac7cb13633de2d0207ead3d168766959"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcommunicator__lib_1_1_communicator.html#aac7cb13633de2d0207ead3d168766959">utilitarySetADatabaseValue</a> (std::string pseudo, unsigned short key, std::string value, std::vector&lt; unsigned short &gt; destination)</td></tr>
+<tr class="memdesc:aac7cb13633de2d0207ead3d168766959"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utilitary function used to set a value inside the database with a protocol 42.  <a href="classcommunicator__lib_1_1_communicator.html#aac7cb13633de2d0207ead3d168766959">More...</a><br /></td></tr>
+<tr class="separator:aac7cb13633de2d0207ead3d168766959"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab00365fedf51638bed645d5337d1c348"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcommunicator__lib_1_1_communicator.html#ab00365fedf51638bed645d5337d1c348">utilitaryReceiveChatMessage</a> (<a class="el" href="structcommunicator__lib_1_1_communicator_message.html">CommunicatorMessage</a> cryptedMessage)</td></tr>
 <tr class="memdesc:ab00365fedf51638bed645d5337d1c348"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utilitary function used to extract a message received by a protocol 50.  <a href="classcommunicator__lib_1_1_communicator.html#ab00365fedf51638bed645d5337d1c348">More...</a><br /></td></tr>
 <tr class="separator:ab00365fedf51638bed645d5337d1c348"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cda97706373756706a0b30b9f18010d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcommunicator__lib_1_1_communicator.html#a2cda97706373756706a0b30b9f18010d">utilitaryReceiveAskingForDatabaseValue</a> (<a class="el" href="structcommunicator__lib_1_1_communicator_message.html">CommunicatorMessage</a> cryptedMessage)</td></tr>
+<tr class="memdesc:a2cda97706373756706a0b30b9f18010d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utilitary function used to extract a request received by a protocol 40.  <a href="classcommunicator__lib_1_1_communicator.html#a2cda97706373756706a0b30b9f18010d">More...</a><br /></td></tr>
+<tr class="separator:a2cda97706373756706a0b30b9f18010d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03757ea6eaacd58845c0eab568a14a14"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcommunicator__lib_1_1_communicator.html#a03757ea6eaacd58845c0eab568a14a14">utilitaryReceiveDatabaseValue</a> (<a class="el" href="structcommunicator__lib_1_1_communicator_message.html">CommunicatorMessage</a> cryptedMessage)</td></tr>
+<tr class="memdesc:a03757ea6eaacd58845c0eab568a14a14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utilitary function used to extract the database value received by a protocol 41.  <a href="classcommunicator__lib_1_1_communicator.html#a03757ea6eaacd58845c0eab568a14a14">More...</a><br /></td></tr>
+<tr class="separator:a03757ea6eaacd58845c0eab568a14a14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabdf47a9cf540176cfbe878f4c4c282f"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcommunicator__lib_1_1_communicator.html#aabdf47a9cf540176cfbe878f4c4c282f">utilitaryReceiveSetDatabaseValue</a> (<a class="el" href="structcommunicator__lib_1_1_communicator_message.html">CommunicatorMessage</a> cryptedMessage)</td></tr>
+<tr class="memdesc:aabdf47a9cf540176cfbe878f4c4c282f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utilitary function used to extract the set request received by a protocol 42.  <a href="classcommunicator__lib_1_1_communicator.html#aabdf47a9cf540176cfbe878f4c4c282f">More...</a><br /></td></tr>
+<tr class="separator:aabdf47a9cf540176cfbe878f4c4c282f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a79af1fddb0ff4747e40bf998945d7dd5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcommunicator__lib_1_1_communicator.html#a79af1fddb0ff4747e40bf998945d7dd5">utilitarySendRoomConfiguration</a> (std::string roomName, short *configs, <a class="el" href="classcommunicator__lib_1_1_client.html">Client</a> newEndpoint)</td></tr>
 <tr class="memdesc:a79af1fddb0ff4747e40bf998945d7dd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utilitary function used to send a message with a protocol 17.  <a href="classcommunicator__lib_1_1_communicator.html#a79af1fddb0ff4747e40bf998945d7dd5">More...</a><br /></td></tr>
 <tr class="separator:a79af1fddb0ff4747e40bf998945d7dd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -362,6 +383,34 @@ Public Member Functions</h2></td></tr>
 
 <p>Get the <a class="el" href="classcommunicator__lib_1_1_client.html" title="A representation of a client (Address + Port)">Client</a> List vector. </p>
 <dl class="section return"><dt>Returns</dt><dd>std::vector&lt;Client&gt; The client list vector </dd></dl>
+
+</div>
+</div>
+<a id="ab88e98e873ebfb233a56d5f151a07bc6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab88e98e873ebfb233a56d5f151a07bc6">&#9670;&nbsp;</a></span>getDatabaseApi()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classdatabase_1_1_database.html">Database</a>&amp; communicator_lib::Communicator::getDatabaseApi </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the DatabaseApi bridge. </p>
+<dl class="section return"><dt>Returns</dt><dd>The databaseApi bridge </dd></dl>
 
 </div>
 </div>
@@ -666,6 +715,77 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a75ba5b62a569ea67e32ceae73085dde5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75ba5b62a569ea67e32ceae73085dde5">&#9670;&nbsp;</a></span>utilitaryAskForADatabaseValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Communicator::utilitaryAskForADatabaseValue </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>pseudo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; unsigned short &gt;&#160;</td>
+          <td class="paramname"><em>destination</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Utilitary function used to send a database request with a protocol 40. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pseudo</td><td>The wanted client name </td></tr>
+    <tr><td class="paramname">key</td><td>The wanted value key </td></tr>
+    <tr><td class="paramname">destination</td><td>of the message </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2cda97706373756706a0b30b9f18010d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cda97706373756706a0b30b9f18010d">&#9670;&nbsp;</a></span>utilitaryReceiveAskingForDatabaseValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::string &gt; Communicator::utilitaryReceiveAskingForDatabaseValue </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcommunicator__lib_1_1_communicator_message.html">CommunicatorMessage</a>&#160;</td>
+          <td class="paramname"><em>cryptedMessage</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Utilitary function used to extract a request received by a protocol 40. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cryptedMessage</td><td>the crypted message </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;std::string&gt; the decrypted pseudo + key </dd></dl>
+
+</div>
+</div>
 <a id="ab00365fedf51638bed645d5337d1c348"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab00365fedf51638bed645d5337d1c348">&#9670;&nbsp;</a></span>utilitaryReceiveChatMessage()</h2>
 
@@ -693,6 +813,33 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a03757ea6eaacd58845c0eab568a14a14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03757ea6eaacd58845c0eab568a14a14">&#9670;&nbsp;</a></span>utilitaryReceiveDatabaseValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Communicator::utilitaryReceiveDatabaseValue </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcommunicator__lib_1_1_communicator_message.html">CommunicatorMessage</a>&#160;</td>
+          <td class="paramname"><em>cryptedMessage</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Utilitary function used to extract the database value received by a protocol 41. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cryptedMessage</td><td>the crypted message </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>std::string the value </dd></dl>
+
+</div>
+</div>
 <a id="a8a57e9dfcd8e168df0fd76694c9f6110"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8a57e9dfcd8e168df0fd76694c9f6110">&#9670;&nbsp;</a></span>utilitaryReceiveRoomConfiguration()</h2>
 
@@ -717,6 +864,33 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="structcommunicator__lib_1_1_room_configuration.html" title="Configuration of a room. It contains a name and 6 modifiers.">RoomConfiguration</a> The configuration of the room. </dd></dl>
+
+</div>
+</div>
+<a id="aabdf47a9cf540176cfbe878f4c4c282f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aabdf47a9cf540176cfbe878f4c4c282f">&#9670;&nbsp;</a></span>utilitaryReceiveSetDatabaseValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::string &gt; Communicator::utilitaryReceiveSetDatabaseValue </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcommunicator__lib_1_1_communicator_message.html">CommunicatorMessage</a>&#160;</td>
+          <td class="paramname"><em>cryptedMessage</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Utilitary function used to extract the set request received by a protocol 42. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cryptedMessage</td><td>the crypted message </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;std::string&gt; the decrypted pseudo + type + value </dd></dl>
 
 </div>
 </div>
@@ -764,6 +938,43 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a179a2200be882666b909db1de7dbee3b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a179a2200be882666b909db1de7dbee3b">&#9670;&nbsp;</a></span>utilitarySendDatabaseValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Communicator::utilitarySendDatabaseValue </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classcommunicator__lib_1_1_client.html">Client</a> &amp;&#160;</td>
+          <td class="paramname"><em>destination</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Utilitary function used to send a database value with a protocol 41. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>the database value </td></tr>
+    <tr><td class="paramname">destination</td><td>of the message </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a79af1fddb0ff4747e40bf998945d7dd5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a79af1fddb0ff4747e40bf998945d7dd5">&#9670;&nbsp;</a></span>utilitarySendRoomConfiguration()</h2>
 
@@ -802,6 +1013,57 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramname">roomName</td><td>The name of the room configuration. </td></tr>
     <tr><td class="paramname">configs</td><td>Array of modificator used to update some server configuration. </td></tr>
     <tr><td class="paramname">newEndPoint</td><td>The endpoint used to send the configuration. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aac7cb13633de2d0207ead3d168766959"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac7cb13633de2d0207ead3d168766959">&#9670;&nbsp;</a></span>utilitarySetADatabaseValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Communicator::utilitarySetADatabaseValue </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>pseudo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; unsigned short &gt;&#160;</td>
+          <td class="paramname"><em>destination</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Utilitary function used to set a value inside the database with a protocol 42. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pseudo</td><td>The wanted client name </td></tr>
+    <tr><td class="paramname">key</td><td>The wanted value key </td></tr>
+    <tr><td class="paramname">value</td><td>The new value to set </td></tr>
+    <tr><td class="paramname">destination</td><td>of the message </td></tr>
   </table>
   </dd>
 </dl>

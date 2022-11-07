@@ -173,27 +173,35 @@ $(document).ready(function(){initNavTree('_receiver_8hpp_source.html',''); initR
 <div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160; </div>
 <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        <span class="keywordtype">void</span> dataTraitmentType31(<a class="code" href="structcommunicator__lib_1_1_message.html">Message</a> dataContent);</div>
 <div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160; </div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        <span class="keywordtype">void</span> dataTraitmentType50(<a class="code" href="structcommunicator__lib_1_1_message.html">Message</a> dataContent);</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        <span class="keywordtype">void</span> dataTraitmentType40(<a class="code" href="structcommunicator__lib_1_1_message.html">Message</a> dataContent);</div>
 <div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160; </div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        <span class="keywordtype">void</span> bindDataTraitmentFunction(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160; </div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        std::vector&lt;Message&gt; _messageList;</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; </div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        <a class="code" href="classcommunicator__lib_1_1_client.html">Client</a> _networkData;</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160; </div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        boost::asio::io_service _ioService;</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        <span class="keywordtype">void</span> dataTraitmentType41(<a class="code" href="structcommunicator__lib_1_1_message.html">Message</a> dataContent);</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160; </div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        <span class="keywordtype">void</span> dataTraitmentType42(<a class="code" href="structcommunicator__lib_1_1_message.html">Message</a> dataContent);</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160; </div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        <span class="keywordtype">void</span> dataTraitmentType43(<a class="code" href="structcommunicator__lib_1_1_message.html">Message</a> dataContent);</div>
 <div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160; </div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        boost::asio::ip::udp::socket _socket{_ioService};</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160; </div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        boost::array&lt;void *, 100000&gt; _tempData;</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160; </div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;        boost::asio::ip::udp::endpoint _tempRemoteEndpoint;</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160; </div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        std::map&lt;<span class="keywordtype">unsigned</span> short, std::function&lt;void(Message)&gt;&gt; _dataTraitment;</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    };</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;} <span class="comment">// namespace communicator_lib</span></div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160; </div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !RECEIVER_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        <span class="keywordtype">void</span> dataTraitmentType50(<a class="code" href="structcommunicator__lib_1_1_message.html">Message</a> dataContent);</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160; </div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;        <span class="keywordtype">void</span> bindDataTraitmentFunction(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160; </div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;        std::vector&lt;Message&gt; _messageList;</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160; </div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;        <a class="code" href="classcommunicator__lib_1_1_client.html">Client</a> _networkData;</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160; </div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        boost::asio::io_service _ioService;</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160; </div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;        boost::asio::ip::udp::socket _socket{_ioService};</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160; </div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        boost::array&lt;void *, 100000&gt; _tempData;</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160; </div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        boost::asio::ip::udp::endpoint _tempRemoteEndpoint;</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160; </div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        std::map&lt;<span class="keywordtype">unsigned</span> short, std::function&lt;void(Message)&gt;&gt; _dataTraitment;</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    };</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;} <span class="comment">// namespace communicator_lib</span></div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160; </div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !RECEIVER_HPP_ */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="a_client_8hpp_html"><div class="ttname"><a href="_client_8hpp.html">Client.hpp</a></div></div>
 <div class="ttc" id="aclasscommunicator__lib_1_1_client_html"><div class="ttname"><a href="classcommunicator__lib_1_1_client.html">communicator_lib::Client</a></div><div class="ttdoc">A representation of a client (Address + Port)</div><div class="ttdef"><b>Definition:</b> Client.hpp:19</div></div>
 <div class="ttc" id="aclasscommunicator__lib_1_1_receiver_html"><div class="ttname"><a href="classcommunicator__lib_1_1_receiver.html">communicator_lib::Receiver</a></div><div class="ttdoc">Get and store all the network message.</div><div class="ttdef"><b>Definition:</b> Receiver.hpp:34</div></div>
@@ -201,7 +209,7 @@ $(document).ready(function(){initNavTree('_receiver_8hpp_source.html',''); initR
 <div class="ttc" id="aclasscommunicator__lib_1_1_receiver_html_a2548cabc09f1930fc53a1ec7e7c0fdbe"><div class="ttname"><a href="classcommunicator__lib_1_1_receiver.html#a2548cabc09f1930fc53a1ec7e7c0fdbe">communicator_lib::Receiver::getNetworkData</a></div><div class="ttdeci">Client getNetworkData(void) const</div><div class="ttdoc">Get the network data value.</div><div class="ttdef"><b>Definition:</b> Receiver.hpp:56</div></div>
 <div class="ttc" id="aclasscommunicator__lib_1_1_receiver_html_a3a8c3a1210aa3bb37f46e9c8e772423e"><div class="ttname"><a href="classcommunicator__lib_1_1_receiver.html#a3a8c3a1210aa3bb37f46e9c8e772423e">communicator_lib::Receiver::setMessageList</a></div><div class="ttdeci">void setMessageList(std::vector&lt; Message &gt; newMessageList)</div><div class="ttdoc">Set the message list vector.</div><div class="ttdef"><b>Definition:</b> Receiver.hpp:52</div></div>
 <div class="ttc" id="aclasscommunicator__lib_1_1_receiver_html_a47ec5cd2a2d3967958f8c9f6d0050ce5"><div class="ttname"><a href="classcommunicator__lib_1_1_receiver.html#a47ec5cd2a2d3967958f8c9f6d0050ce5">communicator_lib::Receiver::getLastMessage</a></div><div class="ttdeci">Message getLastMessage(void)</div><div class="ttdoc">Pop the first message of the list (oldest)</div><div class="ttdef"><b>Definition:</b> Receiver.cpp:33</div></div>
-<div class="ttc" id="aclasscommunicator__lib_1_1_receiver_html_a4ac4a645965e64591fc9bda1c0866a9f"><div class="ttname"><a href="classcommunicator__lib_1_1_receiver.html#a4ac4a645965e64591fc9bda1c0866a9f">communicator_lib::Receiver::~Receiver</a></div><div class="ttdeci">~Receiver()</div><div class="ttdoc">Destroy the Receiver object.</div><div class="ttdef"><b>Definition:</b> Receiver.cpp:222</div></div>
+<div class="ttc" id="aclasscommunicator__lib_1_1_receiver_html_a4ac4a645965e64591fc9bda1c0866a9f"><div class="ttname"><a href="classcommunicator__lib_1_1_receiver.html#a4ac4a645965e64591fc9bda1c0866a9f">communicator_lib::Receiver::~Receiver</a></div><div class="ttdeci">~Receiver()</div><div class="ttdoc">Destroy the Receiver object.</div><div class="ttdef"><b>Definition:</b> Receiver.cpp:250</div></div>
 <div class="ttc" id="aclasscommunicator__lib_1_1_receiver_html_a75292eb39c459aa9b1332fb93cdc9320"><div class="ttname"><a href="classcommunicator__lib_1_1_receiver.html#a75292eb39c459aa9b1332fb93cdc9320">communicator_lib::Receiver::setNetworkData</a></div><div class="ttdeci">void setNetworkData(Client newNetworkData)</div><div class="ttdoc">Set the network data value.</div><div class="ttdef"><b>Definition:</b> Receiver.hpp:60</div></div>
 <div class="ttc" id="aclasscommunicator__lib_1_1_receiver_html_a90aaf43d506fd114edb3f79fd004f988"><div class="ttname"><a href="classcommunicator__lib_1_1_receiver.html#a90aaf43d506fd114edb3f79fd004f988">communicator_lib::Receiver::startListening</a></div><div class="ttdeci">void startListening(void)</div><div class="ttdoc">Start the listening process.</div><div class="ttdef"><b>Definition:</b> Receiver.cpp:68</div></div>
 <div class="ttc" id="aclasscommunicator__lib_1_1_receiver_html_a921a1626a4b94539b60dbc2a5a76a105"><div class="ttname"><a href="classcommunicator__lib_1_1_receiver.html#a921a1626a4b94539b60dbc2a5a76a105">communicator_lib::Receiver::addMessage</a></div><div class="ttdeci">void addMessage(Message message)</div><div class="ttdoc">Add a new message inside the list.</div><div class="ttdef"><b>Definition:</b> Receiver.hpp:64</div></div>
