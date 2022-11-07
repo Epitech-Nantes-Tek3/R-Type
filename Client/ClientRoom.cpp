@@ -82,7 +82,7 @@
 #include "R-TypeLogic/Server/Systems/MobGenerationSystem.hpp"
 
 #ifdef _WIN32
-    #include <Windows.h>
+    #include <windows.h>
 #endif
 
 using namespace error_lib;
