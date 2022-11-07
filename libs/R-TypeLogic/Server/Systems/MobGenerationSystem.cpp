@@ -48,11 +48,29 @@ static void infiniteSpawn(World &world, bool hasLevelChanged)
             gen.unlock();
         }
         switch (newType) {
-            case Enemy::FIRE : createFireEnemy(world, networkId); break;
-            case Enemy::ELECTRIC : createElectricEnemy(world, networkId); break;
-            default : createBasicEnemy(world, networkId); break;
+            case Enemy::FIRE: createFireEnemy(world, networkId); break;
+            case Enemy::ELECTRIC: createElectricEnemy(world, networkId); break;
+            default: createBasicEnemy(world, networkId); break;
         }
         newNbrsEnemies--;
+    }
+}
+
+/// @brief Generate the necessary mob for the level one
+/// @param world the world where the mob will be generated
+static void createLevelOne(World &world)
+{
+    for (int x = 0; x < 5; x++) {
+        unsigned int networkId = 0;
+
+        if (world.containsResource<NetworkableIdGenerator>()) {
+            NetworkableIdGenerator &gen = world.getResource<NetworkableIdGenerator>();
+
+            gen.lock();
+            networkId = gen.generateNewNetworkableId();
+            gen.unlock();
+        }
+        createBasicEnemy(world, networkId);
     }
 }
 
@@ -71,11 +89,16 @@ void MobGeneration::run(World &world)
         return;
     if (hasLevelChanged) {
         switch (currLvl) {
-            case GameLevel::LEVEL_ONE: break;
+            case GameLevel::LEVEL_ONE: createLevelOne(world); break;
             case GameLevel::LEVEL_TWO: break;
             case GameLevel::LEVEL_THREE: break;
             case GameLevel::LEVEL_FORTH: break;
             default: infiniteSpawn(world, hasLevelChanged); break;
         }
+        gamelvl.lock();
+        gamelvl.levelHasChanged();
+        gamelvl.unlock();
+    } else {
+        infiniteSpawn(world, hasLevelChanged);
     }
 }

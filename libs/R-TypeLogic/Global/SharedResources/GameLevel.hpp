@@ -34,6 +34,9 @@ namespace ecs
         /// @return true if the level has change, false otherwise
         inline bool hasLevelChanged() {return this->_hasLevelChanged;};
 
+        /// @brief State that the level has changed because mob have been generated
+        inline void levelHasChanged() {this->_hasLevelChanged = false;};
+
         /// @brief Add new kills to the private value, increase the level if necessary
         /// @param newKills the number of new kills
         void addNewKills(unsigned int newKills = 1);
