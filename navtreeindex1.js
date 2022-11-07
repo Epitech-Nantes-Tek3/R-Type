@@ -167,7 +167,8 @@ var NAVTREEINDEX1 =
 "classclient__data_1_1_client_room.html#a8e238231449feaa8357997ae01f9f2cea813cb4e5ad16ad700c47ba48bd3e23e5":[4,0,1,0,0,3],
 "classclient__data_1_1_client_room.html#a8e238231449feaa8357997ae01f9f2cea872ef4ab18181608d6a2db102ed5c884":[4,0,1,0,0,0],
 "classclient__data_1_1_client_room.html#a8e238231449feaa8357997ae01f9f2ceaa210ef889c87133bb60b6cfd938f14d8":[4,0,1,0,0,2],
-"classclient__data_1_1_client_room.html#ad1913bdec0ba3c43af174530274d3618":[4,0,1,0,4],
+"classclient__data_1_1_client_room.html#ad1913bdec0ba3c43af174530274d3618":[4,0,1,0,5],
+"classclient__data_1_1_client_room.html#ad94bbeaad0b30d8d82a073c8c8ad7687":[4,0,1,0,4],
 "classclient__data_1_1_client_room.html#af6b8ea1652d5151256486f98daf36286":[4,0,1,0,3],
 "classclient__data_1_1_user_connection.html":[4,0,1,1],
 "classclient__data_1_1_user_connection.html#a21b44e30598c3611d6c961d5311144cf":[4,0,1,1,1],
@@ -248,6 +249,5 @@ var NAVTREEINDEX1 =
 "classecs_1_1_afk_frequency.html#a6ef69d6551e7e15fe9514b603c72a03b":[4,0,4,51,1],
 "classecs_1_1_afk_frequency.html#a9e9e3be3911312c12ac78c129dd95325":[4,0,4,51,3],
 "classecs_1_1_afk_frequency.html#ad2c1fab4bfba0214942d77b95b5439d4":[4,0,4,51,0],
-"classecs_1_1_afk_frequency.html#ad3b10fe59509b9f93007809253c68d7e":[4,0,4,51,4],
-"classecs_1_1_allied_projectile.html":[4,0,4,10]
+"classecs_1_1_afk_frequency.html#ad3b10fe59509b9f93007809253c68d7e":[4,0,4,51,4]
 };

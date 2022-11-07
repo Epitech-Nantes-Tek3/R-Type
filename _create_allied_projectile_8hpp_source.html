@@ -111,14 +111,15 @@ $(document).ready(function(){initNavTree('_create_allied_projectile_8hpp_source.
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_size_component_8hpp.html">R-TypeLogic/Global/Components/SizeComponent.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_velocity_component_8hpp.html">R-TypeLogic/Global/Components/VelocityComponent.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_weight_component_8hpp.html">R-TypeLogic/Global/Components/WeightComponent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_random_8hpp.html">R-TypeLogic/Global/SharedResources/Random.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceecs.html">ecs</a></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;{</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    std::size_t <a class="code" href="namespaceecs.html#abcc3b846d3de6b0dbb16a17e319cb594">createNewAlliedProjectile</a>(</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <a class="code" href="classecs_1_1_world.html">World</a> &amp;world, <a class="code" href="classecs_1_1_entity.html">Entity</a> &amp;ally, <span class="keyword">const</span> std::string uuid = <span class="stringliteral">&quot;&quot;</span>, <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> networkId = 0);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;} <span class="comment">// namespace ecs</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !CREATEALLYPROJECTILE_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_player_component_8hpp.html">R-TypeLogic/Global/Components/PlayerComponent.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_random_8hpp.html">R-TypeLogic/Global/SharedResources/Random.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceecs.html">ecs</a></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;{</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    std::size_t <a class="code" href="namespaceecs.html#abcc3b846d3de6b0dbb16a17e319cb594">createNewAlliedProjectile</a>(</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <a class="code" href="classecs_1_1_world.html">World</a> &amp;world, <a class="code" href="classecs_1_1_entity.html">Entity</a> &amp;ally, <span class="keyword">const</span> std::string uuid = <span class="stringliteral">&quot;&quot;</span>, <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> networkId = 0);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;} <span class="comment">// namespace ecs</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !CREATEALLYPROJECTILE_HPP_ */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="a_allied_projectile_component_8hpp_html"><div class="ttname"><a href="_allied_projectile_component_8hpp.html">AlliedProjectileComponent.hpp</a></div></div>
 <div class="ttc" id="a_collidable_component_8hpp_html"><div class="ttname"><a href="_collidable_component_8hpp.html">CollidableComponent.hpp</a></div></div>
 <div class="ttc" id="a_damage_component_8hpp_html"><div class="ttname"><a href="_damage_component_8hpp.html">DamageComponent.hpp</a></div></div>
@@ -128,6 +129,7 @@ $(document).ready(function(){initNavTree('_create_allied_projectile_8hpp_source.
 <div class="ttc" id="a_life_time_component_8hpp_html"><div class="ttname"><a href="_life_time_component_8hpp.html">LifeTimeComponent.hpp</a></div></div>
 <div class="ttc" id="a_networkable_8hpp_html"><div class="ttname"><a href="_networkable_8hpp.html">Networkable.hpp</a></div></div>
 <div class="ttc" id="a_newly_created_8hpp_html"><div class="ttname"><a href="_newly_created_8hpp.html">NewlyCreated.hpp</a></div></div>
+<div class="ttc" id="a_player_component_8hpp_html"><div class="ttname"><a href="_player_component_8hpp.html">PlayerComponent.hpp</a></div></div>
 <div class="ttc" id="a_position_component_8hpp_html"><div class="ttname"><a href="_position_component_8hpp.html">PositionComponent.hpp</a></div></div>
 <div class="ttc" id="a_random_8hpp_html"><div class="ttname"><a href="_random_8hpp.html">Random.hpp</a></div></div>
 <div class="ttc" id="a_size_component_8hpp_html"><div class="ttname"><a href="_size_component_8hpp.html">SizeComponent.hpp</a></div></div>

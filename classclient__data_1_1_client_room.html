@@ -119,8 +119,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:af6b8ea1652d5151256486f98daf36286"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy the <a class="el" href="classclient__data_1_1_client_room.html" title="Place where the game run (Like a lobby). Hold all libraries instance,.">ClientRoom</a> object.  <a href="classclient__data_1_1_client_room.html#af6b8ea1652d5151256486f98daf36286">More...</a><br /></td></tr>
 <tr class="separator:af6b8ea1652d5151256486f98daf36286"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad1913bdec0ba3c43af174530274d3618"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classclient__data_1_1_client_room.html#ad1913bdec0ba3c43af174530274d3618">startLobbyLoop</a> (const std::string &amp;pseudo, const std::string &amp;password)</td></tr>
-<tr class="memdesc:ad1913bdec0ba3c43af174530274d3618"><td class="mdescLeft">&#160;</td><td class="mdescRight">Launch the lobby global loop.  <a href="classclient__data_1_1_client_room.html#ad1913bdec0ba3c43af174530274d3618">More...</a><br /></td></tr>
+<tr class="memdesc:ad1913bdec0ba3c43af174530274d3618"><td class="mdescLeft">&#160;</td><td class="mdescRight">Launch the lobby global loop for a multiplayer game.  <a href="classclient__data_1_1_client_room.html#ad1913bdec0ba3c43af174530274d3618">More...</a><br /></td></tr>
 <tr class="separator:ad1913bdec0ba3c43af174530274d3618"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad94bbeaad0b30d8d82a073c8c8ad7687"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classclient__data_1_1_client_room.html#ad94bbeaad0b30d8d82a073c8c8ad7687">startGame</a> ()</td></tr>
+<tr class="memdesc:ad94bbeaad0b30d8d82a073c8c8ad7687"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function start the game for the player to choose if the player is in Solo or Multiplayer mod.  <a href="classclient__data_1_1_client_room.html#ad94bbeaad0b30d8d82a073c8c8ad7687">More...</a><br /></td></tr>
+<tr class="separator:ad94bbeaad0b30d8d82a073c8c8ad7687"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Place where the game run (Like a lobby). Hold all libraries instance,. </p>
@@ -246,6 +249,25 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="ad94bbeaad0b30d8d82a073c8c8ad7687"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad94bbeaad0b30d8d82a073c8c8ad7687">&#9670;&nbsp;</a></span>startGame()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ClientRoom::startGame </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function start the game for the player to choose if the player is in Solo or Multiplayer mod. </p>
+
+</div>
+</div>
 <a id="ad1913bdec0ba3c43af174530274d3618"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad1913bdec0ba3c43af174530274d3618">&#9670;&nbsp;</a></span>startLobbyLoop()</h2>
 
@@ -272,7 +294,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Launch the lobby global loop. </p>
+<p>Launch the lobby global loop for a multiplayer game. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pseudo</td><td>The pseudo of the user </td></tr>
