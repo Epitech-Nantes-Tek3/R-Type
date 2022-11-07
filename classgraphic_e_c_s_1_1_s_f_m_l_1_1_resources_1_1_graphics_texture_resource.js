@@ -36,6 +36,7 @@ var classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource =
       [ "WRITABLE_BUTTON", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html#aa8d3b383da5ddc1c6dd86c2c5efc035dab3cfadf7e9a4c436d88e30e53d3d33b0", null ],
       [ "NATURAL_PROJECTILE", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html#aa8d3b383da5ddc1c6dd86c2c5efc035da12b295691854b82623983e4d56866f37", null ]
     ] ],
+    [ "GraphicsTextureResource", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html#adb7080fa352e879541502b4bf0edf8b9", null ],
     [ "GraphicsTextureResource", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html#ad1e8e8cc6d910151277249725ad3be9a", null ],
     [ "~GraphicsTextureResource", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html#a1ff7100fda0d2e2c5b5654beb8b4b4dc", null ],
     [ "addTexture", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html#a97ac38e6f9b0bb08758438444e2b8d7b", null ],

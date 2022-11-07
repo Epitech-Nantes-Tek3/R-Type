@@ -20,10 +20,10 @@ var searchData=
   ['signalerror_1287',['SignalError',['../classerror__lib_1_1_signal_error.html#afab7f79d82567d0e50f0ce2f10ac37ec',1,'error_lib::SignalError']]],
   ['size_1288',['Size',['../classecs_1_1_size.html#a118751ffc4edae9aaaa21876554f1323',1,'ecs::Size']]],
   ['soundcomponent_1289',['SoundComponent',['../classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_sound_component.html#a86497f78d0ff8d5affa2008954ac23fa',1,'graphicECS::SFML::Components::SoundComponent']]],
-  ['soundresource_1290',['SoundResource',['../classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_sound_resource.html#a4a5e34be7cdc33af53cf4780d72dd12a',1,'graphicECS::SFML::Resources::SoundResource']]],
+  ['soundresource_1290',['SoundResource',['../classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_sound_resource.html#ac0af6c9381a1241f7a4ea60dbb9cae9f',1,'graphicECS::SFML::Resources::SoundResource::SoundResource()=default'],['../classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_sound_resource.html#a4a5e34be7cdc33af53cf4780d72dd12a',1,'graphicECS::SFML::Resources::SoundResource::SoundResource(const sound_e sound_e, const std::filesystem::path &amp;soundPath)']]],
   ['startgame_1291',['startGame',['../classclient__data_1_1_client_room.html#ad94bbeaad0b30d8d82a073c8c8ad7687',1,'client_data::ClientRoom']]],
   ['starthubloop_1292',['startHubLoop',['../classserver__data_1_1_server.html#a5471d756c8a7406fa6918f96624623e5',1,'server_data::Server']]],
   ['startlistening_1293',['startListening',['../classcommunicator__lib_1_1_receiver.html#a90aaf43d506fd114edb3f79fd004f988',1,'communicator_lib::Receiver']]],
-  ['startlobbyloop_1294',['startLobbyLoop',['../classclient__data_1_1_client_room.html#ad1913bdec0ba3c43af174530274d3618',1,'client_data::ClientRoom']]],
+  ['startlobbyloop_1294',['startLobbyLoop',['../classclient__data_1_1_client_room.html#a3e5aeff109b0a4142edaac1961ecd97d',1,'client_data::ClientRoom']]],
   ['startreceiverlistening_1295',['startReceiverListening',['../classcommunicator__lib_1_1_communicator.html#aed7f706b345fd016c70d970e084b591f',1,'communicator_lib::Communicator']]]
 ];

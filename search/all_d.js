@@ -1,10 +1,11 @@
 var searchData=
 [
-  ['main_380',['main',['../_client_2main_8cpp.html#a0c99d968a34e803d378692bde2e3f18f',1,'main(int ac, char **av):&#160;main.cpp'],['../_server_2main_8cpp.html#a0c99d968a34e803d378692bde2e3f18f',1,'main(int ac, char **av):&#160;main.cpp']]],
-  ['main_2ecpp_381',['main.cpp',['../_client_2main_8cpp.html',1,'(Global Namespace)'],['../_server_2main_8cpp.html',1,'(Global Namespace)']]],
+  ['main_379',['main',['../_client_2main_8cpp.html#a0c99d968a34e803d378692bde2e3f18f',1,'main(int ac, char **av):&#160;main.cpp'],['../_server_2main_8cpp.html#a0c99d968a34e803d378692bde2e3f18f',1,'main(int ac, char **av):&#160;main.cpp']]],
+  ['main_2ecpp_380',['main.cpp',['../_client_2main_8cpp.html',1,'(Global Namespace)'],['../_server_2main_8cpp.html',1,'(Global Namespace)']]],
+  ['main_5fmenu_381',['MAIN_MENU',['../classclient__data_1_1_client_room.html#a8e238231449feaa8357997ae01f9f2cea70aa0c69e02935c7a21a14e303c233af',1,'client_data::ClientRoom::MAIN_MENU()'],['../classecs_1_1_menu_states.html#a0d4dd57d2a1f5290f65d1288712f922aadaad09ca2259954981e97e432d747408',1,'ecs::MenuStates::MAIN_MENU()']]],
   ['mallocerror_382',['MallocError',['../classerror__lib_1_1_malloc_error.html',1,'error_lib::MallocError'],['../classerror__lib_1_1_malloc_error.html#a9591497443cd1a737d1935bdbc0a8ace',1,'error_lib::MallocError::MallocError()']]],
   ['max_5faction_383',['MAX_ACTION',['../classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_action_queue_component.html#a37c8ac86f28a69717505c3b2c1bc6445a0c3dd240aace6ef1aefb9b696fdb7f36',1,'graphicECS::SFML::Components::ActionQueueComponent']]],
-  ['maximum_5fheigth_384',['MAXIMUM_HEIGTH',['../_create_enemy_8hpp.html#a90c13517682d80ec21e54d760c403858',1,'MAXIMUM_HEIGTH():&#160;CreateEnemy.hpp'],['../_enemies_patterns_8cpp.html#a90c13517682d80ec21e54d760c403858',1,'MAXIMUM_HEIGTH():&#160;EnemiesPatterns.cpp']]],
+  ['maximum_5fheigth_384',['MAXIMUM_HEIGTH',['../_enemies_patterns_8cpp.html#a90c13517682d80ec21e54d760c403858',1,'MAXIMUM_HEIGTH():&#160;EnemiesPatterns.cpp'],['../_create_enemy_8hpp.html#a90c13517682d80ec21e54d760c403858',1,'MAXIMUM_HEIGTH():&#160;CreateEnemy.hpp']]],
   ['maximum_5fwidth_385',['MAXIMUM_WIDTH',['../_enemies_patterns_8cpp.html#ad060e4083b2ac88393532f2c2de5524c',1,'MAXIMUM_WIDTH():&#160;EnemiesPatterns.cpp'],['../_create_enemy_8hpp.html#ad060e4083b2ac88393532f2c2de5524c',1,'MAXIMUM_WIDTH():&#160;CreateEnemy.hpp'],['../_parallax_system_8cpp.html#ad060e4083b2ac88393532f2c2de5524c',1,'MAXIMUM_WIDTH():&#160;ParallaxSystem.cpp']]],
   ['menustate_5fe_386',['menuState_e',['../classecs_1_1_menu_states.html#a0d4dd57d2a1f5290f65d1288712f922a',1,'ecs::MenuStates']]],
   ['menustates_387',['MenuStates',['../classecs_1_1_menu_states.html',1,'ecs::MenuStates'],['../classecs_1_1_menu_states.html#a79cb688d90a9baafb0700d466f170faf',1,'ecs::MenuStates::MenuStates()']]],
@@ -37,7 +38,7 @@ var searchData=
   ['musicmanagement_414',['MusicManagement',['../structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_music_management.html',1,'graphicECS::SFML::Systems']]],
   ['musicmanagement_2ecpp_415',['MusicManagement.cpp',['../_music_management_8cpp.html',1,'']]],
   ['musicmanagement_2ehpp_416',['MusicManagement.hpp',['../_music_management_8hpp.html',1,'']]],
-  ['musicresource_417',['MusicResource',['../classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_music_resource.html',1,'graphicECS::SFML::Resources::MusicResource'],['../classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_music_resource.html#a43c51a2c0b15746771bea56195af5fda',1,'graphicECS::SFML::Resources::MusicResource::MusicResource()']]],
+  ['musicresource_417',['MusicResource',['../classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_music_resource.html',1,'graphicECS::SFML::Resources::MusicResource'],['../classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_music_resource.html#aaf76fb3f6ec7b527b30d775ef66817d4',1,'graphicECS::SFML::Resources::MusicResource::MusicResource()=default'],['../classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_music_resource.html#a43c51a2c0b15746771bea56195af5fda',1,'graphicECS::SFML::Resources::MusicResource::MusicResource(const music_e music_e, const std::filesystem::path &amp;musicPath)']]],
   ['musicresource_2ecpp_418',['MusicResource.cpp',['../_music_resource_8cpp.html',1,'']]],
   ['musicresource_2ehpp_419',['MusicResource.hpp',['../_music_resource_8hpp.html',1,'']]],
   ['musicslist_420',['MusicsList',['../classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_music_resource.html#a7f11f8e417a40f9cd0ffe0f51be35f95',1,'graphicECS::SFML::Resources::MusicResource']]]

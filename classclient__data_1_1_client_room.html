@@ -99,10 +99,14 @@ $(document).ready(function(){initNavTree('classclient__data_1_1_client_room.html
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a8e238231449feaa8357997ae01f9f2ce"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classclient__data_1_1_client_room.html#a8e238231449feaa8357997ae01f9f2ce">ClientState</a> { <a class="el" href="classclient__data_1_1_client_room.html#a8e238231449feaa8357997ae01f9f2cea872ef4ab18181608d6a2db102ed5c884">UNDEFINED</a>
+<tr class="memitem:a8e238231449feaa8357997ae01f9f2ce"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classclient__data_1_1_client_room.html#a8e238231449feaa8357997ae01f9f2ce">ClientState</a> { <br />
+&#160;&#160;<a class="el" href="classclient__data_1_1_client_room.html#a8e238231449feaa8357997ae01f9f2cea872ef4ab18181608d6a2db102ed5c884">UNDEFINED</a>
 , <a class="el" href="classclient__data_1_1_client_room.html#a8e238231449feaa8357997ae01f9f2cea6c6995de0aa9815941c2188d56b0732a">LOBBY</a>
 , <a class="el" href="classclient__data_1_1_client_room.html#a8e238231449feaa8357997ae01f9f2ceaa210ef889c87133bb60b6cfd938f14d8">IN_GAME</a>
 , <a class="el" href="classclient__data_1_1_client_room.html#a8e238231449feaa8357997ae01f9f2cea813cb4e5ad16ad700c47ba48bd3e23e5">ENDED</a>
+, <br />
+&#160;&#160;<a class="el" href="classclient__data_1_1_client_room.html#a8e238231449feaa8357997ae01f9f2cea70aa0c69e02935c7a21a14e303c233af">MAIN_MENU</a>
+<br />
  }</td></tr>
 <tr class="memdesc:a8e238231449feaa8357997ae01f9f2ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">All the possible state of a client.  <a href="classclient__data_1_1_client_room.html#a8e238231449feaa8357997ae01f9f2ce">More...</a><br /></td></tr>
 <tr class="separator:a8e238231449feaa8357997ae01f9f2ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -118,9 +122,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af6b8ea1652d5151256486f98daf36286"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classclient__data_1_1_client_room.html#af6b8ea1652d5151256486f98daf36286">~ClientRoom</a> ()=default</td></tr>
 <tr class="memdesc:af6b8ea1652d5151256486f98daf36286"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy the <a class="el" href="classclient__data_1_1_client_room.html" title="Place where the game run (Like a lobby). Hold all libraries instance,.">ClientRoom</a> object.  <a href="classclient__data_1_1_client_room.html#af6b8ea1652d5151256486f98daf36286">More...</a><br /></td></tr>
 <tr class="separator:af6b8ea1652d5151256486f98daf36286"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1913bdec0ba3c43af174530274d3618"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classclient__data_1_1_client_room.html#ad1913bdec0ba3c43af174530274d3618">startLobbyLoop</a> (const std::string &amp;pseudo, const std::string &amp;password)</td></tr>
-<tr class="memdesc:ad1913bdec0ba3c43af174530274d3618"><td class="mdescLeft">&#160;</td><td class="mdescRight">Launch the lobby global loop for a multiplayer game.  <a href="classclient__data_1_1_client_room.html#ad1913bdec0ba3c43af174530274d3618">More...</a><br /></td></tr>
-<tr class="separator:ad1913bdec0ba3c43af174530274d3618"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e5aeff109b0a4142edaac1961ecd97d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classclient__data_1_1_client_room.html#a3e5aeff109b0a4142edaac1961ecd97d">startLobbyLoop</a> (const std::string &amp;pseudo, const std::string &amp;password, bool isSolo)</td></tr>
+<tr class="memdesc:a3e5aeff109b0a4142edaac1961ecd97d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Launch the lobby global loop for a multiplayer game.  <a href="classclient__data_1_1_client_room.html#a3e5aeff109b0a4142edaac1961ecd97d">More...</a><br /></td></tr>
+<tr class="separator:a3e5aeff109b0a4142edaac1961ecd97d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad94bbeaad0b30d8d82a073c8c8ad7687"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classclient__data_1_1_client_room.html#ad94bbeaad0b30d8d82a073c8c8ad7687">startGame</a> ()</td></tr>
 <tr class="memdesc:ad94bbeaad0b30d8d82a073c8c8ad7687"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function start the game for the player to choose if the player is in Solo or Multiplayer mod.  <a href="classclient__data_1_1_client_room.html#ad94bbeaad0b30d8d82a073c8c8ad7687">More...</a><br /></td></tr>
 <tr class="separator:ad94bbeaad0b30d8d82a073c8c8ad7687"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -146,6 +150,7 @@ Public Member Functions</h2></td></tr>
 <tr><td class="fieldname"><a id="a8e238231449feaa8357997ae01f9f2cea6c6995de0aa9815941c2188d56b0732a"></a>LOBBY&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a8e238231449feaa8357997ae01f9f2ceaa210ef889c87133bb60b6cfd938f14d8"></a>IN_GAME&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a8e238231449feaa8357997ae01f9f2cea813cb4e5ad16ad700c47ba48bd3e23e5"></a>ENDED&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a8e238231449feaa8357997ae01f9f2cea70aa0c69e02935c7a21a14e303c233af"></a>MAIN_MENU&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
 </div>
@@ -268,8 +273,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ad1913bdec0ba3c43af174530274d3618"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad1913bdec0ba3c43af174530274d3618">&#9670;&nbsp;</a></span>startLobbyLoop()</h2>
+<a id="a3e5aeff109b0a4142edaac1961ecd97d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e5aeff109b0a4142edaac1961ecd97d">&#9670;&nbsp;</a></span>startLobbyLoop()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -284,7 +289,13 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>password</em>&#160;</td>
+          <td class="paramname"><em>password</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isSolo</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
