@@ -150,7 +150,7 @@ void MobGeneration::run(World &world)
 
     std::size_t nbPlayers = world.joinEntities<Player>().size();
 
-    if (!hasLevelChanged && currLvl != GameLevel::INFINITE)
+    if (!hasLevelChanged && currLvl != GameLevel::LEVEL_INFINITE)
         return;
     if (hasLevelChanged) {
         switch (currLvl) {

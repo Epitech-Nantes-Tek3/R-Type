@@ -12,8 +12,8 @@ using namespace ecs;
 void GameLevel::addNewKills(unsigned int newKills)
 {
     this->_nbkills += newKills;
-    if (_currLevel == LEVEL_FORTH && _nbkills >= INFINITE) {
-        _currLevel = INFINITE;
+    if (_currLevel == LEVEL_FORTH && _nbkills >= LEVEL_INFINITE) {
+        _currLevel = LEVEL_INFINITE;
         _hasLevelChanged = true;
     }
     if (_currLevel == LEVEL_THREE && _nbkills >= LEVEL_FORTH) {
