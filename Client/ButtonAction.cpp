@@ -123,5 +123,5 @@ void connectToARoom(World &world, Entity &entityPtr)
         return;
     short configs[6] = {120, 121, 122, 123, 124, 125};
     world.getTransisthorBridge()->getCommunicatorInstance().utilitarySendRoomConfiguration("default000", configs, world.getTransisthorBridge()->getCommunicatorInstance().getClientByHisId(0));
-    world.getResource<MenuStates>().currentState = MenuStates::IN_GAME;
+    world.getResource<MenuStates>().currentState = MenuStates::LOBBY;
 }

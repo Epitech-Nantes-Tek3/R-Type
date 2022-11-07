@@ -130,6 +130,8 @@ void ClientRoom::_startConnexionProtocol(void)
 void ClientRoom::_protocol12Answer(CommunicatorMessage connexionResponse)
 {
     _state = ClientState::IN_GAME;
+    if (_worldInstance->containsResource<MenuStates>())
+        _worldInstance->getResource<MenuStates>().currentState = MenuStates::IN_GAME;
     _worldInstance.get()->addEntity().addComponent<NetworkServer>(connexionResponse.message.clientInfo.getId());
     auto &clock = _worldInstance.get()->getResource<GameClock>();
     auto guard = std::lock_guard(clock);
@@ -268,6 +270,12 @@ void ClientRoom::_loadTextures()
     textureResource.addTexture(GraphicsTextureResource::BUTTON, "assets/EpiSprite/r-typesheet11.gif",
         sf::Vector2f(34, 0), sf::Vector2f(34, 34));
     textureResource.addTexture(GraphicsTextureResource::BASIC_ENEMY, "assets/EpiSprite/BasicEnemySpriteSheet.gif",
+        sf::Vector2f(0, 0), sf::Vector2f(34, 34));
+    textureResource.addTexture(GraphicsTextureResource::ELECTRIC_ENEMY, "assets/EpiSprite/BasicEnemySpriteSheet.gif",
+        sf::Vector2f(0, 0), sf::Vector2f(34, 34));
+    textureResource.addTexture(GraphicsTextureResource::FIRE_ENEMY, "assets/EpiSprite/BasicEnemySpriteSheet.gif",
+        sf::Vector2f(0, 0), sf::Vector2f(34, 34));
+    textureResource.addTexture(GraphicsTextureResource::ICE_ENEMY, "assets/EpiSprite/BasicEnemySpriteSheet.gif",
         sf::Vector2f(0, 0), sf::Vector2f(34, 34));
     _initWritableTextures(textureResource);
     _initPlayerTextures(textureResource);
@@ -473,7 +481,7 @@ bool ClientRoom::_answerProtocols()
             _connectToARoom();
         }
         if (connectionOperation.message.type == 15) {
-            // _protocol15Answer(connectionOperation);
+            _protocol15Answer(connectionOperation); // TO BE REMOVE WITH LOBBY MENU
             sleep(1);
         }
         if (connectionOperation.message.type == 12) {
