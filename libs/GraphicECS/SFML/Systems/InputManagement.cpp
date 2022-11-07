@@ -260,8 +260,9 @@ namespace graphicECS::SFML::Systems
         std::vector<std::shared_ptr<Entity>> joined = world.joinEntities<Button, Position, Size>();
         RenderWindowResource &windowResource = world.getResource<RenderWindowResource>();
         sf::Vector2i mousePos = sf::Mouse::getPosition(windowResource.window);
+        bool actionRealised = false;
 
-        auto clickInButton = [this, &world, &mousePos](std::shared_ptr<Entity> entityPtr) {
+        auto clickInButton = [this, &world, &mousePos, &actionRealised](std::shared_ptr<Entity> entityPtr) {
             Position &pos = entityPtr.get()->getComponent<Position>();
             Size &size = entityPtr.get()->getComponent<Size>();
             DisplayState &state = entityPtr.get()->getComponent<DisplayState>();
@@ -270,13 +271,14 @@ namespace graphicECS::SFML::Systems
             bool sameHeigth = pos.x <= mousePos.x && mousePos.x <= pos.x + size.x;
             MenuStates &menuState = world.getResource<MenuStates>();
             MenuStates::menuState_e currState = menuState.currentState;
-            if (sameHeigth && sameWidth && state.displayState == currState) {
+            if (!actionRealised && sameHeigth && sameWidth && state.displayState == currState) {
                 entityPtr->getComponent<Button>().IsClicked = true;
                 ActionName &name = entityPtr.get()->getComponent<ActionName>();
                 ButtonActionMap &map = world.getResource<ButtonActionMap>();
 
                 std::function<void(World &, Entity &)> fct = map.actionList.find(name.actionName)->second;
                 fct(world, *(entityPtr.get()));
+                actionRealised = true;
             }
         };
         std::for_each(joined.begin(), joined.end(), clickInButton);
