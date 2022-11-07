@@ -439,8 +439,8 @@ void ClientRoom::_initSpriteForEnemies(GraphicsTextureResource &spritesList)
         sf::Vector2f(0, 0), sf::Vector2f(34, 34));
     spritesList.addTexture(GraphicsTextureResource::ICE_ENEMY, "assets/EpiSprite/IceEnemySpriteSheet.gif",
         sf::Vector2f(0, 0), sf::Vector2f(34, 34));
-    spritesList.addTexture(GraphicsTextureResource::BOSS, "assets/EpiSprite/BossSpriteSheet.gif",
-        sf::Vector2f(0, 0), sf::Vector2f(50, 57));
+    spritesList.addTexture(GraphicsTextureResource::BOSS, "assets/EpiSprite/BossSpriteSheet.gif", sf::Vector2f(0, 0),
+        sf::Vector2f(50, 57));
 }
 
 void ClientRoom::_initSpritesForWritable(GraphicsTextureResource &spritesList)
