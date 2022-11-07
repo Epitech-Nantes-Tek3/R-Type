@@ -79,6 +79,7 @@
 #include "R-TypeLogic/Server/Systems/EnemiesPatterns.hpp"
 #include "R-TypeLogic/Server/Systems/EnemyShootSystem.hpp"
 #include "R-TypeLogic/Server/Systems/LifeTimeDeathSystem.hpp"
+#include "R-TypeLogic/Server/Systems/MobGenerationSystem.hpp"
 
 using namespace error_lib;
 using namespace communicator_lib;
@@ -246,7 +247,6 @@ void ClientRoom::_signalSoloCallbackHandler(int signum)
 void ClientRoom::_initSoloData(void)
 {
     createNewPlayer(*_worldInstance.get(), 20, 500, 0, 0, 1, 102, 102, 100, 10, 4, true, 1, _pseudo);
-    createNewEnemyRandom(*_worldInstance.get(), 0, 0, 1, 85, 85, 50, 10, 5, 1);
 }
 
 void ClientRoom::_startSoloLoop()
@@ -478,6 +478,7 @@ void ClientRoom::_initSharedResources()
         MusicResource::music_e::BACKGROUNDTHEME, "assets/Musics/music_background.wav");
     _worldInstance->addResource<SoundResource>(SoundResource::sound_e::SHOOT, "assets/Sounds/sound.wav");
     _worldInstance->addResource<GameStates>(GameStates::IN_GAME);
+    _worldInstance->addResource<GameLevel>();
     _initSpritesForEntities();
 }
 
@@ -502,6 +503,7 @@ void ClientRoom::_initSystems(bool isSolo)
         _worldInstance->addSystem<DeathLife>();
         _worldInstance->addSystem<LifeTimeDeath>();
         _worldInstance->addSystem<DecreaseLifeTime>();
+        _worldInstance->addSystem<MobGeneration>();
     } else {
         _worldInstance->addSystem<SendToServer>();
         _worldInstance->addSystem<SendNewlyCreatedToServer>();
