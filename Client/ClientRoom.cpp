@@ -505,8 +505,6 @@ void ClientRoom::_initSystems(bool isSolo)
     } else {
         _worldInstance->addSystem<SendToServer>();
         _worldInstance->addSystem<SendNewlyCreatedToServer>();
-        _worldInstance->addSystem<SfObjectFollowEntitySystem>();
-        _worldInstance->addSystem<RemoveChatSystem>();
     }
 }
 
