@@ -28,9 +28,14 @@ namespace ecs
             .addComponent<Collidable>()
             .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate)
             .addComponent<Enemy>(type)
-            .addComponent<ShootingFrequency>(1.3)
             .addComponent<Destination>(
                 random.randInt(MINIMUM_WIDTH, MAXIMUM_WIDTH), random.randInt(MINIMUM_HEIGTH, MAXIMUM_HEIGTH));
+        switch (type) {
+            case Enemy::FIRE: entity.addComponent<ShootingFrequency>(2); break;
+            case Enemy::ELECTRIC: entity.addComponent<ShootingFrequency>(0.5); break;
+            case Enemy::ICE: entity.addComponent<ShootingFrequency>(1); break;
+            default: entity.addComponent<ShootingFrequency>(1.5); break;
+        };
         if (networkId) {
             // Case : Creation in a server instance
             entity.addComponent<NewlyCreated>(uuid, false);
@@ -57,5 +62,25 @@ namespace ecs
         random.unlock();
         return createNewEnemy(world, posX, posY, multiplierAbscissa, multiplierOrdinate, weight, sizeX, sizeY, life,
             damage, damageRadius, type, uuid, networkId);
+    }
+
+    std::size_t createBasicEnemy(World &world, const unsigned short networkId)
+    {
+        return createNewEnemyRandom(world, 0, 0, 5, 68, 68, 30, 10, 3, Enemy::BASIC, "", networkId);
+    }
+
+    std::size_t createFireEnemy(World &world, const unsigned short networkId)
+    {
+        return createNewEnemyRandom(world, 0, 0, 10, 102, 102, 30, 50, 10, Enemy::FIRE, "", networkId);
+    }
+
+    std::size_t createElectricEnemy(World &world, const unsigned short networkId)
+    {
+        return createNewEnemyRandom(world, 0, 0, 1, 34, 34, 25, 20, 1, Enemy::ELECTRIC, "", networkId);
+    }
+
+    std::size_t createIceEnemy(World &world, const unsigned short networkId)
+    {
+        return createNewEnemy(world, 0, 0, 0, 0, 1, 85, 85, 20, 5, 20, Enemy::ICE, "", networkId);
     }
 } // namespace ecs

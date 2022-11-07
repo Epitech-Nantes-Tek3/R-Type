@@ -83,6 +83,7 @@
 #include "R-TypeLogic/Server/Systems/EnemiesPatterns.hpp"
 #include "R-TypeLogic/Server/Systems/EnemyShootSystem.hpp"
 #include "R-TypeLogic/Server/Systems/LifeTimeDeathSystem.hpp"
+#include "R-TypeLogic/Server/Systems/MobGenerationSystem.hpp"
 
 using namespace error_lib;
 using namespace communicator_lib;
@@ -245,7 +246,6 @@ void ClientRoom::_signalSoloCallbackHandler(int signum)
 void ClientRoom::_initSoloData(void)
 {
     createNewPlayer(*_worldInstance.get(), 20, 500, 0, 0, 1, 102, 102, 100, 10, 4, true, 1, _pseudo);
-    createNewEnemyRandom(*_worldInstance.get(), 0, 0, 1, 85, 85, 50, 10, 5, 1);
 }
 
 void ClientRoom::_startSoloLoop()
