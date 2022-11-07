@@ -184,10 +184,6 @@ namespace client_data
         /// @brief Instance of the ECS library
         std::shared_ptr<World> _worldInstance;
 
-        // /// @brief Init the Ressources and Systems of the ECS
-        // /// @param isSolo True if the player choose to play in solo. False if he want to play in multiplayer
-        // void _initEcsGameData(bool isSolo);
-
         /// @brief Start the connexion protocol and ask the server for a place inside the room
         void _startConnexionProtocol(void);
 
