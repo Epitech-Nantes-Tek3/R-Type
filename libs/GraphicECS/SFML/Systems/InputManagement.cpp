@@ -82,6 +82,10 @@ namespace graphicECS::SFML::Systems
                 if (event.text.unicode == 8 && writableContent.content.size() != 0) {
                     auto guard = std::lock_guard(*entityPtr.get());
                     writableContent.content.pop_back();
+                } else if (event.text.unicode == 13) {
+                    auto guard = std::lock_guard(*entityPtr.get());
+                    entityPtr->removeComponent<Selected>();
+                    return;
                 } else if (event.text.unicode != 8) {
                     auto guard = std::lock_guard(*entityPtr.get());
                     writableContent.content.resize(writableContent.content.size() + 1, (char)event.text.unicode);
