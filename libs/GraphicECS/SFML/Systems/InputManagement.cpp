@@ -39,6 +39,9 @@ namespace graphicECS::SFML::Systems
     {
         if (event.type == sf::Event::Closed) {
             windowResource.window.close();
+#ifdef __linux__
+            std::raise(SIGINT);
+#endif
         }
     }
 
