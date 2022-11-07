@@ -45,6 +45,16 @@ static void infiniteSpawn(World &world, bool hasLevelChanged)
         createBoss(world, bossId);
     }
 
+    for (auto &it : joined) {
+        unsigned int enemyType;
+        {
+            auto guard = std::lock_guard(*it.get());
+            enemyType = it->getComponent<Enemy>().enemyType;
+        }
+        if (enemyType == Enemy::BOSS)
+            return;
+    }
+
     random.lock();
     unsigned int newNbrsEnemies = random.randInt(10, 15);
     random.unlock();
@@ -173,7 +183,7 @@ void MobGeneration::run(World &world)
         gamelvl.lock();
         gamelvl.levelHasChanged();
         gamelvl.unlock();
-    } else {
+    } else if (currLvl == GameLevel::LEVEL_INFINITE) {
         infiniteSpawn(world, hasLevelChanged);
     }
 }
