@@ -17,7 +17,7 @@ namespace database
     bool Database::_open(const std::filesystem::path &fileName)
     {
         if (sqlite3_open(fileName.string().c_str(), &_db) != SQLITE_OK) {
-            throw std::logic_error(sqlite3_errmsg(_db));
+            return false;
         }
         std::cerr << "Opened database successfully" << std::endl;
         return true;
@@ -96,7 +96,7 @@ namespace database
 
     std::vector<Row> Database::selectUsers(const std::string specifiedResearch)
     {
-        std::vector<Row> results;
+        std::vector<Row> results = {};
         std::string query = "SELECT * FROM Users";
 
         if (specifiedResearch != "") {

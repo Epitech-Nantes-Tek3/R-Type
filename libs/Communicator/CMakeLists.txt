@@ -26,6 +26,7 @@ target_include_directories(${TARGET}
 
 target_link_libraries(${TARGET}
 	CONAN_PKG::boost
+    ${PROJECT_NAME}_database
     ${PROJECT_NAME}_transisthor
 )
 

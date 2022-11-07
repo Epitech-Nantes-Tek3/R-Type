@@ -20,6 +20,10 @@ Server::Server(std::string address, unsigned short port)
     _state = HubState::UNDEFINED;
     _communicatorInstance = std::make_shared<Communicator>(_networkInformations);
     _nextRoomId = 0;
+    _databaseApi.createUserTable();
+    auto apiAnswer = _databaseApi.selectUsers("UserName = 'admin'");
+    if (apiAnswer.empty())
+        _databaseApi.addUser("admin", "admin", true, false, false);
 }
 
 Server::Server()
@@ -28,6 +32,10 @@ Server::Server()
     _networkInformations = Client();
     _state = HubState::UNDEFINED;
     _communicatorInstance = std::make_shared<Communicator>(_networkInformations);
+    _databaseApi.createUserTable();
+    auto apiAnswer = _databaseApi.selectUsers("UserName = 'admin'");
+    if (apiAnswer.empty())
+        _databaseApi.addUser("admin", "admin", true, false, false);
 }
 
 unsigned short Server::_getAFreePort(unsigned short actual)
@@ -75,10 +83,45 @@ void Server::startHubLoop()
                 _holdAJoinRoomRequest(connectionOperation);
             if (connectionOperation.message.type == 17)
                 _holdACreateRoomRequest(connectionOperation);
+            if (connectionOperation.message.type == 40)
+                _holdADatabaseValueRequest(connectionOperation);
+            if (connectionOperation.message.type == 42)
+                _holdADatabaseSetRequest(connectionOperation);
         } catch (NetworkError &error) {
         }
     }
     _disconnectionProcess();
+}
+
+void Server::_holdADatabaseValueRequest(CommunicatorMessage databaseRequest)
+{
+    std::vector<std::string> requestContent =
+        _communicatorInstance->utilitaryReceiveAskingForDatabaseValue(databaseRequest);
+    auto apiAnswer = _databaseApi.selectUsers("UserName = '" + requestContent.at(0) + "'");
+    if (apiAnswer.empty()) {
+        _communicatorInstance->sendDataToAClient(databaseRequest.message.clientInfo, nullptr, 0, 43);
+        return;
+    }
+    _communicatorInstance->utilitarySendDatabaseValue(
+        apiAnswer.at(0)[requestContent.at(1)], databaseRequest.message.clientInfo);
+}
+
+void Server::_holdADatabaseSetRequest(CommunicatorMessage databaseRequest)
+{
+    std::vector<std::string> requestContent = _communicatorInstance->utilitaryReceiveSetDatabaseValue(databaseRequest);
+    std::string keyStr = "";
+
+    if (requestContent.at(1) == "1")
+        keyStr = "Banned";
+    if (requestContent.at(1) == "2")
+        keyStr = "Muted";
+    if (requestContent.at(1) == "3")
+        keyStr = "Moderator";
+    if (requestContent.at(1) == "4")
+        keyStr = "UserName";
+    if (requestContent.at(1) == "5")
+        keyStr = "Password";
+    _databaseApi.updateUsers(keyStr + " = " + requestContent.at(2), "UserName = '" + requestContent.at(0) + "'");
 }
 
 void Server::_disconnectionProcess()
@@ -130,7 +173,24 @@ void Server::_holdACreateRoomRequest(CommunicatorMessage createDemand)
 
 void Server::_holdANewConnectionRequest(CommunicatorMessage connectionDemand)
 {
-    /// GET PLAYER NAME AND PASSWORD AND CHECK DATABASE FOR BAN + AUTH PROCESS
+    char *pseudo = (char *)connectionDemand.message.data;
+    char *password = (char *)connectionDemand.message.data + sizeof(char) * 5;
+    std::string pseudoStr = std::string(5, '\0');
+    std::string passwordStr = std::string(5, '\0');
+
+    for (int i = 0; i < 5; i++) {
+        pseudoStr[i] += pseudo[i];
+        passwordStr[i] += password[i];
+    }
+    auto apiAnswer = _databaseApi.selectUsers("UserName = '" + pseudoStr + "'");
+    if (apiAnswer.empty()) {
+        _databaseApi.addUser(pseudoStr, passwordStr, false, false, false);
+    } else {
+        if (apiAnswer.at(0)["Password"] != passwordStr || apiAnswer.at(0)["Banned"] != "0") {
+            _communicatorInstance.get()->sendDataToAClient(connectionDemand.message.clientInfo, nullptr, 0, 11);
+            return;
+        }
+    }
     void *networkData =
         std::malloc(sizeof(unsigned short) + _activeRoomList.size() * (sizeof(unsigned short) + sizeof(char) * 10));
     std::size_t offset = 0;

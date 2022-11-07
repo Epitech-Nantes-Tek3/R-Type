@@ -1,13 +1,13 @@
 
-set(SRC_ROOT ${PROJECT_SOURCE_DIR}/Room)
-set(INC_ROOT ${PROJECT_SOURCE_DIR}/Room)
+set(SRC_ROOT ${PROJECT_SOURCE_DIR}/AdminPanel)
+set(INC_ROOT ${PROJECT_SOURCE_DIR}/AdminPanel)
 
-set(TARGET_ROOM r-type_room)
+set(TARGET_ROOM r-type_admin_panel)
 
 set(SRC_ROOM
     ${SRC_ROOT}/main.cpp
-    ${SRC_ROOT}/Room.cpp
-    ${INC_ROOT}/Room.hpp
+    ${SRC_ROOT}/AdminPanel.cpp
+    ${INC_ROOT}/AdminPanel.hpp
 )
 
 add_executable(${TARGET_ROOM} ${SRC_ROOM})
@@ -18,8 +18,6 @@ set_target_properties(${TARGET_ROOM}
 )
 
 target_link_libraries(${TARGET_ROOM}
-    ${PROJECT_NAME}_transisthor
-    ${PROJECT_NAME}_RTypeLogicRoom
+    ${PROJECT_NAME}_communicator
     ${PROJECT_NAME}_argumentHandler
-    ${PROJECT_NAME}_database
 )
