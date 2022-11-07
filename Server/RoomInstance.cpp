@@ -12,7 +12,6 @@ namespace server_data
 {
     RoomInstance::RoomInstance(
         Server *server, unsigned short id, std::string name, std::string address, unsigned short port)
-        : _inputHandler(&RoomInstance::_manageInterprocessCommunication, this, server)
     {
         _id = id;
         if (name == "")
@@ -29,6 +28,7 @@ namespace server_data
         _child = new boost::process::child("r-type_room", std::to_string(_id), _name, _networkInformations.getAddress(),
             std::to_string(_networkInformations.getPort()),
             boost::process::std_in<(*_input), boost::process::std_out>(*_output));
+        _inputHandler = std::make_unique<boost::thread>(&RoomInstance::_manageInterprocessCommunication, this, server);
     }
 
     void RoomInstance::_manageInterprocessCommunication(Server *server)
@@ -91,7 +91,7 @@ namespace server_data
             delete _input;
         if (_output)
             delete _output;
-        if (boost::this_thread::get_id() != _inputHandler.get_id())
-            _inputHandler.join();
+        if (boost::this_thread::get_id() != _inputHandler->get_id())
+            _inputHandler->join();
     }
 } // namespace server_data
