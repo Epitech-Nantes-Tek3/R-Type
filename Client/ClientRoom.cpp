@@ -353,7 +353,6 @@ void ClientRoom::startLobbyLoop(const std::string &pseudo, const std::string &pa
         }
     }
     if (_state != ClientState::ENDED) {
-        _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, nullptr, 0, 10);
         _initEcsGameData(false);
         _connectToARoom();
         _state = ClientState::LOBBY;
@@ -367,8 +366,9 @@ void ClientRoom::startLobbyLoop(const std::string &pseudo, const std::string &pa
             }
             if (connectionOperation.message.type == 12)
                 protocol12Answer(connectionOperation);
-            if (connectionOperation.message.type == 13)
+            if (connectionOperation.message.type == 13) {
                 _holdADisconnectionRequest();
+            }
             if (connectionOperation.message.type == 50)
                 _holdAChatRequest(connectionOperation);
         } catch (NetworkError &error) {
@@ -505,8 +505,6 @@ void ClientRoom::_initSystems(bool isSolo)
     } else {
         _worldInstance->addSystem<SendToServer>();
         _worldInstance->addSystem<SendNewlyCreatedToServer>();
-        _worldInstance->addSystem<SfObjectFollowEntitySystem>();
-        _worldInstance->addSystem<RemoveChatSystem>();
     }
 }
 

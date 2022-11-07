@@ -101,7 +101,6 @@ void Communicator::kickAClient(Client client, Client newEndpoint)
         return;
     }
     sendProtocol20(client, newEndpoint);
-    std::cerr << "Removed : " << client.getId() << std::endl;
     removeClientFromList(client);
     _receiverModule.removeAllClientMessage(client);
     std::cerr << "You have asked a client to switch to a new communicator." << std::endl;

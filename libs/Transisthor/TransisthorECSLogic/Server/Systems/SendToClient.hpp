@@ -64,7 +64,7 @@ struct SendToClient : public ecs::System {
                     component.modified = false;
                     std::free(world.getTransisthorBridge().get()->transitEcsDataToNetworkData<C1>(
                         networkId, componentRFCId.find(typeid(C1))->second, component, clientIdList));
-                    if (component.clientToDelete != 0) {
+                    if (component.clientToDelete != 1000) {
                         Client clientToBeDeleted =
                             world.getTransisthorBridge()->getCommunicatorInstance().getClientByHisId(
                                 component.clientToDelete);
