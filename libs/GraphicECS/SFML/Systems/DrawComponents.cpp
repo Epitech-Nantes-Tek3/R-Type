@@ -22,10 +22,10 @@
 #include "R-TypeLogic/Global/Components/AlliedProjectileComponent.hpp"
 #include "R-TypeLogic/Global/Components/EnemyProjectileComponent.hpp"
 #include "R-TypeLogic/Global/Components/EnemyProjectileType.hpp"
+#include "R-TypeLogic/Global/Components/InvisibleComponent.hpp"
 #include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
 #include "R-TypeLogic/Global/Components/SizeComponent.hpp"
-#include "R-TypeLogic/Global/Components/InvisibleComponent.hpp"
 
 using namespace graphicECS::SFML::Systems;
 using namespace graphicECS::SFML::Resources;
@@ -45,19 +45,15 @@ void DrawComponents::addButtonText(std::shared_ptr<Entity> buttonPtr, const sf::
         return;
     switch (buttonPtr->getComponent<ActionName>().actionName) {
         case ButtonActionMap::RESUME:
-            buttonPtr->addComponent<GraphicsTextComponent>(
-                newFont, "Resume", pos.x, pos.y + size.y * 0.5);
+            buttonPtr->addComponent<GraphicsTextComponent>(newFont, "Resume", pos.x, pos.y + size.y * 0.5);
             break;
         case ButtonActionMap::EXIT:
-            buttonPtr->addComponent<GraphicsTextComponent>(
-                newFont, "Quit", pos.x, pos.y + size.y * 0.5);
+            buttonPtr->addComponent<GraphicsTextComponent>(newFont, "Quit", pos.x, pos.y + size.y * 0.5);
             break;
         case ButtonActionMap::PAUSE:
             buttonPtr->addComponent<GraphicsTextComponent>(newFont, "Pause", pos.x, pos.y + size.y * 0.5);
             break;
-        default:
-            buttonPtr->addComponent<GraphicsTextComponent>(newFont, "Default", pos.x, pos.y + size.y * 0.5);
-            break;
+        default: buttonPtr->addComponent<GraphicsTextComponent>(newFont, "Default", pos.x, pos.y + size.y * 0.5); break;
     }
 }
 
@@ -229,8 +225,7 @@ void DrawComponents::_drawText(World &world, std::shared_ptr<ecs::Entity> entity
 {
     if (entityPtr->contains<GraphicsTextComponent>()) {
         if (entityPtr->contains<DisplayState>()
-            && (world.getResource<MenuStates>().currentState == entityPtr->getComponent<DisplayState>().displayState
-                || entityPtr->getComponent<DisplayState>().displayState == MenuStates::UNDEFINED)) {
+            && world.getResource<MenuStates>().currentState == entityPtr->getComponent<DisplayState>().displayState) {
             windowResource.window.draw(entityPtr->getComponent<GraphicsTextComponent>().text);
         }
         if (entityPtr->contains<Player>() || entityPtr->contains<ChatMessage>()) {
