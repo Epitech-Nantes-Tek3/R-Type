@@ -12,7 +12,7 @@
 
 namespace ecs
 {
-    /// @brief Shared Resource game level, use to decided the current level of the game
+    /// @brief Shared Resource game level, use to decide the current level of the game
     class GameLevel : public Resource {
       public:
         /// @brief Enumeration of all possibles level states on the game
@@ -25,10 +25,10 @@ namespace ecs
         inline GameLevel::level_e getCurrentLevel() { return this->_currLevel; };
 
         /// @brief Check if the game level has changed
-        /// @return true if the level has change, false otherwise
+        /// @return true if the level has changed, false otherwise
         inline bool hasLevelChanged() { return this->_hasLevelChanged; };
 
-        /// @brief State that the level has changed because mob have been generated
+        /// @brief State that the level has changed because the mob generation has been launched
         inline void levelHasChanged() { this->_hasLevelChanged = false; };
 
         /// @brief Add new kills to the private value, increase the level if necessary
