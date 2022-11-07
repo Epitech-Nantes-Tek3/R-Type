@@ -21,8 +21,9 @@ using namespace std::chrono;
 
 /// @brief This function generates a mob from the boss when a boss should shoot
 /// @param world the world where the new enemy will be generated
+/// @param pos the world where the new enemy will be generated
 /// @param networkdId the networkId of the new enemy, 0 if it's in solo mod
-static void bossGeneration(World &world, unsigned int networkId)
+static void bossGeneration(World &world, Position &pos, unsigned int networkId)
 {
     unsigned int enemyType = 0;
 
@@ -33,11 +34,7 @@ static void bossGeneration(World &world, unsigned int networkId)
         enemyType = random.randInt(0, 2);
         random.unlock();
     }
-    switch (enemyType) {
-        case Enemy::FIRE : createFireEnemy(world, networkId); break;
-        case Enemy::ELECTRIC : createElectricEnemy(world, networkId); break;
-        default : createBasicEnemy(world, networkId); break;
-    }
+    createBossPawn(world, pos, enemyType, networkId);
 }
 
 void EnemyShootSystem::run(World &world)
@@ -55,14 +52,14 @@ void EnemyShootSystem::run(World &world)
                 unsigned int networkId = generator.generateNewNetworkableId();
 
                 if (entityPtr->getComponent<Enemy>().enemyType == Enemy::BOSS) {
-                    bossGeneration(world, networkId);
+                    bossGeneration(world, entityPtr->getComponent<Position>(), networkId);
                 } else {
                     createNewEnemyProjectile(world, entityPtr, "", networkId);
                 }
                 freq.frequency = freq.baseFrequency;
             } else {
                 if (entityPtr->getComponent<Enemy>().enemyType == Enemy::BOSS) {
-                    bossGeneration(world, 0);
+                    bossGeneration(world, entityPtr->getComponent<Position>(), 0);
                 } else {
                     createNewEnemyProjectile(world, entityPtr, "");
                 }

@@ -77,7 +77,7 @@ namespace ecs
 
     std::size_t createElectricEnemy(World &world, const unsigned short networkId)
     {
-        return createNewEnemyRandom(world, 0, 0, 1, 34, 34, 25, 20, 1, Enemy::ELECTRIC, "", networkId);
+        return createNewEnemyRandom(world, 0, 0, 1, 51, 51, 25, 20, 1, Enemy::ELECTRIC, "", networkId);
     }
 
     std::size_t createIceEnemy(World &world, const unsigned short networkId)
@@ -89,5 +89,10 @@ namespace ecs
     {
         return createNewEnemy(world, MAXIMUM_WIDTH - 100, MINIMUM_HEIGTH + 100, 0, 0, 100, 204, 204, 300, 100, 1,
             Enemy::BOSS, "", networkId);
+    }
+
+    std::size_t createBossPawn(World &world, Position &pos, unsigned int pawnType, const unsigned short networkId)
+    {
+        return createNewEnemy(world, pos.x, pos.y, 0, 0, 1, 34, 34, 15, 5, 1, pawnType, "", networkId);
     }
 } // namespace ecs
