@@ -79,9 +79,12 @@ namespace ecs
             default: createBasicProjectile(entity); break;
         };
         entity.addComponent<Position>(pos.x, pos.y + 20)
-            .addComponent<Collidable>()
-            .addComponent<EnemyProjectile>(enemy.get()->getComponent<Networkable>().id);
-
+            .addComponent<Collidable>();
+        if (enemy->contains<Networkable>()) {
+            entity.addComponent<EnemyProjectile>(enemy->getComponent<Networkable>().id);
+        } else {
+            entity.addComponent<EnemyProjectile>(enemy->getComponent<Enemy>().enemyType);
+        }
         if (networkId) {
             // Case : Creation in a server instance
             entity.addComponent<NewlyCreated>(uuid, false);

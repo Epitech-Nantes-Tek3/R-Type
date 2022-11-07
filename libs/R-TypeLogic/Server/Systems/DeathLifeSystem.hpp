@@ -10,6 +10,7 @@
 
 #include <mutex>
 #include "Transisthor/TransisthorECSLogic/Server/Components/NetworkClient.hpp"
+#include "Transisthor/TransisthorECSLogic/Server/Resources/NetworkableIdGenerator.hpp"
 #include "World/World.hpp"
 #include "R-TypeLogic/Global/Components/DeathComponent.hpp"
 #include "R-TypeLogic/Global/Components/LifeComponent.hpp"
@@ -27,16 +28,20 @@ namespace ecs
 
             auto deathlifetime = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
                 auto guard = std::lock_guard(*entityPtr.get());
-                if (entityPtr.get()->getComponent<Life>().lifePoint <= 0) {
-                    if (entityPtr->contains<Player>()) {
-                        Client client = world.getTransisthorBridge()->getCommunicatorInstance().getClientByHisId(
-                            entityPtr->getComponent<NetworkClient>().id);
-
-                        world.getTransisthorBridge()->getCommunicatorInstance().sendDataToAClient(
-                            client, nullptr, 0, 13);
-                        entityPtr->getComponent<Life>().lifePoint = 1000;
+                if (entityPtr.get()->getComponent<Life>().lifePoint <= 0 && !entityPtr.get()->contains<Death>()) {
+                    if (world.containsResource<NetworkableIdGenerator>()) {
+                        if (entityPtr->contains<Player>()) {
+                            Client client = world.getTransisthorBridge()->getCommunicatorInstance().getClientByHisId(
+                                entityPtr->getComponent<NetworkClient>().id);
+                            world.getTransisthorBridge()->getCommunicatorInstance().sendDataToAClient(
+                                client, nullptr, 0, 13);
+                            entityPtr->getComponent<Life>().lifePoint = 1000;
+                        } else {
+                            entityPtr.get()->addComponent<Death>();
+                        }
                     } else {
                         entityPtr.get()->addComponent<Death>();
+                        entityPtr.get()->getComponent<Death>().modified = false;
                     }
                 }
             };

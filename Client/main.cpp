@@ -19,18 +19,8 @@ int main(int ac, char **av)
     ArgumentHandler::ClientInformation clientInformation = argumentHandler.extractClientInformation();
     ClientRoom client = ClientRoom(clientInformation.clientAddress, clientInformation.clientPort,
         clientInformation.serverAddress, clientInformation.serverPort);
-    UserConnection connection;
-    std::string pseudo;
-    std::string password;
 
-    try {
-        connection.userConnection();
-    } catch (error_lib::RTypeError &e) {
-        std::cerr << e.what() << std::endl;
+    if (client.startGame() == 84)
         return 84;
-    }
-    pseudo = connection.getPseudo();
-    password = connection.getPassword();
-    client.startLobbyLoop(pseudo, password);
     return (0);
 }

@@ -12,11 +12,13 @@ namespace ecs
 {
     std::size_t createNewEnemy(World &world, const int posX, const int posY, const double multiplierAbscissa,
         const double multiplierOrdinate, const short weight, const int sizeX, const int sizeY,
-        const unsigned short life, const unsigned short damage, const unsigned short damageRadius,
-        unsigned short type, const std::string uuid, const unsigned short networkId)
+        const unsigned short life, const unsigned short damage, const unsigned short damageRadius, unsigned short type,
+        const std::string uuid, const unsigned short networkId)
     {
         Entity &entity = world.addEntity();
         auto guard = std::lock_guard(entity);
+        RandomDevice &random = world.getResource<RandomDevice>();
+        auto randomguard = std::lock_guard(random);
         entity.addComponent<Position>(posX, posY)
             .addComponent<Weight>(weight)
             .addComponent<Size>(sizeX, sizeY)
@@ -25,17 +27,14 @@ namespace ecs
             .addComponent<DamageRadius>(damageRadius)
             .addComponent<Collidable>()
             .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate)
-            .addComponent<Enemy>(type);
-
+            .addComponent<Enemy>(type)
+            .addComponent<ShootingFrequency>(1.3)
+            .addComponent<Destination>(
+                random.randInt(MINIMUM_WIDTH, MAXIMUM_WIDTH), random.randInt(MINIMUM_HEIGTH, MAXIMUM_HEIGTH));
         if (networkId) {
             // Case : Creation in a server instance
-            RandomDevice &random = world.getResource<RandomDevice>();
-            auto guardRandom = std::lock_guard(random);
             entity.addComponent<NewlyCreated>(uuid, false);
             entity.addComponent<Networkable>(networkId);
-            entity.addComponent<ShootingFrequency>(1.3);
-            entity.addComponent<Destination>(
-                random.randInt(MINIMUM_WIDTH, MAXIMUM_WIDTH), random.randInt(MINIMUM_HEIGTH, MAXIMUM_HEIGTH));
         } else {
             // Case : Creation in a Client instance
             if (uuid != "") {
@@ -43,7 +42,6 @@ namespace ecs
                 entity.addComponent<NewlyCreated>(uuid, true);
             }
             entity.addComponent<LayerLvL>(LayerLvL::layer_e::ENEMY);
-            entity.addComponent<Destination>(0, 0);
         }
         return entity.getId();
     }
