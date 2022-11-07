@@ -56,7 +56,7 @@ static void infiniteSpawn(World &world, bool hasLevelChanged)
     }
 }
 
-/// @brief Generate the necessary mob for the level one
+/// @brief Generate the necessary mob for the level one (BASIC MOB)
 /// @param world the world where the mob will be generated
 static void createLevelOne(World &world)
 {
@@ -74,7 +74,7 @@ static void createLevelOne(World &world)
     }
 }
 
-/// @brief Generate the necessary mob for the level two
+/// @brief Generate the necessary mob for the level two (FIRE MOB)
 /// @param world the world where the mob will be generated
 static void createLevelTwo(World &world)
 {
@@ -96,7 +96,7 @@ static void createLevelTwo(World &world)
     }
 }
 
-/// @brief Generate the necessary mob for the level three
+/// @brief Generate the necessary mob for the level three (ICE MOB)
 /// @param world the world where the mob will be generated
 static void createLevelThree(World &world)
 {
@@ -118,6 +118,24 @@ static void createLevelThree(World &world)
     }
 }
 
+/// @brief Generate the necessary mob for the forth level (ELECTRIC MOB)
+/// @param world the world where the mob will be generated
+static void createLevelFour(World &world)
+{
+    for (int x = 0; x < 5; x++) {
+        unsigned int networkId = 0;
+
+        if (world.containsResource<NetworkableIdGenerator>()) {
+            NetworkableIdGenerator &gen = world.getResource<NetworkableIdGenerator>();
+
+            gen.lock();
+            networkId = gen.generateNewNetworkableId();
+            gen.unlock();
+        }
+        createElectricEnemy(world, networkId);
+    }
+}
+
 void MobGeneration::run(World &world)
 {
     if (!world.containsResource<GameLevel>())
@@ -136,7 +154,7 @@ void MobGeneration::run(World &world)
             case GameLevel::LEVEL_ONE: createLevelOne(world); break;
             case GameLevel::LEVEL_TWO: createLevelTwo(world); break;
             case GameLevel::LEVEL_THREE: createLevelThree(world); break;
-            case GameLevel::LEVEL_FORTH: break;
+            case GameLevel::LEVEL_FORTH: createLevelFour(world); break;
             default: infiniteSpawn(world, hasLevelChanged); break;
         }
         gamelvl.lock();
