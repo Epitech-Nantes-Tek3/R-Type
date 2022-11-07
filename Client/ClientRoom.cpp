@@ -44,16 +44,27 @@
 #include "Transisthor/TransisthorECSLogic/Client/Components/NetworkServer.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Systems/SendNewlyCreatedToServer.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Systems/SendToServer.hpp"
+#include "UserConnection.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/ButtonActionMap.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/GameStates.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/MenuStates.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateButton.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateChatMessage.hpp"
+#include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateEnemy.hpp"
+#include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreatePlayer.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateWritable.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateWritableButton.hpp"
+#include "R-TypeLogic/Global/Components/AlliedProjectileComponent.hpp"
+#include "R-TypeLogic/Global/Components/DamageComponent.hpp"
+#include "R-TypeLogic/Global/Components/DamageRadiusComponent.hpp"
+#include "R-TypeLogic/Global/Components/DisconnectableComponent.hpp"
+#include "R-TypeLogic/Global/Components/EnemyComponent.hpp"
+#include "R-TypeLogic/Global/Components/EnemyProjectileComponent.hpp"
 #include "R-TypeLogic/Global/Components/LayerLvL.hpp"
+#include "R-TypeLogic/Global/Components/ObstacleComponent.hpp"
 #include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
+#include "R-TypeLogic/Global/Components/ProjectileComponent.hpp"
 #include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
 #include "R-TypeLogic/Global/SharedResources/Random.hpp"
 #include "R-TypeLogic/Global/Systems/DeathSystem.hpp"
@@ -61,6 +72,13 @@
 #include "R-TypeLogic/Global/Systems/MovementSystem.hpp"
 #include "R-TypeLogic/Global/Systems/NoAfkInMenuSystem.hpp"
 #include "R-TypeLogic/Global/Systems/UpdateClockSystem.hpp"
+#include "R-TypeLogic/Server/Systems/CollidableSystem.hpp"
+#include "R-TypeLogic/Server/Systems/DeathLifeSystem.hpp"
+#include "R-TypeLogic/Server/Systems/DecreaseLifeTimeSystem.hpp"
+#include "R-TypeLogic/Server/Systems/DisconnectableSystem.hpp"
+#include "R-TypeLogic/Server/Systems/EnemiesPatterns.hpp"
+#include "R-TypeLogic/Server/Systems/EnemyShootSystem.hpp"
+#include "R-TypeLogic/Server/Systems/LifeTimeDeathSystem.hpp"
 
 using namespace error_lib;
 using namespace communicator_lib;
@@ -114,10 +132,10 @@ ClientRoom::ClientRoom(std::string address, unsigned short port, std::string ser
     _password = "";
 }
 
-void ClientRoom::_initEcsGameData(void)
+void ClientRoom::_initEcsGameData(bool isSolo)
 {
     _initSharedResources();
-    _initSystems();
+    _initSystems(isSolo);
     _initEntities();
 }
 
@@ -185,10 +203,10 @@ void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
     }
 
     std::cerr << "If you want to join a existent room, please refer Y. Otherwise use N : ";
-    char choosedMod = '\0';
+    char choosedMode = '\0';
 
-    std::cin >> choosedMod;
-    if (choosedMod == 'Y') {
+    std::cin >> choosedMode;
+    if (choosedMode == 'Y') {
         std::cerr << "Refer in the terminal the wanted room id : ";
         unsigned short choosenRoomId = 0;
 
@@ -200,7 +218,7 @@ void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
             throw std::logic_error("Malloc failed.");
         std::memcpy(networkData, &choosenRoomId, sizeof(unsigned short));
         _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, networkData, sizeof(unsigned short), 16);
-    } else if (choosedMod == 'N') {
+    } else if (choosedMode == 'N') {
         std::cerr << "Refer in the terminal the wanted room name : ";
         std::string roomName;
 
@@ -216,6 +234,86 @@ void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
         std::cerr << "Not a valid option ;)" << std::endl;
         _state = ClientState::ENDED;
     }
+}
+
+void ClientRoom::_signalSoloCallbackHandler(int signum)
+{
+    (void)signum;
+    std::cerr << "Room ask to be closed." << std::endl;
+    _state = ClientState::ENDED;
+}
+
+void ClientRoom::_initSoloData(void)
+{
+    createNewPlayer(*_worldInstance.get(), 20, 500, 0, 0, 1, 102, 102, 100, 10, 4, true, 1, _pseudo);
+    createNewEnemyRandom(*_worldInstance.get(), 0, 0, 1, 85, 85, 50, 10, 5, 1);
+}
+
+void ClientRoom::_startSoloLoop()
+{
+    std::signal(SIGINT, signalCallbackHandler);
+    _initEcsGameData(true);
+    _initSoloData();
+    _state = ClientState::IN_GAME;
+    while (_state != ClientState::ENDED && _state != ClientState::UNDEFINED) {
+        if (_state == ClientState::IN_GAME) {
+            _worldInstance.get()->runSystems();
+        }
+    }
+}
+
+int ClientRoom::_choosePlayerInfosForServer()
+{
+    UserConnection connection;
+    std::string pseudo;
+    std::string password;
+
+    try {
+        connection.userConnection();
+    } catch (error_lib::RTypeError &e) {
+        std::cerr << e.what() << std::endl;
+        return (84);
+    }
+    pseudo = connection.getPseudo();
+    password = connection.getPassword();
+    startLobbyLoop(pseudo, password);
+    return 0;
+}
+
+void ClientRoom::_getClientPseudoAndPassword()
+{
+    std::string pseudo;
+
+    std::cerr << "Welcome to the R-Type game !" << std::endl;
+    std::cerr << "You are in Solo mode ! Please enter your Pseudo" << std::endl;
+    std::cerr << "Please refer your pseudonyme (5 characters): ";
+    std::cin >> pseudo;
+    if (pseudo.size() != 5) {
+        std::cerr << "Nop ! Please enter a 5 characters pseudonyme.";
+        _state = ClientState::ENDED;
+        return;
+    }
+    _pseudo = pseudo;
+}
+
+int ClientRoom::startGame()
+{
+    std::cerr << "If you want to play in Solo Mode, please refer S. Otherwise if you want to play in multiplayer use M "
+                 "and be sure that a server is running : ";
+    char choosedMode = '\0';
+
+    std::cin >> choosedMode;
+    if (choosedMode == 'S') {
+        _getClientPseudoAndPassword();
+        _startSoloLoop();
+    } else if (choosedMode == 'M') {
+        if (_choosePlayerInfosForServer() == 84)
+            return 84;
+    } else {
+        std::cerr << "Not a valid option ;)" << std::endl;
+        _state = ClientState::ENDED;
+    }
+    return 0;
 }
 
 void ClientRoom::_connectToARoom()
@@ -255,7 +353,8 @@ void ClientRoom::startLobbyLoop(const std::string &pseudo, const std::string &pa
         }
     }
     if (_state != ClientState::ENDED) {
-        _initEcsGameData();
+        _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, nullptr, 0, 10);
+        _initEcsGameData(false);
         _connectToARoom();
         _state = ClientState::LOBBY;
     }
@@ -382,23 +481,33 @@ void ClientRoom::_initSharedResources()
     _initSpritesForEntities();
 }
 
-void ClientRoom::_initSystems()
+void ClientRoom::_initSystems(bool isSolo)
 {
     _worldInstance->addSystem<UpdateClock>();
     _worldInstance->addSystem<DeathSystem>();
     _worldInstance->addSystem<DrawComponents>();
     _worldInstance->addSystem<InputManagement>();
-    _worldInstance->addSystem<SendToServer>();
-    _worldInstance->addSystem<SendNewlyCreatedToServer>();
     _worldInstance->addSystem<SfObjectFollowEntitySystem>();
     _worldInstance->addSystem<Parallax>();
     _worldInstance->addSystem<Movement>();
     _worldInstance->addSystem<AnimationSystem>();
-    _worldInstance->addSystem<NoAfkInMenu>();
     _worldInstance->addSystem<MusicManagement>();
     _worldInstance->addSystem<SoundManagement>();
     _worldInstance->addSystem<RemoveChatSystem>();
     _worldInstance->addSystem<ElectricInvisibleEnemy>();
+    if (isSolo) {
+        _worldInstance->addSystem<EnemiesPatterns>();
+        _worldInstance->addSystem<EnemyShootSystem>();
+        _worldInstance->addSystem<Collide>();
+        _worldInstance->addSystem<DeathLife>();
+        _worldInstance->addSystem<LifeTimeDeath>();
+        _worldInstance->addSystem<DecreaseLifeTime>();
+    } else {
+        _worldInstance->addSystem<SendToServer>();
+        _worldInstance->addSystem<SendNewlyCreatedToServer>();
+        _worldInstance->addSystem<SfObjectFollowEntitySystem>();
+        _worldInstance->addSystem<RemoveChatSystem>();
+    }
 }
 
 void ClientRoom::_initBackgroundEntities()

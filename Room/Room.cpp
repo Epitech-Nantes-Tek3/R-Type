@@ -174,6 +174,11 @@ void Room::_holdAChatRequest(CommunicatorMessage chatRequest)
         clientIdList.emplace_back(entityPtr.get()->getComponent<ecs::NetworkClient>().id);
     };
 
+    Entity &senderPlayer = _findClientByHisId(chatRequest.message.clientInfo.getId());
+    auto apiAnswer = _databaseApi.selectUsers("UserName = '" + senderPlayer.getComponent<Player>().name + "'");
+
+    if (apiAnswer.at(0)["Muted"] != "0")
+        return;
     std::for_each(clients.begin(), clients.end(), addToClientList);
     _communicatorInstance->utilitarySendChatMessage(chatContent.at(0), chatContent.at(1), clientIdList);
 }
@@ -204,6 +209,28 @@ size_t Room::getEntityPlayerByHisNetworkId(unsigned short networkId)
     if (temporary == 0)
         throw EcsError("No matching player founded.", "World.cpp -> getEntityPlayerByHisNetworkId");
     return temporary;
+}
+
+Client Room::_findClientByHisName(std::string name)
+{
+    std::vector<std::shared_ptr<ecs::Entity>> joined = _worldInstance->joinEntities<NetworkClient, Player>();
+
+    for (auto it : joined) {
+        if (it->getComponent<Player>().name == name)
+            return _communicatorInstance->getClientByHisId(it->getComponent<NetworkClient>().id);
+    }
+    return Client();
+}
+
+Entity &Room::_findClientByHisId(unsigned short clientId)
+{
+    std::vector<std::shared_ptr<ecs::Entity>> joined = _worldInstance->joinEntities<NetworkClient, Player>();
+
+    for (auto it : joined) {
+        if (it->getComponent<NetworkClient>().id == clientId)
+            return *it;
+    }
+    return *(joined.at(0));
 }
 
 std::string Room::_getPlayerName(CommunicatorMessage connexionDemand)
@@ -316,6 +343,9 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
             entityPtr->getComponent<Networkable>().id, entityPtr->getComponent<EnemyProjectile>().parentNetworkId, "",
             {connexionDemand.message.clientInfo.getId()}));
     }
+    auto apiAnswer = _databaseApi.selectUsers("UserName = '" + playerNameStr + "'");
+    _databaseApi.updateUsers("GamesPlayed = " + std::to_string(std::atoi(apiAnswer.at(0)["GamesPlayed"].c_str()) + 1),
+        "UserName = '" + playerNameStr + "'");
     _communicatorInstance.get()->sendDataToAClient(connexionDemand.message.clientInfo, nullptr, 0, 12);
     if (_remainingPlaces == 3) {
         GameClock &clock = _worldInstance->getResource<GameClock>();

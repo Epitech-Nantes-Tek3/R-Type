@@ -1,7 +1,7 @@
-set(TARGET r-type_client)
-
 set(SRC_ROOT ${PROJECT_SOURCE_DIR}/Client)
 set(INC_ROOT ${PROJECT_SOURCE_DIR}/Client)
+
+set(TARGET r-type_client)
 
 set(BUTTON_ACTION_SRC
     ${SRC_ROOT}/ButtonAction.hpp
@@ -31,4 +31,5 @@ target_link_libraries(${TARGET}
     ${PROJECT_NAME}_argumentHandler
     ${PROJECT_NAME}_SFMLGraphicECS
     ${PROJECT_NAME}_RTypeLogicButtonManipulation
+    ${PROJECT_NAME}_RTypeLogicRoom
 )
