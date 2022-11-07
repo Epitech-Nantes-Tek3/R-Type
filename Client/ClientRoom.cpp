@@ -274,7 +274,7 @@ void ClientRoom::_loadTextures()
 
     textureResource.addTexture(GraphicsTextureResource::BUTTON, "assets/EpiSprite/r-typesheet11.gif",
         sf::Vector2f(34, 0), sf::Vector2f(34, 34));
-    textureResource.addTexture(GraphicsTextureResource::ENEMY_STATIC, "assets/EpiSprite/BasicEnemySpriteSheet.gif",
+    textureResource.addTexture(GraphicsTextureResource::BASIC_ENEMY, "assets/EpiSprite/BasicEnemySpriteSheet.gif",
         sf::Vector2f(0, 0), sf::Vector2f(34, 34));
     _initWritableTextures(textureResource);
     _initPlayerTextures(textureResource);
