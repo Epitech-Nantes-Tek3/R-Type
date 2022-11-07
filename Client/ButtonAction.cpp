@@ -64,8 +64,7 @@ void selectAWritable(World &world, Entity &entityPtr)
         auto guardOld = std::lock_guard(entityPtr);
         entityPtr.removeComponent<Selected>();
         if (entityPtr.contains<TextureName>()) {
-            entityPtr.removeComponent<TextureName>();
-            entityPtr.addComponent<TextureName>(GraphicsTextureResource::WRITABLE);
+            entityPtr.getComponent<TextureName>().textureName = GraphicsTextureResource::WRITABLE;
         }
         auto &state = world.getResource<GameStates>();
         auto guard = std::lock_guard(state);
@@ -78,16 +77,13 @@ void selectAWritable(World &world, Entity &entityPtr)
     if (!joined.empty()) {
         auto guardOld = std::lock_guard(*(joined.at(0)));
         joined.at(0)->removeComponent<Selected>();
-        if (joined.at(0)->contains<TextureName>()) {
-            joined.at(0)->removeComponent<TextureName>();
-            joined.at(0)->addComponent<TextureName>(GraphicsTextureResource::WRITABLE);
-        }
+        if (joined.at(0)->contains<TextureName>())
+            joined.at(0)->getComponent<TextureName>().textureName = GraphicsTextureResource::WRITABLE;
     }
     auto guardNew = std::lock_guard(entityPtr);
     entityPtr.addComponent<Selected>();
     if (entityPtr.contains<TextureName>()) {
-        entityPtr.removeComponent<TextureName>();
-        entityPtr.addComponent<TextureName>(GraphicsTextureResource::WRITABLE_SELECTED);
+        entityPtr.getComponent<TextureName>().textureName = GraphicsTextureResource::WRITABLE_SELECTED;
     }
     auto &state = world.getResource<GameStates>();
     auto guard = std::lock_guard(state);

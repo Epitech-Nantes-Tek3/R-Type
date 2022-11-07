@@ -86,10 +86,8 @@ namespace graphicECS::SFML::Systems
                 } else if (event.text.unicode == 13) {
                     auto guard = std::lock_guard(*entityPtr.get());
                     entityPtr->removeComponent<Selected>();
-                    if (entityPtr->contains<TextureName>()) {
-                        entityPtr->removeComponent<TextureName>();
-                        entityPtr->addComponent<TextureName>(GraphicsTextureResource::WRITABLE);
-                    }
+                    if (entityPtr->contains<TextureName>())
+                        entityPtr->getComponent<TextureName>().textureName = GraphicsTextureResource::WRITABLE;
                     return;
                 } else if (event.text.unicode != 8) {
                     auto guard = std::lock_guard(*entityPtr.get());
