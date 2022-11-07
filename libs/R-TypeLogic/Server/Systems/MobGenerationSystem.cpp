@@ -10,6 +10,7 @@
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateEnemy.hpp"
 #include "R-TypeLogic/Global/SharedResources/GameLevel.hpp"
 #include "R-TypeLogic/Global/SharedResources/Random.hpp"
+#include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
 
 using namespace ecs;
 
@@ -58,9 +59,9 @@ static void infiniteSpawn(World &world, bool hasLevelChanged)
 
 /// @brief Generate the necessary mob for the level one (BASIC MOB)
 /// @param world the world where the mob will be generated
-static void createLevelOne(World &world)
+static void createLevelOne(World &world, std::size_t nbplayers)
 {
-    for (int x = 0; x < 5; x++) {
+    for (int x = 0; x < (10 * nbplayers); x++) {
         unsigned int networkId = 0;
 
         if (world.containsResource<NetworkableIdGenerator>()) {
@@ -76,9 +77,9 @@ static void createLevelOne(World &world)
 
 /// @brief Generate the necessary mob for the level two (FIRE MOB)
 /// @param world the world where the mob will be generated
-static void createLevelTwo(World &world)
+static void createLevelTwo(World &world, std::size_t nbplayers)
 {
-    for (int x = 0; x < 5; x++) {
+    for (int x = 0; x < (10 * nbplayers); x++) {
         unsigned int networkId = 0;
 
         if (world.containsResource<NetworkableIdGenerator>()) {
@@ -98,9 +99,9 @@ static void createLevelTwo(World &world)
 
 /// @brief Generate the necessary mob for the level three (ICE MOB)
 /// @param world the world where the mob will be generated
-static void createLevelThree(World &world)
+static void createLevelThree(World &world, std::size_t nbplayers)
 {
-    for (int x = 0; x < 10; x++) {
+    for (int x = 0; x < (20 * nbplayers); x++) {
         unsigned int networkId = 0;
 
         if (world.containsResource<NetworkableIdGenerator>()) {
@@ -110,7 +111,7 @@ static void createLevelThree(World &world)
             networkId = gen.generateNewNetworkableId();
             gen.unlock();
         }
-        if (x < 2) {
+        if (x < 4) {
             createBasicEnemy(world, networkId);
         } else {
             createIceEnemy(world, networkId);
@@ -120,9 +121,9 @@ static void createLevelThree(World &world)
 
 /// @brief Generate the necessary mob for the forth level (ELECTRIC MOB)
 /// @param world the world where the mob will be generated
-static void createLevelFour(World &world)
+static void createLevelFour(World &world, std::size_t nbplayers)
 {
-    for (int x = 0; x < 5; x++) {
+    for (int x = 0; x < (10 * nbplayers); x++) {
         unsigned int networkId = 0;
 
         if (world.containsResource<NetworkableIdGenerator>()) {
@@ -147,14 +148,16 @@ void MobGeneration::run(World &world)
     bool hasLevelChanged = gamelvl.hasLevelChanged();
     gamelvl.unlock();
 
+    std::size_t nbPlayers = world.joinEntities<Player>().size();
+
     if (!hasLevelChanged && currLvl != GameLevel::INFINITE)
         return;
     if (hasLevelChanged) {
         switch (currLvl) {
-            case GameLevel::LEVEL_ONE: createLevelOne(world); break;
-            case GameLevel::LEVEL_TWO: createLevelTwo(world); break;
-            case GameLevel::LEVEL_THREE: createLevelThree(world); break;
-            case GameLevel::LEVEL_FORTH: createLevelFour(world); break;
+            case GameLevel::LEVEL_ONE: createLevelOne(world, nbPlayers); break;
+            case GameLevel::LEVEL_TWO: createLevelTwo(world, nbPlayers); break;
+            case GameLevel::LEVEL_THREE: createLevelThree(world, nbPlayers); break;
+            case GameLevel::LEVEL_FORTH: createLevelFour(world, nbPlayers); break;
             default: infiniteSpawn(world, hasLevelChanged); break;
         }
         gamelvl.lock();

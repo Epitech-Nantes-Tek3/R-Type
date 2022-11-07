@@ -18,10 +18,10 @@ namespace ecs
         /// @brief Enumeration of all possibles level states on the game
         enum level_e {
             LEVEL_ONE = 0,
-            LEVEL_TWO = 5,
-            LEVEL_THREE = 10,
-            LEVEL_FORTH = 20,
-            INFINITE = 25
+            LEVEL_TWO = 10,
+            LEVEL_THREE = 20,
+            LEVEL_FORTH = 40,
+            INFINITE = 50
         };
         /// @brief Create the GameLevel Resource
         GameLevel() : _currLevel(LEVEL_ONE), _hasLevelChanged(true), _nbkills(0) {};
