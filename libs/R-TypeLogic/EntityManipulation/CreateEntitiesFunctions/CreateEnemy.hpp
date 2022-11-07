@@ -72,5 +72,25 @@ namespace ecs
         const short weight, const int sizeX, const int sizeY, const unsigned short life, const unsigned short damage,
         const unsigned short damageRadius, unsigned short type, const std::string uuid = "",
         const unsigned short networkId = 0);
+
+    /// @brief This function create a basic enemy with corresponding caracteristic
+    /// @param world the world where the enemy will be created
+    /// @param networkdId The id of the Networkable Component. In the client instance, it MUST NOT be filled in.
+    std::size_t createBasicEnemy(World &world, const unsigned short networkId = 0);
+
+    /// @brief This function create a fire enemy with corresponding caracteristic
+    /// @param world the world where the enemy will be created
+    /// @param networkdId The id of the Networkable Component. In the client instance, it MUST NOT be filled in.
+    std::size_t createFireEnemy(World &world, const unsigned short networkId = 0);
+
+    /// @brief This function create an electric enemy with corresponding caracteristic
+    /// @param world the world where the enemy will be created
+    /// @param networkdId The id of the Networkable Component. In the client instance, it MUST NOT be filled in.
+    std::size_t createElectricEnemy(World &world, const unsigned short networkId = 0);
+
+    /// @brief This function create an ice enemy with corresponding caracteristic
+    /// @param world the world where the enemy will be created
+    /// @param networkdId The id of the Networkable Component. In the client instance, it MUST NOT be filled in.
+    std::size_t createIceEnemy(World &world, const unsigned short networkId = 0);
 } // namespace ecs
 #endif /* !CREATEENEMY_HPP_ */
