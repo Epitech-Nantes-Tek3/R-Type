@@ -41,7 +41,7 @@ namespace ecs
                             entityPtr.get()->addComponent<Death>();
                         }
                     } else {
-                        if (entityPtr->contains<Enemy>()) {
+                        if (entityPtr->contains<Enemy>() && world.containsResource<GameLevel>()) {
                             GameLevel &gameLevel = world.getResource<GameLevel>();
                             gameLevel.lock();
                             gameLevel.addNewKills();
