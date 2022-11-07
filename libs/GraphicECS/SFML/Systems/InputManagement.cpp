@@ -16,6 +16,7 @@
 #include "ControllerButtonInputComponent.hpp"
 #include "ControllerJoystickInputComponent.hpp"
 #include "GraphicECS/SFML/Components/GraphicsTextComponent.hpp"
+#include "GraphicECS/SFML/Components/TextureName.hpp"
 #include "IsShootingComponent.hpp"
 #include "KeyboardInputComponent.hpp"
 #include "MouseInputComponent.hpp"
@@ -85,6 +86,10 @@ namespace graphicECS::SFML::Systems
                 } else if (event.text.unicode == 13) {
                     auto guard = std::lock_guard(*entityPtr.get());
                     entityPtr->removeComponent<Selected>();
+                    if (entityPtr->contains<TextureName>()) {
+                        entityPtr->removeComponent<TextureName>();
+                        entityPtr->addComponent<TextureName>(GraphicsTextureResource::WRITABLE);
+                    }
                     return;
                 } else if (event.text.unicode != 8) {
                     auto guard = std::lock_guard(*entityPtr.get());
