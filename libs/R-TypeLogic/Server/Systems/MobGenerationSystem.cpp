@@ -110,7 +110,11 @@ static void createLevelThree(World &world)
             networkId = gen.generateNewNetworkableId();
             gen.unlock();
         }
-        createIceEnemy(world, networkId);
+        if (x < 2) {
+            createBasicEnemy(world, networkId);
+        } else {
+            createIceEnemy(world, networkId);
+        }
     }
 }
 

@@ -49,6 +49,7 @@ static void makeEnemyGoRandom(
         vel.multiplierOrdinate = newVelY;
         vel.modified = true;
         dest.modified = true;
+        pos.modified = true;
     }
 }
 
@@ -89,6 +90,7 @@ static void fireEnemyPatterns(World &world, std::shared_ptr<Entity> enemy)
     vel.multiplierAbscissa = (dest.x - enemyPos.x) / 20;
     vel.multiplierOrdinate = (dest.y - enemyPos.y) / 20;
     vel.modified = true;
+    enemyPos.modified = true;
 }
 
 /// @brief Apply the electric Pattern (flash shape) to the enemy
@@ -196,10 +198,12 @@ static void iceEnemyPatterns(std::vector<std::shared_ptr<ecs::Entity>> allEnemie
             vel.multiplierOrdinate = 0;
             vel.modified = true;
             dest.modified = true;
+            pos.modified = true;
         } else if (vel.multiplierAbscissa == 0 && vel.multiplierOrdinate == 0) {
             vel.multiplierAbscissa = (dest.x - pos.x) / 10;
             vel.multiplierOrdinate = (dest.y - pos.y) / 10;
             vel.modified = true;
+            pos.modified = true;
         }
     };
 
