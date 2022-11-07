@@ -24,12 +24,14 @@ namespace ecs
         /// @brief If the server need to resend it to everyone
         bool sendToEveryone;
 
-        /// @brief Id of the client to delete from the Database after sending the death component. 0 if no client needed to be deleted
+        /// @brief Id of the client to delete from the Database after sending the death component. 1000 if no client
+        /// needed to be deleted
         unsigned short clientToDelete;
 
         /// @brief Constructor of the Life Component
         /// @param newLifePoint the life given to the entity
-        Life(unsigned short newLifePoint = 0) : lifePoint(newLifePoint), modified(false), sendToEveryone(false), clientToDelete(0){};
+        Life(unsigned short newLifePoint = 0)
+            : lifePoint(newLifePoint), modified(false), sendToEveryone(false), clientToDelete(1000){};
         /// @brief Default Destructor
         ~Life() = default;
     };

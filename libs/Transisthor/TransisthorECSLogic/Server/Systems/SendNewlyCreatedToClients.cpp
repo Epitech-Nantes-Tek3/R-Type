@@ -47,7 +47,6 @@ void SendNewlyCreatedToClients::runSystem(ecs::World &world)
         if (newlyCreated.isClientInstance || newlyCreated.sended == true)
             return;
         if (entityPtr->contains<ecs::AlliedProjectile>()) {
-            std::cerr << entityPtr->getComponent<AlliedProjectile>().parentNetworkId << std::endl;
             std::free(world.getTransisthorBridge()->transitEcsDataToNetworkDataEntityAlliedProjectile(
                 entityPtr->getComponent<Networkable>().id, entityPtr->getComponent<AlliedProjectile>().parentNetworkId,
                 newlyCreated.uuid,
