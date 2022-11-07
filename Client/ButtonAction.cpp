@@ -127,7 +127,8 @@ void connectToARoom(World &world, Entity &entityPtr)
     if (!world.containsResource<MenuStates>())
         return;
     short configs[6] = {120, 121, 122, 123, 124, 125};
-    world.getTransisthorBridge()->getCommunicatorInstance().utilitarySendRoomConfiguration(
-        "default000", configs, world.getTransisthorBridge()->getCommunicatorInstance().getClientByHisId(0)); /// WILL BE UPDATE WITH THE LOBBY MENU
+    world.getTransisthorBridge()->getCommunicatorInstance().utilitarySendRoomConfiguration("default000", configs,
+        world.getTransisthorBridge()->getCommunicatorInstance().getClientByHisId(
+            0)); /// WILL BE UPDATE WITH THE LOBBY MENU
     world.getResource<MenuStates>().currentState = MenuStates::LOBBY;
 }
