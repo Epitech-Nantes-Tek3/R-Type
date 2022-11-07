@@ -43,6 +43,7 @@ static void infiniteSpawn(World &world, bool hasLevelChanged)
             gen.unlock();
         }
         createBoss(world, bossId);
+        return;
     }
 
     for (auto &it : joined) {
