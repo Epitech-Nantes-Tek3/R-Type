@@ -28,7 +28,7 @@ static void infiniteSpawn(World &world, bool hasLevelChanged)
     std::size_t currNbEnemies = joined.size();
 
     if (hasLevelChanged) {
-        // spawn a boss
+        // SPAWN A BOSS
     }
 
     random.lock();
@@ -61,7 +61,7 @@ static void infiniteSpawn(World &world, bool hasLevelChanged)
 /// @param world the world where the mob will be generated
 static void createLevelOne(World &world, int nbplayers)
 {
-    for (int x = 0; x < (10 * nbplayers); x++) {
+    for (int x = 0; x < (5 * nbplayers); x++) {
         unsigned int networkId = 0;
 
         if (world.containsResource<NetworkableIdGenerator>()) {
@@ -79,7 +79,7 @@ static void createLevelOne(World &world, int nbplayers)
 /// @param world the world where the mob will be generated
 static void createLevelTwo(World &world, int nbplayers)
 {
-    for (int x = 0; x < (10 * nbplayers); x++) {
+    for (int x = 0; x < (7 * nbplayers); x++) {
         unsigned int networkId = 0;
 
         if (world.containsResource<NetworkableIdGenerator>()) {
@@ -101,7 +101,7 @@ static void createLevelTwo(World &world, int nbplayers)
 /// @param world the world where the mob will be generated
 static void createLevelThree(World &world, int nbplayers)
 {
-    for (int x = 0; x < (20 * nbplayers); x++) {
+    for (int x = 0; x < (8 * nbplayers); x++) {
         unsigned int networkId = 0;
 
         if (world.containsResource<NetworkableIdGenerator>()) {
@@ -111,11 +111,7 @@ static void createLevelThree(World &world, int nbplayers)
             networkId = gen.generateNewNetworkableId();
             gen.unlock();
         }
-        if (x < 4) {
-            createBasicEnemy(world, networkId);
-        } else {
-            createIceEnemy(world, networkId);
-        }
+        createIceEnemy(world, networkId);
     }
 }
 
