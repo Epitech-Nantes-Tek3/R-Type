@@ -111,7 +111,6 @@ namespace client_data
         /// @brief Ask the user to enter his Pseudonyme and password
         void _getClientPseudoAndPassword();
 
-
         /// @brief Init all the sprites needed for the player
         /// @param textureResource texture's map holding the texture and the corresponding key
         void _initPlayerTextures(graphicECS::SFML::Resources::GraphicsTextureResource &textureResource);
