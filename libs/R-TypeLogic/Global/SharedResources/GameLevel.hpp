@@ -16,26 +16,20 @@ namespace ecs
     class GameLevel : public Resource {
       public:
         /// @brief Enumeration of all possibles level states on the game
-        enum level_e {
-            LEVEL_ONE = 0,
-            LEVEL_TWO = 10,
-            LEVEL_THREE = 20,
-            LEVEL_FORTH = 40,
-            INFINITE = 50
-        };
+        enum level_e { LEVEL_ONE = 0, LEVEL_TWO = 10, LEVEL_THREE = 20, LEVEL_FORTH = 40, INFINITE = 50 };
         /// @brief Create the GameLevel Resource
-        GameLevel() : _currLevel(LEVEL_ONE), _hasLevelChanged(true), _nbkills(0) {};
+        GameLevel() : _currLevel(LEVEL_ONE), _hasLevelChanged(true), _nbkills(0){};
 
         /// @brief Get the current level of the game
         /// @return the level of the game
-        inline level_e getCurrentLevel() {return this->_currLevel;};
+        inline level_e getCurrentLevel() { return this->_currLevel; };
 
         /// @brief Check if the game level has changed
         /// @return true if the level has change, false otherwise
-        inline bool hasLevelChanged() {return this->_hasLevelChanged;};
+        inline bool hasLevelChanged() { return this->_hasLevelChanged; };
 
         /// @brief State that the level has changed because mob have been generated
-        inline void levelHasChanged() {this->_hasLevelChanged = false;};
+        inline void levelHasChanged() { this->_hasLevelChanged = false; };
 
         /// @brief Add new kills to the private value, increase the level if necessary
         /// @param newKills the number of new kills
