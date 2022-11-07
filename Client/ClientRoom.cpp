@@ -7,10 +7,6 @@
 
 /// @file Client/ClientRoom.cpp
 
-#ifdef _WIN32
-    #include <Windows.h>
-#endif
-
 #include <csignal>
 #include <functional>
 #include <mutex>
@@ -84,6 +80,10 @@
 #include "R-TypeLogic/Server/Systems/EnemyShootSystem.hpp"
 #include "R-TypeLogic/Server/Systems/LifeTimeDeathSystem.hpp"
 #include "R-TypeLogic/Server/Systems/MobGenerationSystem.hpp"
+
+#ifdef _WIN32
+    #include <Windows.h>
+#endif
 
 using namespace error_lib;
 using namespace communicator_lib;
