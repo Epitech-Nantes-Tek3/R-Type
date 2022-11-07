@@ -7,6 +7,10 @@
 
 /// @file Client/ClientRoom.cpp
 
+#ifdef _WIN32
+#include <Windows.h>
+#endif
+
 #include "ClientRoom.hpp"
 #include <csignal>
 #include <functional>
