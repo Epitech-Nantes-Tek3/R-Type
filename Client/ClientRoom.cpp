@@ -57,6 +57,7 @@
 #include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
 #include "R-TypeLogic/Global/SharedResources/Random.hpp"
 #include "R-TypeLogic/Global/Systems/DeathSystem.hpp"
+#include "R-TypeLogic/Global/Systems/ElectricInvisibleEnemySystem.hpp"
 #include "R-TypeLogic/Global/Systems/MovementSystem.hpp"
 #include "R-TypeLogic/Global/Systems/NoAfkInMenuSystem.hpp"
 #include "R-TypeLogic/Global/Systems/UpdateClockSystem.hpp"

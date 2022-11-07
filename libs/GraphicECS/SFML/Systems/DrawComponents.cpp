@@ -25,6 +25,7 @@
 #include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
 #include "R-TypeLogic/Global/Components/SizeComponent.hpp"
+#include "R-TypeLogic/Global/Components/InvisibleComponent.hpp"
 
 using namespace graphicECS::SFML::Systems;
 using namespace graphicECS::SFML::Resources;
@@ -107,8 +108,14 @@ void DrawComponents::_updatePlayer(LayerLvL &layerType, std::shared_ptr<ecs::Ent
 
 void DrawComponents::_updateEnemy(LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr)
 {
-    if (layerType.layer == LayerLvL::layer_e::ENEMY)
-        entityPtr->addComponent<TextureName>(GraphicsTextureResource::ENEMY_STATIC);
+    if (layerType.layer == LayerLvL::layer_e::ENEMY) {
+        switch (entityPtr->getComponent<Enemy>().enemyType) {
+            case Enemy::FIRE: entityPtr->addComponent<TextureName>(GraphicsTextureResource::FIRE_ENEMY); break;
+            case Enemy::ELECTRIC: entityPtr->addComponent<TextureName>(GraphicsTextureResource::ELECTRIC_ENEMY); break;
+            case Enemy::ICE: entityPtr->addComponent<TextureName>(GraphicsTextureResource::ICE_ENEMY); break;
+            default: entityPtr->addComponent<TextureName>(GraphicsTextureResource::BASIC_ENEMY); break;
+        };
+    }
 }
 
 void DrawComponents::_udpateProjectile(LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr)
@@ -204,7 +211,7 @@ void DrawComponents::_updateTexture(World &world, std::shared_ptr<ecs::Entity> e
 void DrawComponents::_drawRectangle(World &world, std::shared_ptr<ecs::Entity> entityPtr,
     graphicECS::SFML::Resources::RenderWindowResource &windowResource)
 {
-    if (entityPtr->contains<GraphicsRectangleComponent>()) {
+    if (entityPtr->contains<GraphicsRectangleComponent>() && !(entityPtr->contains<Invisible>())) {
         _updateTexture(world, entityPtr);
         if ((entityPtr->getComponent<LayerLvL>().layer == LayerLvL::BUTTON
                 || entityPtr->getComponent<LayerLvL>().layer == LayerLvL::WRITABLE)

@@ -22,7 +22,6 @@
 #include "R-TypeLogic/Global/Components/DestinationComponent.hpp"
 #include "R-TypeLogic/Global/Components/EquipmentComponent.hpp"
 #include "R-TypeLogic/Global/Components/InvinsibleComponent.hpp"
-#include "R-TypeLogic/Global/Components/InvisibleComponent.hpp"
 #include "R-TypeLogic/Global/Components/LifeComponent.hpp"
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
 #include "R-TypeLogic/Global/Components/VelocityComponent.hpp"
@@ -41,14 +40,12 @@ Transisthor::Transisthor(Communicator &communicator, World &ecsWorld) : _communi
     _componentConvertFunctionList[3] =
         std::bind(&Transisthor::componentConvertInvinsibleType, this, std::placeholders::_1, std::placeholders::_2);
     _componentConvertFunctionList[4] =
-        std::bind(&Transisthor::componentConvertInvisibleType, this, std::placeholders::_1, std::placeholders::_2);
-    _componentConvertFunctionList[5] =
         std::bind(&Transisthor::componentConvertLifeType, this, std::placeholders::_1, std::placeholders::_2);
-    _componentConvertFunctionList[6] =
+    _componentConvertFunctionList[5] =
         std::bind(&Transisthor::componentConvertPositionType, this, std::placeholders::_1, std::placeholders::_2);
-    _componentConvertFunctionList[7] =
+    _componentConvertFunctionList[6] =
         std::bind(&Transisthor::componentConvertVelocityType, this, std::placeholders::_1, std::placeholders::_2);
-    _componentConvertFunctionList[8] =
+    _componentConvertFunctionList[7] =
         std::bind(&Transisthor::componentConvertDeathType, this, std::placeholders::_1, std::placeholders::_2);
     _entityConvertFunctionList[1] =
         std::bind(&Transisthor::entityConvertAlliedProjectileType, this, std::placeholders::_1, std::placeholders::_2);
@@ -329,14 +326,6 @@ void Transisthor::componentConvertInvinsibleType(unsigned short id, void *byteCo
     Invinsible newComponent = buildComponentFromByteCode<Invinsible>(byteCode);
 
     _ecsWorld.updateComponentOfAnEntityFromGivenDistinctiveComponent<Networkable, Invinsible>(
-        Networkable(id), newComponent);
-}
-
-void Transisthor::componentConvertInvisibleType(unsigned short id, void *byteCode)
-{
-    Invisible newComponent = buildComponentFromByteCode<Invisible>(byteCode);
-
-    _ecsWorld.updateComponentOfAnEntityFromGivenDistinctiveComponent<Networkable, Invisible>(
         Networkable(id), newComponent);
 }
 

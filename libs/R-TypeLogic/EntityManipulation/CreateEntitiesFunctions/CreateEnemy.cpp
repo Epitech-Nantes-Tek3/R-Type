@@ -30,7 +30,7 @@ namespace ecs
         if (networkId) {
             // Case : Creation in a server instance
             RandomDevice &random = world.getResource<RandomDevice>();
-            auto guard = std::lock_guard(random);
+            auto guardRandom = std::lock_guard(random);
             entity.addComponent<NewlyCreated>(uuid, false);
             entity.addComponent<Networkable>(networkId);
             entity.addComponent<ShootingFrequency>(1.3);
@@ -43,6 +43,7 @@ namespace ecs
                 entity.addComponent<NewlyCreated>(uuid, true);
             }
             entity.addComponent<LayerLvL>(LayerLvL::layer_e::ENEMY);
+            entity.addComponent<Destination>(0, 0);
         }
         return entity.getId();
     }
