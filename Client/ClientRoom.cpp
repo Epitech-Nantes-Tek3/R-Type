@@ -331,9 +331,6 @@ void ClientRoom::_holdADisconnectionRequest() { _state = ClientState::ENDED; }
 
 void ClientRoom::_updateEcsResources()
 {
-    // MusicResource::music_e::BACKGROUNDTHEME, "assets/Musics/music_background.wav"
-    // SoundResource::sound_e::SHOOT, "assets/Sounds/sound.wav"
-
     if (!_worldInstance->containsResource<RandomDevice>())
         _worldInstance->addResource<RandomDevice>();
     if (!_worldInstance->containsResource<GameClock>())
@@ -527,33 +524,6 @@ void ClientRoom::_initInGameWritables()
     createNewWritableButton(*(_worldInstance.get()), 1820, 900, 80, 50,
         std::function<void(World &, Entity &, std::string &)>(publishNewChatMessage), MenuStates::IN_GAME, writableId);
 }
-
-// void ClientRoom::_initSystems(bool isSolo)
-// {
-//     _worldInstance->addSystem<UpdateClock>();
-//     _worldInstance->addSystem<DrawComponents>();
-//     _worldInstance->addSystem<InputManagement>();
-//     _worldInstance->addSystem<Parallax>();
-//     _worldInstance->addSystem<MusicManagement>();
-//     _worldInstance->addSystem<SoundManagement>();
-//     _worldInstance->addSystem<DeathSystem>();
-//     _worldInstance->addSystem<SfObjectFollowEntitySystem>();
-//     _worldInstance->addSystem<Movement>();
-//     _worldInstance->addSystem<AnimationSystem>();
-//     _worldInstance->addSystem<RemoveChatSystem>();
-
-//     if (isSolo) {
-//         _worldInstance->addSystem<EnemiesPatterns>();
-//         _worldInstance->addSystem<EnemyShootSystem>();
-//         _worldInstance->addSystem<Collide>();
-//         _worldInstance->addSystem<DeathLife>();
-//         _worldInstance->addSystem<LifeTimeDeath>();
-//         _worldInstance->addSystem<DecreaseLifeTime>();
-//     } else {
-//         _worldInstance->addSystem<SendToServer>();
-//         _worldInstance->addSystem<SendNewlyCreatedToServer>();
-//     }
-// }
 
 void ClientRoom::_updateEcsSystems(bool isSolo)
 {

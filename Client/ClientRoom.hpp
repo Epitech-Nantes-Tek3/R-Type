@@ -52,18 +52,47 @@ namespace client_data
         int startGame();
 
       private:
-        /// @brief Hold a room connection process
+        /// @brief It sends the pseudo of the client to the server
         void _connectToARoom();
+
+        /// @brief It creates two buttons, one for the lobby and one for exiting the game
         void _initMainMenuButtons();
+
+        /// @brief It creates four entities with a parallax background component, a graphics
+        /// rectangle component, a position component, a velocity component, a layer level
+        /// component, and a texture name component
         void _initInGameBackgrounds();
+
+        /// @brief It loads the button actions into the button action map
         void _loadButtonActionMap();
+
+        /// @brief It creates an entity with all the input components and sets the
+        /// keyboard and mouse inputs to the entity
         void _initInputsEntity();
+
+        /// @brief It loads all the textures needed for the game
         void _loadTextures();
+
+        /// @brief It updates the ECS data
+        /// @param isSolo If true, the client will be the only player in the room.
         void _updateEcsData(bool isSolo);
+
+        /// @brief It checks if the ECS resources are loaded, and if not, it loads them
         void _updateEcsResources();
+
+        /// @brief It initializes the entities that are needed for the current state of the game
         void _updateEcsEntities();
+
+        /// @brief It adds all the systems needed for the game to work
+        /// @param isSolo if the game is in solo mode or not
         void _updateEcsSystems(bool isSolo);
+
+        /// @brief It's a big switch case that handles all the messages that the client can
+        /// receive from the server
+        /// @param isSolo a boolean that tells if the client is alone in the room or not.
+        /// @return A boolean.
         bool _answerProtocols(bool isSolo);
+
         /// @brief Get call back handler for a solo game
         void _signalSoloCallbackHandler(int signum);
 
