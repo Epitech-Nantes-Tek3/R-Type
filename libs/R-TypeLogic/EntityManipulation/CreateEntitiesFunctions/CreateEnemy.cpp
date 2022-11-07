@@ -30,12 +30,15 @@ namespace ecs
             .addComponent<Enemy>(type)
             .addComponent<Destination>(
                 random.randInt(MINIMUM_WIDTH, MAXIMUM_WIDTH), random.randInt(MINIMUM_HEIGTH, MAXIMUM_HEIGTH));
-                switch (type) {
-                case Enemy::FIRE : entity.addComponent<ShootingFrequency>(2); break;
-                case Enemy::ELECTRIC : entity.addComponent<ShootingFrequency>(0.5); break;
-                case Enemy::ICE : entity.addComponent<ShootingFrequency>(1); break;
-                default : entity.addComponent<ShootingFrequency>(1.5); break;;
-            };
+        switch (type) {
+            case Enemy::FIRE: entity.addComponent<ShootingFrequency>(2); break;
+            case Enemy::ELECTRIC: entity.addComponent<ShootingFrequency>(0.5); break;
+            case Enemy::ICE: entity.addComponent<ShootingFrequency>(1); break;
+            default:
+                entity.addComponent<ShootingFrequency>(1.5);
+                break;
+                ;
+        };
         if (networkId) {
             // Case : Creation in a server instance
             entity.addComponent<NewlyCreated>(uuid, false);
