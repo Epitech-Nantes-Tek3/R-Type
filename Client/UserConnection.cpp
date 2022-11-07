@@ -70,6 +70,7 @@ void UserConnection::_loadResourcesUserConnection()
             sf::Vector2f(34, 0), sf::Vector2f(34, 34));
     _world->getResource<GraphicsTextureResource>().addTexture(GraphicsTextureResource::WRITABLE, "assets/EpiSprite/r-typesheet11.gif");
     _world->getResource<GraphicsTextureResource>().addTexture(GraphicsTextureResource::WRITABLE_BUTTON, "assets/EpiSprite/r-typesheet11.gif");
+    _world->getResource<GraphicsTextureResource>().addTexture(GraphicsTextureResource::WRITABLE_SELECTED, "assets/EpiSprite/r-typesheet11.gif");
     _world->getResource<ButtonActionMap>().addAction(
         ButtonActionMap::WRITABLE, std::function<void(World &, Entity &)>(selectAWritable));
 }
