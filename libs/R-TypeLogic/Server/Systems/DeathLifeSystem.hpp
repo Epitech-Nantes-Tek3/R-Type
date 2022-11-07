@@ -13,6 +13,7 @@
 #include "Transisthor/TransisthorECSLogic/Server/Resources/NetworkableIdGenerator.hpp"
 #include "World/World.hpp"
 #include "R-TypeLogic/Global/Components/DeathComponent.hpp"
+#include "R-TypeLogic/Global/Components/EnemyComponent.hpp"
 #include "R-TypeLogic/Global/Components/LifeComponent.hpp"
 #include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
 #include "R-TypeLogic/Global/SharedResources/GameLevel.hpp"
