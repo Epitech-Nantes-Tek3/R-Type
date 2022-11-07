@@ -15,22 +15,45 @@ using namespace ecs;
 
 /// @brief Generate infinite enemies
 /// @param world the world where the enemies will be generated
+/// @param hasLevelChanged if the level has changed, spawn a boss
 /// Ice enemies cannot be generated here, so we randomise the type between
 /// Enemy::BASIC = 0 and Enemy::ELECTRIC = 2
-static void infiniteSpawn(World &world)
+static void infiniteSpawn(World &world, bool hasLevelChanged)
 {
-    if (!world.containsResource<RandomDevice>() || !world.containsResource<NetworkableIdGenerator>())
+    if (!world.containsResource<RandomDevice>())
         return;
+    std::vector<std::shared_ptr<Entity>> joined = world.joinEntities<Enemy>();
     RandomDevice &random = world.getResource<RandomDevice>();
+    std::size_t currNbEnemies = joined.size();
+
+    if (hasLevelChanged) {
+        // spawn a boss
+    }
+
     random.lock();
-    unsigned int newType = random.randInt(0, 2);
+    unsigned int newNbrsEnemies = random.randInt(10, 15);
     random.unlock();
 
-    NetworkableIdGenerator &gen = world.getResource<NetworkableIdGenerator>();
-    gen.lock();
-    unsigned short id = gen.generateNewNetworkableId();
-    gen.unlock();
-    createNewEnemyRandom(world, 0, 0, 1, 34, 34, 40, 20, 5, newType, "", id);
+    while (newNbrsEnemies > currNbEnemies) {
+        random.lock();
+        unsigned int newType = random.randInt(0, 2);
+        random.unlock();
+
+        unsigned int networkId = 0;
+        if (world.containsResource<NetworkableIdGenerator>()) {
+            NetworkableIdGenerator &gen = world.getResource<NetworkableIdGenerator>();
+
+            gen.lock();
+            networkId = gen.generateNewNetworkableId();
+            gen.unlock();
+        }
+        switch (newType) {
+            case Enemy::FIRE : createFireEnemy(world, networkId); break;
+            case Enemy::ELECTRIC : createElectricEnemy(world, networkId); break;
+            default : createBasicEnemy(world, networkId); break;
+        }
+        newNbrsEnemies--;
+    }
 }
 
 void MobGeneration::run(World &world)
@@ -48,12 +71,11 @@ void MobGeneration::run(World &world)
         return;
     if (hasLevelChanged) {
         switch (currLvl) {
-            case GameLevel::LEVEL_ONE: return;
-            case GameLevel::LEVEL_TWO: return;
-            case GameLevel::LEVEL_THREE: return;
-            case GameLevel::LEVEL_FORTH: return;
-            default: break;
+            case GameLevel::LEVEL_ONE: break;
+            case GameLevel::LEVEL_TWO: break;
+            case GameLevel::LEVEL_THREE: break;
+            case GameLevel::LEVEL_FORTH: break;
+            default: infiniteSpawn(world, hasLevelChanged); break;
         }
     }
-    infiniteSpawn(world);
 }
