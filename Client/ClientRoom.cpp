@@ -114,13 +114,6 @@ ClientRoom::ClientRoom(std::string address, unsigned short port, std::string ser
     _password = "";
 }
 
-// void ClientRoom::_initEcsGameData(void)
-// {
-//     _initSharedResources();
-//     _initSystems();
-//     _initEntities();
-// }
-
 void ClientRoom::_startConnexionProtocol(void)
 {
     void *networkData = std::malloc(sizeof(char) * 10);
@@ -250,7 +243,7 @@ void ClientRoom::_updateEcsResources()
     if (!_worldInstance->containsResource<GraphicsFontResource>())
         _worldInstance->addResource<GraphicsFontResource>("assets/fonts/arial.ttf");
     if (!_worldInstance->containsResource<MenuStates>())
-        _worldInstance->addResource<MenuStates>(MenuStates::GAME_PAUSED);
+        _worldInstance->addResource<MenuStates>(MenuStates::MAIN_MENU);
     if (!_worldInstance->containsResource<MusicResource>())
         _worldInstance->addResource<MusicResource>();
     if (!_worldInstance->containsResource<SoundResource>())
@@ -346,6 +339,7 @@ void ClientRoom::_loadButtonActionMap()
     actionsList.addAction(ButtonActionMap::WRITABLE, std::function<void(World &, Entity &)>(selectAWritable));
     actionsList.addAction(
         ButtonActionMap::WRITABLE_BUTTON, std::function<void(World &, Entity &)>(writableButtonAction));
+    actionsList.addAction(ButtonActionMap::LOBBY, std::function<void(World &, Entity &)>(connectToARoom));
 }
 
 void ClientRoom::_updateEcsEntities()
@@ -410,8 +404,8 @@ void ClientRoom::_initInGameButtons()
 
 void ClientRoom::_initMainMenuButtons()
 {
-    createNewButton(*(_worldInstance.get()), 0, 0, 200, 50, ButtonActionMap::LOBBY, LayerLvL::BUTTON, MenuStates::UNDEFINED);
-    createNewButton(*(_worldInstance.get()), 200, 0, 200, 50, ButtonActionMap::EXIT, LayerLvL::BUTTON, MenuStates::UNDEFINED);
+    createNewButton(*(_worldInstance.get()), 0, 0, 200, 50, ButtonActionMap::LOBBY, LayerLvL::BUTTON, MenuStates::MAIN_MENU);
+    createNewButton(*(_worldInstance.get()), 200, 0, 200, 50, ButtonActionMap::EXIT, LayerLvL::BUTTON, MenuStates::MAIN_MENU);
 }
 
 void ClientRoom::_initInGameWritables()
@@ -476,20 +470,15 @@ bool ClientRoom::_answerProtocols()
         }
         if (connectionOperation.message.type == 20) {
             _serverEndpoint = _communicatorInstance->getClientByHisId(_communicatorInstance->getServerEndpointId());
-            // _initEcsGameData();
             _connectToARoom();
         }
         if (connectionOperation.message.type == 15) {
-            if (_state == ClientState::MAIN_MENU) {
-                // _protocol15Answer(connectionOperation);
-                sleep(1);
-            }
+            // _protocol15Answer(connectionOperation);
+            sleep(1);
         }
         if (connectionOperation.message.type == 12) {
-            if (_state == ClientState::MAIN_MENU) {
-                _protocol12Answer(connectionOperation);
-                _updateEcsData();
-            }
+            _protocol12Answer(connectionOperation);
+            _updateEcsData();
         }
         if (connectionOperation.message.type == 50) {
             if (_state == ClientState::IN_GAME)
@@ -578,8 +567,3 @@ void ClientRoom::_initInGameBackgrounds()
         .addComponent<LayerLvL>(LayerLvL::layer_e::BACKGROUND)
         .addComponent<TextureName>(GraphicsTextureResource::BACKGROUND_LAYER_3);
 }
-
-// void ClientRoom::_initEntities()
-// {
-//     _initBackgroundEntities();
-// }

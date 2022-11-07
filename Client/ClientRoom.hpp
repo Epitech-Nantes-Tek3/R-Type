@@ -48,6 +48,8 @@ namespace client_data
         void startLobbyLoop(const std::string &pseudo, const std::string &password);
 
       private:
+        /// @brief Hold a room connection process
+        void _connectToARoom();
         void _initMainMenuButtons();
         void _initInGameBackgrounds();
         void _loadButtonActionMap();
@@ -92,8 +94,6 @@ namespace client_data
         /// @brief Ask the user to enter his Pseudonyme and password
         void _getClientPseudoAndPassword();
 
-        /// @brief Hold a room connection process
-        void _connectToARoom();
 
         /// @brief Init all the sprites needed for the player
         /// @param textureResource texture's map holding the texture and the corresponding key

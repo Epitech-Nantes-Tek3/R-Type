@@ -46,16 +46,18 @@ void DrawComponents::addButtonText(std::shared_ptr<Entity> buttonPtr, const sf::
     switch (buttonPtr->getComponent<ActionName>().actionName) {
         case ButtonActionMap::RESUME:
             buttonPtr->addComponent<GraphicsTextComponent>(
-                newFont, "Resume", pos.x, pos.y + size.y * 0.5, size.x * 0.3);
+                newFont, "Resume", pos.x, pos.y + size.y * 0.5);
             break;
         case ButtonActionMap::EXIT:
             buttonPtr->addComponent<GraphicsTextComponent>(
-                newFont, "Exit the game", pos.x, pos.y + size.y * 0.5, size.x * 0.3);
+                newFont, "Quit", pos.x, pos.y + size.y * 0.5);
             break;
         case ButtonActionMap::PAUSE:
-            buttonPtr->addComponent<GraphicsTextComponent>(newFont, "Pause", pos.x, pos.y + size.y * 0.5, size.x * 0.3);
+            buttonPtr->addComponent<GraphicsTextComponent>(newFont, "Pause", pos.x, pos.y + size.y * 0.5);
             break;
-        default: break;
+        default:
+            buttonPtr->addComponent<GraphicsTextComponent>(newFont, "Default", pos.x, pos.y + size.y * 0.5);
+            break;
     }
 }
 
