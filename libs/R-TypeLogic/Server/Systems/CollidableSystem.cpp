@@ -59,6 +59,8 @@ void Collide::enemiesKilledCounterByPlayer(
     if (sndLife.lifePoint == 0 && fstEntity->contains<Player>() && sndEntity->contains<Enemy>()) {
         auto apiAnswer = world.getTransisthorBridge()->getCommunicatorInstance().getDatabaseApi().selectUsers(
             "UserName = '" + fstEntity->getComponent<Player>().name + "'");
+        if (apiAnswer.size() == 0)
+            return;
         world.getTransisthorBridge()->getCommunicatorInstance().getDatabaseApi().updateUsers(
             "KilledEnemies = " + std::to_string(std::atoi(apiAnswer.at(0)["KilledEnemies"].c_str()) + 1),
             "UserName = '" + fstEntity->getComponent<Player>().name + "'");
@@ -72,6 +74,8 @@ void Collide::enemiesKilledCounterByAlliedProjectile(
         auto apiAnswer = world.getTransisthorBridge()->getCommunicatorInstance().getDatabaseApi().selectUsers(
             "UserName = '"
             + getParentNameFromProjectile(world, fstEntity->getComponent<AlliedProjectile>().parentNetworkId) + "'");
+        if (apiAnswer.size() == 0)
+            return;
         world.getTransisthorBridge()->getCommunicatorInstance().getDatabaseApi().updateUsers(
             "KilledEnemies = " + std::to_string(std::atoi(apiAnswer.at(0)["KilledEnemies"].c_str()) + 1),
             "UserName = '"
