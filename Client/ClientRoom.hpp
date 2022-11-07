@@ -27,7 +27,7 @@ namespace client_data
     class ClientRoom {
       public:
         /// @brief All the possible state of a client
-        enum ClientState { UNDEFINED, LOBBY, IN_GAME, ENDED };
+        enum ClientState { UNDEFINED, LOBBY, IN_GAME, ENDED, MAIN_MENU };
 
         /// @brief Construct a new ClientRoom with default value
         ClientRoom();
@@ -45,13 +45,54 @@ namespace client_data
         /// @brief Launch the lobby global loop for a multiplayer game
         /// @param pseudo The pseudo of the user
         /// @param password The password of the user
-        void startLobbyLoop(const std::string &pseudo, const std::string &password);
+        void startLobbyLoop(const std::string &pseudo, const std::string &password, bool isSolo);
 
         /// @brief This function start the game for the player to choose
         /// if the player is in Solo or Multiplayer mod
         int startGame();
 
       private:
+        /// @brief It sends the pseudo of the client to the server
+        void _connectToARoom();
+
+        /// @brief It creates two buttons, one for the lobby and one for exiting the game
+        void _initMainMenuButtons();
+
+        /// @brief It creates four entities with a parallax background component, a graphics
+        /// rectangle component, a position component, a velocity component, a layer level
+        /// component, and a texture name component
+        void _initInGameBackgrounds();
+
+        /// @brief It loads the button actions into the button action map
+        void _loadButtonActionMap();
+
+        /// @brief It creates an entity with all the input components and sets the
+        /// keyboard and mouse inputs to the entity
+        void _initInputsEntity();
+
+        /// @brief It loads all the textures needed for the game
+        void _loadTextures();
+
+        /// @brief It updates the ECS data
+        /// @param isSolo If true, the client will be the only player in the room.
+        void _updateEcsData(bool isSolo);
+
+        /// @brief It checks if the ECS resources are loaded, and if not, it loads them
+        void _updateEcsResources();
+
+        /// @brief It initializes the entities that are needed for the current state of the game
+        void _updateEcsEntities();
+
+        /// @brief It adds all the systems needed for the game to work
+        /// @param isSolo if the game is in solo mode or not
+        void _updateEcsSystems(bool isSolo);
+
+        /// @brief It's a big switch case that handles all the messages that the client can
+        /// receive from the server
+        /// @param isSolo a boolean that tells if the client is alone in the room or not.
+        /// @return A boolean.
+        bool _answerProtocols(bool isSolo);
+
         /// @brief Get call back handler for a solo game
         void _signalSoloCallbackHandler(int signum);
 
@@ -91,36 +132,33 @@ namespace client_data
         void _initBackgroundEntities();
 
         /// @brief Init all the Buttons and the linked actions
-        void _initButtons();
+        void _initInGameButtons();
 
         /// @brief Init all the Writable and the linked actions
-        void _initWritable();
+        void _initInGameWritables();
 
         /// @brief Ask the user to enter his Pseudonyme and password
         void _getClientPseudoAndPassword();
 
-        /// @brief Hold a room connection process
-        void _connectToARoom();
-
         /// @brief Init all the sprites needed for the player
-        /// @param spritesList texture's map holding the texture and the corresponding key
-        void _initSpritesForPlayer(graphicECS::SFML::Resources::GraphicsTextureResource &spritesList);
+        /// @param textureResource texture's map holding the texture and the corresponding key
+        void _initPlayerTextures(graphicECS::SFML::Resources::GraphicsTextureResource &textureResource);
 
         /// @brief Init all the sprites needed for the enemies
         /// @param spritesList texture's map holding the texture and the corresponding key
         void _initSpriteForEnemies(graphicECS::SFML::Resources::GraphicsTextureResource &spritesList);
 
         /// @brief Init all the sprites needed for the projectiles
-        /// @param spritesList texture's map holding the texture and the corresponding key
-        void _initSpritesForProjectiles(graphicECS::SFML::Resources::GraphicsTextureResource &spritesList);
+        /// @param textureResource texture's map holding the texture and the corresponding key
+        void _initProjectilesTextures(graphicECS::SFML::Resources::GraphicsTextureResource &textureResource);
 
         /// @brief Init all the sprites needed for the backgrounds
-        /// @param spritesList texture's map holding the texture and the corresponding key
-        void _initSpritesForBackgrounds(graphicECS::SFML::Resources::GraphicsTextureResource &spritesList);
+        /// @param textureResource texture's map holding the texture and the corresponding key
+        void _initBackgroundsTextures(graphicECS::SFML::Resources::GraphicsTextureResource &textureResource);
 
         /// @brief Init all the sprites needed for the Writable object
-        /// @param spritesList texture's map holding the texture and the corresponding key
-        void _initSpritesForWritable(graphicECS::SFML::Resources::GraphicsTextureResource &spritesList);
+        /// @param textureResource texture's map holding the texture and the corresponding key
+        void _initWritableTextures(graphicECS::SFML::Resources::GraphicsTextureResource &textureResource);
 
         /// @brief Network informations of the room.
         Client _networkInformations;
@@ -146,15 +184,11 @@ namespace client_data
         /// @brief Instance of the ECS library
         std::shared_ptr<World> _worldInstance;
 
-        /// @brief Init the Ressources and Systems of the ECS
-        /// @param isSolo True if the player choose to play in solo. False if he want to play in multiplayer
-        void _initEcsGameData(bool isSolo);
-
         /// @brief Start the connexion protocol and ask the server for a place inside the room
         void _startConnexionProtocol(void);
 
         /// @brief Answer the reception of a protocol 12
-        void protocol12Answer(CommunicatorMessage connexionResponse);
+        void _protocol12Answer(CommunicatorMessage connexionResponse);
 
         /// @brief Answer the reception of a protocol 15
         /// @param connectionResponse The received response

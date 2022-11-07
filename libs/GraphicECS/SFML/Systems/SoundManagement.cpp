@@ -18,6 +18,8 @@ namespace graphicECS::SFML::Systems
 
         auto stopSound = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
             SoundComponent soundComponent = entityPtr.get()->getComponent<SoundComponent>();
+            if (!world.getResource<SoundResource>()._soundsList.contains(soundComponent.sound_e))
+                return;
             sf::SoundBuffer new_buff(*world.getResource<SoundResource>()._soundsList.at(soundComponent.sound_e));
             sf::Sound sound;
 
