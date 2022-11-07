@@ -28,7 +28,7 @@ static void infiniteSpawn(World &world, bool hasLevelChanged)
     std::size_t currNbEnemies = joined.size();
 
     if (hasLevelChanged) {
-        // SPAWN A BOSS
+        // SPAWN A BOSS TO BE IMPLEMENTED
     }
 
     random.lock();
