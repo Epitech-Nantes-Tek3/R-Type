@@ -1,5 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classecs_1_1_system.html" title=" " alt="" coords="5,613,107,640"/>
+<area shape="rect" id="node1" href="$classecs_1_1_system.html" title=" " alt="" coords="5,639,107,665"/>
 <area shape="rect" id="node2" href="$struct_send_newly_created_to_clients.html" title=" " alt="" coords="159,5,365,32"/>
 <area shape="rect" id="node3" href="$struct_send_newly_created_to_server.html" title=" " alt="" coords="161,56,363,83"/>
 <area shape="rect" id="node4" href="$struct_send_to_client.html" title="SendToClient is a system that sends Networkable Entities datas to clients" alt="" coords="209,107,315,133"/>
@@ -13,16 +13,17 @@
 <area shape="rect" id="node12" href="$classecs_1_1_enemies_patterns.html" title="This is the pattern System for enemies. This system check if the enemy is at its destination,..." alt="" coords="181,512,343,539"/>
 <area shape="rect" id="node13" href="$classecs_1_1_enemy_shoot_system.html" title="The Enemy shoot system This system create a enemyProjectile each time the cooldown is equal to zero." alt="" coords="171,563,353,589"/>
 <area shape="rect" id="node14" href="$structecs_1_1_life_time_death.html" title="This is the LifeTimeDeath System. This System takes all entities that have a LifeTime Component with ..." alt="" coords="188,613,336,640"/>
-<area shape="rect" id="node15" href="$structecs_1_1_movement.html" title="This is the Movement system. This system can move any entities which contains a Position and a Veloci..." alt="" coords="201,664,323,691"/>
-<area shape="rect" id="node16" href="$structecs_1_1_no_afk_in_menu.html" title="This is a system which makes the player &quot;connected&quot; to still have the client open while in menu." alt="" coords="192,715,332,741"/>
-<area shape="rect" id="node17" href="$structecs_1_1_remove_afk_system.html" title="This is the RemoveAfk System. It will send a protocol 13 to afk client." alt="" coords="173,765,351,792"/>
-<area shape="rect" id="node18" href="$structecs_1_1_update_clock.html" title="UpdateClock System. Will be used to call the GameClock&#39;s reset." alt="" coords="195,816,329,843"/>
-<area shape="rect" id="node19" href="$structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_animation_system.html" title="This structure system updates the AnimationFrequency and update texture on shapes." alt="" coords="161,867,363,909"/>
-<area shape="rect" id="node20" href="$structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_draw_components.html" title="This class draw GraphicsComponents on window." alt="" coords="161,933,363,974"/>
-<area shape="rect" id="node21" href="$structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_input_management.html" title="This system class manage SFML input to link them to an action." alt="" coords="161,998,363,1039"/>
-<area shape="rect" id="node22" href="$structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_music_management.html" title="This System manages the status of all Music with the Music Component Status." alt="" coords="161,1063,363,1105"/>
-<area shape="rect" id="node23" href="$structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_parallax.html" title="Parallax System. Make a moving background to make an &quot;infinite map&quot;." alt="" coords="161,1129,363,1170"/>
-<area shape="rect" id="node24" href="$structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_remove_chat_system.html" title="This structure system updates the ChatMessageLife frequency and remove the dead one." alt="" coords="161,1194,363,1235"/>
-<area shape="rect" id="node25" href="$structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sf_object_follow_entity_system.html" title="This system class manage SFML Rectangle Shape to modify it&#39;s SfRectangleSahpePosition with the Positi..." alt="" coords="155,1259,369,1301"/>
-<area shape="rect" id="node26" href="$structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sound_management.html" title="This System manages the status of all Sound with the Sound Component Status." alt="" coords="161,1325,363,1366"/>
+<area shape="rect" id="node15" href="$structecs_1_1_mob_generation.html" title="This is the mob generation system It generates mob corresponding to the game level The difficulty inc..." alt="" coords="186,664,338,691"/>
+<area shape="rect" id="node16" href="$structecs_1_1_movement.html" title="This is the Movement system. This system can move any entities which contains a Position and a Veloci..." alt="" coords="201,715,323,741"/>
+<area shape="rect" id="node17" href="$structecs_1_1_no_afk_in_menu.html" title="This is a system which makes the player &quot;connected&quot; to still have the client open while in menu." alt="" coords="192,765,332,792"/>
+<area shape="rect" id="node18" href="$structecs_1_1_remove_afk_system.html" title="This is the RemoveAfk System. It will send a protocol 13 to afk client." alt="" coords="173,816,351,843"/>
+<area shape="rect" id="node19" href="$structecs_1_1_update_clock.html" title="UpdateClock System. Will be used to call the GameClock&#39;s reset." alt="" coords="195,867,329,893"/>
+<area shape="rect" id="node20" href="$structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_animation_system.html" title="This structure system updates the AnimationFrequency and update texture on shapes." alt="" coords="161,918,363,959"/>
+<area shape="rect" id="node21" href="$structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_draw_components.html" title="This class draw GraphicsComponents on window." alt="" coords="161,983,363,1025"/>
+<area shape="rect" id="node22" href="$structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_input_management.html" title="This system class manage SFML input to link them to an action." alt="" coords="161,1049,363,1090"/>
+<area shape="rect" id="node23" href="$structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_music_management.html" title="This System manages the status of all Music with the Music Component Status." alt="" coords="161,1114,363,1155"/>
+<area shape="rect" id="node24" href="$structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_parallax.html" title="Parallax System. Make a moving background to make an &quot;infinite map&quot;." alt="" coords="161,1179,363,1221"/>
+<area shape="rect" id="node25" href="$structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_remove_chat_system.html" title="This structure system updates the ChatMessageLife frequency and remove the dead one." alt="" coords="161,1245,363,1286"/>
+<area shape="rect" id="node26" href="$structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sf_object_follow_entity_system.html" title="This system class manage SFML Rectangle Shape to modify it&#39;s SfRectangleSahpePosition with the Positi..." alt="" coords="155,1310,369,1351"/>
+<area shape="rect" id="node27" href="$structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sound_management.html" title="This System manages the status of all Sound with the Sound Component Status." alt="" coords="161,1375,363,1417"/>
 </map>

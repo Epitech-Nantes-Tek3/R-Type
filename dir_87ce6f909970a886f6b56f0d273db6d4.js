@@ -25,6 +25,10 @@ var dir_87ce6f909970a886f6b56f0d273db6d4 =
     [ "LifeTimeDeathSystem.hpp", "_life_time_death_system_8hpp.html", [
       [ "LifeTimeDeath", "structecs_1_1_life_time_death.html", "structecs_1_1_life_time_death" ]
     ] ],
+    [ "MobGenerationSystem.cpp", "_mob_generation_system_8cpp.html", null ],
+    [ "MobGenerationSystem.hpp", "_mob_generation_system_8hpp.html", [
+      [ "MobGeneration", "structecs_1_1_mob_generation.html", "structecs_1_1_mob_generation" ]
+    ] ],
     [ "RemoveAfkSystem.cpp", "_remove_afk_system_8cpp.html", null ],
     [ "RemoveAfkSystem.hpp", "_remove_afk_system_8hpp.html", [
       [ "RemoveAfkSystem", "structecs_1_1_remove_afk_system.html", "structecs_1_1_remove_afk_system" ]

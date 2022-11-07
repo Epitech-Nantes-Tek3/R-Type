@@ -226,6 +226,9 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_game_clock.html">GameClock</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shared <a class="el" href="classecs_1_1_resource.html" title="This is the Resource Class for ECS The base Resource type, all Resources must inherit from Resource....">Resource</a> Clock for the Game.  <a href="classecs_1_1_game_clock.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_game_level.html">GameLevel</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shared <a class="el" href="classecs_1_1_resource.html" title="This is the Resource Class for ECS The base Resource type, all Resources must inherit from Resource....">Resource</a> game level, used to decide the current level of the game.  <a href="classecs_1_1_game_level.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structecs_1_1_random_device.html">RandomDevice</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Random Shared <a class="el" href="classecs_1_1_resource.html" title="This is the Resource Class for ECS The base Resource type, all Resources must inherit from Resource....">Resource</a>.  <a href="structecs_1_1_random_device.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -267,6 +270,9 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structecs_1_1_life_time_death.html">LifeTimeDeath</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the <a class="el" href="structecs_1_1_life_time_death.html" title="This is the LifeTimeDeath System. This System takes all entities that have a LifeTime Component with ...">LifeTimeDeath</a> <a class="el" href="classecs_1_1_system.html">System</a>. This <a class="el" href="classecs_1_1_system.html">System</a> takes all entities that have a <a class="el" href="classecs_1_1_life_time.html" title="The LifeTime class, telling how long an entity is going to live.">LifeTime</a> <a class="el" href="classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone...">Component</a> with 0 timeLeft or less and adds a <a class="el" href="classecs_1_1_death.html" title="The Death Component which defines that an entity is dead and will be deleted by Death System It&#39;s a n...">Death</a> <a class="el" href="classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone...">Component</a> to them. It's a system that will be called by the engine world with the function runSystem()  <a href="structecs_1_1_life_time_death.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structecs_1_1_mob_generation.html">MobGeneration</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the mob generation system It generates mob corresponding to the game level The difficulty increases with the game level.  <a href="structecs_1_1_mob_generation.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structecs_1_1_remove_afk_system.html">RemoveAfkSystem</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the RemoveAfk <a class="el" href="classecs_1_1_system.html">System</a>. It will send a protocol 13 to afk client.  <a href="structecs_1_1_remove_afk_system.html#details">More...</a><br /></td></tr>
@@ -314,6 +320,18 @@ Functions</h2></td></tr>
 <tr class="memitem:ab7fa4b5b5616ea9a84351bcc96cb7b16"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceecs.html#ab7fa4b5b5616ea9a84351bcc96cb7b16">createNewEnemyRandom</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, const double multiplierAbscissa, const double multiplierOrdinate, const short weight, const int sizeX, const int sizeY, const unsigned short life, const unsigned short damage, const unsigned short damageRadius, unsigned short type, const std::string uuid=&quot;&quot;, const unsigned short networkId=0)</td></tr>
 <tr class="memdesc:ab7fa4b5b5616ea9a84351bcc96cb7b16"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function creates a new <a class="el" href="classecs_1_1_enemy.html" title="Enemy Component allows an entity to be used as an Enemy.">Enemy</a> <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components The std::mutex inheritance is in...">Entity</a> with random position and with these parameters.  <a href="namespaceecs.html#ab7fa4b5b5616ea9a84351bcc96cb7b16">More...</a><br /></td></tr>
 <tr class="separator:ab7fa4b5b5616ea9a84351bcc96cb7b16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a14e2a4be72f02b4662ca679fce83d9"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceecs.html#a0a14e2a4be72f02b4662ca679fce83d9">createBasicEnemy</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, const unsigned short networkId=0)</td></tr>
+<tr class="memdesc:a0a14e2a4be72f02b4662ca679fce83d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function creates a basic enemy with corresponding caracteristics.  <a href="namespaceecs.html#a0a14e2a4be72f02b4662ca679fce83d9">More...</a><br /></td></tr>
+<tr class="separator:a0a14e2a4be72f02b4662ca679fce83d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87717576e0965e060e3b071a40ff8a8b"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceecs.html#a87717576e0965e060e3b071a40ff8a8b">createFireEnemy</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, const unsigned short networkId=0)</td></tr>
+<tr class="memdesc:a87717576e0965e060e3b071a40ff8a8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function creates a fire enemy with corresponding caracteristics.  <a href="namespaceecs.html#a87717576e0965e060e3b071a40ff8a8b">More...</a><br /></td></tr>
+<tr class="separator:a87717576e0965e060e3b071a40ff8a8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2c04b3712d3089f56affc60722b55ab"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceecs.html#aa2c04b3712d3089f56affc60722b55ab">createElectricEnemy</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, const unsigned short networkId=0)</td></tr>
+<tr class="memdesc:aa2c04b3712d3089f56affc60722b55ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function creates an electric enemy with corresponding caracteristics.  <a href="namespaceecs.html#aa2c04b3712d3089f56affc60722b55ab">More...</a><br /></td></tr>
+<tr class="separator:aa2c04b3712d3089f56affc60722b55ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e650072dfe14acd9637771dbe245eed"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceecs.html#a6e650072dfe14acd9637771dbe245eed">createIceEnemy</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, const unsigned short networkId=0)</td></tr>
+<tr class="memdesc:a6e650072dfe14acd9637771dbe245eed"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function creates an ice enemy with corresponding caracteristics.  <a href="namespaceecs.html#a6e650072dfe14acd9637771dbe245eed">More...</a><br /></td></tr>
+<tr class="separator:a6e650072dfe14acd9637771dbe245eed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa62e95c47f17c08d6077518fbf890fb9"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceecs.html#aa62e95c47f17c08d6077518fbf890fb9">createNewEnemyProjectile</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, std::shared_ptr&lt; <a class="el" href="classecs_1_1_entity.html">ecs::Entity</a> &gt; enemy, const std::string uuid=&quot;&quot;, unsigned short networkId=0)</td></tr>
 <tr class="memdesc:aa62e95c47f17c08d6077518fbf890fb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function create a new <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components The std::mutex inheritance is in...">Entity</a> projectile_enemy when an enemy shoot.  <a href="namespaceecs.html#aa62e95c47f17c08d6077518fbf890fb9">More...</a><br /></td></tr>
 <tr class="separator:aa62e95c47f17c08d6077518fbf890fb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -370,6 +388,154 @@ template&lt;std::derived_from&lt; Component &gt; C&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>C The newly created comoponent </dd></dl>
+
+</div>
+</div>
+<a id="a0a14e2a4be72f02b4662ca679fce83d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a14e2a4be72f02b4662ca679fce83d9">&#9670;&nbsp;</a></span>createBasicEnemy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::size_t ecs::createBasicEnemy </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classecs_1_1_world.html">World</a> &amp;&#160;</td>
+          <td class="paramname"><em>world</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned short&#160;</td>
+          <td class="paramname"><em>networkId</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function creates a basic enemy with corresponding caracteristics. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">world</td><td>the world where the enemy will be created </td></tr>
+    <tr><td class="paramname">networkdId</td><td>The id of the <a class="el" href="classecs_1_1_networkable.html" title="This component is used to know which entities must be the same in the server and in client....">Networkable</a> <a class="el" href="classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone...">Component</a>. In the client instance, it MUST NOT be filled in. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa2c04b3712d3089f56affc60722b55ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2c04b3712d3089f56affc60722b55ab">&#9670;&nbsp;</a></span>createElectricEnemy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::size_t ecs::createElectricEnemy </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classecs_1_1_world.html">World</a> &amp;&#160;</td>
+          <td class="paramname"><em>world</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned short&#160;</td>
+          <td class="paramname"><em>networkId</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function creates an electric enemy with corresponding caracteristics. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">world</td><td>the world where the enemy will be created </td></tr>
+    <tr><td class="paramname">networkdId</td><td>The id of the <a class="el" href="classecs_1_1_networkable.html" title="This component is used to know which entities must be the same in the server and in client....">Networkable</a> <a class="el" href="classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone...">Component</a>. In the client instance, it MUST NOT be filled in. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a87717576e0965e060e3b071a40ff8a8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87717576e0965e060e3b071a40ff8a8b">&#9670;&nbsp;</a></span>createFireEnemy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::size_t ecs::createFireEnemy </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classecs_1_1_world.html">World</a> &amp;&#160;</td>
+          <td class="paramname"><em>world</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned short&#160;</td>
+          <td class="paramname"><em>networkId</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function creates a fire enemy with corresponding caracteristics. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">world</td><td>the world where the enemy will be created </td></tr>
+    <tr><td class="paramname">networkdId</td><td>The id of the <a class="el" href="classecs_1_1_networkable.html" title="This component is used to know which entities must be the same in the server and in client....">Networkable</a> <a class="el" href="classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone...">Component</a>. In the client instance, it MUST NOT be filled in. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6e650072dfe14acd9637771dbe245eed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e650072dfe14acd9637771dbe245eed">&#9670;&nbsp;</a></span>createIceEnemy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::size_t ecs::createIceEnemy </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classecs_1_1_world.html">World</a> &amp;&#160;</td>
+          <td class="paramname"><em>world</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned short&#160;</td>
+          <td class="paramname"><em>networkId</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function creates an ice enemy with corresponding caracteristics. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">world</td><td>the world where the enemy will be created </td></tr>
+    <tr><td class="paramname">networkdId</td><td>The id of the <a class="el" href="classecs_1_1_networkable.html" title="This component is used to know which entities must be the same in the server and in client....">Networkable</a> <a class="el" href="classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone...">Component</a>. In the client instance, it MUST NOT be filled in. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

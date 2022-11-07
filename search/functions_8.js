@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['keyboardinputcomponent_1187',['KeyboardInputComponent',['../classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_keyboard_input_component.html#add624e7386f1770af3ca92eabaca1882',1,'graphicECS::SFML::Components::KeyboardInputComponent']]],
-  ['kickaclient_1188',['kickAClient',['../classcommunicator__lib_1_1_communicator.html#ac609968cc689b60055e9ecc220d79e3b',1,'communicator_lib::Communicator']]]
+  ['joinentities_1221',['joinEntities',['../classecs_1_1_world.html#adcbfd0e32647d24f15d124f92dc3fe73',1,'ecs::World']]]
 ];
