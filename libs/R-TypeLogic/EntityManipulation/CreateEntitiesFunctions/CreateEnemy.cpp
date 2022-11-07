@@ -42,7 +42,6 @@ namespace ecs
                 entity.addComponent<NewlyCreated>(uuid, true);
             }
             entity.addComponent<LayerLvL>(LayerLvL::layer_e::ENEMY);
-            entity.addComponent<Destination>(0, 0);
         }
         return entity.getId();
     }
