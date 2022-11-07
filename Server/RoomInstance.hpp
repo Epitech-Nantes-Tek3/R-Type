@@ -85,7 +85,7 @@ namespace server_data
         boost::process::child *_child;
 
         /// @brief The thread used to read and manage interprocess communications
-        boost::thread _inputHandler;
+        std::unique_ptr<boost::thread> _inputHandler;
 
         /// @brief Check if the Room instance has to be finished
         bool _terminated;

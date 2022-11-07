@@ -42,10 +42,14 @@ namespace client_data
         /// @brief Destroy the ClientRoom object
         ~ClientRoom() = default;
 
-        /// @brief Launch the lobby global loop
+        /// @brief Launch the lobby global loop for a multiplayer game
         /// @param pseudo The pseudo of the user
         /// @param password The password of the user
-        void startLobbyLoop(const std::string &pseudo, const std::string &password);
+        void startLobbyLoop(const std::string &pseudo, const std::string &password, bool isSolo);
+
+        /// @brief This function start the game for the player to choose
+        /// if the player is in Solo or Multiplayer mod
+        int startGame();
 
       private:
         /// @brief Hold a room connection process
@@ -55,16 +59,29 @@ namespace client_data
         void _loadButtonActionMap();
         void _initInputsEntity();
         void _loadTextures();
-        void _updateEcsData();
+        void _updateEcsData(bool isSolo);
         void _updateEcsResources();
         void _updateEcsEntities();
-        void _updateEcsSystems();
-        bool _answerProtocols();
+        void _updateEcsSystems(bool isSolo);
+        bool _answerProtocols(bool isSolo);
+        /// @brief Get call back handler for a solo game
+        void _signalSoloCallbackHandler(int signum);
+
+        /// @brief Launch the lobby global loop for a solo game
+        void _startSoloLoop();
+
         /// @brief Init all shared resources of the world.
         void _initSharedResources();
 
+        /// @brief This function allows to get name and password of the player for the server
+        int _choosePlayerInfosForServer();
+
+        /// @brief This function create all entities needed for a solo game
+        void _initSoloData();
+
         /// @brief Init all systems of the world.
-        void _initSystems();
+        /// @param isSolo Tell if the game is in solo or multiplayer MODE
+        void _initSystems(bool isSolo);
 
         /// @brief Init some entities only created by the client.
         void _initEntities();
@@ -139,8 +156,9 @@ namespace client_data
         /// @brief Instance of the ECS library
         std::shared_ptr<World> _worldInstance;
 
-        /// @brief Init the Ressources and Systems of the ECS
-        void _initEcsGameData(void);
+        // /// @brief Init the Ressources and Systems of the ECS
+        // /// @param isSolo True if the player choose to play in solo. False if he want to play in multiplayer
+        // void _initEcsGameData(bool isSolo);
 
         /// @brief Start the connexion protocol and ask the server for a place inside the room
         void _startConnexionProtocol(void);

@@ -196,6 +196,30 @@ void Receiver::dataTraitmentType31(Message dataContent)
         dataContent.size - NETWORK_HEADER_SIZE, 31});
 }
 
+void Receiver::dataTraitmentType40(Message dataContent)
+{
+    addMessage({dataContent.clientInfo, (void *)((char *)dataContent.data + NETWORK_HEADER_SIZE),
+        dataContent.size - NETWORK_HEADER_SIZE, 40});
+}
+
+void Receiver::dataTraitmentType41(Message dataContent)
+{
+    addMessage({dataContent.clientInfo, (void *)((char *)dataContent.data + NETWORK_HEADER_SIZE),
+        dataContent.size - NETWORK_HEADER_SIZE, 41});
+}
+
+void Receiver::dataTraitmentType42(Message dataContent)
+{
+    addMessage({dataContent.clientInfo, (void *)((char *)dataContent.data + NETWORK_HEADER_SIZE),
+        dataContent.size - NETWORK_HEADER_SIZE, 42});
+}
+
+void Receiver::dataTraitmentType43(Message dataContent)
+{
+    addMessage({dataContent.clientInfo, (void *)((char *)dataContent.data + NETWORK_HEADER_SIZE),
+        dataContent.size - NETWORK_HEADER_SIZE, 43});
+}
+
 void Receiver::dataTraitmentType50(Message dataContent)
 {
     addMessage({dataContent.clientInfo, (void *)((char *)dataContent.data + NETWORK_HEADER_SIZE),
@@ -216,6 +240,10 @@ void Receiver::bindDataTraitmentFunction(void)
     _dataTraitment[21] = std::bind(&Receiver::dataTraitmentType21, this, std::placeholders::_1);
     _dataTraitment[30] = std::bind(&Receiver::dataTraitmentType30, this, std::placeholders::_1);
     _dataTraitment[31] = std::bind(&Receiver::dataTraitmentType31, this, std::placeholders::_1);
+    _dataTraitment[40] = std::bind(&Receiver::dataTraitmentType40, this, std::placeholders::_1);
+    _dataTraitment[41] = std::bind(&Receiver::dataTraitmentType41, this, std::placeholders::_1);
+    _dataTraitment[42] = std::bind(&Receiver::dataTraitmentType42, this, std::placeholders::_1);
+    _dataTraitment[43] = std::bind(&Receiver::dataTraitmentType43, this, std::placeholders::_1);
     _dataTraitment[50] = std::bind(&Receiver::dataTraitmentType50, this, std::placeholders::_1);
 }
 

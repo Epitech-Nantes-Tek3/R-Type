@@ -27,7 +27,7 @@ namespace database
         /// @brief It creates a Database object and it opens a database file and stores the database handle in the _db
         /// member variable
         /// @param fileName The path to the database file.
-        Database(const std::filesystem::path &fileName);
+        Database(const std::filesystem::path &fileName = "R-TypeDatabase");
 
         ///@brief The destructor for the Database class closes the database connection
         ~Database();

@@ -13,9 +13,11 @@
 #include <vector>
 #include "Communicator/Client.hpp"
 #include "Communicator/Communicator.hpp"
+#include "Database/Database.hpp"
 #include "RoomInstance.hpp"
 
 using namespace communicator_lib;
+using namespace database;
 
 namespace server_data
 {
@@ -64,6 +66,9 @@ namespace server_data
         /// @brief Id of the next room to create
         unsigned short _nextRoomId;
 
+        /// @brief Bridge to communicate with the database
+        Database _databaseApi;
+
         /// @brief Cross all machine port and find an empty one
         /// @param actual port number (+ 101 per iteration)
         /// @return the first empty port founded
@@ -89,6 +94,14 @@ namespace server_data
         /// protocol 20
         /// @param createDemand actual message data
         void _holdACreateRoomRequest(CommunicatorMessage createDemand);
+
+        /// @brief Trait a get value request. Ask the database for this value and reply it with the 41 protocol.
+        /// @param databaseRequest actual request data
+        void _holdADatabaseValueRequest(CommunicatorMessage databaseRequest);
+
+        /// @brief Trait a set value request. Change inside the database the value.
+        /// @param databaseRequest actual request data
+        void _holdADatabaseSetRequest(CommunicatorMessage databaseRequest);
 
         /// @brief Send to all clients the disconnection signal
         void _disconnectionProcess();
