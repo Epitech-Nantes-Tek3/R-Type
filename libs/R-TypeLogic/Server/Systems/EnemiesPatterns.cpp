@@ -28,7 +28,8 @@ using namespace ecs;
 /// @param enemy the enemy who's going to randomly move
 /// @param widthLimit the width limit for the randomness
 /// @param heightLimit the height limit for the randomness
-static void makeEnemyGoRandom(World &world, std::shared_ptr<Entity> enemy, std::pair<int, int> widthLimit, std::pair<int, int> heightLimit)
+static void makeEnemyGoRandom(
+    World &world, std::shared_ptr<Entity> enemy, std::pair<int, int> widthLimit, std::pair<int, int> heightLimit)
 {
     Position &pos = enemy.get()->getComponent<Position>();
     Velocity &vel = enemy.get()->getComponent<Velocity>();
@@ -56,7 +57,8 @@ static void makeEnemyGoRandom(World &world, std::shared_ptr<Entity> enemy, std::
 /// @param enemy the enemy who's going to randomly move
 static void basicEnemyPatterns(World &world, std::shared_ptr<Entity> enemy)
 {
-    makeEnemyGoRandom(world, enemy, std::pair<int, int>(MINIMUM_WIDTH, MAXIMUM_WIDTH), std::pair<int, int>(MINIMUM_HEIGTH, MAXIMUM_HEIGTH));
+    makeEnemyGoRandom(world, enemy, std::pair<int, int>(MINIMUM_WIDTH, MAXIMUM_WIDTH),
+        std::pair<int, int>(MINIMUM_HEIGTH, MAXIMUM_HEIGTH));
 }
 
 /// @brief Apply the fire pattern (follow a player) to the enemy
@@ -107,11 +109,6 @@ static void initIcePatterns(std::vector<std::shared_ptr<ecs::Entity>> iceEnemies
     int baseSquareY = 0;
     std::size_t nbEnemies = iceEnemies.size();
 
-    random.lock();
-    baseSquareX = random.randInt(MINIMUM_WIDTH, MAXIMUM_WIDTH);
-    baseSquareY = random.randInt(MINIMUM_HEIGTH, MAXIMUM_HEIGTH);
-    random.unlock();
-
     auto setIceEnemyBaseParam = [](std::shared_ptr<ecs::Entity> iceEnemy, std::pair<int, int> destParams,
                                     std::pair<int, int> posParams) {
         auto guard = std::lock_guard(*iceEnemy.get());
@@ -127,6 +124,10 @@ static void initIcePatterns(std::vector<std::shared_ptr<ecs::Entity>> iceEnemies
     };
 
     for (std::size_t x = 0; x < nbEnemies; x += 4) {
+        random.lock();
+        baseSquareX = random.randInt(MINIMUM_WIDTH, MAXIMUM_WIDTH);
+        baseSquareY = random.randInt(MINIMUM_HEIGTH, MAXIMUM_HEIGTH);
+        random.unlock();
         setIceEnemyBaseParam(iceEnemies.at(x), std::pair<int, int>(baseSquareX, baseSquareY),
             std::pair<int, int>(baseSquareX + SQUARE_SPACE, baseSquareY));
         if (x + 1 < nbEnemies) {

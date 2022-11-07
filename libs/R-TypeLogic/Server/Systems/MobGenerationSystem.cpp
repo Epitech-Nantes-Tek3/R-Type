@@ -96,6 +96,24 @@ static void createLevelTwo(World &world)
     }
 }
 
+/// @brief Generate the necessary mob for the level three
+/// @param world the world where the mob will be generated
+static void createLevelThree(World &world)
+{
+    for (int x = 0; x < 10; x++) {
+        unsigned int networkId = 0;
+
+        if (world.containsResource<NetworkableIdGenerator>()) {
+            NetworkableIdGenerator &gen = world.getResource<NetworkableIdGenerator>();
+
+            gen.lock();
+            networkId = gen.generateNewNetworkableId();
+            gen.unlock();
+        }
+        createIceEnemy(world, networkId);
+    }
+}
+
 void MobGeneration::run(World &world)
 {
     if (!world.containsResource<GameLevel>())
@@ -113,7 +131,7 @@ void MobGeneration::run(World &world)
         switch (currLvl) {
             case GameLevel::LEVEL_ONE: createLevelOne(world); break;
             case GameLevel::LEVEL_TWO: createLevelTwo(world); break;
-            case GameLevel::LEVEL_THREE: break;
+            case GameLevel::LEVEL_THREE: createLevelThree(world); break;
             case GameLevel::LEVEL_FORTH: break;
             default: infiniteSpawn(world, hasLevelChanged); break;
         }
