@@ -113,6 +113,7 @@ void DrawComponents::_updateEnemy(LayerLvL &layerType, std::shared_ptr<ecs::Enti
             case Enemy::FIRE: entityPtr->addComponent<TextureName>(GraphicsTextureResource::FIRE_ENEMY); break;
             case Enemy::ELECTRIC: entityPtr->addComponent<TextureName>(GraphicsTextureResource::ELECTRIC_ENEMY); break;
             case Enemy::ICE: entityPtr->addComponent<TextureName>(GraphicsTextureResource::ICE_ENEMY); break;
+            case Enemy::BOSS: entityPtr->addComponent<TextureName>(GraphicsTextureResource::BOSS); break;
             default: entityPtr->addComponent<TextureName>(GraphicsTextureResource::BASIC_ENEMY); break;
         };
     }
