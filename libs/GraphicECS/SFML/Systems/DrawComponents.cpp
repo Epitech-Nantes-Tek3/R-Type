@@ -215,8 +215,7 @@ void DrawComponents::_drawRectangle(World &world, std::shared_ptr<ecs::Entity> e
         _updateTexture(world, entityPtr);
         if ((entityPtr->getComponent<LayerLvL>().layer == LayerLvL::BUTTON
                 || entityPtr->getComponent<LayerLvL>().layer == LayerLvL::WRITABLE)
-            && (world.getResource<MenuStates>().currentState == entityPtr->getComponent<DisplayState>().displayState
-                || entityPtr->getComponent<DisplayState>().displayState == MenuStates::UNDEFINED)) {
+            && world.getResource<MenuStates>().currentState == entityPtr->getComponent<DisplayState>().displayState) {
             windowResource.window.draw(entityPtr->getComponent<GraphicsRectangleComponent>().shape);
         } else if (entityPtr->getComponent<LayerLvL>().layer != LayerLvL::BUTTON
             && entityPtr->getComponent<LayerLvL>().layer != LayerLvL::WRITABLE) {
