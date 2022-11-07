@@ -26,13 +26,15 @@ namespace ecs
         /// @brief If the server need to resend it to everyone
         bool sendToEveryone;
 
-        /// @brief Id of the client to delete from the Database after sending the death component. 0 if no client needed to be deleted
+        /// @brief Id of the client to delete from the Database after sending the death component. 1000 if no client
+        /// needed to be deleted
         unsigned short clientToDelete;
 
         /// @brief Constructor of the Destination component
         /// @param X the abscissa
         /// @param Y the ordinate
-        Destination(const int &X = 0, const int &Y = 0) : x(X), y(Y), modified(false), sendToEveryone(false), clientToDelete(0){};
+        Destination(const int &X = 0, const int &Y = 0)
+            : x(X), y(Y), modified(false), sendToEveryone(false), clientToDelete(1000){};
         /// @brief Default Destructor
         ~Destination() = default;
     };
