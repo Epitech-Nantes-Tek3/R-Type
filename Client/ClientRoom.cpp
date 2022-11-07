@@ -394,8 +394,8 @@ void ClientRoom::_initProjectilesTextures(GraphicsTextureResource &textureResour
         "assets/EpiSprite/IceEnemyProjectileSpriteSheet.gif", sf::Vector2f(0, 0), sf::Vector2f(34, 34));
     textureResource.addTexture(GraphicsTextureResource::PROJECTILE_ALLY,
         "assets/EpiSprite/BasicAlliedProjectileSpriteSheet.gif", sf::Vector2f(0, 0), sf::Vector2f(20, 20));
-    textureResource.addTexture(GraphicsTextureResource::BOSS, "assets/EpiSprite/BossSpriteSheet.gif", sf::Vector2f(0, 0),
-        sf::Vector2f(50, 57));
+    textureResource.addTexture(GraphicsTextureResource::BOSS, "assets/EpiSprite/BossSpriteSheet.gif",
+        sf::Vector2f(0, 0), sf::Vector2f(50, 57));
 }
 
 void ClientRoom::_initBackgroundsTextures(GraphicsTextureResource &textureResource)
