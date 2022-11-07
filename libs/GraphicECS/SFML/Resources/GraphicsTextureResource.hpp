@@ -59,7 +59,7 @@ namespace graphicECS::SFML::Resources
         /// @brief Name of map which contains Textures.
         using TexturesList = std::unordered_map<textureName_e, std::shared_ptr<sf::Texture>>;
 
-        /// @brief Defauld Constructor of GraphicTextureResource.
+        /// @brief Default Constructor of GraphicTextureResource.
         GraphicsTextureResource() = default;
 
         /// @brief Add a Texture from it's Texture Path passed as parameter

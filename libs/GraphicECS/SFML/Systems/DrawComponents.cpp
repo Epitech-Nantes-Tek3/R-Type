@@ -53,7 +53,7 @@ void DrawComponents::addButtonText(std::shared_ptr<Entity> buttonPtr, const sf::
         case ButtonActionMap::PAUSE:
             buttonPtr->addComponent<GraphicsTextComponent>(newFont, "Pause", pos.x, pos.y + size.y * 0.5);
             break;
-        default: buttonPtr->addComponent<GraphicsTextComponent>(newFont, "Default", pos.x, pos.y + size.y * 0.5); break;
+        default: buttonPtr->addComponent<GraphicsTextComponent>(newFont, "Default", pos.x, pos.y + size.y * 0.5);
     }
 }
 
