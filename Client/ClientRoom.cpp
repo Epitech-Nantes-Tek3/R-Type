@@ -605,7 +605,11 @@ bool ClientRoom::_answerProtocols(bool isSolo)
         }
         if (connectionOperation.message.type == 15) {
             _protocol15Answer(connectionOperation); // TO BE REMOVE WITH LOBBY MENU
+#ifdef __linux__
             sleep(1);
+#elif _WIN_32
+            Sleep(1000);
+#endif
         }
         if (connectionOperation.message.type == 12) {
             _protocol12Answer(connectionOperation);
