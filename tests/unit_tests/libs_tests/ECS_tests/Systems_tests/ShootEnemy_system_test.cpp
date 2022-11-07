@@ -34,5 +34,5 @@ Test(EnemyShootSystem, shoot_one)
     std::this_thread::sleep_for(std::chrono::duration<double>(0.8));
     world.runSystems();
 
-    cr_assert_eq(world.joinEntities<EnemyProjectile>().size(), 0); /// WILL BE CHANGED TO 2 WHEN NATHAN MERGED IS PR
+    cr_assert_eq(world.joinEntities<EnemyProjectile>().size(), 1);
 }
