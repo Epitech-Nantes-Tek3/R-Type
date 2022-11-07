@@ -28,7 +28,21 @@ static void infiniteSpawn(World &world, bool hasLevelChanged)
     std::size_t currNbEnemies = joined.size();
 
     if (hasLevelChanged) {
-        // SPAWN A BOSS TO BE IMPLEMENTED
+        GameLevel &gamelvl = world.getResource<GameLevel>();
+
+        gamelvl.lock();
+        gamelvl.levelHasChanged();
+        gamelvl.unlock();
+
+        unsigned int bossId = 0;
+        if (world.containsResource<NetworkableIdGenerator>()) {
+            NetworkableIdGenerator &gen = world.getResource<NetworkableIdGenerator>();
+
+            gen.lock();
+            bossId = gen.generateNewNetworkableId();
+            gen.unlock();
+        }
+        createBoss(world, bossId);
     }
 
     random.lock();

@@ -16,7 +16,7 @@ namespace ecs
     class Enemy : public Component {
       public:
         /// @brief Enumeration of all current types of mob
-        enum type_e : unsigned short { BASIC = 0, FIRE = 1, ELECTRIC = 2, ICE = 3};
+        enum type_e : unsigned short { BASIC = 0, FIRE = 1, ELECTRIC = 2, ICE = 3, BOSS = 4};
 
         /// @brief The type of enemy, useful for the pattern and generated projectiles
         unsigned short enemyType;

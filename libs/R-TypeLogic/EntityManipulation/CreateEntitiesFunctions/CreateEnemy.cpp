@@ -83,4 +83,10 @@ namespace ecs
     {
         return createNewEnemy(world, 0, 0, 0, 0, 1, 85, 85, 20, 5, 20, Enemy::ICE, "", networkId);
     }
+
+    std::size_t createBoss(World &world, const unsigned short networkId)
+    {
+        return createNewEnemy(world, MAXIMUM_WIDTH - 100, MINIMUM_HEIGTH + 100, 0, 0, 100, 204, 204, 300, 100, 1,
+            Enemy::BOSS, "", networkId);
+    }
 } // namespace ecs

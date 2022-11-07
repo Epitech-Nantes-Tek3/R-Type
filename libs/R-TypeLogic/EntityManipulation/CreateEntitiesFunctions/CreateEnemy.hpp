@@ -92,5 +92,10 @@ namespace ecs
     /// @param world the world where the enemy will be created
     /// @param networkdId The id of the Networkable Component. In the client instance, it MUST NOT be filled in.
     std::size_t createIceEnemy(World &world, const unsigned short networkId = 0);
+
+    /// @brief This function creates a boss with corresponding caracteristics, more life, more damage, more everything...
+    /// @param world the world where the boss will be created
+    /// @param networkdId The id of the Networkable Component. In the client instance, it MUST NOT be filled in.
+    std::size_t createBoss(World &world, const unsigned short networkId = 0);
 } // namespace ecs
 #endif /* !CREATEENEMY_HPP_ */
