@@ -8,14 +8,14 @@
 /// @file Client/ClientRoom.cpp
 
 #ifdef _WIN32
-#include <Windows.h>
+    #include <Windows.h>
 #endif
 
-#include "ClientRoom.hpp"
 #include <csignal>
 #include <functional>
 #include <mutex>
 #include "ButtonAction.hpp"
+#include "ClientRoom.hpp"
 #include "Error/Error.hpp"
 #include "GraphicECS/SFML/Components/ActionQueueComponent.hpp"
 #include "GraphicECS/SFML/Components/AllowControllerComponent.hpp"
