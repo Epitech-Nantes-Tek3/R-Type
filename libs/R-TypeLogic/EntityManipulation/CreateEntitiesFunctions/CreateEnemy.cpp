@@ -87,7 +87,7 @@ namespace ecs
 
     std::size_t createBoss(World &world, const unsigned short networkId)
     {
-        return createNewEnemy(world, MAXIMUM_WIDTH - 100, MINIMUM_HEIGTH + 100, 0, 0, 100, 204, 204, 300, 100, 1,
+        return createNewEnemy(world, MAXIMUM_WIDTH - 100, MINIMUM_HEIGTH + 100, 0, 0, 100, 204, 204, 500, 100, 1,
             Enemy::BOSS, "", networkId);
     }
 
