@@ -81,6 +81,10 @@
 #include "R-TypeLogic/Server/Systems/LifeTimeDeathSystem.hpp"
 #include "R-TypeLogic/Server/Systems/MobGenerationSystem.hpp"
 
+#ifdef _WIN32
+    #include <windows.h>
+#endif
+
 using namespace error_lib;
 using namespace communicator_lib;
 using namespace client_data;
@@ -133,13 +137,6 @@ ClientRoom::ClientRoom(std::string address, unsigned short port, std::string ser
     _password = "";
 }
 
-void ClientRoom::_initEcsGameData(bool isSolo)
-{
-    _initSharedResources();
-    _initSystems(isSolo);
-    _initEntities();
-}
-
 void ClientRoom::_startConnexionProtocol(void)
 {
     void *networkData = std::malloc(sizeof(char) * 10);
@@ -153,9 +150,11 @@ void ClientRoom::_startConnexionProtocol(void)
     std::free(networkData);
 }
 
-void ClientRoom::protocol12Answer(CommunicatorMessage connexionResponse)
+void ClientRoom::_protocol12Answer(CommunicatorMessage connexionResponse)
 {
     _state = ClientState::IN_GAME;
+    if (_worldInstance->containsResource<MenuStates>())
+        _worldInstance->getResource<MenuStates>().currentState = MenuStates::IN_GAME;
     _worldInstance.get()->addEntity().addComponent<NetworkServer>(connexionResponse.message.clientInfo.getId());
     auto &clock = _worldInstance.get()->getResource<GameClock>();
     auto guard = std::lock_guard(clock);
@@ -252,7 +251,7 @@ void ClientRoom::_initSoloData(void)
 void ClientRoom::_startSoloLoop()
 {
     std::signal(SIGINT, signalCallbackHandler);
-    _initEcsGameData(true);
+    _updateEcsData(true);
     _initSoloData();
     _state = ClientState::IN_GAME;
     while (_state != ClientState::ENDED && _state != ClientState::UNDEFINED) {
@@ -276,7 +275,7 @@ int ClientRoom::_choosePlayerInfosForServer()
     }
     pseudo = connection.getPseudo();
     password = connection.getPassword();
-    startLobbyLoop(pseudo, password);
+    startLobbyLoop(pseudo, password, false);
     return 0;
 }
 
@@ -327,59 +326,6 @@ void ClientRoom::_connectToARoom()
     std::free(networkData);
 }
 
-void ClientRoom::startLobbyLoop(const std::string &pseudo, const std::string &password)
-{
-    CommunicatorMessage connectionOperation;
-
-    _pseudo = pseudo;
-    _password = password;
-    std::signal(SIGINT, signalCallbackHandler);
-    if (_state != ClientState::ENDED)
-        _startConnexionProtocol();
-    while (_state != ClientState::ENDED && _state == ClientState::UNDEFINED) {
-        try {
-            connectionOperation = _communicatorInstance.get()->getLastMessage();
-            if (connectionOperation.message.type == 11) {
-                std::cerr << "No places left inside the hub. Please retry later" << std::endl;
-                return;
-            }
-            if (connectionOperation.message.type == 15)
-                _protocol15Answer(connectionOperation);
-            if (connectionOperation.message.type == 20) {
-                _serverEndpoint = _communicatorInstance->getClientByHisId(_communicatorInstance->getServerEndpointId());
-                break;
-            }
-        } catch (NetworkError &error) {
-        }
-    }
-    if (_state != ClientState::ENDED) {
-        _initEcsGameData(false);
-        _connectToARoom();
-        _state = ClientState::LOBBY;
-    }
-    while (_state != ClientState::ENDED && _state != ClientState::UNDEFINED) {
-        try {
-            connectionOperation = _communicatorInstance.get()->getLastMessage();
-            if (connectionOperation.message.type == 11) {
-                std::cerr << "No places left inside the wanted room. Please retry later" << std::endl;
-                return;
-            }
-            if (connectionOperation.message.type == 12)
-                protocol12Answer(connectionOperation);
-            if (connectionOperation.message.type == 13) {
-                _holdADisconnectionRequest();
-            }
-            if (connectionOperation.message.type == 50)
-                _holdAChatRequest(connectionOperation);
-        } catch (NetworkError &error) {
-        }
-        if (_state == ClientState::IN_GAME) {
-            _worldInstance.get()->runSystems(); /// WILL BE IMPROVED IN PART TWO (THREAD + CLOCK)
-        }
-    }
-    _disconectionProcess();
-}
-
 void ClientRoom::_disconectionProcess()
 {
     _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, nullptr, 0, 13);
@@ -387,130 +333,315 @@ void ClientRoom::_disconectionProcess()
 
 void ClientRoom::_holdADisconnectionRequest() { _state = ClientState::ENDED; }
 
-void ClientRoom::_initSpritesForPlayer(GraphicsTextureResource &spritesList)
+void ClientRoom::_updateEcsResources()
 {
-    spritesList.addTexture(GraphicsTextureResource::PLAYER_STATIC_1, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
-        sf::Vector2f(534 / 16 * 8, 0), sf::Vector2f(534 / 16, 34));
-    spritesList.addTexture(GraphicsTextureResource::PLAYER_STATIC_2, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
-        sf::Vector2f(534 / 16 * 9, 0), sf::Vector2f(534 / 16, 34));
-    spritesList.addTexture(GraphicsTextureResource::PLAYER_STATIC_3, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
-        sf::Vector2f(534 / 16 * 10, 0), sf::Vector2f(534 / 16, 34));
-    spritesList.addTexture(GraphicsTextureResource::PLAYER_STATIC_4, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
-        sf::Vector2f(534 / 16 * 11, 0), sf::Vector2f(534 / 16, 34));
-    spritesList.addTexture(GraphicsTextureResource::PLAYER_STATIC_5, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
-        sf::Vector2f(534 / 16 * 12, 0), sf::Vector2f(534 / 16, 34));
-    spritesList.addTexture(GraphicsTextureResource::PLAYER_STATIC_6, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
-        sf::Vector2f(534 / 16 * 13, 0), sf::Vector2f(534 / 16, 34));
-    spritesList.addTexture(GraphicsTextureResource::PLAYER_STATIC_7, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
-        sf::Vector2f(534 / 16 * 14, 0), sf::Vector2f(534 / 16, 34));
-    spritesList.addTexture(GraphicsTextureResource::PLAYER_STATIC_8, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
-        sf::Vector2f(534 / 16 * 15, 0), sf::Vector2f(534 / 16, 34));
+    if (!_worldInstance->containsResource<RandomDevice>())
+        _worldInstance->addResource<RandomDevice>();
+    if (!_worldInstance->containsResource<GameClock>())
+        _worldInstance->addResource<GameClock>();
+    if (!_worldInstance->containsResource<RenderWindowResource>())
+        _worldInstance->addResource<RenderWindowResource>();
+    if (!_worldInstance->containsResource<GraphicsFontResource>())
+        _worldInstance->addResource<GraphicsFontResource>("assets/fonts/arial.ttf");
+    if (!_worldInstance->containsResource<MenuStates>())
+        _worldInstance->addResource<MenuStates>(MenuStates::MAIN_MENU);
+    if (!_worldInstance->containsResource<MusicResource>())
+        _worldInstance->addResource<MusicResource>();
+    if (!_worldInstance->containsResource<SoundResource>())
+        _worldInstance->addResource<SoundResource>();
+    if (!_worldInstance->containsResource<GameStates>())
+        _worldInstance->addResource<GameStates>(GameStates::IN_PAUSED);
+    if (!_worldInstance->containsResource<GraphicsTextureResource>())
+        _worldInstance->addResource<GraphicsTextureResource>();
+    if (!_worldInstance->containsResource<ButtonActionMap>())
+        _worldInstance->addResource<ButtonActionMap>();
+    if (_worldInstance->containsResource<GraphicsTextureResource>())
+        _loadTextures();
+    if (_worldInstance->containsResource<ButtonActionMap>())
+        _loadButtonActionMap();
 }
 
-void ClientRoom::_initSpritesForProjectiles(GraphicsTextureResource &spritesList)
+void ClientRoom::_loadTextures()
 {
-    spritesList.addTexture(GraphicsTextureResource::PROJECTILE_ENEMY_BASIC,
+    GraphicsTextureResource &textureResource = _worldInstance->getResource<GraphicsTextureResource>();
+    auto guard = std::lock_guard(textureResource);
+
+    textureResource.addTexture(GraphicsTextureResource::BUTTON, "assets/EpiSprite/r-typesheet11.gif",
+        sf::Vector2f(34, 0), sf::Vector2f(34, 34));
+    textureResource.addTexture(GraphicsTextureResource::BASIC_ENEMY, "assets/EpiSprite/BasicEnemySpriteSheet.gif",
+        sf::Vector2f(0, 0), sf::Vector2f(34, 34));
+    textureResource.addTexture(GraphicsTextureResource::ELECTRIC_ENEMY, "assets/EpiSprite/BasicEnemySpriteSheet.gif",
+        sf::Vector2f(0, 0), sf::Vector2f(34, 34));
+    textureResource.addTexture(GraphicsTextureResource::FIRE_ENEMY, "assets/EpiSprite/BasicEnemySpriteSheet.gif",
+        sf::Vector2f(0, 0), sf::Vector2f(34, 34));
+    textureResource.addTexture(GraphicsTextureResource::ICE_ENEMY, "assets/EpiSprite/BasicEnemySpriteSheet.gif",
+        sf::Vector2f(0, 0), sf::Vector2f(34, 34));
+    _initWritableTextures(textureResource);
+    _initPlayerTextures(textureResource);
+    _initProjectilesTextures(textureResource);
+    _initBackgroundsTextures(textureResource);
+}
+
+void ClientRoom::_initProjectilesTextures(GraphicsTextureResource &textureResource)
+{
+    textureResource.addTexture(GraphicsTextureResource::PROJECTILE_ENEMY_BASIC,
         "assets/EpiSprite/BasicEnemyProjectileSpriteSheet.gif", sf::Vector2f(0, 0), sf::Vector2f(34, 34));
-    spritesList.addTexture(GraphicsTextureResource::PROJECTILE_ENEMY_FIRE,
+    textureResource.addTexture(GraphicsTextureResource::PROJECTILE_ENEMY_FIRE,
         "assets/EpiSprite/FireEnemyProjectileSpriteSheet.gif", sf::Vector2f(0, 0), sf::Vector2f(34, 34));
-    spritesList.addTexture(GraphicsTextureResource::PROJECTILE_ENEMY_ELECTRIC,
+    textureResource.addTexture(GraphicsTextureResource::PROJECTILE_ENEMY_ELECTRIC,
         "assets/EpiSprite/ElectricEnemyProjectileSpriteSheet.gif", sf::Vector2f(0, 0), sf::Vector2f(34, 34));
-    spritesList.addTexture(GraphicsTextureResource::PROJECTILE_ENEMY_ICE,
+    textureResource.addTexture(GraphicsTextureResource::PROJECTILE_ENEMY_ICE,
         "assets/EpiSprite/IceEnemyProjectileSpriteSheet.gif", sf::Vector2f(0, 0), sf::Vector2f(34, 34));
-    spritesList.addTexture(GraphicsTextureResource::PROJECTILE_ALLY,
+    textureResource.addTexture(GraphicsTextureResource::PROJECTILE_ALLY,
         "assets/EpiSprite/BasicAlliedProjectileSpriteSheet.gif", sf::Vector2f(0, 0), sf::Vector2f(20, 20));
 }
 
-void ClientRoom::_initSpritesForBackgrounds(GraphicsTextureResource &spritesList)
+void ClientRoom::_initBackgroundsTextures(GraphicsTextureResource &textureResource)
 {
-    spritesList.addTexture(GraphicsTextureResource::BACKGROUND_LAYER_3, "assets/Backgrounds/back.png",
+    textureResource.addTexture(GraphicsTextureResource::BACKGROUND_LAYER_3, "assets/Backgrounds/back.png",
         sf::Vector2f(0, 0), sf::Vector2f(1920, 1080));
-    spritesList.addTexture(GraphicsTextureResource::BACKGROUND_LAYER_2, "assets/Backgrounds/far.png",
+    textureResource.addTexture(GraphicsTextureResource::BACKGROUND_LAYER_2, "assets/Backgrounds/far.png",
         sf::Vector2f(0, 0), sf::Vector2f(1920, 1080));
-    spritesList.addTexture(GraphicsTextureResource::BACKGROUND_LAYER_1, "assets/Backgrounds/middle.png",
+    textureResource.addTexture(GraphicsTextureResource::BACKGROUND_LAYER_1, "assets/Backgrounds/middle.png",
         sf::Vector2f(0, 0), sf::Vector2f(1920, 1080));
 }
 
-void ClientRoom::_initSpriteForEnemies(GraphicsTextureResource &spritesList)
+void ClientRoom::_initWritableTextures(GraphicsTextureResource &textureResource)
 {
-    spritesList.addTexture(GraphicsTextureResource::FIRE_ENEMY, "assets/EpiSprite/FireEnemySpriteSheet.gif",
-        sf::Vector2f(0, 0), sf::Vector2f(34, 34));
-    spritesList.addTexture(GraphicsTextureResource::ELECTRIC_ENEMY, "assets/EpiSprite/ElectricEnemySpriteSheet.gif",
-        sf::Vector2f(0, 0), sf::Vector2f(34, 34));
-    spritesList.addTexture(GraphicsTextureResource::ICE_ENEMY, "assets/EpiSprite/IceEnemySpriteSheet.gif",
-        sf::Vector2f(0, 0), sf::Vector2f(34, 34));
-}
-
-void ClientRoom::_initSpritesForWritable(GraphicsTextureResource &spritesList)
-{
-    spritesList.addTexture(GraphicsTextureResource::WRITABLE, "assets/EpiSprite/r-typesheet11.gif", sf::Vector2f(34, 0),
-        sf::Vector2f(34, 34));
-    spritesList.addTexture(GraphicsTextureResource::WRITABLE_SELECTED, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
-        sf::Vector2f(534 / 16 * 8, 0), sf::Vector2f(534 / 16, 34));
-    spritesList.addTexture(GraphicsTextureResource::WRITABLE_BUTTON, "assets/EpiSprite/r-typesheet11.gif",
+    textureResource.addTexture(GraphicsTextureResource::WRITABLE, "assets/EpiSprite/r-typesheet11.gif",
+        sf::Vector2f(34, 0), sf::Vector2f(34, 34));
+    textureResource.addTexture(GraphicsTextureResource::WRITABLE_SELECTED,
+        "assets/EpiSprite/BasicPlayerSpriteSheet.gif", sf::Vector2f(534 / 16 * 8, 0), sf::Vector2f(534 / 16, 34));
+    textureResource.addTexture(GraphicsTextureResource::WRITABLE_BUTTON, "assets/EpiSprite/r-typesheet11.gif",
         sf::Vector2f(34, 0), sf::Vector2f(34, 34));
 }
 
-void ClientRoom::_initSpritesForEntities()
+void ClientRoom::_initPlayerTextures(GraphicsTextureResource &textureResource)
 {
-    _worldInstance->addResource<GraphicsTextureResource>(GraphicsTextureResource::BASIC_ENEMY,
-        "assets/EpiSprite/BasicEnemySpriteSheet.gif", sf::Vector2f(0, 0), sf::Vector2f(34, 34));
-    GraphicsTextureResource &spritesList = _worldInstance->getResource<GraphicsTextureResource>();
-    auto guard = std::lock_guard(spritesList);
-
-    spritesList.addTexture(GraphicsTextureResource::BUTTON, "assets/EpiSprite/r-typesheet11.gif", sf::Vector2f(34, 0),
-        sf::Vector2f(34, 34));
-    _initSpriteForEnemies(spritesList);
-    _initSpritesForWritable(spritesList);
-    _initSpritesForPlayer(spritesList);
-    _initSpritesForProjectiles(spritesList);
-    _initSpritesForBackgrounds(spritesList);
+    textureResource.addTexture(GraphicsTextureResource::PLAYER_STATIC_1, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
+        sf::Vector2f(534 / 16 * 8, 0), sf::Vector2f(534 / 16, 34));
+    textureResource.addTexture(GraphicsTextureResource::PLAYER_STATIC_2, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
+        sf::Vector2f(534 / 16 * 9, 0), sf::Vector2f(534 / 16, 34));
+    textureResource.addTexture(GraphicsTextureResource::PLAYER_STATIC_3, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
+        sf::Vector2f(534 / 16 * 10, 0), sf::Vector2f(534 / 16, 34));
+    textureResource.addTexture(GraphicsTextureResource::PLAYER_STATIC_4, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
+        sf::Vector2f(534 / 16 * 11, 0), sf::Vector2f(534 / 16, 34));
+    textureResource.addTexture(GraphicsTextureResource::PLAYER_STATIC_5, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
+        sf::Vector2f(534 / 16 * 12, 0), sf::Vector2f(534 / 16, 34));
+    textureResource.addTexture(GraphicsTextureResource::PLAYER_STATIC_6, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
+        sf::Vector2f(534 / 16 * 13, 0), sf::Vector2f(534 / 16, 34));
+    textureResource.addTexture(GraphicsTextureResource::PLAYER_STATIC_7, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
+        sf::Vector2f(534 / 16 * 14, 0), sf::Vector2f(534 / 16, 34));
+    textureResource.addTexture(GraphicsTextureResource::PLAYER_STATIC_8, "assets/EpiSprite/BasicPlayerSpriteSheet.gif",
+        sf::Vector2f(534 / 16 * 15, 0), sf::Vector2f(534 / 16, 34));
 }
 
-void ClientRoom::_initSharedResources()
+void ClientRoom::_loadButtonActionMap()
 {
-    _worldInstance->addResource<RandomDevice>();
-    _worldInstance->addResource<GameClock>();
-    _worldInstance->addResource<RenderWindowResource>();
-    _worldInstance->addResource<GraphicsFontResource>("assets/fonts/arial.ttf");
-    _worldInstance->addResource<MenuStates>(MenuStates::IN_GAME);
-    _worldInstance->addResource<MusicResource>(
-        MusicResource::music_e::BACKGROUNDTHEME, "assets/Musics/music_background.wav");
-    _worldInstance->addResource<SoundResource>(SoundResource::sound_e::SHOOT, "assets/Sounds/sound.wav");
-    _worldInstance->addResource<GameStates>(GameStates::IN_GAME);
-    _worldInstance->addResource<GameLevel>();
-    _initSpritesForEntities();
+    ButtonActionMap &actionsList = _worldInstance->getResource<ButtonActionMap>();
+
+    actionsList.addAction(ButtonActionMap::PAUSE, std::function<void(World &, Entity &)>(pauseGame));
+    actionsList.addAction(ButtonActionMap::RESUME, std::function<void(World &, Entity &)>(resumeGame));
+    actionsList.addAction(ButtonActionMap::EXIT, std::function<void(World &, Entity &)>(exitWindow));
+    actionsList.addAction(ButtonActionMap::WRITABLE, std::function<void(World &, Entity &)>(selectAWritable));
+    actionsList.addAction(
+        ButtonActionMap::WRITABLE_BUTTON, std::function<void(World &, Entity &)>(writableButtonAction));
+    actionsList.addAction(ButtonActionMap::LOBBY, std::function<void(World &, Entity &)>(connectToARoom));
 }
 
-void ClientRoom::_initSystems(bool isSolo)
+void ClientRoom::_updateEcsEntities()
 {
-    _worldInstance->addSystem<UpdateClock>();
-    _worldInstance->addSystem<DeathSystem>();
-    _worldInstance->addSystem<DrawComponents>();
-    _worldInstance->addSystem<InputManagement>();
-    _worldInstance->addSystem<SfObjectFollowEntitySystem>();
-    _worldInstance->addSystem<Parallax>();
-    _worldInstance->addSystem<Movement>();
-    _worldInstance->addSystem<AnimationSystem>();
-    _worldInstance->addSystem<MusicManagement>();
-    _worldInstance->addSystem<SoundManagement>();
-    _worldInstance->addSystem<RemoveChatSystem>();
-    _worldInstance->addSystem<ElectricInvisibleEnemy>();
-    if (isSolo) {
-        _worldInstance->addSystem<EnemiesPatterns>();
-        _worldInstance->addSystem<EnemyShootSystem>();
-        _worldInstance->addSystem<Collide>();
-        _worldInstance->addSystem<DeathLife>();
-        _worldInstance->addSystem<LifeTimeDeath>();
-        _worldInstance->addSystem<DecreaseLifeTime>();
-        _worldInstance->addSystem<MobGeneration>();
-    } else {
-        _worldInstance->addSystem<SendToServer>();
-        _worldInstance->addSystem<SendNewlyCreatedToServer>();
+    if (_worldInstance
+            ->joinEntities<MouseInputComponent, KeyboardInputComponent, ControllerButtonInputComponent,
+                ControllerJoystickInputComponent, ActionQueueComponent, AllowMouseAndKeyboardComponent,
+                AllowControllerComponent>()
+            .empty())
+        _initInputsEntity();
+    if (_state == ClientState::MAIN_MENU) {
+        _initMainMenuButtons();
+    }
+    if (_state == ClientState::LOBBY) {}
+    if (_state == ClientState::IN_GAME) {
+        _initInGameButtons();
+        _initInGameWritables();
+        _initInGameBackgrounds();
     }
 }
 
-void ClientRoom::_initBackgroundEntities()
+void ClientRoom::_initInputsEntity()
+{
+    ecs::Entity &entity = _worldInstance->addEntity()
+                              .addComponent<MouseInputComponent>()
+                              .addComponent<KeyboardInputComponent>()
+                              .addComponent<ControllerButtonInputComponent>()
+                              .addComponent<ControllerJoystickInputComponent>()
+                              .addComponent<ActionQueueComponent>()
+                              .addComponent<AllowMouseAndKeyboardComponent>()
+                              .addComponent<AllowControllerComponent>();
+
+    entity.getComponent<KeyboardInputComponent>().keyboardMapActions.emplace(
+        std::make_pair<sf::Keyboard::Key, std::pair<ActionQueueComponent::inputAction_e, float>>(sf::Keyboard::Z,
+            std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEY, -200)));
+    entity.getComponent<KeyboardInputComponent>().keyboardMapActions.emplace(
+        std::make_pair<sf::Keyboard::Key, std::pair<ActionQueueComponent::inputAction_e, float>>(sf::Keyboard::S,
+            std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEY, 200)));
+    entity.getComponent<KeyboardInputComponent>().keyboardMapActions.emplace(
+        std::make_pair<sf::Keyboard::Key, std::pair<ActionQueueComponent::inputAction_e, float>>(sf::Keyboard::Q,
+            std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEX, -200)));
+    entity.getComponent<KeyboardInputComponent>().keyboardMapActions.emplace(
+        std::make_pair<sf::Keyboard::Key, std::pair<ActionQueueComponent::inputAction_e, float>>(sf::Keyboard::D,
+            std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEX, 200)));
+    entity.getComponent<KeyboardInputComponent>().keyboardMapActions.emplace(
+        std::make_pair<sf::Keyboard::Key, std::pair<ActionQueueComponent::inputAction_e, float>>(sf::Keyboard::Enter,
+            std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::SHOOT, 10)));
+    entity.getComponent<ControllerJoystickInputComponent>().controllerJoystickMapActions.emplace(
+        std::make_pair<unsigned int, std::pair<ActionQueueComponent::inputAction_e, float>>(
+            1, std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEY, 0)));
+    entity.getComponent<MouseInputComponent>().MouseMapActions.emplace(
+        std::make_pair<sf::Mouse::Button, std::pair<ActionQueueComponent::inputAction_e, float>>(
+            sf::Mouse::Button::Left,
+            std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::BUTTON_CLICK, 0)));
+}
+
+void ClientRoom::_initInGameButtons()
+{
+    createNewButton(
+        *(_worldInstance.get()), 0, 0, 68, 68, ButtonActionMap::PAUSE, LayerLvL::BUTTON, MenuStates::IN_GAME);
+    createNewButton(*(_worldInstance.get()), 909, 200, 102, 102, ButtonActionMap::RESUME, LayerLvL::BUTTON,
+        MenuStates::GAME_PAUSED);
+    createNewButton(
+        *(_worldInstance.get()), 909, 500, 102, 102, ButtonActionMap::EXIT, LayerLvL::BUTTON, MenuStates::GAME_PAUSED);
+}
+
+void ClientRoom::_initMainMenuButtons()
+{
+    createNewButton(
+        *(_worldInstance.get()), 0, 0, 200, 50, ButtonActionMap::LOBBY, LayerLvL::BUTTON, MenuStates::MAIN_MENU);
+    createNewButton(
+        *(_worldInstance.get()), 200, 0, 200, 50, ButtonActionMap::EXIT, LayerLvL::BUTTON, MenuStates::MAIN_MENU);
+}
+
+void ClientRoom::_initInGameWritables()
+{
+    std::size_t writableId = createNewWritable(*(_worldInstance.get()), 1450, 900, 350, 50, MenuStates::IN_GAME);
+
+    createNewWritableButton(*(_worldInstance.get()), 1820, 900, 80, 50,
+        std::function<void(World &, Entity &, std::string &)>(publishNewChatMessage), MenuStates::IN_GAME, writableId);
+}
+
+void ClientRoom::_updateEcsSystems(bool isSolo)
+{
+    if (!_worldInstance->containsSystem<UpdateClock>())
+        _worldInstance->addSystem<UpdateClock>();
+    if (!_worldInstance->containsSystem<DrawComponents>())
+        _worldInstance->addSystem<DrawComponents>();
+    if (!_worldInstance->containsSystem<InputManagement>())
+        _worldInstance->addSystem<InputManagement>();
+    if (!_worldInstance->containsSystem<Parallax>())
+        _worldInstance->addSystem<Parallax>();
+    if (!_worldInstance->containsSystem<MusicManagement>())
+        _worldInstance->addSystem<MusicManagement>();
+    if (!_worldInstance->containsSystem<SoundManagement>())
+        _worldInstance->addSystem<SoundManagement>();
+    if (!_worldInstance->containsSystem<DeathSystem>())
+        _worldInstance->addSystem<DeathSystem>();
+    if (!_worldInstance->containsSystem<SfObjectFollowEntitySystem>())
+        _worldInstance->addSystem<SfObjectFollowEntitySystem>();
+    if (!_worldInstance->containsSystem<Movement>())
+        _worldInstance->addSystem<Movement>();
+    if (!_worldInstance->containsSystem<AnimationSystem>())
+        _worldInstance->addSystem<AnimationSystem>();
+    if (!_worldInstance->containsSystem<NoAfkInMenu>())
+        _worldInstance->addSystem<NoAfkInMenu>();
+    if (!_worldInstance->containsSystem<RemoveChatSystem>())
+        _worldInstance->addSystem<RemoveChatSystem>();
+    if (!_worldInstance->containsSystem<ElectricInvisibleEnemy>())
+        _worldInstance->addSystem<ElectricInvisibleEnemy>();
+
+    if (isSolo) {
+        if (!_worldInstance->containsSystem<EnemiesPatterns>())
+            _worldInstance->addSystem<EnemiesPatterns>();
+        if (!_worldInstance->containsSystem<EnemyShootSystem>())
+            _worldInstance->addSystem<EnemyShootSystem>();
+        if (!_worldInstance->containsSystem<Collide>())
+            _worldInstance->addSystem<Collide>();
+        if (!_worldInstance->containsSystem<DeathLife>())
+            _worldInstance->addSystem<DeathLife>();
+        if (!_worldInstance->containsSystem<LifeTimeDeath>())
+            _worldInstance->addSystem<LifeTimeDeath>();
+        if (!_worldInstance->containsSystem<DecreaseLifeTime>())
+            _worldInstance->addSystem<DecreaseLifeTime>();
+    } else {
+        if (!_worldInstance->containsSystem<SendToServer>())
+            _worldInstance->addSystem<SendToServer>();
+        if (!_worldInstance->containsSystem<SendNewlyCreatedToServer>())
+            _worldInstance->addSystem<SendNewlyCreatedToServer>();
+    }
+}
+
+void ClientRoom::_updateEcsData(bool isSolo)
+{
+    _updateEcsResources();
+    _updateEcsEntities();
+    _updateEcsSystems(isSolo);
+}
+
+bool ClientRoom::_answerProtocols(bool isSolo)
+{
+    CommunicatorMessage connectionOperation;
+
+    try {
+        connectionOperation = _communicatorInstance.get()->getLastMessage();
+        if (connectionOperation.message.type == 11) {
+            std::cerr << "No places left inside the hub. Please retry later" << std::endl;
+            return false;
+        }
+        if (connectionOperation.message.type == 13) {
+            _holdADisconnectionRequest();
+        }
+        if (connectionOperation.message.type == 20) {
+            _serverEndpoint = _communicatorInstance->getClientByHisId(_communicatorInstance->getServerEndpointId());
+            _connectToARoom();
+        }
+        if (connectionOperation.message.type == 15) {
+            _protocol15Answer(connectionOperation); // TO BE REMOVE WITH LOBBY MENU
+#ifdef __linux__
+            sleep(1);
+#elif _WIN_32
+            Sleep(1000);
+#endif
+        }
+        if (connectionOperation.message.type == 12) {
+            _protocol12Answer(connectionOperation);
+            _updateEcsData(isSolo);
+        }
+        if (connectionOperation.message.type == 50) {
+            if (_state == ClientState::IN_GAME)
+                _holdAChatRequest(connectionOperation);
+        }
+    } catch (NetworkError &error) {
+    }
+    return true;
+}
+
+void ClientRoom::startLobbyLoop(const std::string &pseudo, const std::string &password, bool isSolo)
+{
+    _pseudo = pseudo;
+    _password = password;
+    std::signal(SIGINT, signalCallbackHandler);
+    if (_state != ClientState::ENDED)
+        _startConnexionProtocol();
+    _state = ClientState::MAIN_MENU;
+    _updateEcsData(isSolo);
+    while (_state != ClientState::ENDED) {
+        if (!_answerProtocols(isSolo))
+            return;
+        _worldInstance.get()->runSystems(); /// WILL BE IMPROVED IN PART TWO (THREAD + CLOCK)
+    }
+    _disconectionProcess();
+}
+
+void ClientRoom::_initInGameBackgrounds()
 {
     size_t firstID =
         _worldInstance->addEntity()
@@ -570,72 +701,4 @@ void ClientRoom::_initBackgroundEntities()
         .addComponent<Velocity>(-100, 0)
         .addComponent<LayerLvL>(LayerLvL::layer_e::BACKGROUND)
         .addComponent<TextureName>(GraphicsTextureResource::BACKGROUND_LAYER_3);
-}
-
-void ClientRoom::_initEntities()
-{
-    _worldInstance->addEntity()
-        .addComponent<MouseInputComponent>()
-        .addComponent<KeyboardInputComponent>()
-        .addComponent<ControllerButtonInputComponent>()
-        .addComponent<ControllerJoystickInputComponent>()
-        .addComponent<ActionQueueComponent>()
-        .addComponent<AllowMouseAndKeyboardComponent>()
-        .addComponent<AllowControllerComponent>();
-    auto entities = _worldInstance->joinEntities<KeyboardInputComponent>();
-
-    for (auto &it : entities) {
-        it->getComponent<KeyboardInputComponent>().keyboardMapActions.emplace(
-            std::make_pair<sf::Keyboard::Key, std::pair<ActionQueueComponent::inputAction_e, float>>(sf::Keyboard::Z,
-                std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEY, -200)));
-        it->getComponent<KeyboardInputComponent>().keyboardMapActions.emplace(
-            std::make_pair<sf::Keyboard::Key, std::pair<ActionQueueComponent::inputAction_e, float>>(sf::Keyboard::S,
-                std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEY, 200)));
-        it->getComponent<KeyboardInputComponent>().keyboardMapActions.emplace(
-            std::make_pair<sf::Keyboard::Key, std::pair<ActionQueueComponent::inputAction_e, float>>(sf::Keyboard::Q,
-                std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEX, -200)));
-        it->getComponent<KeyboardInputComponent>().keyboardMapActions.emplace(
-            std::make_pair<sf::Keyboard::Key, std::pair<ActionQueueComponent::inputAction_e, float>>(sf::Keyboard::D,
-                std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEX, 200)));
-        it->getComponent<KeyboardInputComponent>().keyboardMapActions.emplace(
-            std::make_pair<sf::Keyboard::Key, std::pair<ActionQueueComponent::inputAction_e, float>>(
-                sf::Keyboard::Enter,
-                std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::SHOOT, 10)));
-        it->getComponent<ControllerJoystickInputComponent>().controllerJoystickMapActions.emplace(
-            std::make_pair<unsigned int, std::pair<ActionQueueComponent::inputAction_e, float>>(
-                1, std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEY, 0)));
-        it->getComponent<MouseInputComponent>().MouseMapActions.emplace(
-            std::make_pair<sf::Mouse::Button, std::pair<ActionQueueComponent::inputAction_e, float>>(
-                sf::Mouse::Button::Left,
-                std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::BUTTON_CLICK, 0)));
-    }
-    _initBackgroundEntities();
-    _initButtons();
-    _initWritable();
-}
-
-void ClientRoom::_initButtons()
-{
-    _worldInstance->addResource<ButtonActionMap>(
-        ButtonActionMap::EXIT, std::function<void(World &, Entity &)>(exitWindow));
-    ButtonActionMap &actionsList = _worldInstance->getResource<ButtonActionMap>();
-    actionsList.addAction(ButtonActionMap::RESUME, std::function<void(World &, Entity &)>(resumeGame));
-    actionsList.addAction(ButtonActionMap::PAUSE, std::function<void(World &, Entity &)>(pauseGame));
-    createNewButton(
-        *(_worldInstance.get()), 0, 0, 68, 68, ButtonActionMap::PAUSE, LayerLvL::BUTTON, MenuStates::IN_GAME);
-    createNewButton(*(_worldInstance.get()), 909, 200, 102, 102, ButtonActionMap::RESUME, LayerLvL::BUTTON,
-        MenuStates::GAME_PAUSED);
-    createNewButton(
-        *(_worldInstance.get()), 909, 500, 102, 102, ButtonActionMap::EXIT, LayerLvL::BUTTON, MenuStates::GAME_PAUSED);
-}
-
-void ClientRoom::_initWritable()
-{
-    ButtonActionMap &actionsList = _worldInstance->getResource<ButtonActionMap>();
-    actionsList.addAction(ButtonActionMap::WRITABLE, std::function<void(World &, Entity &)>(selectAWritable));
-    actionsList.addAction(
-        ButtonActionMap::WRITABLE_BUTTON, std::function<void(World &, Entity &)>(writableButtonAction));
-    std::size_t writableId = createNewWritable(*(_worldInstance.get()), 1450, 900, 350, 50, MenuStates::IN_GAME);
-    createNewWritableButton(*(_worldInstance.get()), 1820, 900, 80, 50,
-        std::function<void(World &, Entity &, std::string &)>(publishNewChatMessage), MenuStates::IN_GAME, writableId);
 }

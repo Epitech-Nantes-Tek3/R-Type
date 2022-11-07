@@ -22,10 +22,10 @@
 #include "R-TypeLogic/Global/Components/AlliedProjectileComponent.hpp"
 #include "R-TypeLogic/Global/Components/EnemyProjectileComponent.hpp"
 #include "R-TypeLogic/Global/Components/EnemyProjectileType.hpp"
+#include "R-TypeLogic/Global/Components/InvisibleComponent.hpp"
 #include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
 #include "R-TypeLogic/Global/Components/SizeComponent.hpp"
-#include "R-TypeLogic/Global/Components/InvisibleComponent.hpp"
 
 using namespace graphicECS::SFML::Systems;
 using namespace graphicECS::SFML::Resources;
@@ -45,17 +45,15 @@ void DrawComponents::addButtonText(std::shared_ptr<Entity> buttonPtr, const sf::
         return;
     switch (buttonPtr->getComponent<ActionName>().actionName) {
         case ButtonActionMap::RESUME:
-            buttonPtr->addComponent<GraphicsTextComponent>(
-                newFont, "Resume", pos.x, pos.y + size.y * 0.5, size.x * 0.3);
+            buttonPtr->addComponent<GraphicsTextComponent>(newFont, "Resume", pos.x, pos.y + size.y * 0.5);
             break;
         case ButtonActionMap::EXIT:
-            buttonPtr->addComponent<GraphicsTextComponent>(
-                newFont, "Exit the game", pos.x, pos.y + size.y * 0.5, size.x * 0.3);
+            buttonPtr->addComponent<GraphicsTextComponent>(newFont, "Quit", pos.x, pos.y + size.y * 0.5);
             break;
         case ButtonActionMap::PAUSE:
-            buttonPtr->addComponent<GraphicsTextComponent>(newFont, "Pause", pos.x, pos.y + size.y * 0.5, size.x * 0.3);
+            buttonPtr->addComponent<GraphicsTextComponent>(newFont, "Pause", pos.x, pos.y + size.y * 0.5);
             break;
-        default: break;
+        default: buttonPtr->addComponent<GraphicsTextComponent>(newFont, "Default", pos.x, pos.y + size.y * 0.5);
     }
 }
 
@@ -174,7 +172,7 @@ void DrawComponents::_updateEntities(World &world, std::shared_ptr<ecs::Entity> 
         auto entityPos = entityPtr->getComponent<Position>();
         auto entitySize = entityPtr->getComponent<Size>();
 
-        entityPtr->addComponent<GraphicsRectangleComponent>(entityPos.x, entityPos.y, entitySize.x, entitySize.y).getComponent<GraphicsRectangleComponent>().shape.setFillColor(sf::Color::Blue);
+        entityPtr->addComponent<GraphicsRectangleComponent>(entityPos.x, entityPos.y, entitySize.x, entitySize.y);
         _updatePlayer(layerType, entityPtr, world.getResource<GraphicsFontResource>().font);
         _updateEnemy(layerType, entityPtr);
         _udpateProjectile(layerType, entityPtr);
@@ -199,7 +197,8 @@ void DrawComponents::_updateTexture(World &world, std::shared_ptr<ecs::Entity> e
                     .get());
         }
         if (entityPtr->contains<Size>())
-            entityPtr->getComponent<GraphicsRectangleComponent>().shape.setSize(sf::Vector2f(entityPtr->getComponent<Size>().x, entityPtr->getComponent<Size>().y));
+            entityPtr->getComponent<GraphicsRectangleComponent>().shape.setSize(
+                sf::Vector2f(entityPtr->getComponent<Size>().x, entityPtr->getComponent<Size>().y));
     } else {
         entityPtr->getComponent<GraphicsRectangleComponent>().shape.setFillColor(sf::Color::White);
     }

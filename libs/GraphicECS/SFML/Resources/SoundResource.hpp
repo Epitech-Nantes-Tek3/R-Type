@@ -24,6 +24,9 @@ namespace graphicECS::SFML::Resources
         /// @brief Name of map which contains Sounds.
         using SoundsList = std::unordered_map<sound_e, std::shared_ptr<sf::SoundBuffer>>;
 
+        /// @brief Default Constructor of SoundResource.
+        SoundResource() = default;
+
         /// @brief Add a Sound from its Sound Path passed as parameter
         /// @param sound_e Enum of the Sound
         /// @param soundPath The sound path to be used.

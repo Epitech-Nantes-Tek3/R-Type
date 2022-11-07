@@ -41,4 +41,11 @@ void writableButtonAction(World &world, Entity &entityPtr);
 /// @param message message to send
 void publishNewChatMessage(World &world, Entity &entityPtr, std::string &message);
 
+/// @brief It sends a room configuration to the server, and then changes the menu state to
+/// the lobby menu
+/// @param world The world that contains the entity.
+/// @param entityPtr The entity that is calling the function.
+/// @return A function pointer.
+void connectToARoom(World &world, Entity &entityPtr);
+
 #endif /* !BUTTONACTION_HPP_ */
