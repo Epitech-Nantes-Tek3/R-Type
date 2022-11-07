@@ -16,13 +16,13 @@ namespace ecs
     class GameLevel : public Resource {
       public:
         /// @brief Enumeration of all possibles level states on the game
-        enum level_e { LEVEL_ONE = 0, LEVEL_TWO = 10, LEVEL_THREE = 20, LEVEL_FORTH = 40, INFINITE = 50 };
+        enum level_e { LEVEL_ONE = 0, LEVEL_TWO = 10, LEVEL_THREE = 20, LEVEL_FORTH = 40, INFINITE = 50};
         /// @brief Create the GameLevel Resource
-        GameLevel() : _currLevel(LEVEL_ONE), _hasLevelChanged(true), _nbkills(0){};
+        GameLevel() : _currLevel(GameLevel::LEVEL_ONE), _hasLevelChanged(true), _nbkills(0){};
 
         /// @brief Get the current level of the game
         /// @return the level of the game
-        inline level_e getCurrentLevel() { return this->_currLevel; };
+        inline GameLevel::level_e getCurrentLevel() { return this->_currLevel; };
 
         /// @brief Check if the game level has changed
         /// @return true if the level has change, false otherwise
@@ -40,7 +40,7 @@ namespace ecs
 
       private:
         /// @brief The current level of the game
-        level_e _currLevel;
+        GameLevel::level_e _currLevel;
 
         /// @brief Is true if the level has recently changed, otherwise false
         bool _hasLevelChanged;
