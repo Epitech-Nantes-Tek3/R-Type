@@ -7,11 +7,11 @@
 
 /// @file Client/ClientRoom.cpp
 
+#include "ClientRoom.hpp"
 #include <csignal>
 #include <functional>
 #include <mutex>
 #include "ButtonAction.hpp"
-#include "ClientRoom.hpp"
 #include "Error/Error.hpp"
 #include "GraphicECS/SFML/Components/ActionQueueComponent.hpp"
 #include "GraphicECS/SFML/Components/AllowControllerComponent.hpp"
