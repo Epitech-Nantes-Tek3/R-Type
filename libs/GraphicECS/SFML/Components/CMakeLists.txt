@@ -25,5 +25,6 @@ set(SRC_GRAPHIC_COMPONENT
     ${GRAPHIC_SRC_COMPONENT_ROOT}/WritableButtonActionComponent.hpp
     ${GRAPHIC_SRC_COMPONENT_ROOT}/ChatMessageComponent.hpp
     ${GRAPHIC_SRC_COMPONENT_ROOT}/ChatMessageLifeComponent.hpp
+    ${GRAPHIC_SRC_COMPONENT_ROOT}/InputDelayComponent.hpp
     PARENT_SCOPE
 )

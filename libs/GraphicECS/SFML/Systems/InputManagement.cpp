@@ -16,6 +16,7 @@
 #include "ControllerButtonInputComponent.hpp"
 #include "ControllerJoystickInputComponent.hpp"
 #include "GraphicECS/SFML/Components/GraphicsTextComponent.hpp"
+#include "GraphicECS/SFML/Components/InputDelayComponent.hpp"
 #include "GraphicECS/SFML/Components/TextureName.hpp"
 #include "IsShootingComponent.hpp"
 #include "KeyboardInputComponent.hpp"
@@ -220,7 +221,12 @@ namespace graphicECS::SFML::Systems
             return;
         auto moveX = [moveD](std::shared_ptr<Entity> entityPtr) {
             auto guard = std::lock_guard(*entityPtr.get());
-            entityPtr->getComponent<Velocity>().multiplierAbscissa = moveD;
+            if (!entityPtr->contains<InputDelayComponent>())
+                entityPtr->addComponent<InputDelayComponent>(
+                    moveD, entityPtr->getComponent<Velocity>().multiplierOrdinate);
+            else
+                entityPtr->getComponent<graphicECS::SFML::Components::InputDelayComponent>().multiplierAbscissa = moveD;
+
             entityPtr->getComponent<Velocity>().modified = true;
             entityPtr->getComponent<Position>().modified = true;
         };
@@ -236,7 +242,11 @@ namespace graphicECS::SFML::Systems
             return;
         auto moveY = [moveD](std::shared_ptr<Entity> entityPtr) {
             auto guard = std::lock_guard(*entityPtr.get());
-            entityPtr->getComponent<Velocity>().multiplierOrdinate = moveD;
+            if (!entityPtr->contains<InputDelayComponent>())
+                entityPtr->addComponent<InputDelayComponent>(
+                    entityPtr->getComponent<Velocity>().multiplierAbscissa, moveD);
+            else
+                entityPtr->getComponent<graphicECS::SFML::Components::InputDelayComponent>().multiplierOrdinate = moveD;
             entityPtr->getComponent<Velocity>().modified = true;
             entityPtr->getComponent<Position>().modified = true;
         };
