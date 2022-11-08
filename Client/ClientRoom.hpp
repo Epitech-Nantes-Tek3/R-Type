@@ -52,7 +52,6 @@ namespace client_data
         int startGame();
 
       private:
-        void _initLobbyMenuButtons();
         /// @brief It sends the pseudo of the client to the server
         void _connectToARoom();
 
