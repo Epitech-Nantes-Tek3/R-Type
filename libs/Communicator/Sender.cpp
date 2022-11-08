@@ -34,11 +34,10 @@ void Sender::sendDataToAClient(Client &client, void *data, size_t size, unsigned
     socket.open(udp::v4());
     std::memcpy(newData, dataHeader, NETWORK_HEADER_SIZE);
     std::memcpy((void *)((char *)newData + NETWORK_HEADER_SIZE), data, size);
-    auto sent = socket.send_to(boost::asio::buffer(newData, size + NETWORK_HEADER_SIZE), socket_endpoint, 0, error);
+    socket.send_to(boost::asio::buffer(newData, size + NETWORK_HEADER_SIZE), socket_endpoint, 0, error);
     std::free(newData);
     std::free(dataHeader);
     socket.close();
-    std::cerr << "Message send. " << sent << "bytes transfered." << std::endl;
 }
 
 void Sender::sendDataToMultipleClients(std::vector<Client> clients, void *data, size_t size, unsigned short type)

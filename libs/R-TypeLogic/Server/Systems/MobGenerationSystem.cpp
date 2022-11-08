@@ -86,7 +86,7 @@ static void infiniteSpawn(World &world, bool hasWaveChanged)
 /// @param world the world where the mob will be generated
 static void createLevelOne(World &world, int nbplayers)
 {
-    for (int x = 0; x < (5 * nbplayers); x++) {
+    for (int x = 0; x < (5 * ((nbplayers + 1) / 2)); x++) {
         unsigned int networkId = 0;
 
         if (world.containsResource<NetworkableIdGenerator>()) {
@@ -104,7 +104,7 @@ static void createLevelOne(World &world, int nbplayers)
 /// @param world the world where the mob will be generated
 static void createLevelTwo(World &world, int nbplayers)
 {
-    for (int x = 0; x < (7 * nbplayers); x++) {
+    for (int x = 0; x < (7 * ((nbplayers + 1) / 2)); x++) {
         unsigned int networkId = 0;
 
         if (world.containsResource<NetworkableIdGenerator>()) {
@@ -126,7 +126,7 @@ static void createLevelTwo(World &world, int nbplayers)
 /// @param world the world where the mob will be generated
 static void createLevelThree(World &world, int nbplayers)
 {
-    for (int x = 0; x < (8 * nbplayers); x++) {
+    for (int x = 0; x < (8 * ((nbplayers + 1) / 2)); x++) {
         unsigned int networkId = 0;
 
         if (world.containsResource<NetworkableIdGenerator>()) {
@@ -144,7 +144,7 @@ static void createLevelThree(World &world, int nbplayers)
 /// @param world the world where the mob will be generated
 static void createLevelFour(World &world, int nbplayers)
 {
-    for (int x = 0; x < (10 * nbplayers); x++) {
+    for (int x = 0; x < (8 * ((nbplayers + 1) / 2)); x++) {
         unsigned int networkId = 0;
 
         if (world.containsResource<NetworkableIdGenerator>()) {
