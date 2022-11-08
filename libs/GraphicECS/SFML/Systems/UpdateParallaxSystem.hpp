@@ -11,8 +11,8 @@
 #include "World/World.hpp"
 
 #define MIDDLE_BACKGROUND_TEXTURE_PATH "assets/Backgrounds/middle.png"
-#define BACK_BACKGROUND_TEXTURE_PATH "assets/Backgrounds/back.png"
-#define FAR_BACKGROUND_TEXTURE_PATH "assets/Backgrounds/far.png"
+#define BACK_BACKGROUND_TEXTURE_PATH   "assets/Backgrounds/back.png"
+#define FAR_BACKGROUND_TEXTURE_PATH    "assets/Backgrounds/far.png"
 
 namespace graphicECS::SFML::Systems
 {
@@ -22,6 +22,6 @@ namespace graphicECS::SFML::Systems
         /// @brief Run the UpdateParallax system
         void run(World &world) override final;
     };
-} // namespace graphicsECS::SFML::Systems
+} // namespace graphicECS::SFML::Systems
 
 #endif /* !UPDATEPARALLAXSYSTEM_HPP_ */
