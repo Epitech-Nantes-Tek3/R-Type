@@ -185,7 +185,7 @@ void ClientRoom::_holdAChatRequest(CommunicatorMessage chatRequest)
 void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
 {
     unsigned short roomNumber = 0;
-    // std::size_t offset = sizeof(unsigned short);
+    std::size_t offset = sizeof(unsigned short);
 
     std::memcpy(&roomNumber, connectionResponse.message.data, sizeof(unsigned short));
     std::cerr << "Succesfully connected to the hub." << std::endl;
@@ -193,17 +193,16 @@ void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
     createNewButton(*(_worldInstance.get()), 500, 0, 200, 50,
         ButtonActionMap::IN_GAME, LayerLvL::BUTTON, MenuStates::LOBBY, "Create room");
     for (int i = 0; i < roomNumber; i++) {
+        unsigned short roomId = 0;
+        std::memcpy(&roomId, (void *)((char *)connectionResponse.message.data + offset), sizeof(unsigned short));
+        offset += sizeof(unsigned short);
+        char *tempRoomName = (char *)connectionResponse.message.data + offset;
+        std::string roomName(11, '\0');
+        for (int j = 0; j < 10; j++)
+            roomName[j] = tempRoomName[j];
+        offset += sizeof(char) * 10;
         createNewButton(
-            *(_worldInstance.get()), 100, i * 60, 200, 50, ButtonActionMap::EXIT, LayerLvL::BUTTON, MenuStates::LOBBY, "room 1");
-        // unsigned short roomId = 0;
-        // std::memcpy(&roomId, (void *)((char *)connectionResponse.message.data + offset), sizeof(unsigned short));
-        // offset += sizeof(unsigned short);
-        // char *tempRoomName = (char *)connectionResponse.message.data + offset;
-        // std::string roomName(11, '\0');
-        // for (int j = 0; j < 10; j++)
-        //     roomName[j] = tempRoomName[j];
-        // offset += sizeof(char) * 10;
-        // std::cerr << "\t" << roomId << " : " << roomName << " is available." << std::endl;
+            *(_worldInstance.get()), 100, i * 60, 200, 50, ButtonActionMap::ROOM_CONNECTION, LayerLvL::BUTTON, MenuStates::LOBBY, roomName);
     }
 
     // std::cerr << "If you want to join a existent room, please refer Y. Otherwise use N : ";
@@ -642,11 +641,6 @@ bool ClientRoom::_answerProtocols(bool isSolo)
         }
         if (connectionOperation.message.type == 15) {
             _protocol15Answer(connectionOperation); // TO BE REMOVE WITH LOBBY MENU
-            // #ifdef __linux__
-            //             sleep(1);
-            // #elif _WIN_32
-            //             Sleep(1000);
-            // #endif
         }
         if (connectionOperation.message.type == 12) {
             _protocol12Answer(connectionOperation);
