@@ -49,6 +49,7 @@ static void makeEnemyGoRandom(
         vel.multiplierOrdinate = newVelY / 4;
         vel.modified = true;
         pos.modified = true;
+        dest.modified = true;
     }
 }
 
