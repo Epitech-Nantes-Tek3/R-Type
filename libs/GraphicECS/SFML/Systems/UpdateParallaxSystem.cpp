@@ -12,6 +12,10 @@
 using namespace graphicECS::SFML::Systems;
 using namespace graphicECS::SFML::Resources;
 
+
+/// @brief This function loads new backgrounds, filepaths are given in the vector passed in params
+/// @param world the world where the backgrounds will be changed
+/// @param newPaths a vector with the 3 paths for the new backgrounds assets
 static void changeBackgrounds(World &world, std::vector<std::string> newPaths)
 {
     if (!world.containsResource<GraphicsTextureResource>() || newPaths.size() != 3)
