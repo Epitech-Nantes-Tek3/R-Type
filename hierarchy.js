@@ -45,6 +45,7 @@ var hierarchy =
       [ "ecs::Projectile", "classecs_1_1_projectile.html", null ],
       [ "ecs::ShootingFrequency", "classecs_1_1_shooting_frequency.html", null ],
       [ "ecs::Size", "classecs_1_1_size.html", null ],
+      [ "ecs::TextComponent", "classecs_1_1_text_component.html", null ],
       [ "ecs::Velocity", "classecs_1_1_velocity.html", null ],
       [ "ecs::Weakness", "classecs_1_1_weakness.html", null ],
       [ "ecs::Weight", "classecs_1_1_weight.html", null ],

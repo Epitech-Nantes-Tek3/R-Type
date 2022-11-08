@@ -91,6 +91,9 @@ var dir_a0945030c89cff447dc82302d04eb87b =
     [ "SizeComponent.hpp", "_size_component_8hpp.html", [
       [ "Size", "classecs_1_1_size.html", "classecs_1_1_size" ]
     ] ],
+    [ "TextComponent.hpp", "_text_component_8hpp.html", [
+      [ "TextComponent", "classecs_1_1_text_component.html", "classecs_1_1_text_component" ]
+    ] ],
     [ "VelocityComponent.hpp", "_velocity_component_8hpp.html", [
       [ "Velocity", "classecs_1_1_velocity.html", "classecs_1_1_velocity" ]
     ] ],

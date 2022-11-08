@@ -61,6 +61,7 @@ var annotated_dup =
       [ "Projectile", "classecs_1_1_projectile.html", null ],
       [ "ShootingFrequency", "classecs_1_1_shooting_frequency.html", "classecs_1_1_shooting_frequency" ],
       [ "Size", "classecs_1_1_size.html", "classecs_1_1_size" ],
+      [ "TextComponent", "classecs_1_1_text_component.html", "classecs_1_1_text_component" ],
       [ "Velocity", "classecs_1_1_velocity.html", "classecs_1_1_velocity" ],
       [ "Weakness", "classecs_1_1_weakness.html", "classecs_1_1_weakness" ],
       [ "Weight", "classecs_1_1_weight.html", "classecs_1_1_weight" ],
