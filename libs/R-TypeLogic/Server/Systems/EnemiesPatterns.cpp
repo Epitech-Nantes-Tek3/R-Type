@@ -79,14 +79,14 @@ static void fireEnemyPatterns(World &world, std::shared_ptr<Entity> enemy)
     Position &playerPos = players.at(0)->getComponent<Position>();
     Position &enemyPos = enemy->getComponent<Position>();
 
-    if (playerPos.x - 20 <= dest.x && dest.x <= playerPos.x + 20)
+    if (playerPos.x - 100 <= dest.x && dest.x <= playerPos.x + 100)
         return;
 
     dest.x = playerPos.x;
     dest.y = playerPos.y;
 
-    vel.multiplierAbscissa = (dest.x - enemyPos.x) / 20;
-    vel.multiplierOrdinate = (dest.y - enemyPos.y) / 20;
+    vel.multiplierAbscissa = (dest.x - enemyPos.x) / 10;
+    vel.multiplierOrdinate = (dest.y - enemyPos.y) / 10;
     vel.modified = true;
     enemyPos.modified = true;
 }
