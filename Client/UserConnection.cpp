@@ -66,8 +66,8 @@ void UserConnection::_loadResourcesUserConnection()
         .addResource<MenuStates>(MenuStates::IN_GAME)
         .addResource<ButtonActionMap>(
             ButtonActionMap::WRITABLE_BUTTON, std::function<void(World &, Entity &)>(writableButtonAction))
-        .addResource<GraphicsTextureResource>(GraphicsTextureResource::BUTTON, BUTTON_TEXTURE_PATH,
-            sf::Vector2f(34, 0), sf::Vector2f(34, 34));
+        .addResource<GraphicsTextureResource>(
+            GraphicsTextureResource::BUTTON, BUTTON_TEXTURE_PATH, sf::Vector2f(34, 0), sf::Vector2f(34, 34));
     _world->getResource<GraphicsTextureResource>().addTexture(
         GraphicsTextureResource::WRITABLE, WRITABLE_BUTTON_TEXTURE_PATH);
     _world->getResource<GraphicsTextureResource>().addTexture(
