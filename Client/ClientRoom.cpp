@@ -150,7 +150,6 @@ void ClientRoom::_startConnexionProtocol(void)
     _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, networkData, sizeof(char) * 10, 14);
     std::free(networkData);
 }
-
 void ClientRoom::_protocol12Answer(CommunicatorMessage connexionResponse)
 {
     _worldInstance.get()->addEntity().addComponent<NetworkServer>(connexionResponse.message.clientInfo.getId());
@@ -213,7 +212,7 @@ void ClientRoom::_signalSoloCallbackHandler(int signum)
 
 void ClientRoom::_initSoloData(void)
 {
-    createNewPlayer(*_worldInstance.get(), 20, 500, 0, 0, 1, 102, 102, 30000, 10, 4, true, 1, _pseudo);
+    createNewPlayer(*_worldInstance.get(), 20, 500, 0, 0, 1, 102, 102, 100, 10, 4, true, 1, _pseudo);
 }
 
 void ClientRoom::_startSoloLoop()
