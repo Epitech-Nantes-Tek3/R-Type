@@ -17,6 +17,7 @@ var classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource =
       [ "FIRE_ENEMY", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html#aa8d3b383da5ddc1c6dd86c2c5efc035da282c613ee01bc34b5a76f1555416b7da", null ],
       [ "ELECTRIC_ENEMY", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html#aa8d3b383da5ddc1c6dd86c2c5efc035dad0fa33b83f0a1ea177238f2ffd4d8271", null ],
       [ "ICE_ENEMY", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html#aa8d3b383da5ddc1c6dd86c2c5efc035dac0522b70b34cc4b571922bb4c5c2f7a4", null ],
+      [ "BOSS", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html#aa8d3b383da5ddc1c6dd86c2c5efc035da6c9b8eb9890e248e6b09e832e61ff2b7", null ],
       [ "ENEMY_UP", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html#aa8d3b383da5ddc1c6dd86c2c5efc035da260e573dee2bbc6a0e89fb185756b186", null ],
       [ "ENEMY_DOWN", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html#aa8d3b383da5ddc1c6dd86c2c5efc035daafb79c352dfb0b2d38a787d05df46c3d", null ],
       [ "BACKGROUND_LAYER_1", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html#aa8d3b383da5ddc1c6dd86c2c5efc035da61589965ce83049e51fba71629a8640a", null ],

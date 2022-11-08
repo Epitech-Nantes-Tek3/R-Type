@@ -5,6 +5,8 @@ var _create_enemy_8hpp =
     [ "MINIMUM_HEIGTH", "_create_enemy_8hpp.html#a985e833993add5f9e2deac2f98506f59", null ],
     [ "MINIMUM_WIDTH", "_create_enemy_8hpp.html#a75532d5fbba4f4dcc6fd0002ebc80c9f", null ],
     [ "createBasicEnemy", "_create_enemy_8hpp.html#a0a14e2a4be72f02b4662ca679fce83d9", null ],
+    [ "createBoss", "_create_enemy_8hpp.html#a5bfa7521a873968fc6d9a82c3c9e3218", null ],
+    [ "createBossPawn", "_create_enemy_8hpp.html#a514330f0df93b5dda494c0f3e4326de4", null ],
     [ "createElectricEnemy", "_create_enemy_8hpp.html#aa2c04b3712d3089f56affc60722b55ab", null ],
     [ "createFireEnemy", "_create_enemy_8hpp.html#a87717576e0965e060e3b071a40ff8a8b", null ],
     [ "createIceEnemy", "_create_enemy_8hpp.html#a6e650072dfe14acd9637771dbe245eed", null ],

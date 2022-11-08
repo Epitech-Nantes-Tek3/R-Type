@@ -1,5 +1,9 @@
 var NAVTREEINDEX2 =
 {
+"classcommunicator__lib_1_1_sender.html":[4,0,2,6],
+"classcommunicator__lib_1_1_sender.html#a34bc63592e1ccaad550b9f9a259c0fa7":[4,0,2,6,1],
+"classcommunicator__lib_1_1_sender.html#a615e2465e35eabb53ffb9297aec88a0d":[4,0,2,6,4],
+"classcommunicator__lib_1_1_sender.html#a99dd9c6aa7d546320d619aca9067fdc6":[4,0,2,6,2],
 "classcommunicator__lib_1_1_sender.html#abdf3a1fa28741eb1eed138e98197c517":[4,0,2,6,3],
 "classcommunicator__lib_1_1_sender.html#ae14150bc5755bf478a7ad1904c017ba1":[4,0,2,6,0],
 "classdatabase_1_1_database.html":[4,0,3,0],
@@ -97,6 +101,7 @@ var NAVTREEINDEX2 =
 "classecs_1_1_enemy.html#adc6689719988f8eb8deb51435b521efca8c0f778833f43033ae44964f83a6e8b9":[4,0,4,24,0,3],
 "classecs_1_1_enemy.html#adc6689719988f8eb8deb51435b521efcac4491fbca300265c5ed6131f43009699":[4,0,4,24,0,1],
 "classecs_1_1_enemy.html#adc6689719988f8eb8deb51435b521efcaf118492bc9e0d9fafafb0e0947c69d90":[4,0,4,24,0,2],
+"classecs_1_1_enemy.html#adc6689719988f8eb8deb51435b521efcaf9fbb55e82ee5a27092d7869baa5a64b":[4,0,4,24,0,4],
 "classecs_1_1_enemy_projectile.html":[4,0,4,25],
 "classecs_1_1_enemy_projectile.html#a52c6e0ca5409e8d5551be4ff5aa413d8":[4,0,4,25,0],
 "classecs_1_1_enemy_projectile.html#a7d44e5ddb7c7d1f09e7adb786dbd3a28":[4,0,4,25,2],
@@ -244,10 +249,5 @@ var NAVTREEINDEX2 =
 "classecs_1_1_resource.html#a4ab3f5cbdd0b55a5141ffcfb836bb274":[4,0,4,2,2],
 "classecs_1_1_resource.html#a4bcd1718ebc4a00049324ffcec9e2dfd":[4,0,4,2,0],
 "classecs_1_1_resource.html#af6d38dc8395fce08bba80baed32fd656":[4,0,4,2,1],
-"classecs_1_1_shooting_frequency.html":[4,0,4,39],
-"classecs_1_1_shooting_frequency.html#a1ddea56039f07b6830a3fed8c8e4d9f1":[4,0,4,39,3],
-"classecs_1_1_shooting_frequency.html#a2f243731ab088169107cde7e09019cfc":[4,0,4,39,0],
-"classecs_1_1_shooting_frequency.html#a78afa63c1aa55cd8b77fe3fc24c1bb26":[4,0,4,39,2],
-"classecs_1_1_shooting_frequency.html#a7e740de3091edf4d0934e8c1f69d0144":[4,0,4,39,4],
-"classecs_1_1_shooting_frequency.html#aba29169b565cdc67f1c272c6f7230677":[4,0,4,39,1]
+"classecs_1_1_shooting_frequency.html":[4,0,4,39]
 };

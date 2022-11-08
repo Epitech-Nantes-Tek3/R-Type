@@ -332,6 +332,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a6e650072dfe14acd9637771dbe245eed"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceecs.html#a6e650072dfe14acd9637771dbe245eed">createIceEnemy</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, const unsigned short networkId=0)</td></tr>
 <tr class="memdesc:a6e650072dfe14acd9637771dbe245eed"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function creates an ice enemy with corresponding caracteristics.  <a href="namespaceecs.html#a6e650072dfe14acd9637771dbe245eed">More...</a><br /></td></tr>
 <tr class="separator:a6e650072dfe14acd9637771dbe245eed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5bfa7521a873968fc6d9a82c3c9e3218"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceecs.html#a5bfa7521a873968fc6d9a82c3c9e3218">createBoss</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, const unsigned short networkId=0)</td></tr>
+<tr class="memdesc:a5bfa7521a873968fc6d9a82c3c9e3218"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function creates a boss with corresponding caracteristics, more life, more damage, more everything...  <a href="namespaceecs.html#a5bfa7521a873968fc6d9a82c3c9e3218">More...</a><br /></td></tr>
+<tr class="separator:a5bfa7521a873968fc6d9a82c3c9e3218"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a514330f0df93b5dda494c0f3e4326de4"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceecs.html#a514330f0df93b5dda494c0f3e4326de4">createBossPawn</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, <a class="el" href="classecs_1_1_position.html">Position</a> &amp;pos, unsigned int pawnType, const unsigned short networkId=0)</td></tr>
+<tr class="memdesc:a514330f0df93b5dda494c0f3e4326de4"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function creates a boss pawn with corresponding caracteristics, everything is reduced except the projectiles.  <a href="namespaceecs.html#a514330f0df93b5dda494c0f3e4326de4">More...</a><br /></td></tr>
+<tr class="separator:a514330f0df93b5dda494c0f3e4326de4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa62e95c47f17c08d6077518fbf890fb9"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceecs.html#aa62e95c47f17c08d6077518fbf890fb9">createNewEnemyProjectile</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, std::shared_ptr&lt; <a class="el" href="classecs_1_1_entity.html">ecs::Entity</a> &gt; enemy, const std::string uuid=&quot;&quot;, unsigned short networkId=0)</td></tr>
 <tr class="memdesc:aa62e95c47f17c08d6077518fbf890fb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function create a new <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components The std::mutex inheritance is in...">Entity</a> projectile_enemy when an enemy shoot.  <a href="namespaceecs.html#aa62e95c47f17c08d6077518fbf890fb9">More...</a><br /></td></tr>
 <tr class="separator:aa62e95c47f17c08d6077518fbf890fb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -421,6 +427,94 @@ template&lt;std::derived_from&lt; Component &gt; C&gt; </div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">world</td><td>the world where the enemy will be created </td></tr>
+    <tr><td class="paramname">networkdId</td><td>The id of the <a class="el" href="classecs_1_1_networkable.html" title="This component is used to know which entities must be the same in the server and in client....">Networkable</a> <a class="el" href="classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone...">Component</a>. In the client instance, it MUST NOT be filled in. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5bfa7521a873968fc6d9a82c3c9e3218"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5bfa7521a873968fc6d9a82c3c9e3218">&#9670;&nbsp;</a></span>createBoss()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::size_t ecs::createBoss </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classecs_1_1_world.html">World</a> &amp;&#160;</td>
+          <td class="paramname"><em>world</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned short&#160;</td>
+          <td class="paramname"><em>networkId</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function creates a boss with corresponding caracteristics, more life, more damage, more everything... </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">world</td><td>the world where the boss will be created </td></tr>
+    <tr><td class="paramname">networkdId</td><td>The id of the <a class="el" href="classecs_1_1_networkable.html" title="This component is used to know which entities must be the same in the server and in client....">Networkable</a> <a class="el" href="classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone...">Component</a>. In the client instance, it MUST NOT be filled in. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a514330f0df93b5dda494c0f3e4326de4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a514330f0df93b5dda494c0f3e4326de4">&#9670;&nbsp;</a></span>createBossPawn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::size_t ecs::createBossPawn </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classecs_1_1_world.html">World</a> &amp;&#160;</td>
+          <td class="paramname"><em>world</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classecs_1_1_position.html">Position</a> &amp;&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>pawnType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned short&#160;</td>
+          <td class="paramname"><em>networkId</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function creates a boss pawn with corresponding caracteristics, everything is reduced except the projectiles. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">world</td><td>the world where the pawn will be created </td></tr>
+    <tr><td class="paramname">pos</td><td>the boss pos, to decide where to spawn the pawn </td></tr>
+    <tr><td class="paramname">pawnType</td><td>the type of the generated pawn (between BASIC and ELECTRIC) </td></tr>
     <tr><td class="paramname">networkdId</td><td>The id of the <a class="el" href="classecs_1_1_networkable.html" title="This component is used to know which entities must be the same in the server and in client....">Networkable</a> <a class="el" href="classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone...">Component</a>. In the client instance, it MUST NOT be filled in. </td></tr>
   </table>
   </dd>

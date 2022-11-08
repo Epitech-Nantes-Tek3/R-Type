@@ -1,5 +1,13 @@
 var NAVTREEINDEX5 =
 {
+"structecs_1_1_life_time_death.html":[4,0,4,59],
+"structecs_1_1_life_time_death.html#a69c55e0fcafc404178246cf9c0f25c2e":[4,0,4,59,0],
+"structecs_1_1_mob_generation.html":[4,0,4,60],
+"structecs_1_1_mob_generation.html#a7d680865a5e38f07551489e9899c70c1":[4,0,4,60,0],
+"structecs_1_1_movement.html":[4,0,4,49],
+"structecs_1_1_movement.html#a3956c2d126f291e5d0949b9c720ea86c":[4,0,4,49,0],
+"structecs_1_1_no_afk_in_menu.html":[4,0,4,50],
+"structecs_1_1_no_afk_in_menu.html#a040868eca048132000391a837cf44885":[4,0,4,50,0],
 "structecs_1_1_random_device.html":[4,0,4,46],
 "structecs_1_1_random_device.html#a0ba1b9dd25fa48388322564b325acd24":[4,0,4,46,0],
 "structecs_1_1_random_device.html#aca0972e8d6927808e436c02f92398a77":[4,0,4,46,1],

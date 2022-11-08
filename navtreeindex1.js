@@ -1,5 +1,9 @@
 var NAVTREEINDEX1 =
 {
+"_input_management_8hpp.html":[5,0,1,5,0,2,5],
+"_input_management_8hpp_source.html":[5,0,1,5,0,2,5],
+"_invinsible_component_8hpp.html":[5,0,1,6,1,0,18],
+"_invinsible_component_8hpp_source.html":[5,0,1,6,1,0,18],
 "_invisible_component_8hpp.html":[5,0,1,6,1,0,19],
 "_invisible_component_8hpp_source.html":[5,0,1,6,1,0,19],
 "_is_shooting_component_8hpp.html":[5,0,1,5,0,0,15],
@@ -245,9 +249,5 @@ var NAVTREEINDEX1 =
 "classcommunicator__lib_1_1_receiver.html#aa96fe359fb3c372c4ba67c29b33b0d2f":[4,0,2,5,6],
 "classcommunicator__lib_1_1_receiver.html#ab05f062ad8bc9105e7708c9567552908":[4,0,2,5,0],
 "classcommunicator__lib_1_1_receiver.html#ad0b88e6a29d7c3d6be17d8d78785ed8c":[4,0,2,5,7],
-"classcommunicator__lib_1_1_receiver.html#adacc73bc3c4cbe2b06a06f359ebe905a":[4,0,2,5,9],
-"classcommunicator__lib_1_1_sender.html":[4,0,2,6],
-"classcommunicator__lib_1_1_sender.html#a34bc63592e1ccaad550b9f9a259c0fa7":[4,0,2,6,1],
-"classcommunicator__lib_1_1_sender.html#a615e2465e35eabb53ffb9297aec88a0d":[4,0,2,6,4],
-"classcommunicator__lib_1_1_sender.html#a99dd9c6aa7d546320d619aca9067fdc6":[4,0,2,6,2]
+"classcommunicator__lib_1_1_receiver.html#adacc73bc3c4cbe2b06a06f359ebe905a":[4,0,2,5,9]
 };
