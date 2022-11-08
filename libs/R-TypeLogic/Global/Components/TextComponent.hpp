@@ -13,6 +13,8 @@
 
 namespace ecs
 {
+    /// @brief A class that inherits from Component. It has a public string text and a constructor that takes a string
+    /// as a parameter.
     class TextComponent : public Component {
       public:
         /// @brief Store a text to be drawn.
