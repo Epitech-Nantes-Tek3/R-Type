@@ -29,6 +29,13 @@
 #define ICE_ENEMY_PROJECTILE_TEXTURE_PATH "assets/EpiSprite/IceEnemyProjectileSpriteSheet.gif"
 #define BASIC_ALLIED_PROJECTILE_TEXTURE_PATH "assets/EpiSprite/BasicAlliedProjectileSpriteSheet.gif"
 #define BOSS_TEXTURE_PATH "assets/EpiSprite/BossSpriteSheet.gif"
+#define BACK_BACKGROUND_TEXTURE_PATH "assets/Backgrounds/back.png"
+#define FAR_BACKGROUND_TEXTURE_PATH "assets/Backgrounds/far.png"
+#define MIDDLE_BACKGROUND_TEXTURE_PATH "assets/Backgrounds/middle.png"
+#define WRITABLE_TEXTURE_PATH "assets/EpiSprite/r-typesheet11.gif"
+#define WRITABLE_SELECTED_TEXTURE_PATH "assets/EpiSprite/BasicPlayerSpriteSheet.gif"
+#define WRITABLE_BUTTON_TEXTURE_PATH "assets/EpiSprite/r-typesheet11.gif"
+#define PLAYER_TEXTURE_PATH "assets/EpiSprite/BasicPlayerSpriteSheet.gif"
 
 using namespace communicator_lib;
 using namespace ecs;
