@@ -53,8 +53,17 @@ void connectToARoom(World &world, Entity &entityPtr);
 /// @param entityPtr The entity that the button is attached to.
 void launchSoloGame(World &world, Entity &entityPtr);
 
+/// @brief When the user clicks the 'Go to Lobby' button, change the current menu state to
+/// the lobby.
+/// @param world The world that the entity is in.
+/// @param entityPtr The entity that the button is attached to.
 void goToLobby(World &world, Entity &entityPtr);
 
+/// @brief It sends a room configuration to the client
+/// @param world The world that contains all the entities and resources.
+/// @param entityPtr The entity that is calling the function.
+/// @param message the message that will be sent to the client
+/// @return A function pointer.
 void createARoom(World &world, Entity &entityPtr, std::string &message);
 
 #endif /* !BUTTONACTION_HPP_ */
