@@ -32,10 +32,10 @@ namespace ecs
                 random.randInt(MINIMUM_WIDTH, MAXIMUM_WIDTH), random.randInt(MINIMUM_HEIGTH, MAXIMUM_HEIGTH));
         switch (type) {
             case Enemy::FIRE: entity.addComponent<ShootingFrequency>(2); break;
-            case Enemy::ELECTRIC: entity.addComponent<ShootingFrequency>(0.5); break;
-            case Enemy::ICE: entity.addComponent<ShootingFrequency>(1); break;
+            case Enemy::ELECTRIC: entity.addComponent<ShootingFrequency>(0.9); break;
+            case Enemy::ICE: entity.addComponent<ShootingFrequency>(1.5); break;
             case Enemy::BOSS: entity.addComponent<ShootingFrequency>(5); break;
-            default: entity.addComponent<ShootingFrequency>(1.5); break;
+            default: entity.addComponent<ShootingFrequency>(1.8); break;
         };
         if (networkId) {
             // Case : Creation in a server instance
