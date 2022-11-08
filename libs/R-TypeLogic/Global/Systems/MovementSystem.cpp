@@ -33,11 +33,11 @@ void Movement::run(World &world)
         if (entityPtr->contains<Player>() == true) {
             if ((pos.x <= 4 && vel.multiplierAbscissa < 0))
                 return;
-            if ((pos.x >= 1912 && vel.multiplierAbscissa > 0))
+            if ((pos.x >= 1817 && vel.multiplierAbscissa > 0))
                 return;
             if ((pos.y <= 4 && vel.multiplierOrdinate < 0))
                 return;
-            if ((pos.y >= 1072 && vel.multiplierOrdinate > 0))
+            if ((pos.y >= 975 && vel.multiplierOrdinate > 0))
                 return;
         }
         if (elapsedTimeInSeconds >= 1)
