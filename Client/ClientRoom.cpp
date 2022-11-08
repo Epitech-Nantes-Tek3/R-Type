@@ -82,10 +82,6 @@
 #include "R-TypeLogic/Server/Systems/LifeTimeDeathSystem.hpp"
 #include "R-TypeLogic/Server/Systems/MobGenerationSystem.hpp"
 
-#ifdef _WIN32
-    #include <windows.h>
-#endif
-
 using namespace error_lib;
 using namespace communicator_lib;
 using namespace client_data;
