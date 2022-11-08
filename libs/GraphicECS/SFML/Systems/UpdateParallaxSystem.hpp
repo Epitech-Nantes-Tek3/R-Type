@@ -10,7 +10,7 @@
 
 #include "World/World.hpp"
 
-namespace graphicsECS::SFML::Systems
+namespace graphicECS::SFML::Systems
 {
     /// @brief Update the Parallax by changing backgrounds images depending on the game level resource
     struct UpdateParallax : public System {
