@@ -249,7 +249,7 @@ void ClientRoom::_signalSoloCallbackHandler(int signum)
 
 void ClientRoom::_initSoloData(void)
 {
-    createNewPlayer(*_worldInstance.get(), 20, 500, 0, 0, 1, 102, 102, 100, 10, 4, true, 1, _pseudo);
+    createNewPlayer(*_worldInstance.get(), 20, 500, 0, 0, 1, 102, 102, 30000, 10, 4, true, 1, _pseudo);
 }
 
 void ClientRoom::_startSoloLoop()
@@ -261,8 +261,9 @@ void ClientRoom::_startSoloLoop()
     while (_state != ClientState::ENDED && _state != ClientState::UNDEFINED) {
         if (_worldInstance->containsResource<MenuStates>()
             && _worldInstance->getResource<MenuStates>().currentState == MenuStates::LOBBY) {
-            _updateEcsData(true);
             _worldInstance->getResource<MenuStates>().currentState = MenuStates::IN_GAME;
+            _state = ClientState::IN_GAME;
+            _updateEcsData(true);
         }
         _worldInstance.get()->runSystems();
     }
@@ -362,6 +363,8 @@ void ClientRoom::_updateEcsResources(bool isSolo)
         _worldInstance->addResource<GraphicsTextureResource>();
     if (!_worldInstance->containsResource<ButtonActionMap>())
         _worldInstance->addResource<ButtonActionMap>();
+    if (!_worldInstance->containsResource<GameLevel>())
+        _worldInstance->addResource<GameLevel>();
     if (_worldInstance->containsResource<GraphicsTextureResource>())
         _loadTextures();
     if (_worldInstance->containsResource<ButtonActionMap>())
@@ -591,6 +594,8 @@ void ClientRoom::_updateEcsSystems(bool isSolo)
         _worldInstance->addSystem<ElectricInvisibleEnemy>();
 
     if (isSolo) {
+        if (!_worldInstance->containsSystem<MobGeneration>() && _state == ClientState::IN_GAME)
+            _worldInstance->addSystem<MobGeneration>();
         if (!_worldInstance->containsSystem<EnemiesPatterns>())
             _worldInstance->addSystem<EnemiesPatterns>();
         if (!_worldInstance->containsSystem<EnemyShootSystem>())
