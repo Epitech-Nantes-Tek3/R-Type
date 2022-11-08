@@ -13,7 +13,7 @@
 
 namespace ecs
 {
-    class TextComponent : Component {
+    class TextComponent : public Component {
       public:
         /// @brief Store a text to be drawn.
         std::string text;

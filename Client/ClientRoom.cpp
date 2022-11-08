@@ -191,10 +191,10 @@ void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
     std::cerr << "Succesfully connected to the hub." << std::endl;
     std::cerr << "Available Rooms : " << std::endl;
     createNewButton(*(_worldInstance.get()), 500, 0, 200, 50,
-        ButtonActionMap::IN_GAME, LayerLvL::BUTTON, MenuStates::LOBBY);
+        ButtonActionMap::IN_GAME, LayerLvL::BUTTON, MenuStates::LOBBY, "Create room");
     for (int i = 0; i < roomNumber; i++) {
         createNewButton(
-            *(_worldInstance.get()), 100, i * 60, 200, 50, ButtonActionMap::EXIT, LayerLvL::BUTTON, MenuStates::LOBBY);
+            *(_worldInstance.get()), 100, i * 60, 200, 50, ButtonActionMap::EXIT, LayerLvL::BUTTON, MenuStates::LOBBY, "room 1");
         // unsigned short roomId = 0;
         // std::memcpy(&roomId, (void *)((char *)connectionResponse.message.data + offset), sizeof(unsigned short));
         // offset += sizeof(unsigned short);
@@ -473,9 +473,9 @@ void ClientRoom::_initLobbyMenuButtons()
     if (_worldInstance->containsResource<RenderWindowResource>())
         windowSize = _worldInstance->getResource<RenderWindowResource>().window.getSize();
     createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 3 - 25, 200, 50,
-        ButtonActionMap::IN_GAME, LayerLvL::BUTTON, MenuStates::LOBBY);
+        ButtonActionMap::IN_GAME, LayerLvL::BUTTON, MenuStates::LOBBY, "Play");
     createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 3 * 2 - 25, 200, 50,
-        ButtonActionMap::EXIT, LayerLvL::BUTTON, MenuStates::LOBBY);
+        ButtonActionMap::EXIT, LayerLvL::BUTTON, MenuStates::LOBBY, "Exit");
 }
 
 void ClientRoom::_updateEcsEntities()
@@ -537,11 +537,11 @@ void ClientRoom::_initInputsEntity()
 void ClientRoom::_initInGameButtons()
 {
     createNewButton(
-        *(_worldInstance.get()), 0, 0, 68, 68, ButtonActionMap::PAUSE, LayerLvL::BUTTON, MenuStates::IN_GAME);
+        *(_worldInstance.get()), 0, 0, 68, 68, ButtonActionMap::PAUSE, LayerLvL::BUTTON, MenuStates::IN_GAME, "Pause");
     createNewButton(*(_worldInstance.get()), 909, 200, 102, 102, ButtonActionMap::RESUME, LayerLvL::BUTTON,
-        MenuStates::GAME_PAUSED);
+        MenuStates::GAME_PAUSED, "Resume");
     createNewButton(
-        *(_worldInstance.get()), 909, 500, 102, 102, ButtonActionMap::EXIT, LayerLvL::BUTTON, MenuStates::GAME_PAUSED);
+        *(_worldInstance.get()), 909, 500, 102, 102, ButtonActionMap::EXIT, LayerLvL::BUTTON, MenuStates::GAME_PAUSED, "Exit");
 }
 
 void ClientRoom::_initMainMenuButtons()
@@ -551,9 +551,9 @@ void ClientRoom::_initMainMenuButtons()
     if (_worldInstance->containsResource<RenderWindowResource>())
         windowSize = _worldInstance->getResource<RenderWindowResource>().window.getSize();
     createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 3 - 25, 200, 50,
-        ButtonActionMap::LOBBY, LayerLvL::BUTTON, MenuStates::MAIN_MENU);
+        ButtonActionMap::LOBBY, LayerLvL::BUTTON, MenuStates::MAIN_MENU, "Lobby");
     createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 3 * 2 - 25, 200, 50,
-        ButtonActionMap::EXIT, LayerLvL::BUTTON, MenuStates::MAIN_MENU);
+        ButtonActionMap::EXIT, LayerLvL::BUTTON, MenuStates::MAIN_MENU, "Quit");
 }
 
 void ClientRoom::_initInGameWritables()

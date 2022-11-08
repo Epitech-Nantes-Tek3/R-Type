@@ -25,9 +25,11 @@ namespace ecs
     /// @param actionName The action name to be set for the Button
     /// @param layerLvl The button layer level, useful for graphical part
     /// @param displayState The associated state to decide when the button will be displayed
+    /// @param text The text to be set on a button.
     /// @return Id of the new Button in std::size_t
     std::size_t createNewButton(World &world, const int posX, const int posY, const int sizeX, const int sizeY,
-        ButtonActionMap::buttonAction_e actionName, LayerLvL::layer_e layerLvl, MenuStates::menuState_e state);
+        ButtonActionMap::buttonAction_e actionName, LayerLvL::layer_e layerLvl, MenuStates::menuState_e state,
+        const std::string &text);
 } // namespace ecs
 
 #endif /* !CREATEBUTTON_HPP_ */
