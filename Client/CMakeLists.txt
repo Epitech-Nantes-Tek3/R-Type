@@ -32,3 +32,5 @@ target_link_libraries(${TARGET}
     ${PROJECT_NAME}_SFMLGraphicECS
     ${PROJECT_NAME}_RTypeLogicButtonManipulation
 )
+
+install(TARGETS ${TARGET} DESTINATION bin)

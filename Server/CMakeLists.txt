@@ -13,6 +13,8 @@ set(SRC_SERVER
 
 add_executable(${TARGET_SERVER} ${SRC_SERVER})
 
+set_property(TARGET ${TARGET_SERVER} PROPERTY MSVC_RUNTIME_LIBRARY "")
+
 set_target_properties(${TARGET_SERVER}
     PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/
@@ -22,3 +24,5 @@ target_link_libraries(${TARGET_SERVER}
     ${PROJECT_NAME}_transisthor
     ${PROJECT_NAME}_argumentHandler
 )
+
+install(TARGETS ${TARGET_SERVER} DESTINATION bin)
