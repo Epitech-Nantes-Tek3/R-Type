@@ -48,4 +48,6 @@ void publishNewChatMessage(World &world, Entity &entityPtr, std::string &message
 /// @return A function pointer.
 void connectToARoom(World &world, Entity &entityPtr);
 
+void launchSoloGame(World &world, Entity &entityPtr);
+
 #endif /* !BUTTONACTION_HPP_ */

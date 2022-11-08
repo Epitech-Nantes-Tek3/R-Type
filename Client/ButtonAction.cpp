@@ -132,3 +132,9 @@ void connectToARoom(World &world, Entity &entityPtr)
             0)); /// WILL BE UPDATE WITH THE LOBBY MENU
     world.getResource<MenuStates>().currentState = MenuStates::LOBBY;
 }
+
+void launchSoloGame(World &world, Entity &entityPtr)
+{
+    (void)entityPtr;
+    world.getResource<MenuStates>().currentState = MenuStates::LOBBY;
+}

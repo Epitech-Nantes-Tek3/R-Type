@@ -64,7 +64,8 @@ namespace client_data
         void _initInGameBackgrounds();
 
         /// @brief It loads the button actions into the button action map
-        void _loadButtonActionMap();
+        /// @param isSolo true if it's a solo game, false otherwise
+        void _loadButtonActionMap(bool isSolo);
 
         /// @brief It creates an entity with all the input components and sets the
         /// keyboard and mouse inputs to the entity
@@ -78,7 +79,8 @@ namespace client_data
         void _updateEcsData(bool isSolo);
 
         /// @brief It checks if the ECS resources are loaded, and if not, it loads them
-        void _updateEcsResources();
+        /// @param isSolo If true, the client will be the only player in the room.
+        void _updateEcsResources(bool isSolo);
 
         /// @brief It initializes the entities that are needed for the current state of the game
         void _updateEcsEntities();
