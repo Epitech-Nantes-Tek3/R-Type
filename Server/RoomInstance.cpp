@@ -13,7 +13,6 @@ namespace server_data
     RoomInstance::RoomInstance(
         Server *server, unsigned short id, std::string name, std::string address, unsigned short port)
     {
-        std::cerr << "CREATE A CLASS RoomInstance 1" << std::endl;
         _id = id;
         if (name == "")
             throw error_lib::RoomError("Try to create a room with a null name.", "RoomInstance.cpp -> RoomInstance");
@@ -26,12 +25,9 @@ namespace server_data
         _terminated = false;
         _input = new boost::process::opstream();
         _output = new boost::process::ipstream();
-        std::cerr << "CLASS RoomInstance Create process : id: " << std::to_string(_id) << " name: " << _name
-                  << " address: " << _networkInformations.getAddress() << " port: " << _networkInformations.getPort()
-                  << std::endl;
         try {
             std::string executableName = "r-type_room";
-#ifdef _WIN32 
+#ifdef _WIN32
             executableName.append(".exe");
 #endif
 
@@ -39,11 +35,10 @@ namespace server_data
                 _networkInformations.getAddress(), std::to_string(_networkInformations.getPort()),
                 boost::process::std_in<(*_input), boost::process::std_out>(*_output));
         } catch (const std::system_error &error) {
-            std::cerr << "ERROR while launching a new room: " << std::to_string(error.code().value()) << " : " << error.what() << std::endl; 
+            std::cerr << "ERROR while launching a new room: " << std::to_string(error.code().value()) << " : "
+                      << error.what() << std::endl;
         }
-        std::cerr << "CLass Create thread" << std::endl;
         _inputHandler = std::make_unique<boost::thread>(&RoomInstance::_manageInterprocessCommunication, this, server);
-        std::cerr << "END A CLASS RoomInstance 1" << std::endl;
     }
 
     void RoomInstance::_manageInterprocessCommunication(Server *server)
