@@ -1,5 +1,7 @@
 var NAVTREEINDEX2 =
 {
+"classcommunicator__lib_1_1_sender.html#abdf3a1fa28741eb1eed138e98197c517":[4,0,2,6,3],
+"classcommunicator__lib_1_1_sender.html#ae14150bc5755bf478a7ad1904c017ba1":[4,0,2,6,0],
 "classdatabase_1_1_database.html":[4,0,3,0],
 "classdatabase_1_1_database.html#a420624a744d7efdb8ae6724f871ad564":[4,0,3,0,5],
 "classdatabase_1_1_database.html#a4ff3149c5de69968e8b88a423eb0e880":[4,0,3,0,3],
@@ -247,7 +249,5 @@ var NAVTREEINDEX2 =
 "classecs_1_1_shooting_frequency.html#a2f243731ab088169107cde7e09019cfc":[4,0,4,39,0],
 "classecs_1_1_shooting_frequency.html#a78afa63c1aa55cd8b77fe3fc24c1bb26":[4,0,4,39,2],
 "classecs_1_1_shooting_frequency.html#a7e740de3091edf4d0934e8c1f69d0144":[4,0,4,39,4],
-"classecs_1_1_shooting_frequency.html#aba29169b565cdc67f1c272c6f7230677":[4,0,4,39,1],
-"classecs_1_1_size.html":[4,0,4,40],
-"classecs_1_1_size.html#a118751ffc4edae9aaaa21876554f1323":[4,0,4,40,0]
+"classecs_1_1_shooting_frequency.html#aba29169b565cdc67f1c272c6f7230677":[4,0,4,39,1]
 };

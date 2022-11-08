@@ -1,5 +1,7 @@
 var NAVTREEINDEX4 =
 {
+"classtransisthor__lib_1_1_transisthor.html":[4,0,8,0],
+"classtransisthor__lib_1_1_transisthor.html#a20dcaa4ce0184a581b9a774f79da07cf":[4,0,8,0,11],
 "classtransisthor__lib_1_1_transisthor.html#a36b6abf6251ee755e4fbbfe78137134e":[4,0,8,0,4],
 "classtransisthor__lib_1_1_transisthor.html#a382a702783fb59668f2df55375ec1847":[4,0,8,0,0],
 "classtransisthor__lib_1_1_transisthor.html#a3b92de4f82573d2bacbaee005de7a2b2":[4,0,8,0,1],
@@ -68,8 +70,8 @@ var NAVTREEINDEX4 =
 "functions_enum.html":[4,3,4],
 "functions_eval.html":[4,3,5],
 "functions_f.html":[4,3,0,6],
-"functions_func.html":[4,3,1,0],
 "functions_func.html":[4,3,1],
+"functions_func.html":[4,3,1,0],
 "functions_func_b.html":[4,3,1,1],
 "functions_func_c.html":[4,3,1,2],
 "functions_func_d.html":[4,3,1,3],
@@ -247,7 +249,5 @@ var NAVTREEINDEX4 =
 "structecs_1_1_movement.html":[4,0,4,49],
 "structecs_1_1_movement.html#a3956c2d126f291e5d0949b9c720ea86c":[4,0,4,49,0],
 "structecs_1_1_no_afk_in_menu.html":[4,0,4,50],
-"structecs_1_1_no_afk_in_menu.html#a040868eca048132000391a837cf44885":[4,0,4,50,0],
-"structecs_1_1_random_device.html":[4,0,4,46],
-"structecs_1_1_random_device.html#a0ba1b9dd25fa48388322564b325acd24":[4,0,4,46,0]
+"structecs_1_1_no_afk_in_menu.html#a040868eca048132000391a837cf44885":[4,0,4,50,0]
 };

@@ -1,5 +1,7 @@
 var NAVTREEINDEX5 =
 {
+"structecs_1_1_random_device.html":[4,0,4,46],
+"structecs_1_1_random_device.html#a0ba1b9dd25fa48388322564b325acd24":[4,0,4,46,0],
 "structecs_1_1_random_device.html#aca0972e8d6927808e436c02f92398a77":[4,0,4,46,1],
 "structecs_1_1_random_device.html#afd4b5cd3acf22fbfa115cbe6e9f7c2cf":[4,0,4,46,2],
 "structecs_1_1_remove_afk_system.html":[4,0,4,61],
