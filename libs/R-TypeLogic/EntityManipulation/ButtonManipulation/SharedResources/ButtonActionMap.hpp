@@ -19,7 +19,7 @@ namespace ecs
     class ButtonActionMap : public Resource {
       public:
         /// @brief Enumeration of all the available actions
-        enum buttonAction_e { UNDEFINED, EXIT, PAUSE, RESUME, WRITABLE, WRITABLE_BUTTON, LOBBY, ROOM_CONNECTION, IN_GAME};
+        enum buttonAction_e { UNDEFINED, EXIT, PAUSE, RESUME, WRITABLE, WRITABLE_BUTTON, LOBBY, ROOM_CONNECTION, CREATE_A_ROOM, IN_GAME};
 
         /// @brief Map's name which contains the actions
         using ActionList = std::unordered_map<buttonAction_e, std::function<void(World &, Entity &)>>;

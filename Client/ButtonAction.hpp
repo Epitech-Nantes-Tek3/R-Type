@@ -55,6 +55,6 @@ void launchSoloGame(World &world, Entity &entityPtr);
 
 void goToLobby(World &world, Entity &entityPtr);
 
-void createARoom(World &world, Entity &entityPtr);
+void createARoom(World &world, Entity &entityPtr, std::string &message);
 
 #endif /* !BUTTONACTION_HPP_ */

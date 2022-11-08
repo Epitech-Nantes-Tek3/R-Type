@@ -122,16 +122,14 @@ void publishNewChatMessage(World &world, Entity &entityPtr, std::string &message
         {servers.at(0)->getComponent<ecs::NetworkServer>().id});
 }
 
-void createARoom(World &world, Entity &entityPtr)
+void createARoom(World &world, Entity &entityPtr, std::string &message)
 {
     (void)entityPtr;
     if (!world.containsResource<MenuStates>())
         return;
     short configs[6] = {120, 121, 122, 123, 124, 125};
     world.getTransisthorBridge()->getCommunicatorInstance().utilitarySendRoomConfiguration(
-        entityPtr.getComponent<TextComponent>().text, configs,
-        world.getTransisthorBridge()->getCommunicatorInstance().getClientByHisId(
-            0));
+        message, configs, world.getTransisthorBridge()->getCommunicatorInstance().getClientByHisId(0));
     world.getResource<MenuStates>().currentState = MenuStates::IN_GAME;
 }
 
