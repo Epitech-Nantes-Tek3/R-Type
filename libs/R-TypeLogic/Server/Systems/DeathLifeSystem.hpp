@@ -13,10 +13,8 @@
 #include "Transisthor/TransisthorECSLogic/Server/Resources/NetworkableIdGenerator.hpp"
 #include "World/World.hpp"
 #include "R-TypeLogic/Global/Components/DeathComponent.hpp"
-#include "R-TypeLogic/Global/Components/EnemyComponent.hpp"
 #include "R-TypeLogic/Global/Components/LifeComponent.hpp"
 #include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
-#include "R-TypeLogic/Global/SharedResources/GameLevel.hpp"
 
 namespace ecs
 {
@@ -39,21 +37,9 @@ namespace ecs
                                 client, nullptr, 0, 13);
                             entityPtr->getComponent<Life>().lifePoint = 1000;
                         } else {
-                            if (entityPtr->contains<Enemy>() && world.containsResource<GameLevel>()) {
-                                GameLevel &gameLevel = world.getResource<GameLevel>();
-                                gameLevel.lock();
-                                gameLevel.addNewKills();
-                                gameLevel.unlock();
-                            }
                             entityPtr.get()->addComponent<Death>();
                         }
                     } else {
-                        if (entityPtr->contains<Enemy>() && world.containsResource<GameLevel>()) {
-                            GameLevel &gameLevel = world.getResource<GameLevel>();
-                            gameLevel.lock();
-                            gameLevel.addNewKills();
-                            gameLevel.unlock();
-                        }
                         entityPtr.get()->addComponent<Death>();
                         entityPtr.get()->getComponent<Death>().modified = false;
                     }

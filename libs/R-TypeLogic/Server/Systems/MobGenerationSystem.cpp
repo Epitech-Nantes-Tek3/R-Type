@@ -16,10 +16,10 @@ using namespace ecs;
 
 /// @brief Generate infinite enemies
 /// @param world the world where the enemies will be generated
-/// @param hasLevelChanged if the level has changed, spawn a boss
+/// @param hasWaveChanged if the level has changed, spawn a boss
 /// Ice enemies cannot be generated here, so we randomise the type between
 /// Enemy::BASIC = 0 and Enemy::ELECTRIC = 2
-static void infiniteSpawn(World &world, bool hasLevelChanged)
+static void infiniteSpawn(World &world, bool hasWaveChanged)
 {
     if (!world.containsResource<RandomDevice>())
         return;
@@ -27,7 +27,7 @@ static void infiniteSpawn(World &world, bool hasLevelChanged)
     RandomDevice &random = world.getResource<RandomDevice>();
     std::size_t currNbEnemies = joined.size();
 
-    if (hasLevelChanged) {
+    if (hasWaveChanged) {
         GameLevel &gamelvl = world.getResource<GameLevel>();
 
         gamelvl.lock();
@@ -166,25 +166,25 @@ void MobGeneration::run(World &world)
     GameLevel &gamelvl = world.getResource<GameLevel>();
     gamelvl.lock();
     GameLevel::level_e currLvl = gamelvl.getCurrentLevel();
-    bool hasLevelChanged = gamelvl.hasLevelChanged();
+    bool hasWaveChanged = gamelvl.hasWaveChanged();
     gamelvl.unlock();
 
     std::size_t nbPlayers = world.joinEntities<Player>().size();
 
-    if (!hasLevelChanged && currLvl != GameLevel::LEVEL_INFINITE)
+    if (!hasWaveChanged && currLvl != GameLevel::LEVEL_INFINITE)
         return;
-    if (hasLevelChanged) {
+    if (hasWaveChanged) {
         switch (currLvl) {
             case GameLevel::LEVEL_ONE: createLevelOne(world, nbPlayers); break;
             case GameLevel::LEVEL_TWO: createLevelTwo(world, nbPlayers); break;
             case GameLevel::LEVEL_THREE: createLevelThree(world, nbPlayers); break;
             case GameLevel::LEVEL_FORTH: createLevelFour(world, nbPlayers); break;
-            default: infiniteSpawn(world, hasLevelChanged); break;
+            default: infiniteSpawn(world, hasWaveChanged); break;
         }
         gamelvl.lock();
-        gamelvl.levelHasChanged();
+        gamelvl.waveHasChanged();
         gamelvl.unlock();
     } else if (currLvl == GameLevel::LEVEL_INFINITE) {
-        infiniteSpawn(world, hasLevelChanged);
+        infiniteSpawn(world, hasWaveChanged);
     }
 }
