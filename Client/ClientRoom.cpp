@@ -81,6 +81,7 @@
 #include "R-TypeLogic/Server/Systems/EnemyShootSystem.hpp"
 #include "R-TypeLogic/Server/Systems/LifeTimeDeathSystem.hpp"
 #include "R-TypeLogic/Server/Systems/MobGenerationSystem.hpp"
+#include "GraphicECS/SFML/Systems/ApplyInputDelay.hpp"
 
 using namespace error_lib;
 using namespace communicator_lib;
@@ -555,6 +556,8 @@ void ClientRoom::_updateEcsSystems(bool isSolo)
             _worldInstance->addSystem<LifeTimeDeath>();
         if (!_worldInstance->containsSystem<DecreaseLifeTime>())
             _worldInstance->addSystem<DecreaseLifeTime>();
+        if (!_worldInstance->containsSystem<ApplyInputDelay>())
+            _worldInstance->addSystem<ApplyInputDelay>();
     } else {
         if (!_worldInstance->containsSystem<SendToServer>())
             _worldInstance->addSystem<SendToServer>();
