@@ -48,7 +48,6 @@ static void makeEnemyGoRandom(
         vel.multiplierAbscissa = newVelX;
         vel.multiplierOrdinate = newVelY;
         vel.modified = true;
-        dest.modified = true;
         pos.modified = true;
     }
 }
@@ -85,7 +84,6 @@ static void fireEnemyPatterns(World &world, std::shared_ptr<Entity> enemy)
 
     dest.x = playerPos.x;
     dest.y = playerPos.y;
-    dest.modified = true;
 
     vel.multiplierAbscissa = (dest.x - enemyPos.x) / 20;
     vel.multiplierOrdinate = (dest.y - enemyPos.y) / 20;
@@ -119,7 +117,6 @@ static void initIcePatterns(std::vector<std::shared_ptr<ecs::Entity>> iceEnemies
 
         dest.x = destParams.first;
         dest.y = destParams.second;
-        dest.modified = true;
         pos.x = posParams.first;
         pos.y = posParams.second;
         pos.modified = true;
@@ -197,7 +194,6 @@ static void iceEnemyPatterns(std::vector<std::shared_ptr<ecs::Entity>> allEnemie
             vel.multiplierAbscissa = 0;
             vel.multiplierOrdinate = 0;
             vel.modified = true;
-            dest.modified = true;
             pos.modified = true;
         } else if (vel.multiplierAbscissa == 0 && vel.multiplierOrdinate == 0) {
             vel.multiplierAbscissa = (dest.x - pos.x) / 10;
