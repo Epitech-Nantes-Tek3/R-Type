@@ -13,6 +13,8 @@
 #include "World/World.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateEnemy.hpp"
 #include "R-TypeLogic/Global/Components/DeathComponent.hpp"
+#include "R-TypeLogic/Global/Components/EnemyComponent.hpp"
+#include "R-TypeLogic/Global/SharedResources/GameLevel.hpp"
 
 namespace ecs
 {
@@ -26,6 +28,12 @@ namespace ecs
 
             auto death = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
                 auto guard = std::lock_guard(*entityPtr.get());
+                if (entityPtr->contains<Enemy>() && world.containsResource<GameLevel>()) {
+                    GameLevel &gameLevel = world.getResource<GameLevel>();
+                    gameLevel.lock();
+                    gameLevel.addNewKills();
+                    gameLevel.unlock();
+                }
                 if (entityPtr.get()->getComponent<Death>().modified != true) {
                     world.removeEntity(entityPtr->getId());
                 }
