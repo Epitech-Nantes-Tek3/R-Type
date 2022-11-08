@@ -80,6 +80,10 @@ namespace graphicECS::SFML::Resources
         void addTexture(const textureName_e texture_e, const std::filesystem::path &texturePath,
             const sf::Vector2f &position = sf::Vector2f(0, 0), const sf::Vector2f &size = sf::Vector2f(0, 0));
 
+        /// @brief Remove a texture to the textureList
+        /// @param texture Enum which give the name of Texture
+        inline void removeTexture(const textureName_e texture) { _texturesList.erase(texture); };
+
         /// @brief Default destructor of the class.
         ~GraphicsTextureResource() = default;
 

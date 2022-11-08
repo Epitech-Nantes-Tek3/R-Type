@@ -40,6 +40,7 @@
 #include "GraphicECS/SFML/Systems/RemoveChatSystem.hpp"
 #include "GraphicECS/SFML/Systems/SfObjectFollowEntitySystem.hpp"
 #include "GraphicECS/SFML/Systems/SoundManagement.hpp"
+#include "GraphicECS/SFML/Systems/UpdateParallaxSystem.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Components/NetworkServer.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Systems/SendNewlyCreatedToServer.hpp"
@@ -363,6 +364,8 @@ void ClientRoom::_updateEcsResources(bool isSolo)
         _loadTextures();
     if (_worldInstance->containsResource<ButtonActionMap>())
         _loadButtonActionMap(isSolo);
+    if (!_worldInstance->containsResource<GameLevel>())
+        _worldInstance->addResource<GameLevel>();
 }
 
 void ClientRoom::_loadTextures()
@@ -571,7 +574,8 @@ void ClientRoom::_updateEcsSystems(bool isSolo)
         _worldInstance->addSystem<RemoveChatSystem>();
     if (!_worldInstance->containsSystem<ElectricInvisibleEnemy>())
         _worldInstance->addSystem<ElectricInvisibleEnemy>();
-
+    if (!_worldInstance->containsSystem<UpdateParallax>())
+        _worldInstance->addSystem<UpdateParallax>();
     if (isSolo) {
         if (!_worldInstance->containsSystem<EnemiesPatterns>())
             _worldInstance->addSystem<EnemiesPatterns>();
