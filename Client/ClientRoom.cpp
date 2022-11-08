@@ -33,6 +33,7 @@
 #include "GraphicECS/SFML/Resources/RenderWindowResource.hpp"
 #include "GraphicECS/SFML/Resources/SoundResource.hpp"
 #include "GraphicECS/SFML/Systems/AnimationSystem.hpp"
+#include "GraphicECS/SFML/Systems/ApplyInputDelay.hpp"
 #include "GraphicECS/SFML/Systems/DrawComponents.hpp"
 #include "GraphicECS/SFML/Systems/InputManagement.hpp"
 #include "GraphicECS/SFML/Systems/MusicManagement.hpp"
@@ -81,7 +82,6 @@
 #include "R-TypeLogic/Server/Systems/EnemyShootSystem.hpp"
 #include "R-TypeLogic/Server/Systems/LifeTimeDeathSystem.hpp"
 #include "R-TypeLogic/Server/Systems/MobGenerationSystem.hpp"
-#include "GraphicECS/SFML/Systems/ApplyInputDelay.hpp"
 
 using namespace error_lib;
 using namespace communicator_lib;
