@@ -182,7 +182,7 @@ void MobGeneration::run(World &world)
             default: infiniteSpawn(world, hasWaveChanged); break;
         }
         gamelvl.lock();
-        gamelvl.levelHasChanged();
+        gamelvl.waveHasChanged();
         gamelvl.unlock();
     } else if (currLvl == GameLevel::LEVEL_INFINITE) {
         infiniteSpawn(world, hasWaveChanged);
