@@ -24,3 +24,9 @@ add_subdirectory(Room)
 # Setup and include conan to build dependencies
 include(build/conanbuildinfo.cmake)
 conan_basic_setup(TARGETS)
+
+include(InstallRequiredSystemLibraries)
+set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/LICENSE")
+set(CPACK_PACKAGE_VERSION_MAJOR "${RTYPE_MAJOR_VERSION}")
+set(CPACK_PACKAGE_VERSION_MINOR "${RTYPE_MINOR_VERSION}")
+include(CPack)
