@@ -45,8 +45,8 @@ static void makeEnemyGoRandom(
         random.unlock();
         newVelX = dest.x - (int)pos.x;
         newVelY = dest.y - (int)pos.y;
-        vel.multiplierAbscissa = newVelX;
-        vel.multiplierOrdinate = newVelY;
+        vel.multiplierAbscissa = newVelX / 4;
+        vel.multiplierOrdinate = newVelY / 4;
         vel.modified = true;
         pos.modified = true;
     }
