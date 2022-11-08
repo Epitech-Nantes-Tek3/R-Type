@@ -53,4 +53,6 @@ void connectToARoom(World &world, Entity &entityPtr);
 /// @param entityPtr The entity that the button is attached to.
 void launchSoloGame(World &world, Entity &entityPtr);
 
+void goToLobby(World &world, Entity &entityPtr);
+
 #endif /* !BUTTONACTION_HPP_ */

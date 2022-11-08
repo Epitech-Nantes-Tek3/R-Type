@@ -27,7 +27,7 @@ namespace client_data
     class ClientRoom {
       public:
         /// @brief All the possible state of a client
-        enum ClientState { UNDEFINED, LOBBY, IN_GAME, ENDED, MAIN_MENU };
+        enum ClientState { UNDEFINED, MAIN_MENU, LOBBY, IN_GAME, ENDED };
 
         /// @brief Construct a new ClientRoom with default value
         ClientRoom();
@@ -52,6 +52,7 @@ namespace client_data
         int startGame();
 
       private:
+        void _initLobbyMenuButtons();
         /// @brief It sends the pseudo of the client to the server
         void _connectToARoom();
 

@@ -152,9 +152,9 @@ void ClientRoom::_startConnexionProtocol(void)
 
 void ClientRoom::_protocol12Answer(CommunicatorMessage connexionResponse)
 {
-    _state = ClientState::IN_GAME;
-    if (_worldInstance->containsResource<MenuStates>())
-        _worldInstance->getResource<MenuStates>().currentState = MenuStates::IN_GAME;
+    // _state = ClientState::IN_GAME;
+    // if (_worldInstance->containsResource<MenuStates>())
+    //     _worldInstance->getResource<MenuStates>().currentState = MenuStates::IN_GAME;
     _worldInstance.get()->addEntity().addComponent<NetworkServer>(connexionResponse.message.clientInfo.getId());
     auto &clock = _worldInstance.get()->getResource<GameClock>();
     auto guard = std::lock_guard(clock);
@@ -185,55 +185,59 @@ void ClientRoom::_holdAChatRequest(CommunicatorMessage chatRequest)
 void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
 {
     unsigned short roomNumber = 0;
-    std::size_t offset = sizeof(unsigned short);
+    // std::size_t offset = sizeof(unsigned short);
 
     std::memcpy(&roomNumber, connectionResponse.message.data, sizeof(unsigned short));
     std::cerr << "Succesfully connected to the hub." << std::endl;
     std::cerr << "Available Rooms : " << std::endl;
+    createNewButton(*(_worldInstance.get()), 500, 0, 200, 50,
+        ButtonActionMap::IN_GAME, LayerLvL::BUTTON, MenuStates::LOBBY);
     for (int i = 0; i < roomNumber; i++) {
-        unsigned short roomId = 0;
-        std::memcpy(&roomId, (void *)((char *)connectionResponse.message.data + offset), sizeof(unsigned short));
-        offset += sizeof(unsigned short);
-        char *tempRoomName = (char *)connectionResponse.message.data + offset;
-        std::string roomName(11, '\0');
-        for (int j = 0; j < 10; j++)
-            roomName[j] = tempRoomName[j];
-        offset += sizeof(char) * 10;
-        std::cerr << "\t" << roomId << " : " << roomName << " is available." << std::endl;
+        createNewButton(
+            *(_worldInstance.get()), 100, i * 60, 200, 50, ButtonActionMap::EXIT, LayerLvL::BUTTON, MenuStates::LOBBY);
+        // unsigned short roomId = 0;
+        // std::memcpy(&roomId, (void *)((char *)connectionResponse.message.data + offset), sizeof(unsigned short));
+        // offset += sizeof(unsigned short);
+        // char *tempRoomName = (char *)connectionResponse.message.data + offset;
+        // std::string roomName(11, '\0');
+        // for (int j = 0; j < 10; j++)
+        //     roomName[j] = tempRoomName[j];
+        // offset += sizeof(char) * 10;
+        // std::cerr << "\t" << roomId << " : " << roomName << " is available." << std::endl;
     }
 
-    std::cerr << "If you want to join a existent room, please refer Y. Otherwise use N : ";
-    char choosedMode = '\0';
+    // std::cerr << "If you want to join a existent room, please refer Y. Otherwise use N : ";
+    // char choosedMode = '\0';
 
-    std::cin >> choosedMode;
-    if (choosedMode == 'Y') {
-        std::cerr << "Refer in the terminal the wanted room id : ";
-        unsigned short choosenRoomId = 0;
+    // std::cin >> choosedMode;
+    // if (choosedMode == 'Y') {
+    //     std::cerr << "Refer in the terminal the wanted room id : ";
+    //     unsigned short choosenRoomId = 0;
 
-        std::cin >> choosenRoomId; /// WILL BE REMOVED WHEN GRAPHICAL INTERACTION HAS BEEN IMPLEMENTED
-        std::cerr << "Waiting for room number " << choosenRoomId << " answer..." << std::endl;
-        void *networkData = std::malloc(sizeof(unsigned short));
+    //     std::cin >> choosenRoomId; /// WILL BE REMOVED WHEN GRAPHICAL INTERACTION HAS BEEN IMPLEMENTED
+    //     std::cerr << "Waiting for room number " << choosenRoomId << " answer..." << std::endl;
+    //     void *networkData = std::malloc(sizeof(unsigned short));
 
-        if (networkData == nullptr)
-            throw std::logic_error("Malloc failed.");
-        std::memcpy(networkData, &choosenRoomId, sizeof(unsigned short));
-        _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, networkData, sizeof(unsigned short), 16);
-    } else if (choosedMode == 'N') {
-        std::cerr << "Refer in the terminal the wanted room name : ";
-        std::string roomName;
+    //     if (networkData == nullptr)
+    //         throw std::logic_error("Malloc failed.");
+    //     std::memcpy(networkData, &choosenRoomId, sizeof(unsigned short));
+    //     _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, networkData, sizeof(unsigned short), 16);
+    // } else if (choosedMode == 'N') {
+    //     std::cerr << "Refer in the terminal the wanted room name : ";
+    //     std::string roomName;
 
-        std::cin >> roomName; /// WILL BE REMOVED WHEN GRAPHICAL INTERACTION HAS BEEN IMPLEMENTEND
-        if (roomName.size() != 10) {
-            std::cerr << "Please refer a valid room name (10 characters)." << std::endl;
-            _state = ClientState::ENDED;
-            return;
-        }
-        short configs[6] = {120, 121, 122, 123, 124, 125};
-        _communicatorInstance.get()->utilitarySendRoomConfiguration(roomName, configs, _serverEndpoint);
-    } else {
-        std::cerr << "Not a valid option ;)" << std::endl;
-        _state = ClientState::ENDED;
-    }
+    //     std::cin >> roomName; /// WILL BE REMOVED WHEN GRAPHICAL INTERACTION HAS BEEN IMPLEMENTEND
+    //     if (roomName.size() != 10) {
+    //         std::cerr << "Please refer a valid room name (10 characters)." << std::endl;
+    //         _state = ClientState::ENDED;
+    //         return;
+    //     }
+    //     short configs[6] = {120, 121, 122, 123, 124, 125};
+    //     _communicatorInstance.get()->utilitarySendRoomConfiguration(roomName, configs, _serverEndpoint);
+    // } else {
+    //     std::cerr << "Not a valid option ;)" << std::endl;
+    //     _state = ClientState::ENDED;
+    // }
 }
 
 void ClientRoom::_signalSoloCallbackHandler(int signum)
@@ -257,9 +261,8 @@ void ClientRoom::_startSoloLoop()
     while (_state != ClientState::ENDED && _state != ClientState::UNDEFINED) {
         if (_worldInstance->containsResource<MenuStates>()
             && _worldInstance->getResource<MenuStates>().currentState == MenuStates::LOBBY) {
-            _state = ClientState::IN_GAME;
-            _worldInstance->getResource<MenuStates>().currentState = MenuStates::IN_GAME;
             _updateEcsData(true);
+            _worldInstance->getResource<MenuStates>().currentState = MenuStates::IN_GAME;
         }
         _worldInstance.get()->runSystems();
     }
@@ -448,13 +451,26 @@ void ClientRoom::_loadButtonActionMap(bool isSolo)
     actionsList.addAction(ButtonActionMap::RESUME, std::function<void(World &, Entity &)>(resumeGame));
     actionsList.addAction(ButtonActionMap::EXIT, std::function<void(World &, Entity &)>(exitWindow));
     actionsList.addAction(ButtonActionMap::WRITABLE, std::function<void(World &, Entity &)>(selectAWritable));
+    actionsList.addAction(ButtonActionMap::IN_GAME, std::function<void(World &, Entity &)>(connectToARoom));
     actionsList.addAction(
         ButtonActionMap::WRITABLE_BUTTON, std::function<void(World &, Entity &)>(writableButtonAction));
     if (isSolo) {
         actionsList.addAction(ButtonActionMap::LOBBY, std::function<void(World &, Entity &)>(launchSoloGame));
     } else {
-        actionsList.addAction(ButtonActionMap::LOBBY, std::function<void(World &, Entity &)>(connectToARoom));
+        actionsList.addAction(ButtonActionMap::LOBBY, std::function<void(World &, Entity &)>(goToLobby));
     }
+}
+
+void ClientRoom::_initLobbyMenuButtons()
+{
+    sf::Vector2u windowSize(0, 0);
+
+    if (_worldInstance->containsResource<RenderWindowResource>())
+        windowSize = _worldInstance->getResource<RenderWindowResource>().window.getSize();
+    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 3 - 25, 200, 50,
+        ButtonActionMap::IN_GAME, LayerLvL::BUTTON, MenuStates::LOBBY);
+    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 3 * 2 - 25, 200, 50,
+        ButtonActionMap::EXIT, LayerLvL::BUTTON, MenuStates::LOBBY);
 }
 
 void ClientRoom::_updateEcsEntities()
@@ -468,7 +484,9 @@ void ClientRoom::_updateEcsEntities()
     if (_state == ClientState::MAIN_MENU) {
         _initMainMenuButtons();
     }
-    if (_state == ClientState::LOBBY) {}
+    if (_state == ClientState::LOBBY) {
+        // _initLobbyMenuButtons();
+    }
     if (_state == ClientState::IN_GAME) {
         _initInGameButtons();
         _initInGameWritables();
@@ -617,11 +635,11 @@ bool ClientRoom::_answerProtocols(bool isSolo)
         }
         if (connectionOperation.message.type == 15) {
             _protocol15Answer(connectionOperation); // TO BE REMOVE WITH LOBBY MENU
-#ifdef __linux__
-            sleep(1);
-#elif _WIN_32
-            Sleep(1000);
-#endif
+            // #ifdef __linux__
+            //             sleep(1);
+            // #elif _WIN_32
+            //             Sleep(1000);
+            // #endif
         }
         if (connectionOperation.message.type == 12) {
             _protocol12Answer(connectionOperation);
@@ -648,6 +666,18 @@ void ClientRoom::startLobbyLoop(const std::string &pseudo, const std::string &pa
     while (_state != ClientState::ENDED) {
         if (!_answerProtocols(isSolo))
             return;
+        if (_worldInstance->containsResource<MenuStates>()) {
+            if (_worldInstance->getResource<MenuStates>().currentState == MenuStates::LOBBY
+                && _state != ClientRoom::LOBBY) {
+                _state = ClientState::LOBBY;
+                _updateEcsData(false);
+            }
+            if (_worldInstance->getResource<MenuStates>().currentState == MenuStates::IN_GAME
+                && _state != ClientRoom::IN_GAME) {
+                _state = ClientState::IN_GAME;
+                _updateEcsData(false);
+            }
+        }
         _worldInstance.get()->runSystems(); /// WILL BE IMPROVED IN PART TWO (THREAD + CLOCK)
     }
     _disconectionProcess();

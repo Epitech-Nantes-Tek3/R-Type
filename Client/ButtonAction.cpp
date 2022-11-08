@@ -130,10 +130,16 @@ void connectToARoom(World &world, Entity &entityPtr)
     world.getTransisthorBridge()->getCommunicatorInstance().utilitarySendRoomConfiguration("default000", configs,
         world.getTransisthorBridge()->getCommunicatorInstance().getClientByHisId(
             0)); /// WILL BE UPDATE WITH THE LOBBY MENU
-    world.getResource<MenuStates>().currentState = MenuStates::LOBBY;
+    world.getResource<MenuStates>().currentState = MenuStates::IN_GAME;
 }
 
 void launchSoloGame(World &world, Entity &entityPtr)
+{
+    (void)entityPtr;
+    world.getResource<MenuStates>().currentState = MenuStates::LOBBY;
+}
+
+void goToLobby(World &world, Entity &entityPtr)
 {
     (void)entityPtr;
     world.getResource<MenuStates>().currentState = MenuStates::LOBBY;
