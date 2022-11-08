@@ -462,6 +462,7 @@ void ClientRoom::_loadButtonActionMap(bool isSolo)
         actionsList.addAction(ButtonActionMap::LOBBY, std::function<void(World &, Entity &)>(launchSoloGame));
     } else {
         actionsList.addAction(ButtonActionMap::LOBBY, std::function<void(World &, Entity &)>(goToLobby));
+        actionsList.addAction(ButtonActionMap::ROOM_CONNECTION, std::function<void(World &, Entity &)>(connectToARoom))
     }
 }
 
@@ -640,7 +641,7 @@ bool ClientRoom::_answerProtocols(bool isSolo)
             _connectToARoom();
         }
         if (connectionOperation.message.type == 15) {
-            _protocol15Answer(connectionOperation); // TO BE REMOVE WITH LOBBY MENU
+            _protocol15Answer(connectionOperation);
         }
         if (connectionOperation.message.type == 12) {
             _protocol12Answer(connectionOperation);
