@@ -138,19 +138,12 @@ void connectToARoom(World &world, Entity &entityPtr)
     (void)entityPtr;
     if (!world.containsResource<MenuStates>())
         return;
-    // short configs[6] = {120, 121, 122, 123, 124, 125};
-
-    // std::cerr << "Refer in the terminal the wanted room id : ";
-
-    // std::cin >> choosenRoomId; /// WILL BE REMOVED WHEN GRAPHICAL INTERACTION HAS BEEN IMPLEMENTED
-    // std::cerr << "Waiting for room number " << choosenRoomId << " answer..." << std::endl;
     void *networkData = std::malloc(sizeof(unsigned short));
 
     if (networkData == nullptr)
         throw std::logic_error("Malloc failed.");
     unsigned short choosenRoomId = std::atoi(entityPtr.getComponent<TextComponent>().text.c_str());
 
-    std::cout << choosenRoomId << std::endl;
     std::memcpy(networkData, &choosenRoomId, sizeof(unsigned short));
     communicator_lib::Client _serverEndPoint =
         world.getTransisthorBridge()->getCommunicatorInstance().getClientByHisId(0);
