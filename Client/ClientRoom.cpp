@@ -363,6 +363,8 @@ void ClientRoom::_updateEcsResources(bool isSolo)
         _loadTextures();
     if (_worldInstance->containsResource<ButtonActionMap>())
         _loadButtonActionMap(isSolo);
+    if (!_worldInstance->containsResource<GameLevel>())
+        _worldInstance->addResource<GameLevel>();
 }
 
 void ClientRoom::_loadTextures()
