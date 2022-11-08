@@ -19,6 +19,7 @@
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/MenuStates.hpp"
 #include "R-TypeLogic/Global/Components/ControlableComponent.hpp"
 #include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
+#include "R-TypeLogic/Global/Components/TextComponent.hpp"
 
 using namespace graphicECS::SFML::Resources;
 using namespace graphicECS::SFML::Components;
@@ -121,15 +122,42 @@ void publishNewChatMessage(World &world, Entity &entityPtr, std::string &message
         {servers.at(0)->getComponent<ecs::NetworkServer>().id});
 }
 
-void connectToARoom(World &world, Entity &entityPtr)
+void createARoom(World &world, Entity &entityPtr)
 {
     (void)entityPtr;
     if (!world.containsResource<MenuStates>())
         return;
     short configs[6] = {120, 121, 122, 123, 124, 125};
-    world.getTransisthorBridge()->getCommunicatorInstance().utilitarySendRoomConfiguration(entityPtr.getComponent<TextComponent>().text, configs,
+    world.getTransisthorBridge()->getCommunicatorInstance().utilitarySendRoomConfiguration(
+        entityPtr.getComponent<TextComponent>().text, configs,
         world.getTransisthorBridge()->getCommunicatorInstance().getClientByHisId(
-            0)); /// WILL BE UPDATE WITH THE LOBBY MENU
+            0));
+    world.getResource<MenuStates>().currentState = MenuStates::IN_GAME;
+}
+
+void connectToARoom(World &world, Entity &entityPtr)
+{
+    (void)entityPtr;
+    if (!world.containsResource<MenuStates>())
+        return;
+    // short configs[6] = {120, 121, 122, 123, 124, 125};
+
+    // std::cerr << "Refer in the terminal the wanted room id : ";
+
+    // std::cin >> choosenRoomId; /// WILL BE REMOVED WHEN GRAPHICAL INTERACTION HAS BEEN IMPLEMENTED
+    // std::cerr << "Waiting for room number " << choosenRoomId << " answer..." << std::endl;
+    void *networkData = std::malloc(sizeof(unsigned short));
+
+    if (networkData == nullptr)
+        throw std::logic_error("Malloc failed.");
+    unsigned short choosenRoomId = std::atoi(entityPtr.getComponent<TextComponent>().text.c_str());
+
+    std::cout << choosenRoomId << std::endl;
+    std::memcpy(networkData, &choosenRoomId, sizeof(unsigned short));
+    communicator_lib::Client _serverEndPoint =
+        world.getTransisthorBridge()->getCommunicatorInstance().getClientByHisId(0);
+    world.getTransisthorBridge()->getCommunicatorInstance().sendDataToAClient(
+        _serverEndPoint, networkData, sizeof(unsigned short), 16);
     world.getResource<MenuStates>().currentState = MenuStates::IN_GAME;
 }
 

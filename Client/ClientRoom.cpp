@@ -202,7 +202,7 @@ void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
             roomName[j] = tempRoomName[j];
         offset += sizeof(char) * 10;
         createNewButton(
-            *(_worldInstance.get()), 100, i * 60, 200, 50, ButtonActionMap::ROOM_CONNECTION, LayerLvL::BUTTON, MenuStates::LOBBY, roomName);
+            *(_worldInstance.get()), 100, i * 60, 200, 50, ButtonActionMap::ROOM_CONNECTION, LayerLvL::BUTTON, MenuStates::LOBBY, std::to_string(i) + roomName);
     }
 
     // std::cerr << "If you want to join a existent room, please refer Y. Otherwise use N : ";
@@ -210,17 +210,7 @@ void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
 
     // std::cin >> choosedMode;
     // if (choosedMode == 'Y') {
-    //     std::cerr << "Refer in the terminal the wanted room id : ";
-    //     unsigned short choosenRoomId = 0;
 
-    //     std::cin >> choosenRoomId; /// WILL BE REMOVED WHEN GRAPHICAL INTERACTION HAS BEEN IMPLEMENTED
-    //     std::cerr << "Waiting for room number " << choosenRoomId << " answer..." << std::endl;
-    //     void *networkData = std::malloc(sizeof(unsigned short));
-
-    //     if (networkData == nullptr)
-    //         throw std::logic_error("Malloc failed.");
-    //     std::memcpy(networkData, &choosenRoomId, sizeof(unsigned short));
-    //     _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, networkData, sizeof(unsigned short), 16);
     // } else if (choosedMode == 'N') {
     //     std::cerr << "Refer in the terminal the wanted room name : ";
     //     std::string roomName;
@@ -455,14 +445,14 @@ void ClientRoom::_loadButtonActionMap(bool isSolo)
     actionsList.addAction(ButtonActionMap::RESUME, std::function<void(World &, Entity &)>(resumeGame));
     actionsList.addAction(ButtonActionMap::EXIT, std::function<void(World &, Entity &)>(exitWindow));
     actionsList.addAction(ButtonActionMap::WRITABLE, std::function<void(World &, Entity &)>(selectAWritable));
-    actionsList.addAction(ButtonActionMap::IN_GAME, std::function<void(World &, Entity &)>(connectToARoom));
+    actionsList.addAction(ButtonActionMap::IN_GAME, std::function<void(World &, Entity &)>(createARoom));
     actionsList.addAction(
         ButtonActionMap::WRITABLE_BUTTON, std::function<void(World &, Entity &)>(writableButtonAction));
     if (isSolo) {
         actionsList.addAction(ButtonActionMap::LOBBY, std::function<void(World &, Entity &)>(launchSoloGame));
     } else {
         actionsList.addAction(ButtonActionMap::LOBBY, std::function<void(World &, Entity &)>(goToLobby));
-        actionsList.addAction(ButtonActionMap::ROOM_CONNECTION, std::function<void(World &, Entity &)>(connectToARoom))
+        actionsList.addAction(ButtonActionMap::ROOM_CONNECTION, std::function<void(World &, Entity &)>(connectToARoom));
     }
 }
 
