@@ -255,7 +255,8 @@ void ClientRoom::_startSoloLoop()
     _state = ClientState::MAIN_MENU;
     _updateEcsData(true);
     while (_state != ClientState::ENDED && _state != ClientState::UNDEFINED) {
-        if (_worldInstance->containsResource<MenuStates>() && _worldInstance->getResource<MenuStates>().currentState == MenuStates::LOBBY) {
+        if (_worldInstance->containsResource<MenuStates>()
+            && _worldInstance->getResource<MenuStates>().currentState == MenuStates::LOBBY) {
             _state = ClientState::IN_GAME;
             _worldInstance->getResource<MenuStates>().currentState = MenuStates::IN_GAME;
             _updateEcsData(true);
@@ -526,10 +527,10 @@ void ClientRoom::_initMainMenuButtons()
 
     if (_worldInstance->containsResource<RenderWindowResource>())
         windowSize = _worldInstance->getResource<RenderWindowResource>().window.getSize();
-    createNewButton(
-        *(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 3 - 25, 200, 50, ButtonActionMap::LOBBY, LayerLvL::BUTTON, MenuStates::MAIN_MENU);
-    createNewButton(
-        *(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 3 * 2 - 25, 200, 50, ButtonActionMap::EXIT, LayerLvL::BUTTON, MenuStates::MAIN_MENU);
+    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 3 - 25, 200, 50,
+        ButtonActionMap::LOBBY, LayerLvL::BUTTON, MenuStates::MAIN_MENU);
+    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 3 * 2 - 25, 200, 50,
+        ButtonActionMap::EXIT, LayerLvL::BUTTON, MenuStates::MAIN_MENU);
 }
 
 void ClientRoom::_initInGameWritables()
