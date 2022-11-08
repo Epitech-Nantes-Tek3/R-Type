@@ -31,7 +31,7 @@ Test(EnemyShootSystem, shoot_one)
 
     createNewEnemy(world, 1400, 540, 0, 0, 5, 100, 10, 5, 10, 10, Enemy::ELECTRIC, "", 15);
 
-    std::this_thread::sleep_for(std::chrono::duration<double>(0.8));
+    std::this_thread::sleep_for(std::chrono::duration<double>(0.9));
     world.runSystems();
 
     cr_assert_eq(world.joinEntities<EnemyProjectile>().size(), 1);
