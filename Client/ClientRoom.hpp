@@ -16,6 +16,7 @@
 #include "GraphicECS/SFML/Resources/GraphicsTextureResource.hpp"
 #include "Transisthor/Transisthor.hpp"
 #include "World/World.hpp"
+#include "maccro.h"
 
 using namespace communicator_lib;
 using namespace ecs;

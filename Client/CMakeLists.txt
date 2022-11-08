@@ -1,5 +1,6 @@
 set(SRC_ROOT ${PROJECT_SOURCE_DIR}/Client)
 set(INC_ROOT ${PROJECT_SOURCE_DIR}/Client)
+set(MACCRO_ROOT ${PROJECT_SOURCE_DIR}/include)
 
 set(TARGET r-type_client)
 
@@ -26,6 +27,9 @@ set_target_properties(${TARGET}
     RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/
 )
 
+target_include_directories(${TARGET}
+    PRIVATE ${MACCRO_ROOT}
+)
 target_link_libraries(${TARGET}
     ${PROJECT_NAME}_transisthor
     ${PROJECT_NAME}_argumentHandler

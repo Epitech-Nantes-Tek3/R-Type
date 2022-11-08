@@ -12,7 +12,6 @@
 using namespace graphicECS::SFML::Systems;
 using namespace graphicECS::SFML::Resources;
 
-
 /// @brief This function loads new backgrounds, filepaths are given in the vector passed in params
 /// @param world the world where the backgrounds will be changed
 /// @param newPaths a vector with the 3 paths for the new backgrounds assets
@@ -51,24 +50,24 @@ void UpdateParallax::run(World &world)
     std::vector<std::string> newBackgrounds;
     switch (currLvl) {
         case GameLevel::LEVEL_TWO:
-            newBackgrounds.emplace_back("assets/Backgrounds/middle.png");
-            newBackgrounds.emplace_back("assets/Backgrounds/middle.png");
-            newBackgrounds.emplace_back("assets/Backgrounds/middle.png");
+            newBackgrounds.emplace_back(MIDDLE_BACKGROUND_TEXTURE_PATH);
+            newBackgrounds.emplace_back(MIDDLE_BACKGROUND_TEXTURE_PATH);
+            newBackgrounds.emplace_back(MIDDLE_BACKGROUND_TEXTURE_PATH);
             break;
         case GameLevel::LEVEL_THREE:
-            newBackgrounds.emplace_back("assets/Backgrounds/back.png");
-            newBackgrounds.emplace_back("assets/Backgrounds/back.png");
-            newBackgrounds.emplace_back("assets/Backgrounds/back.png");
+            newBackgrounds.emplace_back(BACK_BACKGROUND_TEXTURE_PATH);
+            newBackgrounds.emplace_back(BACK_BACKGROUND_TEXTURE_PATH);
+            newBackgrounds.emplace_back(BACK_BACKGROUND_TEXTURE_PATH);
             break;
         case GameLevel::LEVEL_FORTH:
-            newBackgrounds.emplace_back("assets/Backgrounds/far.png");
-            newBackgrounds.emplace_back("assets/Backgrounds/far.png");
-            newBackgrounds.emplace_back("assets/Backgrounds/far.png");
+            newBackgrounds.emplace_back(FAR_BACKGROUND_TEXTURE_PATH);
+            newBackgrounds.emplace_back(FAR_BACKGROUND_TEXTURE_PATH);
+            newBackgrounds.emplace_back(FAR_BACKGROUND_TEXTURE_PATH);
             break;
         case GameLevel::LEVEL_INFINITE:
-            newBackgrounds.emplace_back("assets/Backgrounds/back.png");
-            newBackgrounds.emplace_back("assets/Backgrounds/far.png");
-            newBackgrounds.emplace_back("assets/Backgrounds/middle.png");
+            newBackgrounds.emplace_back(BACK_BACKGROUND_TEXTURE_PATH);
+            newBackgrounds.emplace_back(FAR_BACKGROUND_TEXTURE_PATH);
+            newBackgrounds.emplace_back(MIDDLE_BACKGROUND_TEXTURE_PATH);
             break;
         default: break;
     };
