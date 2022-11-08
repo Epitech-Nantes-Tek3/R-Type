@@ -1,7 +1,9 @@
 var _button_action_8cpp =
 [
     [ "connectToARoom", "_button_action_8cpp.html#aeaae1d8e3b827593ca6eac8f8782e9b4", null ],
+    [ "createARoom", "_button_action_8cpp.html#a7ac12e3a296e83021d01953e38057d8e", null ],
     [ "exitWindow", "_button_action_8cpp.html#a6375ef4598b4a132abe906fe3c7ace77", null ],
+    [ "goToLobby", "_button_action_8cpp.html#ad6753cb83a997f17e503f281f66f7076", null ],
     [ "launchSoloGame", "_button_action_8cpp.html#aaa8254dfe6cb6d68875af388b5d2c83b", null ],
     [ "pauseGame", "_button_action_8cpp.html#a3ea91e938a05b40d22c3fe5e4e0b4e5d", null ],
     [ "publishNewChatMessage", "_button_action_8cpp.html#a689fcb9ef4253b89b170f837f5d09bb0", null ],

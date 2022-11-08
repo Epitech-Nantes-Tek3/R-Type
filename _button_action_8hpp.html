@@ -166,6 +166,12 @@ Functions</h2></td></tr>
 <tr class="memitem:aaa8254dfe6cb6d68875af388b5d2c83b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_button_action_8hpp.html#aaa8254dfe6cb6d68875af388b5d2c83b">launchSoloGame</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, <a class="el" href="classecs_1_1_entity.html">Entity</a> &amp;entityPtr)</td></tr>
 <tr class="memdesc:aaa8254dfe6cb6d68875af388b5d2c83b"><td class="mdescLeft">&#160;</td><td class="mdescRight">It changes the current state of the menu to the lobby state.  <a href="_button_action_8hpp.html#aaa8254dfe6cb6d68875af388b5d2c83b">More...</a><br /></td></tr>
 <tr class="separator:aaa8254dfe6cb6d68875af388b5d2c83b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6753cb83a997f17e503f281f66f7076"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_button_action_8hpp.html#ad6753cb83a997f17e503f281f66f7076">goToLobby</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, <a class="el" href="classecs_1_1_entity.html">Entity</a> &amp;entityPtr)</td></tr>
+<tr class="memdesc:ad6753cb83a997f17e503f281f66f7076"><td class="mdescLeft">&#160;</td><td class="mdescRight">When the user clicks the 'Go to Lobby' button, change the current menu state to the lobby.  <a href="_button_action_8hpp.html#ad6753cb83a997f17e503f281f66f7076">More...</a><br /></td></tr>
+<tr class="separator:ad6753cb83a997f17e503f281f66f7076"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ac12e3a296e83021d01953e38057d8e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_button_action_8hpp.html#a7ac12e3a296e83021d01953e38057d8e">createARoom</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, <a class="el" href="classecs_1_1_entity.html">Entity</a> &amp;entityPtr, std::string &amp;message)</td></tr>
+<tr class="memdesc:a7ac12e3a296e83021d01953e38057d8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">It sends a room configuration to the client.  <a href="_button_action_8hpp.html#a7ac12e3a296e83021d01953e38057d8e">More...</a><br /></td></tr>
+<tr class="separator:a7ac12e3a296e83021d01953e38057d8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="aeaae1d8e3b827593ca6eac8f8782e9b4"></a>
@@ -203,7 +209,51 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A function pointer. </dd></dl>
-<p>WILL BE UPDATE WITH THE LOBBY MENU</p>
+
+</div>
+</div>
+<a id="a7ac12e3a296e83021d01953e38057d8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ac12e3a296e83021d01953e38057d8e">&#9670;&nbsp;</a></span>createARoom()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void createARoom </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classecs_1_1_world.html">World</a> &amp;&#160;</td>
+          <td class="paramname"><em>world</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classecs_1_1_entity.html">Entity</a> &amp;&#160;</td>
+          <td class="paramname"><em>entityPtr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string &amp;&#160;</td>
+          <td class="paramname"><em>message</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>It sends a room configuration to the client. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">world</td><td>The world that contains all the entities and resources. </td></tr>
+    <tr><td class="paramname">entityPtr</td><td>The entity that is calling the function. </td></tr>
+    <tr><td class="paramname">message</td><td>the message that will be sent to the client </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A function pointer. </dd></dl>
 
 </div>
 </div>
@@ -238,6 +288,43 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">world</td><td>the world where the window will be closed </td></tr>
     <tr><td class="paramname">entityPtr</td><td>the entity who actioned the called </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad6753cb83a997f17e503f281f66f7076"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6753cb83a997f17e503f281f66f7076">&#9670;&nbsp;</a></span>goToLobby()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void goToLobby </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classecs_1_1_world.html">World</a> &amp;&#160;</td>
+          <td class="paramname"><em>world</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classecs_1_1_entity.html">Entity</a> &amp;&#160;</td>
+          <td class="paramname"><em>entityPtr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>When the user clicks the 'Go to Lobby' button, change the current menu state to the lobby. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">world</td><td>The world that the entity is in. </td></tr>
+    <tr><td class="paramname">entityPtr</td><td>The entity that the button is attached to. </td></tr>
   </table>
   </dd>
 </dl>
