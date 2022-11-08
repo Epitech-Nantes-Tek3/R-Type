@@ -10,6 +10,13 @@
 
 #include "World/World.hpp"
 
+#define FONT_PATH "assets/fonts/arial.ttf"
+#define BUTTON_TEXTURE_PATH "assets/EpiSprite/r-typesheet11.gif"
+#define WRITABLE_TEXTURE_PATH "assets/EpiSprite/r-typesheet11.gif"
+#define WRITABLE_BUTTON_TEXTURE_PATH "assets/EpiSprite/r-typesheet11.gif"
+#define WRITABLE_SELECTED_TEXTURE_PATH "assets/EpiSprite/r-typesheet11.gif"
+#define BACKGROUND_MUSIC "assets/Musics/music_background.wav"
+
 namespace client_data
 {
     /// @brief This class is used to get a pseudo and a password in a GUI to log in a client.

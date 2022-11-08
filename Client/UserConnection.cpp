@@ -61,19 +61,19 @@ void UserConnection::_loadResourcesUserConnection()
         .addResource<GameClock>()
         .addResource<GameStates>()
         .addResource<RenderWindowResource>("Login", sf::VideoMode(360, 640, 32))
-        .addResource<GraphicsFontResource>("assets/fonts/arial.ttf")
-        .addResource<MusicResource>(MusicResource::music_e::BACKGROUNDTHEME, "assets/Musics/music_background.wav")
+        .addResource<GraphicsFontResource>(FONT_PATH)
+        .addResource<MusicResource>(MusicResource::music_e::BACKGROUNDTHEME, BACKGROUND_MUSIC)
         .addResource<MenuStates>(MenuStates::IN_GAME)
         .addResource<ButtonActionMap>(
             ButtonActionMap::WRITABLE_BUTTON, std::function<void(World &, Entity &)>(writableButtonAction))
-        .addResource<GraphicsTextureResource>(GraphicsTextureResource::BUTTON, "assets/EpiSprite/r-typesheet11.gif",
+        .addResource<GraphicsTextureResource>(GraphicsTextureResource::BUTTON, BUTTON_TEXTURE_PATH,
             sf::Vector2f(34, 0), sf::Vector2f(34, 34));
     _world->getResource<GraphicsTextureResource>().addTexture(
-        GraphicsTextureResource::WRITABLE, "assets/EpiSprite/r-typesheet11.gif");
+        GraphicsTextureResource::WRITABLE, WRITABLE_BUTTON_TEXTURE_PATH);
     _world->getResource<GraphicsTextureResource>().addTexture(
-        GraphicsTextureResource::WRITABLE_BUTTON, "assets/EpiSprite/r-typesheet11.gif");
+        GraphicsTextureResource::WRITABLE_BUTTON, WRITABLE_BUTTON_TEXTURE_PATH);
     _world->getResource<GraphicsTextureResource>().addTexture(
-        GraphicsTextureResource::WRITABLE_SELECTED, "assets/EpiSprite/r-typesheet11.gif");
+        GraphicsTextureResource::WRITABLE_SELECTED, WRITABLE_SELECTED_TEXTURE_PATH);
     _world->getResource<ButtonActionMap>().addAction(
         ButtonActionMap::WRITABLE, std::function<void(World &, Entity &)>(selectAWritable));
 }
