@@ -36,6 +36,7 @@ namespace graphicECS::SFML::Resources
             FIRE_ENEMY,
             ELECTRIC_ENEMY,
             ICE_ENEMY,
+            BOSS,
             ENEMY_UP,
             ENEMY_DOWN,
             BACKGROUND_LAYER_1,
