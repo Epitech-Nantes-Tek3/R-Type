@@ -280,6 +280,7 @@ int ClientRoom::_choosePlayerInfosForServer()
     }
     pseudo = connection.getPseudo();
     password = connection.getPassword();
+    connection.~UserConnection();
     startLobbyLoop(pseudo, password, false);
     return 0;
 }
