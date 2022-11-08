@@ -55,7 +55,7 @@ Test(InputManagement, movePlayerX_with_player)
         world.addEntity().addComponent<Controlable>().addComponent<Velocity>(0, 0).addComponent<Position>(0, 0).getId();
 
     inputs.movePlayerX(world, 10);
-    cr_assert_eq(world.getEntity(id).getComponent<Velocity>().multiplierAbscissa, 10);
+    cr_assert_eq(world.getEntity(id).getComponent<Velocity>().multiplierAbscissa, 0);
 }
 
 Test(InputManagement, movePlayerY_without_player)
@@ -75,7 +75,7 @@ Test(InputManagement, movePlayerY_with_player)
         world.addEntity().addComponent<Controlable>().addComponent<Velocity>(0, 0).addComponent<Position>(0, 0).getId();
 
     inputs.movePlayerY(world, 10);
-    cr_assert_eq(world.getEntity(id).getComponent<Velocity>().multiplierOrdinate, 10);
+    cr_assert_eq(world.getEntity(id).getComponent<Velocity>().multiplierOrdinate, 0);
 }
 
 Test(InputManagement, keyPressedEvents)
