@@ -1,5 +1,12 @@
 var NAVTREEINDEX5 =
 {
+"structecs_1_1_death_system.html#a96e3831feca5f69d82df7cf6906896bf":[4,0,4,47,0],
+"structecs_1_1_decrease_life_time.html":[4,0,4,55],
+"structecs_1_1_decrease_life_time.html#a05996d10812ad9c196190c1e51bd7314":[4,0,4,55,0],
+"structecs_1_1_disconnectable_system.html":[4,0,4,56],
+"structecs_1_1_disconnectable_system.html#adb7c816a9f3d01f63e3bc490596b0146":[4,0,4,56,0],
+"structecs_1_1_electric_invisible_enemy.html":[4,0,4,48],
+"structecs_1_1_electric_invisible_enemy.html#aa816e41dbd4e73ab8638fd1aa59f8bab":[4,0,4,48,0],
 "structecs_1_1_life_time_death.html":[4,0,4,59],
 "structecs_1_1_life_time_death.html#a69c55e0fcafc404178246cf9c0f25c2e":[4,0,4,59,0],
 "structecs_1_1_mob_generation.html":[4,0,4,60],

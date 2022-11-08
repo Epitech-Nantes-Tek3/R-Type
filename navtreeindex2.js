@@ -1,5 +1,7 @@
 var NAVTREEINDEX2 =
 {
+"classcommunicator__lib_1_1_receiver.html#ad0b88e6a29d7c3d6be17d8d78785ed8c":[4,0,2,5,7],
+"classcommunicator__lib_1_1_receiver.html#adacc73bc3c4cbe2b06a06f359ebe905a":[4,0,2,5,9],
 "classcommunicator__lib_1_1_sender.html":[4,0,2,6],
 "classcommunicator__lib_1_1_sender.html#a34bc63592e1ccaad550b9f9a259c0fa7":[4,0,2,6,1],
 "classcommunicator__lib_1_1_sender.html#a615e2465e35eabb53ffb9297aec88a0d":[4,0,2,6,4],
@@ -247,7 +249,5 @@ var NAVTREEINDEX2 =
 "classecs_1_1_projectile.html":[4,0,4,38],
 "classecs_1_1_resource.html":[4,0,4,2],
 "classecs_1_1_resource.html#a4ab3f5cbdd0b55a5141ffcfb836bb274":[4,0,4,2,2],
-"classecs_1_1_resource.html#a4bcd1718ebc4a00049324ffcec9e2dfd":[4,0,4,2,0],
-"classecs_1_1_resource.html#af6d38dc8395fce08bba80baed32fd656":[4,0,4,2,1],
-"classecs_1_1_shooting_frequency.html":[4,0,4,39]
+"classecs_1_1_resource.html#a4bcd1718ebc4a00049324ffcec9e2dfd":[4,0,4,2,0]
 };

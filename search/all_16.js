@@ -1,10 +1,11 @@
 var searchData=
 [
-  ['wait_669',['wait',['../classserver__data_1_1_room_instance.html#a299bcaf68cd24c0a8ca36d0c25843181',1,'server_data::RoomInstance']]],
-  ['weakness_670',['Weakness',['../classecs_1_1_weakness.html',1,'ecs::Weakness'],['../classecs_1_1_weakness.html#a10ae3cf8264698e5e0f33e9e62c9e5b0',1,'ecs::Weakness::Weakness()']]],
-  ['weaknesscomponent_2ehpp_671',['WeaknessComponent.hpp',['../_weakness_component_8hpp.html',1,'']]],
-  ['weight_672',['Weight',['../classecs_1_1_weight.html',1,'ecs::Weight'],['../classecs_1_1_weight.html#a349ed5842a57958c3239ec295b0e79af',1,'ecs::Weight::Weight(short newWeight=0)']]],
-  ['weight_673',['weight',['../classecs_1_1_weight.html#a5759518e89dec4efb88d38cd55ece123',1,'ecs::Weight']]],
+  ['wait_668',['wait',['../classserver__data_1_1_room_instance.html#a299bcaf68cd24c0a8ca36d0c25843181',1,'server_data::RoomInstance']]],
+  ['weakness_669',['Weakness',['../classecs_1_1_weakness.html',1,'ecs::Weakness'],['../classecs_1_1_weakness.html#a10ae3cf8264698e5e0f33e9e62c9e5b0',1,'ecs::Weakness::Weakness()']]],
+  ['weaknesscomponent_2ehpp_670',['WeaknessComponent.hpp',['../_weakness_component_8hpp.html',1,'']]],
+  ['weight_671',['Weight',['../classecs_1_1_weight.html',1,'ecs']]],
+  ['weight_672',['weight',['../classecs_1_1_weight.html#a5759518e89dec4efb88d38cd55ece123',1,'ecs::Weight']]],
+  ['weight_673',['Weight',['../classecs_1_1_weight.html#a349ed5842a57958c3239ec295b0e79af',1,'ecs::Weight']]],
   ['weightcomponent_2ehpp_674',['WeightComponent.hpp',['../_weight_component_8hpp.html',1,'']]],
   ['what_675',['what',['../classerror__lib_1_1_r_type_error.html#a7f1551812f4327024a8bf20d6e69f7b7',1,'error_lib::RTypeError']]],
   ['window_676',['window',['../classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_render_window_resource.html#a9eb3bbe66674679137388e3015777090',1,'graphicECS::SFML::Resources::RenderWindowResource']]],

@@ -1,5 +1,12 @@
 var NAVTREEINDEX4 =
 {
+"classserver__data_1_1_room_instance.html#aab8d746c7d2e8e7d7dc4082505942fe1":[4,0,7,0,2],
+"classserver__data_1_1_room_instance.html#accce08812045e029e7bd8858526e4b2f":[4,0,7,0,7],
+"classserver__data_1_1_server.html":[4,0,7,1],
+"classserver__data_1_1_server.html#a4198b176b5d91ee5211ff53fe78483f2":[4,0,7,1,1],
+"classserver__data_1_1_server.html#a4c81e92e4c1e19f42777bd6425c8342c":[4,0,7,1,4],
+"classserver__data_1_1_server.html#a5471d756c8a7406fa6918f96624623e5":[4,0,7,1,6],
+"classserver__data_1_1_server.html#a5a3985c96088955a55f3ebfd7fad7b23":[4,0,7,1,5],
 "classserver__data_1_1_server.html#aaf4c1749ab9802025359c962b33aead0":[4,0,7,1,3],
 "classserver__data_1_1_server.html#ad5ec9462b520e59f7ea831e157ee5e59":[4,0,7,1,2],
 "classserver__data_1_1_server.html#afa18619a548a505dbae99d57e2e681b6":[4,0,7,1,0],
@@ -76,8 +83,8 @@ var NAVTREEINDEX4 =
 "functions_enum.html":[4,3,4],
 "functions_eval.html":[4,3,5],
 "functions_f.html":[4,3,0,6],
-"functions_func.html":[4,3,1],
 "functions_func.html":[4,3,1,0],
+"functions_func.html":[4,3,1],
 "functions_func_b.html":[4,3,1,1],
 "functions_func_c.html":[4,3,1,2],
 "functions_func_d.html":[4,3,1,3],
@@ -242,12 +249,5 @@ var NAVTREEINDEX4 =
 "structecs_1_1_collide.html#ae743b440386f68816572b9d1eda81847":[4,0,4,53,0],
 "structecs_1_1_death_life.html":[4,0,4,54],
 "structecs_1_1_death_life.html#a7960f30274a3c3924b5e48e034544e38":[4,0,4,54,0],
-"structecs_1_1_death_system.html":[4,0,4,47],
-"structecs_1_1_death_system.html#a96e3831feca5f69d82df7cf6906896bf":[4,0,4,47,0],
-"structecs_1_1_decrease_life_time.html":[4,0,4,55],
-"structecs_1_1_decrease_life_time.html#a05996d10812ad9c196190c1e51bd7314":[4,0,4,55,0],
-"structecs_1_1_disconnectable_system.html":[4,0,4,56],
-"structecs_1_1_disconnectable_system.html#adb7c816a9f3d01f63e3bc490596b0146":[4,0,4,56,0],
-"structecs_1_1_electric_invisible_enemy.html":[4,0,4,48],
-"structecs_1_1_electric_invisible_enemy.html#aa816e41dbd4e73ab8638fd1aa59f8bab":[4,0,4,48,0]
+"structecs_1_1_death_system.html":[4,0,4,47]
 };

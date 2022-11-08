@@ -60,6 +60,7 @@ var hierarchy =
       [ "graphicECS::SFML::Components::ControllerJoystickInputComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_controller_joystick_input_component.html", null ],
       [ "graphicECS::SFML::Components::GraphicsRectangleComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_graphics_rectangle_component.html", null ],
       [ "graphicECS::SFML::Components::GraphicsTextComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_graphics_text_component.html", null ],
+      [ "graphicECS::SFML::Components::InputDelayComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_input_delay_component.html", null ],
       [ "graphicECS::SFML::Components::IsShootingComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_is_shooting_component.html", null ],
       [ "graphicECS::SFML::Components::KeyboardInputComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_keyboard_input_component.html", null ],
       [ "graphicECS::SFML::Components::MouseInputComponent", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_mouse_input_component.html", null ],
