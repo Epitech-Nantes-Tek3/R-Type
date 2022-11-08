@@ -34,7 +34,7 @@ void AnimationSystem::_updateAnimation(World &world, std::shared_ptr<ecs::Entity
     AnimationComponent &animation = entity->getComponent<AnimationComponent>();
     texturesNamesVector texturesNames = animation.textures;
     std::size_t &currentTexturePos = animation.currentTexturePos;
-    AnimationFrequencyComponent animationFrequency = entity->getComponent<AnimationFrequencyComponent>();
+    AnimationFrequencyComponent &animationFrequency = entity->getComponent<AnimationFrequencyComponent>();
     GraphicsTextureResource &textureRessource = world.getResource<GraphicsTextureResource>();
     {
         auto guard = std::lock_guard(textureRessource);
