@@ -93,7 +93,6 @@ void Receiver::handleReceive(const boost::system::error_code &error, size_t byte
         wait();
         return;
     }
-    std::cerr << "Receiving data. " << bytesTransferred << "bytes used." << std::endl;
     dataHeader = getDataHeader(temp);
     if (_dataTraitment.find(dataHeader[1]) == _dataTraitment.end())
         return;

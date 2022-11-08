@@ -11,6 +11,7 @@
 #include <concepts>
 #include <map>
 #include <typeindex>
+#include "GraphicECS/SFML/Components/InputDelayComponent.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Components/Controllable.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Components/NetworkServer.hpp"
@@ -36,8 +37,9 @@ struct SendToServer : public ecs::System {
     /// @param entity Entity which must be shared
     /// @param serverIdList The list of servers to which the datas must be sent
     template <std::derived_from<ecs::Component>... C>
-    requires(sizeof...(C) == 0) void sendToServer(ecs::World &world, const unsigned short &networkId,
-        std::shared_ptr<ecs::Entity> entity, const std::vector<unsigned short> &serverIdList) const
+        requires(sizeof...(C) == 0)
+    void sendToServer(ecs::World &world, const unsigned short &networkId, std::shared_ptr<ecs::Entity> entity,
+        const std::vector<unsigned short> &serverIdList) const
     {
         (void)networkId;
         (void)entity;
@@ -61,6 +63,15 @@ struct SendToServer : public ecs::System {
             if (entity->contains<C1>()) {
                 C1 &component = entity->getComponent<C1>();
                 if (component.modified) {
+                    if (entity->contains<graphicECS::SFML::Components::InputDelayComponent>()) {
+                        entity->getComponent<ecs::Velocity>().multiplierAbscissa =
+                            entity->getComponent<graphicECS::SFML::Components::InputDelayComponent>()
+                                .multiplierAbscissa;
+                        entity->getComponent<ecs::Velocity>().multiplierOrdinate =
+                            entity->getComponent<graphicECS::SFML::Components::InputDelayComponent>()
+                                .multiplierOrdinate;
+                        entity->removeComponent<graphicECS::SFML::Components::InputDelayComponent>();
+                    }
                     component.modified = false;
                     component.sendToEveryone = true;
                     std::free(world.getTransisthorBridge().get()->transitEcsDataToNetworkData<C1>(

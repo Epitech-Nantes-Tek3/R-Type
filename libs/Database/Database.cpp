@@ -19,7 +19,6 @@ namespace database
         if (sqlite3_open(fileName.string().c_str(), &_db) != SQLITE_OK) {
             return false;
         }
-        std::cerr << "Opened database successfully" << std::endl;
         return true;
     }
 
