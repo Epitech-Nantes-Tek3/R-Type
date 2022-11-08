@@ -25,9 +25,19 @@ namespace server_data
         _terminated = false;
         _input = new boost::process::opstream();
         _output = new boost::process::ipstream();
-        _child = new boost::process::child("r-type_room", std::to_string(_id), _name, _networkInformations.getAddress(),
-            std::to_string(_networkInformations.getPort()),
-            boost::process::std_in<(*_input), boost::process::std_out>(*_output));
+        try {
+            std::string executableName = "r-type_room";
+#ifdef _WIN32
+            executableName.append(".exe");
+#endif
+
+            _child = new boost::process::child(executableName, std::to_string(_id), _name,
+                _networkInformations.getAddress(), std::to_string(_networkInformations.getPort()),
+                boost::process::std_in<(*_input), boost::process::std_out>(*_output));
+        } catch (const std::system_error &error) {
+            std::cerr << "ERROR while launching a new room: " << std::to_string(error.code().value()) << " : "
+                      << error.what() << std::endl;
+        }
         _inputHandler = std::make_unique<boost::thread>(&RoomInstance::_manageInterprocessCommunication, this, server);
     }
 
