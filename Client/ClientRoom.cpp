@@ -348,7 +348,7 @@ void ClientRoom::_updateEcsResources(bool isSolo)
     if (!_worldInstance->containsResource<RenderWindowResource>())
         _worldInstance->addResource<RenderWindowResource>();
     if (!_worldInstance->containsResource<GraphicsFontResource>())
-        _worldInstance->addResource<GraphicsFontResource>("assets/fonts/arial.ttf");
+        _worldInstance->addResource<GraphicsFontResource>(FONT_PATH);
     if (!_worldInstance->containsResource<MenuStates>())
         _worldInstance->addResource<MenuStates>(MenuStates::MAIN_MENU);
     if (!_worldInstance->containsResource<MusicResource>())
@@ -374,15 +374,15 @@ void ClientRoom::_loadTextures()
     GraphicsTextureResource &textureResource = _worldInstance->getResource<GraphicsTextureResource>();
     auto guard = std::lock_guard(textureResource);
 
-    textureResource.addTexture(GraphicsTextureResource::BUTTON, "assets/EpiSprite/r-typesheet11.gif",
+    textureResource.addTexture(GraphicsTextureResource::BUTTON, BUTTON_TEXTURE_PATH,
         sf::Vector2f(34, 0), sf::Vector2f(34, 34));
-    textureResource.addTexture(GraphicsTextureResource::BASIC_ENEMY, "assets/EpiSprite/BasicEnemySpriteSheet.gif",
+    textureResource.addTexture(GraphicsTextureResource::BASIC_ENEMY, BASIC_ENEMY_TEXTURE_PATH,
         sf::Vector2f(0, 0), sf::Vector2f(34, 34));
-    textureResource.addTexture(GraphicsTextureResource::ELECTRIC_ENEMY, "assets/EpiSprite/BasicEnemySpriteSheet.gif",
+    textureResource.addTexture(GraphicsTextureResource::ELECTRIC_ENEMY, ELECTRIC_ENEMY_TEXTURE_PATH,
         sf::Vector2f(0, 0), sf::Vector2f(34, 34));
-    textureResource.addTexture(GraphicsTextureResource::FIRE_ENEMY, "assets/EpiSprite/BasicEnemySpriteSheet.gif",
+    textureResource.addTexture(GraphicsTextureResource::FIRE_ENEMY, FIRE_ENEMY_TEXTURE_PATH,
         sf::Vector2f(0, 0), sf::Vector2f(34, 34));
-    textureResource.addTexture(GraphicsTextureResource::ICE_ENEMY, "assets/EpiSprite/BasicEnemySpriteSheet.gif",
+    textureResource.addTexture(GraphicsTextureResource::ICE_ENEMY, ICE_ENEMY_TEXTURE_PATH,
         sf::Vector2f(0, 0), sf::Vector2f(34, 34));
     _initWritableTextures(textureResource);
     _initPlayerTextures(textureResource);
@@ -393,16 +393,16 @@ void ClientRoom::_loadTextures()
 void ClientRoom::_initProjectilesTextures(GraphicsTextureResource &textureResource)
 {
     textureResource.addTexture(GraphicsTextureResource::PROJECTILE_ENEMY_BASIC,
-        "assets/EpiSprite/BasicEnemyProjectileSpriteSheet.gif", sf::Vector2f(0, 0), sf::Vector2f(34, 34));
+        BASIC_ENEMY_PROJECTILE_TEXTURE_PATH, sf::Vector2f(0, 0), sf::Vector2f(34, 34));
     textureResource.addTexture(GraphicsTextureResource::PROJECTILE_ENEMY_FIRE,
-        "assets/EpiSprite/FireEnemyProjectileSpriteSheet.gif", sf::Vector2f(0, 0), sf::Vector2f(34, 34));
+        FIRE_ENEMY_PROJECTILE_TEXTURE_PATH, sf::Vector2f(0, 0), sf::Vector2f(34, 34));
     textureResource.addTexture(GraphicsTextureResource::PROJECTILE_ENEMY_ELECTRIC,
-        "assets/EpiSprite/ElectricEnemyProjectileSpriteSheet.gif", sf::Vector2f(0, 0), sf::Vector2f(34, 34));
+        ELECTRIC_ENEMY_PROJECTILE_TEXTURE_PATH, sf::Vector2f(0, 0), sf::Vector2f(34, 34));
     textureResource.addTexture(GraphicsTextureResource::PROJECTILE_ENEMY_ICE,
-        "assets/EpiSprite/IceEnemyProjectileSpriteSheet.gif", sf::Vector2f(0, 0), sf::Vector2f(34, 34));
+        ICE_ENEMY_PROJECTILE_TEXTURE_PATH, sf::Vector2f(0, 0), sf::Vector2f(34, 34));
     textureResource.addTexture(GraphicsTextureResource::PROJECTILE_ALLY,
-        "assets/EpiSprite/BasicAlliedProjectileSpriteSheet.gif", sf::Vector2f(0, 0), sf::Vector2f(20, 20));
-    textureResource.addTexture(GraphicsTextureResource::BOSS, "assets/EpiSprite/BossSpriteSheet.gif",
+        BASIC_ALLIED_PROJECTILE_TEXTURE_PATH, sf::Vector2f(0, 0), sf::Vector2f(20, 20));
+    textureResource.addTexture(GraphicsTextureResource::BOSS, BOSS_TEXTURE_PATH,
         sf::Vector2f(0, 0), sf::Vector2f(50, 57));
 }
 

@@ -17,6 +17,19 @@
 #include "Transisthor/Transisthor.hpp"
 #include "World/World.hpp"
 
+#define FONT_PATH "assets/fonts/arial.ttf"
+#define BUTTON_TEXTURE_PATH "assets/EpiSprite/r-typesheet11.gif"
+#define BASIC_ENEMY_TEXTURE_PATH "assets/EpiSprite/BasicEnemySpriteSheet.gif"
+#define ELECTRIC_ENEMY_TEXTURE_PATH "assets/EpiSprite/BasicEnemySpriteSheet.gif"
+#define FIRE_ENEMY_TEXTURE_PATH "assets/EpiSprite/BasicEnemySpriteSheet.gif"
+#define ICE_ENEMY_TEXTURE_PATH "assets/EpiSprite/BasicEnemySpriteSheet.gif"
+#define BASIC_ENEMY_PROJECTILE_TEXTURE_PATH "assets/EpiSprite/BasicEnemyProjectileSpriteSheet.gif"
+#define FIRE_ENEMY_PROJECTILE_TEXTURE_PATH "assets/EpiSprite/FireEnemyProjectileSpriteSheet.gif"
+#define ELECTRIC_ENEMY_PROJECTILE_TEXTURE_PATH "assets/EpiSprite/ElectricEnemyProjectileSpriteSheet.gif"
+#define ICE_ENEMY_PROJECTILE_TEXTURE_PATH "assets/EpiSprite/IceEnemyProjectileSpriteSheet.gif"
+#define BASIC_ALLIED_PROJECTILE_TEXTURE_PATH "assets/EpiSprite/BasicAlliedProjectileSpriteSheet.gif"
+#define BOSS_TEXTURE_PATH "assets/EpiSprite/BossSpriteSheet.gif"
+
 using namespace communicator_lib;
 using namespace ecs;
 using namespace transisthor_lib;
