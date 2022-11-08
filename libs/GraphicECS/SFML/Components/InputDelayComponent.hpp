@@ -13,7 +13,7 @@
 
 namespace graphicECS::SFML::Components
 {
-    /// @brief This component store a velocity modificator and use it just before the sending
+    /// @brief This component stores a velocity modificator and use it just before the sending
     class InputDelayComponent : public ecs::Component {
       public:
         /// @brief The multiplier of the abscissa movement (between 0.1 and 10)
