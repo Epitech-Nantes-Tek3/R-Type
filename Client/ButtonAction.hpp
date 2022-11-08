@@ -48,4 +48,9 @@ void publishNewChatMessage(World &world, Entity &entityPtr, std::string &message
 /// @return A function pointer.
 void connectToARoom(World &world, Entity &entityPtr);
 
+/// @brief It changes the current state of the menu to the lobby state
+/// @param world The world that the entity is in.
+/// @param entityPtr The entity that the button is attached to.
+void launchSoloGame(World &world, Entity &entityPtr);
+
 #endif /* !BUTTONACTION_HPP_ */

@@ -251,13 +251,17 @@ void ClientRoom::_initSoloData(void)
 void ClientRoom::_startSoloLoop()
 {
     std::signal(SIGINT, signalCallbackHandler);
-    _updateEcsData(true);
     _initSoloData();
-    _state = ClientState::IN_GAME;
+    _state = ClientState::MAIN_MENU;
+    _updateEcsData(true);
     while (_state != ClientState::ENDED && _state != ClientState::UNDEFINED) {
-        if (_state == ClientState::IN_GAME) {
-            _worldInstance.get()->runSystems();
+        if (_worldInstance->containsResource<MenuStates>()
+            && _worldInstance->getResource<MenuStates>().currentState == MenuStates::LOBBY) {
+            _state = ClientState::IN_GAME;
+            _worldInstance->getResource<MenuStates>().currentState = MenuStates::IN_GAME;
+            _updateEcsData(true);
         }
+        _worldInstance.get()->runSystems();
     }
 }
 
@@ -333,7 +337,7 @@ void ClientRoom::_disconectionProcess()
 
 void ClientRoom::_holdADisconnectionRequest() { _state = ClientState::ENDED; }
 
-void ClientRoom::_updateEcsResources()
+void ClientRoom::_updateEcsResources(bool isSolo)
 {
     if (!_worldInstance->containsResource<RandomDevice>())
         _worldInstance->addResource<RandomDevice>();
@@ -358,7 +362,7 @@ void ClientRoom::_updateEcsResources()
     if (_worldInstance->containsResource<GraphicsTextureResource>())
         _loadTextures();
     if (_worldInstance->containsResource<ButtonActionMap>())
-        _loadButtonActionMap();
+        _loadButtonActionMap(isSolo);
 }
 
 void ClientRoom::_loadTextures()
@@ -436,7 +440,7 @@ void ClientRoom::_initPlayerTextures(GraphicsTextureResource &textureResource)
         sf::Vector2f(534 / 16 * 15, 0), sf::Vector2f(534 / 16, 34));
 }
 
-void ClientRoom::_loadButtonActionMap()
+void ClientRoom::_loadButtonActionMap(bool isSolo)
 {
     ButtonActionMap &actionsList = _worldInstance->getResource<ButtonActionMap>();
 
@@ -446,7 +450,11 @@ void ClientRoom::_loadButtonActionMap()
     actionsList.addAction(ButtonActionMap::WRITABLE, std::function<void(World &, Entity &)>(selectAWritable));
     actionsList.addAction(
         ButtonActionMap::WRITABLE_BUTTON, std::function<void(World &, Entity &)>(writableButtonAction));
-    actionsList.addAction(ButtonActionMap::LOBBY, std::function<void(World &, Entity &)>(connectToARoom));
+    if (isSolo) {
+        actionsList.addAction(ButtonActionMap::LOBBY, std::function<void(World &, Entity &)>(launchSoloGame));
+    } else {
+        actionsList.addAction(ButtonActionMap::LOBBY, std::function<void(World &, Entity &)>(connectToARoom));
+    }
 }
 
 void ClientRoom::_updateEcsEntities()
@@ -515,10 +523,14 @@ void ClientRoom::_initInGameButtons()
 
 void ClientRoom::_initMainMenuButtons()
 {
-    createNewButton(
-        *(_worldInstance.get()), 0, 0, 200, 50, ButtonActionMap::LOBBY, LayerLvL::BUTTON, MenuStates::MAIN_MENU);
-    createNewButton(
-        *(_worldInstance.get()), 200, 0, 200, 50, ButtonActionMap::EXIT, LayerLvL::BUTTON, MenuStates::MAIN_MENU);
+    sf::Vector2u windowSize(0, 0);
+
+    if (_worldInstance->containsResource<RenderWindowResource>())
+        windowSize = _worldInstance->getResource<RenderWindowResource>().window.getSize();
+    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 3 - 25, 200, 50,
+        ButtonActionMap::LOBBY, LayerLvL::BUTTON, MenuStates::MAIN_MENU);
+    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 3 * 2 - 25, 200, 50,
+        ButtonActionMap::EXIT, LayerLvL::BUTTON, MenuStates::MAIN_MENU);
 }
 
 void ClientRoom::_initInGameWritables()
@@ -581,7 +593,7 @@ void ClientRoom::_updateEcsSystems(bool isSolo)
 
 void ClientRoom::_updateEcsData(bool isSolo)
 {
-    _updateEcsResources();
+    _updateEcsResources(isSolo);
     _updateEcsEntities();
     _updateEcsSystems(isSolo);
 }
