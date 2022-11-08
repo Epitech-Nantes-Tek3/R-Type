@@ -421,7 +421,6 @@ void ClientRoom::_loadButtonActionMap(bool isSolo)
     actionsList.addAction(ButtonActionMap::RESUME, std::function<void(World &, Entity &)>(resumeGame));
     actionsList.addAction(ButtonActionMap::EXIT, std::function<void(World &, Entity &)>(exitWindow));
     actionsList.addAction(ButtonActionMap::WRITABLE, std::function<void(World &, Entity &)>(selectAWritable));
-    // actionsList.addAction(ButtonActionMap::IN_GAME, std::function<void(World &, Entity &)>(createARoom));
     actionsList.addAction(
         ButtonActionMap::WRITABLE_BUTTON, std::function<void(World &, Entity &)>(writableButtonAction));
     if (isSolo) {
