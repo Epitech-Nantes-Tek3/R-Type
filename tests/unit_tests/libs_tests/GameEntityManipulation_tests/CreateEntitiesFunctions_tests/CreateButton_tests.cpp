@@ -21,7 +21,7 @@ Test(CreateButton_test, CreateButton)
     World world(1);
 
     std::size_t id_new_entity =
-        createNewButton(world, 10, 10, 1, 10, ButtonActionMap::UNDEFINED, LayerLvL::BUTTON, MenuStates::UNDEFINED);
+        createNewButton(world, 10, 10, 1, 10, ButtonActionMap::UNDEFINED, LayerLvL::BUTTON, MenuStates::UNDEFINED, "test");
 
     cr_assert_eq(1, id_new_entity);
 

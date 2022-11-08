@@ -27,7 +27,7 @@ namespace client_data
     class ClientRoom {
       public:
         /// @brief All the possible state of a client
-        enum ClientState { UNDEFINED, LOBBY, IN_GAME, ENDED, MAIN_MENU };
+        enum ClientState { UNDEFINED, MAIN_MENU, LOBBY, IN_GAME, ENDED };
 
         /// @brief Construct a new ClientRoom with default value
         ClientRoom();
@@ -189,11 +189,14 @@ namespace client_data
         /// @brief Start the connexion protocol and ask the server for a place inside the room
         void _startConnexionProtocol(void);
 
-        /// @brief Answer the reception of a protocol 12
+        /// @brief Answer the reception of a protocol 12.
+        /// It adds a NetworkServer component to the entity with the id given by the server.
+        /// @param connexionResponse The response from the server.
         void _protocol12Answer(CommunicatorMessage connexionResponse);
 
-        /// @brief Answer the reception of a protocol 15
-        /// @param connectionResponse The received response
+        /// @brief Answer the reception of a protocol 15.
+        /// It creates a button for each room that the server sent to the client.
+        /// @param connectionResponse The message received from the server.
         void _protocol15Answer(CommunicatorMessage connectionResponse);
     };
 } // namespace client_data
