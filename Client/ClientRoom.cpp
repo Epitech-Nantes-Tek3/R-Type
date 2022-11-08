@@ -153,9 +153,6 @@ void ClientRoom::_startConnexionProtocol(void)
 
 void ClientRoom::_protocol12Answer(CommunicatorMessage connexionResponse)
 {
-    // _state = ClientState::IN_GAME;
-    // if (_worldInstance->containsResource<MenuStates>())
-    //     _worldInstance->getResource<MenuStates>().currentState = MenuStates::IN_GAME;
     _worldInstance.get()->addEntity().addComponent<NetworkServer>(connexionResponse.message.clientInfo.getId());
     auto &clock = _worldInstance.get()->getResource<GameClock>();
     auto guard = std::lock_guard(clock);
@@ -191,9 +188,8 @@ void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
 
     std::memcpy(&roomNumber, connectionResponse.message.data, sizeof(unsigned short));
     std::size_t id = createNewWritable(*(_worldInstance.get()), windowSize.x - 300, 100, 200, 50, MenuStates::LOBBY);
-    createNewWritableButton(*(_worldInstance.get()), windowSize.x - 300, 200, 200, 50, std::function<void(World &, Entity &, std::string &)>(createARoom), MenuStates::LOBBY, id);
-    // createNewButton(*(_worldInstance.get()), windowSize.x - 300, 100, 200, 50,
-    //     ButtonActionMap::CREATE_A_ROOM, LayerLvL::BUTTON, MenuStates::LOBBY, "Create room");
+    createNewWritableButton(*(_worldInstance.get()), windowSize.x - 300, 200, 200, 50,
+        std::function<void(World &, Entity &, std::string &)>(createARoom), MenuStates::LOBBY, id);
     for (int i = 0; i < roomNumber; i++) {
         unsigned short roomId = 0;
         std::memcpy(&roomId, (void *)((char *)connectionResponse.message.data + offset), sizeof(unsigned short));
@@ -203,32 +199,9 @@ void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
         for (int j = 0; j < 10; j++)
             roomName[j] = tempRoomName[j];
         offset += sizeof(char) * 10;
-        createNewButton(
-            *(_worldInstance.get()), windowSize.x / 2 - 100, i * 60, 200, 50, ButtonActionMap::ROOM_CONNECTION, LayerLvL::BUTTON, MenuStates::LOBBY, std::to_string(i) + roomName);
+        createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, i * 60, 200, 50,
+            ButtonActionMap::ROOM_CONNECTION, LayerLvL::BUTTON, MenuStates::LOBBY, std::to_string(i) + roomName);
     }
-
-    // std::cerr << "If you want to join a existent room, please refer Y. Otherwise use N : ";
-    // char choosedMode = '\0';
-
-    // std::cin >> choosedMode;
-    // if (choosedMode == 'Y') {
-
-    // } else if (choosedMode == 'N') {
-    //     std::cerr << "Refer in the terminal the wanted room name : ";
-    //     std::string roomName;
-
-    //     std::cin >> roomName; /// WILL BE REMOVED WHEN GRAPHICAL INTERACTION HAS BEEN IMPLEMENTEND
-    //     if (roomName.size() != 10) {
-    //         std::cerr << "Please refer a valid room name (10 characters)." << std::endl;
-    //         _state = ClientState::ENDED;
-    //         return;
-    //     }
-    //     short configs[6] = {120, 121, 122, 123, 124, 125};
-    //     _communicatorInstance.get()->utilitarySendRoomConfiguration(roomName, configs, _serverEndpoint);
-    // } else {
-    //     std::cerr << "Not a valid option ;)" << std::endl;
-    //     _state = ClientState::ENDED;
-    // }
 }
 
 void ClientRoom::_signalSoloCallbackHandler(int signum)
@@ -457,21 +430,7 @@ void ClientRoom::_loadButtonActionMap(bool isSolo)
     } else {
         actionsList.addAction(ButtonActionMap::LOBBY, std::function<void(World &, Entity &)>(goToLobby));
         actionsList.addAction(ButtonActionMap::ROOM_CONNECTION, std::function<void(World &, Entity &)>(connectToARoom));
-        // actionsList.addAction(ButtonActionMap::CREATE_A_ROOM, std::function<void(World &, Entity &)>(createARoom));
     }
-}
-
-// unused actually
-void ClientRoom::_initLobbyMenuButtons()
-{
-    sf::Vector2u windowSize(0, 0);
-
-    if (_worldInstance->containsResource<RenderWindowResource>())
-        windowSize = _worldInstance->getResource<RenderWindowResource>().window.getSize();
-    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 3 - 25, 200, 50,
-        ButtonActionMap::IN_GAME, LayerLvL::BUTTON, MenuStates::LOBBY, "Play");
-    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 3 * 2 - 25, 200, 50,
-        ButtonActionMap::EXIT, LayerLvL::BUTTON, MenuStates::LOBBY, "Exit");
 }
 
 void ClientRoom::_updateEcsEntities()
@@ -485,9 +444,7 @@ void ClientRoom::_updateEcsEntities()
     if (_state == ClientState::MAIN_MENU) {
         _initMainMenuButtons();
     }
-    if (_state == ClientState::LOBBY) {
-        // _initLobbyMenuButtons();
-    }
+    if (_state == ClientState::LOBBY) {}
     if (_state == ClientState::IN_GAME) {
         _initInGameButtons();
         _initInGameWritables();
@@ -536,8 +493,8 @@ void ClientRoom::_initInGameButtons()
         *(_worldInstance.get()), 0, 0, 68, 68, ButtonActionMap::PAUSE, LayerLvL::BUTTON, MenuStates::IN_GAME, "Pause");
     createNewButton(*(_worldInstance.get()), 909, 200, 102, 102, ButtonActionMap::RESUME, LayerLvL::BUTTON,
         MenuStates::GAME_PAUSED, "Resume");
-    createNewButton(
-        *(_worldInstance.get()), 909, 500, 102, 102, ButtonActionMap::EXIT, LayerLvL::BUTTON, MenuStates::GAME_PAUSED, "Exit");
+    createNewButton(*(_worldInstance.get()), 909, 500, 102, 102, ButtonActionMap::EXIT, LayerLvL::BUTTON,
+        MenuStates::GAME_PAUSED, "Exit");
 }
 
 void ClientRoom::_initMainMenuButtons()
