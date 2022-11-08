@@ -229,6 +229,37 @@ static void iceEnemyPatterns(std::vector<std::shared_ptr<ecs::Entity>> allEnemie
     }
 }
 
+/// @brief Apply the boss pattern
+/// @param world the world where the boss
+/// @param boss the boss of the level, following his pawns patterns
+static void bossPattern(World &world, std::shared_ptr<Entity> boss)
+{
+    std::vector<std::shared_ptr<Entity>> enemies = world.joinEntities<Enemy>();
+
+    int nbFire = 0;
+    int nbElectrical = 0;
+
+    for (auto &it : enemies) {
+        unsigned short enemyType;
+        {
+            auto guard = std::lock_guard(*it.get());
+            enemyType = it.get()->getComponent<Enemy>().enemyType;
+        };
+        if (enemyType == Enemy::FIRE) {
+            ++nbFire;
+        } else if (enemyType == Enemy::ELECTRIC) {
+            ++nbElectrical;
+        }
+    }
+    if (nbFire == nbElectrical) {
+        basicEnemyPatterns(world, boss);
+    } else if (nbFire > nbElectrical) {
+        fireEnemyPatterns(world, boss);
+    } else {
+        electricEnemyPatterns(world, boss);
+    }
+}
+
 /// @brief Check if the first velocity of the Enemy as been set
 /// @param enemy the checked enemy
 /// @return true if the velocity hasn't been set before, false otherwise
@@ -267,6 +298,7 @@ void EnemiesPatterns::run(World &world)
         switch (enemyType) {
             case Enemy::FIRE: fireEnemyPatterns(world, entityPtr); break;
             case Enemy::ELECTRIC: electricEnemyPatterns(world, entityPtr); break;
+            case Enemy::BOSS: bossPattern(world, entityPtr); break;
             default: basicEnemyPatterns(world, entityPtr); break;
         };
     };
