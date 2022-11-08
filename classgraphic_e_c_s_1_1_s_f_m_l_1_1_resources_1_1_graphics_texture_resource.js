@@ -41,5 +41,6 @@ var classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource =
     [ "GraphicsTextureResource", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html#ad1e8e8cc6d910151277249725ad3be9a", null ],
     [ "~GraphicsTextureResource", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html#a1ff7100fda0d2e2c5b5654beb8b4b4dc", null ],
     [ "addTexture", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html#a97ac38e6f9b0bb08758438444e2b8d7b", null ],
+    [ "removeTexture", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html#a19a3cccab09f35c87722888c7481156e", null ],
     [ "_texturesList", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html#a481a10e1d3f70d0135adfc194162acbf", null ]
 ];

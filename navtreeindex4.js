@@ -1,5 +1,11 @@
 var NAVTREEINDEX4 =
 {
+"classserver__data_1_1_room_instance.html#a299bcaf68cd24c0a8ca36d0c25843181":[4,0,7,0,9],
+"classserver__data_1_1_room_instance.html#a465f4623152d65db1e6838222eaf75d1":[4,0,7,0,8],
+"classserver__data_1_1_room_instance.html#a573021b5d21ffdeb4686bc2de28afb1f":[4,0,7,0,3],
+"classserver__data_1_1_room_instance.html#a8485b98aa8461602ae0ba6abc82656af":[4,0,7,0,4],
+"classserver__data_1_1_room_instance.html#a95b0b066dbb6127262f791b9b9ba7287":[4,0,7,0,1],
+"classserver__data_1_1_room_instance.html#aaa25a0c965b077ad9556943aa9141501":[4,0,7,0,6],
 "classserver__data_1_1_room_instance.html#aab8d746c7d2e8e7d7dc4082505942fe1":[4,0,7,0,2],
 "classserver__data_1_1_room_instance.html#accce08812045e029e7bd8858526e4b2f":[4,0,7,0,7],
 "classserver__data_1_1_server.html":[4,0,7,1],
@@ -73,8 +79,8 @@ var NAVTREEINDEX4 =
 "dir_fbdccee0f25d54ed050b3dfc8daf83af.html":[5,0,1,5],
 "dir_fee7b59d3a4f5f79bc3d4bfa3d8804c4.html":[5,0,1,7,0],
 "files.html":[5,0],
-"functions.html":[4,3,0,0],
 "functions.html":[4,3,0],
+"functions.html":[4,3,0,0],
 "functions_a.html":[4,3,0,1],
 "functions_b.html":[4,3,0,2],
 "functions_c.html":[4,3,0,3],
@@ -83,8 +89,8 @@ var NAVTREEINDEX4 =
 "functions_enum.html":[4,3,4],
 "functions_eval.html":[4,3,5],
 "functions_f.html":[4,3,0,6],
-"functions_func.html":[4,3,1,0],
 "functions_func.html":[4,3,1],
+"functions_func.html":[4,3,1,0],
 "functions_func_b.html":[4,3,1,1],
 "functions_func_c.html":[4,3,1,2],
 "functions_func_d.html":[4,3,1,3],
@@ -243,11 +249,5 @@ var NAVTREEINDEX4 =
 "structecs_1_1_collide.html#a421c368d5343e3d81b4897211b5848f2":[4,0,4,53,5],
 "structecs_1_1_collide.html#a58529c4128deb51c3e392753c21e5571":[4,0,4,53,2],
 "structecs_1_1_collide.html#a760db87e82a9ed297dd11da0b111f2d9":[4,0,4,53,1],
-"structecs_1_1_collide.html#a8b31f7ed9bfde438999bd443ee5773a4":[4,0,4,53,7],
-"structecs_1_1_collide.html#ac15e985f3bdabf29fee1fac27031cece":[4,0,4,53,6],
-"structecs_1_1_collide.html#ac5b2e019a7d144bd77edc837b0387e96":[4,0,4,53,4],
-"structecs_1_1_collide.html#ae743b440386f68816572b9d1eda81847":[4,0,4,53,0],
-"structecs_1_1_death_life.html":[4,0,4,54],
-"structecs_1_1_death_life.html#a7960f30274a3c3924b5e48e034544e38":[4,0,4,54,0],
-"structecs_1_1_death_system.html":[4,0,4,47]
+"structecs_1_1_collide.html#a8b31f7ed9bfde438999bd443ee5773a4":[4,0,4,53,7]
 };

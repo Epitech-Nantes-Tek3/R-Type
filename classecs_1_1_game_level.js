@@ -12,5 +12,7 @@ var classecs_1_1_game_level =
     [ "addNewKills", "classecs_1_1_game_level.html#a29622973cbf9f33e4116e7543e2e8fbe", null ],
     [ "getCurrentLevel", "classecs_1_1_game_level.html#ae1033f848bd7070b3ce0c84a9562bb9b", null ],
     [ "hasLevelChanged", "classecs_1_1_game_level.html#ab00fd8ca7db6da7ebc091824d412a88e", null ],
-    [ "levelHasChanged", "classecs_1_1_game_level.html#a0b3856da2bd44bbdc6410e872807ae20", null ]
+    [ "hasWaveChanged", "classecs_1_1_game_level.html#acd42d3a1ff7070fcb0e4b81e215a6d8c", null ],
+    [ "levelHasChanged", "classecs_1_1_game_level.html#a0b3856da2bd44bbdc6410e872807ae20", null ],
+    [ "waveHasChanged", "classecs_1_1_game_level.html#aef36b076db2008f57e75f408d509bda8", null ]
 ];

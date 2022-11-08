@@ -141,6 +141,9 @@ var NAVTREEINDEX1 =
 "_update_clock_system_8cpp.html":[5,0,1,6,1,2,7],
 "_update_clock_system_8hpp.html":[5,0,1,6,1,2,8],
 "_update_clock_system_8hpp_source.html":[5,0,1,6,1,2,8],
+"_update_parallax_system_8cpp.html":[5,0,1,5,0,2,16],
+"_update_parallax_system_8hpp.html":[5,0,1,5,0,2,17],
+"_update_parallax_system_8hpp_source.html":[5,0,1,5,0,2,17],
 "_user_connection_8cpp.html":[5,0,0,5],
 "_user_connection_8hpp.html":[5,0,0,6],
 "_user_connection_8hpp_source.html":[5,0,0,6],
@@ -246,8 +249,5 @@ var NAVTREEINDEX1 =
 "classcommunicator__lib_1_1_receiver.html#a4ac4a645965e64591fc9bda1c0866a9f":[4,0,2,5,2],
 "classcommunicator__lib_1_1_receiver.html#a75292eb39c459aa9b1332fb93cdc9320":[4,0,2,5,11],
 "classcommunicator__lib_1_1_receiver.html#a8037668132cd0ce68679eb0a64205fc4":[4,0,2,5,1],
-"classcommunicator__lib_1_1_receiver.html#a90aaf43d506fd114edb3f79fd004f988":[4,0,2,5,12],
-"classcommunicator__lib_1_1_receiver.html#a921a1626a4b94539b60dbc2a5a76a105":[4,0,2,5,3],
-"classcommunicator__lib_1_1_receiver.html#aa96fe359fb3c372c4ba67c29b33b0d2f":[4,0,2,5,6],
-"classcommunicator__lib_1_1_receiver.html#ab05f062ad8bc9105e7708c9567552908":[4,0,2,5,0]
+"classcommunicator__lib_1_1_receiver.html#a90aaf43d506fd114edb3f79fd004f988":[4,0,2,5,12]
 };
