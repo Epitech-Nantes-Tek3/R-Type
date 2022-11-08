@@ -9,10 +9,7 @@
 #define UPDATEPARALLAXSYSTEM_HPP_
 
 #include "World/World.hpp"
-
-#define MIDDLE_BACKGROUND_TEXTURE_PATH "assets/Backgrounds/middle.png"
-#define BACK_BACKGROUND_TEXTURE_PATH   "assets/Backgrounds/back.png"
-#define FAR_BACKGROUND_TEXTURE_PATH    "assets/Backgrounds/far.png"
+#include "maccro.h"
 
 namespace graphicECS::SFML::Systems
 {
