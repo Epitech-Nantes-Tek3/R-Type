@@ -108,6 +108,7 @@ ClientRoom::ClientRoom()
 {
     _networkInformations = Client();
     _serverEndpoint = Client();
+    _highInstanceEndpoint = Client();
     _communicatorInstance = std::make_shared<Communicator>(_networkInformations);
     _worldInstance = std::make_shared<World>(1);
     _transisthorInstance = std::make_shared<Transisthor>(*(_communicatorInstance.get()), *(_worldInstance.get()));
@@ -123,6 +124,7 @@ ClientRoom::ClientRoom(std::string address, unsigned short port, std::string ser
 {
     _networkInformations = Client(address, port);
     _serverEndpoint = Client(serverAddress, serverPort);
+    _highInstanceEndpoint = Client(serverAddress, serverPort);
     _communicatorInstance = std::make_shared<Communicator>(_networkInformations);
     _worldInstance = std::make_shared<World>(1);
     _transisthorInstance = std::make_shared<Transisthor>(*(_communicatorInstance.get()), *(_worldInstance.get()));
