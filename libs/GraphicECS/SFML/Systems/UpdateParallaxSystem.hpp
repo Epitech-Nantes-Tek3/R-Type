@@ -9,6 +9,7 @@
 #define UPDATEPARALLAXSYSTEM_HPP_
 
 #include "World/World.hpp"
+#include "maccro.h"
 
 namespace graphicECS::SFML::Systems
 {
@@ -18,6 +19,6 @@ namespace graphicECS::SFML::Systems
         /// @brief Run the UpdateParallax system
         void run(World &world) override final;
     };
-} // namespace graphicsECS::SFML::Systems
+} // namespace graphicECS::SFML::Systems
 
 #endif /* !UPDATEPARALLAXSYSTEM_HPP_ */

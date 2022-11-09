@@ -9,6 +9,7 @@
 #define USERCONNECTION_HPP_
 
 #include "World/World.hpp"
+#include "maccro.h"
 
 namespace client_data
 {
