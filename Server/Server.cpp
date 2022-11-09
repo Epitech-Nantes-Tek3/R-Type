@@ -175,19 +175,21 @@ void Server::_holdANewConnectionRequest(CommunicatorMessage connectionDemand)
 {
     unsigned short offset = 0;
     unsigned short passwordSize = 0;
+    unsigned short pseudoSize = 0;
 
-    char *pseudo = (char *)connectionDemand.message.data;
-    offset += sizeof(char) * 5;
+    std::memcpy(&pseudoSize, connectionDemand.message.data, sizeof(unsigned short));
+    offset += sizeof(unsigned short);
+    char *pseudo = (char *)connectionDemand.message.data + offset;
+    offset += sizeof(char) * pseudoSize;
     std::memcpy(&passwordSize, (void *)((char *)connectionDemand.message.data + offset), sizeof(unsigned short));
     offset += sizeof(unsigned short);
     char *password = (char *)connectionDemand.message.data + offset;
     offset += sizeof(char) * passwordSize;
-    std::string pseudoStr = std::string(5, '\0');
+    std::string pseudoStr = std::string(pseudoSize, '\0');
     std::string passwordStr = std::string(passwordSize, '\0');
 
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < pseudoSize; i++)
         pseudoStr[i] += pseudo[i];
-    }
     for (int i = 0; i < passwordSize; i++)
         passwordStr[i] = password[i];
     auto apiAnswer = _databaseApi.selectUsers("UserName = '" + pseudoStr + "'");

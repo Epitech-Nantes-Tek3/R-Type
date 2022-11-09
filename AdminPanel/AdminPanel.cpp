@@ -77,14 +77,17 @@ void AdminPanel::_authentificationProcess()
     std::cin >> pseudo;
     std::cout << "Welcome : " << pseudo << " ! Now, your password : ";
     std::cin >> password;
+    unsigned short pseudoSize = pseudo.size();
     unsigned short passwordSize = password.size();
     unsigned short offset = 0;
-    void *networkData = std::malloc(sizeof(char) * 5 + sizeof(char) * passwordSize);
+    void *networkData = std::malloc(sizeof(char) * (pseudoSize + passwordSize));
 
     if (networkData == nullptr)
         throw MallocError("Malloc failed.");
-    std::memcpy(networkData, pseudo.c_str(), sizeof(char) * 5);
-    offset += sizeof(char) * 5;
+    std::memcpy(networkData, pseudoSize, sizeof(unsigned short));
+    offset += sizeof(unsigned short);
+    std::memcpy((void *)((char *)networkData + offset), pseudo.c_str(), sizeof(char) * pseudoSize);
+    offset += sizeof(char) * pseudoSize;
     std::memcpy((void *)((char *)networkData + offset), &passwordSize, sizeof(unsigned short));
     offset += sizeof(unsigned short);
     std::memcpy((void *)((char *)networkData + offset), password.c_str(), sizeof(char) * passwordSize);

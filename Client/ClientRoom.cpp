@@ -136,14 +136,17 @@ ClientRoom::ClientRoom(std::string address, unsigned short port, std::string ser
 
 void ClientRoom::_startConnexionProtocol(void)
 {
+    unsigned short pseudoSize = _pseudo.size();
     unsigned short passwordSize = _password.size();
-    void *networkData = std::malloc(sizeof(char) * 5 + sizeof(char) * passwordSize);
+    void *networkData = std::malloc(sizeof(char) * (pseudoSize + passwordSize));
     unsigned short offset = 0;
 
     if (networkData == nullptr)
         throw MallocError("Malloc failed.");
-    std::memcpy(networkData, _pseudo.c_str(), sizeof(char) * 5);
-    offset += sizeof(char) * 5;
+    std::memcpy(networkData, &pseudoSize, sizeof(unsigned short));
+    offset += sizeof(unsigned short);
+    std::memcpy((void *)((char *)networkData + offset), _pseudo.c_str(), sizeof(char) * pseudoSize);
+    offset += sizeof(char) * pseudoSize;
     std::memcpy((void *)((char *)networkData + offset), &passwordSize, sizeof(unsigned short));
     offset += sizeof(unsigned short);
     std::memcpy((void *)((char *)networkData + offset), _password.c_str(), sizeof(char) * passwordSize);
