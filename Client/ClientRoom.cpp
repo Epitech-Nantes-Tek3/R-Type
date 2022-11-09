@@ -136,14 +136,20 @@ ClientRoom::ClientRoom(std::string address, unsigned short port, std::string ser
 
 void ClientRoom::_startConnexionProtocol(void)
 {
-    void *networkData = std::malloc(sizeof(char) * 10);
+    unsigned short passwordSize = _password.size();
+    void *networkData = std::malloc(sizeof(char) * 5 + sizeof(char) * passwordSize);
+    unsigned short offset = 0;
 
     if (networkData == nullptr)
         throw MallocError("Malloc failed.");
     std::memcpy(networkData, _pseudo.c_str(), sizeof(char) * 5);
-    std::memcpy((void *)((char *)networkData + sizeof(char) * 5), _password.c_str(), sizeof(char) * 5);
+    offset += sizeof(char) * 5;
+    std::memcpy((void *)((char *)networkData + offset), &passwordSize, sizeof(unsigned short));
+    offset += sizeof(unsigned short);
+    std::memcpy((void *)((char *)networkData + offset), _password.c_str(), sizeof(char) * passwordSize);
+    offset += sizeof(char) * passwordSize;
     _communicatorInstance.get()->startReceiverListening();
-    _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, networkData, sizeof(char) * 10, 14);
+    _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, networkData, offset, 14);
     std::free(networkData);
 }
 void ClientRoom::_protocol12Answer(CommunicatorMessage connexionResponse)
