@@ -69,6 +69,17 @@ jobs:
     - name: Launch build script
       run: ./build.bat
 
+    - name: Package
+        run: |
+          cd build/
+          cpack -G WIX -C Debug
+    - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Windows
+          path: |
+            ${{ github.workspace }}/build/R-Type-*-win64.msi
+
   coverage:
     needs: [build-linux]
     runs-on: ubuntu-22.04
@@ -108,6 +119,16 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_ACCESS_TOKEN }}
           fail_ci_if_error: false
+      - name: Package code
+        run: |
+          cd build/
+          cpack -G TGZ
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Linux
+          path: |
+            ${{ github.workspace }}/build/R-Type-*-Linux.tar.gz
 
   mirroring:
     if: github.event_name == 'push'
