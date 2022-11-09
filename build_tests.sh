@@ -30,11 +30,11 @@ cmake -DCMAKE_BUILD_TYPE=Debug -DTESTING=On ..
 testExitStatus $? "cmake config"
 
 # Build using cmake
-cmake --build . -- -j
+cmake --build .
 testExitStatus $? "cmake build"
 
 # Run Ctest
-ctest -j 30 --output-on-failure
+ctest --output-on-failure
 testExitStatus $? "run ctest"
 
 # Create coverage html graph
