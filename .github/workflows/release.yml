@@ -102,9 +102,6 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/download-artifact@v3
 
-      - name: Debug directory
-        run: ls -lRa
-
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
