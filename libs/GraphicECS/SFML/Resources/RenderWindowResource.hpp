@@ -26,7 +26,7 @@ namespace graphicECS::SFML::Resources
         /// @param style Set the style of the window. Set to "sf::Style::Default". See SFML documentation about
         /// sf::Style for more information.
         inline RenderWindowResource(std::string title = "Default", sf::VideoMode mode = sf::VideoMode(1920, 1080, 32),
-            sf::Uint32 style = sf::Style::Default)
+            sf::Uint32 style = sf::Style::Titlebar)
         {
             window.create(mode, title, style);
             window.setFramerateLimit(60);
