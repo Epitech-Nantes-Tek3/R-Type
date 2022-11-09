@@ -491,11 +491,11 @@ void ClientRoom::_initInGameButtons()
         windowSize = _worldInstance->getResource<RenderWindowResource>().window.getSize();
     createNewButton(
         *(_worldInstance.get()), 0, 0, 68, 68, ButtonActionMap::PAUSE, LayerLvL::BUTTON, MenuStates::IN_GAME, "Pause");
-    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize / 4 - 25, 200, 50,
+    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 4 - 25, 200, 50,
         ButtonActionMap::RESUME, LayerLvL::BUTTON, MenuStates::GAME_PAUSED, "Resume");
-    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize / 4 * 2 - 25, 200, 50,
+    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 4 * 2 - 25, 200, 50,
         ButtonActionMap::MAIN_MENU, LayerLvL::BUTTON, MenuStates::GAME_PAUSED, "Main menu");
-    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize / 4 * 3 - 25, 200, 50,
+    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 4 * 3 - 25, 200, 50,
         ButtonActionMap::EXIT, LayerLvL::BUTTON, MenuStates::GAME_PAUSED, "Quit");
 }
 

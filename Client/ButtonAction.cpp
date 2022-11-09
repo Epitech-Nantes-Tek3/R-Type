@@ -20,6 +20,7 @@
 #include "R-TypeLogic/Global/Components/ControlableComponent.hpp"
 #include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
 #include "R-TypeLogic/Global/Components/TextComponent.hpp"
+#include "R-TypeLogic/Global/Components/EnemyComponent.hpp"
 
 using namespace graphicECS::SFML::Resources;
 using namespace graphicECS::SFML::Components;
@@ -167,5 +168,14 @@ void goToLobby(World &world, Entity &entityPtr)
 void goToMainMenu(World &world, Entity &entityPtr)
 {
     (void)entityPtr;
+    if (world.getResource<MenuStates>().currentState == MenuStates::GAME_PAUSED) {
+        communicator_lib::Client _serverEndPoint =
+            world.getTransisthorBridge()->getCommunicatorInstance().getClientByHisId(0);
+        world.getTransisthorBridge()->getCommunicatorInstance().sendDataToAClient(_serverEndPoint, nullptr, 0, 13);
+    }
+    std::vector<std::shared_ptr<Entity>> enemy = world.joinEntities<Enemy>();
+    for (auto &it : enemy) {
+        world.removeEntity(it.get()->getId());
+    }
     world.getResource<MenuStates>().currentState = MenuStates::MAIN_MENU;
 }
