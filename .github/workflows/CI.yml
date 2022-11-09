@@ -87,7 +87,7 @@ jobs:
         with:
           path: |
             ~/.conan
-            key: ${{ runner.os }}-conan-${{ hashFiles('**/conanfile.txt') }}
+          key: ${{ runner.os }}-conan-${{ hashFiles('**/conanfile.txt') }}
 
       - name: Cache Criterion installation
         id: cache_linux_criterion
