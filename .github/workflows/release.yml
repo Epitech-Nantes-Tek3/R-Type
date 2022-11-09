@@ -1,0 +1,94 @@
+name: Publish Release
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version string"
+        required: true
+        default: "0.0.0"
+      body:
+        description: "Release body"
+        required: true
+        default: "Release body"
+jobs:
+  build-on-ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install requirement
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake g++ libudev-dev pip pkg-config libgl-dev
+      - name: Install conan
+        uses: turtlebrowser/get-conan@main
+      - name: Build rtype binaries on Ubuntu (desktop)
+        run: |
+          mkdir -p build
+          cd build
+          conan install .. --build=missing -s compiler=gcc -s compiler.version=9 -s compiler.libcxx=libstdc++11 -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True
+          cmake -DCMAKE_BUILD_TYPE=Release ..
+      - name: Package code
+        run: |
+          cd build/
+          cpack -G TGZ
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Linux
+          path: |
+            ${{ github.workspace }}/build/R-Type-*-Linux.tar.gz
+  build-on-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Cache Conan packages
+        id: cache_windows
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.conan
+            C:\.conan
+          key: ${{ runner.os }}-${{ hashfiles('**/conanfile.txt') }}
+
+      - name: Install conan
+        uses: turtlebrowser/get-conan@main
+
+      - name: Checkout repository
+        uses: actions/checkout@v1
+
+      - name: Build rtype binaries on Windows (desktop)
+        run: |
+          mkdir -p build
+          cd build/
+          conan install .. --build=missing -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True
+          cmake -DCMAKE_BUILD_TYPE=Release -D_WIN32_WINNT=0x0601 ..
+          cd ..
+          cmake --build build/
+      - name: Package
+        run: |
+	@@ -72,3 +83,27 @@ jobs:
+          name: Windows
+          path: |
+            ${{ github.workspace }}/build/R-Type-*-win64.msi
+  create-release:
+    needs: [build-on-ubuntu, build-on-windows]
+    permissions:
+      contents: write
+    environment:
+      name: prod
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/download-artifact@v3
+
+      - name: Debug directory
+        run: ls -lRa
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.event.inputs.version }}
+          body: ${{ github.event.inputs.body }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          files: |
+            ${{ github.workspace }}/Linux/*.tar.gz
+            ${{ github.workspace }}/Windows/*.msi
