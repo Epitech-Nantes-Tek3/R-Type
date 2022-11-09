@@ -5,6 +5,7 @@ var namespaceecs =
     [ "Resource", "classecs_1_1_resource.html", "classecs_1_1_resource" ],
     [ "System", "classecs_1_1_system.html", "classecs_1_1_system" ],
     [ "World", "classecs_1_1_world.html", "classecs_1_1_world" ],
+    [ "ApplyInputDelay", "classecs_1_1_apply_input_delay.html", "classecs_1_1_apply_input_delay" ],
     [ "ActionName", "classecs_1_1_action_name.html", "classecs_1_1_action_name" ],
     [ "DisplayState", "classecs_1_1_display_state.html", "classecs_1_1_display_state" ],
     [ "ButtonActionMap", "classecs_1_1_button_action_map.html", "classecs_1_1_button_action_map" ],

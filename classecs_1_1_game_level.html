@@ -121,11 +121,11 @@ Collaboration diagram for ecs::GameLevel:</div>
 Public Types</h2></td></tr>
 <tr class="memitem:a123c21abdf60829ee2fc1bf9fae51fe3"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_game_level.html#a123c21abdf60829ee2fc1bf9fae51fe3">level_e</a> { <br />
 &#160;&#160;<a class="el" href="classecs_1_1_game_level.html#a123c21abdf60829ee2fc1bf9fae51fe3a032b9cc6e846ab6b88abdf548e356b33">LEVEL_ONE</a> = 0
-, <a class="el" href="classecs_1_1_game_level.html#a123c21abdf60829ee2fc1bf9fae51fe3a8837ee38493a6b25fbb7fe4c6baa6819">LEVEL_TWO</a> = 5
-, <a class="el" href="classecs_1_1_game_level.html#a123c21abdf60829ee2fc1bf9fae51fe3ad92261a2c6247cae20a7e741abe95c59">LEVEL_THREE</a> = 12
-, <a class="el" href="classecs_1_1_game_level.html#a123c21abdf60829ee2fc1bf9fae51fe3ab8c133d7d4f4dc5e7bbd1317494f7b5a">LEVEL_FORTH</a> = 20
+, <a class="el" href="classecs_1_1_game_level.html#a123c21abdf60829ee2fc1bf9fae51fe3a8837ee38493a6b25fbb7fe4c6baa6819">LEVEL_TWO</a> = 10
+, <a class="el" href="classecs_1_1_game_level.html#a123c21abdf60829ee2fc1bf9fae51fe3ad92261a2c6247cae20a7e741abe95c59">LEVEL_THREE</a> = 24
+, <a class="el" href="classecs_1_1_game_level.html#a123c21abdf60829ee2fc1bf9fae51fe3ab8c133d7d4f4dc5e7bbd1317494f7b5a">LEVEL_FORTH</a> = 40
 , <br />
-&#160;&#160;<a class="el" href="classecs_1_1_game_level.html#a123c21abdf60829ee2fc1bf9fae51fe3a60e0a65d1c7303b3678d4e4bb59d1bd0">LEVEL_INFINITE</a> = 30
+&#160;&#160;<a class="el" href="classecs_1_1_game_level.html#a123c21abdf60829ee2fc1bf9fae51fe3a60e0a65d1c7303b3678d4e4bb59d1bd0">LEVEL_INFINITE</a> = 60
 <br />
  }</td></tr>
 <tr class="memdesc:a123c21abdf60829ee2fc1bf9fae51fe3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumeration of all possibles level states on the game.  <a href="classecs_1_1_game_level.html#a123c21abdf60829ee2fc1bf9fae51fe3">More...</a><br /></td></tr>
@@ -133,9 +133,9 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad9c82e95f73bd9d4f8719f42e5cb2aa7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_game_level.html#ad9c82e95f73bd9d4f8719f42e5cb2aa7">GameLevel</a> ()</td></tr>
-<tr class="memdesc:ad9c82e95f73bd9d4f8719f42e5cb2aa7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create the <a class="el" href="classecs_1_1_game_level.html" title="Shared Resource game level, used to decide the current level of the game.">GameLevel</a> <a class="el" href="classecs_1_1_resource.html" title="This is the Resource Class for ECS The base Resource type, all Resources must inherit from Resource....">Resource</a>.  <a href="classecs_1_1_game_level.html#ad9c82e95f73bd9d4f8719f42e5cb2aa7">More...</a><br /></td></tr>
-<tr class="separator:ad9c82e95f73bd9d4f8719f42e5cb2aa7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77011cebb3e9f2d67eb3743e3a0287fe"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_game_level.html#a77011cebb3e9f2d67eb3743e3a0287fe">GameLevel</a> (bool isSolo=false)</td></tr>
+<tr class="memdesc:a77011cebb3e9f2d67eb3743e3a0287fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create the <a class="el" href="classecs_1_1_game_level.html" title="Shared Resource game level, used to decide the current level of the game.">GameLevel</a> <a class="el" href="classecs_1_1_resource.html" title="This is the Resource Class for ECS The base Resource type, all Resources must inherit from Resource....">Resource</a>.  <a href="classecs_1_1_game_level.html#a77011cebb3e9f2d67eb3743e3a0287fe">More...</a><br /></td></tr>
+<tr class="separator:a77011cebb3e9f2d67eb3743e3a0287fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae1033f848bd7070b3ce0c84a9562bb9b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classecs_1_1_game_level.html#a123c21abdf60829ee2fc1bf9fae51fe3">GameLevel::level_e</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_game_level.html#ae1033f848bd7070b3ce0c84a9562bb9b">getCurrentLevel</a> () const</td></tr>
 <tr class="memdesc:ae1033f848bd7070b3ce0c84a9562bb9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current level of the game.  <a href="classecs_1_1_game_level.html#ae1033f848bd7070b3ce0c84a9562bb9b">More...</a><br /></td></tr>
 <tr class="separator:ae1033f848bd7070b3ce0c84a9562bb9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -199,30 +199,29 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ad9c82e95f73bd9d4f8719f42e5cb2aa7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad9c82e95f73bd9d4f8719f42e5cb2aa7">&#9670;&nbsp;</a></span>GameLevel()</h2>
+<a id="a77011cebb3e9f2d67eb3743e3a0287fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77011cebb3e9f2d67eb3743e3a0287fe">&#9670;&nbsp;</a></span>GameLevel()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">ecs::GameLevel::GameLevel </td>
+          <td class="memname">GameLevel::GameLevel </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isSolo</em> = <code>false</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Create the <a class="el" href="classecs_1_1_game_level.html" title="Shared Resource game level, used to decide the current level of the game.">GameLevel</a> <a class="el" href="classecs_1_1_resource.html" title="This is the Resource Class for ECS The base Resource type, all Resources must inherit from Resource....">Resource</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">isSolo</td><td>if the player is in soloMode the kill streak is modified to come along with the server </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

@@ -115,6 +115,7 @@ var hierarchy =
       [ "SendNewlyCreatedToServer", "struct_send_newly_created_to_server.html", null ],
       [ "SendToClient", "struct_send_to_client.html", null ],
       [ "SendToServer", "struct_send_to_server.html", null ],
+      [ "ecs::ApplyInputDelay", "classecs_1_1_apply_input_delay.html", null ],
       [ "ecs::Collide", "structecs_1_1_collide.html", null ],
       [ "ecs::DeathLife", "structecs_1_1_death_life.html", null ],
       [ "ecs::DeathSystem", "structecs_1_1_death_system.html", null ],
