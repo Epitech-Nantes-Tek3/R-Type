@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2022
-** Project
+** R-Type
 ** File description:
 ** ButtonAction
 */
@@ -40,5 +40,35 @@ void writableButtonAction(World &world, Entity &entityPtr);
 /// @param entityPtr the entity who actioned the called
 /// @param message message to send
 void publishNewChatMessage(World &world, Entity &entityPtr, std::string &message);
+
+/// @brief It sends a room configuration to the server, and then changes the menu state to
+/// the lobby menu
+/// @param world The world that contains the entity.
+/// @param entityPtr The entity that is calling the function.
+/// @return A function pointer.
+void connectToARoom(World &world, Entity &entityPtr);
+
+/// @brief It changes the current state of the menu to the lobby state
+/// @param world The world that the entity is in.
+/// @param entityPtr The entity that the button is attached to.
+void launchSoloGame(World &world, Entity &entityPtr);
+
+/// @brief When the user clicks the 'Go to Lobby' button, change the current menu state to
+/// the lobby.
+/// @param world The world that the entity is in.
+/// @param entityPtr The entity that the button is attached to.
+void goToLobby(World &world, Entity &entityPtr);
+
+/// @brief It sends a room configuration to the client
+/// @param world The world that contains all the entities and resources.
+/// @param entityPtr The entity that is calling the function.
+/// @param message the message that will be sent to the client
+/// @return A function pointer.
+void createARoom(World &world, Entity &entityPtr, std::string &message);
+
+/// @brief It sets the current state of the menu to the main menu
+/// @param world The world that the entity is in.
+/// @param entityPtr The entity that the button is attached to.
+void goToMainMenu(World &world, Entity &entityPtr);
 
 #endif /* !BUTTONACTION_HPP_ */

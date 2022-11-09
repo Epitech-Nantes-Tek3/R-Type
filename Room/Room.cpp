@@ -29,6 +29,7 @@
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
 #include "R-TypeLogic/Global/Components/ProjectileComponent.hpp"
 #include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
+#include "R-TypeLogic/Global/SharedResources/GameLevel.hpp"
 #include "R-TypeLogic/Global/Systems/DeathSystem.hpp"
 #include "R-TypeLogic/Global/Systems/MovementSystem.hpp"
 #include "R-TypeLogic/Global/Systems/UpdateClockSystem.hpp"
@@ -39,6 +40,7 @@
 #include "R-TypeLogic/Server/Systems/EnemiesPatterns.hpp"
 #include "R-TypeLogic/Server/Systems/EnemyShootSystem.hpp"
 #include "R-TypeLogic/Server/Systems/LifeTimeDeathSystem.hpp"
+#include "R-TypeLogic/Server/Systems/MobGenerationSystem.hpp"
 #include "R-TypeLogic/Server/Systems/RemoveAfkSystem.hpp"
 
 using namespace server_data;
@@ -90,6 +92,7 @@ void Room::initEcsGameData(void)
 {
     _worldInstance->addSystem<UpdateClock>();
     _worldInstance->addResource<NetworkableIdGenerator>();
+    _worldInstance->addResource<GameLevel>();
     _worldInstance->addResource<RandomDevice>();
     _worldInstance->addResource<GameClock>();
     _worldInstance->addResource<SendingFrequency>();
@@ -105,6 +108,7 @@ void Room::initEcsGameData(void)
     _worldInstance->addSystem<DecreaseLifeTime>();
     _worldInstance->addSystem<DisconnectableSystem>();
     _worldInstance->addSystem<RemoveAfkSystem>();
+    _worldInstance->addSystem<MobGeneration>();
 }
 
 void Room::startConnexionProtocol(void) { _communicatorInstance.get()->startReceiverListening(); }
@@ -170,6 +174,11 @@ void Room::_holdAChatRequest(CommunicatorMessage chatRequest)
         clientIdList.emplace_back(entityPtr.get()->getComponent<ecs::NetworkClient>().id);
     };
 
+    Entity &senderPlayer = _findClientByHisId(chatRequest.message.clientInfo.getId());
+    auto apiAnswer = _databaseApi.selectUsers("UserName = '" + senderPlayer.getComponent<Player>().name + "'");
+
+    if (apiAnswer.at(0)["Muted"] != "0")
+        return;
     std::for_each(clients.begin(), clients.end(), addToClientList);
     _communicatorInstance->utilitarySendChatMessage(chatContent.at(0), chatContent.at(1), clientIdList);
 }
@@ -182,7 +191,7 @@ void Room::_activePlayerGestion()
     if (activePlayer != 0)
         return;
     if (_remainingPlaces == 0)
-        _state = RoomState::ENDED;
+        _SendEndGameToServer();
     else
         _state = RoomState::LOBBY;
 }
@@ -200,6 +209,28 @@ size_t Room::getEntityPlayerByHisNetworkId(unsigned short networkId)
     if (temporary == 0)
         throw EcsError("No matching player founded.", "World.cpp -> getEntityPlayerByHisNetworkId");
     return temporary;
+}
+
+Client Room::_findClientByHisName(std::string name)
+{
+    std::vector<std::shared_ptr<ecs::Entity>> joined = _worldInstance->joinEntities<NetworkClient, Player>();
+
+    for (auto it : joined) {
+        if (it->getComponent<Player>().name == name)
+            return _communicatorInstance->getClientByHisId(it->getComponent<NetworkClient>().id);
+    }
+    return Client();
+}
+
+Entity &Room::_findClientByHisId(unsigned short clientId)
+{
+    std::vector<std::shared_ptr<ecs::Entity>> joined = _worldInstance->joinEntities<NetworkClient, Player>();
+
+    for (auto it : joined) {
+        if (it->getComponent<NetworkClient>().id == clientId)
+            return *it;
+    }
+    return *(joined.at(0));
 }
 
 std::string Room::_getPlayerName(CommunicatorMessage connexionDemand)
@@ -225,14 +256,6 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
     std::string playerNameStr = _getPlayerName(connexionDemand);
     std::size_t playerId = createNewPlayer(*_worldInstance.get(), 20, 500, 0, 0, 1, 102, 102, 100, 10, 4, false,
         _remainingPlaces + 1, playerNameStr, "", generator.generateNewNetworkableId());
-    // TO BE REMOVED WHEN TRUE MOB GENERATION WILL BE IMPLEMENTED
-    RandomDevice &random = _worldInstance->getResource<RandomDevice>();
-    random.lock();
-    /// Enemy::BASIC and Enemy::ICE
-    unsigned short randType = random.randInt(0, 3);
-    random.unlock();
-    std::size_t enemyId = createNewEnemyRandom(
-        *_worldInstance.get(), 0, 0, 1, 85, 85, 50, 10, 5, randType, "", generator.generateNewNetworkableId());
     std::vector<std::shared_ptr<ecs::Entity>> clients = _worldInstance.get()->joinEntities<ecs::NetworkClient>();
     std::vector<unsigned short> clientIdList;
     auto addToClientList = [&clientIdList](std::shared_ptr<ecs::Entity> entityPtr) {
@@ -285,13 +308,11 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
         Velocity &vel = entityPtr->getComponent<Velocity>();
         Size &size = entityPtr->getComponent<Size>();
 
-        if (enemyId != entityPtr->getId()) {
-            std::free(_worldInstance.get()->getTransisthorBridge()->transitEcsDataToNetworkDataEntityEnemy(
-                entityPtr->getComponent<Networkable>().id, pos.x, pos.y, vel.multiplierAbscissa, vel.multiplierOrdinate,
-                entityPtr->getComponent<Weight>().weight, size.x, size.y, entityPtr->getComponent<Life>().lifePoint,
-                entityPtr->getComponent<Damage>().damagePoint, entityPtr->getComponent<DamageRadius>().radius,
-                entityPtr->getComponent<Enemy>().enemyType, "", {connexionDemand.message.clientInfo.getId()}));
-        }
+        std::free(_worldInstance.get()->getTransisthorBridge()->transitEcsDataToNetworkDataEntityEnemy(
+            entityPtr->getComponent<Networkable>().id, pos.x, pos.y, vel.multiplierAbscissa, vel.multiplierOrdinate,
+            entityPtr->getComponent<Weight>().weight, size.x, size.y, entityPtr->getComponent<Life>().lifePoint,
+            entityPtr->getComponent<Damage>().damagePoint, entityPtr->getComponent<DamageRadius>().radius,
+            entityPtr->getComponent<Enemy>().enemyType, "", {connexionDemand.message.clientInfo.getId()}));
     }
     for (std::shared_ptr<Entity> entityPtr : obstacles) {
         auto guard = std::lock_guard(*entityPtr.get());
@@ -322,6 +343,9 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
             entityPtr->getComponent<Networkable>().id, entityPtr->getComponent<EnemyProjectile>().parentNetworkId, "",
             {connexionDemand.message.clientInfo.getId()}));
     }
+    auto apiAnswer = _databaseApi.selectUsers("UserName = '" + playerNameStr + "'");
+    _databaseApi.updateUsers("GamesPlayed = " + std::to_string(std::atoi(apiAnswer.at(0)["GamesPlayed"].c_str()) + 1),
+        "UserName = '" + playerNameStr + "'");
     _communicatorInstance.get()->sendDataToAClient(connexionDemand.message.clientInfo, nullptr, 0, 12);
     if (_remainingPlaces == 3) {
         GameClock &clock = _worldInstance->getResource<GameClock>();

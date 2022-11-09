@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2022
 ** R-Type
 ** File description:
-** ProjectileComponent
+** R-TypeileComponent
 */
 
 #ifndef PROJECTILECOMPONENT_HPP_

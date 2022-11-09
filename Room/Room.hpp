@@ -16,10 +16,12 @@
 #include "Communicator/Communicator.hpp"
 #include "Transisthor/Transisthor.hpp"
 #include "World/World.hpp"
+#include "Database/Database.hpp"
 
 using namespace communicator_lib;
 using namespace ecs;
 using namespace transisthor_lib;
+using namespace database;
 
 namespace server_data
 {
@@ -84,6 +86,9 @@ namespace server_data
         /// @brief The thread used to read and manage interprocess communications
         boost::thread _inputHandler;
 
+        /// @brief Bridge to communicate with the database
+        Database _databaseApi;
+
         /// @brief The function used by _inputHandler to manage the interproccess communications
         void _manageInterprocessCommunication();
 
@@ -103,7 +108,7 @@ namespace server_data
         void _SendEndGameToServer();
 
         /// @brief Trait a disconnection request. Identify the player and add to it a disconnection component
-        /// @param communicatorMessage actual message data
+        /// @param disconnectionDemand actual message data
         void _holdADisconnectionRequest(CommunicatorMessage disconnectionDemand);
 
         /// @brief Hold a chat request. Read it and send it to all the clients
@@ -128,6 +133,16 @@ namespace server_data
         /// @return founded entity id
         /// @throw an ECSError if no player was found.
         size_t getEntityPlayerByHisNetworkId(unsigned short networkId);
+
+        /// @brief Cross all the player entity and return the matched one
+        /// @param name the wanted player name
+        /// @return founded client
+        Client _findClientByHisName(std::string name);
+
+        /// @brief Cross all the player entity and return the matched one
+        /// @param name the wanted player id
+        /// @return founded entity
+        Entity &_findClientByHisId(unsigned short clientId);
 
         /// @brief Trait a connexion request. If there is less than 3 players already in the room, send a protocol 22 to
         /// the client. Otherwise, send a 21.

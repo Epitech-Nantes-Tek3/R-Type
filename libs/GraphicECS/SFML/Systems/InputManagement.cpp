@@ -16,6 +16,8 @@
 #include "ControllerButtonInputComponent.hpp"
 #include "ControllerJoystickInputComponent.hpp"
 #include "GraphicECS/SFML/Components/GraphicsTextComponent.hpp"
+#include "GraphicECS/SFML/Components/InputDelayComponent.hpp"
+#include "GraphicECS/SFML/Components/TextureName.hpp"
 #include "IsShootingComponent.hpp"
 #include "KeyboardInputComponent.hpp"
 #include "MouseInputComponent.hpp"
@@ -38,6 +40,9 @@ namespace graphicECS::SFML::Systems
     {
         if (event.type == sf::Event::Closed) {
             windowResource.window.close();
+#ifdef __linux__
+            std::raise(SIGINT);
+#endif
         }
     }
 
@@ -82,6 +87,12 @@ namespace graphicECS::SFML::Systems
                 if (event.text.unicode == 8 && writableContent.content.size() != 0) {
                     auto guard = std::lock_guard(*entityPtr.get());
                     writableContent.content.pop_back();
+                } else if (event.text.unicode == 13) {
+                    auto guard = std::lock_guard(*entityPtr.get());
+                    entityPtr->removeComponent<Selected>();
+                    if (entityPtr->contains<TextureName>())
+                        entityPtr->getComponent<TextureName>().textureName = GraphicsTextureResource::WRITABLE;
+                    return;
                 } else if (event.text.unicode != 8) {
                     auto guard = std::lock_guard(*entityPtr.get());
                     writableContent.content.resize(writableContent.content.size() + 1, (char)event.text.unicode);
@@ -210,7 +221,12 @@ namespace graphicECS::SFML::Systems
             return;
         auto moveX = [moveD](std::shared_ptr<Entity> entityPtr) {
             auto guard = std::lock_guard(*entityPtr.get());
-            entityPtr->getComponent<Velocity>().multiplierAbscissa = moveD;
+            if (!entityPtr->contains<InputDelayComponent>())
+                entityPtr->addComponent<InputDelayComponent>(
+                    moveD, entityPtr->getComponent<Velocity>().multiplierOrdinate);
+            else
+                entityPtr->getComponent<graphicECS::SFML::Components::InputDelayComponent>().multiplierAbscissa = moveD;
+
             entityPtr->getComponent<Velocity>().modified = true;
             entityPtr->getComponent<Position>().modified = true;
         };
@@ -226,7 +242,11 @@ namespace graphicECS::SFML::Systems
             return;
         auto moveY = [moveD](std::shared_ptr<Entity> entityPtr) {
             auto guard = std::lock_guard(*entityPtr.get());
-            entityPtr->getComponent<Velocity>().multiplierOrdinate = moveD;
+            if (!entityPtr->contains<InputDelayComponent>())
+                entityPtr->addComponent<InputDelayComponent>(
+                    entityPtr->getComponent<Velocity>().multiplierAbscissa, moveD);
+            else
+                entityPtr->getComponent<graphicECS::SFML::Components::InputDelayComponent>().multiplierOrdinate = moveD;
             entityPtr->getComponent<Velocity>().modified = true;
             entityPtr->getComponent<Position>().modified = true;
         };
@@ -256,8 +276,9 @@ namespace graphicECS::SFML::Systems
         std::vector<std::shared_ptr<Entity>> joined = world.joinEntities<Button, Position, Size>();
         RenderWindowResource &windowResource = world.getResource<RenderWindowResource>();
         sf::Vector2i mousePos = sf::Mouse::getPosition(windowResource.window);
+        bool actionRealised = false;
 
-        auto clickInButton = [this, &world, &mousePos](std::shared_ptr<Entity> entityPtr) {
+        auto clickInButton = [this, &world, &mousePos, &actionRealised](std::shared_ptr<Entity> entityPtr) {
             Position &pos = entityPtr.get()->getComponent<Position>();
             Size &size = entityPtr.get()->getComponent<Size>();
             DisplayState &state = entityPtr.get()->getComponent<DisplayState>();
@@ -266,13 +287,14 @@ namespace graphicECS::SFML::Systems
             bool sameHeigth = pos.x <= mousePos.x && mousePos.x <= pos.x + size.x;
             MenuStates &menuState = world.getResource<MenuStates>();
             MenuStates::menuState_e currState = menuState.currentState;
-            if (sameHeigth && sameWidth && state.displayState == currState) {
+            if (!actionRealised && sameHeigth && sameWidth && state.displayState == currState) {
                 entityPtr->getComponent<Button>().IsClicked = true;
                 ActionName &name = entityPtr.get()->getComponent<ActionName>();
                 ButtonActionMap &map = world.getResource<ButtonActionMap>();
 
                 std::function<void(World &, Entity &)> fct = map.actionList.find(name.actionName)->second;
                 fct(world, *(entityPtr.get()));
+                actionRealised = true;
             }
         };
         std::for_each(joined.begin(), joined.end(), clickInButton);

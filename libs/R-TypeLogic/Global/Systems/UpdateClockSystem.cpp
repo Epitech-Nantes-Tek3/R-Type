@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2022
-** Project
+** R-Type
 ** File description:
 ** UpdateClockSystem
 */
@@ -22,6 +22,8 @@ void UpdateClock::run(World &world)
 
     clock.resetClock();
 
+    if (clock.getElapsedTime() >= 1)
+            clock.resetClock();
     for (auto entityPtr : joinedShoot) {
         auto guard = std::lock_guard(*entityPtr.get());
         updateAFrequencyComponent<ShootingFrequency>(clock, entityPtr);

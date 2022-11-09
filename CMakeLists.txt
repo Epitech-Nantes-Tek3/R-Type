@@ -31,6 +31,7 @@ add_subdirectory(Server)
 add_subdirectory(Client)
 add_subdirectory(libs)
 add_subdirectory(Room)
+add_subdirectory(AdminPanel)
 
 # Setup and include conan to build dependencies
 include(build/conanbuildinfo.cmake)

@@ -16,7 +16,7 @@ namespace ecs
     class MenuStates : public Resource {
       public:
         /// @brief Enumeration of all available menu states
-        enum menuState_e {UNDEFINED, IN_GAME, GAME_PAUSED};
+        enum menuState_e {UNDEFINED, MAIN_MENU, LOBBY, IN_GAME, GAME_PAUSED };
 
         /// @brief Constructor of the resource, defining a new state
         /// @param newState The current menu state to be set

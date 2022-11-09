@@ -17,5 +17,7 @@ set(SRC_GRAPHIC_SYSTEM
     ${GRAPHIC_SRC_SYSTEM_ROOT}/AnimationSystem.hpp
     ${GRAPHIC_SRC_SYSTEM_ROOT}/RemoveChatSystem.cpp
     ${GRAPHIC_SRC_SYSTEM_ROOT}/RemoveChatSystem.hpp
+    ${GRAPHIC_SRC_SYSTEM_ROOT}/UpdateParallaxSystem.cpp
+    ${GRAPHIC_SRC_SYSTEM_ROOT}/UpdateParallaxSystem.hpp
     PARENT_SCOPE
 )

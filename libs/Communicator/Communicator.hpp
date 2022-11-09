@@ -13,6 +13,7 @@
 #include <memory>
 #include <vector>
 #include "Client.hpp"
+#include "Database/Database.hpp"
 #include "Receiver.hpp"
 #include "Sender.hpp"
 #include "Transisthor/Transisthor.hpp"
@@ -23,6 +24,7 @@ namespace transisthor_lib
 }
 
 using namespace transisthor_lib;
+using namespace database;
 
 namespace communicator_lib
 {
@@ -128,6 +130,10 @@ namespace communicator_lib
         /// @return The transisthor bridge
         inline std::shared_ptr<Transisthor> getTransisthorBridge(void) { return _transisthorBridge; }
 
+        /// @brief Get the DatabaseApi bridge
+        /// @return The databaseApi bridge
+        inline Database &getDatabaseApi() { return _databaseApi; };
+
         /// @brief Cross all client list and return the matched client
         /// @param id matched id
         /// @return founded client
@@ -146,10 +152,45 @@ namespace communicator_lib
         void utilitarySendChatMessage(
             std::string pseudo, std::string messageContent, std::vector<unsigned short> destination);
 
+        /// @brief Utilitary function used to send a database request with a protocol 40
+        /// @param pseudo The wanted client name
+        /// @param key The wanted value key
+        /// @param destination of the message
+        void utilitaryAskForADatabaseValue(
+            std::string pseudo, std::string key, std::vector<unsigned short> destination);
+
+        /// @brief Utilitary function used to send a database value with a protocol 41
+        /// @param value the database value
+        /// @param destination of the message
+        void utilitarySendDatabaseValue(std::string value, Client &destination);
+
+        /// @brief Utilitary function used to set a value inside the database with a protocol 42
+        /// @param pseudo The wanted client name
+        /// @param key The wanted value key
+        /// @param value The new value to set
+        /// @param destination of the message
+        void utilitarySetADatabaseValue(
+            std::string pseudo, unsigned short key, std::string value, std::vector<unsigned short> destination);
+
         /// @brief Utilitary function used to extract a message received by a protocol 50
         /// @param cryptedMessage the crypted message
         /// @return std::vector<std::string> the decrypted pseudo + message
         std::vector<std::string> utilitaryReceiveChatMessage(CommunicatorMessage cryptedMessage);
+
+        /// @brief Utilitary function used to extract a request received by a protocol 40
+        /// @param cryptedMessage the crypted message
+        /// @return std::vector<std::string> the decrypted pseudo + key
+        std::vector<std::string> utilitaryReceiveAskingForDatabaseValue(CommunicatorMessage cryptedMessage);
+
+        /// @brief Utilitary function used to extract the database value received by a protocol 41
+        /// @param cryptedMessage the crypted message
+        /// @return std::string the value
+        std::string utilitaryReceiveDatabaseValue(CommunicatorMessage cryptedMessage);
+
+        /// @brief Utilitary function used to extract the set request received by a protocol 42
+        /// @param cryptedMessage the crypted message
+        /// @return std::vector<std::string> the decrypted pseudo + type + value
+        std::vector<std::string> utilitaryReceiveSetDatabaseValue(CommunicatorMessage cryptedMessage);
 
         /// @brief Utilitary function used to send a message with a protocol 17.
         /// @param roomName The name of the room configuration.
@@ -192,6 +233,9 @@ namespace communicator_lib
 
         /// @brief Bridge to the transisthor instance
         std::shared_ptr<Transisthor> _transisthorBridge;
+
+        /// @brief Bridge to communicate with the database
+        Database _databaseApi;
     };
 } // namespace communicator_lib
 

@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2022
-** Project
+** R-Type
 ** File description:
 ** ButtonAction
 */
@@ -19,6 +19,7 @@
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/MenuStates.hpp"
 #include "R-TypeLogic/Global/Components/ControlableComponent.hpp"
 #include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
+#include "R-TypeLogic/Global/Components/TextComponent.hpp"
 
 using namespace graphicECS::SFML::Resources;
 using namespace graphicECS::SFML::Components;
@@ -61,10 +62,10 @@ void selectAWritable(World &world, Entity &entityPtr)
 {
     RenderWindowResource &resource = world.getResource<RenderWindowResource>();
     if (entityPtr.contains<Selected>()) {
+        auto guardOld = std::lock_guard(entityPtr);
         entityPtr.removeComponent<Selected>();
         if (entityPtr.contains<TextureName>()) {
-            entityPtr.removeComponent<TextureName>();
-            entityPtr.addComponent<TextureName>(GraphicsTextureResource::WRITABLE);
+            entityPtr.getComponent<TextureName>().textureName = GraphicsTextureResource::WRITABLE;
         }
         auto &state = world.getResource<GameStates>();
         auto guard = std::lock_guard(state);
@@ -73,10 +74,17 @@ void selectAWritable(World &world, Entity &entityPtr)
         return;
     }
     resource.window.setKeyRepeatEnabled(true);
+    auto joined = world.joinEntities<Selected, WritableContent>();
+    if (!joined.empty()) {
+        auto guardOld = std::lock_guard(*(joined.at(0)));
+        joined.at(0)->removeComponent<Selected>();
+        if (joined.at(0)->contains<TextureName>())
+            joined.at(0)->getComponent<TextureName>().textureName = GraphicsTextureResource::WRITABLE;
+    }
+    auto guardNew = std::lock_guard(entityPtr);
     entityPtr.addComponent<Selected>();
     if (entityPtr.contains<TextureName>()) {
-        entityPtr.removeComponent<TextureName>();
-        entityPtr.addComponent<TextureName>(GraphicsTextureResource::WRITABLE_SELECTED);
+        entityPtr.getComponent<TextureName>().textureName = GraphicsTextureResource::WRITABLE_SELECTED;
     }
     auto &state = world.getResource<GameStates>();
     auto guard = std::lock_guard(state);
@@ -112,4 +120,52 @@ void publishNewChatMessage(World &world, Entity &entityPtr, std::string &message
         return;
     communicator.utilitarySendChatMessage(players.at(0)->getComponent<ecs::Player>().name, message,
         {servers.at(0)->getComponent<ecs::NetworkServer>().id});
+}
+
+void createARoom(World &world, Entity &entityPtr, std::string &message)
+{
+    (void)entityPtr;
+    if (!world.containsResource<MenuStates>() || message.size() < 4 || message.size() > 10)
+        return;
+    short configs[6] = {120, 121, 122, 123, 124, 125};
+    world.getTransisthorBridge()->getCommunicatorInstance().utilitarySendRoomConfiguration(
+        message, configs, world.getTransisthorBridge()->getCommunicatorInstance().getClientByHisId(0));
+    world.getResource<MenuStates>().currentState = MenuStates::IN_GAME;
+}
+
+void connectToARoom(World &world, Entity &entityPtr)
+{
+    (void)entityPtr;
+    if (!world.containsResource<MenuStates>())
+        return;
+    void *networkData = std::malloc(sizeof(unsigned short));
+
+    if (networkData == nullptr)
+        throw std::logic_error("Malloc failed.");
+    unsigned short choosenRoomId = std::atoi(entityPtr.getComponent<TextComponent>().text.c_str());
+
+    std::memcpy(networkData, &choosenRoomId, sizeof(unsigned short));
+    communicator_lib::Client _serverEndPoint =
+        world.getTransisthorBridge()->getCommunicatorInstance().getClientByHisId(0);
+    world.getTransisthorBridge()->getCommunicatorInstance().sendDataToAClient(
+        _serverEndPoint, networkData, sizeof(unsigned short), 16);
+    world.getResource<MenuStates>().currentState = MenuStates::IN_GAME;
+}
+
+void launchSoloGame(World &world, Entity &entityPtr)
+{
+    (void)entityPtr;
+    world.getResource<MenuStates>().currentState = MenuStates::LOBBY;
+}
+
+void goToLobby(World &world, Entity &entityPtr)
+{
+    (void)entityPtr;
+    world.getResource<MenuStates>().currentState = MenuStates::LOBBY;
+}
+
+void goToMainMenu(World &world, Entity &entityPtr)
+{
+    (void)entityPtr;
+    world.getResource<MenuStates>().currentState = MenuStates::MAIN_MENU;
 }

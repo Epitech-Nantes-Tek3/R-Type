@@ -36,6 +36,7 @@ namespace graphicECS::SFML::Resources
             FIRE_ENEMY,
             ELECTRIC_ENEMY,
             ICE_ENEMY,
+            BOSS,
             ENEMY_UP,
             ENEMY_DOWN,
             BACKGROUND_LAYER_1,
@@ -59,6 +60,9 @@ namespace graphicECS::SFML::Resources
         /// @brief Name of map which contains Textures.
         using TexturesList = std::unordered_map<textureName_e, std::shared_ptr<sf::Texture>>;
 
+        /// @brief Default Constructor of GraphicTextureResource.
+        GraphicsTextureResource() = default;
+
         /// @brief Add a Texture from it's Texture Path passed as parameter
         /// @param texture_e Enum of the Texture
         /// @param texturePath The texture path to be used.
@@ -75,6 +79,10 @@ namespace graphicECS::SFML::Resources
         /// @param texturePath Path of the Texture
         void addTexture(const textureName_e texture_e, const std::filesystem::path &texturePath,
             const sf::Vector2f &position = sf::Vector2f(0, 0), const sf::Vector2f &size = sf::Vector2f(0, 0));
+
+        /// @brief Remove a texture to the textureList
+        /// @param texture Enum which give the name of Texture
+        inline void removeTexture(const textureName_e texture) { _texturesList.erase(texture); };
 
         /// @brief Default destructor of the class.
         ~GraphicsTextureResource() = default;

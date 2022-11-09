@@ -33,6 +33,8 @@
 r-type_client
 r-type_server
 r-type_room
+r-type_admin_panel
+R-TypeDatabase
 
 # CMake
 build
@@ -59,3 +61,7 @@ coverage
 
 #Debug
 vgcore*
+
+#Windows
+*.pdb
+.vs

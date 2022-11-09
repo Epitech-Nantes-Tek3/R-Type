@@ -23,6 +23,7 @@ target_link_libraries(${TARGET_ROOM}
     ${PROJECT_NAME}_transisthor
     ${PROJECT_NAME}_RTypeLogicRoom
     ${PROJECT_NAME}_argumentHandler
+    ${PROJECT_NAME}_database
 )
 
 install(TARGETS ${TARGET_ROOM} DESTINATION bin)

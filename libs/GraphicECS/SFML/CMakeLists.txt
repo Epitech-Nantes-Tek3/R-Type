@@ -1,6 +1,7 @@
 set(GRAPHIC_SRC_COMPONENT_ROOT ${PROJECT_SOURCE_DIR}/libs/GraphicECS/SFML/Components)
 set(GRAPHIC_SRC_RESOURCE_ROOT ${PROJECT_SOURCE_DIR}/libs/GraphicECS/SFML/Resources)
 set(GRAPHIC_SRC_SYSTEM_ROOT ${PROJECT_SOURCE_DIR}/libs/GraphicECS/SFML/Systems)
+set(MACCRO_ROOT ${PROJECT_SOURCE_DIR}/include)
 
 set(TARGET ${PROJECT_NAME}_SFMLGraphicECS)
 
@@ -29,6 +30,7 @@ target_include_directories(${TARGET}
     PUBLIC ${GRAPHIC_SRC_SYSTEM_ROOT}
     PRIVATE ${PROJECT_NAME}_RTypeLogicGlobal
     PRIVATE ${PROJECT_NAME}_ecs
+    PRIVATE ${MACCRO_ROOT}
 )
 
 target_link_libraries(${TARGET}

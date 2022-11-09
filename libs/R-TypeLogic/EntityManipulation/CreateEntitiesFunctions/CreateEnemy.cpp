@@ -12,11 +12,13 @@ namespace ecs
 {
     std::size_t createNewEnemy(World &world, const int posX, const int posY, const double multiplierAbscissa,
         const double multiplierOrdinate, const short weight, const int sizeX, const int sizeY,
-        const unsigned short life, const unsigned short damage, const unsigned short damageRadius,
-        unsigned short type, const std::string uuid, const unsigned short networkId)
+        const unsigned short life, const unsigned short damage, const unsigned short damageRadius, unsigned short type,
+        const std::string uuid, const unsigned short networkId)
     {
         Entity &entity = world.addEntity();
         auto guard = std::lock_guard(entity);
+        RandomDevice &random = world.getResource<RandomDevice>();
+        auto randomguard = std::lock_guard(random);
         entity.addComponent<Position>(posX, posY)
             .addComponent<Weight>(weight)
             .addComponent<Size>(sizeX, sizeY)
@@ -25,17 +27,20 @@ namespace ecs
             .addComponent<DamageRadius>(damageRadius)
             .addComponent<Collidable>()
             .addComponent<Velocity>(multiplierAbscissa, multiplierOrdinate)
-            .addComponent<Enemy>(type);
-
+            .addComponent<Enemy>(type)
+            .addComponent<Destination>(
+                random.randInt(MINIMUM_WIDTH, MAXIMUM_WIDTH), random.randInt(MINIMUM_HEIGTH, MAXIMUM_HEIGTH));
+        switch (type) {
+            case Enemy::FIRE: entity.addComponent<ShootingFrequency>(2); break;
+            case Enemy::ELECTRIC: entity.addComponent<ShootingFrequency>(0.9); break;
+            case Enemy::ICE: entity.addComponent<ShootingFrequency>(1.5); break;
+            case Enemy::BOSS: entity.addComponent<ShootingFrequency>(2.5); break;
+            default: entity.addComponent<ShootingFrequency>(1.8); break;
+        };
         if (networkId) {
             // Case : Creation in a server instance
-            RandomDevice &random = world.getResource<RandomDevice>();
-            auto guardRandom = std::lock_guard(random);
             entity.addComponent<NewlyCreated>(uuid, false);
             entity.addComponent<Networkable>(networkId);
-            entity.addComponent<ShootingFrequency>(1.3);
-            entity.addComponent<Destination>(
-                random.randInt(MINIMUM_WIDTH, MAXIMUM_WIDTH), random.randInt(MINIMUM_HEIGTH, MAXIMUM_HEIGTH));
         } else {
             // Case : Creation in a Client instance
             if (uuid != "") {
@@ -43,7 +48,6 @@ namespace ecs
                 entity.addComponent<NewlyCreated>(uuid, true);
             }
             entity.addComponent<LayerLvL>(LayerLvL::layer_e::ENEMY);
-            entity.addComponent<Destination>(0, 0);
         }
         return entity.getId();
     }
@@ -59,5 +63,36 @@ namespace ecs
         random.unlock();
         return createNewEnemy(world, posX, posY, multiplierAbscissa, multiplierOrdinate, weight, sizeX, sizeY, life,
             damage, damageRadius, type, uuid, networkId);
+    }
+
+    std::size_t createBasicEnemy(World &world, const unsigned short networkId)
+    {
+        return createNewEnemyRandom(world, 0, 0, 5, 68, 68, 30, 10, 3, Enemy::BASIC, "", networkId);
+    }
+
+    std::size_t createFireEnemy(World &world, const unsigned short networkId)
+    {
+        return createNewEnemyRandom(world, 0, 0, 10, 102, 102, 30, 50, 10, Enemy::FIRE, "", networkId);
+    }
+
+    std::size_t createElectricEnemy(World &world, const unsigned short networkId)
+    {
+        return createNewEnemyRandom(world, 0, 0, 1, 51, 51, 25, 20, 1, Enemy::ELECTRIC, "", networkId);
+    }
+
+    std::size_t createIceEnemy(World &world, const unsigned short networkId)
+    {
+        return createNewEnemy(world, 0, 0, 0, 0, 1, 85, 85, 20, 5, 20, Enemy::ICE, "", networkId);
+    }
+
+    std::size_t createBoss(World &world, const unsigned short networkId)
+    {
+        return createNewEnemy(world, MAXIMUM_WIDTH - 100, MINIMUM_HEIGTH + 100, 0, 0, 100, 204, 204, 500, 100, 1,
+            Enemy::BOSS, "", networkId);
+    }
+
+    std::size_t createBossPawn(World &world, Position &pos, unsigned int pawnType, const unsigned short networkId)
+    {
+        return createNewEnemy(world, pos.x, pos.y, 0, 0, 1, 34, 34, 15, 5, 1, pawnType, "", networkId);
     }
 } // namespace ecs

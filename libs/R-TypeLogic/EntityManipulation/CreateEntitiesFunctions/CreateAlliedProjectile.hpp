@@ -22,6 +22,7 @@
 #include "R-TypeLogic/Global/Components/SizeComponent.hpp"
 #include "R-TypeLogic/Global/Components/VelocityComponent.hpp"
 #include "R-TypeLogic/Global/Components/WeightComponent.hpp"
+#include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
 #include "R-TypeLogic/Global/SharedResources/Random.hpp"
 
 namespace ecs

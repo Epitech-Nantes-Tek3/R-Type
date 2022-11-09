@@ -22,10 +22,11 @@
 #include "R-TypeLogic/Global/Components/AlliedProjectileComponent.hpp"
 #include "R-TypeLogic/Global/Components/EnemyProjectileComponent.hpp"
 #include "R-TypeLogic/Global/Components/EnemyProjectileType.hpp"
+#include "R-TypeLogic/Global/Components/InvisibleComponent.hpp"
 #include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
 #include "R-TypeLogic/Global/Components/SizeComponent.hpp"
-#include "R-TypeLogic/Global/Components/InvisibleComponent.hpp"
+#include "R-TypeLogic/Global/Components/TextComponent.hpp"
 
 using namespace graphicECS::SFML::Systems;
 using namespace graphicECS::SFML::Resources;
@@ -40,23 +41,11 @@ void DrawComponents::addButtonText(std::shared_ptr<Entity> buttonPtr, const sf::
 {
     Position &pos = buttonPtr->getComponent<Position>();
     Size &size = buttonPtr->getComponent<Size>();
+    std::string &text = buttonPtr->getComponent<TextComponent>().text;
 
     if (buttonPtr->contains<GraphicsTextComponent>())
         return;
-    switch (buttonPtr->getComponent<ActionName>().actionName) {
-        case ButtonActionMap::RESUME:
-            buttonPtr->addComponent<GraphicsTextComponent>(
-                newFont, "Resume", pos.x, pos.y + size.y * 0.5, size.x * 0.3);
-            break;
-        case ButtonActionMap::EXIT:
-            buttonPtr->addComponent<GraphicsTextComponent>(
-                newFont, "Exit the game", pos.x, pos.y + size.y * 0.5, size.x * 0.3);
-            break;
-        case ButtonActionMap::PAUSE:
-            buttonPtr->addComponent<GraphicsTextComponent>(newFont, "Pause", pos.x, pos.y + size.y * 0.5, size.x * 0.3);
-            break;
-        default: break;
-    }
+    buttonPtr->addComponent<GraphicsTextComponent>(newFont, text, pos.x, pos.y + size.y * 0.5);
 }
 
 void DrawComponents::addWritableText(std::shared_ptr<Entity> writablePtr, const sf::Font &newFont)
@@ -113,6 +102,7 @@ void DrawComponents::_updateEnemy(LayerLvL &layerType, std::shared_ptr<ecs::Enti
             case Enemy::FIRE: entityPtr->addComponent<TextureName>(GraphicsTextureResource::FIRE_ENEMY); break;
             case Enemy::ELECTRIC: entityPtr->addComponent<TextureName>(GraphicsTextureResource::ELECTRIC_ENEMY); break;
             case Enemy::ICE: entityPtr->addComponent<TextureName>(GraphicsTextureResource::ICE_ENEMY); break;
+            case Enemy::BOSS: entityPtr->addComponent<TextureName>(GraphicsTextureResource::BOSS); break;
             default: entityPtr->addComponent<TextureName>(GraphicsTextureResource::BASIC_ENEMY); break;
         };
     }
@@ -174,7 +164,7 @@ void DrawComponents::_updateEntities(World &world, std::shared_ptr<ecs::Entity> 
         auto entityPos = entityPtr->getComponent<Position>();
         auto entitySize = entityPtr->getComponent<Size>();
 
-        entityPtr->addComponent<GraphicsRectangleComponent>(entityPos.x, entityPos.y, entitySize.x, entitySize.y).getComponent<GraphicsRectangleComponent>().shape.setFillColor(sf::Color::Blue);
+        entityPtr->addComponent<GraphicsRectangleComponent>(entityPos.x, entityPos.y, entitySize.x, entitySize.y);
         _updatePlayer(layerType, entityPtr, world.getResource<GraphicsFontResource>().font);
         _updateEnemy(layerType, entityPtr);
         _udpateProjectile(layerType, entityPtr);
@@ -199,7 +189,8 @@ void DrawComponents::_updateTexture(World &world, std::shared_ptr<ecs::Entity> e
                     .get());
         }
         if (entityPtr->contains<Size>())
-            entityPtr->getComponent<GraphicsRectangleComponent>().shape.setSize(sf::Vector2f(entityPtr->getComponent<Size>().x, entityPtr->getComponent<Size>().y));
+            entityPtr->getComponent<GraphicsRectangleComponent>().shape.setSize(
+                sf::Vector2f(entityPtr->getComponent<Size>().x, entityPtr->getComponent<Size>().y));
     } else {
         entityPtr->getComponent<GraphicsRectangleComponent>().shape.setFillColor(sf::Color::White);
     }
@@ -211,11 +202,13 @@ void DrawComponents::_drawRectangle(World &world, std::shared_ptr<ecs::Entity> e
     if (entityPtr->contains<GraphicsRectangleComponent>() && !(entityPtr->contains<Invisible>())) {
         _updateTexture(world, entityPtr);
         if ((entityPtr->getComponent<LayerLvL>().layer == LayerLvL::BUTTON
-                || entityPtr->getComponent<LayerLvL>().layer == LayerLvL::WRITABLE)
+                || entityPtr->getComponent<LayerLvL>().layer == LayerLvL::WRITABLE
+                || entityPtr->getComponent<LayerLvL>().layer == LayerLvL::WRITABLE_BUTTON)
             && world.getResource<MenuStates>().currentState == entityPtr->getComponent<DisplayState>().displayState) {
             windowResource.window.draw(entityPtr->getComponent<GraphicsRectangleComponent>().shape);
         } else if (entityPtr->getComponent<LayerLvL>().layer != LayerLvL::BUTTON
-            && entityPtr->getComponent<LayerLvL>().layer != LayerLvL::WRITABLE) {
+            && entityPtr->getComponent<LayerLvL>().layer != LayerLvL::WRITABLE
+            && entityPtr->getComponent<LayerLvL>().layer != LayerLvL::WRITABLE_BUTTON) {
             windowResource.window.draw(entityPtr->getComponent<GraphicsRectangleComponent>().shape);
         }
     }
