@@ -2,11 +2,10 @@ name: CI
 
 on:
   push:
-  #   branches: [ master ]
-  # pull_request:
-  #   branches: [ master ]
-    tags:
-        - 'v*'
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
 
 env:
   BUILD_TYPE: Release
@@ -42,17 +41,6 @@ jobs:
       run: |
         conan config init
         mkdir -p build; cd build && conan install .. --build=missing  -s compiler.libcxx=libstdc++11 -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True && cmake -DCMAKE_BUILD_TYPE=Debug .. && cmake --build  . -- -j 3
-    
-    - name: Package code
-      run: |
-        cd build/
-        cpack -G TGZ
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: Linux
-        path: |
-          ${{ github.workspace }}/build/R-Type-*-Linux.tar.gz
 
   build-windows:
     needs: lint-format
@@ -75,17 +63,6 @@ jobs:
 
     - name: Launch build script
       run: ./build.bat
-
-    - name: Package
-      run: |
-        cd build/
-        cpack -G WIX -C Debug
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: Windows
-        path: |
-          ${{ github.workspace }}/build/R-Type-*-win64.msi
 
   coverage:
     needs: [build-linux]
@@ -141,27 +118,3 @@ jobs:
             ${{ secrets.EPI_REPO_URL }}
           ssh_private_key:
             ${{ secrets.EPI_MIRRORING_KEY }}
-
-  create-release:
-    needs: [build-linux, build-windows]
-    permissions:
-      contents: write
-    environment:
-      name: prod
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/download-artifact@v3
-
-      - name: Debug directory
-        run: ls -lRa
-
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: ${{ github.event.inputs.version }}
-          body: ${{ github.event.inputs.body }}
-          token: ${{ secrets.GITHUB_TOKEN }}
-          files: |
-            ${{ github.workspace }}/Linux/*.tar.gz
-            ${{ github.workspace }}/Windows/*.msi
