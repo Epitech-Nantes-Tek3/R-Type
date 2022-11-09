@@ -9,6 +9,7 @@
 #include <csignal>
 #include "GraphicECS/SFML/Components/AssociatedIdComponent.hpp"
 #include "GraphicECS/SFML/Components/GraphicsTextComponent.hpp"
+#include "GraphicECS/SFML/Components/ParallaxComponent.hpp"
 #include "GraphicECS/SFML/Components/SelectedComponent.hpp"
 #include "GraphicECS/SFML/Components/WritableButtonActionComponent.hpp"
 #include "GraphicECS/SFML/Components/WritableContentComponent.hpp"
@@ -18,11 +19,10 @@
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/GameStates.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/MenuStates.hpp"
 #include "R-TypeLogic/Global/Components/ControlableComponent.hpp"
-#include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
-#include "R-TypeLogic/Global/Components/TextComponent.hpp"
 #include "R-TypeLogic/Global/Components/EnemyComponent.hpp"
 #include "R-TypeLogic/Global/Components/EnemyProjectileComponent.hpp"
-#include "GraphicECS/SFML/Components/ParallaxComponent.hpp"
+#include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
+#include "R-TypeLogic/Global/Components/TextComponent.hpp"
 
 using namespace graphicECS::SFML::Resources;
 using namespace graphicECS::SFML::Components;
