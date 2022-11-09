@@ -22,7 +22,7 @@ var searchData=
   ['removeentity_520',['removeEntity',['../classecs_1_1_world.html#a593e838ce09a7924c81ff86f1a1e61c0',1,'ecs::World']]],
   ['removeresource_521',['removeResource',['../classecs_1_1_world.html#a4b2230f7925af348e7645b0a6c3a95d2',1,'ecs::World']]],
   ['removetexture_522',['removeTexture',['../classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html#a19a3cccab09f35c87722888c7481156e',1,'graphicECS::SFML::Resources::GraphicsTextureResource']]],
-  ['renderwindowresource_523',['RenderWindowResource',['../classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_render_window_resource.html',1,'graphicECS::SFML::Resources::RenderWindowResource'],['../classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_render_window_resource.html#acc0f70c5a264e5e64a6f1e8a1608a660',1,'graphicECS::SFML::Resources::RenderWindowResource::RenderWindowResource()']]],
+  ['renderwindowresource_523',['RenderWindowResource',['../classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_render_window_resource.html',1,'graphicECS::SFML::Resources::RenderWindowResource'],['../classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_render_window_resource.html#a51fb680234ed17db3c6e18d8c6d4bc99',1,'graphicECS::SFML::Resources::RenderWindowResource::RenderWindowResource()']]],
   ['renderwindowresource_2ehpp_524',['RenderWindowResource.hpp',['../_render_window_resource_8hpp.html',1,'']]],
   ['resetclock_525',['resetClock',['../classecs_1_1_game_clock.html#af91c8f685ae69d44166acd7e356758fb',1,'ecs::GameClock']]],
   ['resetnewclock_526',['resetNewClock',['../class_sending_frequency.html#ae4ca73f29bf87af1407f5995ff368002',1,'SendingFrequency']]],
