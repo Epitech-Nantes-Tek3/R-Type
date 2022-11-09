@@ -299,12 +299,17 @@ int ClientRoom::startGame()
 
 void ClientRoom::_connectToARoom()
 {
-    void *networkData = std::malloc(sizeof(char) * 5);
+    unsigned short pseudoSize = _pseudo.size();
+    void *networkData = std::malloc(sizeof(char) * pseudoSize);
+    unsigned short offset = 0;
 
     if (networkData == nullptr)
         throw MallocError("Malloc failed.");
-    std::memcpy(networkData, _pseudo.c_str(), sizeof(char) * 5);
-    _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, networkData, sizeof(char) * 5, 10);
+    std::memcpy(networkData, &pseudoSize, sizeof(unsigned short));
+    offset += sizeof(unsigned short);
+    std::memcpy((void *)((char *)networkData + offset), _pseudo.c_str(), sizeof(char) * pseudoSize);
+    offset += sizeof(char) * pseudoSize;
+    _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, networkData, offset, 10);
     std::free(networkData);
 }
 
