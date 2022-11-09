@@ -146,7 +146,10 @@ void connectToARoom(World &world, Entity &entityPtr)
 
     if (networkData == nullptr)
         throw std::logic_error("Malloc failed.");
-    unsigned short choosenRoomId = std::atoi(entityPtr.getComponent<TextComponent>().text.c_str());
+    std::string &roomName = entityPtr.getComponent<TextComponent>().text;
+    std::size_t delimiterPos = roomName.find("-");
+    std::string idString = roomName.substr(0, delimiterPos);
+    unsigned short choosenRoomId = std::atoi(idString.c_str());
 
     std::memcpy(networkData, &choosenRoomId, sizeof(unsigned short));
     communicator_lib::Client _serverEndPoint =

@@ -108,6 +108,7 @@ ClientRoom::ClientRoom()
 {
     _networkInformations = Client();
     _serverEndpoint = Client();
+    _highInstanceEndpoint = Client();
     _communicatorInstance = std::make_shared<Communicator>(_networkInformations);
     _worldInstance = std::make_shared<World>(1);
     _transisthorInstance = std::make_shared<Transisthor>(*(_communicatorInstance.get()), *(_worldInstance.get()));
@@ -123,6 +124,7 @@ ClientRoom::ClientRoom(std::string address, unsigned short port, std::string ser
 {
     _networkInformations = Client(address, port);
     _serverEndpoint = Client(serverAddress, serverPort);
+    _highInstanceEndpoint = Client(serverAddress, serverPort);
     _communicatorInstance = std::make_shared<Communicator>(_networkInformations);
     _worldInstance = std::make_shared<World>(1);
     _transisthorInstance = std::make_shared<Transisthor>(*(_communicatorInstance.get()), *(_worldInstance.get()));
@@ -195,7 +197,7 @@ void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
         std::memcpy(&nameSize, (void *)((char *)connectionResponse.message.data + offset), sizeof(unsigned short));
         offset += sizeof(unsigned short);
         char *tempRoomName = (char *)connectionResponse.message.data + offset;
-        std::string roomName = std::to_string(i);
+        std::string roomName = std::to_string(roomId);
         roomName.append("- ");
         roomName.append(tempRoomName, nameSize);
         offset += sizeof(char) * nameSize;

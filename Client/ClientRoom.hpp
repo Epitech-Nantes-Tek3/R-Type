@@ -169,6 +169,9 @@ namespace client_data
         /// @brief Network informations of the server
         Client _serverEndpoint;
 
+        /// @brief Network informations of the high instance
+        Client _highInstanceEndpoint;
+
         /// @brief Current state of the client
         ClientState _state;
 
