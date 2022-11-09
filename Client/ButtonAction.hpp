@@ -66,4 +66,9 @@ void goToLobby(World &world, Entity &entityPtr);
 /// @return A function pointer.
 void createARoom(World &world, Entity &entityPtr, std::string &message);
 
+/// @brief It sets the current state of the menu to the main menu
+/// @param world The world that the entity is in.
+/// @param entityPtr The entity that the button is attached to.
+void goToMainMenu(World &world, Entity &entityPtr);
+
 #endif /* !BUTTONACTION_HPP_ */

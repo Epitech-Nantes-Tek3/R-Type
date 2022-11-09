@@ -185,6 +185,8 @@ void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
     std::size_t id = createNewWritable(*(_worldInstance.get()), windowSize.x - 300, 100, 200, 50, MenuStates::LOBBY);
     createNewWritableButton(*(_worldInstance.get()), windowSize.x - 300, 200, 200, 50,
         std::function<void(World &, Entity &, std::string &)>(createARoom), MenuStates::LOBBY, id);
+    createNewButton(*(_worldInstance.get()), 100, 100, 200, 50, ButtonActionMap::MAIN_MENU, LayerLvL::BUTTON,
+        MenuStates::LOBBY, "Back");
     for (int i = 0; i < roomNumber; i++) {
         unsigned short roomId = 0;
         std::memcpy(&roomId, (void *)((char *)connectionResponse.message.data + offset), sizeof(unsigned short));
@@ -421,6 +423,7 @@ void ClientRoom::_loadButtonActionMap(bool isSolo)
     if (isSolo) {
         actionsList.addAction(ButtonActionMap::LOBBY, std::function<void(World &, Entity &)>(launchSoloGame));
     } else {
+        actionsList.addAction(ButtonActionMap::MAIN_MENU, std::function<void(World &, Entity &)>(goToMainMenu));
         actionsList.addAction(ButtonActionMap::LOBBY, std::function<void(World &, Entity &)>(goToLobby));
         actionsList.addAction(ButtonActionMap::ROOM_CONNECTION, std::function<void(World &, Entity &)>(connectToARoom));
     }
@@ -487,7 +490,7 @@ void ClientRoom::_initInGameButtons()
     createNewButton(*(_worldInstance.get()), 909, 200, 102, 102, ButtonActionMap::RESUME, LayerLvL::BUTTON,
         MenuStates::GAME_PAUSED, "Resume");
     createNewButton(*(_worldInstance.get()), 909, 500, 102, 102, ButtonActionMap::EXIT, LayerLvL::BUTTON,
-        MenuStates::GAME_PAUSED, "Exit");
+        MenuStates::GAME_PAUSED, "Quit");
 }
 
 void ClientRoom::_initMainMenuButtons()
