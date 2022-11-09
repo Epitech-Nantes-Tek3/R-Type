@@ -57,7 +57,7 @@ static void infiniteSpawn(World &world, bool hasWaveChanged)
     }
 
     random.lock();
-    unsigned int newNbrsEnemies = random.randInt(10, 15);
+    unsigned int newNbrsEnemies = random.randInt(3, 5);
     random.unlock();
 
     while (newNbrsEnemies > currNbEnemies) {
