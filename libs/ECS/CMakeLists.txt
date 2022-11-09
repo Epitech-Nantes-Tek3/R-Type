@@ -14,14 +14,6 @@ add_library(${TARGET}
     ${SRC_ENTITY}
 )
 
-set(ALL_SRC
-    ${SRC_COMPONENT}
-    ${SRC_ENTITY}
-    ${SRC_WORLD}
-    ${SRC_SYSTEM}
-    ${SRC_RESOURCE}
-)
-
 set(INCLUDE_ECS_LIB
     ${PROJECT_SOURCE_DIR}/libs/ECS)
 
