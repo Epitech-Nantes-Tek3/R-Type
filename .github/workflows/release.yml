@@ -25,6 +25,7 @@ jobs:
       - name: Install conan
         uses: turtlebrowser/get-conan@main
 
+
       - name: Build rtype binaries on Ubuntu (desktop)
         run: |
           mkdir -p build
