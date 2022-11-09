@@ -130,6 +130,10 @@ void createARoom(World &world, Entity &entityPtr, std::string &message)
     short configs[6] = {120, 121, 122, 123, 124, 125};
     world.getTransisthorBridge()->getCommunicatorInstance().utilitarySendRoomConfiguration(
         message, configs, world.getTransisthorBridge()->getCommunicatorInstance().getClientByHisId(0));
+    std::vector<std::shared_ptr<Entity>> joined = world.joinEntities<Selected>();
+    for (auto &it : joined) {
+        it->removeComponent<Selected>();
+    }
     world.getResource<MenuStates>().currentState = MenuStates::IN_GAME;
 }
 
