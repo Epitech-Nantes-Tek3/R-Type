@@ -33,6 +33,7 @@
 #include "GraphicECS/SFML/Resources/RenderWindowResource.hpp"
 #include "GraphicECS/SFML/Resources/SoundResource.hpp"
 #include "GraphicECS/SFML/Systems/AnimationSystem.hpp"
+#include "GraphicECS/SFML/Systems/ApplyInputDelay.hpp"
 #include "GraphicECS/SFML/Systems/DrawComponents.hpp"
 #include "GraphicECS/SFML/Systems/InputManagement.hpp"
 #include "GraphicECS/SFML/Systems/MusicManagement.hpp"
@@ -331,7 +332,7 @@ void ClientRoom::_updateEcsResources(bool isSolo)
     if (!_worldInstance->containsResource<ButtonActionMap>())
         _worldInstance->addResource<ButtonActionMap>();
     if (!_worldInstance->containsResource<GameLevel>())
-        _worldInstance->addResource<GameLevel>();
+        _worldInstance->addResource<GameLevel>(isSolo);
     if (_worldInstance->containsResource<GraphicsTextureResource>())
         _loadTextures();
     if (_worldInstance->containsResource<ButtonActionMap>())
@@ -563,6 +564,8 @@ void ClientRoom::_updateEcsSystems(bool isSolo)
             _worldInstance->addSystem<LifeTimeDeath>();
         if (!_worldInstance->containsSystem<DecreaseLifeTime>())
             _worldInstance->addSystem<DecreaseLifeTime>();
+        if (!_worldInstance->containsSystem<ApplyInputDelay>())
+            _worldInstance->addSystem<ApplyInputDelay>();
     } else {
         if (!_worldInstance->containsSystem<SendToServer>())
             _worldInstance->addSystem<SendToServer>();
