@@ -173,14 +173,19 @@ unsigned short Communicator::getServerEndpointId(void)
 void Communicator::utilitarySendRoomConfiguration(std::string roomName, short *configs, Client endpoint)
 {
     Client temporaryClient;
-    int size = sizeof(char) * 10 + sizeof(short) * 6;
+    unsigned short nameSize = roomName.size();
+    int size = sizeof(char) * nameSize + sizeof(short) * 6 + sizeof(unsigned short);
     void *networkObject = std::malloc(size);
+    unsigned short offset = 0;
 
     if (networkObject == nullptr)
         throw MallocError("Malloc failed.");
-    std::memcpy(networkObject, roomName.c_str(), sizeof(char) * 10);
+    std::memcpy(networkObject, &nameSize, sizeof(unsigned short));
+    offset += sizeof(unsigned short);
+    std::memcpy((void *)((char *)networkObject + offset), roomName.c_str(), sizeof(char) * nameSize);
+    offset += sizeof(char) * nameSize;
     for (int i = 0; i < 6; i++) {
-        std::memcpy((void *)((char *)networkObject + sizeof(short) * i + sizeof(char) * 10), (void *)&configs[i],
+        std::memcpy((void *)((char *)networkObject + sizeof(short) * i + offset), (void *)&configs[i],
             sizeof(short));
     }
     sendDataToAClient(endpoint, networkObject, size, 17);
@@ -189,11 +194,13 @@ void Communicator::utilitarySendRoomConfiguration(std::string roomName, short *c
 
 RoomConfiguration Communicator::utilitaryReceiveRoomConfiguration(CommunicatorMessage cryptedMessage)
 {
-    short roomNameLen = 10;
+    unsigned short roomNameLen = 0;
     char *roomName = nullptr;
     RoomConfiguration room;
     short offset = 0;
 
+    std::memcpy(&roomNameLen, cryptedMessage.message.data, sizeof(unsigned short));
+    offset += sizeof(unsigned short);
     roomName = (char *)cryptedMessage.message.data + offset;
     room.roomName = std::string(roomNameLen, '\0');
     for (int i = 0; i < roomNameLen; i++)

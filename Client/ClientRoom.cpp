@@ -187,13 +187,16 @@ void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
         std::function<void(World &, Entity &, std::string &)>(createARoom), MenuStates::LOBBY, id);
     for (int i = 0; i < roomNumber; i++) {
         unsigned short roomId = 0;
+        unsigned short nameSize = 0;
         std::memcpy(&roomId, (void *)((char *)connectionResponse.message.data + offset), sizeof(unsigned short));
         offset += sizeof(unsigned short);
+        std::memcpy(&nameSize, (void *)((char *)connectionResponse.message.data + offset), sizeof(unsigned short));
+        offset += sizeof(unsigned short);
         char *tempRoomName = (char *)connectionResponse.message.data + offset;
-        std::string roomName(11, '\0');
-        for (int j = 0; j < 10; j++)
+        std::string roomName(nameSize, '\0');
+        for (int j = 0; j < nameSize; j++)
             roomName[j] = tempRoomName[j];
-        offset += sizeof(char) * 10;
+        offset += sizeof(char) * nameSize;
         createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, i * 60, 200, 50,
             ButtonActionMap::ROOM_CONNECTION, LayerLvL::BUTTON, MenuStates::LOBBY, std::to_string(i) + roomName);
     }

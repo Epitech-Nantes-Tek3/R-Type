@@ -203,11 +203,14 @@ void Server::_holdANewConnectionRequest(CommunicatorMessage connectionDemand)
     for (auto &it : _activeRoomList) {
         unsigned short roomId = it->getId();
         std::string roomName = it->getName();
+        unsigned short nameSize = roomName.size();
 
         std::memcpy((void *)((char *)networkData + offset), &roomId, sizeof(unsigned short));
         offset += sizeof(unsigned short);
-        std::memcpy((void *)((char *)networkData + offset), roomName.c_str(), sizeof(char) * 10);
-        offset += sizeof(char) * 10;
+        std::memcpy((void *)((char *)networkData + offset), &nameSize, sizeof(unsigned short));
+        offset += sizeof(unsigned short);
+        std::memcpy((void *)((char *)networkData + offset), roomName.c_str(), sizeof(char) * nameSize);
+        offset += sizeof(char) * nameSize;
     }
     _communicatorInstance.get()->sendDataToAClient(connectionDemand.message.clientInfo, networkData, offset, 15);
 }
