@@ -21,6 +21,8 @@
 #include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
 #include "R-TypeLogic/Global/Components/TextComponent.hpp"
 #include "R-TypeLogic/Global/Components/EnemyComponent.hpp"
+#include "R-TypeLogic/Global/Components/EnemyProjectileComponent.hpp"
+#include "GraphicECS/SFML/Components/ParallaxComponent.hpp"
 
 using namespace graphicECS::SFML::Resources;
 using namespace graphicECS::SFML::Components;
@@ -173,9 +175,17 @@ void goToMainMenu(World &world, Entity &entityPtr)
             world.getTransisthorBridge()->getCommunicatorInstance().getClientByHisId(0);
         world.getTransisthorBridge()->getCommunicatorInstance().sendDataToAClient(_serverEndPoint, nullptr, 0, 13);
     }
-    std::vector<std::shared_ptr<Entity>> enemy = world.joinEntities<Enemy>();
-    for (auto &it : enemy) {
-        world.removeEntity(it.get()->getId());
+    std::vector<std::shared_ptr<Entity>> entity = world.joinEntities<Enemy>();
+    for (auto &it : entity) {
+        world.removeEntity(it->getId());
+    }
+    entity = world.joinEntities<EnemyProjectile>();
+    for (auto &it : entity) {
+        world.removeEntity(it->getId());
+    }
+    entity = world.joinEntities<ParallaxBackground>();
+    for (auto &it : entity) {
+        world.removeEntity(it->getId());
     }
     world.getResource<MenuStates>().currentState = MenuStates::MAIN_MENU;
 }
