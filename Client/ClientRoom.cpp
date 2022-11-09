@@ -622,12 +622,14 @@ void ClientRoom::startLobbyLoop(const std::string &pseudo, const std::string &pa
         if (!_answerProtocols(isSolo))
             return;
         if (_worldInstance->containsResource<MenuStates>()) {
-            if (_worldInstance->getResource<MenuStates>().currentState == MenuStates::LOBBY
+            if (_state != ClientState::ENDED
+                && _worldInstance->getResource<MenuStates>().currentState == MenuStates::LOBBY
                 && _state != ClientRoom::LOBBY) {
                 _state = ClientState::LOBBY;
                 _updateEcsData(false);
             }
-            if (_worldInstance->getResource<MenuStates>().currentState == MenuStates::IN_GAME
+            if (_state != ClientState::ENDED
+                && _worldInstance->getResource<MenuStates>().currentState == MenuStates::IN_GAME
                 && _state != ClientRoom::IN_GAME) {
                 _state = ClientState::IN_GAME;
                 _updateEcsData(false);
