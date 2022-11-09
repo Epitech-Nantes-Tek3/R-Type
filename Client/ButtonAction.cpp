@@ -163,3 +163,9 @@ void goToLobby(World &world, Entity &entityPtr)
     (void)entityPtr;
     world.getResource<MenuStates>().currentState = MenuStates::LOBBY;
 }
+
+void goToMainMenu(World &world, Entity &entityPtr)
+{
+    (void)entityPtr;
+    world.getResource<MenuStates>().currentState = MenuStates::MAIN_MENU;
+}
