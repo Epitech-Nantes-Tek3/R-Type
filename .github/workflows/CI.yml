@@ -80,7 +80,7 @@ jobs:
         with:
           path: |
             ~/Criterion
-            key: ${{ runner.os }}-Criterion
+          key: ${{ runner.os }}-Criterion
 
       - name: Clean up virtual environnement
         run: |
