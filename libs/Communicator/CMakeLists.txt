@@ -32,3 +32,5 @@ target_link_libraries(${TARGET}
 
 include(${PROJECT_SOURCE_DIR}/build/conanbuildinfo.cmake)
 conan_basic_setup(TARGETS)
+
+install(TARGETS ${TARGET} DESTINATION lib)

@@ -25,3 +25,11 @@ add_subdirectory(AdminPanel)
 # Setup and include conan to build dependencies
 include(build/conanbuildinfo.cmake)
 conan_basic_setup(TARGETS)
+
+include(InstallRequiredSystemLibraries)
+set(CPACK_WIX_LICENSE_RTF ${PROJECT_SOURCE_DIR}/misc/wix_license.txt)
+set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/LICENSE.md")
+set(CPACK_PACKAGE_VERSION_MAJOR "${RTYPE_MAJOR_VERSION}")
+set(CPACK_PACKAGE_VERSION_MINOR "${RTYPE_MINOR_VERSION}")
+set(CPACK_BUNDLE_NAME "R-Type")
+include(CPack)

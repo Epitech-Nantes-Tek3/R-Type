@@ -37,3 +37,5 @@ target_link_libraries(${TARGET}
     ${PROJECT_NAME}_RTypeLogicButtonManipulation
     ${PROJECT_NAME}_RTypeLogicRoom
 )
+
+install(TARGETS ${TARGET} DESTINATION bin)

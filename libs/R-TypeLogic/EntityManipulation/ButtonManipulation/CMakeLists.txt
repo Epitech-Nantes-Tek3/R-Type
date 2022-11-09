@@ -22,3 +22,5 @@ target_include_directories(${TARGET}
 target_link_libraries(${TARGET}
     ${PROJECT_NAME}_ecs
 )
+
+install(TARGETS ${TARGET} DESTINATION lib)
