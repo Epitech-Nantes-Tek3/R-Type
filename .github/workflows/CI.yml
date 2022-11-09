@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
   workflow_dispatch:
 
 env:
@@ -14,55 +14,55 @@ jobs:
   lint-format:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: DoozyX/clang-format-lint-action@v0.13
-      with:
-        source: 'Client Server'
-        clangFormatVersion: 12
+      - uses: actions/checkout@v3
+      - uses: DoozyX/clang-format-lint-action@v0.13
+        with:
+          source: "Client Server"
+          clangFormatVersion: 12
 
   build-linux:
     needs: lint-format
     runs-on: ubuntu-22.04
     steps:
-    - name: Dependencies
-      run: |
-        sudo apt-get update -y
-        sudo apt-get upgrade -y
-        sudo apt-get install -y libudev-dev libgl-dev libx11-xcb-dev libfontenc-dev libxaw7-dev libxcomposite-dev libxcursor-dev libxdamage-dev libxfixes-dev libxi-dev libxinerama-dev libxmu-dev libxmuu-dev libxpm-dev libxrandr-dev libxres-dev libxss-dev libxtst-dev libxv-dev libxvmc-dev libxxf86vm-dev libxcb-render-util0-dev libxcb-xkb-dev libxcb-icccm4-dev libxcb-image0-dev libxcb-keysyms1-dev libxcb-randr0-dev libxcb-shape0-dev libxcb-sync-dev libxcb-xfixes0-dev libxcb-xinerama0-dev libxcb-dri3-dev
+      - name: Dependencies
+        run: |
+          sudo apt-get update -y
+          sudo apt-get upgrade -y
+          sudo apt-get install -y libudev-dev libgl-dev libx11-xcb-dev libfontenc-dev libxaw7-dev libxcomposite-dev libxcursor-dev libxdamage-dev libxfixes-dev libxi-dev libxinerama-dev libxmu-dev libxmuu-dev libxpm-dev libxrandr-dev libxres-dev libxss-dev libxtst-dev libxv-dev libxvmc-dev libxxf86vm-dev libxcb-render-util0-dev libxcb-xkb-dev libxcb-icccm4-dev libxcb-image0-dev libxcb-keysyms1-dev libxcb-randr0-dev libxcb-shape0-dev libxcb-sync-dev libxcb-xfixes0-dev libxcb-xinerama0-dev libxcb-dri3-dev
 
-    - name: Install Conan
-      id: conan
-      uses: turtlebrowser/get-conan@main
+      - name: Install Conan
+        id: conan
+        uses: turtlebrowser/get-conan@main
 
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Build
-      run: |
-        conan config init
-        ./build.sh
+      - name: Build
+        run: |
+          conan config init
+          mkdir -p build; cd build && conan install .. --build=missing  -s compiler.libcxx=libstdc++11 -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True && cmake -DCMAKE_BUILD_TYPE=Debug .. && cmake --build  . -- -j 3
 
   build-windows:
     needs: lint-format
     runs-on: windows-latest
     steps:
-    - name: Cache Conan packages
-      id: cache_windows
-      uses: actions/cache@v3
-      with:
-        path: |
-         ~/.conan
-         C:\.conan
-        key: ${{ runner.os }}-${{ hashFiles('**/conanfile.txt') }}
+      - name: Cache Conan packages
+        id: cache_windows
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.conan
+            C:\.conan
+          key: ${{ runner.os }}-${{ hashFiles('**/conanfile.txt') }}
 
-    - name: Install Conan
-      id: conan
-      uses: turtlebrowser/get-conan@main
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Install Conan
+        id: conan
+        uses: turtlebrowser/get-conan@main
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Launch build script
-      run: ./build.bat
+      - name: Launch build script
+        run: ./build.bat
 
   coverage:
     needs: [build-linux]
@@ -73,21 +73,6 @@ jobs:
           sudo apt-get update -y
           sudo apt-get upgrade -y
           sudo apt-get install -y libudev-dev libgl-dev libx11-xcb-dev libfontenc-dev libxaw7-dev libxcomposite-dev libxcursor-dev libxdamage-dev libxfixes-dev libxi-dev libxinerama-dev libxmu-dev libxmuu-dev libxpm-dev libxrandr-dev libxres-dev libxss-dev libxtst-dev libxv-dev libxvmc-dev libxxf86vm-dev libxcb-render-util0-dev libxcb-xkb-dev libxcb-icccm4-dev libxcb-image0-dev libxcb-keysyms1-dev libxcb-randr0-dev libxcb-shape0-dev libxcb-sync-dev libxcb-xfixes0-dev libxcb-xinerama0-dev libxcb-dri3-dev
-
-      - name: Cache Criterion installation
-        id: cache_linux_criterion
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/Criterion
-          key: ${{ runner.os }}-Criterion
-
-      - name: Clean up virtual environnement
-        run: |
-          sudo rm -rf /usr/share/dotnet
-          sudo rm -rf /opt/ghc
-          sudo rm -rf "/usr/local/share/boost"
-          sudo rm -rf "$AGENT_TOOLSDIRECTORY"
 
       - name: Install Conan
         id: conan
@@ -129,7 +114,5 @@ jobs:
           fetch-depth: 0
       - uses: pixta-dev/repository-mirroring-action@v1
         with:
-          target_repo_url:
-            ${{ secrets.EPI_REPO_URL }}
-          ssh_private_key:
-            ${{ secrets.EPI_MIRRORING_KEY }}
+          target_repo_url: ${{ secrets.EPI_REPO_URL }}
+          ssh_private_key: ${{ secrets.EPI_MIRRORING_KEY }}
