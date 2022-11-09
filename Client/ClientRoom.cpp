@@ -485,6 +485,10 @@ void ClientRoom::_initInputsEntity()
 
 void ClientRoom::_initInGameButtons()
 {
+    sf::Vector2u windowSize(0, 0);
+
+    if (_worldInstance->containsResource<RenderWindowResource>())
+        windowSize = _worldInstance->getResource<RenderWindowResource>().window.getSize();
     createNewButton(
         *(_worldInstance.get()), 0, 0, 68, 68, ButtonActionMap::PAUSE, LayerLvL::BUTTON, MenuStates::IN_GAME, "Pause");
     createNewButton(*(_worldInstance.get()), 909, 200, 102, 102, ButtonActionMap::RESUME, LayerLvL::BUTTON,
