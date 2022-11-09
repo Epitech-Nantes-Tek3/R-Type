@@ -120,7 +120,7 @@ jobs:
             ${{ secrets.EPI_MIRRORING_KEY }}
 
   create-release:
-    needs: [build-on-ubuntu, build-on-windows]
+    needs: [build-linux, build-windows]
     permissions:
       contents: write
     environment:
