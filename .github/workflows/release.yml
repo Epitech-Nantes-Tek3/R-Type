@@ -47,6 +47,17 @@ jobs:
         conan config init
         mkdir -p build; cd build && conan install .. --build=missing  -s compiler.libcxx=libstdc++11 -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True && cmake -DCMAKE_BUILD_TYPE=Debug .. && cmake --build  . -- -j 3
 
+    - name: Package code
+      run: |
+        cd build/
+        cpack -G TGZ
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: Linux
+        path: |
+          ${{ github.workspace }}/build/R-Type-*-Linux.tar.gz
+
   build-windows:
     needs: lint-format
     runs-on: windows-latest
