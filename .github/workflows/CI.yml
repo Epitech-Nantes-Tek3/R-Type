@@ -118,26 +118,27 @@ jobs:
             ${{ secrets.EPI_REPO_URL }}
           ssh_private_key:
             ${{ secrets.EPI_MIRRORING_KEY }}
-    create-release:
-      needs: [build-on-ubuntu, build-on-windows]
-      permissions:
-        contents: write
-      environment:
-        name: prod
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v2
-        - uses: actions/download-artifact@v3
 
-        - name: Debug directory
-          run: ls -lRa
+  create-release:
+    needs: [build-on-ubuntu, build-on-windows]
+    permissions:
+      contents: write
+    environment:
+      name: prod
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/download-artifact@v3
 
-        - name: Release
-          uses: softprops/action-gh-release@v1
-          with:
-            tag_name: ${{ github.event.inputs.version }}
-            body: ${{ github.event.inputs.body }}
-            token: ${{ secrets.GITHUB_TOKEN }}
-            files: |
-              ${{ github.workspace }}/Linux/*.tar.gz
-              ${{ github.workspace }}/Windows/*.msi
+      - name: Debug directory
+        run: ls -lRa
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.event.inputs.version }}
+          body: ${{ github.event.inputs.body }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          files: |
+            ${{ github.workspace }}/Linux/*.tar.gz
+            ${{ github.workspace }}/Windows/*.msi
