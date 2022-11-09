@@ -70,9 +70,9 @@ jobs:
       run: ./build.bat
 
     - name: Package
-        run: |
-          cd build/
-          cpack -G WIX -C Debug
+      run: |
+        cd build/
+        cpack -G WIX -C Debug
     - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
