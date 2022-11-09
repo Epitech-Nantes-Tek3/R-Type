@@ -161,7 +161,7 @@ namespace graphicECS::SFML::Systems
                 MenuStates &menuState = world.getResource<MenuStates>();
                 MenuStates::menuState_e currState = menuState.currentState;
 
-                if (currState == MenuStates::IN_GAME) {
+                if (currState == MenuStates::SOLO_GAME || currState == MenuStates::MULTI_GAME) {
                     if (actions.front().first == ActionQueueComponent::MOVEY)
                         movePlayerY(world, actions.front().second);
                     if (actions.front().first == ActionQueueComponent::MOVEX)

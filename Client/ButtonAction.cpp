@@ -36,11 +36,14 @@ void exitWindow(World &world, Entity &entityPtr)
 #endif
 }
 
+static MenuStates::menuState_e oldMenuState = MenuStates::UNDEFINED;
+
 void pauseGame(World &world, Entity &entityPtr)
 {
     auto &state = world.getResource<MenuStates>();
     auto guard = std::lock_guard(state);
-    state.currentState = MenuStates::GAME_PAUSED;
+    oldMenuState = state.currentState;
+    state.currentState = MenuStates::PAUSED;
     auto &gameState = world.getResource<GameStates>();
     auto gameGuard = std::lock_guard(gameState);
     gameState.currentState = GameStates::IN_PAUSED;
@@ -51,7 +54,7 @@ void resumeGame(World &world, Entity &entityPtr)
 {
     auto &state = world.getResource<MenuStates>();
     auto guard = std::lock_guard(state);
-    state.currentState = MenuStates::IN_GAME;
+    state.currentState = oldMenuState;
     auto &gameState = world.getResource<GameStates>();
     auto gameGuard = std::lock_guard(gameState);
     gameState.currentState = GameStates::IN_GAME;
@@ -134,7 +137,7 @@ void createARoom(World &world, Entity &entityPtr, std::string &message)
     for (auto &it : joined) {
         it->removeComponent<Selected>();
     }
-    world.getResource<MenuStates>().currentState = MenuStates::IN_GAME;
+    world.getResource<MenuStates>().currentState = MenuStates::MULTI_GAME;
 }
 
 void connectToARoom(World &world, Entity &entityPtr)
@@ -156,13 +159,13 @@ void connectToARoom(World &world, Entity &entityPtr)
         world.getTransisthorBridge()->getCommunicatorInstance().getClientByHisId(0);
     world.getTransisthorBridge()->getCommunicatorInstance().sendDataToAClient(
         _serverEndPoint, networkData, sizeof(unsigned short), 16);
-    world.getResource<MenuStates>().currentState = MenuStates::IN_GAME;
+    world.getResource<MenuStates>().currentState = MenuStates::MULTI_GAME;
 }
 
 void launchSoloGame(World &world, Entity &entityPtr)
 {
     (void)entityPtr;
-    world.getResource<MenuStates>().currentState = MenuStates::LOBBY;
+    world.getResource<MenuStates>().currentState = MenuStates::SOLO_GAME;
 }
 
 void goToLobby(World &world, Entity &entityPtr)

@@ -63,7 +63,7 @@ void UserConnection::_loadResourcesUserConnection()
         .addResource<RenderWindowResource>("Login", sf::VideoMode(360, 640, 32))
         .addResource<GraphicsFontResource>(FONT_PATH)
         .addResource<MusicResource>(MusicResource::music_e::BACKGROUNDTHEME, BACKGROUND_MUSIC)
-        .addResource<MenuStates>(MenuStates::IN_GAME)
+        .addResource<MenuStates>(MenuStates::MAIN_MENU)
         .addResource<ButtonActionMap>(
             ButtonActionMap::WRITABLE_BUTTON, std::function<void(World &, Entity &)>(writableButtonAction))
         .addResource<GraphicsTextureResource>(
@@ -117,9 +117,9 @@ void UserConnection::_loadEntitiesUserConnection(
     _setInputUserConnection(inputsEntity);
     sf::RenderWindow &window = _world->getResource<RenderWindowResource>().window;
     buttonPseudoId = createNewWritable(
-        *(_world.get()), window.getSize().x / 2 - 100, window.getSize().y / 5 - 25, 200, 50, MenuStates::IN_GAME);
+        *(_world.get()), window.getSize().x / 2 - 100, window.getSize().y / 5 - 25, 200, 50, MenuStates::MAIN_MENU);
     buttonPasswordId = createNewWritable(
-        *(_world.get()), window.getSize().x / 2 - 100, window.getSize().y / 5 * 2 - 25, 200, 50, MenuStates::IN_GAME);
+        *(_world.get()), window.getSize().x / 2 - 100, window.getSize().y / 5 * 2 - 25, 200, 50, MenuStates::MAIN_MENU);
     buttonSendId = _world->addEntity()
                        .addComponent<Button>()
                        .addComponent<TextureName>(GraphicsTextureResource::BUTTON)
@@ -130,7 +130,7 @@ void UserConnection::_loadEntitiesUserConnection(
                        .addComponent<Position>(window.getSize().x / 2 - 100, window.getSize().y / 5 * 4 - 25)
                        .addComponent<LayerLvL>(LayerLvL::WRITABLE)
                        .addComponent<ActionName>(ButtonActionMap::WRITABLE)
-                       .addComponent<DisplayState>(MenuStates::IN_GAME)
+                       .addComponent<DisplayState>(MenuStates::MAIN_MENU)
                        .getId();
     _world->addEntity()
         .addComponent<Button>()
@@ -140,7 +140,7 @@ void UserConnection::_loadEntitiesUserConnection(
         .addComponent<Position>(window.getSize().x / 2 - 100, window.getSize().y / 5 * 2 - 25)
         .addComponent<LayerLvL>(LayerLvL::WRITABLE)
         .addComponent<ActionName>(ButtonActionMap::WRITABLE)
-        .addComponent<DisplayState>(MenuStates::IN_GAME);
+        .addComponent<DisplayState>(MenuStates::MAIN_MENU);
     _world->addEntity()
         .addComponent<Button>()
         .addComponent<GraphicsTextComponent>(_world->getResource<GraphicsFontResource>().font, "Select pseudo",
@@ -149,7 +149,7 @@ void UserConnection::_loadEntitiesUserConnection(
         .addComponent<Position>(window.getSize().x / 2 - 100, window.getSize().y / 5 - 25)
         .addComponent<LayerLvL>(LayerLvL::WRITABLE)
         .addComponent<ActionName>(ButtonActionMap::WRITABLE)
-        .addComponent<DisplayState>(MenuStates::IN_GAME);
+        .addComponent<DisplayState>(MenuStates::MAIN_MENU);
 }
 
 void UserConnection::_runSystemsUserConnection(std::size_t buttonSendId)

@@ -21,16 +21,18 @@ namespace ecs
         /// @brief Enumeration of all the available actions
         enum buttonAction_e {
             UNDEFINED,
-            EXIT,
+            GO_MAIN_MENU,
+            GO_SOLO_GAME,
+            GO_LOBBY,
+            GO_MULTI_GAME,
+            GO_OPTION,
             PAUSE,
             RESUME,
-            WRITABLE,
-            WRITABLE_BUTTON,
-            LOBBY,
-            ROOM_CONNECTION,
+            QUIT,
+            CONNECT_TO_ROOM,
             CREATE_A_ROOM,
-            IN_GAME,
-            MAIN_MENU
+            WRITABLE,
+            WRITABLE_BUTTON
         };
 
         /// @brief Map's name which contains the actions
