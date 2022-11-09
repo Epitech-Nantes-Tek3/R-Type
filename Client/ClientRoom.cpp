@@ -190,12 +190,12 @@ void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
         std::memcpy(&roomId, (void *)((char *)connectionResponse.message.data + offset), sizeof(unsigned short));
         offset += sizeof(unsigned short);
         char *tempRoomName = (char *)connectionResponse.message.data + offset;
-        std::string roomName(11, '\0');
-        for (int j = 0; j < 10; j++)
-            roomName[j] = tempRoomName[j];
+        std::string roomName = std::to_string(i);
+        roomName.append("- ");
+        roomName.append(tempRoomName, 10);
         offset += sizeof(char) * 10;
         createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, i * 60, 200, 50,
-            ButtonActionMap::ROOM_CONNECTION, LayerLvL::BUTTON, MenuStates::LOBBY, std::to_string(i) + roomName);
+            ButtonActionMap::ROOM_CONNECTION, LayerLvL::BUTTON, MenuStates::LOBBY, roomName);
     }
 }
 
