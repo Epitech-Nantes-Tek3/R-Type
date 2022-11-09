@@ -185,8 +185,7 @@ void Communicator::utilitarySendRoomConfiguration(std::string roomName, short *c
     std::memcpy((void *)((char *)networkObject + offset), roomName.c_str(), sizeof(char) * nameSize);
     offset += sizeof(char) * nameSize;
     for (int i = 0; i < 6; i++) {
-        std::memcpy((void *)((char *)networkObject + sizeof(short) * i + offset), (void *)&configs[i],
-            sizeof(short));
+        std::memcpy((void *)((char *)networkObject + sizeof(short) * i + offset), (void *)&configs[i], sizeof(short));
     }
     sendDataToAClient(endpoint, networkObject, size, 17);
     std::free(networkObject);
@@ -261,15 +260,21 @@ void Communicator::utilitaryAskForADatabaseValue(
     std::string pseudo, std::string key, std::vector<unsigned short> destination)
 {
     Client temporaryClient;
-    void *networkObject = std::malloc(sizeof(char) * (pseudo.size() + key.size()));
+    unsigned short pseudoSize = pseudo.size();
+    void *networkObject = std::malloc(sizeof(char) * (pseudoSize + key.size()));
+    unsigned short offset = 0;
 
     if (networkObject == nullptr)
         throw MallocError("Malloc failed.");
-    std::memcpy(networkObject, pseudo.c_str(), sizeof(char) * pseudo.size());
-    std::memcpy((void *)((char *)networkObject + sizeof(char) * pseudo.size()), key.c_str(), sizeof(char) * key.size());
+    std::memcpy((void *)((char *)networkObject + offset), &pseudoSize, sizeof(unsigned short));
+    offset += sizeof(unsigned short);
+    std::memcpy((void *)((char *)networkObject + offset), pseudo.c_str(), sizeof(char) * pseudoSize);
+    offset += sizeof(char) * pseudoSize;
+    std::memcpy((void *)((char *)networkObject + offset), key.c_str(), sizeof(char) * key.size());
+    offset += sizeof(char) * key.size();
     for (auto it : destination) {
         temporaryClient = getClientByHisId(it);
-        sendDataToAClient(temporaryClient, networkObject, sizeof(char) * (pseudo.size() + key.size()), 40);
+        sendDataToAClient(temporaryClient, networkObject, offset, 40);
     }
     std::free(networkObject);
 }
@@ -279,13 +284,16 @@ std::vector<std::string> Communicator::utilitaryReceiveAskingForDatabaseValue(Co
     char *pseudo = nullptr;
     char *keyContent = nullptr;
     unsigned short keyLen = 0;
+    unsigned short pseudoLen = 0;
     unsigned short offset = 0;
 
-    pseudo = (char *)cryptedMessage.message.data;
-    std::string pseudoStr(5, '\0');
-    for (int i = 0; i < 5; i++)
+    std::memcpy(&pseudoLen, cryptedMessage.message.data, sizeof(unsigned short));
+    offset += sizeof(unsigned short);
+    pseudo = (char *)cryptedMessage.message.data + offset;
+    std::string pseudoStr(pseudoLen, '\0');
+    for (int i = 0; i < pseudoLen; i++)
         pseudoStr[i] = pseudo[i];
-    offset += sizeof(char) * 5;
+    offset += sizeof(char) * pseudoLen;
     keyContent = (char *)cryptedMessage.message.data + offset;
     keyLen = cryptedMessage.message.size - offset;
     std::string keyContentStr(keyLen, '\0');
