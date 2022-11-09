@@ -74,11 +74,11 @@ jobs:
         cd build/
         cpack -G WIX -C Debug
     - name: Upload Artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: Windows
-          path: |
-            ${{ github.workspace }}/build/R-Type-*-win64.msi
+      uses: actions/upload-artifact@v3
+      with:
+        name: Windows
+        path: |
+          ${{ github.workspace }}/build/R-Type-*-win64.msi
 
   coverage:
     needs: [build-linux]
