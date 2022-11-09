@@ -1,5 +1,8 @@
 var NAVTREEINDEX5 =
 {
+"structcommunicator__lib_1_1_communicator_message.html#a9231e1a6f87aa36c75c9557e8bae72cd":[4,0,2,1,1],
+"structcommunicator__lib_1_1_communicator_message.html#ae0512e51bb82a167b9473f62a19ba3c7":[4,0,2,1,0],
+"structcommunicator__lib_1_1_message.html":[4,0,2,4],
 "structcommunicator__lib_1_1_message.html#a65ec56114ac2473b08432b51a45a8e2a":[4,0,2,4,2],
 "structcommunicator__lib_1_1_message.html#a807e8fa2b51344e557c8886bf7f3bd10":[4,0,2,4,3],
 "structcommunicator__lib_1_1_message.html#a9e7d643b31248f511a3e6ea6939a59c2":[4,0,2,4,1],

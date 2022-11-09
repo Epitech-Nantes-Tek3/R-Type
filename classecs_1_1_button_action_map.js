@@ -11,7 +11,8 @@ var classecs_1_1_button_action_map =
       [ "LOBBY", "classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90a2a042afbe1e44c8b1a611afcaffeadc1", null ],
       [ "ROOM_CONNECTION", "classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90ab6a692a57e5d588cc172708ed00ec206", null ],
       [ "CREATE_A_ROOM", "classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90acea1ba1e7c059fa3a98ce0b17bab6bb6", null ],
-      [ "IN_GAME", "classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90afbabe33658ff72507334fd175098f6c0", null ]
+      [ "IN_GAME", "classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90afbabe33658ff72507334fd175098f6c0", null ],
+      [ "MAIN_MENU", "classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90a4a5bb7bb205894db6519cd8f5e253abc", null ]
     ] ],
     [ "ButtonActionMap", "classecs_1_1_button_action_map.html#a260a09fddf305e88359a125bc2509650", null ],
     [ "~ButtonActionMap", "classecs_1_1_button_action_map.html#a4446282955322179f4522a65bad2348d", null ],

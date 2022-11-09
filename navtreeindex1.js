@@ -1,5 +1,7 @@
 var NAVTREEINDEX1 =
 {
+"_graphics_text_component_8hpp.html":[5,0,1,5,0,0,14],
+"_graphics_text_component_8hpp_source.html":[5,0,1,5,0,0,14],
 "_graphics_texture_resource_8cpp.html":[5,0,1,5,0,1,1],
 "_graphics_texture_resource_8hpp.html":[5,0,1,5,0,1,2],
 "_graphics_texture_resource_8hpp_source.html":[5,0,1,5,0,1,2],
@@ -247,7 +249,5 @@ var NAVTREEINDEX1 =
 "classcommunicator__lib_1_1_communicator.html#aea08de11dc0df5914b86db4892009359":[4,0,2,3,5],
 "classcommunicator__lib_1_1_communicator.html#aed7f706b345fd016c70d970e084b591f":[4,0,2,3,16],
 "classcommunicator__lib_1_1_communicator.html#affb610537407d6ec9a484c48446ad295":[4,0,2,3,6],
-"classcommunicator__lib_1_1_receiver.html":[4,0,2,5],
-"classcommunicator__lib_1_1_receiver.html#a174e735ed802f2423b428d536553f143":[4,0,2,5,5],
-"classcommunicator__lib_1_1_receiver.html#a2548cabc09f1930fc53a1ec7e7c0fdbe":[4,0,2,5,8]
+"classcommunicator__lib_1_1_receiver.html":[4,0,2,5]
 };
