@@ -125,7 +125,7 @@ void publishNewChatMessage(World &world, Entity &entityPtr, std::string &message
 void createARoom(World &world, Entity &entityPtr, std::string &message)
 {
     (void)entityPtr;
-    if (!world.containsResource<MenuStates>())
+    if (!world.containsResource<MenuStates>() || message.size() < 4 || message.size() > 10)
         return;
     short configs[6] = {120, 121, 122, 123, 124, 125};
     world.getTransisthorBridge()->getCommunicatorInstance().utilitarySendRoomConfiguration(
