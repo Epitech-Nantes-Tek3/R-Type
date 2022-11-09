@@ -190,13 +190,16 @@ void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
         MenuStates::LOBBY, "Back");
     for (int i = 0; i < roomNumber; i++) {
         unsigned short roomId = 0;
+        unsigned short nameSize = 0;
         std::memcpy(&roomId, (void *)((char *)connectionResponse.message.data + offset), sizeof(unsigned short));
+        offset += sizeof(unsigned short);
+        std::memcpy(&nameSize, (void *)((char *)connectionResponse.message.data + offset), sizeof(unsigned short));
         offset += sizeof(unsigned short);
         char *tempRoomName = (char *)connectionResponse.message.data + offset;
         std::string roomName = std::to_string(i);
         roomName.append("- ");
-        roomName.append(tempRoomName, 10);
-        offset += sizeof(char) * 10;
+        roomName.append(tempRoomName, nameSize);
+        offset += sizeof(char) * nameSize;
         createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, i * 60, 200, 50,
             ButtonActionMap::ROOM_CONNECTION, LayerLvL::BUTTON, MenuStates::LOBBY, roomName);
     }
@@ -622,12 +625,14 @@ void ClientRoom::startLobbyLoop(const std::string &pseudo, const std::string &pa
         if (!_answerProtocols(isSolo))
             return;
         if (_worldInstance->containsResource<MenuStates>()) {
-            if (_worldInstance->getResource<MenuStates>().currentState == MenuStates::LOBBY
+            if (_state != ClientState::ENDED
+                && _worldInstance->getResource<MenuStates>().currentState == MenuStates::LOBBY
                 && _state != ClientRoom::LOBBY) {
                 _state = ClientState::LOBBY;
                 _updateEcsData(false);
             }
-            if (_worldInstance->getResource<MenuStates>().currentState == MenuStates::IN_GAME
+            if (_state != ClientState::ENDED
+                && _worldInstance->getResource<MenuStates>().currentState == MenuStates::IN_GAME
                 && _state != ClientRoom::IN_GAME) {
                 _state = ClientState::IN_GAME;
                 _updateEcsData(false);
