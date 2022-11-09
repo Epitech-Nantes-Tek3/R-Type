@@ -44,12 +44,11 @@ namespace client_data
         ~ClientRoom() = default;
 
         /// @brief Launch the lobby global loop for a multiplayer game
-        /// @param pseudo The pseudo of the user
-        /// @param password The password of the user
-        void startLobbyLoop(const std::string &pseudo, const std::string &password, bool isSolo);
+        void startLoop();
 
-        /// @brief This function start the game for the player to choose
-        /// if the player is in Solo or Multiplayer mod
+        /// @brief It creates a UserConnection object, which is a class that handles the
+        /// connection with the server, and then it calls the startLoop function
+        /// @return The return value of the function.
         int startGame();
 
       private:

@@ -250,7 +250,7 @@ int ClientRoom::_choosePlayerInfosForServer()
     pseudo = connection.getPseudo();
     password = connection.getPassword();
     connection.~UserConnection();
-    startLobbyLoop(pseudo, password, false);
+    startLoop();
     return 0;
 }
 
@@ -270,25 +270,46 @@ void ClientRoom::_getClientPseudoAndPassword()
     _pseudo = pseudo;
 }
 
+// login page (UserConnection)
+// main menu without server connection
+    // solo
+    // multi
+    // option
+    // quit
 int ClientRoom::startGame()
 {
-    std::cerr << "If you want to play in Solo Mode, please refer S. Otherwise if you want to play in multiplayer use M "
-                 "and be sure that a server is running : ";
-    char choosedMode = '\0';
+    UserConnection connection;
 
-    std::cin >> choosedMode;
-    if (choosedMode == 'S') {
-        _getClientPseudoAndPassword();
-        _startSoloLoop();
-    } else if (choosedMode == 'M') {
-        if (_choosePlayerInfosForServer() == 84)
-            return 84;
-    } else {
-        std::cerr << "Not a valid option ;)" << std::endl;
-        _state = ClientState::ENDED;
+    try {
+        connection.userConnection();
+    } catch (error_lib::RTypeError &e) {
+        std::cerr << e.what() << std::endl;
+        return (84);
     }
-    return 0;
+    _pseudo = connection.getPseudo();
+    _password = connection.getPassword();
+    connection.~UserConnection();
+    startLoop();
+    return (0);
 }
+
+    // std::cerr << "If you want to play in Solo Mode, please refer S. Otherwise if you want to play in multiplayer use M "
+    //              "and be sure that a server is running : ";
+    // char choosedMode = '\0';
+
+    // std::cin >> choosedMode;
+    // if (choosedMode == 'S') {
+    //     _getClientPseudoAndPassword();
+    //     _startSoloLoop();
+    // } else if (choosedMode == 'M') {
+    //     if (_choosePlayerInfosForServer() == 84)
+    //         return 84;
+    // } else {
+    //     std::cerr << "Not a valid option ;)" << std::endl;
+    //     _state = ClientState::ENDED;
+    // }
+    // return 0;
+// }
 
 void ClientRoom::_connectToARoom()
 {
@@ -611,11 +632,10 @@ bool ClientRoom::_answerProtocols(bool isSolo)
     return true;
 }
 
-void ClientRoom::startLobbyLoop(const std::string &pseudo, const std::string &password, bool isSolo)
+void ClientRoom::startLoop()
 {
-    _pseudo = pseudo;
-    _password = password;
     std::signal(SIGINT, signalCallbackHandler);
+
     if (_state != ClientState::ENDED)
         _startConnexionProtocol();
     _state = ClientState::MAIN_MENU;
