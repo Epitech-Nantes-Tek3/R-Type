@@ -84,7 +84,7 @@ void AdminPanel::_authentificationProcess()
 
     if (networkData == nullptr)
         throw MallocError("Malloc failed.");
-    std::memcpy(networkData, pseudoSize, sizeof(unsigned short));
+    std::memcpy(networkData, &pseudoSize, sizeof(unsigned short));
     offset += sizeof(unsigned short);
     std::memcpy((void *)((char *)networkData + offset), pseudo.c_str(), sizeof(char) * pseudoSize);
     offset += sizeof(char) * pseudoSize;

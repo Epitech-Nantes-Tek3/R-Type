@@ -317,18 +317,23 @@ void Communicator::utilitarySetADatabaseValue(
     std::string pseudo, unsigned short key, std::string value, std::vector<unsigned short> destination)
 {
     Client temporaryClient;
-    void *networkObject = std::malloc(sizeof(char) * (pseudo.size() + value.size()) + sizeof(unsigned short));
+    unsigned short pseudoSize = pseudo.size();
+    unsigned short offset = 0;
+    void *networkObject = std::malloc(sizeof(char) * (pseudoSize + value.size()) + sizeof(unsigned short));
 
     if (networkObject == nullptr)
         throw MallocError("Malloc failed.");
-    std::memcpy(networkObject, pseudo.c_str(), sizeof(char) * pseudo.size());
-    std::memcpy((void *)((char *)networkObject + sizeof(char) * pseudo.size()), &key, sizeof(unsigned short));
-    std::memcpy((void *)((char *)networkObject + sizeof(char) * pseudo.size() + sizeof(unsigned short)), value.c_str(),
-        sizeof(char) * value.size());
+    std::memcpy(networkObject, &pseudoSize, sizeof(unsigned short));
+    offset += sizeof(unsigned short);
+    std::memcpy((void *)((char *)networkObject + offset), pseudo.c_str(), sizeof(char) * pseudoSize);
+    offset += sizeof(char) * pseudoSize;
+    std::memcpy((void *)((char *)networkObject + offset), &key, sizeof(unsigned short));
+    offset += sizeof(unsigned short);
+    std::memcpy((void *)((char *)networkObject + offset), value.c_str(), sizeof(char) * value.size());
+    offset += sizeof(char) * value.size();
     for (auto it : destination) {
         temporaryClient = getClientByHisId(it);
-        sendDataToAClient(
-            temporaryClient, networkObject, sizeof(char) * (pseudo.size() + value.size()) + sizeof(unsigned short), 42);
+        sendDataToAClient(temporaryClient, networkObject, offset, 42);
     }
     std::free(networkObject);
 }
@@ -336,26 +341,30 @@ void Communicator::utilitarySetADatabaseValue(
 std::vector<std::string> Communicator::utilitaryReceiveSetDatabaseValue(CommunicatorMessage cryptedMessage)
 {
     char *pseudo = nullptr;
+    unsigned short pseudoSize = 0;
     unsigned short key = 0;
     char *value = nullptr;
     unsigned short offset = 0;
 
-    pseudo = (char *)cryptedMessage.message.data;
-    std::string pseudoStr(5, '\0');
-    for (int i = 0; i < 5; i++)
+    std::memcpy(&pseudoSize, cryptedMessage.message.data, sizeof(unsigned short));
+    offset += sizeof(unsigned short);
+    pseudo = (char *)cryptedMessage.message.data + offset;
+    std::string pseudoStr(pseudoSize, '\0');
+    for (int i = 0; i < pseudoSize; i++)
         pseudoStr[i] = pseudo[i];
-    offset += sizeof(char) * 5;
+    offset += sizeof(char) * pseudoSize;
     std::memcpy(&key, (void *)((char *)cryptedMessage.message.data + offset), sizeof(unsigned short));
     offset += sizeof(unsigned short);
     value = (char *)cryptedMessage.message.data + offset;
+    std::size_t valueSize = cryptedMessage.message.size - offset;
     std::string valueStr;
     if (key == 4 || key == 5) {
-        valueStr = std::string(7, '\'');
-        for (std::size_t i = 1; i < 6; i++)
+        valueStr = std::string(valueSize + 2, '\'');
+        for (std::size_t i = 1; i < valueSize + 1; i++)
             valueStr[i] = value[i - 1];
     } else {
-        valueStr = std::string(1, '\0');
-        for (std::size_t i = 0; i < 1; i++)
+        valueStr = std::string(valueSize, '\0');
+        for (std::size_t i = 0; i < valueSize; i++)
             valueStr[i] = value[i];
     }
     return {pseudoStr, std::to_string(key), valueStr};
