@@ -4,6 +4,17 @@ cmake_minimum_required(VERSION 3.17)
 # Set the project name (R-Type) and the language used (c++)
 project(R-Type LANGUAGES CXX)
 
+# Add conan if it's not exist
+# if(NOT EXISTS "${CMAKE_BINARY_DIR}/conan.cmake")
+#   message(
+#     STATUS
+#     "Downloading conan.cmake from https://github.com/conan-io/cmake-conan")
+#   file(
+#     DOWNLOAD
+#     "https://raw.githubusercontent.com/conan-io/cmake-conan/master/conan.cmake"
+#     "${CMAKE_BINARY_DIR}/conan.cmake")
+# endif()
+
 # Set the c++ version and set this version required
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)

@@ -1,4 +1,5 @@
 name: Publish Release
+
 on:
   workflow_dispatch:
     inputs:
@@ -10,17 +11,20 @@ on:
         description: "Release body"
         required: true
         default: "Release body"
+
 jobs:
   build-on-ubuntu:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install requirement
+
+      - name: Install prerequisiteries
         run: |
           sudo apt-get update
           sudo apt-get install -y cmake g++ libudev-dev pip pkg-config libgl-dev
       - name: Install conan
         uses: turtlebrowser/get-conan@main
+
       - name: Build rtype binaries on Ubuntu (desktop)
         run: |
           mkdir -p build
@@ -65,7 +69,11 @@ jobs:
           cmake --build build/
       - name: Package
         run: |
-	@@ -72,3 +83,27 @@ jobs:
+          cd build/
+          cpack -G WIX -C Debug
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
           name: Windows
           path: |
             ${{ github.workspace }}/build/R-Type-*-win64.msi
