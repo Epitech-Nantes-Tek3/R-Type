@@ -16,7 +16,7 @@ namespace ecs
     class GameLevel : public Resource {
       public:
         /// @brief Enumeration of all possibles level states on the game
-        enum level_e { LEVEL_ONE = 0, LEVEL_TWO = 10, LEVEL_THREE = 24, LEVEL_FORTH = 40, LEVEL_INFINITE = 60 };
+        enum level_e { LEVEL_ONE = 0, LEVEL_TWO = 10, LEVEL_THREE = 24, LEVEL_FORTH = 40, LEVEL_INFINITE = 56 };
 
         /// @brief Create the GameLevel Resource
         /// @param isSolo if the player is in soloMode the kill streak is modified to come along with the server
