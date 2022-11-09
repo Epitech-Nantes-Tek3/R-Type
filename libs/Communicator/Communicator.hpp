@@ -66,7 +66,7 @@ namespace communicator_lib
         Communicator(Client networkBind);
 
         /// @brief Destroy the Communicator object
-        ~Communicator();
+        ~Communicator() = default;
 
         /// @brief Get the Client List vector
         /// @return std::vector<Client> The client list vector

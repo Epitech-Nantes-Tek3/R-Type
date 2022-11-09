@@ -185,8 +185,7 @@ void Communicator::utilitarySendRoomConfiguration(std::string roomName, short *c
     std::memcpy((void *)((char *)networkObject + offset), roomName.c_str(), sizeof(char) * nameSize);
     offset += sizeof(char) * nameSize;
     for (int i = 0; i < 6; i++) {
-        std::memcpy((void *)((char *)networkObject + sizeof(short) * i + offset), (void *)&configs[i],
-            sizeof(short));
+        std::memcpy((void *)((char *)networkObject + sizeof(short) * i + offset), (void *)&configs[i], sizeof(short));
     }
     sendDataToAClient(endpoint, networkObject, size, 17);
     std::free(networkObject);
@@ -361,4 +360,3 @@ std::string Communicator::utilitaryReceiveDatabaseValue(CommunicatorMessage cryp
     return std::string(valueContent);
 }
 
-Communicator::~Communicator() {}

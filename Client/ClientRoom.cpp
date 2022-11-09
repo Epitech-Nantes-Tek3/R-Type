@@ -195,7 +195,7 @@ void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
         std::memcpy(&nameSize, (void *)((char *)connectionResponse.message.data + offset), sizeof(unsigned short));
         offset += sizeof(unsigned short);
         char *tempRoomName = (char *)connectionResponse.message.data + offset;
-        std::string roomName = std::to_string(i);
+        std::string roomName = std::to_string(roomId);
         roomName.append("- ");
         roomName.append(tempRoomName, nameSize);
         offset += sizeof(char) * nameSize;
