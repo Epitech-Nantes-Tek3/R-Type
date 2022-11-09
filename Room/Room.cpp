@@ -40,8 +40,8 @@
 #include "R-TypeLogic/Server/Systems/EnemiesPatterns.hpp"
 #include "R-TypeLogic/Server/Systems/EnemyShootSystem.hpp"
 #include "R-TypeLogic/Server/Systems/LifeTimeDeathSystem.hpp"
-#include "R-TypeLogic/Server/Systems/RemoveAfkSystem.hpp"
 #include "R-TypeLogic/Server/Systems/MobGenerationSystem.hpp"
+#include "R-TypeLogic/Server/Systems/RemoveAfkSystem.hpp"
 
 using namespace server_data;
 using namespace error_lib;
@@ -191,7 +191,7 @@ void Room::_activePlayerGestion()
     if (activePlayer != 0)
         return;
     if (_remainingPlaces == 0)
-        _state = RoomState::ENDED;
+        _SendEndGameToServer();
     else
         _state = RoomState::LOBBY;
 }
