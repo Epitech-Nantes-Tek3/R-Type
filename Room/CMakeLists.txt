@@ -12,6 +12,8 @@ set(SRC_ROOM
 
 add_executable(${TARGET_ROOM} ${SRC_ROOM})
 
+set_property(TARGET ${TARGET_ROOM} PROPERTY MSVC_RUNTIME_LIBRARY "")
+
 set_target_properties(${TARGET_ROOM}
     PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/
@@ -23,3 +25,5 @@ target_link_libraries(${TARGET_ROOM}
     ${PROJECT_NAME}_argumentHandler
     ${PROJECT_NAME}_database
 )
+
+install(TARGETS ${TARGET_ROOM} DESTINATION bin)

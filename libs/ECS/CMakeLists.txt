@@ -8,10 +8,10 @@ set(TARGET ${PROJECT_NAME}_ecs)
 
 add_library(${TARGET}
     ${SRC_COMPONENT}
-    ${SRC_ENTITY}
     ${SRC_WORLD}
     ${SRC_SYSTEM}
     ${SRC_RESOURCE}
+    ${SRC_ENTITY}
 )
 
 set(INCLUDE_ECS_LIB
@@ -30,3 +30,5 @@ target_include_directories(${TARGET}
 target_link_libraries(${TARGET}
     ${PROJECT_NAME}_transisthor
 )
+
+install(TARGETS ${TARGET} DESTINATION lib)

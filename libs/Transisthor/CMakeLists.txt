@@ -28,3 +28,5 @@ target_link_libraries(${TARGET}
     ${PROJECT_NAME}_ecs
     ${PROJECT_NAME}_RTypeLogicGlobal
 )
+
+install(TARGETS ${TARGET} DESTINATION lib) #bin/lib

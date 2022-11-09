@@ -8,3 +8,5 @@ set(SRC
 )
 
 add_library(${TARGET} INTERFACE ${SRC})
+
+install(TARGETS ${TARGET} DESTINATION lib)
