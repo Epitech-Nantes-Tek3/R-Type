@@ -7,7 +7,6 @@ on:
   #   branches: [ master ]
     tags:
         - 'v*'
-  workflow_dispatch:
 
 env:
   BUILD_TYPE: Release
