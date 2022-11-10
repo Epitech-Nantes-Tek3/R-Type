@@ -183,8 +183,6 @@ void ClientRoom::_holdAChatRequest(CommunicatorMessage chatRequest)
     std::for_each(joined.begin(), joined.end(), moveChatPos);
     createNewChatMessage(
         *(_worldInstance.get()), 1470, 840, 310, 45, 5.0, chatInformation.at(0), chatInformation.at(1));
-
-    std::cerr << "Receiving a new chat from " << chatInformation.at(0) << " : " << chatInformation.at(1) << std::endl;
 }
 
 void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
@@ -595,7 +593,7 @@ void ClientRoom::_updateEcsData(bool isSolo)
     _updateEcsSystems(isSolo);
 }
 
-bool ClientRoom::_answerProtocols(bool isSolo)
+bool ClientRoom::_answerProtocols()
 {
     CommunicatorMessage connectionOperation;
 
@@ -617,7 +615,6 @@ bool ClientRoom::_answerProtocols(bool isSolo)
         }
         if (connectionOperation.message.type == 12) {
             _protocol12Answer(connectionOperation);
-            _updateEcsData(isSolo);
         }
         if (connectionOperation.message.type == 50) {
             if (_state == ClientState::IN_GAME)
@@ -638,7 +635,7 @@ void ClientRoom::startLobbyLoop(const std::string &pseudo, const std::string &pa
     _state = ClientState::MAIN_MENU;
     _updateEcsData(isSolo);
     while (_state != ClientState::ENDED) {
-        if (!_answerProtocols(isSolo))
+        if (!_answerProtocols())
             return;
         if (_worldInstance->containsResource<MenuStates>()) {
             if (_state != ClientState::ENDED
