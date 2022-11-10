@@ -22,6 +22,7 @@
 #include "R-TypeLogic/Global/Components/EnemyComponent.hpp"
 #include "R-TypeLogic/Global/Components/EnemyProjectileComponent.hpp"
 #include "GraphicECS/SFML/Components/ParallaxComponent.hpp"
+#include "Error/Error.hpp"
 
 using namespace graphicECS::SFML::Resources;
 using namespace graphicECS::SFML::Components;
@@ -130,6 +131,13 @@ void publishNewChatMessage(World &world, Entity &entityPtr, std::string &message
 void createARoom(World &world, Entity &entityPtr, std::string &message)
 {
     (void)entityPtr;
+    try {
+        world.getTransisthorBridge()->getCommunicatorInstance().getServerEndpointId();
+    } catch (error_lib::NetworkError &error) {
+        world.getResource<MenuStates>().currentState = MenuStates::MAIN_MENU;
+        std::cerr << "No server currently running" << std::endl;
+        return;
+    }
     if (!world.containsResource<MenuStates>() || message.size() < 4 || message.size() > 10)
         return;
     short configs[6] = {120, 121, 122, 123, 124, 125};
