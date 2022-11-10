@@ -92,9 +92,8 @@ namespace client_data
 
         /// @brief It's a big switch case that handles all the messages that the client can
         /// receive from the server
-        /// @param isSolo a boolean that tells if the client is alone in the room or not.
         /// @return A boolean.
-        bool _answerProtocols(bool isSolo);
+        bool _answerProtocols();
 
         /// @brief Get call back handler for a solo game
         void _signalSoloCallbackHandler(int signum);
