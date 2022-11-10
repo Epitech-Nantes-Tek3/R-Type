@@ -174,8 +174,6 @@ void ClientRoom::_holdAChatRequest(CommunicatorMessage chatRequest)
     std::for_each(joined.begin(), joined.end(), moveChatPos);
     createNewChatMessage(
         *(_worldInstance.get()), 1470, 840, 310, 45, 5.0, chatInformation.at(0), chatInformation.at(1));
-
-    std::cerr << "Receiving a new chat from " << chatInformation.at(0) << " : " << chatInformation.at(1) << std::endl;
 }
 
 void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
