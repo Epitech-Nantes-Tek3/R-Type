@@ -19,5 +19,7 @@ set(SRC_GRAPHIC_SYSTEM
     ${GRAPHIC_SRC_SYSTEM_ROOT}/RemoveChatSystem.hpp
     ${GRAPHIC_SRC_SYSTEM_ROOT}/UpdateParallaxSystem.cpp
     ${GRAPHIC_SRC_SYSTEM_ROOT}/UpdateParallaxSystem.hpp
+    ${GRAPHIC_SRC_SYSTEM_ROOT}/ApplyInputDelay.cpp
+    ${GRAPHIC_SRC_SYSTEM_ROOT}/ApplyInputDelay.hpp
     PARENT_SCOPE
 )

@@ -50,7 +50,10 @@ namespace client_data
         int startGame();
 
       private:
+        void _removeMultiSystems();
+        void _removeSoloSystems();
         void _initLobbyButtons();
+        void askForRooms();
         /// @brief Launch the lobby global loop for a multiplayer game
         void _startLoop();
 

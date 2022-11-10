@@ -33,6 +33,7 @@
 #include "GraphicECS/SFML/Resources/RenderWindowResource.hpp"
 #include "GraphicECS/SFML/Resources/SoundResource.hpp"
 #include "GraphicECS/SFML/Systems/AnimationSystem.hpp"
+#include "GraphicECS/SFML/Systems/ApplyInputDelay.hpp"
 #include "GraphicECS/SFML/Systems/DrawComponents.hpp"
 #include "GraphicECS/SFML/Systems/InputManagement.hpp"
 #include "GraphicECS/SFML/Systems/MusicManagement.hpp"
@@ -160,7 +161,6 @@ void ClientRoom::_startConnexionProtocol()
     std::memcpy(networkData, _pseudo.c_str(), sizeof(char) * 5);
     std::memcpy((void *)((char *)networkData + sizeof(char) * 5), _password.c_str(), sizeof(char) * 5);
     _communicatorInstance.get()->startReceiverListening();
-    _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, networkData, sizeof(char) * 10, 14);
     std::free(networkData);
 }
 
@@ -286,7 +286,7 @@ void ClientRoom::_startLoop()
         if (isMenuUpdated)
             _updateEcsData();
         currentMenuStates = _worldInstance->getResource<MenuStates>().currentState;
-        if (currentMenuStates != MenuStates::MAIN_MENU && currentMenuStates != MenuStates::SOLO_GAME) {
+        if (currentMenuStates != MenuStates::MAIN_MENU && currentMenuStates != MenuStates::SOLO_GAME && currentMenuStates != MenuStates::PAUSED) {
             if (!_answerProtocols())
                 return;
         }
@@ -464,6 +464,18 @@ void ClientRoom::_initLobbyButtons()
         MenuStates::LOBBY, "Back");
 }
 
+void ClientRoom::askForRooms()
+{
+    void *networkData = std::malloc(sizeof(char) * 10);
+
+    if (networkData == nullptr)
+        throw MallocError("Malloc failed.");
+    std::memcpy(networkData, _pseudo.c_str(), sizeof(char) * 5);
+    std::memcpy((void *)((char *)networkData + sizeof(char) * 5), _password.c_str(), sizeof(char) * 5);
+    _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, networkData, sizeof(char) * 10, 14);
+    std::free(networkData);
+}
+
 void ClientRoom::_updateEcsEntities()
 {
     if (_worldInstance
@@ -474,14 +486,37 @@ void ClientRoom::_updateEcsEntities()
         _initInputsEntity();
     if (_worldInstance->containsResource<MenuStates>()) {
         switch (_worldInstance->getResource<MenuStates>().currentState) {
-            case MenuStates::MAIN_MENU: _initMainMenuButtons(); break;
-            case MenuStates::LOBBY:
-                if (_oldMenuStates == MenuStates::MULTI_GAME) {
+            case MenuStates::MAIN_MENU:
+                if (_oldMenuStates == MenuStates::PAUSED) {
                     _serverEndpoint = _highInstanceEndpoint;
+                    _communicatorInstance->getClientByHisId(0).setAddress(_serverEndpoint.getAddress());
+                    _communicatorInstance->getClientByHisId(0).setPort(_serverEndpoint.getPort());
                 }
+                if (_oldMenuStates == MenuStates::MULTI_GAME || _oldMenuStates == MenuStates::LOBBY) {
+                    _removeMultiSystems();
+                } else if (_oldMenuStates == MenuStates::SOLO_GAME) {
+                    _removeSoloSystems();
+                }
+                _initMainMenuButtons();
+                break;
+            case MenuStates::LOBBY:
+                if (_oldMenuStates == MenuStates::PAUSED) {
+                    _serverEndpoint = _highInstanceEndpoint;
+                    _communicatorInstance->getClientByHisId(0).setAddress(_serverEndpoint.getAddress());
+                    _communicatorInstance->getClientByHisId(0).setPort(_serverEndpoint.getPort());
+                }
+                if (_worldInstance->containsResource<GameLevel>()) {
+                    _worldInstance->removeResource<GameLevel>();
+                }
+                _worldInstance->addResource<GameLevel>(false);
+                askForRooms();
                 _initLobbyButtons();
                 break;
             case MenuStates::SOLO_GAME:
+                if (_worldInstance->containsResource<GameLevel>()) {
+                    _worldInstance->removeResource<GameLevel>();
+                }
+                _worldInstance->addResource<GameLevel>(true);
                 _initSoloData();
                 _initInGameButtons();
                 _initInGameWritables();
@@ -537,13 +572,19 @@ void ClientRoom::_initInputsEntity()
 
 void ClientRoom::_initInGameButtons()
 {
+    sf::Vector2u windowSize(0, 0);
+
+    if (_worldInstance->containsResource<RenderWindowResource>())
+        windowSize = _worldInstance->getResource<RenderWindowResource>().window.getSize();
     createNewButton(*(_worldInstance.get()), 0, 0, 68, 68, ButtonActionMap::PAUSE, LayerLvL::BUTTON,
         MenuStates::SOLO_GAME, "Pause");
     createNewButton(*(_worldInstance.get()), 0, 0, 68, 68, ButtonActionMap::PAUSE, LayerLvL::BUTTON,
         MenuStates::MULTI_GAME, "Pause");
-    createNewButton(*(_worldInstance.get()), 909, 200, 102, 102, ButtonActionMap::RESUME, LayerLvL::BUTTON,
+    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 4 - 25, 200, 50, ButtonActionMap::RESUME, LayerLvL::BUTTON,
         MenuStates::PAUSED, "Resume");
-    createNewButton(*(_worldInstance.get()), 909, 500, 102, 102, ButtonActionMap::QUIT, LayerLvL::BUTTON,
+    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 4 * 2 - 25, 200, 50,
+        ButtonActionMap::GO_MAIN_MENU, LayerLvL::BUTTON, MenuStates::PAUSED, "Main menu");
+    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 4 * 3 - 25, 200, 50, ButtonActionMap::QUIT, LayerLvL::BUTTON,
         MenuStates::PAUSED, "Exit");
 }
 
@@ -621,6 +662,8 @@ void ClientRoom::_updateEcsSystems()
             _worldInstance->addSystem<LifeTimeDeath>();
         if (!_worldInstance->containsSystem<DecreaseLifeTime>())
             _worldInstance->addSystem<DecreaseLifeTime>();
+        if (!_worldInstance->containsSystem<ApplyInputDelay>())
+            _worldInstance->addSystem<ApplyInputDelay>();
     } else if (_worldInstance->containsResource<MenuStates>()
         && _worldInstance->getResource<MenuStates>().currentState == MenuStates::LOBBY) {
         if (!_worldInstance->containsSystem<SendToServer>())
@@ -628,6 +671,34 @@ void ClientRoom::_updateEcsSystems()
         if (!_worldInstance->containsSystem<SendNewlyCreatedToServer>())
             _worldInstance->addSystem<SendNewlyCreatedToServer>();
     }
+}
+
+void ClientRoom::_removeMultiSystems()
+{
+    if (_worldInstance->containsSystem<SendToServer>())
+        _worldInstance->removeSystem<SendToServer>();
+    if (_worldInstance->containsSystem<SendNewlyCreatedToServer>())
+        _worldInstance->removeSystem<SendNewlyCreatedToServer>();
+}
+
+void ClientRoom::_removeSoloSystems()
+{
+    if (_worldInstance->containsSystem<MobGeneration>())
+        _worldInstance->removeSystem<MobGeneration>();
+    if (_worldInstance->containsSystem<EnemiesPatterns>())
+        _worldInstance->removeSystem<EnemiesPatterns>();
+    if (_worldInstance->containsSystem<EnemyShootSystem>())
+        _worldInstance->removeSystem<EnemyShootSystem>();
+    if (_worldInstance->containsSystem<Collide>())
+        _worldInstance->removeSystem<Collide>();
+    if (_worldInstance->containsSystem<DeathLife>())
+        _worldInstance->removeSystem<DeathLife>();
+    if (_worldInstance->containsSystem<LifeTimeDeath>())
+        _worldInstance->removeSystem<LifeTimeDeath>();
+    if (_worldInstance->containsSystem<DecreaseLifeTime>())
+        _worldInstance->removeSystem<DecreaseLifeTime>();
+    if (_worldInstance->containsSystem<ApplyInputDelay>())
+        _worldInstance->removeSystem<ApplyInputDelay>();
 }
 
 void ClientRoom::_updateEcsData()
