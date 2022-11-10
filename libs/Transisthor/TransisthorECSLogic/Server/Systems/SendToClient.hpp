@@ -24,8 +24,8 @@
 
 ///@brief a static map which is used to know which ID is used for a component type for the RFC protocol
 static const std::map<std::type_index, unsigned short> componentRFCId = {{typeid(ecs::Destination), 1},
-    {typeid(ecs::Equipment), 2}, {typeid(ecs::Invinsible), 3}, {typeid(ecs::Life), 4},
-    {typeid(ecs::Position), 5}, {typeid(ecs::Velocity), 6}, {typeid(ecs::Death), 7}};
+    {typeid(ecs::Equipment), 2}, {typeid(ecs::Invinsible), 3}, {typeid(ecs::Life), 4}, {typeid(ecs::Position), 5},
+    {typeid(ecs::Velocity), 6}, {typeid(ecs::Death), 7}};
 
 ///@brief `SendToClient` is a system that sends Networkable Entities datas to clients
 struct SendToClient : public ecs::System {
@@ -36,8 +36,9 @@ struct SendToClient : public ecs::System {
     /// @param entity Entity which must be shared
     /// @param clientIdList The list of clients to which the datas must be sent
     template <std::derived_from<ecs::Component>... C>
-    requires(sizeof...(C) == 0) void sendToClients(ecs::World &world, const unsigned short &networkId,
-        std::shared_ptr<ecs::Entity> entity, const std::vector<unsigned short> &clientIdList) const
+        requires(sizeof...(C) == 0)
+    void sendToClients(ecs::World &world, const unsigned short &networkId, std::shared_ptr<ecs::Entity> entity,
+        const std::vector<unsigned short> &clientIdList) const
     {
         (void)networkId;
         (void)entity;
@@ -72,8 +73,18 @@ struct SendToClient : public ecs::System {
                     }
                 } else if (component.sendToEveryone) {
                     component.sendToEveryone = false;
-                    std::free(world.getTransisthorBridge().get()->transitEcsDataToNetworkData<C1>(
-                        networkId, componentRFCId.find(typeid(C1))->second, component, clientIdList));
+                    if (entity->contains<NetworkClient>()) {
+                        std::vector<unsigned short> newClientList = {};
+                        for (auto it : clientIdList) {
+                            if (it != entity->getComponent<NetworkClient>().id)
+                                newClientList.push_back(it);
+                        }
+                        std::free(world.getTransisthorBridge().get()->transitEcsDataToNetworkData<C1>(
+                            networkId, componentRFCId.find(typeid(C1))->second, component, newClientList));
+                    } else {
+                        std::free(world.getTransisthorBridge().get()->transitEcsDataToNetworkData<C1>(
+                            networkId, componentRFCId.find(typeid(C1))->second, component, clientIdList));
+                    }
                 }
             }
         }
