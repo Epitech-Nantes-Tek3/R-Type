@@ -26,15 +26,16 @@ add_subdirectory(AdminPanel)
 include(build/conanbuildinfo.cmake)
 conan_basic_setup(TARGETS)
 
+install(DIRECTORY ./assets/ DESTINATION bin/assets/)
+
+set(CPACK_WIX_LICENSE_RTF ${PROJECT_SOURCE_DIR}/misc/windows/wix_licence.txt)
+
 include(InstallRequiredSystemLibraries)
-set(CPACK_WIX_LICENSE_RTF ${PROJECT_SOURCE_DIR}/misc/wix_license.txt)
 set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/LICENSE")
 set(CPACK_PACKAGE_VERSION_MAJOR "${RTYPE_MAJOR_VERSION}")
 set(CPACK_PACKAGE_VERSION_MINOR "${RTYPE_MINOR_VERSION}")
 set(CPACK_BUNDLE_NAME "R-Type")
 include(CPack)
-
-install(DIRECTORY ./assets/ DESTINATION bin/assets/)
 
 if(WIN32)
   install(DIRECTORY ./build/bin/ DESTINATION bin/)
