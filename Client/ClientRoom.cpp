@@ -495,7 +495,7 @@ void ClientRoom::askForRooms()
     offset += sizeof(unsigned short);
     std::memcpy((void *)((char *)networkData + offset), _password.c_str(), sizeof(char) * passwordSize);
     offset += sizeof(char) * passwordSize;
-    _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, networkData, sizeof(char) * 10, 14);
+    _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, networkData, offset, 14);
     std::free(networkData);
 }
 
