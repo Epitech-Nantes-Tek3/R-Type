@@ -181,7 +181,7 @@ void UserConnection::userConnection()
         _runSystemsUserConnection(buttonSendId);
         _pseudo = _world->getEntity(buttonPseudoId).getComponent<WritableContent>().content;
         _password = _world->getEntity(buttonPasswordId).getComponent<WritableContent>().content;
-        if (_pseudo.size() != 5 || _password.size() != 5) {
+        if (_pseudo.size() < 4 || _pseudo.size() > 10 || _password.size() < 4 || _password.size() > 10) {
             _pseudo = "";
             _password = "";
             throw error_lib::RTypeError("User connection invalid size");

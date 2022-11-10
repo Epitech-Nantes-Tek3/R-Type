@@ -50,6 +50,7 @@ namespace client_data
         int startGame();
 
       private:
+        void _initPausedButton();
         void _removeMultiSystems();
         void _removeSoloSystems();
         void _initLobbyButtons();

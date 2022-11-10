@@ -138,12 +138,17 @@ ClientRoom::ClientRoom(std::string address, unsigned short port, std::string ser
 
 void ClientRoom::_connectToARoom()
 {
+    unsigned short pseudoSize = _pseudo.size();
     void *networkData = std::malloc(sizeof(char) * 5);
+    unsigned short offset = 0;
 
     if (networkData == nullptr)
         throw MallocError("Malloc failed.");
-    std::memcpy(networkData, _pseudo.c_str(), sizeof(char) * 5);
-    _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, networkData, sizeof(char) * 5, 10);
+    std::memcpy(networkData, &pseudoSize, sizeof(unsigned short));
+    offset += sizeof(unsigned short);
+    std::memcpy((void *)((char *)networkData + offset), _pseudo.c_str(), sizeof(char) * pseudoSize);
+    offset += sizeof(char) * pseudoSize;
+    _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, networkData, offset, 10);
     std::free(networkData);
 }
 
@@ -154,12 +159,21 @@ void ClientRoom::_disconectionProcess()
 
 void ClientRoom::_startConnexionProtocol()
 {
-    void *networkData = std::malloc(sizeof(char) * 10);
+    unsigned short pseudoSize = _pseudo.size();
+    unsigned short passwordSize = _password.size();
+    void *networkData = std::malloc(sizeof(char) * (pseudoSize + passwordSize));
+    unsigned short offset = 0;
 
     if (networkData == nullptr)
         throw MallocError("Malloc failed.");
-    std::memcpy(networkData, _pseudo.c_str(), sizeof(char) * 5);
-    std::memcpy((void *)((char *)networkData + sizeof(char) * 5), _password.c_str(), sizeof(char) * 5);
+    std::memcpy(networkData, &pseudoSize, sizeof(unsigned short));
+    offset += sizeof(unsigned short);
+    std::memcpy((void *)((char *)networkData + offset), _pseudo.c_str(), sizeof(char) * pseudoSize);
+    offset += sizeof(char) * pseudoSize;
+    std::memcpy((void *)((char *)networkData + offset), &passwordSize, sizeof(unsigned short));
+    offset += sizeof(unsigned short);
+    std::memcpy((void *)((char *)networkData + offset), _password.c_str(), sizeof(char) * passwordSize);
+    offset += sizeof(char) * passwordSize;
     _communicatorInstance.get()->startReceiverListening();
     std::free(networkData);
 }
@@ -476,8 +490,24 @@ void ClientRoom::askForRooms()
     std::free(networkData);
 }
 
+void ClientRoom::_initPausedButton()
+{
+    sf::Vector2u windowSize = _worldInstance->getResource<RenderWindowResource>().window.getSize();
+
+    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 4 - 25, 200, 50, ButtonActionMap::RESUME, LayerLvL::BUTTON,
+        MenuStates::PAUSED, "Resume");
+    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 4 * 2 - 25, 200, 50,
+        ButtonActionMap::GO_MAIN_MENU, LayerLvL::BUTTON, MenuStates::PAUSED, "Main menu");
+    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 4 * 3 - 25, 200, 50, ButtonActionMap::QUIT, LayerLvL::BUTTON,
+        MenuStates::PAUSED, "Exit");
+}
+
 void ClientRoom::_updateEcsEntities()
 {
+    auto entities = _worldInstance->joinEntities<Button>();
+    for (auto &it : entities) {
+        _worldInstance->removeEntity(it->getId());
+    }
     if (_worldInstance
             ->joinEntities<MouseInputComponent, KeyboardInputComponent, ControllerButtonInputComponent,
                 ControllerJoystickInputComponent, ActionQueueComponent, AllowMouseAndKeyboardComponent,
@@ -489,8 +519,10 @@ void ClientRoom::_updateEcsEntities()
             case MenuStates::MAIN_MENU:
                 if (_oldMenuStates == MenuStates::PAUSED) {
                     _serverEndpoint = _highInstanceEndpoint;
-                    _communicatorInstance->getClientByHisId(0).setAddress(_serverEndpoint.getAddress());
-                    _communicatorInstance->getClientByHisId(0).setPort(_serverEndpoint.getPort());
+                    try {
+                        _communicatorInstance->getClientByHisId(0).setAddress(_serverEndpoint.getAddress());
+                        _communicatorInstance->getClientByHisId(0).setPort(_serverEndpoint.getPort());
+                    } catch (NetworkError &e) {}
                 }
                 if (_oldMenuStates == MenuStates::MULTI_GAME || _oldMenuStates == MenuStates::LOBBY) {
                     _removeMultiSystems();
@@ -505,18 +537,10 @@ void ClientRoom::_updateEcsEntities()
                     _communicatorInstance->getClientByHisId(0).setAddress(_serverEndpoint.getAddress());
                     _communicatorInstance->getClientByHisId(0).setPort(_serverEndpoint.getPort());
                 }
-                if (_worldInstance->containsResource<GameLevel>()) {
-                    _worldInstance->removeResource<GameLevel>();
-                }
-                _worldInstance->addResource<GameLevel>(false);
                 askForRooms();
                 _initLobbyButtons();
                 break;
             case MenuStates::SOLO_GAME:
-                if (_worldInstance->containsResource<GameLevel>()) {
-                    _worldInstance->removeResource<GameLevel>();
-                }
-                _worldInstance->addResource<GameLevel>(true);
                 _initSoloData();
                 _initInGameButtons();
                 _initInGameWritables();
@@ -529,6 +553,9 @@ void ClientRoom::_updateEcsEntities()
                 _initInGameButtons();
                 _initInGameWritables();
                 _initInGameBackgrounds();
+                break;
+            case MenuStates::PAUSED:
+                _initPausedButton();
                 break;
             default: break;
         }
@@ -580,12 +607,6 @@ void ClientRoom::_initInGameButtons()
         MenuStates::SOLO_GAME, "Pause");
     createNewButton(*(_worldInstance.get()), 0, 0, 68, 68, ButtonActionMap::PAUSE, LayerLvL::BUTTON,
         MenuStates::MULTI_GAME, "Pause");
-    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 4 - 25, 200, 50, ButtonActionMap::RESUME, LayerLvL::BUTTON,
-        MenuStates::PAUSED, "Resume");
-    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 4 * 2 - 25, 200, 50,
-        ButtonActionMap::GO_MAIN_MENU, LayerLvL::BUTTON, MenuStates::PAUSED, "Main menu");
-    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 4 * 3 - 25, 200, 50, ButtonActionMap::QUIT, LayerLvL::BUTTON,
-        MenuStates::PAUSED, "Exit");
 }
 
 void ClientRoom::_initMainMenuButtons()

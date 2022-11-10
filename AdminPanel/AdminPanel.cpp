@@ -77,13 +77,22 @@ void AdminPanel::_authentificationProcess()
     std::cin >> pseudo;
     std::cout << "Welcome : " << pseudo << " ! Now, your password : ";
     std::cin >> password;
-    void *networkData = std::malloc(sizeof(char) * 10);
+    unsigned short pseudoSize = pseudo.size();
+    unsigned short passwordSize = password.size();
+    unsigned short offset = 0;
+    void *networkData = std::malloc(sizeof(char) * (pseudoSize + passwordSize));
 
     if (networkData == nullptr)
         throw MallocError("Malloc failed.");
-    std::memcpy(networkData, pseudo.c_str(), sizeof(char) * 5);
-    std::memcpy((void *)((char *)networkData + sizeof(char) * 5), password.c_str(), sizeof(char) * 5);
-    _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, networkData, sizeof(char) * 10, 14);
+    std::memcpy(networkData, &pseudoSize, sizeof(unsigned short));
+    offset += sizeof(unsigned short);
+    std::memcpy((void *)((char *)networkData + offset), pseudo.c_str(), sizeof(char) * pseudoSize);
+    offset += sizeof(char) * pseudoSize;
+    std::memcpy((void *)((char *)networkData + offset), &passwordSize, sizeof(unsigned short));
+    offset += sizeof(unsigned short);
+    std::memcpy((void *)((char *)networkData + offset), password.c_str(), sizeof(char) * passwordSize);
+    offset += sizeof(char) * passwordSize;
+    _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, networkData, offset, 14);
     std::free(networkData);
     _pseudo = pseudo;
     _waitingForAnswer = 1;
@@ -154,8 +163,7 @@ void AdminPanel::_updatePasswordAction(AdminPanel::PanelCommand parsedRequest)
     if (parsedRequest.options.size() != 1) {
         std::cout << "Invalid command parameters. Please refer to the Notion protocol." << std::endl;
     }
-    _communicatorInstance->utilitarySetADatabaseValue(
-        parsedRequest.userName, 5, parsedRequest.options.at(0), {0});
+    _communicatorInstance->utilitarySetADatabaseValue(parsedRequest.userName, 5, parsedRequest.options.at(0), {0});
 }
 
 void AdminPanel::_updateNameAction(AdminPanel::PanelCommand parsedRequest)
