@@ -109,6 +109,7 @@ ClientRoom::ClientRoom()
     _networkInformations = Client();
     _serverEndpoint = Client();
     _highInstanceEndpoint = Client();
+    _highInstanceEndpoint.setId(0);
     _communicatorInstance = std::make_shared<Communicator>(_networkInformations);
     _worldInstance = std::make_shared<World>(1);
     _transisthorInstance = std::make_shared<Transisthor>(*(_communicatorInstance.get()), *(_worldInstance.get()));
@@ -125,6 +126,7 @@ ClientRoom::ClientRoom(std::string address, unsigned short port, std::string ser
     _networkInformations = Client(address, port);
     _serverEndpoint = Client(serverAddress, serverPort);
     _highInstanceEndpoint = Client(serverAddress, serverPort);
+    _highInstanceEndpoint.setId(0);
     _communicatorInstance = std::make_shared<Communicator>(_networkInformations);
     _worldInstance = std::make_shared<World>(1);
     _transisthorInstance = std::make_shared<Transisthor>(*(_communicatorInstance.get()), *(_worldInstance.get()));
@@ -496,10 +498,7 @@ void ClientRoom::_updateEcsEntities()
             case MenuStates::MAIN_MENU:
                 if (_oldMenuStates == MenuStates::PAUSED) {
                     try {
-                        _communicatorInstance->getClientByHisId(_serverEndpoint.getId())
-                            .setAddress(_highInstanceEndpoint.getAddress());
-                        _communicatorInstance->getClientByHisId(_serverEndpoint.getId())
-                            .setPort(_highInstanceEndpoint.getPort());
+                        _communicatorInstance->replaceClientByAnother(_serverEndpoint, _highInstanceEndpoint);
                         _serverEndpoint = _highInstanceEndpoint;
                     } catch (NetworkError &e) {
                         std::cerr << "Network error: " << e.what() << std::endl;

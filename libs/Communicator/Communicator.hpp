@@ -203,6 +203,11 @@ namespace communicator_lib
         /// @return RoomConfiguration The configuration of the room.
         RoomConfiguration utilitaryReceiveRoomConfiguration(CommunicatorMessage cryptedMessage);
 
+        /// @brief Replace a client in the memory by another
+        /// @param oldClient The oldest client to replace
+        /// @param newClient to replace with
+        void replaceClientByAnother(Client oldClient, Client newClient);
+
       private:
         /// @brief Send a protocol 20 to a client
         /// @param client The destination
@@ -216,11 +221,6 @@ namespace communicator_lib
         /// @brief If the data type is 3X, the function will process the data following the 3X protocol
         /// @param lastMessage Message to trait
         void receiveProtocol3X(Message lastMessage);
-
-        /// @brief Replace a client in the memory by another
-        /// @param oldClient The oldest client to replace
-        /// @param newClient to replace with
-        void replaceClientByAnother(Client oldClient, Client newClient);
 
         /// @brief List of all the current client
         std::vector<Client> _clientList;
