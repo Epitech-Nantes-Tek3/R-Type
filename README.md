@@ -143,4 +143,14 @@ Do not hesitate to contact any member for any questions or remarks. You can clic
 
 ## **Authors**
 
-- **[Tom Duval-Mahe](tom.duvalmahe@epitech.eu), [Quentin Camilleri](quentin.camilleri@epitech.eu), [Thomas Prud'homme](thomas.prudhomme@epitech.eu), [Nathan Rousseau](nathan.rousseau@epitech.eu), [Lucas Tesnier](lucas.tesnier@epitech.eu)**
+<table>
+    <tbody>
+        <tr>
+            <td align="center"><a href="https://github.com/TomDUVAL-MAHE"><img src="https://avatars.githubusercontent.com/u/72017980?v=4" width="100px;" alt="Tom Duval-Mahe"/><br/><sub><b>Tom Duval-Mahe</b></sub></a><br/></td>
+            <td align="center"><a href="https://github.com/ZQUEMA/"><img src="https://avatars.githubusercontent.com/u/56249749?s=96&v=4" width="100px;" alt="ZQUEMA"/><br/><sub><b>Quentin Camilleri</b></sub></a><br/></td>
+            <td align="center"><a href="https://github.com/osvegn/"><img src="https://avatars.githubusercontent.com/u/72011124?v=4" width="100px;" alt="osvegn"/><br/><sub><b>Thomas Prud'homme</b></sub></a><br/></td>
+            <td align="center"><a href="https://github.com/31Nathan/"><img src="https://avatars.githubusercontent.com/u/72010794?v=4" width="100px;" alt="31Nathan"/><br/><sub><b>Nathan Rousseau</b></sub></a><br/></td>
+            <td align="center"><a href="https://github.com/LucasTesnier/"><img src="https://avatars.githubusercontent.com/u/72015360?v=4" width="100px;" alt="LucasTesnier"/><br/><sub><b>Lucas Tesnier</b></sub></a><br/></td>
+        </tr>
+    </tbody>
+</table>
