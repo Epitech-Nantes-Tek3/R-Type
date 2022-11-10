@@ -36,7 +36,6 @@ var NAVTREE =
         [ "Authors", "md__r_e_a_d_m_e.html#autotoc_md7", null ]
       ] ]
     ] ],
-    [ "LICENSE", "md__l_i_c_e_n_s_e.html", null ],
     [ "Development Rules", "md__c_o_n_t_r_i_b_u_t_i_n_g.html", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
@@ -79,7 +78,7 @@ var NAVTREEINDEX =
 "classcommunicator__lib_1_1_communicator.html#abf12e00a58c4ebfe7b2d9b0f730178ef",
 "classecs_1_1_networkable.html#ae27ad133ebb6f887f7533fc4eaf56d36",
 "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_music_resource.html#aaf76fb3f6ec7b527b30d775ef66817d4",
-"structargument__handler_1_1_argument_handler_1_1_client_information.html#a06e8da18ef7134ee456da2c66be2bbfa"
+"structargument__handler_1_1_argument_handler_1_1_client_information.html#a7f538c995fbf1a264d4be62829e3b136"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
