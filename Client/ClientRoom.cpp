@@ -533,7 +533,8 @@ void ClientRoom::_updateEcsEntities()
                 _worldInstance->getResource<GameStates>().currentState = GameStates::IN_GAME;
                 _initInGameButtons();
                 _initInGameWritables();
-                _initInGameBackgrounds();
+                if (_worldInstance->joinEntities<ParallaxBackground>().empty())
+                    _initInGameBackgrounds();
                 break;
             case MenuStates::PAUSED: _initPausedButton(); break;
             default: break;

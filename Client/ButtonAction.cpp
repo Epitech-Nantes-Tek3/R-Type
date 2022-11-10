@@ -168,12 +168,14 @@ void launchSoloGame(World &world, Entity &entityPtr)
 {
     (void)entityPtr;
     world.getResource<MenuStates>().currentState = MenuStates::SOLO_GAME;
+    oldMenuState = MenuStates::SOLO_GAME;
 }
 
 void goToLobby(World &world, Entity &entityPtr)
 {
     (void)entityPtr;
     world.getResource<MenuStates>().currentState = MenuStates::LOBBY;
+    oldMenuState = MenuStates::LOBBY;
 }
 
 void goToMainMenu(World &world, Entity &entityPtr)
