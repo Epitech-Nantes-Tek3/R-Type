@@ -1,11 +1,16 @@
-# R-Type
+# **R-Type**
 ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black) ![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)
 
 ![C++](https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white)
 ![CMake](https://img.shields.io/badge/CMake-%23008FBA.svg?style=for-the-badge&logo=cmake&logoColor=white)
  ![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white) ![CodeCov](https://img.shields.io/badge/codecov-%23ff0077.svg?style=for-the-badge&logo=codecov&logoColor=white)
+
 ***
-## Introduction
+
+## **Resume**
+
+***
+## **Introduction**
 
 The goal of the Epitech R-Type project is to implement a multithreaded server and a graphical client for a game called R-Type, using an engine of our own design.
 
@@ -16,13 +21,30 @@ It uses three libraries:
 * Boost: The library used to manage communication, threads and processes.
 * SQLite3: The library used to manage the storage.
 
-It is compatible on Linux and Windows.
+## **Supported Platforms**
 
-## Prerequisites
+The R-Type project is supported on Windows AND Linux !!
+
+***
+
+## **How to play ?**
+
+### **Prerequisites**
 
 To build our R-Type project, you will need CMake 3.17.0 Compiler, C++ 20 and Conan.
-****
-## Build the program
+
+
+***
+
+## **Game**
+
+### **Story**
+
+***
+
+## **For developers**
+
+### **Build the program**
 
 On Linux :
 
@@ -44,11 +66,17 @@ On Windows :
     cd ..
     cmake -B ./build -DCMAKE_BUILD_TYPE=Release
     cmake --build ./build
-    "copy .\Debug\r-type_client.exe ."
-    "copy .\Debug\r-type_server.exe ."
+    copy ".\Debug\r-type_server.exe" .
+    copy ".\Debug\r-type_client.exe" .
+    copy ".\Debug\r-type_room.exe" .
+    copy ".\Debug\r-type_admin_panel.exe" .
 ```
 
-## Testing program
+### **Testing program**
+
+The tests are available on Linux.
+You can test the code using with the following commands.
+
 ```bash
     rm -rf ./build
     cmake -B ./build -DCMAKE_BUILD_TYPE=Debug -DTESTING=ON
@@ -57,24 +85,20 @@ On Windows :
     ctest --ouput-on-failure
 ```
 
-## Supported Platform
 
-The R-Type project is supported on Windows AND Linux !!
+### **Documentation**
 
+The code documentation is available [here](). <br>
+Additional documentation such as the protocols used or the database can be found [here](https://amazing-partridge-567.notion.site/R-Type-Documentations-On-est-que-4-de59851ea5e64808a3c3d9f145a960a9).
 
-## Usefulls Links
+***
 
-You can see the UDP Protocol used in the project right [here](https://amazing-partridge-567.notion.site/R-Type-Documentations-On-est-que-4-de59851ea5e64808a3c3d9f145a960a9)
+## **Thank for reading**
 
+Feel free to read the `CONTRIBUTING.md`.
 
-## Thank for reading
+Do not hesitate to contact any member for any questions or remarks. You can click on each following name.
 
-Feel free to read the CONTRIBUTING.md
+## **Authors**
 
-Do not hesitate to contact any member for any questions or remarks.
-
-* Mail -> firstname.lastname@epitech.eu
-
-## Authors
-
-* **Tom Duval-Mahe, Quentin Camilleri, Thomas Prud'homme, Nathan Rousseau, Lucas Tesnier**
+* **[Tom Duval-Mahe](tom.duvalmahe@epitech.eu), [Quentin Camilleri](quentin.camilleri@epitech.eu), [Thomas Prud'homme](thomas.prudhomme@epitech.eu), [Nathan Rousseau](nathan.rousseau@epitech.eu), [Lucas Tesnier](lucas.tesnier@epitech.eu)**
