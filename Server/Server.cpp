@@ -173,15 +173,25 @@ void Server::_holdACreateRoomRequest(CommunicatorMessage createDemand)
 
 void Server::_holdANewConnectionRequest(CommunicatorMessage connectionDemand)
 {
-    char *pseudo = (char *)connectionDemand.message.data;
-    char *password = (char *)connectionDemand.message.data + sizeof(char) * 5;
-    std::string pseudoStr = std::string(5, '\0');
-    std::string passwordStr = std::string(5, '\0');
+    unsigned short offset = 0;
+    unsigned short passwordSize = 0;
+    unsigned short pseudoSize = 0;
 
-    for (int i = 0; i < 5; i++) {
+    std::memcpy(&pseudoSize, connectionDemand.message.data, sizeof(unsigned short));
+    offset += sizeof(unsigned short);
+    char *pseudo = (char *)connectionDemand.message.data + offset;
+    offset += sizeof(char) * pseudoSize;
+    std::memcpy(&passwordSize, (void *)((char *)connectionDemand.message.data + offset), sizeof(unsigned short));
+    offset += sizeof(unsigned short);
+    char *password = (char *)connectionDemand.message.data + offset;
+    offset += sizeof(char) * passwordSize;
+    std::string pseudoStr = std::string(pseudoSize, '\0');
+    std::string passwordStr = std::string(passwordSize, '\0');
+
+    for (int i = 0; i < pseudoSize; i++)
         pseudoStr[i] += pseudo[i];
-        passwordStr[i] += password[i];
-    }
+    for (int i = 0; i < passwordSize; i++)
+        passwordStr[i] = password[i];
     auto apiAnswer = _databaseApi.selectUsers("UserName = '" + pseudoStr + "'");
     if (apiAnswer.empty()) {
         _databaseApi.addUser(pseudoStr, passwordStr, false, false, false);
@@ -193,7 +203,7 @@ void Server::_holdANewConnectionRequest(CommunicatorMessage connectionDemand)
     }
     void *networkData =
         std::malloc(sizeof(unsigned short) + _activeRoomList.size() * (sizeof(unsigned short) + sizeof(char) * 10));
-    std::size_t offset = 0;
+    offset = 0;
     unsigned short roomListSize = _activeRoomList.size();
 
     if (networkData == nullptr)
