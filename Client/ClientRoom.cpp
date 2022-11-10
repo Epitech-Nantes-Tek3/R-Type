@@ -203,8 +203,6 @@ void ClientRoom::_holdAChatRequest(CommunicatorMessage chatRequest)
     std::for_each(joined.begin(), joined.end(), moveChatPos);
     createNewChatMessage(
         *(_worldInstance.get()), 1470, 840, 310, 45, 5.0, chatInformation.at(0), chatInformation.at(1));
-
-    std::cerr << "Receiving a new chat from " << chatInformation.at(0) << " : " << chatInformation.at(1) << std::endl;
 }
 
 void ClientRoom::_holdADisconnectionRequest() { _state = ClientState::ENDED; }
@@ -497,9 +495,11 @@ void ClientRoom::_updateEcsEntities()
                 if (_oldMenuStates == MenuStates::PAUSED) {
                     _serverEndpoint = _highInstanceEndpoint;
                     try {
-                        _communicatorInstance->getClientByHisId(0).setAddress(_serverEndpoint.getAddress());
-                        _communicatorInstance->getClientByHisId(0).setPort(_serverEndpoint.getPort());
-                    } catch (NetworkError &e) {}
+                        _communicatorInstance->getClientByHisId(_serverEndpoint.getId()).setAddress(_serverEndpoint.getAddress());
+                        _communicatorInstance->getClientByHisId(_serverEndpoint.getId()).setPort(_serverEndpoint.getPort());
+                    } catch (NetworkError &e) {
+                        std::cerr << e.what() << std::endl;
+                    }
                 }
                 if (_oldMenuStates == MenuStates::PAUSED) {
                     _removeMultiSystems();
@@ -517,9 +517,11 @@ void ClientRoom::_updateEcsEntities()
                 if (_oldMenuStates == MenuStates::PAUSED) {
                     _serverEndpoint = _highInstanceEndpoint;
                     try {
-                        _communicatorInstance->getClientByHisId(0).setAddress(_serverEndpoint.getAddress());
-                        _communicatorInstance->getClientByHisId(0).setPort(_serverEndpoint.getPort());
-                    } catch (NetworkError &e) {}
+                        _communicatorInstance->getClientByHisId(_serverEndpoint.getId()).setAddress(_serverEndpoint.getAddress());
+                        _communicatorInstance->getClientByHisId(_serverEndpoint.getId()).setPort(_serverEndpoint.getPort());
+                    } catch (NetworkError &e) {
+                        std::cerr << e.what() << std::endl;
+                    }
                 }
                 askForRooms();
                 _initLobbyButtons();
@@ -532,7 +534,7 @@ void ClientRoom::_updateEcsEntities()
                 break;
             case MenuStates::MULTI_GAME:
                 if (_oldMenuStates == MenuStates::LOBBY) {
-                    _disconectionProcess();
+                    // _disconectionProcess();
                 }
                 _worldInstance->getResource<GameStates>().currentState = GameStates::IN_GAME;
                 _initInGameButtons();
