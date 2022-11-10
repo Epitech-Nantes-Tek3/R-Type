@@ -16,7 +16,6 @@
 #include "TextureName.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Components/NetworkServer.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/GameStates.hpp"
-#include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/MenuStates.hpp"
 #include "R-TypeLogic/Global/Components/ControlableComponent.hpp"
 #include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
 #include "R-TypeLogic/Global/Components/TextComponent.hpp"
@@ -202,4 +201,9 @@ void goToMainMenu(World &world, Entity &entityPtr)
         world.removeEntity(it->getId());
     }
     world.getResource<MenuStates>().currentState = MenuStates::MAIN_MENU;
+}
+
+MenuStates::menuState_e getPreviousMenu()
+{
+    return (oldMenuState);
 }

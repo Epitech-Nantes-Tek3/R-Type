@@ -300,7 +300,7 @@ void ClientRoom::_startLoop()
         if (isMenuUpdated)
             _updateEcsData();
         currentMenuStates = _worldInstance->getResource<MenuStates>().currentState;
-        if (currentMenuStates != MenuStates::MAIN_MENU && currentMenuStates != MenuStates::SOLO_GAME && currentMenuStates != MenuStates::PAUSED) {
+        if (currentMenuStates != MenuStates::MAIN_MENU && currentMenuStates != MenuStates::SOLO_GAME && (currentMenuStates != MenuStates::SOLO_GAME && getPreviousMenu() != MenuStates::SOLO_GAME)) {
             if (!_answerProtocols())
                 return;
         }
@@ -311,38 +311,6 @@ void ClientRoom::_startLoop()
     }
     _disconectionProcess();
 }
-
-// void ClientRoom::_startLoop()
-// {
-//     std::signal(SIGINT, signalCallbackHandler);
-//     MenuStates::menuState_e _oldMenuState;
-
-//     // to call on multi selected
-//     // if (_state != ClientState::ENDED)
-//         // _startConnexionProtocol();
-//     _state = ClientState::MAIN_MENU;
-//     _updateEcsData();
-//     while (_state != ClientState::ENDED) {
-//         if (!_answerProtocols(isSolo))
-//             return;
-//         if (_worldInstance->containsResource<MenuStates>()) {
-//             if (_state != ClientState::ENDED
-//                 && _worldInstance->getResource<MenuStates>().currentState == MenuStates::LOBBY
-//                 && _state != ClientRoom::LOBBY) {
-//                 _state = ClientState::LOBBY;
-//                 _updateEcsData();
-//             }
-//             if (_state != ClientState::ENDED
-//                 && _worldInstance->getResource<MenuStates>().currentState == MenuStates::IN_GAME
-//                 && _state != ClientRoom::IN_GAME) {
-//                 _state = ClientState::IN_GAME;
-//                 _updateEcsData();
-//             }
-//         }
-//         _worldInstance.get()->runSystems(); /// WILL BE IMPROVED IN PART TWO (THREAD + CLOCK)
-//     }
-//     _disconectionProcess();
-// }
 
 void ClientRoom::_updateEcsResources()
 {

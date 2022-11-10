@@ -9,6 +9,7 @@
 #define BUTTONACTION_HPP_
 
 #include "World/World.hpp"
+#include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/MenuStates.hpp"
 
 /// @brief Exit the windows by disconecting the client
 /// @param world the world where the window will be closed
@@ -70,5 +71,7 @@ void createARoom(World &world, Entity &entityPtr, std::string &message);
 /// @param world The world that the entity is in.
 /// @param entityPtr The entity that the button is attached to.
 void goToMainMenu(World &world, Entity &entityPtr);
+
+MenuStates::menuState_e getPreviousMenu();
 
 #endif /* !BUTTONACTION_HPP_ */
