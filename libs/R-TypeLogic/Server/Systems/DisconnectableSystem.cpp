@@ -9,8 +9,9 @@
 #include <mutex>
 #include "Transisthor/TransisthorECSLogic/Server/Components/NetworkClient.hpp"
 #include "R-TypeLogic/Global/Components/DeathComponent.hpp"
-#include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
 #include "R-TypeLogic/Global/Components/DisconnectableComponent.hpp"
+#include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
+#include "R-TypeLogic/Global/SharedResources/GlobalScore.hpp"
 
 using namespace ecs;
 
@@ -28,6 +29,21 @@ void DisconnectableSystem::run(World &world)
         world.getTransisthorBridge()->getCommunicatorInstance().getDatabaseApi().updateUsers(
             "Deaths = " + std::to_string(std::atoi(apiAnswer.at(0)["Deaths"].c_str()) + 1),
             "UserName = '" + entityPtr->getComponent<Player>().name + "'");
+
+        if (world.containsResource<GlobalScore>()) {
+            GlobalScore &gbScore = world.getResource<GlobalScore>();
+            gbScore.lock();
+            unsigned int currentScore = gbScore.getScore();
+            gbScore.unlock();
+            unsigned int storedScore = std::atoi(apiAnswer.at(0)["HighestScore"].c_str());
+            if (currentScore <= storedScore) {
+                return;
+            }
+            world.getTransisthorBridge()->getCommunicatorInstance().getDatabaseApi().updateUsers(
+                "HighestScore = " + std::to_string(currentScore),
+                "UserName = '" + entityPtr->getComponent<Player>().name + "'");
+        }
+
         /// NB : WHEN A NEW RELATIVE OBJECT IS LINK TO A PLAYER, DONT FORGET TO ADD DEATH COMPONENT TO IT RIGHT
         /// THERE
     };
