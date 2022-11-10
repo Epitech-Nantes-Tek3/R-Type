@@ -298,7 +298,8 @@ void ClientRoom::_startLoop()
         if (isMenuUpdated)
             _updateEcsData();
         currentMenuStates = _worldInstance->getResource<MenuStates>().currentState;
-        if (currentMenuStates != MenuStates::MAIN_MENU && currentMenuStates != MenuStates::SOLO_GAME && (currentMenuStates != MenuStates::SOLO_GAME && getPreviousMenu() != MenuStates::SOLO_GAME)) {
+        if (currentMenuStates != MenuStates::MAIN_MENU && currentMenuStates != MenuStates::SOLO_GAME
+            && (currentMenuStates != MenuStates::SOLO_GAME && getPreviousMenu() != MenuStates::SOLO_GAME)) {
             if (!_answerProtocols())
                 return;
         }
@@ -469,12 +470,12 @@ void ClientRoom::_initPausedButton()
 {
     sf::Vector2u windowSize = _worldInstance->getResource<RenderWindowResource>().window.getSize();
 
-    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 4 - 25, 200, 50, ButtonActionMap::RESUME, LayerLvL::BUTTON,
-        MenuStates::PAUSED, "Resume");
+    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 4 - 25, 200, 50,
+        ButtonActionMap::RESUME, LayerLvL::BUTTON, MenuStates::PAUSED, "Resume");
     createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 4 * 2 - 25, 200, 50,
         ButtonActionMap::GO_MAIN_MENU, LayerLvL::BUTTON, MenuStates::PAUSED, "Main menu");
-    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 4 * 3 - 25, 200, 50, ButtonActionMap::QUIT, LayerLvL::BUTTON,
-        MenuStates::PAUSED, "Exit");
+    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 4 * 3 - 25, 200, 50,
+        ButtonActionMap::QUIT, LayerLvL::BUTTON, MenuStates::PAUSED, "Exit");
 }
 
 void ClientRoom::_updateEcsEntities()
@@ -493,10 +494,12 @@ void ClientRoom::_updateEcsEntities()
         switch (_worldInstance->getResource<MenuStates>().currentState) {
             case MenuStates::MAIN_MENU:
                 if (_oldMenuStates == MenuStates::PAUSED) {
-                    _serverEndpoint = _highInstanceEndpoint;
                     try {
-                        _communicatorInstance->getClientByHisId(_serverEndpoint.getId()).setAddress(_serverEndpoint.getAddress());
-                        _communicatorInstance->getClientByHisId(_serverEndpoint.getId()).setPort(_serverEndpoint.getPort());
+                        _communicatorInstance->getClientByHisId(_serverEndpoint.getId())
+                            .setAddress(_highInstanceEndpoint.getAddress());
+                        _communicatorInstance->getClientByHisId(_serverEndpoint.getId())
+                            .setPort(_highInstanceEndpoint.getPort());
+                        _serverEndpoint = _highInstanceEndpoint;
                     } catch (NetworkError &e) {
                         std::cerr << "Network error: " << e.what() << std::endl;
                     }
@@ -504,7 +507,6 @@ void ClientRoom::_updateEcsEntities()
                 if (_oldMenuStates == MenuStates::PAUSED) {
                     _removeMultiSystems();
                     _removeSoloSystems();
-
                 }
                 if (_oldMenuStates == MenuStates::MULTI_GAME || _oldMenuStates == MenuStates::LOBBY) {
                     _removeMultiSystems();
@@ -517,8 +519,10 @@ void ClientRoom::_updateEcsEntities()
                 if (_oldMenuStates == MenuStates::PAUSED) {
                     _serverEndpoint = _highInstanceEndpoint;
                     try {
-                        _communicatorInstance->getClientByHisId(_serverEndpoint.getId()).setAddress(_serverEndpoint.getAddress());
-                        _communicatorInstance->getClientByHisId(_serverEndpoint.getId()).setPort(_serverEndpoint.getPort());
+                        _communicatorInstance->getClientByHisId(_serverEndpoint.getId())
+                            .setAddress(_serverEndpoint.getAddress());
+                        _communicatorInstance->getClientByHisId(_serverEndpoint.getId())
+                            .setPort(_serverEndpoint.getPort());
                     } catch (NetworkError &e) {
                         std::cerr << "Network error: " << e.what() << std::endl;
                     }
@@ -527,7 +531,8 @@ void ClientRoom::_updateEcsEntities()
                 _initLobbyButtons();
                 break;
             case MenuStates::SOLO_GAME:
-                _initSoloData();
+                if (_oldMenuStates != MenuStates::PAUSED)
+                    _initSoloData();
                 _initInGameButtons();
                 _initInGameWritables();
                 _initInGameBackgrounds();
@@ -541,9 +546,7 @@ void ClientRoom::_updateEcsEntities()
                 _initInGameWritables();
                 _initInGameBackgrounds();
                 break;
-            case MenuStates::PAUSED:
-                _initPausedButton();
-                break;
+            case MenuStates::PAUSED: _initPausedButton(); break;
             default: break;
         }
     }
