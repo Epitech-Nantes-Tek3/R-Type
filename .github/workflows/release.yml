@@ -83,7 +83,7 @@ jobs:
     - name: Package
       run: |
         cd build/
-        cpack -G WIX -C Debug
+        cpack -G WIX -C Release
     - name: Upload Artifact
       uses: actions/upload-artifact@v3
       with:
