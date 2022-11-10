@@ -346,7 +346,7 @@ void ClientRoom::_updateEcsResources(bool isSolo)
     if (!_worldInstance->containsResource<ButtonActionMap>())
         _worldInstance->addResource<ButtonActionMap>();
     if (!_worldInstance->containsResource<GameLevel>())
-        _worldInstance->addResource<GameLevel>(isSolo);
+        _worldInstance->addResource<GameLevel>();
     if (_worldInstance->containsResource<GraphicsTextureResource>())
         _loadTextures();
     if (_worldInstance->containsResource<ButtonActionMap>())

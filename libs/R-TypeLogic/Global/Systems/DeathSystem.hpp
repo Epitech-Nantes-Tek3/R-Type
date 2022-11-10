@@ -28,13 +28,13 @@ namespace ecs
 
             auto death = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
                 auto guard = std::lock_guard(*entityPtr.get());
-                if (entityPtr->contains<Enemy>() && world.containsResource<GameLevel>()) {
-                    GameLevel &gameLevel = world.getResource<GameLevel>();
-                    gameLevel.lock();
-                    gameLevel.addNewKills();
-                    gameLevel.unlock();
-                }
                 if (entityPtr.get()->getComponent<Death>().modified != true) {
+                    if (entityPtr->contains<Enemy>() && world.containsResource<GameLevel>()) {
+                        GameLevel &gameLevel = world.getResource<GameLevel>();
+                        gameLevel.lock();
+                        gameLevel.addNewKills();
+                        gameLevel.unlock();
+                    }
                     world.removeEntity(entityPtr->getId());
                 }
             };
