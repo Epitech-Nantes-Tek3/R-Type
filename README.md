@@ -1,21 +1,27 @@
-***
-[![CI](https://github.com/osvegn/R-Type/actions/workflows/CI.yml/badge.svg)](https://github.com/osvegn/R-Type/actions/workflows/CI.yml)
-
-[![codecov](https://codecov.io/gh/R-Type-Epitech-Nantes/R-Type/branch/master/graph/badge.svg?token=iUiqejopI0)](https://codecov.io/gh/R-Type-Epitech-Nantes/R-Type)
-
-[![forthebadge](https://forthebadge.com/images/badges/made-with-c-plus-plus.svg)](https://forthebadge.com)
-***
-
 # R-Type
+![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black) ![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)
+
+![C++](https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white)
+![CMake](https://img.shields.io/badge/CMake-%23008FBA.svg?style=for-the-badge&logo=cmake&logoColor=white)
+ ![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white) ![CodeCov](https://img.shields.io/badge/codecov-%23ff0077.svg?style=for-the-badge&logo=codecov&logoColor=white)
+***
+## Introduction
 
 The goal of the Epitech R-Type project is to implement a multithreaded server and a graphical client for a game called R-Type, using an engine of our own design.
 
-Composed of two parts, namely the server and the client both in C++ with the graphic library SFML for the client and boost asio for the server.
+The project is composed of two parts: the server and the client, both in C++.
+
+It uses three libraries:
+* SFML: The library used to display.
+* Boost: The library used to manage communication, threads and processes.
+* SQLite3: The library used to manage the storage.
+
+It is compatible on Linux and Windows.
 
 ## Prerequisites
 
 To build our R-Type project, you will need CMake 3.17.0 Compiler, C++ 20 and Conan.
-
+****
 ## Build the program
 
 On Linux :
@@ -58,7 +64,7 @@ The R-Type project is supported on Windows AND Linux !!
 
 ## Usefulls Links
 
-You can see the UDP Protocol used in the project [right here](https://www.notion.so/3e9469baeb9e4ae2bf05c215babdf142?v=4047238dabd94ec6b7c035eabf6bbc31)
+You can see the UDP Protocol used in the project right [here](https://amazing-partridge-567.notion.site/R-Type-Documentations-On-est-que-4-de59851ea5e64808a3c3d9f145a960a9)
 
 
 ## Thank for reading
