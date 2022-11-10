@@ -48,6 +48,7 @@ var namespaceecs =
     [ "Weight", "classecs_1_1_weight.html", "classecs_1_1_weight" ],
     [ "GameClock", "classecs_1_1_game_clock.html", "classecs_1_1_game_clock" ],
     [ "GameLevel", "classecs_1_1_game_level.html", "classecs_1_1_game_level" ],
+    [ "GlobalScore", "classecs_1_1_global_score.html", "classecs_1_1_global_score" ],
     [ "RandomDevice", "structecs_1_1_random_device.html", "structecs_1_1_random_device" ],
     [ "DeathSystem", "structecs_1_1_death_system.html", "structecs_1_1_death_system" ],
     [ "ElectricInvisibleEnemy", "structecs_1_1_electric_invisible_enemy.html", "structecs_1_1_electric_invisible_enemy" ],

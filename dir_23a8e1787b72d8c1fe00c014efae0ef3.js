@@ -8,6 +8,10 @@ var dir_23a8e1787b72d8c1fe00c014efae0ef3 =
     [ "GameLevel.hpp", "_game_level_8hpp.html", [
       [ "GameLevel", "classecs_1_1_game_level.html", "classecs_1_1_game_level" ]
     ] ],
+    [ "GlobalScore.cpp", "_global_score_8cpp.html", null ],
+    [ "GlobalScore.hpp", "_global_score_8hpp.html", [
+      [ "GlobalScore", "classecs_1_1_global_score.html", "classecs_1_1_global_score" ]
+    ] ],
     [ "Random.hpp", "_random_8hpp.html", [
       [ "RandomDevice", "structecs_1_1_random_device.html", "structecs_1_1_random_device" ]
     ] ]

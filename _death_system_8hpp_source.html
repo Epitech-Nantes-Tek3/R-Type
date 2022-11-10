@@ -104,9 +104,10 @@ $(document).ready(function(){initNavTree('_death_system_8hpp_source.html',''); i
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_death_component_8hpp.html">R-TypeLogic/Global/Components/DeathComponent.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_enemy_component_8hpp.html">R-TypeLogic/Global/Components/EnemyComponent.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_game_level_8hpp.html">R-TypeLogic/Global/SharedResources/GameLevel.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceecs.html">ecs</a></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;{</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_global_score_8hpp.html">R-TypeLogic/Global/SharedResources/GlobalScore.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceecs.html">ecs</a></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;{    </div>
 <div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="structecs_1_1_death_system.html">   24</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structecs_1_1_death_system.html">DeathSystem</a> : <span class="keyword">public</span> <a class="code" href="classecs_1_1_system.html">System</a> {</div>
 <div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="structecs_1_1_death_system.html#a96e3831feca5f69d82df7cf6906896bf">   25</a></span>&#160;        <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="structecs_1_1_death_system.html#a96e3831feca5f69d82df7cf6906896bf">run</a>(<a class="code" href="classecs_1_1_world.html">World</a> &amp;world) <span class="keyword">override</span> <span class="keyword">final</span></div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        {</div>
@@ -115,36 +116,48 @@ $(document).ready(function(){initNavTree('_death_system_8hpp_source.html',''); i
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            <span class="keyword">auto</span> death = [&amp;world](std::shared_ptr&lt;ecs::Entity&gt; entityPtr) {</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                <span class="keyword">auto</span> guard = std::lock_guard(*entityPtr.get());</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                <span class="keywordflow">if</span> (entityPtr.get()-&gt;getComponent&lt;<a class="code" href="classecs_1_1_death.html">Death</a>&gt;().<a class="code" href="classecs_1_1_death.html#a1c6e3b678ccc2ba3fc556b16cfe337cc">modified</a> != <span class="keyword">true</span>) {</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                    <span class="keywordflow">if</span> (entityPtr-&gt;contains&lt;<a class="code" href="classecs_1_1_enemy.html">Enemy</a>&gt;() &amp;&amp; world.containsResource&lt;<a class="code" href="classecs_1_1_game_level.html">GameLevel</a>&gt;()) {</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                        <a class="code" href="classecs_1_1_game_level.html">GameLevel</a> &amp;gameLevel = world.getResource&lt;<a class="code" href="classecs_1_1_game_level.html">GameLevel</a>&gt;();</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                        gameLevel.lock();</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                        gameLevel.<a class="code" href="classecs_1_1_game_level.html#a29622973cbf9f33e4116e7543e2e8fbe">addNewKills</a>();</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                        gameLevel.unlock();</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                    }</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                    world.removeEntity(entityPtr-&gt;getId());</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                }</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            };</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            std::for_each(joined.begin(), joined.end(), death);</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        }</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    };</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;} <span class="comment">// namespace ecs</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !DEATHSYSTEM_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                    <span class="keywordflow">if</span> (entityPtr-&gt;contains&lt;<a class="code" href="classecs_1_1_enemy.html">Enemy</a>&gt;()) {</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                        <span class="keywordflow">if</span> (world.containsResource&lt;<a class="code" href="classecs_1_1_game_level.html">GameLevel</a>&gt;()) {</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                            <a class="code" href="classecs_1_1_game_level.html">GameLevel</a> &amp;gameLevel = world.getResource&lt;<a class="code" href="classecs_1_1_game_level.html">GameLevel</a>&gt;();</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                            gameLevel.lock();</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                            gameLevel.<a class="code" href="classecs_1_1_game_level.html#a29622973cbf9f33e4116e7543e2e8fbe">addNewKills</a>();</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                            gameLevel.unlock();</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                        }</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                        <span class="keywordflow">if</span> (world.containsResource&lt;<a class="code" href="classecs_1_1_global_score.html">GlobalScore</a>&gt;()) {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                            <a class="code" href="classecs_1_1_global_score.html">GlobalScore</a> &amp;gbScore = world.getResource&lt;<a class="code" href="classecs_1_1_global_score.html">GlobalScore</a>&gt;();</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                            gbScore.lock();</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                            gbScore.<a class="code" href="classecs_1_1_global_score.html#a66790c28f303da2f6b18a95df9dd65c3">updateScore</a>(entityPtr-&gt;getComponent&lt;<a class="code" href="classecs_1_1_enemy.html">Enemy</a>&gt;().<a class="code" href="classecs_1_1_enemy.html#a444aee2e67fc44739943d9193363abbf">enemyType</a>);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                            gbScore.unlock();</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                        }</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                    }</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                    world.removeEntity(entityPtr-&gt;getId());</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                }</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            };</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            std::for_each(joined.begin(), joined.end(), death);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        }</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    };</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;}<span class="comment">// namespace ecs</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !DEATHSYSTEM_HPP_ */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="a_create_enemy_8hpp_html"><div class="ttname"><a href="_create_enemy_8hpp.html">CreateEnemy.hpp</a></div></div>
 <div class="ttc" id="a_death_component_8hpp_html"><div class="ttname"><a href="_death_component_8hpp.html">DeathComponent.hpp</a></div></div>
 <div class="ttc" id="a_enemy_component_8hpp_html"><div class="ttname"><a href="_enemy_component_8hpp.html">EnemyComponent.hpp</a></div></div>
 <div class="ttc" id="a_game_level_8hpp_html"><div class="ttname"><a href="_game_level_8hpp.html">GameLevel.hpp</a></div></div>
+<div class="ttc" id="a_global_score_8hpp_html"><div class="ttname"><a href="_global_score_8hpp.html">GlobalScore.hpp</a></div></div>
 <div class="ttc" id="a_networkable_id_generator_8hpp_html"><div class="ttname"><a href="_networkable_id_generator_8hpp.html">NetworkableIdGenerator.hpp</a></div></div>
 <div class="ttc" id="a_world_8hpp_html"><div class="ttname"><a href="_world_8hpp.html">World.hpp</a></div></div>
 <div class="ttc" id="aclassecs_1_1_death_html"><div class="ttname"><a href="classecs_1_1_death.html">ecs::Death</a></div><div class="ttdoc">The Death Component which defines that an entity is dead and will be deleted by Death System It's a n...</div><div class="ttdef"><b>Definition:</b> DeathComponent.hpp:17</div></div>
 <div class="ttc" id="aclassecs_1_1_death_html_a1c6e3b678ccc2ba3fc556b16cfe337cc"><div class="ttname"><a href="classecs_1_1_death.html#a1c6e3b678ccc2ba3fc556b16cfe337cc">ecs::Death::modified</a></div><div class="ttdeci">bool modified</div><div class="ttdoc">The network status of the component. True if it has been modified since it was last sent.</div><div class="ttdef"><b>Definition:</b> DeathComponent.hpp:20</div></div>
 <div class="ttc" id="aclassecs_1_1_enemy_html"><div class="ttname"><a href="classecs_1_1_enemy.html">ecs::Enemy</a></div><div class="ttdoc">Enemy Component allows an entity to be used as an Enemy.</div><div class="ttdef"><b>Definition:</b> EnemyComponent.hpp:16</div></div>
+<div class="ttc" id="aclassecs_1_1_enemy_html_a444aee2e67fc44739943d9193363abbf"><div class="ttname"><a href="classecs_1_1_enemy.html#a444aee2e67fc44739943d9193363abbf">ecs::Enemy::enemyType</a></div><div class="ttdeci">unsigned short enemyType</div><div class="ttdoc">The type of enemy, useful for the pattern and generated projectiles.</div><div class="ttdef"><b>Definition:</b> EnemyComponent.hpp:22</div></div>
 <div class="ttc" id="aclassecs_1_1_game_level_html"><div class="ttname"><a href="classecs_1_1_game_level.html">ecs::GameLevel</a></div><div class="ttdoc">Shared Resource game level, used to decide the current level of the game.</div><div class="ttdef"><b>Definition:</b> GameLevel.hpp:16</div></div>
 <div class="ttc" id="aclassecs_1_1_game_level_html_a29622973cbf9f33e4116e7543e2e8fbe"><div class="ttname"><a href="classecs_1_1_game_level.html#a29622973cbf9f33e4116e7543e2e8fbe">ecs::GameLevel::addNewKills</a></div><div class="ttdeci">void addNewKills(unsigned int newKills=1)</div><div class="ttdoc">Add new kills to the private value, increase the level if necessary.</div><div class="ttdef"><b>Definition:</b> GameLevel.cpp:14</div></div>
+<div class="ttc" id="aclassecs_1_1_global_score_html"><div class="ttname"><a href="classecs_1_1_global_score.html">ecs::GlobalScore</a></div><div class="ttdoc">Shared resource Score. When an enemy is killed, the score is updated. The added points depend on the ...</div><div class="ttdef"><b>Definition:</b> GlobalScore.hpp:17</div></div>
+<div class="ttc" id="aclassecs_1_1_global_score_html_a66790c28f303da2f6b18a95df9dd65c3"><div class="ttname"><a href="classecs_1_1_global_score.html#a66790c28f303da2f6b18a95df9dd65c3">ecs::GlobalScore::updateScore</a></div><div class="ttdeci">void updateScore(unsigned int enemyType)</div><div class="ttdoc">It updates the score, corresponding to the enemy type.</div><div class="ttdef"><b>Definition:</b> GlobalScore.cpp:13</div></div>
 <div class="ttc" id="aclassecs_1_1_system_html"><div class="ttname"><a href="classecs_1_1_system.html">ecs::System</a></div><div class="ttdef"><b>Definition:</b> System.hpp:19</div></div>
 <div class="ttc" id="aclassecs_1_1_world_html"><div class="ttname"><a href="classecs_1_1_world.html">ecs::World</a></div><div class="ttdef"><b>Definition:</b> World.hpp:32</div></div>
 <div class="ttc" id="anamespaceecs_html"><div class="ttname"><a href="namespaceecs.html">ecs</a></div><div class="ttdef"><b>Definition:</b> Component.hpp:13</div></div>
-<div class="ttc" id="astructecs_1_1_death_system_html"><div class="ttname"><a href="structecs_1_1_death_system.html">ecs::DeathSystem</a></div><div class="ttdoc">This is the Death System. This system takes all entities which have Dead Component and removes them f...</div><div class="ttdef"><b>Definition:</b> DeathSystem.hpp:24</div></div>
+<div class="ttc" id="astructecs_1_1_death_system_html"><div class="ttname"><a href="structecs_1_1_death_system.html">ecs::DeathSystem</a></div><div class="ttdoc">This is the Death System. This system takes all entities which have Dead Component and.</div><div class="ttdef"><b>Definition:</b> DeathSystem.hpp:24</div></div>
 <div class="ttc" id="astructecs_1_1_death_system_html_a96e3831feca5f69d82df7cf6906896bf"><div class="ttname"><a href="structecs_1_1_death_system.html#a96e3831feca5f69d82df7cf6906896bf">ecs::DeathSystem::run</a></div><div class="ttdeci">void run(World &amp;world) override final</div><div class="ttdoc">The main function which implements the desired logic.</div><div class="ttdef"><b>Definition:</b> DeathSystem.hpp:25</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

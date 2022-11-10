@@ -94,6 +94,7 @@ var hierarchy =
         [ "ecs::GameClock", "classecs_1_1_game_clock.html", null ],
         [ "ecs::GameLevel", "classecs_1_1_game_level.html", null ],
         [ "ecs::GameStates", "classecs_1_1_game_states.html", null ],
+        [ "ecs::GlobalScore", "classecs_1_1_global_score.html", null ],
         [ "ecs::MenuStates", "classecs_1_1_menu_states.html", null ],
         [ "ecs::RandomDevice", "structecs_1_1_random_device.html", null ],
         [ "graphicECS::SFML::Resources::GraphicsFontResource", "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_font_resource.html", null ],

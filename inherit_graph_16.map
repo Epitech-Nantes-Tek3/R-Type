@@ -7,7 +7,7 @@
 <area shape="rect" id="node6" href="$classecs_1_1_apply_input_delay.html" title="A system that is used to apply the input delay to the player." alt="" coords="182,208,342,235"/>
 <area shape="rect" id="node7" href="$structecs_1_1_collide.html" title="This is the Collide System. This system will check every entities, see if they collide and apply dama..." alt="" coords="213,259,311,285"/>
 <area shape="rect" id="node8" href="$structecs_1_1_death_life.html" title="This is the DeathLife System. This System takes all entities that have a Life Component with 0 HP/lif..." alt="" coords="205,309,319,336"/>
-<area shape="rect" id="node9" href="$structecs_1_1_death_system.html" title="This is the Death System. This system takes all entities which have Dead Component and removes them f..." alt="" coords="192,360,332,387"/>
+<area shape="rect" id="node9" href="$structecs_1_1_death_system.html" title="This is the Death System. This system takes all entities which have Dead Component and." alt="" coords="192,360,332,387"/>
 <area shape="rect" id="node10" href="$structecs_1_1_decrease_life_time.html" title="This is the DecreaseLifeTime System. This System decrease LifeTime Component at every tick...." alt="" coords="177,411,347,437"/>
 <area shape="rect" id="node11" href="$structecs_1_1_disconnectable_system.html" title="This is the Disconnectable System. It will add the disconnectableSystem component to all the associat..." alt="" coords="161,461,363,488"/>
 <area shape="rect" id="node12" href="$structecs_1_1_electric_invisible_enemy.html" title="This is the Electric Invisible System. It makes the electric enemy invisible if they are not in range..." alt="" coords="162,512,362,539"/>

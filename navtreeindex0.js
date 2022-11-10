@@ -247,7 +247,7 @@ var NAVTREEINDEX0 =
 "_game_level_8hpp_source.html":[5,0,1,6,1,1,3],
 "_game_states_8hpp.html":[5,0,1,6,0,0,1,2],
 "_game_states_8hpp_source.html":[5,0,1,6,0,0,1,2],
-"_graphics_font_resource_8hpp.html":[5,0,1,5,0,1,0],
-"_graphics_font_resource_8hpp_source.html":[5,0,1,5,0,1,0],
-"_graphics_rectangle_component_8cpp.html":[5,0,1,5,0,0,11]
+"_global_score_8cpp.html":[5,0,1,6,1,1,4],
+"_global_score_8hpp.html":[5,0,1,6,1,1,5],
+"_global_score_8hpp_source.html":[5,0,1,6,1,1,5]
 };
