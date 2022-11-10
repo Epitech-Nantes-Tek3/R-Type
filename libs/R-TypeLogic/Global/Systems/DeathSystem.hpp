@@ -43,8 +43,8 @@ namespace ecs
                             gbScore.unlock();
                         }
                     }
+                    world.removeEntity(entityPtr->getId());
                 }
-                world.removeEntity(entityPtr->getId());
             };
             std::for_each(joined.begin(), joined.end(), death);
         }
