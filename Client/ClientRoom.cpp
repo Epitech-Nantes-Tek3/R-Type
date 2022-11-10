@@ -480,12 +480,21 @@ void ClientRoom::_initLobbyButtons()
 
 void ClientRoom::askForRooms()
 {
-    void *networkData = std::malloc(sizeof(char) * 10);
+    unsigned short pseudoSize = _pseudo.size();
+    unsigned short passwordSize = _password.size();
+    void *networkData = std::malloc(sizeof(char) * (pseudoSize + passwordSize));
+    unsigned short offset = 0;
 
     if (networkData == nullptr)
         throw MallocError("Malloc failed.");
-    std::memcpy(networkData, _pseudo.c_str(), sizeof(char) * 5);
-    std::memcpy((void *)((char *)networkData + sizeof(char) * 5), _password.c_str(), sizeof(char) * 5);
+    std::memcpy(networkData, &pseudoSize, sizeof(unsigned short));
+    offset += sizeof(unsigned short);
+    std::memcpy((void *)((char *)networkData + offset), _pseudo.c_str(), sizeof(char) * pseudoSize);
+    offset += sizeof(char) * pseudoSize;
+    std::memcpy((void *)((char *)networkData + offset), &passwordSize, sizeof(unsigned short));
+    offset += sizeof(unsigned short);
+    std::memcpy((void *)((char *)networkData + offset), _password.c_str(), sizeof(char) * passwordSize);
+    offset += sizeof(char) * passwordSize;
     _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, networkData, sizeof(char) * 10, 14);
     std::free(networkData);
 }
@@ -524,6 +533,11 @@ void ClientRoom::_updateEcsEntities()
                         _communicatorInstance->getClientByHisId(0).setPort(_serverEndpoint.getPort());
                     } catch (NetworkError &e) {}
                 }
+                if (_oldMenuStates == MenuStates::PAUSED) {
+                    _removeMultiSystems();
+                    _removeSoloSystems();
+
+                }
                 if (_oldMenuStates == MenuStates::MULTI_GAME || _oldMenuStates == MenuStates::LOBBY) {
                     _removeMultiSystems();
                 } else if (_oldMenuStates == MenuStates::SOLO_GAME) {
@@ -534,8 +548,10 @@ void ClientRoom::_updateEcsEntities()
             case MenuStates::LOBBY:
                 if (_oldMenuStates == MenuStates::PAUSED) {
                     _serverEndpoint = _highInstanceEndpoint;
-                    _communicatorInstance->getClientByHisId(0).setAddress(_serverEndpoint.getAddress());
-                    _communicatorInstance->getClientByHisId(0).setPort(_serverEndpoint.getPort());
+                    try {
+                        _communicatorInstance->getClientByHisId(0).setAddress(_serverEndpoint.getAddress());
+                        _communicatorInstance->getClientByHisId(0).setPort(_serverEndpoint.getPort());
+                    } catch (NetworkError &e) {}
                 }
                 askForRooms();
                 _initLobbyButtons();
@@ -550,6 +566,7 @@ void ClientRoom::_updateEcsEntities()
                 if (_oldMenuStates == MenuStates::LOBBY) {
                     _disconectionProcess();
                 }
+                _worldInstance->getResource<GameStates>().currentState = GameStates::IN_GAME;
                 _initInGameButtons();
                 _initInGameWritables();
                 _initInGameBackgrounds();
@@ -720,6 +737,8 @@ void ClientRoom::_removeSoloSystems()
         _worldInstance->removeSystem<DecreaseLifeTime>();
     if (_worldInstance->containsSystem<ApplyInputDelay>())
         _worldInstance->removeSystem<ApplyInputDelay>();
+    if (_worldInstance->containsResource<GameLevel>())
+        _worldInstance->removeResource<GameLevel>();
 }
 
 void ClientRoom::_updateEcsData()
