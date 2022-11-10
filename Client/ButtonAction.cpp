@@ -7,8 +7,10 @@
 
 #include "ButtonAction.hpp"
 #include <csignal>
+#include "Error/Error.hpp"
 #include "GraphicECS/SFML/Components/AssociatedIdComponent.hpp"
 #include "GraphicECS/SFML/Components/GraphicsTextComponent.hpp"
+#include "GraphicECS/SFML/Components/ParallaxComponent.hpp"
 #include "GraphicECS/SFML/Components/SelectedComponent.hpp"
 #include "GraphicECS/SFML/Components/WritableButtonActionComponent.hpp"
 #include "GraphicECS/SFML/Components/WritableContentComponent.hpp"
@@ -17,12 +19,10 @@
 #include "Transisthor/TransisthorECSLogic/Client/Components/NetworkServer.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/GameStates.hpp"
 #include "R-TypeLogic/Global/Components/ControlableComponent.hpp"
-#include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
-#include "R-TypeLogic/Global/Components/TextComponent.hpp"
 #include "R-TypeLogic/Global/Components/EnemyComponent.hpp"
 #include "R-TypeLogic/Global/Components/EnemyProjectileComponent.hpp"
-#include "GraphicECS/SFML/Components/ParallaxComponent.hpp"
-#include "Error/Error.hpp"
+#include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
+#include "R-TypeLogic/Global/Components/TextComponent.hpp"
 
 using namespace graphicECS::SFML::Resources;
 using namespace graphicECS::SFML::Components;
@@ -213,7 +213,4 @@ void goToMainMenu(World &world, Entity &entityPtr)
     world.getResource<MenuStates>().currentState = MenuStates::MAIN_MENU;
 }
 
-MenuStates::menuState_e getPreviousMenu()
-{
-    return (oldMenuState);
-}
+MenuStates::menuState_e getPreviousMenu() { return (oldMenuState); }

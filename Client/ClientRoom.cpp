@@ -605,7 +605,8 @@ void ClientRoom::_initMainMenuButtons()
 
 void ClientRoom::_initInGameWritables()
 {
-    // std::size_t writableIdSolo = createNewWritable(*(_worldInstance.get()), 1450, 900, 350, 50, MenuStates::SOLO_GAME);
+    // std::size_t writableIdSolo = createNewWritable(*(_worldInstance.get()), 1450, 900, 350, 50,
+    // MenuStates::SOLO_GAME);
     std::size_t writableIdMulti =
         createNewWritable(*(_worldInstance.get()), 1450, 900, 350, 50, MenuStates::MULTI_GAME);
 
