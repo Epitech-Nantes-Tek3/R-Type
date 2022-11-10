@@ -207,7 +207,30 @@ void ClientRoom::_holdAChatRequest(CommunicatorMessage chatRequest)
         *(_worldInstance.get()), 1470, 840, 310, 45, 5.0, chatInformation.at(0), chatInformation.at(1));
 }
 
-void ClientRoom::_holdADisconnectionRequest() { _state = ClientState::ENDED; }
+void ClientRoom::_holdADisconnectionRequest()
+{;
+    std::vector<std::shared_ptr<Entity>> entity = _worldInstance->joinEntities<Enemy>();
+    for (auto &it : entity) {
+        _worldInstance->removeEntity(it->getId());
+    }
+    entity = _worldInstance->joinEntities<EnemyProjectile>();
+    for (auto &it : entity) {
+        _worldInstance->removeEntity(it->getId());
+    }
+    entity = _worldInstance->joinEntities<ParallaxBackground>();
+    for (auto &it : entity) {
+        _worldInstance->removeEntity(it->getId());
+    }
+    entity = _worldInstance->joinEntities<Player>();
+    for (auto &it : entity) {
+        _worldInstance->removeEntity(it->getId());
+    }
+    entity = _worldInstance->joinEntities<AlliedProjectile>();
+    for (auto &it : entity) {
+        _worldInstance->removeEntity(it->getId());
+    }
+    _worldInstance->getResource<MenuStates>().currentState = MenuStates::MAIN_MENU;
+}
 
 void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
 {
@@ -301,12 +324,12 @@ void ClientRoom::_startLoop()
         if (isMenuUpdated)
             _updateEcsData();
         currentMenuStates = _worldInstance->getResource<MenuStates>().currentState;
+        _oldMenuStates = currentMenuStates;
         if (currentMenuStates != MenuStates::MAIN_MENU && currentMenuStates != MenuStates::SOLO_GAME
             && (currentMenuStates != MenuStates::SOLO_GAME && getPreviousMenu() != MenuStates::SOLO_GAME)) {
             if (!_answerProtocols())
                 return;
         }
-        _oldMenuStates = currentMenuStates;
         _worldInstance->runSystems();
         if (_oldMenuStates != _worldInstance->getResource<MenuStates>().currentState)
             isMenuUpdated = true;
@@ -496,15 +519,13 @@ void ClientRoom::_updateEcsEntities()
     if (_worldInstance->containsResource<MenuStates>()) {
         switch (_worldInstance->getResource<MenuStates>().currentState) {
             case MenuStates::MAIN_MENU:
-                if (_oldMenuStates == MenuStates::PAUSED) {
+                if (_oldMenuStates == MenuStates::PAUSED || _oldMenuStates == MenuStates::MULTI_GAME) {
                     try {
                         _communicatorInstance->replaceClientByAnother(_serverEndpoint, _highInstanceEndpoint);
                         _serverEndpoint = _highInstanceEndpoint;
                     } catch (NetworkError &e) {
                         std::cerr << "Network error: " << e.what() << std::endl;
                     }
-                }
-                if (_oldMenuStates == MenuStates::PAUSED) {
                     _removeMultiSystems();
                     _removeSoloSystems();
                 }

@@ -21,6 +21,7 @@
 #include "R-TypeLogic/Global/Components/ControlableComponent.hpp"
 #include "R-TypeLogic/Global/Components/EnemyComponent.hpp"
 #include "R-TypeLogic/Global/Components/EnemyProjectileComponent.hpp"
+#include "R-TypeLogic/Global/Components/AlliedProjectileComponent.hpp"
 #include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
 #include "R-TypeLogic/Global/Components/TextComponent.hpp"
 
@@ -207,6 +208,10 @@ void goToMainMenu(World &world, Entity &entityPtr)
         world.removeEntity(it->getId());
     }
     entity = world.joinEntities<Player>();
+    for (auto &it : entity) {
+        world.removeEntity(it->getId());
+    }
+    entity = world.joinEntities<AlliedProjectile>();
     for (auto &it : entity) {
         world.removeEntity(it->getId());
     }
