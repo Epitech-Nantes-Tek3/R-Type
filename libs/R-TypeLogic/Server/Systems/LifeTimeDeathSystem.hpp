@@ -9,6 +9,7 @@
 #define LIFETIMEDEATH_SYSTEM_HPP_
 
 #include <mutex>
+#include "Transisthor/TransisthorECSLogic/Server/Resources/NetworkableIdGenerator.hpp"
 #include "World/World.hpp"
 #include "R-TypeLogic/Global/Components/DeathComponent.hpp"
 #include "R-TypeLogic/Global/Components/LifeTimeComponent.hpp"
@@ -23,11 +24,14 @@ namespace ecs
         {
             std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<LifeTime>();
 
-            auto deathLifeTime = [](std::shared_ptr<ecs::Entity> entityPtr) {
+            auto deathLifeTime = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
                 auto guard = std::lock_guard(*entityPtr.get());
                 if (entityPtr.get()->getComponent<LifeTime>().timeLeft <= std::chrono::duration<double>(0.0)
                     && !entityPtr.get()->contains<Death>()) {
                     entityPtr.get()->addComponent<Death>();
+                    if (!world.containsResource<NetworkableIdGenerator>()) {
+                        entityPtr->getComponent<Death>().modified = false;
+                    }
                 }
             };
             std::for_each(joined.begin(), joined.end(), deathLifeTime);
