@@ -23,6 +23,10 @@ namespace ecs
         /// @param enemyType the type of the killed enemy
         void updateScore(unsigned int enemyType);
 
+        /// @brief A getter for the score, only used in DisconnectableSystem
+        /// @return The given score at the time
+        inline unsigned int getScore() const { return _score; };
+
         /// @brief Default Destructor
         ~GlobalScore() = default;
 
