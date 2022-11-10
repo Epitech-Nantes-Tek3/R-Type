@@ -1,4 +1,5 @@
 # **R-Type**
+
 ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black) ![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)
 
 ![C++](https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white)
@@ -9,21 +10,20 @@
 
 ## **Table of Contents**
 
-- [**R-Type**](#r-type)
-  - [**Table of Contents**](#table-of-contents)
-  - [**Introduction**](#introduction)
-    - [**Supported Platforms**](#supported-platforms)
-  - [**The Game**](#the-game)
-    - [**Story**](#story)
-  - [**How to play ?**](#how-to-play-)
-    - [**Prerequisites**](#prerequisites)
-    - [**Launch the game**](#launch-the-game)
-  - [**For developers**](#for-developers)
-    - [**Build the program**](#build-the-program)
-    - [**Testing program**](#testing-program)
-    - [**Documentation**](#documentation)
-  - [**Thank for reading**](#thank-for-reading)
-  - [**Authors**](#authors)
+- [**Table of Contents**](#table-of-contents)
+- [**Introduction**](#introduction)
+  - [**Supported Platforms**](#supported-platforms)
+- [**The Game**](#the-game)
+  - [**Story**](#story)
+- [**How to play ?**](#how-to-play-)
+  - [**Prerequisites**](#prerequisites)
+  - [**Launch the game**](#launch-the-game)
+- [**For developers**](#for-developers)
+  - [**Build the program**](#build-the-program)
+  - [**Testing program**](#testing-program)
+  - [**Documentation**](#documentation)
+- [**Thank for reading**](#thank-for-reading)
+- [**Authors**](#authors)
 
 ***
 
@@ -128,7 +128,6 @@ You can test the code using with the following commands.
     ctest --ouput-on-failure
 ```
 
-
 ### **Documentation**
 
 The code documentation is available [here](). <br>
@@ -144,4 +143,4 @@ Do not hesitate to contact any member for any questions or remarks. You can clic
 
 ## **Authors**
 
-* **[Tom Duval-Mahe](tom.duvalmahe@epitech.eu), [Quentin Camilleri](quentin.camilleri@epitech.eu), [Thomas Prud'homme](thomas.prudhomme@epitech.eu), [Nathan Rousseau](nathan.rousseau@epitech.eu), [Lucas Tesnier](lucas.tesnier@epitech.eu)**
+- **[Tom Duval-Mahe](tom.duvalmahe@epitech.eu), [Quentin Camilleri](quentin.camilleri@epitech.eu), [Thomas Prud'homme](thomas.prudhomme@epitech.eu), [Nathan Rousseau](nathan.rousseau@epitech.eu), [Lucas Tesnier](lucas.tesnier@epitech.eu)**
