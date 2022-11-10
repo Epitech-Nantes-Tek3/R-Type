@@ -16,11 +16,10 @@ namespace ecs
     class GameLevel : public Resource {
       public:
         /// @brief Enumeration of all possibles level states on the game
-        enum level_e { LEVEL_ONE = 0, LEVEL_TWO = 10, LEVEL_THREE = 24, LEVEL_FORTH = 40, LEVEL_INFINITE = 60 };
+        enum level_e { LEVEL_ONE = 0, LEVEL_TWO = 5, LEVEL_THREE = 12, LEVEL_FORTH = 20, LEVEL_INFINITE = 28 };
 
         /// @brief Create the GameLevel Resource
-        /// @param isSolo if the player is in soloMode the kill streak is modified to come along with the server
-        GameLevel(bool isSolo = false);
+        GameLevel();
 
         /// @brief Get the current level of the game
         /// @return the level of the game
@@ -59,9 +58,6 @@ namespace ecs
 
         /// @brief The number of kills in the room by all the players
         unsigned int _nbkills;
-
-        /// @brief The kill streak multiplier
-        int _multiplier;
     };
 } // namespace ecs
 

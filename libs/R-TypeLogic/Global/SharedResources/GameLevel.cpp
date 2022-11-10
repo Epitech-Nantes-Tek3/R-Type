@@ -9,14 +9,11 @@
 
 using namespace ecs;
 
-GameLevel::GameLevel(bool isSolo) : _currLevel(GameLevel::LEVEL_ONE), _waveChanged(true), _hasLevelChanged(false), _nbkills(0)
-{
-    _multiplier = 1 + isSolo;
-}
+GameLevel::GameLevel() : _currLevel(GameLevel::LEVEL_ONE), _waveChanged(true), _hasLevelChanged(false), _nbkills(0) {};
 
 void GameLevel::addNewKills(unsigned int newKills)
 {
-    this->_nbkills += (newKills * _multiplier);
+    this->_nbkills += newKills;
     if (_currLevel == LEVEL_FORTH && _nbkills >= LEVEL_INFINITE) {
         _currLevel = LEVEL_INFINITE;
         _hasLevelChanged = true;

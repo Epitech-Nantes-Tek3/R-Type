@@ -235,9 +235,12 @@ Entity &Room::_findClientByHisId(unsigned short clientId)
 
 std::string Room::_getPlayerName(CommunicatorMessage connexionDemand)
 {
-    char *playerName = (char *)connexionDemand.message.data;
-    std::string playerNameStr = std::string(5, '\0');
-    for (int i = 0; i < 5; i++)
+    unsigned short playerNameSize = 0;
+    char *playerName = (char *)connexionDemand.message.data + sizeof(unsigned short);
+
+    std::memcpy(&playerNameSize, connexionDemand.message.data, sizeof(unsigned short));
+    std::string playerNameStr = std::string(playerNameSize, '\0');
+    for (int i = 0; i < playerNameSize; i++)
         playerNameStr[i] = playerName[i];
     return playerNameStr;
 }
