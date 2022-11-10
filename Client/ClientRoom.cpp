@@ -294,6 +294,7 @@ void ClientRoom::_startLoop()
     _oldMenuStates = MenuStates::UNDEFINED;
     isMenuUpdated = true;
     _startConnexionProtocol();
+    _state = ClientRoom::RUN;
     while (_state != ClientState::ENDED) {
         if (isMenuUpdated)
             _updateEcsData();
@@ -516,17 +517,6 @@ void ClientRoom::_updateEcsEntities()
                 _initMainMenuButtons();
                 break;
             case MenuStates::LOBBY:
-                if (_oldMenuStates == MenuStates::PAUSED) {
-                    _serverEndpoint = _highInstanceEndpoint;
-                    try {
-                        _communicatorInstance->getClientByHisId(_serverEndpoint.getId())
-                            .setAddress(_serverEndpoint.getAddress());
-                        _communicatorInstance->getClientByHisId(_serverEndpoint.getId())
-                            .setPort(_serverEndpoint.getPort());
-                    } catch (NetworkError &e) {
-                        std::cerr << "Network error: " << e.what() << std::endl;
-                    }
-                }
                 askForRooms();
                 _initLobbyButtons();
                 break;
