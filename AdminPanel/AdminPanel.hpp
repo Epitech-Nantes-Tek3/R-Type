@@ -17,7 +17,6 @@ namespace admin_panel
     /// @brief The global Admin panel class. Use for interact with the database.
     class AdminPanel {
       public:
-
         /// @brief A basic struct representing a panel command
         struct PanelCommand {
             /// @brief The command keyword

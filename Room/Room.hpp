@@ -14,9 +14,9 @@
 #include <memory>
 #include "Communicator/Client.hpp"
 #include "Communicator/Communicator.hpp"
+#include "Database/Database.hpp"
 #include "Transisthor/Transisthor.hpp"
 #include "World/World.hpp"
-#include "Database/Database.hpp"
 
 using namespace communicator_lib;
 using namespace ecs;
