@@ -498,7 +498,7 @@ void ClientRoom::_updateEcsEntities()
                         _communicatorInstance->getClientByHisId(_serverEndpoint.getId()).setAddress(_serverEndpoint.getAddress());
                         _communicatorInstance->getClientByHisId(_serverEndpoint.getId()).setPort(_serverEndpoint.getPort());
                     } catch (NetworkError &e) {
-                        std::cerr << e.what() << std::endl;
+                        std::cerr << "Network error: " << e.what() << std::endl;
                     }
                 }
                 if (_oldMenuStates == MenuStates::PAUSED) {
@@ -520,7 +520,7 @@ void ClientRoom::_updateEcsEntities()
                         _communicatorInstance->getClientByHisId(_serverEndpoint.getId()).setAddress(_serverEndpoint.getAddress());
                         _communicatorInstance->getClientByHisId(_serverEndpoint.getId()).setPort(_serverEndpoint.getPort());
                     } catch (NetworkError &e) {
-                        std::cerr << e.what() << std::endl;
+                        std::cerr << "Network error: " << e.what() << std::endl;
                     }
                 }
                 askForRooms();
