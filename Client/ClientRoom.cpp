@@ -605,13 +605,13 @@ void ClientRoom::_initMainMenuButtons()
 
 void ClientRoom::_initInGameWritables()
 {
-    std::size_t writableIdSolo = createNewWritable(*(_worldInstance.get()), 1450, 900, 350, 50, MenuStates::SOLO_GAME);
+    // std::size_t writableIdSolo = createNewWritable(*(_worldInstance.get()), 1450, 900, 350, 50, MenuStates::SOLO_GAME);
     std::size_t writableIdMulti =
         createNewWritable(*(_worldInstance.get()), 1450, 900, 350, 50, MenuStates::MULTI_GAME);
 
-    createNewWritableButton(*(_worldInstance.get()), 1820, 900, 80, 50,
-        std::function<void(World &, Entity &, std::string &)>(publishNewChatMessage), MenuStates::SOLO_GAME,
-        writableIdSolo);
+    // createNewWritableButton(*(_worldInstance.get()), 1820, 900, 80, 50,
+    //     std::function<void(World &, Entity &, std::string &)>(publishNewChatMessage), MenuStates::SOLO_GAME,
+    //     writableIdSolo);
     createNewWritableButton(*(_worldInstance.get()), 1820, 900, 80, 50,
         std::function<void(World &, Entity &, std::string &)>(publishNewChatMessage), MenuStates::MULTI_GAME,
         writableIdMulti);
