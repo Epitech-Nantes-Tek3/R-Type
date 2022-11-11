@@ -271,7 +271,7 @@ bool ClientRoom::_answerProtocols()
         connectionOperation = _communicatorInstance.get()->getLastMessage();
         if (connectionOperation.message.type == 11) {
             std::cerr << "No places left inside the hub. Please retry later" << std::endl;
-            return false;
+            goToMainMenu(*(_worldInstance.get()), *(_worldInstance->joinEntities<Button>().at(0).get()));
         }
         if (connectionOperation.message.type == 13) {
             _holdADisconnectionRequest();

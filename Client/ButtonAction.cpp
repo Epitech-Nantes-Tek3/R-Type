@@ -242,6 +242,10 @@ void goToMainMenu(World &world, Entity &entityPtr)
     for (auto &it : entity) {
         world.removeEntity(it->getId());
     }
+    entity = world.joinEntities<GraphicsTextComponent>();
+    for (auto &it : entity) {
+        world.removeEntity(it->getId());
+    }
     world.getResource<MenuStates>().currentState = MenuStates::MAIN_MENU;
 }
 
