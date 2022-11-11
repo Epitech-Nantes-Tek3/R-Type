@@ -127,7 +127,7 @@ void AdminPanel::_handleAReceivedScoreboard(CommunicatorMessage databaseAnswer)
     for (auto &it : scoreboard)
         sortedScoreboard.insert({it.second, it.first});
     for (auto it = sortedScoreboard.rbegin(); it != sortedScoreboard.rend(); ++it) {
-        std::cerr << it->first << " -> " << it->second << std::endl;
+        std::cerr << it->second << " -> " << it->first << std::endl;
     }
     _waitingForAnswer -= 1;
 }
