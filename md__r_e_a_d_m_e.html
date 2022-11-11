@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>R-Type: README</title>
+<title>R-Type: &lt;strong&gt;R-Type&lt;/strong&gt;</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -84,29 +84,92 @@ $(document).ready(function(){initNavTree('md__r_e_a_d_m_e.html',''); initResizab
 
 <div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">README </div>  </div>
+<div class="title"><b>R-Type</b> </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><hr  />
-<p> <a href="https://github.com/osvegn/R-Type/actions/workflows/CI.yml"><img src="https://github.com/osvegn/R-Type/actions/workflows/CI.yml/badge.svg" alt="CI" style="pointer-events: none;" class="inline"/></a></p>
-<p><a href="https://codecov.io/gh/R-Type-Epitech-Nantes/R-Type"><img src="https://codecov.io/gh/R-Type-Epitech-Nantes/R-Type/branch/master/graph/badge.svg?token=iUiqejopI0" alt="codecov" style="pointer-events: none;" class="inline"/></a></p>
-<p><a href="https://forthebadge.com"><img src="https://forthebadge.com/images/badges/made-with-c-plus-plus.svg" alt="forthebadge" style="pointer-events: none;" class="inline"/></a> </p><hr  />
-<h1><a class="anchor" id="autotoc_md0"></a>
-R-Type</h1>
+<div class="textblock"><p><img src="https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&amp;logo=linux&amp;logoColor=black" alt="Linux" class="inline"/> <img src="https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&amp;logo=windows&amp;logoColor=white" alt="Windows" class="inline"/></p>
+<p><img src="https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&amp;logo=c%2B%2B&amp;logoColor=white" alt="C++" style="pointer-events: none;" class="inline"/> <img src="https://img.shields.io/badge/CMake-%23008FBA.svg?style=for-the-badge&amp;logo=cmake&amp;logoColor=white" alt="CMake" style="pointer-events: none;" class="inline"/> <img src="https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&amp;logo=githubactions&amp;logoColor=white" alt="GitHub Actions" style="pointer-events: none;" class="inline"/> <img src="https://img.shields.io/badge/codecov-%23ff0077.svg?style=for-the-badge&amp;logo=codecov&amp;logoColor=white" alt="CodeCov" style="pointer-events: none;" class="inline"/></p>
+<hr  />
+<h1><a class="anchor" id="autotoc_md1"></a>
+&lt;strong&gt;Table of Contents&lt;/strong&gt;</h1>
+<ul>
+<li><a href="#table-of-contents"><b>Table of Contents</b></a></li>
+<li><a href="#introduction"><b>Introduction</b></a><ul>
+<li><a href="#supported-platforms"><b>Supported Platforms</b></a></li>
+</ul>
+</li>
+<li><a href="#the-game"><b>The Game</b></a><ul>
+<li><a href="#story"><b>Story</b></a></li>
+</ul>
+</li>
+<li><a href="#how-to-play-"><b>How to play ?</b></a><ul>
+<li><a href="#prerequisites"><b>Prerequisites</b></a></li>
+<li><a href="#launch-the-game"><b>Launch the game</b></a></li>
+</ul>
+</li>
+<li><a href="#for-developers"><b>For developers</b></a><ul>
+<li><a href="#build-the-program"><b>Build the program</b></a></li>
+<li><a href="#testing-program"><b>Testing program</b></a></li>
+<li><a href="#documentation"><b>Documentation</b></a></li>
+</ul>
+</li>
+<li><a href="#thank-for-reading"><b>Thank for reading</b></a></li>
+<li><a href="#authors"><b>Authors</b></a></li>
+</ul>
+<hr  />
+<h1><a class="anchor" id="autotoc_md2"></a>
+&lt;strong&gt;Introduction&lt;/strong&gt;</h1>
 <p>The goal of the Epitech R-Type project is to implement a multithreaded server and a graphical client for a game called R-Type, using an engine of our own design.</p>
-<p>Composed of two parts, namely the server and the client both in C++ with the graphic library SFML for the client and boost asio for the server.</p>
-<h2><a class="anchor" id="autotoc_md1"></a>
-Prerequisites</h2>
+<p>The project is composed of two parts: the server and the client, both in C++.</p>
+<p>It uses three libraries:</p>
+<ul>
+<li>SFML: The library used to display.</li>
+<li>Boost: The library used to manage communication, threads and processes.</li>
+<li>SQLite3: The library used to manage the storage.</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md3"></a>
+&lt;strong&gt;Supported Platforms&lt;/strong&gt;</h2>
+<p>The R-Type project is supported on Windows AND Linux !!</p>
+<hr  />
+<h1><a class="anchor" id="autotoc_md4"></a>
+&lt;strong&gt;The Game&lt;/strong&gt;</h1>
+<h2><a class="anchor" id="autotoc_md5"></a>
+&lt;strong&gt;Story&lt;/strong&gt;</h2>
+<p>...And that’s why we are there.</p>
+<p>This story begins in 2442, at a time when humans successfully survived the 4th world war. But the consequences are terrible, every place on Earth is radioactive. To save humanity, geniuses from all over the world started to think together, to conclude at the same point: we need to move.</p>
+<p>After several studies about different places in space, every tiny bit of ground was hostile to earthlings. When the light of hope started to decline, five geniuses came out of nowhere to bring a new future for humanity. We call them by their team's name: “On est que 4 ;)”.</p>
+<p>First, we have Lucas, a genius of networking, followed by Quentin master of ECS (Engine for Cruise Ship). Thomas is the team protector and Tom is the team’s pathfinder. Last one but not least, Nathan the... the one who’s telling this story for you, dear reader.</p>
+<p>Together they find a new planet, a new home, a place to live for humanity, the only one who was welcoming for weakened humans: Zelta. After spending weeks building the best ships for the team, they were ready to go. But none of us were expecting what was about to happen.</p>
+<p><br  />
+</p>
+<p>While making their way to Zelta, our teams start to cross a new specie, like an alien who’s shooting at a regular frequency but moving randomly. Beating them was not the hard part, learning that there are potentially others form of intelligence in the space was.</p>
+<p>All the members of the team gather to be prepared for the aliens. Each one of them started to feel fear, but they managed to stay focused until a new species appeared. A huge form, blazing into space, was rushing to them. Tom spaceship successfully takes the first damage but couldn’t take all the others. Every member started crying in their ships with the first loss of the mission.</p>
+<p>But they didn’t have time to cry, another wave was coming. Two groups of four mobs, shooting ice spikes through the space were aiming for the team. The only way of beating them was to shoot back but a shield was necessary. Thanks to Thomas, the other members could rest for a bit. Even if the team eliminated every alien, they couldn’t celebrate because only three of them were left.</p>
+<p>The following minutes were horribly calm, until the ECS master couldn’t control his ship anymore. He was falling into void for no reason. Suddenly, huge flashes were coming from everywhere, with electrics species attacking the team very quickly. We were hiding behind our falling mate to take down every piece of the worst species they’ve found.</p>
+<p>From 5 strong men, they were reduced to 2 survivors, who were hoping to find a land somewhere. Making their way through space, hoping that every dangerous species has been killed.</p>
+<p>And that’s why we are there. In front of our survivors, a boss appears. You need to help them, tell them how to move and when to shoot. You need to beat this boss for the sake of humanity! Good luck!</p>
+<hr  />
+<h1><a class="anchor" id="autotoc_md6"></a>
+&lt;strong&gt;How to play ?&lt;/strong&gt;</h1>
+<h2><a class="anchor" id="autotoc_md7"></a>
+&lt;strong&gt;Prerequisites&lt;/strong&gt;</h2>
 <p>To build our R-Type project, you will need CMake 3.17.0 Compiler, C++ 20 and Conan.</p>
-<h2><a class="anchor" id="autotoc_md2"></a>
-Build the program</h2>
+<h2><a class="anchor" id="autotoc_md8"></a>
+&lt;strong&gt;Launch the game&lt;/strong&gt;</h2>
+<hr  />
+<h1><a class="anchor" id="autotoc_md9"></a>
+&lt;strong&gt;For developers&lt;/strong&gt;</h1>
+<h2><a class="anchor" id="autotoc_md10"></a>
+&lt;strong&gt;Build the program&lt;/strong&gt;</h2>
 <p>On Linux :</p>
-<p>You may use the build.sh or the following commands :</p>
+<ul>
+<li>You may execute the script <code>build.sh</code> or the following commands :</li>
+</ul>
 <div class="fragment"><div class="line">cmake -B ./build -DCMAKE_BUILD_TYPE=Release</div>
 <div class="line">cmake --build ./build</div>
 </div><!-- fragment --><p>On Windows :</p>
 <ul>
-<li>You may use the build.bat or the following commands :</li>
+<li>You may execute the script <code>build.bat</code> or the following commands :</li>
 </ul>
 <div class="fragment"><div class="line">mkdir build</div>
 <div class="line">cd build</div>
@@ -114,33 +177,41 @@ Build the program</h2>
 <div class="line">cd ..</div>
 <div class="line">cmake -B ./build -DCMAKE_BUILD_TYPE=Release</div>
 <div class="line">cmake --build ./build</div>
-<div class="line">&quot;copy .\Debug\r-type_client.exe .&quot;</div>
-<div class="line">&quot;copy .\Debug\r-type_server.exe .&quot;</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md3"></a>
-Testing program</h2>
+<div class="line">copy &quot;.\Debug\r-type_server.exe&quot; .</div>
+<div class="line">copy &quot;.\Debug\r-type_client.exe&quot; .</div>
+<div class="line">copy &quot;.\Debug\r-type_room.exe&quot; .</div>
+<div class="line">copy &quot;.\Debug\r-type_admin_panel.exe&quot; .</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md11"></a>
+&lt;strong&gt;Testing program&lt;/strong&gt;</h2>
+<p>The tests are available on Linux. You may can test the code executing the script <code>build_tests.sh</code> or using with the following commands.</p>
 <div class="fragment"><div class="line">rm -rf ./build</div>
 <div class="line">cmake -B ./build -DCMAKE_BUILD_TYPE=Debug -DTESTING=ON</div>
 <div class="line">cmake --build ./build</div>
 <div class="line">cd ./build</div>
 <div class="line">ctest --ouput-on-failure</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md4"></a>
-Supported Platform</h2>
-<p>The R-Type project is supported on Windows AND Linux !!</p>
-<h2><a class="anchor" id="autotoc_md5"></a>
-Usefulls Links</h2>
-<p>You can see the UDP Protocol used in the project <a href="https://www.notion.so/3e9469baeb9e4ae2bf05c215babdf142?v=4047238dabd94ec6b7c035eabf6bbc31">right here</a></p>
-<h2><a class="anchor" id="autotoc_md6"></a>
-Thank for reading</h2>
-<p>Feel free to read the <a class="el" href="_c_o_n_t_r_i_b_u_t_i_n_g_8md.html">CONTRIBUTING.md</a></p>
-<p>Do not hesitate to contact any member for any questions or remarks.</p>
-<ul>
-<li>Mail -&gt; <a href="#" onclick="location.href='mai'+'lto:'+'fir'+'st'+'nam'+'e.'+'las'+'tn'+'ame'+'@e'+'pit'+'ec'+'h.e'+'u'; return false;">first<span style="display: none;">.nosp@m.</span>name<span style="display: none;">.nosp@m.</span>.last<span style="display: none;">.nosp@m.</span>name<span style="display: none;">.nosp@m.</span>@epit<span style="display: none;">.nosp@m.</span>ech.<span style="display: none;">.nosp@m.</span>eu</a></li>
-</ul>
-<h2><a class="anchor" id="autotoc_md7"></a>
-Authors</h2>
-<ul>
-<li><b>Tom Duval-Mahe, Quentin Camilleri, Thomas Prud'homme, Nathan Rousseau, Lucas Tesnier</b> </li>
-</ul>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md12"></a>
+&lt;strong&gt;Documentation&lt;/strong&gt;</h2>
+<p>The code documentation is available [here](). <br  />
+ Additional documentation such as the protocols used or the database can be found <a href="https://amazing-partridge-567.notion.site/R-Type-Documentations-On-est-que-4-de59851ea5e64808a3c3d9f145a960a9">here</a>.</p>
+<hr  />
+<h1><a class="anchor" id="autotoc_md13"></a>
+&lt;strong&gt;Thank for reading&lt;/strong&gt;</h1>
+<p>Feel free to read the <code><a class="el" href="_c_o_n_t_r_i_b_u_t_i_n_g_8md.html">CONTRIBUTING.md</a></code>.</p>
+<p>Do not hesitate to contact any member for any questions or remarks. You can click on each following name.</p>
+<h1><a class="anchor" id="autotoc_md14"></a>
+&lt;strong&gt;Authors&lt;/strong&gt;</h1>
+<table class="doxtable">
+</table>
+<p><a href="https://github.com/TomDUVAL-MAHE"><img src="https://avatars.githubusercontent.com/u/72017980?v=4" alt="Tom Duval-Mahe" width="100px;" class="inline"/><sub><b>Tom Duval-Mahe</b></sub></a><br  />
+ </p>
+<p><a href="https://github.com/ZQUEMA/"><img src="https://avatars.githubusercontent.com/u/56249749?s=96&amp;v=4" alt="ZQUEMA" width="100px;" class="inline"/><sub><b>Quentin Camilleri</b></sub></a><br  />
+ </p>
+<p><a href="https://github.com/osvegn/"><img src="https://avatars.githubusercontent.com/u/72011124?v=4" alt="osvegn" width="100px;" class="inline"/><sub><b>Thomas Prud'homme</b></sub></a><br  />
+ </p>
+<p><a href="https://github.com/31Nathan/"><img src="https://avatars.githubusercontent.com/u/72010794?v=4" alt="31Nathan" width="100px;" class="inline"/><sub><b>Nathan Rousseau</b></sub></a><br  />
+ </p>
+<p><a href="https://github.com/LucasTesnier/"><img src="https://avatars.githubusercontent.com/u/72015360?v=4" alt="LucasTesnier" width="100px;" class="inline"/><sub><b>Lucas Tesnier</b></sub></a><br  />
+  &lt;/tbody&gt; </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->

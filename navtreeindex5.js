@@ -1,5 +1,11 @@
 var NAVTREEINDEX5 =
 {
+"struct_send_newly_created_to_server.html#a5bc6681cc7ccfe51382e6d8db53e54b5":[3,0,12,1],
+"struct_send_newly_created_to_server.html#af3515753b0f8a7fae2e97e45f59236a0":[3,0,12,0],
+"struct_send_to_client.html":[3,0,13],
+"struct_send_to_server.html":[3,0,14],
+"structargument__handler_1_1_argument_handler_1_1_client_information.html":[3,0,0,0,0],
+"structargument__handler_1_1_argument_handler_1_1_client_information.html#a06e8da18ef7134ee456da2c66be2bbfa":[3,0,0,0,0,1],
 "structargument__handler_1_1_argument_handler_1_1_client_information.html#a7f538c995fbf1a264d4be62829e3b136":[3,0,0,0,0,2],
 "structargument__handler_1_1_argument_handler_1_1_client_information.html#a81c7ab47c3d8b8e7fd9ccbafea77c2d8":[3,0,0,0,0,0],
 "structargument__handler_1_1_argument_handler_1_1_client_information.html#ad1cef70c453efb9c76afb5b9cd96d512":[3,0,0,0,0,3],

@@ -25,16 +25,25 @@
 var NAVTREE =
 [
   [ "R-Type", "index.html", [
-    [ "README", "md__r_e_a_d_m_e.html", [
-      [ "R-Type", "md__r_e_a_d_m_e.html#autotoc_md0", [
-        [ "Prerequisites", "md__r_e_a_d_m_e.html#autotoc_md1", null ],
-        [ "Build the program", "md__r_e_a_d_m_e.html#autotoc_md2", null ],
-        [ "Testing program", "md__r_e_a_d_m_e.html#autotoc_md3", null ],
-        [ "Supported Platform", "md__r_e_a_d_m_e.html#autotoc_md4", null ],
-        [ "Usefulls Links", "md__r_e_a_d_m_e.html#autotoc_md5", null ],
-        [ "Thank for reading", "md__r_e_a_d_m_e.html#autotoc_md6", null ],
-        [ "Authors", "md__r_e_a_d_m_e.html#autotoc_md7", null ]
-      ] ]
+    [ "<strong>R-Type</strong>", "md__r_e_a_d_m_e.html", [
+      [ "<strong>Table of Contents</strong>", "md__r_e_a_d_m_e.html#autotoc_md1", null ],
+      [ "<strong>Introduction</strong>", "md__r_e_a_d_m_e.html#autotoc_md2", [
+        [ "<strong>Supported Platforms</strong>", "md__r_e_a_d_m_e.html#autotoc_md3", null ]
+      ] ],
+      [ "<strong>The Game</strong>", "md__r_e_a_d_m_e.html#autotoc_md4", [
+        [ "<strong>Story</strong>", "md__r_e_a_d_m_e.html#autotoc_md5", null ]
+      ] ],
+      [ "<strong>How to play ?</strong>", "md__r_e_a_d_m_e.html#autotoc_md6", [
+        [ "<strong>Prerequisites</strong>", "md__r_e_a_d_m_e.html#autotoc_md7", null ],
+        [ "<strong>Launch the game</strong>", "md__r_e_a_d_m_e.html#autotoc_md8", null ]
+      ] ],
+      [ "<strong>For developers</strong>", "md__r_e_a_d_m_e.html#autotoc_md9", [
+        [ "<strong>Build the program</strong>", "md__r_e_a_d_m_e.html#autotoc_md10", null ],
+        [ "<strong>Testing program</strong>", "md__r_e_a_d_m_e.html#autotoc_md11", null ],
+        [ "<strong>Documentation</strong>", "md__r_e_a_d_m_e.html#autotoc_md12", null ]
+      ] ],
+      [ "<strong>Thank for reading</strong>", "md__r_e_a_d_m_e.html#autotoc_md13", null ],
+      [ "<strong>Authors</strong>", "md__r_e_a_d_m_e.html#autotoc_md14", null ]
     ] ],
     [ "Development Rules", "md__c_o_n_t_r_i_b_u_t_i_n_g.html", null ],
     [ "Namespaces", "namespaces.html", [
@@ -78,7 +87,7 @@ var NAVTREEINDEX =
 "classcommunicator__lib_1_1_communicator.html#abf12e00a58c4ebfe7b2d9b0f730178ef",
 "classecs_1_1_networkable.html#ae27ad133ebb6f887f7533fc4eaf56d36",
 "classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_music_resource.html#aaf76fb3f6ec7b527b30d775ef66817d4",
-"structargument__handler_1_1_argument_handler_1_1_client_information.html#a7f538c995fbf1a264d4be62829e3b136"
+"struct_send_newly_created_to_server.html#a5bc6681cc7ccfe51382e6d8db53e54b5"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

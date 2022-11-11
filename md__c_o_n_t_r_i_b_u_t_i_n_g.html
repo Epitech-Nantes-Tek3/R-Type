@@ -88,7 +88,7 @@ $(document).ready(function(){initNavTree('md__c_o_n_t_r_i_b_u_t_i_n_g.html','');
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p>The rules to contribute to the R-Type project are described below. Please follow the indicated rules to contribute in the most efficient way !</p>
-<h2><a class="anchor" id="autotoc_md9"></a>
+<h2><a class="anchor" id="autotoc_md16"></a>
 Issue Rules</h2>
 <p>When creating an issue, you must follow the given format :</p>
 <ul>
@@ -100,20 +100,20 @@ Issue Rules</h2>
 <li>Add a label to clarify the issue. If there is no label existing or corresponding to your issue, create one and describe it.</li>
 <li>Take a moment to link the issue with the project, if it hasn't been done automatically.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md10"></a>
+<h2><a class="anchor" id="autotoc_md17"></a>
 Branch Rules</h2>
 <p>The branch name should consider the issue title and the issue number in its name. The issue's number must come first.</p>
 <p>Example:</p>
 <div class="fragment"><div class="line">git checkout -b 2-Create-The-Contributing.md</div>
 </div><!-- fragment --><p>You must make one branch per issue.</p>
 <p>Try to push as regularly as possible so everyone can see where you are at. When first committing on a branch, it is recommended to open a PR draft, so it will be easier for your mates to see where you are at.</p>
-<h2><a class="anchor" id="autotoc_md11"></a>
+<h2><a class="anchor" id="autotoc_md18"></a>
 Coding Style</h2>
 <p>For the coding style, there are some rules you need to follow:</p><ul>
 <li>Everybody working on the project with you must be able to understand on what you are working within minutes. If you can split a function in two, you must do it !</li>
 <li>Your code must respect the Clang format. It's necessary to be able to compile on Windows. While coding, press at the same time CTRL+MAJ+I to apply the format !</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md12"></a>
+<h2><a class="anchor" id="autotoc_md19"></a>
 Documentation Rules</h2>
 <p>We use Doxygen for documentation, and in order to allow the proper deployment of the documentation, please respect the following rules:</p>
 <ul>
@@ -132,7 +132,7 @@ Documentation Rules</h2>
 <li>No functions should have documentation within .cpp files except static functions.</li>
 </ul>
 <p>Any undocumented elements will lead to the refusal of the PR.</p>
-<h2><a class="anchor" id="autotoc_md13"></a>
+<h2><a class="anchor" id="autotoc_md20"></a>
 Committing Rules</h2>
 <p>First, the commits. They should always look like the following description:</p>
 <p>Action Verb (Add, Delete, Fix ...) + Title + Description of what you have done + Related Issue Number</p>
@@ -142,7 +142,7 @@ Committing Rules</h2>
 <div class="line">Add Committing Rules #2&quot;</div>
 </div><!-- fragment --><p>You should always commit frequently and based on the given exemple.</p>
 <p>If possible, please certify your commits (-S).</p>
-<h2><a class="anchor" id="autotoc_md14"></a>
+<h2><a class="anchor" id="autotoc_md21"></a>
 Testing Rules</h2>
 <p>When something can be verified by a test, we will be looking for tests in your PR.</p>
 <p>To compile your tests, the corresponding CMakeLists.txt should look like this: </p><div class="fragment"><div class="line">set (SRC_ROOT ${PROJECT_SOURCE_DIR}/tests/unit_tests)</div>
@@ -170,7 +170,7 @@ Testing Rules</h2>
 </div><!-- fragment --><p>For more details, you can go from the project's root to tests/unit_tests directory.</p>
 <p>If you're in functionnal tests, please add a bash/bat script to execute them.</p>
 <p>The lack of test in your code can be one of the reasons of refusing a PR.</p>
-<h2><a class="anchor" id="autotoc_md15"></a>
+<h2><a class="anchor" id="autotoc_md22"></a>
 Pull Request Rules</h2>
 <p>When your work is done on a branch, you must make a pull request.</p>
 <p>The name is the same for the branch. However, you must write a description as a reminder of what you have done. It may be all about the issue, but often you have unexpected fixes.</p>
