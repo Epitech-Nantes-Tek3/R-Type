@@ -45,6 +45,8 @@ namespace graphicECS::SFML::Resources
 
         /// @brief The map which contains Sounds
         SoundsList _soundsList;
+
+        bool playSound;
     };
 } // namespace graphicECS::SFML::Resources
 

@@ -6,6 +6,7 @@
 */
 
 #include "SoundManagement.hpp"
+#include "AllowSoundComponent.hpp"
 
 using namespace graphicECS::SFML::Components;
 using namespace graphicECS::SFML::Resources;

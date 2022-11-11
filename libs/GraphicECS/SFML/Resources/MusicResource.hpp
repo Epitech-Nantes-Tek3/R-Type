@@ -45,6 +45,8 @@ namespace graphicECS::SFML::Resources
 
         /// @brief The Map which countains Musics
         MusicsList _musicsList;
+
+        bool playMusic;
     };
 } // namespace graphicECS::SFML::Resources
 
