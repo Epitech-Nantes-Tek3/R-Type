@@ -108,14 +108,14 @@ void Communicator::kickAClient(Client client, Client newEndpoint)
 
 void Communicator::sendProtocol20(Client client, Client newEndpoint)
 {
-    void *dataContent = std::malloc(sizeof(void *) * (sizeof(unsigned short) + newEndpoint.getAddress().size()));
+    void *dataContent = std::malloc(sizeof(unsigned short) + newEndpoint.getAddress().size() * sizeof(char));
     unsigned short endpointPort = newEndpoint.getPort();
 
     if (dataContent == nullptr)
         throw error_lib::MallocError("Malloc failed.");
     std::memcpy(dataContent, &endpointPort, sizeof(unsigned short));
-    std::memcpy((void *)((char *)dataContent + sizeof(unsigned short)), newEndpoint.getAddress().data(),
-        newEndpoint.getAddress().size());
+    std::memcpy((void *)((char *)dataContent + sizeof(unsigned short)), newEndpoint.getAddress().c_str(),
+        newEndpoint.getAddress().size() * sizeof(char));
     _senderModule.sendDataToAClient(
         client, dataContent, sizeof(unsigned short) + newEndpoint.getAddress().size() * sizeof(char), 20);
 }
@@ -261,7 +261,7 @@ void Communicator::utilitaryAskForADatabaseValue(
 {
     Client temporaryClient;
     unsigned short pseudoSize = pseudo.size();
-    void *networkObject = std::malloc(sizeof(char) * (pseudoSize + key.size()));
+    void *networkObject = std::malloc(sizeof(char) * (pseudoSize + key.size()) + sizeof(unsigned short));
     unsigned short offset = 0;
 
     if (networkObject == nullptr)
@@ -396,7 +396,7 @@ void Communicator::utilitarySetADatabaseValue(
     Client temporaryClient;
     unsigned short pseudoSize = pseudo.size();
     unsigned short offset = 0;
-    void *networkObject = std::malloc(sizeof(char) * (pseudoSize + value.size()) + sizeof(unsigned short));
+    void *networkObject = std::malloc(sizeof(char) * (pseudoSize + value.size()) + sizeof(unsigned short) * 2);
 
     if (networkObject == nullptr)
         throw MallocError("Malloc failed.");

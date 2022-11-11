@@ -8,9 +8,9 @@
 /// @file libs/Communicator/Sender.cpp
 
 #include "Sender.hpp"
-#include "Error/Error.hpp"
 #include <boost/asio.hpp>
 #include <iostream>
+#include "Error/Error.hpp"
 
 using namespace communicator_lib;
 using namespace boost::asio::ip;
@@ -57,5 +57,3 @@ void *Sender::generateDataHeader(unsigned short communicationType)
     std::memcpy((void *)((char *)dataHeader + NETWORK_HEADER_SIZE / 2), &communicationType, NETWORK_HEADER_SIZE / 2);
     return dataHeader;
 }
-
-Sender::~Sender() {}

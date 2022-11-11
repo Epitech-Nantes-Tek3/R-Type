@@ -83,7 +83,7 @@ void AdminPanel::_authentificationProcess()
     unsigned short pseudoSize = pseudo.size();
     unsigned short passwordSize = password.size();
     unsigned short offset = 0;
-    void *networkData = std::malloc(sizeof(char) * (pseudoSize + passwordSize));
+    void *networkData = std::malloc(sizeof(char) * (pseudoSize + passwordSize) + sizeof(unsigned short) * 2);
 
     if (networkData == nullptr)
         throw MallocError("Malloc failed.");

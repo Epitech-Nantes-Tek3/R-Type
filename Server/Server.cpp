@@ -220,7 +220,7 @@ void Server::_holdANewConnectionRequest(CommunicatorMessage connectionDemand)
         }
     }
     void *networkData =
-        std::malloc(sizeof(unsigned short) + _activeRoomList.size() * (sizeof(unsigned short) + sizeof(char) * 10));
+        std::malloc(sizeof(unsigned short) + _activeRoomList.size() * (sizeof(unsigned short) * 2 + sizeof(char) * 10));
     offset = 0;
     unsigned short roomListSize = _activeRoomList.size();
 

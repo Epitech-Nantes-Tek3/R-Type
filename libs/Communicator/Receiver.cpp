@@ -259,5 +259,3 @@ void Receiver::bindDataTraitmentFunction(void)
     _dataTraitment[45] = std::bind(&Receiver::dataTraitmentType45, this, std::placeholders::_1);
     _dataTraitment[50] = std::bind(&Receiver::dataTraitmentType50, this, std::placeholders::_1);
 }
-
-Receiver::~Receiver() {}

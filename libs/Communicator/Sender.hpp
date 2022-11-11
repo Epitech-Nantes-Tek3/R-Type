@@ -26,7 +26,7 @@ namespace communicator_lib
         Sender(unsigned short receiverPort);
 
         /// @brief Destroy the Sender object
-        ~Sender();
+        ~Sender() = default;
 
         /// @brief Send data to a given client
         /// @param client The client informations

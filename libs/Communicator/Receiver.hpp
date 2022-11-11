@@ -41,7 +41,7 @@ namespace communicator_lib
         Receiver(Client networkData);
 
         /// @brief Destroy the Receiver object
-        ~Receiver();
+        ~Receiver() = default;
 
         /// @brief Get the message list vector
         /// @return The message list vector
