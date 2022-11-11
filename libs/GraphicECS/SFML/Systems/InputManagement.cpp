@@ -137,7 +137,7 @@ namespace graphicECS::SFML::Systems
                     auto guard = std::lock_guard(*entityPtr.get());
                     entityPtr->getComponent<ControllerJoystickInputComponent>()
                         .controllerJoystickMapActions[event.joystickMove.axis]
-                        .second = event.joystickMove.position;
+                        .second = event.joystickMove.position * 2;
                     entityPtr->getComponent<ActionQueueComponent>().actions.push(
                         entityPtr->getComponent<ControllerJoystickInputComponent>()
                             .controllerJoystickMapActions[event.joystickMove.axis]);
