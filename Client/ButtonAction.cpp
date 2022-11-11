@@ -229,3 +229,8 @@ void switchSound(World &world, Entity &entityPtr)
 {
 
 }
+
+void goOption(World &world, Entity &entityPtr)
+{
+    world.getResource<MenuStates>().currentState = MenuStates::OPTION;
+}

@@ -460,6 +460,7 @@ void ClientRoom::_loadButtonActionMap()
     actionsList.addAction(ButtonActionMap::GO_SOLO_GAME, std::function<void(World &, Entity &)>(launchSoloGame));
     actionsList.addAction(ButtonActionMap::SWITCH_MUSIC, std::function<void(World &, Entity &)>(switchMusic));
     actionsList.addAction(ButtonActionMap::SWITCH_SOUND, std::function<void(World &, Entity &)>(switchSound));
+    actionsList.addAction(ButtonActionMap::GO_OPTION, std::function<void(World &world, Entity &)>(goOption));
 }
 
 void ClientRoom::_initLobbyButtons()
@@ -639,11 +640,13 @@ void ClientRoom::_initMainMenuButtons()
 
     if (_worldInstance->containsResource<RenderWindowResource>())
         windowSize = _worldInstance->getResource<RenderWindowResource>().window.getSize();
-    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 4 - 25, 200, 50,
+    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 5 - 25, 200, 50,
         ButtonActionMap::GO_SOLO_GAME, LayerLvL::BUTTON, MenuStates::MAIN_MENU, "Solo");
-    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 4 * 2 - 25, 200, 50,
+    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 5 * 2 - 25, 200, 50,
         ButtonActionMap::GO_LOBBY, LayerLvL::BUTTON, MenuStates::MAIN_MENU, "Lobby");
-    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 4 * 3 - 25, 200, 50,
+    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 5 * 3 - 25, 200, 50,
+        ButtonActionMap::GO_OPTION, LayerLvL::BUTTON, MenuStates::OPTION, "Option");
+    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 5 * 4 - 25, 200, 50,
         ButtonActionMap::QUIT, LayerLvL::BUTTON, MenuStates::MAIN_MENU, "Quit");
 }
 
