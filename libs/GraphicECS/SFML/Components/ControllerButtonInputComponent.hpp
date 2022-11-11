@@ -21,7 +21,7 @@ namespace graphicECS::SFML::Components
     class ControllerButtonInputComponent : public ecs::Component {
       public:
         /// @brief This unordered_map links SFML controller button input to an action/value pair enum.
-        std::unordered_map<unsigned int, std::function<void(ecs::World &, float)>> controllerButtonMapActions;
+        std::unordered_map<unsigned int, std::pair<ActionQueueComponent::inputAction_e, float>> controllerButtonMapActions;
 
         /// @brief Default constructor of the class.
         ControllerButtonInputComponent() = default;

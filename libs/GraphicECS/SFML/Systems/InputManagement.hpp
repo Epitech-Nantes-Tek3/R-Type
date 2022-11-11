@@ -82,6 +82,8 @@ namespace graphicECS::SFML::Systems
         /// @param event Class event use to know SFML events
         /// @param Inputs Entity which contains inputs entity like mouse, keyboard and controller
         void _mouseEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> &Inputs);
+
+        void _controllerEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> &Inputs);
     };
 } // namespace graphicECS::SFML::Systems
 

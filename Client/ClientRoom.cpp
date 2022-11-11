@@ -592,6 +592,12 @@ void ClientRoom::_initInputsEntity()
     entity.getComponent<ControllerJoystickInputComponent>().controllerJoystickMapActions.emplace(
         std::make_pair<unsigned int, std::pair<ActionQueueComponent::inputAction_e, float>>(
             1, std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEY, 0)));
+    entity.getComponent<ControllerJoystickInputComponent>().controllerJoystickMapActions.emplace(
+        std::make_pair<unsigned int, std::pair<ActionQueueComponent::inputAction_e, float>>(
+            0, std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEX, 0)));
+    entity.getComponent<ControllerButtonInputComponent>().controllerButtonMapActions.emplace(
+        std::make_pair<unsigned int, std::pair<ActionQueueComponent::inputAction_e, float>>(
+            0, std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::SHOOT, 10)));
     entity.getComponent<MouseInputComponent>().MouseMapActions.emplace(
         std::make_pair<sf::Mouse::Button, std::pair<ActionQueueComponent::inputAction_e, float>>(
             sf::Mouse::Button::Left,
