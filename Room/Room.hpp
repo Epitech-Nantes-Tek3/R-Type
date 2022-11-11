@@ -63,8 +63,9 @@ namespace server_data
         /// @brief Id of the room. (Used by the server)
         unsigned short _id;
 
-        /// @brief configuration of a room
+        /// @brief It's the configuration of the room.
         short _configs[6];
+
         /// @brief Name of the room.
         std::string _name;
 

@@ -50,12 +50,26 @@ namespace client_data
         int startGame();
 
       private:
+        /// It creates three buttons, one for sound, one for music, and one to go back to
+        /// the main menu
         void _initOptionButton();
+
+        /// @brief It creates three buttons, one for resuming the game, one for going back to the
+        /// main menu, and one for quitting the game
         void _initPausedButton();
+
+        /// @brief It removes the systems that are used to send data to the server
         void _removeMultiSystems();
+
+        /// @brief It removes all the systems that are not needed in a multiplayer game
         void _removeSoloSystems();
+
+        /// @brief It creates a bunch of buttons and text fields
         void _initLobbyButtons();
+
+        /// @brief It sends a request to the server to get the list of rooms
         void askForRooms();
+
         /// @brief Launch the lobby global loop for a multiplayer game
         void _startLoop();
 
@@ -194,8 +208,10 @@ namespace client_data
         /// @brief Instance of the ECS library
         std::shared_ptr<World> _worldInstance;
 
+        /// @brief It's a boolean that tells if the menu has been updated or not.
         bool isMenuUpdated;
 
+        /// @brief It's a variable that holds the previous state of the menu.
         MenuStates::menuState_e _oldMenuStates;
 
         /// @brief Start the connexion protocol and ask the server for a place inside the room

@@ -52,7 +52,7 @@ namespace ecs
     std::size_t createNewEnemy(World &world, const int posX, const int posY, const double multiplierAbscissa,
         const double multiplierOrdinate, const short weight, const int sizeX, const int sizeY,
         const unsigned short life, const unsigned short damage, const unsigned short damageRadius,
-        unsigned short type, const std::string uuid = "", const unsigned short networkId = 0, const short velModifier = 1);
+        unsigned short type, const std::string uuid = "", const unsigned short networkId = 0);
 
     /// @brief This function creates a new Enemy Entity with random position and with these parameters
     /// @param world The world in which the Enemy must be created
@@ -71,39 +71,39 @@ namespace ecs
     std::size_t createNewEnemyRandom(World &world, const double multiplierAbscissa, const double multiplierOrdinate,
         const short weight, const int sizeX, const int sizeY, const unsigned short life, const unsigned short damage,
         const unsigned short damageRadius, unsigned short type, const std::string uuid = "",
-        const unsigned short networkId = 0, const short velModifier = 1);
+        const unsigned short networkId = 0);
 
     /// @brief This function creates a basic enemy with corresponding caracteristics
     /// @param world the world where the enemy will be created
     /// @param networkdId The id of the Networkable Component. In the client instance, it MUST NOT be filled in.
-    std::size_t createBasicEnemy(World &world, const unsigned short networkId = 0, const short velModifier = 1);
+    std::size_t createBasicEnemy(World &world, const unsigned short networkId = 0);
 
     /// @brief This function creates a fire enemy with corresponding caracteristics
     /// @param world the world where the enemy will be created
     /// @param networkdId The id of the Networkable Component. In the client instance, it MUST NOT be filled in.
-    std::size_t createFireEnemy(World &world, const unsigned short networkId = 0, const short velModifier = 1);
+    std::size_t createFireEnemy(World &world, const unsigned short networkId = 0);
 
     /// @brief This function creates an electric enemy with corresponding caracteristics
     /// @param world the world where the enemy will be created
     /// @param networkdId The id of the Networkable Component. In the client instance, it MUST NOT be filled in.
-    std::size_t createElectricEnemy(World &world, const unsigned short networkId = 0, const short velModifier = 1);
+    std::size_t createElectricEnemy(World &world, const unsigned short networkId = 0);
 
     /// @brief This function creates an ice enemy with corresponding caracteristics
     /// @param world the world where the enemy will be created
     /// @param networkdId The id of the Networkable Component. In the client instance, it MUST NOT be filled in.
-    std::size_t createIceEnemy(World &world, const unsigned short networkId = 0, const short velModifier = 1);
+    std::size_t createIceEnemy(World &world, const unsigned short networkId = 0);
 
     /// @brief This function creates a boss with corresponding caracteristics, more life, more damage, more everything...
     /// @param world the world where the boss will be created
     /// @param networkdId The id of the Networkable Component. In the client instance, it MUST NOT be filled in.
-    std::size_t createBoss(World &world, const unsigned short networkId = 0, const short velModifier = 1);
+    std::size_t createBoss(World &world, const unsigned short networkId = 0);
 
     /// @brief This function creates a boss pawn with corresponding caracteristics, everything is reduced except the projectiles
     /// @param world the world where the pawn will be created
     /// @param pos the boss pos, to decide where to spawn the pawn
     /// @param pawnType the type of the generated pawn (between BASIC and ELECTRIC)
     /// @param networkdId The id of the Networkable Component. In the client instance, it MUST NOT be filled in.
-    std::size_t createBossPawn(World &world, Position &pos, unsigned int pawnType, const unsigned short networkId = 0, const short velModifier = 1);
+    std::size_t createBossPawn(World &world, Position &pos, unsigned int pawnType, const unsigned short networkId = 0);
 
 } // namespace ecs
 #endif /* !CREATEENEMY_HPP_ */

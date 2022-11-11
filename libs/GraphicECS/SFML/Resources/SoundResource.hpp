@@ -46,6 +46,7 @@ namespace graphicECS::SFML::Resources
         /// @brief The map which contains Sounds
         SoundsList _soundsList;
 
+        /// @brief Used to know if the sound should be played or not.
         bool playSound;
     };
 } // namespace graphicECS::SFML::Resources

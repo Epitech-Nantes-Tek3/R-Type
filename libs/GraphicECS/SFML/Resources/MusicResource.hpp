@@ -46,6 +46,7 @@ namespace graphicECS::SFML::Resources
         /// @brief The Map which countains Musics
         MusicsList _musicsList;
 
+        /// @brief A boolean which is used to know if the music is playing or not.
         bool playMusic;
     };
 } // namespace graphicECS::SFML::Resources
