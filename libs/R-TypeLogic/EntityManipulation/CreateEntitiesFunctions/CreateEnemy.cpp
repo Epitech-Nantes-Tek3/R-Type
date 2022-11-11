@@ -13,7 +13,7 @@ namespace ecs
     std::size_t createNewEnemy(World &world, const int posX, const int posY, const double multiplierAbscissa,
         const double multiplierOrdinate, const short weight, const int sizeX, const int sizeY,
         const unsigned short life, const unsigned short damage, const unsigned short damageRadius, unsigned short type,
-        const std::string uuid, const unsigned short networkId)
+        const std::string uuid, const unsigned short networkId, const short velModifier)
     {
         Entity &entity = world.addEntity();
         auto guard = std::lock_guard(entity);
@@ -30,6 +30,7 @@ namespace ecs
             .addComponent<Enemy>(type)
             .addComponent<Destination>(
                 random.randInt(MINIMUM_WIDTH, MAXIMUM_WIDTH), random.randInt(MINIMUM_HEIGTH, MAXIMUM_HEIGTH));
+        entity.getComponent<Velocity>().modifier = velModifier;
         switch (type) {
             case Enemy::FIRE: entity.addComponent<ShootingFrequency>(2); break;
             case Enemy::ELECTRIC: entity.addComponent<ShootingFrequency>(0.9); break;
@@ -54,7 +55,7 @@ namespace ecs
 
     std::size_t createNewEnemyRandom(World &world, const double multiplierAbscissa, const double multiplierOrdinate,
         const short weight, const int sizeX, const int sizeY, const unsigned short life, const unsigned short damage,
-        const unsigned short damageRadius, unsigned short type, const std::string uuid, const unsigned short networkId)
+        const unsigned short damageRadius, unsigned short type, const std::string uuid, const unsigned short networkId, const short velModifier)
     {
         RandomDevice &random = world.getResource<RandomDevice>();
         random.lock();
@@ -62,37 +63,37 @@ namespace ecs
         int posY = random.randInt(MINIMUM_HEIGTH, MAXIMUM_HEIGTH);
         random.unlock();
         return createNewEnemy(world, posX, posY, multiplierAbscissa, multiplierOrdinate, weight, sizeX, sizeY, life,
-            damage, damageRadius, type, uuid, networkId);
+            damage, damageRadius, type, uuid, networkId, velModifier);
     }
 
-    std::size_t createBasicEnemy(World &world, const unsigned short networkId)
+    std::size_t createBasicEnemy(World &world, const unsigned short networkId, const short velModifier)
     {
-        return createNewEnemyRandom(world, 0, 0, 5, 68, 68, 30, 10, 3, Enemy::BASIC, "", networkId);
+        return createNewEnemyRandom(world, 0, 0, 5, 68, 68, 30, 10, 3, Enemy::BASIC, "", networkId, velModifier);
     }
 
-    std::size_t createFireEnemy(World &world, const unsigned short networkId)
+    std::size_t createFireEnemy(World &world, const unsigned short networkId, const short velModifier)
     {
-        return createNewEnemyRandom(world, 0, 0, 10, 102, 102, 30, 50, 10, Enemy::FIRE, "", networkId);
+        return createNewEnemyRandom(world, 0, 0, 10, 102, 102, 30, 50, 10, Enemy::FIRE, "", networkId, velModifier);
     }
 
-    std::size_t createElectricEnemy(World &world, const unsigned short networkId)
+    std::size_t createElectricEnemy(World &world, const unsigned short networkId, const short velModifier)
     {
-        return createNewEnemyRandom(world, 0, 0, 1, 51, 51, 25, 20, 1, Enemy::ELECTRIC, "", networkId);
+        return createNewEnemyRandom(world, 0, 0, 1, 51, 51, 25, 20, 1, Enemy::ELECTRIC, "", networkId, velModifier);
     }
 
-    std::size_t createIceEnemy(World &world, const unsigned short networkId)
+    std::size_t createIceEnemy(World &world, const unsigned short networkId, const short velModifier)
     {
-        return createNewEnemy(world, 0, 0, 0, 0, 1, 85, 85, 20, 5, 20, Enemy::ICE, "", networkId);
+        return createNewEnemy(world, 0, 0, 0, 0, 1, 85, 85, 20, 5, 20, Enemy::ICE, "", networkId, velModifier);
     }
 
-    std::size_t createBoss(World &world, const unsigned short networkId)
+    std::size_t createBoss(World &world, const unsigned short networkId, const short velModifier)
     {
         return createNewEnemy(world, MAXIMUM_WIDTH - 100, MINIMUM_HEIGTH + 100, 0, 0, 100, 204, 204, 500, 100, 1,
-            Enemy::BOSS, "", networkId);
+            Enemy::BOSS, "", networkId, velModifier);
     }
 
-    std::size_t createBossPawn(World &world, Position &pos, unsigned int pawnType, const unsigned short networkId)
+    std::size_t createBossPawn(World &world, Position &pos, unsigned int pawnType, const unsigned short networkId, const short velModifier)
     {
-        return createNewEnemy(world, pos.x, pos.y, 0, 0, 1, 34, 34, 15, 5, 1, pawnType, "", networkId);
+        return createNewEnemy(world, pos.x, pos.y, 0, 0, 1, 34, 34, 15, 5, 1, pawnType, "", networkId, velModifier);
     }
 } // namespace ecs

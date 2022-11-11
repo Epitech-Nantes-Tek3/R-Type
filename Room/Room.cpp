@@ -137,6 +137,10 @@ void Room::startLobbyLoop(void)
         }
         if (_state == RoomState::IN_GAME) {
             _worldInstance.get()->runSystems();
+            std::vector<std::shared_ptr<ecs::Entity>> enemy = _worldInstance->joinEntities<ecs::Enemy>();
+            for (auto &it : enemy) {
+                it->getComponent<Velocity>().modifier = _configs[roomConfiguration_e::ENNEMI_VELOCITY];
+            }
         } /// WILL BE IMPROVED IN PART TWO (THREAD + CLOCK)
         _activePlayerGestion();
     }
