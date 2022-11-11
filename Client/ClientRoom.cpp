@@ -365,6 +365,9 @@ void ClientRoom::_updateEcsResources()
         _loadTextures();
     if (_worldInstance->containsResource<ButtonActionMap>())
         _loadButtonActionMap();
+    if (_worldInstance->containsResource<MusicResource>()) {
+        _worldInstance->getResource<MusicResource>().addMusic(graphicECS::SFML::Resources::MusicResource::BACKGROUNDTHEME, "assets/Musics/music_background.wav");
+    }
 }
 
 void ClientRoom::_loadTextures()

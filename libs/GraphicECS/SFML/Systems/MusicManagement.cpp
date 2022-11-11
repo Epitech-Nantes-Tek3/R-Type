@@ -15,6 +15,9 @@ namespace graphicECS::SFML::Systems
     {
         std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<MusicComponent>();
 
+        if (!world.containsResource<MusicResource>() || !world.getResource<MusicResource>().playMusic) {
+            return;
+        }
         auto stopMusic = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
             MusicComponent music = entityPtr.get()->getComponent<MusicComponent>();
             MusicResource &musicResource = world.getResource<MusicResource>();
@@ -22,8 +25,7 @@ namespace graphicECS::SFML::Systems
             if (!musicResource._musicsList.contains(music.music_e))
                 return;
             if (music._status == sf::SoundSource::Status::Stopped
-                && musicResource._musicsList.at(music.music_e)->getStatus()
-                    != sf::Music::Stopped) {
+                && musicResource._musicsList.at(music.music_e)->getStatus() != sf::Music::Stopped) {
                 auto rguard = std::lock_guard(musicResource);
                 musicResource._musicsList.at(music.music_e)->stop();
             }
@@ -33,8 +35,7 @@ namespace graphicECS::SFML::Systems
                 musicResource._musicsList.at(music.music_e)->pause();
             }
             if (music._status == sf::SoundSource::Status::Playing
-                && musicResource._musicsList.at(music.music_e)->getStatus()
-                    != sf::Music::Playing) {
+                && musicResource._musicsList.at(music.music_e)->getStatus() != sf::Music::Playing) {
                 auto rguard = std::lock_guard(musicResource);
                 musicResource._musicsList.at(music.music_e)->play();
             }

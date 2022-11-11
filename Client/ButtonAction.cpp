@@ -24,6 +24,8 @@
 #include "R-TypeLogic/Global/Components/EnemyProjectileComponent.hpp"
 #include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
 #include "R-TypeLogic/Global/Components/TextComponent.hpp"
+#include "GraphicECS/SFML/Resources/MusicResource.hpp"
+#include "GraphicECS/SFML/Resources/SoundResource.hpp"
 
 using namespace graphicECS::SFML::Resources;
 using namespace graphicECS::SFML::Components;
@@ -222,14 +224,16 @@ MenuStates::menuState_e getPreviousMenu() { return (oldMenuState); }
 
 void switchMusic(World &world, Entity &entityPtr)
 {
-    (void)world;
     (void)entityPtr;
+    bool &play = world.getResource<MusicResource>().playMusic;
+    play = (play) ? false : true;
 }
 
 void switchSound(World &world, Entity &entityPtr)
 {
-    (void)world;
     (void)entityPtr;
+    bool &play = world.getResource<SoundResource>().playSound;
+    play = (play) ? false : true;
 }
 
 void goOption(World &world, Entity &entityPtr)
