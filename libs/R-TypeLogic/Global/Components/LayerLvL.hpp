@@ -30,6 +30,7 @@ namespace ecs
             WRITABLE,
             WRITABLE_BUTTON,
             CHAT_MESSAGE,
+            TEXT,
             LAYER_NUMBER
         };
 

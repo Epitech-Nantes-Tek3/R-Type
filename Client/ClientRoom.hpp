@@ -138,6 +138,9 @@ namespace client_data
         /// @brief Init all the Buttons and the linked actions
         void _initInGameButtons();
 
+        /// @brief Init all the Text
+        void _initInGameText();
+
         /// @brief Init all the Writable and the linked actions
         void _initInGameWritables();
 

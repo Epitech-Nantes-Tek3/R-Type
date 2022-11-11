@@ -50,6 +50,7 @@
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/ButtonActionMap.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/GameStates.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateButton.hpp"
+#include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateText.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateChatMessage.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateEnemy.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreatePlayer.hpp"
@@ -570,6 +571,7 @@ void ClientRoom::_updateEcsEntities()
                 _initInGameButtons();
                 _initInGameWritables();
                 _initInGameBackgrounds();
+                _initInGameText();
                 break;
             case MenuStates::MULTI_GAME:
                 if (_oldMenuStates == MenuStates::LOBBY) {
@@ -578,6 +580,7 @@ void ClientRoom::_updateEcsEntities()
                 _worldInstance->getResource<GameStates>().currentState = GameStates::IN_GAME;
                 _initInGameButtons();
                 _initInGameWritables();
+                _initInGameText();
                 if (_worldInstance->joinEntities<ParallaxBackground>().empty())
                     _initInGameBackgrounds();
                 break;
@@ -639,6 +642,12 @@ void ClientRoom::_initInGameButtons()
         MenuStates::SOLO_GAME, "Pause");
     createNewButton(*(_worldInstance.get()), 0, 0, 68, 68, ButtonActionMap::PAUSE, LayerLvL::BUTTON,
         MenuStates::MULTI_GAME, "Pause");
+}
+
+void ClientRoom::_initInGameText()
+{
+    createNewText(
+        *(_worldInstance.get()), 1700, 20, 16, LayerLvL::TEXT, MenuStates::MULTI_GAME, "Remaining Life : 3");
 }
 
 void ClientRoom::_initMainMenuButtons()
