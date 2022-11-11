@@ -222,15 +222,18 @@ MenuStates::menuState_e getPreviousMenu() { return (oldMenuState); }
 
 void switchMusic(World &world, Entity &entityPtr)
 {
-
+    (void)world;
+    (void)entityPtr;
 }
 
 void switchSound(World &world, Entity &entityPtr)
 {
-
+    (void)world;
+    (void)entityPtr;
 }
 
 void goOption(World &world, Entity &entityPtr)
 {
+    (void)entityPtr;
     world.getResource<MenuStates>().currentState = MenuStates::OPTION;
 }

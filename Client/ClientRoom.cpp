@@ -512,11 +512,11 @@ void ClientRoom::_initOptionButton()
     sf::Vector2u windowSize = _worldInstance->getResource<RenderWindowResource>().window.getSize();
 
     createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 4 - 25, 200, 50,
-        ButtonActionMap::SWITCH_SOUND, LayerLvL::BUTTON, MenuStates::PAUSED, "SOUND");
+        ButtonActionMap::SWITCH_SOUND, LayerLvL::BUTTON, MenuStates::OPTION, "SOUND");
     createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 4 * 2 - 25, 200, 50,
-        ButtonActionMap::SWITCH_MUSIC, LayerLvL::BUTTON, MenuStates::PAUSED, "MUSIC");
+        ButtonActionMap::SWITCH_MUSIC, LayerLvL::BUTTON, MenuStates::OPTION, "MUSIC");
     createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 4 * 3 - 25, 200, 50,
-        ButtonActionMap::GO_MAIN_MENU, LayerLvL::BUTTON, MenuStates::PAUSED, "Exit");
+        ButtonActionMap::GO_MAIN_MENU, LayerLvL::BUTTON, MenuStates::OPTION, "BACK");
 }
 
 void ClientRoom::_updateEcsEntities()
@@ -645,7 +645,7 @@ void ClientRoom::_initMainMenuButtons()
     createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 5 * 2 - 25, 200, 50,
         ButtonActionMap::GO_LOBBY, LayerLvL::BUTTON, MenuStates::MAIN_MENU, "Lobby");
     createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 5 * 3 - 25, 200, 50,
-        ButtonActionMap::GO_OPTION, LayerLvL::BUTTON, MenuStates::OPTION, "Option");
+        ButtonActionMap::GO_OPTION, LayerLvL::BUTTON, MenuStates::MAIN_MENU, "Option");
     createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 5 * 4 - 25, 200, 50,
         ButtonActionMap::QUIT, LayerLvL::BUTTON, MenuStates::MAIN_MENU, "Quit");
 }
