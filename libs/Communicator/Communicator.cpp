@@ -293,6 +293,15 @@ void Communicator::utilitaryAskForALeaderboard(std::string key, std::vector<unsi
     }
 }
 
+std::string utilitaryReceiveScoreboardAsking(CommunicatorMessage cryptedMessage)
+{
+    char *key = (char *)cryptedMessage.message.data;
+    std::string keyStr;
+
+    keyStr.append(key, cryptedMessage.message.size);
+    return keyStr;
+}
+
 std::vector<std::string> Communicator::utilitaryReceiveAskingForDatabaseValue(CommunicatorMessage cryptedMessage)
 {
     char *pseudo = nullptr;
@@ -391,4 +400,3 @@ std::string Communicator::utilitaryReceiveDatabaseValue(CommunicatorMessage cryp
     valueContent = (char *)cryptedMessage.message.data;
     return std::string(valueContent);
 }
-

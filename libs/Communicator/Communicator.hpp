@@ -197,6 +197,11 @@ namespace communicator_lib
         /// @return std::vector<std::string> the decrypted pseudo + type + value
         std::vector<std::string> utilitaryReceiveSetDatabaseValue(CommunicatorMessage cryptedMessage);
 
+        /// @brief Utilitary function used to extract the scoreboard request received by a protocol 44
+        /// @param cryptedMessage the crypted message
+        /// @return std::string the wanted key
+        std::string utilitaryReceiveScoreboardAsking(CommunicatorMessage cryptedMessage);
+
         /// @brief Utilitary function used to send a message with a protocol 17.
         /// @param roomName The name of the room configuration.
         /// @param configs Array of modificator used to update some server configuration.
