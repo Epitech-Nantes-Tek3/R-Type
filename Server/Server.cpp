@@ -87,6 +87,8 @@ void Server::startHubLoop()
                 _holdADatabaseValueRequest(connectionOperation);
             if (connectionOperation.message.type == 42)
                 _holdADatabaseSetRequest(connectionOperation);
+            if (connectionOperation.message.type == 44)
+                _holdAScoreboardRequest(connectionOperation);
         } catch (NetworkError &error) {
         }
     }
@@ -104,6 +106,22 @@ void Server::_holdADatabaseValueRequest(CommunicatorMessage databaseRequest)
     }
     _communicatorInstance->utilitarySendDatabaseValue(
         apiAnswer.at(0)[requestContent.at(1)], databaseRequest.message.clientInfo);
+}
+
+void Server::_holdAScoreboardRequest(CommunicatorMessage databaseRequest)
+{
+    std::string key = _communicatorInstance->utilitaryReceiveScoreboardAsking(databaseRequest);
+    std::map<std::string, int> scoreboard;
+    std::size_t count = 0;
+    auto apiAnswer = _databaseApi.selectUsers("Banned = 0 ORDER BY " + key + " DESC");
+
+    for (auto it : apiAnswer) {
+        if (count > 4)
+            break;
+        scoreboard[it["UserName"]] = std::atoi(it[key].c_str());
+        count++;
+    }
+    _communicatorInstance->utilitarySendALeaderboard(scoreboard, {databaseRequest.message.clientInfo.getId()});
 }
 
 void Server::_holdADatabaseSetRequest(CommunicatorMessage databaseRequest)

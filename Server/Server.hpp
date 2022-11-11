@@ -103,6 +103,10 @@ namespace server_data
         /// @param databaseRequest actual request data
         void _holdADatabaseSetRequest(CommunicatorMessage databaseRequest);
 
+        /// @brief Trait a scoreboard request.
+        /// @param databaseRequest actual request data
+        void _holdAScoreboardRequest(CommunicatorMessage databaseRequest);
+
         /// @brief Send to all clients the disconnection signal
         void _disconnectionProcess();
     };

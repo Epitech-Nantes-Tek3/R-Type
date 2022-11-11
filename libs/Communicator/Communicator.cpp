@@ -364,12 +364,12 @@ std::map<std::string, int> Communicator::utilitaryReceiveScoreboard(Communicator
     offset += sizeof(unsigned short);
     for (int i = 0; i < scoreboardSize; i++) {
         unsigned short pseudoSize = 0;
-        char *pseudo = (char *)cryptedMessage.message.data + offset;
         std::string pseudoStr;
         int value = 0;
 
         std::memcpy(&pseudoSize, (void *)((char *)cryptedMessage.message.data + offset), sizeof(unsigned short));
         offset += sizeof(unsigned short);
+        char *pseudo = (char *)cryptedMessage.message.data + offset;
         pseudoStr.append(pseudo, pseudoSize);
         offset += sizeof(char) * pseudoSize;
         std::memcpy(&value, (void *)((char *)cryptedMessage.message.data + offset), sizeof(int));
