@@ -91,6 +91,10 @@ namespace server_data
         /// @param joinDemand actual message data
         void _holdAJoinRoomRequest(CommunicatorMessage joinDemand);
 
+        /// @brief Handle a matchmaked room request. Select a room and send a protocol 20
+        /// @param joinDemand actual message data
+        void _holdAMatchmakedRequest(CommunicatorMessage joinDemand);
+
         /// @brief Handle a create room request. Check if the room already exist, otherwise launch it and send a
         /// protocol 20
         /// @param createDemand actual message data

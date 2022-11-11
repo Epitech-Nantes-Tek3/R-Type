@@ -14,7 +14,9 @@
 #include "GraphicECS/SFML/Components/SelectedComponent.hpp"
 #include "GraphicECS/SFML/Components/WritableButtonActionComponent.hpp"
 #include "GraphicECS/SFML/Components/WritableContentComponent.hpp"
+#include "GraphicECS/SFML/Resources/MusicResource.hpp"
 #include "GraphicECS/SFML/Resources/RenderWindowResource.hpp"
+#include "GraphicECS/SFML/Resources/SoundResource.hpp"
 #include "TextureName.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Components/NetworkServer.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/GameStates.hpp"
@@ -24,8 +26,6 @@
 #include "R-TypeLogic/Global/Components/EnemyProjectileComponent.hpp"
 #include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
 #include "R-TypeLogic/Global/Components/TextComponent.hpp"
-#include "GraphicECS/SFML/Resources/MusicResource.hpp"
-#include "GraphicECS/SFML/Resources/SoundResource.hpp"
 
 using namespace graphicECS::SFML::Resources;
 using namespace graphicECS::SFML::Components;
@@ -150,6 +150,18 @@ void createARoom(World &world, Entity &entityPtr, std::string &message)
     for (auto &it : joined) {
         it->removeComponent<Selected>();
     }
+    world.getResource<MenuStates>().currentState = MenuStates::MULTI_GAME;
+}
+
+void connectMatchmaked(World &world, Entity &entityPtr)
+{
+    (void)entityPtr;
+    if (!world.containsResource<MenuStates>())
+        return;
+
+    communicator_lib::Client _serverEndPoint =
+        world.getTransisthorBridge()->getCommunicatorInstance().getClientByHisId(0);
+    world.getTransisthorBridge()->getCommunicatorInstance().sendDataToAClient(_serverEndPoint, nullptr, 0, 18);
     world.getResource<MenuStates>().currentState = MenuStates::MULTI_GAME;
 }
 

@@ -8,11 +8,18 @@
 /// @file Server/Server.cpp
 
 #include "Server.hpp"
+#include <random>
+#include <csignal>
 #include "Error/Error.hpp"
 
 using namespace server_data;
 using namespace error_lib;
 using namespace communicator_lib;
+
+void signalCallbackHandler(int signum)
+{
+    (void)signum;
+}
 
 Server::Server(std::string address, unsigned short port)
 {
@@ -71,6 +78,7 @@ void Server::startHubLoop()
 {
     CommunicatorMessage connectionOperation;
 
+    std::signal(SIGSEGV, signalCallbackHandler);
     _startConnexionProtocol();
     while (_state != HubState::UNDEFINED && _state != HubState::ENDED) {
         try {
@@ -83,6 +91,8 @@ void Server::startHubLoop()
                 _holdAJoinRoomRequest(connectionOperation);
             if (connectionOperation.message.type == 17)
                 _holdACreateRoomRequest(connectionOperation);
+            if (connectionOperation.message.type == 18)
+                _holdAMatchmakedRequest(connectionOperation);
             if (connectionOperation.message.type == 40)
                 _holdADatabaseValueRequest(connectionOperation);
             if (connectionOperation.message.type == 42)
@@ -167,6 +177,17 @@ void Server::_holdAJoinRoomRequest(CommunicatorMessage joinDemand)
         }
     }
     _communicatorInstance.get()->sendDataToAClient(joinDemand.message.clientInfo, nullptr, 0, 11);
+}
+
+void Server::_holdAMatchmakedRequest(CommunicatorMessage joinDemand)
+{
+    std::random_device dev;
+    std::mt19937 rng(dev());
+    std::uniform_int_distribution<std::mt19937::result_type> dist6(0, _activeRoomList.size() - 1);
+    int choosenRoom = dist6(rng);
+
+    _communicatorInstance.get()->kickAClient(
+        joinDemand.message.clientInfo, _activeRoomList.at(choosenRoom)->getNetworkInfos());
 }
 
 void Server::_holdACreateRoomRequest(CommunicatorMessage createDemand)
