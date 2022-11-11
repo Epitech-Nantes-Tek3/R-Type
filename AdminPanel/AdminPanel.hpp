@@ -116,6 +116,10 @@ namespace admin_panel
         /// @brief Get stats of the specified user in the Database
         /// @param parsedRequest The parsed request.
         void _getStatsAction(AdminPanel::PanelCommand parsedRequest);
+
+        /// @brief Get a scoreboard sorted by the specified key
+        /// @param parsedRequest The parsed request.
+        void _scoreboardAction(AdminPanel::PanelCommand parsedRequest);
     };
 } // namespace admin_panel
 

@@ -14,7 +14,7 @@ using namespace admin_panel;
 
 std::vector<AdminPanel::PanelCommand> commandList = {{"updatePassword", "", {}}, {"updateName", "", {}},
     {"ban", "", {}}, {"mute", "", {}}, {"unban", "", {}}, {"unmute", "", {}}, {"delete", "", {}}, {"promote", "", {}},
-    {"unpromote", "", {}}, {"get", "", {}}};
+    {"unpromote", "", {}}, {"get", "", {}}, {"scoreboard", "", {}}};
 
 AdminPanel::AdminPanel(std::string address, unsigned short port, std::string serverAddress, unsigned short serverPort)
 {
@@ -34,6 +34,7 @@ AdminPanel::AdminPanel(std::string address, unsigned short port, std::string ser
     _requestAction["promote"] = std::bind(&AdminPanel::_promoteAction, this, std::placeholders::_1);
     _requestAction["unpromote"] = std::bind(&AdminPanel::_unpromoteAction, this, std::placeholders::_1);
     _requestAction["get"] = std::bind(&AdminPanel::_getStatsAction, this, std::placeholders::_1);
+    _requestAction["scoreboard"] = std::bind(&AdminPanel::_scoreboardAction, this, std::placeholders::_1);
 }
 
 void AdminPanel::startLoop()
@@ -245,4 +246,13 @@ void AdminPanel::_getStatsAction(AdminPanel::PanelCommand parsedRequest)
         _communicatorInstance->utilitaryAskForADatabaseValue(parsedRequest.userName, "GamesPlayed", {0});
         _waitingForAnswer += 11;
     }
+}
+
+void AdminPanel::_scoreboardAction(AdminPanel::PanelCommand parsedRequest)
+{
+    if (parsedRequest.userName == "") {
+        std::cout << "Invalid command parameters. Please refer to the Notion protocol." << std::endl;
+    }
+    _waitingForAnswer += 1;
+    _communicatorInstance->utilitaryAskForALeaderboard(parsedRequest.userName, {0});
 }
