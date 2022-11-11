@@ -30,6 +30,7 @@
 #include "R-TypeLogic/Global/Components/ProjectileComponent.hpp"
 #include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
 #include "R-TypeLogic/Global/SharedResources/GameLevel.hpp"
+#include "R-TypeLogic/Global/SharedResources/GlobalScore.hpp"
 #include "R-TypeLogic/Global/Systems/DeathSystem.hpp"
 #include "R-TypeLogic/Global/Systems/MovementSystem.hpp"
 #include "R-TypeLogic/Global/Systems/UpdateClockSystem.hpp"
@@ -98,6 +99,7 @@ void Room::initEcsGameData(void)
     _worldInstance->addResource<GameLevel>();
     _worldInstance->addResource<RandomDevice>();
     _worldInstance->addResource<GameClock>();
+    _worldInstance->addResource<GlobalScore>();
     _worldInstance->addResource<SendingFrequency>();
     _worldInstance->addSystem<SendToClient>();
     _worldInstance->addSystem<SendNewlyCreatedToClients>();
