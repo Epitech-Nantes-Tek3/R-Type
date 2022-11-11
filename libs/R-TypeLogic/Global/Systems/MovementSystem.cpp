@@ -29,7 +29,7 @@ void Movement::run(World &world)
         Velocity &vel = entityPtr.get()->getComponent<Velocity>();
         if (vel.modifier == 0)
             vel.modifier = 1;
-        short modifier = (vel.modifier != 1) ? vel.modifier / 100 : vel.modifier;
+        double modifier = (vel.modifier != 1) ? (double)vel.modifier / 100.0 : (double)vel.modifier;
 
         if (vel.multiplierAbscissa * modifier == 0 && vel.multiplierOrdinate * modifier == 0)
             return;

@@ -293,6 +293,7 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
         Velocity &vel = entityPtr->getComponent<Velocity>();
         Size &size = entityPtr->getComponent<Size>();
 
+        vel.modified = true;
         if (playerId != entityPtr->getId()) {
             std::free(_worldInstance.get()->getTransisthorBridge()->transitEcsDataToNetworkDataEntityPlayer(
                 entityPtr->getComponent<Networkable>().id, pos.x, pos.y, vel.multiplierAbscissa, vel.multiplierOrdinate,
@@ -322,6 +323,7 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
         Velocity &vel = entityPtr->getComponent<Velocity>();
         Size &size = entityPtr->getComponent<Size>();
 
+        vel.modified = true;
         std::free(_worldInstance.get()->getTransisthorBridge()->transitEcsDataToNetworkDataEntityEnemy(
             entityPtr->getComponent<Networkable>().id, pos.x, pos.y, vel.multiplierAbscissa, vel.multiplierOrdinate,
             entityPtr->getComponent<Weight>().weight, size.x, size.y, entityPtr->getComponent<Life>().lifePoint,
