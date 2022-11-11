@@ -8,6 +8,7 @@
 /// @file Server/Server.cpp
 
 #include "Server.hpp"
+#include <random>
 #include "Error/Error.hpp"
 
 using namespace server_data;
@@ -54,8 +55,9 @@ unsigned short Server::_getAFreePort(unsigned short actual)
 
 unsigned short Server::createANewRoom(std::string name, short *configs)
 {
-    std::shared_ptr<RoomInstance> ptr = std::make_shared<RoomInstance>(this, _nextRoomId, name,
-        _networkInformations.getAddress(), _getAFreePort(_networkInformations.getPort() + 101), std::to_string(configs[0]));
+    std::shared_ptr<RoomInstance> ptr =
+        std::make_shared<RoomInstance>(this, _nextRoomId, name, _networkInformations.getAddress(),
+            _getAFreePort(_networkInformations.getPort() + 101), std::to_string(configs[0]));
     _activeRoomList.push_back(ptr);
     _nextRoomId++;
     return (_nextRoomId - 1);
@@ -83,6 +85,8 @@ void Server::startHubLoop()
                 _holdAJoinRoomRequest(connectionOperation);
             if (connectionOperation.message.type == 17)
                 _holdACreateRoomRequest(connectionOperation);
+            if (connectionOperation.message.type == 18)
+                _holdAMatchmakedRequest(connectionOperation);
             if (connectionOperation.message.type == 40)
                 _holdADatabaseValueRequest(connectionOperation);
             if (connectionOperation.message.type == 42)
@@ -167,6 +171,17 @@ void Server::_holdAJoinRoomRequest(CommunicatorMessage joinDemand)
         }
     }
     _communicatorInstance.get()->sendDataToAClient(joinDemand.message.clientInfo, nullptr, 0, 11);
+}
+
+void Server::_holdAMatchmakedRequest(CommunicatorMessage joinDemand)
+{
+    std::random_device dev;
+    std::mt19937 rng(dev());
+    std::uniform_int_distribution<std::mt19937::result_type> dist6(0, _activeRoomList.size() - 1);
+    int choosenRoom = dist6(rng);
+
+    _communicatorInstance.get()->kickAClient(
+        joinDemand.message.clientInfo, _activeRoomList.at(choosenRoom)->getNetworkInfos());
 }
 
 void Server::_holdACreateRoomRequest(CommunicatorMessage createDemand)
