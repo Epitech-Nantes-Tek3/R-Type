@@ -16,6 +16,7 @@
 #include "GraphicECS/SFML/Components/ActionQueueComponent.hpp"
 #include "GraphicECS/SFML/Components/AllowControllerComponent.hpp"
 #include "GraphicECS/SFML/Components/AllowMouseAndKeyboardComponent.hpp"
+#include "GraphicECS/SFML/Components/AssociatedIdComponent.hpp"
 #include "GraphicECS/SFML/Components/ChatMessageComponent.hpp"
 #include "GraphicECS/SFML/Components/ControllerButtonInputComponent.hpp"
 #include "GraphicECS/SFML/Components/ControllerJoystickInputComponent.hpp"
@@ -256,7 +257,7 @@ void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
             ButtonActionMap::CONNECT_TO_ROOM, LayerLvL::BUTTON, MenuStates::LOBBY, roomName);
     }
     if (roomNumber != 0)
-        createNewButton(*(_worldInstance.get()), windowSize.x - 300, 300, 200, 50, ButtonActionMap::MATCHMAKED_ROOM,
+        createNewButton(*(_worldInstance.get()), 100, 200, 200, 50, ButtonActionMap::MATCHMAKED_ROOM,
             LayerLvL::BUTTON, MenuStates::LOBBY, "Matchmaked Join");
 }
 
@@ -476,15 +477,24 @@ void ClientRoom::_initLobbyButtons()
 {
     sf::Vector2u windowSize = _worldInstance->getResource<RenderWindowResource>().window.getSize();
 
-    std::size_t roomNameId = createNewWritable(*(_worldInstance.get()), windowSize.x - 300, 100, 200, 50, MenuStates::LOBBY);
+    std::size_t roomNameId =
+        createNewWritable(*(_worldInstance.get()), windowSize.x - 300, 100, 200, 50, MenuStates::LOBBY);
     _worldInstance->getEntity(roomNameId).getComponent<WritableContent>().content = "Room Name";
-    std::size_t playerVelocityId = createNewWritable(*(_worldInstance.get()), windowSize.x - 300, 200, 200, 50, MenuStates::LOBBY);
+    std::size_t playerNumberId =
+        createNewWritable(*(_worldInstance.get()), windowSize.x - 300, 200, 200, 50, MenuStates::LOBBY);
+    _worldInstance->getEntity(playerNumberId).getComponent<WritableContent>().content = "Player Number";
+    std::size_t playerVelocityId =
+        createNewWritable(*(_worldInstance.get()), windowSize.x - 300, 300, 200, 50, MenuStates::LOBBY);
     _worldInstance->getEntity(playerVelocityId).getComponent<WritableContent>().content = "Player Velocity";
-    std::size_t enemeyVelocityId = createNewWritable(*(_worldInstance.get()), windowSize.x - 300, 200, 200, 50, MenuStates::LOBBY);
-    _worldInstance->getEntity(enemeyVelocityId).getComponent<WritableContent>().content = "Enemy Velocity";
+    std::size_t enemyVelocityId =
+        createNewWritable(*(_worldInstance.get()), windowSize.x - 300, 400, 200, 50, MenuStates::LOBBY);
+    _worldInstance->getEntity(enemyVelocityId).getComponent<WritableContent>().content = "Enemy Velocity";
 
-    createNewWritableButton(*(_worldInstance.get()), windowSize.x - 300, 500, 200, 50,
+    std::size_t id = createNewWritableButton(*(_worldInstance.get()), windowSize.x - 300, 500, 200, 50,
         std::function<void(World &, Entity &, std::string &)>(createARoom), MenuStates::LOBBY, roomNameId);
+    _worldInstance->getEntity(id).getComponent<graphicECS::SFML::Components::AssociatedId>().idList.push_back(playerNumberId);
+    _worldInstance->getEntity(id).getComponent<graphicECS::SFML::Components::AssociatedId>().idList.push_back(playerVelocityId);
+    _worldInstance->getEntity(id).getComponent<graphicECS::SFML::Components::AssociatedId>().idList.push_back(enemyVelocityId);
     createNewButton(*(_worldInstance.get()), 100, 100, 200, 50, ButtonActionMap::GO_MAIN_MENU, LayerLvL::BUTTON,
         MenuStates::LOBBY, "Back");
 }

@@ -27,6 +27,8 @@ void Movement::run(World &world)
         double elapsedTimeInSeconds = clock.getElapsedTime();
         Position &pos = entityPtr.get()->getComponent<Position>();
         Velocity &vel = entityPtr.get()->getComponent<Velocity>();
+        if (vel.modifier == 0)
+            vel.modifier = 1;
         short modifier = (vel.modifier != 1) ? vel.modifier / 100 : vel.modifier;
 
         if (vel.multiplierAbscissa * modifier == 0 && vel.multiplierOrdinate * modifier == 0)

@@ -107,14 +107,16 @@ void writableButtonAction(World &world, Entity &entityPtr)
     auto &idList = entityPtr.getComponent<AssociatedId>().idList;
     if (idList.empty())
         return;
-    auto &entity = world.getEntity(idList.at(0));
-    std::string writableContent = entity.getComponent<WritableContent>().content;
+    std::string writableContent;
+    for (auto id : idList) {
+        auto &entity = world.getEntity(id);
+        writableContent.append(entity.getComponent<WritableContent>().content);
+        writableContent.append("\n");
+        entity.getComponent<WritableContent>().content = "";
+        entity.getComponent<GraphicsTextComponent>().text.setString("");
+    }
     if (!writableContent.size())
         return;
-    auto guard = std::lock_guard(entity);
-    auto &writableContentComponent = entity.getComponent<WritableContent>();
-    writableContentComponent.content = "";
-    entity.getComponent<GraphicsTextComponent>().text.setString("");
     entityPtr.getComponent<WritableButtonAction>().actionToExecute(world, entityPtr, writableContent);
 }
 
@@ -133,6 +135,8 @@ void publishNewChatMessage(World &world, Entity &entityPtr, std::string &message
 
 void createARoom(World &world, Entity &entityPtr, std::string &message)
 {
+    std::vector<std::string> vmessage;
+
     (void)entityPtr;
     try {
         world.getTransisthorBridge()->getCommunicatorInstance().getServerEndpointId();
@@ -141,11 +145,20 @@ void createARoom(World &world, Entity &entityPtr, std::string &message)
         std::cerr << "No server currently running" << std::endl;
         return;
     }
-    if (!world.containsResource<MenuStates>() || message.size() < 4 || message.size() > 10)
+    while (message.size()) {
+        vmessage.push_back(message.substr(0, message.find("\n")));
+        message = message.substr(message.find("\n") + 1);
+    }
+    if (!world.containsResource<MenuStates>() || vmessage[0].size() < 4 || vmessage[0].size() > 10)
         return;
     short configs[6] = {4, 1, 1, 1, 1, 1};
+    configs[PLAYER_NUMBER] = std::atoi(vmessage[1].c_str());
+    if (configs[PLAYER_NUMBER] <= 0)
+        configs[PLAYER_NUMBER] = 4;
+    configs[PLAYER_VELOCITY] = std::atoi(vmessage[2].c_str());
+    configs[ENNEMI_VELOCITY] = std::atoi(vmessage[3].c_str());
     world.getTransisthorBridge()->getCommunicatorInstance().utilitarySendRoomConfiguration(
-        message, configs, world.getTransisthorBridge()->getCommunicatorInstance().getClientByHisId(0));
+        vmessage[0], configs, world.getTransisthorBridge()->getCommunicatorInstance().getClientByHisId(0));
     std::vector<std::shared_ptr<Entity>> joined = world.joinEntities<Selected>();
     for (auto &it : joined) {
         it->removeComponent<Selected>();
