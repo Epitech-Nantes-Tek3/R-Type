@@ -16,6 +16,8 @@ namespace graphicECS::SFML::Systems
     {
         std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<SoundComponent>();
 
+        if (!world.containsResource<SoundResource>() || !world.getResource<SoundResource>().playSound)
+            return;
         auto stopSound = [&world](std::shared_ptr<ecs::Entity> entityPtr) {
             SoundComponent soundComponent = entityPtr.get()->getComponent<SoundComponent>();
             if (!world.getResource<SoundResource>()._soundsList.contains(soundComponent.sound_e))
