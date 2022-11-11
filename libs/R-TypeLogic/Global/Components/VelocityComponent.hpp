@@ -20,6 +20,8 @@ namespace ecs
         double multiplierAbscissa;
         /// @brief The multiplier of the ordinate movement (between 0.1 and 10)
         double multiplierOrdinate;
+        /// @brief Modifier of the velocity ask by the room.
+        short modifier;
         /// @brief The network status of the component. True if it has been modified since it was last sent.
         bool modified;
         /// @brief If the server need to resend it to everyone
@@ -33,7 +35,7 @@ namespace ecs
         /// @param newMultiplierX the movement's multiplier of abscissa
         /// @param newMultiplierY the movement's multiplier of ordinate
         Velocity(double newMultiplierX = 0, double newMultiplierY = 0)
-            : multiplierAbscissa(newMultiplierX), multiplierOrdinate(newMultiplierY), modified(false),
+            : multiplierAbscissa(newMultiplierX), multiplierOrdinate(newMultiplierY), modifier(1), modified(false),
               sendToEveryone(false), clientToDelete(1000){};
         /// @brief Default Destructor
         ~Velocity() = default;

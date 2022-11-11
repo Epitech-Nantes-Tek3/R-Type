@@ -73,7 +73,7 @@ Room::Room() : _inputHandler(&Room::_manageInterprocessCommunication, this)
     _name = std::string(10, '\0');
 }
 
-Room::Room(unsigned short id, std::string name, Client networkInformations, short playerNumber)
+Room::Room(unsigned short id, std::string name, Client networkInformations, short *configs)
     : _inputHandler(&Room::_manageInterprocessCommunication, this)
 {
     _id = id;
@@ -84,7 +84,10 @@ Room::Room(unsigned short id, std::string name, Client networkInformations, shor
     _communicatorInstance.get()->setTransisthorBridge(_transisthorInstance);
     _worldInstance.get()->setTransisthorBridge(_communicatorInstance.get()->getTransisthorBridge());
     _state = RoomState::UNDEFINED;
-    _remainingPlaces = playerNumber;
+    _remainingPlaces = configs[0];
+    for (int i = 0; i < 6; i++) {
+        _configs[i] = configs[i];
+    }
     _name = name;
 }
 
@@ -259,6 +262,7 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
     std::string playerNameStr = _getPlayerName(connexionDemand);
     std::size_t playerId = createNewPlayer(*_worldInstance.get(), 20, 500, 0, 0, 1, 102, 102, 100, 10, 4, false,
         _remainingPlaces + 1, playerNameStr, "", generator.generateNewNetworkableId());
+    _worldInstance->getEntity(playerId).getComponent<Velocity>().modifier = _configs[roomConfiguration_e::PLAYER_VELOCITY];
     std::vector<std::shared_ptr<ecs::Entity>> clients = _worldInstance.get()->joinEntities<ecs::NetworkClient>();
     std::vector<unsigned short> clientIdList;
     auto addToClientList = [&clientIdList](std::shared_ptr<ecs::Entity> entityPtr) {

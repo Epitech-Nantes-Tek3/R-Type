@@ -42,8 +42,8 @@ namespace argument_handler
             /// @brief Port to bind to.
             unsigned short port;
 
-            /// @brief Number of player.
-            short playerNumber;
+            /// @brief Room configurations.
+            short *configs;
         };
 
         /// @brief Struct containing all Arguments needs by the client executable
