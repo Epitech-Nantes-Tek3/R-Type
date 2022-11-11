@@ -76,12 +76,23 @@ void createARoom(World &world, Entity &entityPtr, std::string &message);
 /// @param entityPtr The entity that the button is attached to.
 void goToMainMenu(World &world, Entity &entityPtr);
 
+/// @brief This function returns the previous menu state.
+/// @return The previous menu state.
 MenuStates::menuState_e getPreviousMenu();
 
+/// @brief It toggles the playMusic boolean in the MusicResource
+/// @param world The world object that the entity is in.
+/// @param entityPtr The entity that the component is attached to.
 void switchMusic(World &world, Entity &entityPtr);
 
+/// @brief It toggles the playSound variable in the SoundResource
+/// @param world The world object that the entity is in.
+/// @param entityPtr The entity that the component is attached to.
 void switchSound(World &world, Entity &entityPtr);
 
+/// @brief It changes the current state of the menu to the option state
+/// @param world The world that the entity is in.
+/// @param entityPtr The entity that the button is attached to.
 void goOption(World &world, Entity &entityPtr);
 
 #endif /* !BUTTONACTION_HPP_ */
