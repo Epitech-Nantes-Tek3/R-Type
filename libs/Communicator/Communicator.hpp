@@ -172,6 +172,11 @@ namespace communicator_lib
         void utilitarySetADatabaseValue(
             std::string pseudo, unsigned short key, std::string value, std::vector<unsigned short> destination);
 
+        /// @brief Utilitary function used to get a scoreboard sorted by a key
+        /// @param key The given key
+        /// @param destination of the message
+        void utilitaryAskForALeaderboard(std::string key, std::vector<unsigned short> destination);
+
         /// @brief Utilitary function used to extract a message received by a protocol 50
         /// @param cryptedMessage the crypted message
         /// @return std::vector<std::string> the decrypted pseudo + message

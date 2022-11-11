@@ -279,6 +279,20 @@ void Communicator::utilitaryAskForADatabaseValue(
     std::free(networkObject);
 }
 
+void Communicator::utilitaryAskForALeaderboard(std::string key, std::vector<unsigned short> destination)
+{
+    Client temporaryClient;
+    void *networkObject = std::malloc(sizeof(char) * key.size());
+
+    if (networkObject == nullptr)
+        throw MallocError("Malloc failed.");
+    std::memcpy(networkObject, key.c_str(), sizeof(char) * key.size());
+    for (auto it : destination) {
+        temporaryClient = getClientByHisId(it);
+        sendDataToAClient(temporaryClient, networkObject, sizeof(char) * key.size(), 44);
+    }
+}
+
 std::vector<std::string> Communicator::utilitaryReceiveAskingForDatabaseValue(CommunicatorMessage cryptedMessage)
 {
     char *pseudo = nullptr;
