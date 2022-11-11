@@ -360,6 +360,7 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
         clock.resetClock();
         clock.resetClock();
     }
+    _worldInstance->getEntity(playerId).getComponent<Velocity>().modified = true;
 }
 
 void Room::_manageInterprocessCommunication()
