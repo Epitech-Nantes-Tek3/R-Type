@@ -91,7 +91,7 @@ To build our R-Type project, you will need CMake 3.17.0 Compiler, C++ 20 and Con
 
 On Linux :
 
-- You may use the build.sh or the following commands :
+- You may execute the script `build.sh` or the following commands :
 
 ```bash
     cmake -B ./build -DCMAKE_BUILD_TYPE=Release
@@ -100,7 +100,7 @@ On Linux :
 
 On Windows :
 
-- You may use the build.bat or the following commands :
+- You may execute the script `build.bat` or the following commands :
 
 ```bash
     mkdir build
@@ -118,7 +118,7 @@ On Windows :
 ### **Testing program**
 
 The tests are available on Linux.
-You can test the code using with the following commands.
+You may can test the code executing the script `build_tests.sh` or using with the following commands.
 
 ```bash
     rm -rf ./build
