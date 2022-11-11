@@ -229,8 +229,8 @@ void ClientRoom::_holdADisconnectionRequest()
     for (auto &it : entity) {
         _worldInstance->removeEntity(it->getId());
     }
+    _disconectionProcess();
     _worldInstance->getResource<MenuStates>().currentState = MenuStates::MAIN_MENU;
-    _state = ClientState::ENDED;
 }
 
 void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
