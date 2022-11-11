@@ -73,6 +73,10 @@ namespace admin_panel
         /// @param databaseAnswer The received data
         void _handleAReceivedData(CommunicatorMessage databaseAnswer);
 
+        /// @brief Handle a received data from a protocol 45.
+        /// @param databaseAnswer The received data
+        void _handleAReceivedScoreboard(CommunicatorMessage databaseAnswer);
+
         /// @brief Ask the user for a new request
         void _getARequest();
 

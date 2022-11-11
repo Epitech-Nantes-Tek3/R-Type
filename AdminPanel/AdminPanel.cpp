@@ -52,6 +52,8 @@ void AdminPanel::startLoop()
             }
             if (databaseAnswer.message.type == 41)
                 _handleAReceivedData(databaseAnswer);
+            if (databaseAnswer.message.type == 45)
+                _handleAReceivedScoreboard(databaseAnswer);
             if (databaseAnswer.message.type == 43) {
                 std::cout << "Wanted client doesn't exist inside the database." << std::endl;
                 _waitingForAnswer -= 1;
@@ -115,6 +117,16 @@ void AdminPanel::_handleAReceivedData(CommunicatorMessage databaseAnswer)
         return;
     }
     std::cout << value << std::endl;
+}
+
+void AdminPanel::_handleAReceivedScoreboard(CommunicatorMessage databaseAnswer)
+{
+    std::map<std::string, int> scoreboard = _communicatorInstance->utilitaryReceiveScoreboard(databaseAnswer);
+
+    for (auto it : scoreboard) {
+        std::cerr << it.first << " -> " << it.second << std::endl;
+    }
+    _waitingForAnswer -= 1;
 }
 
 AdminPanel::PanelCommand AdminPanel::_parseAClientRequest(std::string clientRequest)

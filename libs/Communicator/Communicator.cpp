@@ -354,7 +354,7 @@ void Communicator::utilitarySendALeaderboard(
     }
 }
 
-std::map<std::string, int> utilitaryReceiveScoreboard(CommunicatorMessage cryptedMessage)
+std::map<std::string, int> Communicator::utilitaryReceiveScoreboard(CommunicatorMessage cryptedMessage)
 {
     unsigned short scoreboardSize = 0;
     unsigned short offset = 0;
