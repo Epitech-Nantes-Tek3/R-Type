@@ -177,6 +177,11 @@ namespace communicator_lib
         /// @param destination of the message
         void utilitaryAskForALeaderboard(std::string key, std::vector<unsigned short> destination);
 
+        /// @brief Utilitary function used to send a scoreboard sorted by a key
+        /// @param pseudoList All user inside the scoreboard
+        /// @param destination of the message
+        void utilitarySendALeaderboard(std::vector<std::string> pseudoList, std::vector<unsigned short> destination);
+
         /// @brief Utilitary function used to extract a message received by a protocol 50
         /// @param cryptedMessage the crypted message
         /// @return std::vector<std::string> the decrypted pseudo + message

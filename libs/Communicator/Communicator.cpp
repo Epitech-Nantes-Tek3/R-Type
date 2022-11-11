@@ -293,13 +293,39 @@ void Communicator::utilitaryAskForALeaderboard(std::string key, std::vector<unsi
     }
 }
 
-std::string utilitaryReceiveScoreboardAsking(CommunicatorMessage cryptedMessage)
+std::string Communicator::utilitaryReceiveScoreboardAsking(CommunicatorMessage cryptedMessage)
 {
     char *key = (char *)cryptedMessage.message.data;
     std::string keyStr;
 
     keyStr.append(key, cryptedMessage.message.size);
     return keyStr;
+}
+
+void Communicator::utilitarySendALeaderboard(
+    std::vector<std::string> pseudoList, std::vector<unsigned short> destination)
+{
+    Client temporaryClient;
+    unsigned short offset = 0;
+    unsigned short scoreboardSize = pseudoList.size();
+    void *networkObject =
+        std::malloc((sizeof(char) * 10 + sizeof(unsigned short)) * scoreboardSize + sizeof(unsigned short));
+
+    if (networkObject == nullptr)
+        throw MallocError("Malloc failed.");
+    std::memcpy(networkObject, &scoreboardSize, sizeof(unsigned short);
+    offset += sizeof(unsigned short);
+    for (auto it : pseudoList) {
+        unsigned short tempSize = it.size();
+        std::memcpy((void *)((char *)networkObject + offset), &tempSize, sizeof(unsigned short));
+        offset += sizeof(unsigned short);
+        std::memcpy((void *)((char *)networkObject + offset), it.c_str(), sizeof(char) * tempSize);
+        offset += sizeof(char) * tempSize;
+    }
+    for (auto it : destination) {
+        temporaryClient = getClientByHisId(it);
+        sendDataToAClient(temporaryClient, networkObject, offset, 45);
+    }
 }
 
 std::vector<std::string> Communicator::utilitaryReceiveAskingForDatabaseValue(CommunicatorMessage cryptedMessage)
