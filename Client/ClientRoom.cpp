@@ -476,9 +476,15 @@ void ClientRoom::_initLobbyButtons()
 {
     sf::Vector2u windowSize = _worldInstance->getResource<RenderWindowResource>().window.getSize();
 
-    std::size_t id = createNewWritable(*(_worldInstance.get()), windowSize.x - 300, 100, 200, 50, MenuStates::LOBBY);
-    createNewWritableButton(*(_worldInstance.get()), windowSize.x - 300, 200, 200, 50,
-        std::function<void(World &, Entity &, std::string &)>(createARoom), MenuStates::LOBBY, id);
+    std::size_t roomNameId = createNewWritable(*(_worldInstance.get()), windowSize.x - 300, 100, 200, 50, MenuStates::LOBBY);
+    _worldInstance->getEntity(roomNameId).getComponent<WritableContent>().content = "Room Name";
+    std::size_t playerVelocityId = createNewWritable(*(_worldInstance.get()), windowSize.x - 300, 200, 200, 50, MenuStates::LOBBY);
+    _worldInstance->getEntity(playerVelocityId).getComponent<WritableContent>().content = "Player Velocity";
+    std::size_t enemeyVelocityId = createNewWritable(*(_worldInstance.get()), windowSize.x - 300, 200, 200, 50, MenuStates::LOBBY);
+    _worldInstance->getEntity(enemeyVelocityId).getComponent<WritableContent>().content = "Enemy Velocity";
+
+    createNewWritableButton(*(_worldInstance.get()), windowSize.x - 300, 500, 200, 50,
+        std::function<void(World &, Entity &, std::string &)>(createARoom), MenuStates::LOBBY, roomNameId);
     createNewButton(*(_worldInstance.get()), 100, 100, 200, 50, ButtonActionMap::GO_MAIN_MENU, LayerLvL::BUTTON,
         MenuStates::LOBBY, "Back");
 }
