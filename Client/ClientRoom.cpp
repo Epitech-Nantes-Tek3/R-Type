@@ -208,7 +208,7 @@ void ClientRoom::_holdAChatRequest(CommunicatorMessage chatRequest)
 }
 
 void ClientRoom::_holdADisconnectionRequest()
-{;
+{
     std::vector<std::shared_ptr<Entity>> entity = _worldInstance->joinEntities<Enemy>();
     for (auto &it : entity) {
         _worldInstance->removeEntity(it->getId());
