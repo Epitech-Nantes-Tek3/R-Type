@@ -279,6 +279,29 @@ void Communicator::utilitaryAskForADatabaseValue(
     std::free(networkObject);
 }
 
+std::vector<std::string> Communicator::utilitaryReceiveAskingForDatabaseValue(CommunicatorMessage cryptedMessage)
+{
+    char *pseudo = nullptr;
+    char *keyContent = nullptr;
+    unsigned short keyLen = 0;
+    unsigned short pseudoLen = 0;
+    unsigned short offset = 0;
+
+    std::memcpy(&pseudoLen, cryptedMessage.message.data, sizeof(unsigned short));
+    offset += sizeof(unsigned short);
+    pseudo = (char *)cryptedMessage.message.data + offset;
+    std::string pseudoStr(pseudoLen, '\0');
+    for (int i = 0; i < pseudoLen; i++)
+        pseudoStr[i] = pseudo[i];
+    offset += sizeof(char) * pseudoLen;
+    keyContent = (char *)cryptedMessage.message.data + offset;
+    keyLen = cryptedMessage.message.size - offset;
+    std::string keyContentStr(keyLen, '\0');
+    for (int i = 0; i < keyLen; i++)
+        keyContentStr[i] = keyContent[i];
+    return {pseudoStr, keyContentStr};
+}
+
 void Communicator::utilitaryAskForALeaderboard(std::string key, std::vector<unsigned short> destination)
 {
     Client temporaryClient;
@@ -303,24 +326,27 @@ std::string Communicator::utilitaryReceiveScoreboardAsking(CommunicatorMessage c
 }
 
 void Communicator::utilitarySendALeaderboard(
-    std::vector<std::string> pseudoList, std::vector<unsigned short> destination)
+    std::map<std::string, int> scoreboardContent, std::vector<unsigned short> destination)
 {
     Client temporaryClient;
     unsigned short offset = 0;
-    unsigned short scoreboardSize = pseudoList.size();
-    void *networkObject =
-        std::malloc((sizeof(char) * 10 + sizeof(unsigned short)) * scoreboardSize + sizeof(unsigned short));
+    unsigned short scoreboardSize = scoreboardContent.size();
+    void *networkObject = std::malloc(
+        (sizeof(char) * 10 + sizeof(unsigned short) + sizeof(int)) * scoreboardSize + sizeof(unsigned short));
 
     if (networkObject == nullptr)
         throw MallocError("Malloc failed.");
-    std::memcpy(networkObject, &scoreboardSize, sizeof(unsigned short);
+    std::memcpy(networkObject, &scoreboardSize, sizeof(unsigned short));
     offset += sizeof(unsigned short);
-    for (auto it : pseudoList) {
-        unsigned short tempSize = it.size();
+    for (auto it : scoreboardContent) {
+        unsigned short tempSize = it.first.size();
+        int value = it.second;
         std::memcpy((void *)((char *)networkObject + offset), &tempSize, sizeof(unsigned short));
         offset += sizeof(unsigned short);
-        std::memcpy((void *)((char *)networkObject + offset), it.c_str(), sizeof(char) * tempSize);
+        std::memcpy((void *)((char *)networkObject + offset), it.first.c_str(), sizeof(char) * tempSize);
         offset += sizeof(char) * tempSize;
+        std::memcpy((void *)((char *)networkObject + offset), &value, sizeof(int));
+        offset += sizeof(int);
     }
     for (auto it : destination) {
         temporaryClient = getClientByHisId(it);
@@ -328,27 +354,29 @@ void Communicator::utilitarySendALeaderboard(
     }
 }
 
-std::vector<std::string> Communicator::utilitaryReceiveAskingForDatabaseValue(CommunicatorMessage cryptedMessage)
+std::map<std::string, int> utilitaryReceiveScoreboard(CommunicatorMessage cryptedMessage)
 {
-    char *pseudo = nullptr;
-    char *keyContent = nullptr;
-    unsigned short keyLen = 0;
-    unsigned short pseudoLen = 0;
+    unsigned short scoreboardSize = 0;
     unsigned short offset = 0;
+    std::map<std::string, int> scoreboard;
 
-    std::memcpy(&pseudoLen, cryptedMessage.message.data, sizeof(unsigned short));
+    std::memcpy(&scoreboardSize, cryptedMessage.message.data, sizeof(unsigned short));
     offset += sizeof(unsigned short);
-    pseudo = (char *)cryptedMessage.message.data + offset;
-    std::string pseudoStr(pseudoLen, '\0');
-    for (int i = 0; i < pseudoLen; i++)
-        pseudoStr[i] = pseudo[i];
-    offset += sizeof(char) * pseudoLen;
-    keyContent = (char *)cryptedMessage.message.data + offset;
-    keyLen = cryptedMessage.message.size - offset;
-    std::string keyContentStr(keyLen, '\0');
-    for (int i = 0; i < keyLen; i++)
-        keyContentStr[i] = keyContent[i];
-    return {pseudoStr, keyContentStr};
+    for (int i = 0; i < scoreboardSize; i++) {
+        unsigned short pseudoSize = 0;
+        char *pseudo = (char *)cryptedMessage.message.data + offset;
+        std::string pseudoStr;
+        int value = 0;
+
+        std::memcpy(&pseudoSize, (void *)((char *)cryptedMessage.message.data + offset), sizeof(unsigned short));
+        offset += sizeof(unsigned short);
+        pseudoStr.append(pseudo, pseudoSize);
+        offset += sizeof(char) * pseudoSize;
+        std::memcpy(&value, (void *)((char *)cryptedMessage.message.data + offset), sizeof(int));
+        offset += sizeof(int);
+        scoreboard[pseudoStr] = value;
+    }
+    return scoreboard;
 }
 
 void Communicator::utilitarySendDatabaseValue(std::string value, Client &destination)

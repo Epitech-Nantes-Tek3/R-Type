@@ -178,9 +178,10 @@ namespace communicator_lib
         void utilitaryAskForALeaderboard(std::string key, std::vector<unsigned short> destination);
 
         /// @brief Utilitary function used to send a scoreboard sorted by a key
-        /// @param pseudoList All user inside the scoreboard
+        /// @param scoreboardContent The scoreboard content
         /// @param destination of the message
-        void utilitarySendALeaderboard(std::vector<std::string> pseudoList, std::vector<unsigned short> destination);
+        void utilitarySendALeaderboard(
+            std::map<std::string, int> scoreboardContent, std::vector<unsigned short> destination);
 
         /// @brief Utilitary function used to extract a message received by a protocol 50
         /// @param cryptedMessage the crypted message
@@ -206,6 +207,11 @@ namespace communicator_lib
         /// @param cryptedMessage the crypted message
         /// @return std::string the wanted key
         std::string utilitaryReceiveScoreboardAsking(CommunicatorMessage cryptedMessage);
+
+        /// @brief Utilitary function used to extract the scoreboard content received by a protocol 45
+        /// @param cryptedMessage the crypted message
+        /// @return std::map<std::string, int> the scoreboard content
+        std::map<std::string, int> utilitaryReceiveScoreboard(CommunicatorMessage cryptedMessage);
 
         /// @brief Utilitary function used to send a message with a protocol 17.
         /// @param roomName The name of the room configuration.

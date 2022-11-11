@@ -254,7 +254,7 @@ void Receiver::bindDataTraitmentFunction(void)
     _dataTraitment[40] = std::bind(&Receiver::dataTraitmentType40, this, std::placeholders::_1);
     _dataTraitment[41] = std::bind(&Receiver::dataTraitmentType41, this, std::placeholders::_1);
     _dataTraitment[42] = std::bind(&Receiver::dataTraitmentType42, this, std::placeholders::_1);
-    _dataTraitment[43] = std::bind(&Receiver::dataTraitmentType43, this, std::placeholders::_1);2
+    _dataTraitment[43] = std::bind(&Receiver::dataTraitmentType43, this, std::placeholders::_1);
     _dataTraitment[44] = std::bind(&Receiver::dataTraitmentType44, this, std::placeholders::_1);
     _dataTraitment[45] = std::bind(&Receiver::dataTraitmentType45, this, std::placeholders::_1);
     _dataTraitment[50] = std::bind(&Receiver::dataTraitmentType50, this, std::placeholders::_1);
