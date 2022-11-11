@@ -141,7 +141,7 @@ ClientRoom::ClientRoom(std::string address, unsigned short port, std::string ser
 void ClientRoom::_connectToARoom()
 {
     unsigned short pseudoSize = _pseudo.size();
-    void *networkData = std::malloc(sizeof(char) * 5);
+    void *networkData = std::malloc(sizeof(char) * pseudoSize + sizeof(unsigned short));
     unsigned short offset = 0;
 
     if (networkData == nullptr)
@@ -163,7 +163,7 @@ void ClientRoom::_startConnexionProtocol()
 {
     unsigned short pseudoSize = _pseudo.size();
     unsigned short passwordSize = _password.size();
-    void *networkData = std::malloc(sizeof(char) * (pseudoSize + passwordSize));
+    void *networkData = std::malloc(sizeof(char) * (pseudoSize + passwordSize) + sizeof(unsigned short) * 2);
     unsigned short offset = 0;
 
     if (networkData == nullptr)
@@ -229,8 +229,8 @@ void ClientRoom::_holdADisconnectionRequest()
     for (auto &it : entity) {
         _worldInstance->removeEntity(it->getId());
     }
+    _disconectionProcess();
     _worldInstance->getResource<MenuStates>().currentState = MenuStates::MAIN_MENU;
-    _state = ClientState::ENDED;
 }
 
 void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
@@ -367,7 +367,8 @@ void ClientRoom::_updateEcsResources()
     if (_worldInstance->containsResource<ButtonActionMap>())
         _loadButtonActionMap();
     if (_worldInstance->containsResource<MusicResource>()) {
-        _worldInstance->getResource<MusicResource>().addMusic(graphicECS::SFML::Resources::MusicResource::BACKGROUNDTHEME, "assets/Musics/music_background.wav");
+        _worldInstance->getResource<MusicResource>().addMusic(
+            graphicECS::SFML::Resources::MusicResource::BACKGROUNDTHEME, "assets/Musics/music_background.wav");
     }
 }
 
@@ -464,7 +465,7 @@ void ClientRoom::_loadButtonActionMap()
     actionsList.addAction(ButtonActionMap::GO_SOLO_GAME, std::function<void(World &, Entity &)>(launchSoloGame));
     actionsList.addAction(ButtonActionMap::SWITCH_MUSIC, std::function<void(World &, Entity &)>(switchMusic));
     actionsList.addAction(ButtonActionMap::SWITCH_SOUND, std::function<void(World &, Entity &)>(switchSound));
-    actionsList.addAction(ButtonActionMap::GO_OPTION, std::function<void(World &world, Entity &)>(goOption));
+    actionsList.addAction(ButtonActionMap::GO_OPTION, std::function<void(World & world, Entity &)>(goOption));
 }
 
 void ClientRoom::_initLobbyButtons()
@@ -482,7 +483,7 @@ void ClientRoom::askForRooms()
 {
     unsigned short pseudoSize = _pseudo.size();
     unsigned short passwordSize = _password.size();
-    void *networkData = std::malloc(sizeof(char) * (pseudoSize + passwordSize));
+    void *networkData = std::malloc(sizeof(char) * (pseudoSize + passwordSize) + sizeof(unsigned short) * 2);
     unsigned short offset = 0;
 
     if (networkData == nullptr)
@@ -577,9 +578,7 @@ void ClientRoom::_updateEcsEntities()
                     _initInGameBackgrounds();
                 break;
             case MenuStates::PAUSED: _initPausedButton(); break;
-            case MenuStates::OPTION:
-                _initOptionButton();
-                break;
+            case MenuStates::OPTION: _initOptionButton(); break;
             default: break;
         }
     }
