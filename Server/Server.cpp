@@ -8,18 +8,15 @@
 /// @file Server/Server.cpp
 
 #include "Server.hpp"
-#include <random>
 #include <csignal>
+#include <random>
 #include "Error/Error.hpp"
 
 using namespace server_data;
 using namespace error_lib;
 using namespace communicator_lib;
 
-void signalCallbackHandler(int signum)
-{
-    (void)signum;
-}
+void signalCallbackHandler(int signum) { (void)signum; }
 
 Server::Server(std::string address, unsigned short port)
 {

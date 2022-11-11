@@ -16,8 +16,8 @@ int main(int ac, char **av)
     ArgumentHandler argumentHandler = ArgumentHandler(ac, av);
     ArgumentHandler::RoomInformation roomInformations = argumentHandler.extractRoomInformations();
 
-    server_data::Room room(
-        roomInformations.id, roomInformations.name, Client(roomInformations.address, roomInformations.port), roomInformations.configs);
+    server_data::Room room(roomInformations.id, roomInformations.name,
+        Client(roomInformations.address, roomInformations.port), roomInformations.configs);
     room.startLobbyLoop();
     return 0;
 }

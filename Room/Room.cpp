@@ -268,7 +268,8 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
     std::string playerNameStr = _getPlayerName(connexionDemand);
     std::size_t playerId = createNewPlayer(*_worldInstance.get(), 20, 500, 0, 0, 1, 102, 102, 100, 10, 4, false,
         _remainingPlaces + 1, playerNameStr, "", generator.generateNewNetworkableId());
-    _worldInstance->getEntity(playerId).getComponent<Velocity>().modifier = _configs[roomConfiguration_e::PLAYER_VELOCITY];
+    _worldInstance->getEntity(playerId).getComponent<Velocity>().modifier =
+        _configs[roomConfiguration_e::PLAYER_VELOCITY];
     std::vector<std::shared_ptr<ecs::Entity>> clients = _worldInstance.get()->joinEntities<ecs::NetworkClient>();
     std::vector<unsigned short> clientIdList;
     auto addToClientList = [&clientIdList](std::shared_ptr<ecs::Entity> entityPtr) {

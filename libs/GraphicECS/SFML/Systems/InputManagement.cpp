@@ -156,6 +156,22 @@ namespace graphicECS::SFML::Systems
                 }
             }
         }
+        if (event.type == sf::Event::JoystickButtonReleased) {
+            for (auto entityPtr : Inputs) {
+                if (entityPtr->getComponent<ControllerButtonInputComponent>().controllerButtonMapActions.contains(
+                        event.joystickMove.axis)
+                    && entityPtr->contains<AllowControllerComponent>()) {
+                    auto guard = std::lock_guard(*entityPtr.get());
+                    entityPtr->getComponent<ActionQueueComponent>().actions.push(
+                        std::make_pair<ActionQueueComponent::inputAction_e, float>(
+                            ActionQueueComponent::inputAction_e(
+                                entityPtr->getComponent<ControllerButtonInputComponent>()
+                                    .controllerButtonMapActions[event.key.code]
+                                    .first),
+                            0));
+                }
+            }
+        }
     }
 
     void InputManagement::run(World &world)
