@@ -259,8 +259,8 @@ void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
             ButtonActionMap::CONNECT_TO_ROOM, LayerLvL::BUTTON, MenuStates::LOBBY, roomName);
     }
     if (roomNumber != 0)
-        createNewButton(*(_worldInstance.get()), 100, 200, 200, 50, ButtonActionMap::MATCHMAKED_ROOM,
-            LayerLvL::BUTTON, MenuStates::LOBBY, "Matchmaked Join");
+        createNewButton(*(_worldInstance.get()), 100, 200, 200, 50, ButtonActionMap::MATCHMAKED_ROOM, LayerLvL::BUTTON,
+            MenuStates::LOBBY, "Matchmaked Join");
 }
 
 bool ClientRoom::_answerProtocols()
@@ -494,9 +494,12 @@ void ClientRoom::_initLobbyButtons()
 
     std::size_t id = createNewWritableButton(*(_worldInstance.get()), windowSize.x - 300, 500, 200, 50,
         std::function<void(World &, Entity &, std::string &)>(createARoom), MenuStates::LOBBY, roomNameId);
-    _worldInstance->getEntity(id).getComponent<graphicECS::SFML::Components::AssociatedId>().idList.push_back(playerNumberId);
-    _worldInstance->getEntity(id).getComponent<graphicECS::SFML::Components::AssociatedId>().idList.push_back(playerVelocityId);
-    _worldInstance->getEntity(id).getComponent<graphicECS::SFML::Components::AssociatedId>().idList.push_back(enemyVelocityId);
+    _worldInstance->getEntity(id).getComponent<graphicECS::SFML::Components::AssociatedId>().idList.push_back(
+        playerNumberId);
+    _worldInstance->getEntity(id).getComponent<graphicECS::SFML::Components::AssociatedId>().idList.push_back(
+        playerVelocityId);
+    _worldInstance->getEntity(id).getComponent<graphicECS::SFML::Components::AssociatedId>().idList.push_back(
+        enemyVelocityId);
     createNewButton(*(_worldInstance.get()), 100, 100, 200, 50, ButtonActionMap::GO_MAIN_MENU, LayerLvL::BUTTON,
         MenuStates::LOBBY, "Back");
 }
