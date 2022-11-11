@@ -41,6 +41,7 @@
 #include "GraphicECS/SFML/Systems/RemoveChatSystem.hpp"
 #include "GraphicECS/SFML/Systems/SfObjectFollowEntitySystem.hpp"
 #include "GraphicECS/SFML/Systems/SoundManagement.hpp"
+#include "GraphicECS/SFML/Systems/UpdateLifeText.hpp"
 #include "GraphicECS/SFML/Systems/UpdateParallaxSystem.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Components/NetworkServer.hpp"
@@ -50,10 +51,10 @@
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/ButtonActionMap.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/GameStates.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateButton.hpp"
-#include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateText.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateChatMessage.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateEnemy.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreatePlayer.hpp"
+#include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateText.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateWritable.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateWritableButton.hpp"
 #include "R-TypeLogic/Global/Components/AlliedProjectileComponent.hpp"
@@ -580,9 +581,10 @@ void ClientRoom::_updateEcsEntities()
                 _worldInstance->getResource<GameStates>().currentState = GameStates::IN_GAME;
                 _initInGameButtons();
                 _initInGameWritables();
-                _initInGameText();
-                if (_worldInstance->joinEntities<ParallaxBackground>().empty())
+                if (_worldInstance->joinEntities<ParallaxBackground>().empty()) {
+                    _initInGameText();
                     _initInGameBackgrounds();
+                }
                 break;
             case MenuStates::PAUSED: _initPausedButton(); break;
             case MenuStates::OPTION: _initOptionButton(); break;
@@ -646,8 +648,8 @@ void ClientRoom::_initInGameButtons()
 
 void ClientRoom::_initInGameText()
 {
-    createNewText(
-        *(_worldInstance.get()), 1700, 20, 16, LayerLvL::TEXT, MenuStates::MULTI_GAME, "Remaining Life : 3");
+    createNewText(*(_worldInstance.get()), 1700, 20, 16, LayerLvL::TEXT, MenuStates::MULTI_GAME, "Remaining Life : 0");
+    createNewText(*(_worldInstance.get()), 1700, 20, 16, LayerLvL::TEXT, MenuStates::SOLO_GAME, "Remaining Life : 0");
 }
 
 void ClientRoom::_initMainMenuButtons()
@@ -706,6 +708,8 @@ void ClientRoom::_updateEcsSystems()
         _worldInstance->addSystem<ElectricInvisibleEnemy>();
     if (!_worldInstance->containsSystem<UpdateParallax>())
         _worldInstance->addSystem<UpdateParallax>();
+    if (!_worldInstance->containsSystem<UpdateLifeTextSystem>())
+        _worldInstance->addSystem<UpdateLifeTextSystem>();
     if (_worldInstance->containsResource<MenuStates>()
         && _worldInstance->getResource<MenuStates>().currentState == MenuStates::SOLO_GAME) {
         if (!_worldInstance->containsSystem<MobGeneration>())
