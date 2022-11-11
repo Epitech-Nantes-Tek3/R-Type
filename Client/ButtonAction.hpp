@@ -42,12 +42,17 @@ void writableButtonAction(World &world, Entity &entityPtr);
 /// @param message message to send
 void publishNewChatMessage(World &world, Entity &entityPtr, std::string &message);
 
-/// @brief It sends a room configuration to the server, and then changes the menu state to
+/// @brief It ask the server to connect to a room, and then changes the menu state to
 /// the lobby menu
 /// @param world The world that contains the entity.
 /// @param entityPtr The entity that is calling the function.
-/// @return A function pointer.
 void connectToARoom(World &world, Entity &entityPtr);
+
+/// @brief It ask the server to connect to a matchmaked room, and then changes the menu state to
+/// the lobby menu
+/// @param world The world that contains the entity.
+/// @param entityPtr The entity that is calling the function.
+void connectMatchmaked(World &world, Entity &entityPtr);
 
 /// @brief It changes the current state of the menu to the lobby state
 /// @param world The world that the entity is in.
@@ -64,7 +69,6 @@ void goToLobby(World &world, Entity &entityPtr);
 /// @param world The world that contains all the entities and resources.
 /// @param entityPtr The entity that is calling the function.
 /// @param message the message that will be sent to the client
-/// @return A function pointer.
 void createARoom(World &world, Entity &entityPtr, std::string &message);
 
 /// @brief It sets the current state of the menu to the main menu

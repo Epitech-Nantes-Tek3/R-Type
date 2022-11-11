@@ -31,6 +31,7 @@ namespace ecs
             QUIT,
             CONNECT_TO_ROOM,
             CREATE_A_ROOM,
+            MATCHMAKED_ROOM,
             WRITABLE,
             WRITABLE_BUTTON,
             SWITCH_SOUND,

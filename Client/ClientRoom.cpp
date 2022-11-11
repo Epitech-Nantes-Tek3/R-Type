@@ -255,6 +255,9 @@ void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
         createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, i * 60, 200, 50,
             ButtonActionMap::CONNECT_TO_ROOM, LayerLvL::BUTTON, MenuStates::LOBBY, roomName);
     }
+    if (roomNumber != 0)
+        createNewButton(*(_worldInstance.get()), windowSize.x - 300, 300, 200, 50, ButtonActionMap::MATCHMAKED_ROOM,
+            LayerLvL::BUTTON, MenuStates::LOBBY, "Matchmaked Join");
 }
 
 bool ClientRoom::_answerProtocols()
@@ -462,6 +465,7 @@ void ClientRoom::_loadButtonActionMap()
     actionsList.addAction(ButtonActionMap::GO_MAIN_MENU, std::function<void(World &, Entity &)>(goToMainMenu));
     actionsList.addAction(ButtonActionMap::GO_LOBBY, std::function<void(World &, Entity &)>(goToLobby));
     actionsList.addAction(ButtonActionMap::CONNECT_TO_ROOM, std::function<void(World &, Entity &)>(connectToARoom));
+    actionsList.addAction(ButtonActionMap::MATCHMAKED_ROOM, std::function<void(World &, Entity &)>(connectMatchmaked));
     actionsList.addAction(ButtonActionMap::GO_SOLO_GAME, std::function<void(World &, Entity &)>(launchSoloGame));
     actionsList.addAction(ButtonActionMap::SWITCH_MUSIC, std::function<void(World &, Entity &)>(switchMusic));
     actionsList.addAction(ButtonActionMap::SWITCH_SOUND, std::function<void(World &, Entity &)>(switchSound));
