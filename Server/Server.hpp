@@ -40,8 +40,9 @@ namespace server_data
 
         /// @brief Create and add a new Room inside the room list
         /// @param name of the room
+        /// @param configs room configuration
         /// @return Id of the newly created room
-        unsigned short createANewRoom(std::string name);
+        unsigned short createANewRoom(std::string name, short *configs);
 
         /// @brief Start the hub global loop
         void startHubLoop();

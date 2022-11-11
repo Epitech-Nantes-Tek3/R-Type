@@ -143,7 +143,7 @@ void createARoom(World &world, Entity &entityPtr, std::string &message)
     }
     if (!world.containsResource<MenuStates>() || message.size() < 4 || message.size() > 10)
         return;
-    short configs[6] = {120, 121, 122, 123, 124, 125};
+    short configs[6] = {4, 1, 1, 1, 1, 1};
     world.getTransisthorBridge()->getCommunicatorInstance().utilitarySendRoomConfiguration(
         message, configs, world.getTransisthorBridge()->getCommunicatorInstance().getClientByHisId(0));
     std::vector<std::shared_ptr<Entity>> joined = world.joinEntities<Selected>();

@@ -52,10 +52,10 @@ unsigned short Server::_getAFreePort(unsigned short actual)
     }
 }
 
-unsigned short Server::createANewRoom(std::string name)
+unsigned short Server::createANewRoom(std::string name, short *configs)
 {
     std::shared_ptr<RoomInstance> ptr = std::make_shared<RoomInstance>(this, _nextRoomId, name,
-        _networkInformations.getAddress(), _getAFreePort(_networkInformations.getPort() + 101));
+        _networkInformations.getAddress(), _getAFreePort(_networkInformations.getPort() + 101), std::to_string(configs[0]));
     _activeRoomList.push_back(ptr);
     _nextRoomId++;
     return (_nextRoomId - 1);
@@ -162,7 +162,7 @@ void Server::_holdACreateRoomRequest(CommunicatorMessage createDemand)
         }
     }
 
-    unsigned short roomId = createANewRoom(room.roomName);
+    unsigned short roomId = createANewRoom(room.roomName, room.configs);
     for (auto &it : _activeRoomList) {
         if (it->getId() == roomId) {
             _communicatorInstance->kickAClient(createDemand.message.clientInfo, it->getNetworkInfos());

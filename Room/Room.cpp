@@ -73,7 +73,7 @@ Room::Room() : _inputHandler(&Room::_manageInterprocessCommunication, this)
     _name = std::string(10, '\0');
 }
 
-Room::Room(unsigned short id, std::string name, Client networkInformations)
+Room::Room(unsigned short id, std::string name, Client networkInformations, short playerNumber)
     : _inputHandler(&Room::_manageInterprocessCommunication, this)
 {
     _id = id;
@@ -84,7 +84,7 @@ Room::Room(unsigned short id, std::string name, Client networkInformations)
     _communicatorInstance.get()->setTransisthorBridge(_transisthorInstance);
     _worldInstance.get()->setTransisthorBridge(_communicatorInstance.get()->getTransisthorBridge());
     _state = RoomState::UNDEFINED;
-    _remainingPlaces = 4;
+    _remainingPlaces = playerNumber;
     _name = name;
 }
 
