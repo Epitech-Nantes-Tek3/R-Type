@@ -51,7 +51,7 @@ The R-Type project is supported on Windows AND Linux !!
 
 ...And that’s why we are there.
 
-This story begins in 2442, at a time when humans successfully survived the 4th world war. But the consequences were terrible, every place on Earth was radioactive. To save humanity, geniuses from all over the world started to think together, to conclude at the same point: they need to move.
+This story begins in 2442, at a time when humans successfully survived the 4th world war. But the consequences were terrible, every place on Earth was radioactive. To save humanity, geniuses from all over the world started to think together, to agree at the same point: they need to move.
 
 After several studies about various places in space, every tiny bit of ground was hostile to earthlings. When the light of hope started to decline, five geniuses came out of nowhere to bring a new future for humanity. We called them by their team's name: “On est que 4 ;)”.
 
@@ -61,7 +61,7 @@ Together they found a new planet, a new home, a place to live for humanity, the 
 
 <br>
 
-While making their way to Zelta, our teams started to cross a new specie, like an alien who is shooting at a regular frequency but moving randomly. Beating them was not the hard part, learning that there are potentially others form of intelligence in the space was.
+While making their way to Zelta, our team started to cross a new specie, like an alien who is shooting at a regular frequency but moving randomly. Beating them was not the hard part, learning that there are potentially others forms of intelligence in the space was.
 
 All the members of the team gather to be prepared for the aliens. Each one of them started to feel fear, but they managed to stay focused until a new alien appeared. A huge form, blazing into space was rushing to them. Tom spaceship successfully takes the first damage but could not take all the others. Every member started crying in their ships with the first loss of the mission.
 
@@ -71,7 +71,7 @@ The following minutes were horribly calm, until the ECS master could not control
 
 From 5 strong men, they were reduced to 2 survivors, who were hoping to find a land somewhere. Making their way through space, hoping that every dangerous species has been killed.
 
-And that is why we are there. In front of our survivors, the despair, a boss appears. You need to help them, tell them how to move and when to shoot. You need to beat this boss for the sake of humanity! Good luck! 
+And that is why we are there. In front of our survivors, at our despair, a boss appears. You need to help them, tell them how to move and when to shoot. You need to beat this boss for the sake of humanity! Good luck!
 
 ***
 
