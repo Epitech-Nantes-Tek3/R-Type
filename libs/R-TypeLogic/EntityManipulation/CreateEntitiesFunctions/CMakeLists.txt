@@ -25,6 +25,8 @@ set(SRC
     ${SRC_RTYPE_LOGIC_ENTITY_CREATION_ROOT}/CreateWritableButton.cpp
     ${SRC_RTYPE_LOGIC_ENTITY_CREATION_ROOT}/CreateChatMessage.cpp
     ${SRC_RTYPE_LOGIC_ENTITY_CREATION_ROOT}/CreateChatMessage.hpp
+    ${SRC_RTYPE_LOGIC_ENTITY_CREATION_ROOT}/CreateText.cpp
+    ${SRC_RTYPE_LOGIC_ENTITY_CREATION_ROOT}/CreateText.hpp
 )
 
 add_library(${TARGET} ${SRC})
