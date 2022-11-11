@@ -89,7 +89,7 @@ jobs:
       with:
         name: Windows
         path: |
-          ${{ github.workspace }}/build/R-Type-*-win64.msi
+          ${{ github.workspace }}/build/R-Type-*-win64.zip
 
   create-release:
     needs: [build-linux, build-windows]
@@ -110,4 +110,4 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           files: |
             ${{ github.workspace }}/Linux/*.tar.gz
-            ${{ github.workspace }}/Windows/*.msi
+            ${{ github.workspace }}/Windows/*.zip
