@@ -104,7 +104,7 @@ ArgumentHandler::RoomInformation ArgumentHandler::extractRoomInformations(void)
 
     if (processHOptionVerification(ArgumentHandler::ROOM_EXECUTABLE))
         throw ArgumentError("Use of a -h option", "extractRoomInformations -> ArgumentHandler.cpp");
-    if (_argumentsToParse.size() != 4) {
+    if (_argumentsToParse.size() != 5) {
         std::cerr << _hTextList[ArgumentHandler::ROOM_EXECUTABLE] << std::endl;
         throw ArgumentError(
             "Invalid number of argument. 4 needed by the server.", "extractRoomInformations -> ArgumentHandler.cpp");
@@ -125,6 +125,8 @@ ArgumentHandler::RoomInformation ArgumentHandler::extractRoomInformations(void)
     roomInformations.address = std::string(_argumentsToParse.at(0));
     _argumentsToParse.erase(_argumentsToParse.begin());
     roomInformations.port = std::atoi(_argumentsToParse.at(0).c_str());
+    _argumentsToParse.erase(_argumentsToParse.begin());
+    roomInformations.playerNumber = std::atoi(_argumentsToParse.at(0).c_str());
     _argumentsToParse.erase(_argumentsToParse.begin());
     if (roomInformations.port == 0) {
         std::cerr << _hTextList[ArgumentHandler::ROOM_EXECUTABLE] << std::endl;
