@@ -458,6 +458,8 @@ void ClientRoom::_loadButtonActionMap()
     actionsList.addAction(ButtonActionMap::GO_LOBBY, std::function<void(World &, Entity &)>(goToLobby));
     actionsList.addAction(ButtonActionMap::CONNECT_TO_ROOM, std::function<void(World &, Entity &)>(connectToARoom));
     actionsList.addAction(ButtonActionMap::GO_SOLO_GAME, std::function<void(World &, Entity &)>(launchSoloGame));
+    actionsList.addAction(ButtonActionMap::SWITCH_MUSIC, std::function<void(World &, Entity &)>(switchMusic));
+    actionsList.addAction(ButtonActionMap::SWITCH_SOUND, std::function<void(World &, Entity &)>(switchSound));
 }
 
 void ClientRoom::_initLobbyButtons()
@@ -502,6 +504,18 @@ void ClientRoom::_initPausedButton()
         ButtonActionMap::GO_MAIN_MENU, LayerLvL::BUTTON, MenuStates::PAUSED, "Main menu");
     createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 4 * 3 - 25, 200, 50,
         ButtonActionMap::QUIT, LayerLvL::BUTTON, MenuStates::PAUSED, "Exit");
+}
+
+void ClientRoom::_initOptionButton()
+{
+    sf::Vector2u windowSize = _worldInstance->getResource<RenderWindowResource>().window.getSize();
+
+    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 4 - 25, 200, 50,
+        ButtonActionMap::SWITCH_SOUND, LayerLvL::BUTTON, MenuStates::PAUSED, "SOUND");
+    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 4 * 2 - 25, 200, 50,
+        ButtonActionMap::SWITCH_MUSIC, LayerLvL::BUTTON, MenuStates::PAUSED, "MUSIC");
+    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 4 * 3 - 25, 200, 50,
+        ButtonActionMap::GO_MAIN_MENU, LayerLvL::BUTTON, MenuStates::PAUSED, "Exit");
 }
 
 void ClientRoom::_updateEcsEntities()
@@ -558,6 +572,9 @@ void ClientRoom::_updateEcsEntities()
                     _initInGameBackgrounds();
                 break;
             case MenuStates::PAUSED: _initPausedButton(); break;
+            case MenuStates::OPTION:
+                _initOptionButton();
+                break;
             default: break;
         }
     }

@@ -219,3 +219,13 @@ void goToMainMenu(World &world, Entity &entityPtr)
 }
 
 MenuStates::menuState_e getPreviousMenu() { return (oldMenuState); }
+
+void switchMusic(World &world, Entity &entityPtr)
+{
+
+}
+
+void switchSound(World &world, Entity &entityPtr)
+{
+
+}

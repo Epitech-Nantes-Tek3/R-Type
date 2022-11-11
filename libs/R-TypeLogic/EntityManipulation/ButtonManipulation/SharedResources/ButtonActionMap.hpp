@@ -32,7 +32,9 @@ namespace ecs
             CONNECT_TO_ROOM,
             CREATE_A_ROOM,
             WRITABLE,
-            WRITABLE_BUTTON
+            WRITABLE_BUTTON,
+            SWITCH_SOUND,
+            SWITCH_MUSIC
         };
 
         /// @brief Map's name which contains the actions
