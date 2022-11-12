@@ -357,15 +357,15 @@ void ClientRoom::_loadTextures()
     auto guard = std::lock_guard(textureResource);
 
     textureResource.addTexture(
-        GraphicsTextureResource::BUTTON, BUTTON_TEXTURE_PATH, sf::Vector2f(34, 0), sf::Vector2f(34, 34));
+        GraphicsTextureResource::BUTTON, BUTTON_TEXTURE_PATH, sf::Vector2f(34, 0), sf::Vector2f());
     textureResource.addTexture(
-        GraphicsTextureResource::BASIC_ENEMY, BASIC_ENEMY_TEXTURE_PATH, sf::Vector2f(0, 0), sf::Vector2f(34, 34));
+        GraphicsTextureResource::BASIC_ENEMY, BASIC_ENEMY_TEXTURE_PATH, sf::Vector2f(0, 0), sf::Vector2f());
     textureResource.addTexture(
-        GraphicsTextureResource::ELECTRIC_ENEMY, ELECTRIC_ENEMY_TEXTURE_PATH, sf::Vector2f(0, 0), sf::Vector2f(34, 34));
+        GraphicsTextureResource::ELECTRIC_ENEMY, ELECTRIC_ENEMY_TEXTURE_PATH, sf::Vector2f(0, 0), sf::Vector2f());
     textureResource.addTexture(
-        GraphicsTextureResource::FIRE_ENEMY, FIRE_ENEMY_TEXTURE_PATH, sf::Vector2f(0, 0), sf::Vector2f(34, 34));
+        GraphicsTextureResource::FIRE_ENEMY, FIRE_ENEMY_TEXTURE_PATH, sf::Vector2f(0, 0), sf::Vector2f());
     textureResource.addTexture(
-        GraphicsTextureResource::ICE_ENEMY, ICE_ENEMY_TEXTURE_PATH, sf::Vector2f(0, 0), sf::Vector2f(34, 34));
+        GraphicsTextureResource::ICE_ENEMY, ICE_ENEMY_TEXTURE_PATH, sf::Vector2f(0, 0), sf::Vector2f());
     _initWritableTextures(textureResource);
     _initPlayerTextures(textureResource);
     _initProjectilesTextures(textureResource);
@@ -375,13 +375,13 @@ void ClientRoom::_loadTextures()
 void ClientRoom::_initProjectilesTextures(GraphicsTextureResource &textureResource)
 {
     textureResource.addTexture(GraphicsTextureResource::PROJECTILE_ENEMY_BASIC, BASIC_ENEMY_PROJECTILE_TEXTURE_PATH,
-        sf::Vector2f(0, 0), sf::Vector2f(34, 34));
+        sf::Vector2f(0, 0), sf::Vector2f());
     textureResource.addTexture(GraphicsTextureResource::PROJECTILE_ENEMY_FIRE, FIRE_ENEMY_PROJECTILE_TEXTURE_PATH,
-        sf::Vector2f(0, 0), sf::Vector2f(34, 34));
+        sf::Vector2f(0, 0), sf::Vector2f());
     textureResource.addTexture(GraphicsTextureResource::PROJECTILE_ENEMY_ELECTRIC,
-        ELECTRIC_ENEMY_PROJECTILE_TEXTURE_PATH, sf::Vector2f(0, 0), sf::Vector2f(34, 34));
+        ELECTRIC_ENEMY_PROJECTILE_TEXTURE_PATH, sf::Vector2f(0, 0), sf::Vector2f());
     textureResource.addTexture(GraphicsTextureResource::PROJECTILE_ENEMY_ICE, ICE_ENEMY_PROJECTILE_TEXTURE_PATH,
-        sf::Vector2f(0, 0), sf::Vector2f(34, 34));
+        sf::Vector2f(0, 0), sf::Vector2f());
     textureResource.addTexture(GraphicsTextureResource::PROJECTILE_ALLY, BASIC_ALLIED_PROJECTILE_TEXTURE_PATH,
         sf::Vector2f(0, 0), sf::Vector2f(20, 20));
     textureResource.addTexture(
@@ -390,11 +390,11 @@ void ClientRoom::_initProjectilesTextures(GraphicsTextureResource &textureResour
 
 void ClientRoom::_initBackgroundsTextures(GraphicsTextureResource &textureResource)
 {
-    textureResource.addTexture(GraphicsTextureResource::BACKGROUND_LAYER_3, BACK_BACKGROUND_TEXTURE_PATH,
+    textureResource.addTexture(GraphicsTextureResource::BACKGROUND_LAYER_3, BASIC_GROUND_TEXTURE_PATH,
         sf::Vector2f(0, 0), sf::Vector2f(1920, 1080));
-    textureResource.addTexture(GraphicsTextureResource::BACKGROUND_LAYER_2, FAR_BACKGROUND_TEXTURE_PATH,
+    textureResource.addTexture(GraphicsTextureResource::BACKGROUND_LAYER_2, BASIC_FORGROUND_TEXTURE_PATH,
         sf::Vector2f(0, 0), sf::Vector2f(1920, 1080));
-    textureResource.addTexture(GraphicsTextureResource::BACKGROUND_LAYER_1, MIDDLE_BACKGROUND_TEXTURE_PATH,
+    textureResource.addTexture(GraphicsTextureResource::BACKGROUND_LAYER_1, BASIC_BACKGROUND_TEXTURE_PATH,
         sf::Vector2f(0, 0), sf::Vector2f(1920, 1080));
 }
 
