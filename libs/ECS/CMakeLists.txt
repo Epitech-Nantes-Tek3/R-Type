@@ -31,4 +31,4 @@ target_link_libraries(${TARGET}
     ${PROJECT_NAME}_transisthor
 )
 
-install(TARGETS ${TARGET} DESTINATION lib)
+install(TARGETS ${TARGET} DESTINATION bin)
