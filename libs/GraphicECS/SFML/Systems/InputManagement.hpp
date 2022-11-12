@@ -48,8 +48,8 @@ namespace graphicECS::SFML::Systems
         /// @param world The world where the click occurs
         /// @param action The click action
         void clickHandle(World &world, float action);
-      private:
 
+      private:
         /// @brief This function shoot if the player is shooting and the frequency allow a shoot
         /// @param world The world used to create a new projectile entity
         void shoot(World &world);
@@ -71,8 +71,8 @@ namespace graphicECS::SFML::Systems
         /// @param Inputs Entity which contains inputs entity like mouse, keyboard and controller
         void _keyReleasedEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> &Inputs);
 
-        /// @brief This function manages text entered events. It crosses all writable entity and adds it the entered text
-        /// if there is selected
+        /// @brief This function manages text entered events. It crosses all writable entity and adds it the entered
+        /// text if there is selected
         /// @param event Class event uses to know SFML events
         /// @param joined List of all selected writable entity
         void _textEnteredEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> joined);
@@ -83,6 +83,13 @@ namespace graphicECS::SFML::Systems
         /// @param Inputs Entity which contains inputs entity like mouse, keyboard and controller
         void _mouseEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> &Inputs);
 
+        /// @brief This function takes in a vector of entities that have the
+        /// `ControllerJoystickInputComponent` and `ControllerButtonInputComponent`
+        /// components, and pushes the appropriate actions into the
+        /// `ActionQueueComponent` of the entity
+        /// @param event The event that was triggered
+        /// @param Inputs A vector of shared pointers to entities that have an
+        /// ActionQueueComponent.
         void _controllerEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> &Inputs);
     };
 } // namespace graphicECS::SFML::Systems
