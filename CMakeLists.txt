@@ -26,6 +26,8 @@ add_subdirectory(AdminPanel)
 include(build/conanbuildinfo.cmake)
 conan_basic_setup(TARGETS)
 
+install(DIRECTORY ./assets/ DESTINATION bin/assets/)
+
 include(InstallRequiredSystemLibraries)
 set(CPACK_WIX_LICENSE_RTF ${PROJECT_SOURCE_DIR}/misc/wix_license.txt)
 set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/LICENSE.md")
