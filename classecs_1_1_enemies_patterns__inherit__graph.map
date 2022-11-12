@@ -1,4 +1,0 @@
-<map id="ecs::EnemiesPatterns" name="ecs::EnemiesPatterns">
-<area shape="rect" id="node1" title="This is the pattern System for enemies. This system check if the enemy is at its destination,..." alt="" coords="5,80,167,107"/>
-<area shape="rect" id="node2" href="$classecs_1_1_system.html" title=" " alt="" coords="35,5,137,32"/>
-</map>

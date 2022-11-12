@@ -1,4 +1,0 @@
-<map id="ecs::DeathDamage" name="ecs::DeathDamage">
-<area shape="rect" id="node1" title="The DeathDamage class, inflicting damage after the owner&#39;s death." alt="" coords="5,80,152,107"/>
-<area shape="rect" id="node2" href="$classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone..." alt="" coords="15,5,142,32"/>
-</map>

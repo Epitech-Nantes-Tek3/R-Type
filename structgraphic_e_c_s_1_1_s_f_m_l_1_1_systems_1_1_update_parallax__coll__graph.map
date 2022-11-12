@@ -1,4 +1,0 @@
-<map id="graphicECS::SFML::Systems::UpdateParallax" name="graphicECS::SFML::Systems::UpdateParallax">
-<area shape="rect" id="node1" title="Update the Parallax by changing backgrounds images depending on the game level resource." alt="" coords="5,80,208,121"/>
-<area shape="rect" id="node2" href="$classecs_1_1_system.html" title=" " alt="" coords="56,5,157,32"/>
-</map>

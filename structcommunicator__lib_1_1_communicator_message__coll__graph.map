@@ -1,5 +1,0 @@
-<map id="communicator_lib::CommunicatorMessage" name="communicator_lib::CommunicatorMessage">
-<area shape="rect" id="node1" title="Bridge between communicator and server for message." alt="" coords="5,184,248,225"/>
-<area shape="rect" id="node2" href="$structcommunicator__lib_1_1_message.html" title="A network data." alt="" coords="24,95,229,121"/>
-<area shape="rect" id="node3" href="$classcommunicator__lib_1_1_client.html" title="A representation of a client (Address + Port)" alt="" coords="34,5,219,32"/>
-</map>

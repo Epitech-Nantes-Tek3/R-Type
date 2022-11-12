@@ -1,5 +1,0 @@
-<map id="ecs::GameLevel" name="ecs::GameLevel">
-<area shape="rect" id="node1" title="Shared Resource game level, used to decide the current level of the game." alt="" coords="5,155,132,181"/>
-<area shape="rect" id="node2" href="$classecs_1_1_resource.html" title="This is the Resource Class for ECS The base Resource type, all Resources must inherit from Resource...." alt="" coords="13,80,125,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="23,5,115,32"/>
-</map>

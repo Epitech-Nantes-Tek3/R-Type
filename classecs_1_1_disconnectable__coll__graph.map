@@ -1,4 +1,0 @@
-<map id="ecs::Disconnectable" name="ecs::Disconnectable">
-<area shape="rect" id="node1" title="The Disconnectable class, defining if an entity is affected by a deconnection process." alt="" coords="5,80,157,107"/>
-<area shape="rect" id="node2" href="$classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone..." alt="" coords="18,5,145,32"/>
-</map>

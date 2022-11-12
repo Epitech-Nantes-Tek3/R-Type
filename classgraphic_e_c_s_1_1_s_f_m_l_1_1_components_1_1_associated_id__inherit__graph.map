@@ -1,4 +1,0 @@
-<map id="graphicECS::SFML::Components::AssociatedId" name="graphicECS::SFML::Components::AssociatedId">
-<area shape="rect" id="node1" title="This component class stores all the associated entity id." alt="" coords="5,80,233,121"/>
-<area shape="rect" id="node2" href="$classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone..." alt="" coords="56,5,183,32"/>
-</map>

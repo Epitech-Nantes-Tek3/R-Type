@@ -1,4 +1,0 @@
-<map id="ecs::RemoveAfkSystem" name="ecs::RemoveAfkSystem">
-<area shape="rect" id="node1" title="This is the RemoveAfk System. It will send a protocol 13 to afk client." alt="" coords="5,80,183,107"/>
-<area shape="rect" id="node2" href="$classecs_1_1_system.html" title=" " alt="" coords="43,5,145,32"/>
-</map>

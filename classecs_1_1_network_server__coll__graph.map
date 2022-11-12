@@ -1,4 +1,0 @@
-<map id="ecs::NetworkServer" name="ecs::NetworkServer">
-<area shape="rect" id="node1" title="The component which will be used to link the Communicator Server&#39;ID." alt="" coords="5,80,155,107"/>
-<area shape="rect" id="node2" href="$classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone..." alt="" coords="17,5,143,32"/>
-</map>

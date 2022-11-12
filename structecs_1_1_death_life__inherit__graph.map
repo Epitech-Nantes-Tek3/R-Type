@@ -1,4 +1,0 @@
-<map id="ecs::DeathLife" name="ecs::DeathLife">
-<area shape="rect" id="node1" title="This is the DeathLife System. This System takes all entities that have a Life Component with 0 HP/lif..." alt="" coords="5,80,120,107"/>
-<area shape="rect" id="node2" href="$classecs_1_1_system.html" title=" " alt="" coords="12,5,113,32"/>
-</map>

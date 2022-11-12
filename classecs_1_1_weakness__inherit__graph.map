@@ -1,4 +1,0 @@
-<map id="ecs::Weakness" name="ecs::Weakness">
-<area shape="rect" id="node1" title="The Weakness component, to create a target for projectiles." alt="" coords="9,80,128,107"/>
-<area shape="rect" id="node2" href="$classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone..." alt="" coords="5,5,132,32"/>
-</map>

@@ -1,4 +1,0 @@
-<map id="ecs::EnemyShootSystem" name="ecs::EnemyShootSystem">
-<area shape="rect" id="node1" title="The Enemy shoot system This system create a enemyProjectile each time the cooldown is equal to zero." alt="" coords="5,80,188,107"/>
-<area shape="rect" id="node2" href="$classecs_1_1_system.html" title=" " alt="" coords="46,5,147,32"/>
-</map>

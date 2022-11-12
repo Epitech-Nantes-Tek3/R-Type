@@ -1,4 +1,0 @@
-<map id="ecs::LifeTimeDeath" name="ecs::LifeTimeDeath">
-<area shape="rect" id="node1" title="This is the LifeTimeDeath System. This System takes all entities that have a LifeTime Component with ..." alt="" coords="5,80,153,107"/>
-<area shape="rect" id="node2" href="$classecs_1_1_system.html" title=" " alt="" coords="29,5,130,32"/>
-</map>

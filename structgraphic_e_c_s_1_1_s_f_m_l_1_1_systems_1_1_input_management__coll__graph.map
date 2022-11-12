@@ -1,4 +1,0 @@
-<map id="graphicECS::SFML::Systems::InputManagement" name="graphicECS::SFML::Systems::InputManagement">
-<area shape="rect" id="node1" title="This system class manage SFML input to link them to an action." alt="" coords="5,80,208,121"/>
-<area shape="rect" id="node2" href="$classecs_1_1_system.html" title=" " alt="" coords="56,5,157,32"/>
-</map>

@@ -1,4 +1,0 @@
-<map id="ecs::EnemyProjectileType" name="ecs::EnemyProjectileType">
-<area shape="rect" id="node1" title="The projectile enemy type, useful for the graphical display." alt="" coords="5,80,193,107"/>
-<area shape="rect" id="node2" href="$classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone..." alt="" coords="36,5,163,32"/>
-</map>

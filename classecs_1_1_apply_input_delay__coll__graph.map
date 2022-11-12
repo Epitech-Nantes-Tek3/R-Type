@@ -1,4 +1,0 @@
-<map id="ecs::ApplyInputDelay" name="ecs::ApplyInputDelay">
-<area shape="rect" id="node1" title="A system that is used to apply the input delay to the player." alt="" coords="5,80,165,107"/>
-<area shape="rect" id="node2" href="$classecs_1_1_system.html" title=" " alt="" coords="35,5,136,32"/>
-</map>

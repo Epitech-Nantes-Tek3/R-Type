@@ -1,4 +1,0 @@
-<map id="ecs::ElectricInvisibleEnemy" name="ecs::ElectricInvisibleEnemy">
-<area shape="rect" id="node1" title="This is the Electric Invisible System. It makes the electric enemy invisible if they are not in range..." alt="" coords="5,80,205,107"/>
-<area shape="rect" id="node2" href="$classecs_1_1_system.html" title=" " alt="" coords="55,5,156,32"/>
-</map>

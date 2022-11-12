@@ -1,4 +1,0 @@
-<map id="ecs::LifeTime" name="ecs::LifeTime">
-<area shape="rect" id="node1" title="The LifeTime class, telling how long an entity is going to live." alt="" coords="14,80,123,107"/>
-<area shape="rect" id="node2" href="$classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone..." alt="" coords="5,5,132,32"/>
-</map>

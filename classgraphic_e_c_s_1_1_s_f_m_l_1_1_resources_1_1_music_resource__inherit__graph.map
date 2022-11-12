@@ -1,5 +1,0 @@
-<map id="graphicECS::SFML::Resources::MusicResource" name="graphicECS::SFML::Resources::MusicResource">
-<area shape="rect" id="node1" title="This resource class stores a map of Musics SFML." alt="" coords="5,155,219,196"/>
-<area shape="rect" id="node2" href="$classecs_1_1_resource.html" title="This is the Resource Class for ECS The base Resource type, all Resources must inherit from Resource...." alt="" coords="56,80,168,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="66,5,158,32"/>
-</map>
