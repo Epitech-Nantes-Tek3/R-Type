@@ -36,3 +36,4 @@ jobs:
         with:
           folder: docs/html
           branch: gh-pages
+          target-folder: docs/
