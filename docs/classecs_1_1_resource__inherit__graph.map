@@ -1,0 +1,18 @@
+<map id="ecs::Resource" name="ecs::Resource">
+<area shape="rect" id="node1" title="This is the Resource Class for ECS The base Resource type, all Resources must inherit from Resource...." alt="" coords="145,335,257,361"/>
+<area shape="rect" id="node3" href="$class_networkable_id_generator.html" title="Shared resource networkable id generator for Networkable Component." alt="" coords="321,5,503,32"/>
+<area shape="rect" id="node4" href="$class_sending_frequency.html" title=" " alt="" coords="341,56,483,83"/>
+<area shape="rect" id="node5" href="$classecs_1_1_button_action_map.html" title="This resource class stores a map of button action to be executed on click." alt="" coords="330,107,494,133"/>
+<area shape="rect" id="node6" href="$classecs_1_1_game_clock.html" title="Shared Resource Clock for the Game." alt="" coords="349,157,475,184"/>
+<area shape="rect" id="node7" href="$classecs_1_1_game_level.html" title="Shared Resource game level, used to decide the current level of the game." alt="" coords="349,208,475,235"/>
+<area shape="rect" id="node8" href="$classecs_1_1_game_states.html" title="This resource class stores the current game state of the client." alt="" coords="346,259,478,285"/>
+<area shape="rect" id="node9" href="$classecs_1_1_global_score.html" title="Shared resource Score. When an enemy is killed, the score is updated. The added points depend on the ..." alt="" coords="347,309,477,336"/>
+<area shape="rect" id="node10" href="$classecs_1_1_menu_states.html" title="This resource class stores the current menu state of the client." alt="" coords="347,360,477,387"/>
+<area shape="rect" id="node11" href="$structecs_1_1_random_device.html" title="Random Shared Resource." alt="" coords="337,411,487,437"/>
+<area shape="rect" id="node12" href="$classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_font_resource.html" title="This resource class stores the font in order to draw a Graphical text resource. It justs exist for th..." alt="" coords="305,462,519,503"/>
+<area shape="rect" id="node13" href="$classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html" title="This resource class stores a map of Graphical SFML textures to be set on Shapes." alt="" coords="305,527,519,569"/>
+<area shape="rect" id="node14" href="$classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_music_resource.html" title="This resource class stores a map of Musics SFML." alt="" coords="305,593,519,634"/>
+<area shape="rect" id="node15" href="$classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_render_window_resource.html" title="This shared resource adds a window. It will used by graphics part to draw something on screen,..." alt="" coords="305,658,519,699"/>
+<area shape="rect" id="node16" href="$classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_sound_resource.html" title="This resource class stores a map of Sounds SFML." alt="" coords="305,723,519,765"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,335,97,361"/>
+</map>

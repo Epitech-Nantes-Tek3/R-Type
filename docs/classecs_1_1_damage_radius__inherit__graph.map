@@ -1,0 +1,4 @@
+<map id="ecs::DamageRadius" name="ecs::DamageRadius">
+<area shape="rect" id="node1" title="The Damage Radius class, defining the damage zone." alt="" coords="5,80,156,107"/>
+<area shape="rect" id="node2" href="$classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone..." alt="" coords="17,5,144,32"/>
+</map>

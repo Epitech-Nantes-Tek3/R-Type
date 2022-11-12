@@ -1,0 +1,4 @@
+<map id="graphicECS::SFML::Systems::MusicManagement" name="graphicECS::SFML::Systems::MusicManagement">
+<area shape="rect" id="node1" title="This System manages the status of all Music with the Music Component Status." alt="" coords="5,80,208,121"/>
+<area shape="rect" id="node2" href="$classecs_1_1_system.html" title=" " alt="" coords="56,5,157,32"/>
+</map>

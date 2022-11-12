@@ -1,0 +1,4 @@
+<map id="ecs::Projectile" name="ecs::Projectile">
+<area shape="rect" id="node1" title="This Component specifies if an entity is a Projectile. This component specifies whether an entity is ..." alt="" coords="12,80,125,107"/>
+<area shape="rect" id="node2" href="$classecs_1_1_component.html" title="This is the Component Class for ECS The base component type, all components must inherit from Compone..." alt="" coords="5,5,132,32"/>
+</map>

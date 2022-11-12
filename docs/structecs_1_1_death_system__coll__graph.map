@@ -1,0 +1,4 @@
+<map id="ecs::DeathSystem" name="ecs::DeathSystem">
+<area shape="rect" id="node1" title="This is the Death System. This system takes all entities which have Dead Component and." alt="" coords="5,80,145,107"/>
+<area shape="rect" id="node2" href="$classecs_1_1_system.html" title=" " alt="" coords="25,5,126,32"/>
+</map>
