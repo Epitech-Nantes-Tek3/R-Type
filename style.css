@@ -1,0 +1,4 @@
+/* Allow div class "container" to have a padding of 5px*/
+.container {
+    padding: 5px;
+}
