@@ -22,12 +22,8 @@ cd build
 testExitStatus $? "cd"
 
 # Install conan dependencies
-flag="-i"
-if [ "$1" != "$flag" ]
-then
-    conan install .. --build=missing -s compiler.libcxx=libstdc++11 -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True
-    testExitStatus $? "conan install dependencies"
-fi
+conan install .. --build=missing -s compiler.libcxx=libstdc++11 -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True
+testExitStatus $? "conan install dependencies"
 
 # Configure cmake
 cmake -DCMAKE_BUILD_TYPE=Debug ..

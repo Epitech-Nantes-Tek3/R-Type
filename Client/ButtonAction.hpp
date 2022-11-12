@@ -42,13 +42,13 @@ void writableButtonAction(World &world, Entity &entityPtr);
 /// @param message message to send
 void publishNewChatMessage(World &world, Entity &entityPtr, std::string &message);
 
-/// @brief It ask the server to connect to a room, and then changes the menu state to
+/// @brief It asks the server to connect to a room, and then changes the menu state to
 /// the lobby menu
 /// @param world The world that contains the entity.
 /// @param entityPtr The entity that is calling the function.
 void connectToARoom(World &world, Entity &entityPtr);
 
-/// @brief It ask the server to connect to a matchmaked room, and then changes the menu state to
+/// @brief It asks the server to connect to a matchmaked room, and then changes the menu state to
 /// the lobby menu
 /// @param world The world that contains the entity.
 /// @param entityPtr The entity that is calling the function.

@@ -120,7 +120,7 @@ void Server::_holdAScoreboardRequest(CommunicatorMessage databaseRequest)
     std::string key = _communicatorInstance->utilitaryReceiveScoreboardAsking(databaseRequest);
     std::map<std::string, int> scoreboard;
     std::size_t count = 0;
-    auto apiAnswer = _databaseApi.selectUsers("Banned = 0 ORDER BY " + key + " DESC");
+    std::vector<database::Row> apiAnswer = _databaseApi.selectUsers("Banned = 0 ORDER BY " + key + " DESC");
 
     for (auto it : apiAnswer) {
         if (count > 4)

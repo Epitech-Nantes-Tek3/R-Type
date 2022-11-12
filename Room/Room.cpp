@@ -143,7 +143,7 @@ void Room::startLobbyLoop(void)
             for (auto &it : enemy) {
                 it->getComponent<Velocity>().modifier = _configs[roomConfiguration_e::ENNEMI_VELOCITY];
             }
-        } /// WILL BE IMPROVED IN PART TWO (THREAD + CLOCK)
+        }
         _activePlayerGestion();
     }
     _disconectionProcess();
