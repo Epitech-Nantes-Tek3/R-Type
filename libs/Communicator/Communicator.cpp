@@ -170,7 +170,7 @@ unsigned short Communicator::getServerEndpointId(void)
     return _clientList.at(0).getId();
 }
 
-void Communicator::utilitarySendRoomConfiguration(std::string roomName, short *configs, Client endpoint)
+void Communicator::utilitarySendRoomConfiguration(std::string roomName, std::vector<short> configs, Client endpoint)
 {
     Client temporaryClient;
     unsigned short nameSize = roomName.size();

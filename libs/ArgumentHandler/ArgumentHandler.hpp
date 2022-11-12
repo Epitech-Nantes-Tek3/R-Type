@@ -43,7 +43,7 @@ namespace argument_handler
             unsigned short port;
 
             /// @brief Room configurations.
-            short *configs;
+            std::vector<short> configs;
         };
 
         /// @brief Struct containing all Arguments needs by the client executable

@@ -151,7 +151,8 @@ void createARoom(World &world, Entity &entityPtr, std::string &message)
     }
     if (!world.containsResource<MenuStates>() || vmessage[0].size() < 4 || vmessage[0].size() > 10)
         return;
-    short configs[6] = {4, 1, 1, 1, 1, 1};
+    std::vector<short> configs(6);
+    configs = {4, 1, 1, 1, 1, 1};
     configs[PLAYER_NUMBER] = std::atoi(vmessage[1].c_str());
     if (configs[PLAYER_NUMBER] <= 0)
         configs[PLAYER_NUMBER] = 4;

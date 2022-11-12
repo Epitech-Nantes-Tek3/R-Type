@@ -52,7 +52,7 @@ namespace communicator_lib
         std::string roomName;
         /// @brief Configuration (6 modifiers).
         /// Use enumerator roomConfiguration_e to set value at the good index.
-        short configs[6];
+        std::vector<short> configs;
     };
 
     /// @brief Network gestionner
@@ -217,7 +217,7 @@ namespace communicator_lib
         /// @param roomName The name of the room configuration.
         /// @param configs Array of modificator used to update some server configuration.
         /// @param newEndPoint The endpoint used to send the configuration.
-        void utilitarySendRoomConfiguration(std::string roomName, short *configs, Client newEndpoint);
+        void utilitarySendRoomConfiguration(std::string roomName, std::vector<short> configs, Client newEndpoint);
 
         /// @brief Utilitary function used to extract a message received by a protocol 17.
         /// @param cryptedMessage The crypted message which contains informations.

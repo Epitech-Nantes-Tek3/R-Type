@@ -74,7 +74,7 @@ Room::Room() : _inputHandler(&Room::_manageInterprocessCommunication, this)
     _name = std::string(10, '\0');
 }
 
-Room::Room(unsigned short id, std::string name, Client networkInformations, short *configs)
+Room::Room(unsigned short id, std::string name, Client networkInformations, std::vector<short> configs)
     : _inputHandler(&Room::_manageInterprocessCommunication, this)
 {
     _id = id;

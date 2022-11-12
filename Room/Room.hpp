@@ -39,7 +39,7 @@ namespace server_data
         /// @param name of the room
         /// @param networkInformation Network informations of the room
         /// @param configs Room configurations
-        Room(unsigned short id, std::string name, Client networkInformations, short *configs);
+        Room(unsigned short id, std::string name, Client networkInformations, std::vector<short> configs);
 
         /// @brief Destroy the Room object
         inline ~Room() { _inputHandler.join(); };

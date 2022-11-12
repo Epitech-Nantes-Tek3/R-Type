@@ -11,7 +11,7 @@
 namespace server_data
 {
     RoomInstance::RoomInstance(
-        Server *server, unsigned short id, std::string name, std::string address, unsigned short port, short *configs)
+        Server *server, unsigned short id, std::string name, std::string address, unsigned short port, std::vector<short> configs)
     {
         _id = id;
         if (name == "")

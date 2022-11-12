@@ -56,7 +56,7 @@ unsigned short Server::_getAFreePort(unsigned short actual)
     }
 }
 
-unsigned short Server::createANewRoom(std::string name, short *configs)
+unsigned short Server::createANewRoom(std::string name, std::vector<short> configs)
 {
     std::shared_ptr<RoomInstance> ptr = std::make_shared<RoomInstance>(this, _nextRoomId, name,
         _networkInformations.getAddress(), _getAFreePort(_networkInformations.getPort() + 101), configs);
