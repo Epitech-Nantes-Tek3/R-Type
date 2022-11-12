@@ -1,0 +1,67 @@
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+r-type_client
+r-type_server
+r-type_room
+r-type_admin_panel
+R-TypeDatabase
+
+# CMake
+build
+Debug
+build_graph.sh
+graph
+graph.png
+
+#Testing
+tests/Testing
+Makefile
+.vscode/
+tests/R-Type_sender_tests
+tests/R-Type_receiver_tests
+tests/R-Type_communicator_tests
+tests/R-Type_communicator_switch_tests
+Size_entities.txt
+tests/R-Type_communicator_send
+
+#Documentation
+docs/html
+CMakeGraphVizOptions.cmake
+coverage
+
+#Debug
+vgcore*
+
+#Windows
+*.pdb
+.vs
