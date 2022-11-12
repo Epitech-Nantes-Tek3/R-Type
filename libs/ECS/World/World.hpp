@@ -180,14 +180,14 @@ namespace ecs
             return *this;
         }
 
-        /// @brief Remove a Resource of the world
-        /// @tparam R The choosen Resource to remove
-        /// @throw std::logic_error Throw an error if the Resource does not exist
+        /// @brief Remove a System of the world
+        /// @tparam S The choosen System to remove
+        /// @throw std::logic_error Throw an error if the System does not exist
         template <std::derived_from<System> S> void removeSystem()
         {
             SystemsList::iterator it = _systemsList.find(typeid(S));
             if (it == _systemsList.end())
-                throw std::logic_error("attempted to remove a non-existent Resource");
+                throw std::logic_error("attempted to remove a non-existent System");
             _systemsList.erase(it);
         }
 
