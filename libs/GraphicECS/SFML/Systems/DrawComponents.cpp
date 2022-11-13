@@ -89,20 +89,65 @@ void DrawComponents::_updatePlayer(LayerLvL &layerType, std::shared_ptr<ecs::Ent
         Position &pos = entityPtr->getComponent<Position>();
         Size &size = entityPtr->getComponent<Size>();
 
+        if (!entityPtr->contains<Player>())
+            return;
         entityPtr->addComponent<AnimationComponent>();
         entityPtr->addComponent<AnimationFrequencyComponent>(0.05);
         entityPtr->getComponent<AnimationComponent>().currentTexturePos = 0;
-        entityPtr->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_1);
-        entityPtr->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_2);
-        entityPtr->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_3);
-        entityPtr->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_4);
-        entityPtr->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_5);
-        // entityPtr->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_6);
-        // entityPtr->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_7);
-        // entityPtr->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_8);
-        if (entityPtr->contains<Player>())
-            entityPtr->addComponent<GraphicsTextComponent>(
-                newFont, entityPtr->getComponent<Player>().name, pos.x + size.x * 0.5, pos.y, size.x * 0.2);
+        switch (entityPtr->getComponent<Player>().playerIdentifier % 4) {
+            case 0:
+                entityPtr->getComponent<AnimationComponent>().textures.push_back(
+                    GraphicsTextureResource::BLUE_PLAYER_STATIC_1);
+                entityPtr->getComponent<AnimationComponent>().textures.push_back(
+                    GraphicsTextureResource::BLUE_PLAYER_STATIC_2);
+                entityPtr->getComponent<AnimationComponent>().textures.push_back(
+                    GraphicsTextureResource::BLUE_PLAYER_STATIC_3);
+                entityPtr->getComponent<AnimationComponent>().textures.push_back(
+                    GraphicsTextureResource::BLUE_PLAYER_STATIC_4);
+                entityPtr->getComponent<AnimationComponent>().textures.push_back(
+                    GraphicsTextureResource::BLUE_PLAYER_STATIC_5);
+                break;
+            case 1:
+                entityPtr->getComponent<AnimationComponent>().textures.push_back(
+                    GraphicsTextureResource::PINK_PLAYER_STATIC_1);
+                entityPtr->getComponent<AnimationComponent>().textures.push_back(
+                    GraphicsTextureResource::PINK_PLAYER_STATIC_2);
+                entityPtr->getComponent<AnimationComponent>().textures.push_back(
+                    GraphicsTextureResource::PINK_PLAYER_STATIC_3);
+                entityPtr->getComponent<AnimationComponent>().textures.push_back(
+                    GraphicsTextureResource::PINK_PLAYER_STATIC_4);
+                entityPtr->getComponent<AnimationComponent>().textures.push_back(
+                    GraphicsTextureResource::PINK_PLAYER_STATIC_5);
+                break;
+            case 2:
+                entityPtr->getComponent<AnimationComponent>().textures.push_back(
+                    GraphicsTextureResource::GREEN_PLAYER_STATIC_1);
+                entityPtr->getComponent<AnimationComponent>().textures.push_back(
+                    GraphicsTextureResource::GREEN_PLAYER_STATIC_2);
+                entityPtr->getComponent<AnimationComponent>().textures.push_back(
+                    GraphicsTextureResource::GREEN_PLAYER_STATIC_3);
+                entityPtr->getComponent<AnimationComponent>().textures.push_back(
+                    GraphicsTextureResource::GREEN_PLAYER_STATIC_4);
+                entityPtr->getComponent<AnimationComponent>().textures.push_back(
+                    GraphicsTextureResource::GREEN_PLAYER_STATIC_5);
+                break;
+            case 3:
+                entityPtr->getComponent<AnimationComponent>().textures.push_back(
+                    GraphicsTextureResource::YELLOW_PLAYER_STATIC_1);
+                entityPtr->getComponent<AnimationComponent>().textures.push_back(
+                    GraphicsTextureResource::YELLOW_PLAYER_STATIC_2);
+                entityPtr->getComponent<AnimationComponent>().textures.push_back(
+                    GraphicsTextureResource::YELLOW_PLAYER_STATIC_3);
+                entityPtr->getComponent<AnimationComponent>().textures.push_back(
+                    GraphicsTextureResource::YELLOW_PLAYER_STATIC_4);
+                entityPtr->getComponent<AnimationComponent>().textures.push_back(
+                    GraphicsTextureResource::YELLOW_PLAYER_STATIC_5);
+                break;
+            default:
+                break;
+                entityPtr->addComponent<GraphicsTextComponent>(
+                    newFont, entityPtr->getComponent<Player>().name, pos.x + size.x * 0.5, pos.y, size.x * 0.2);
+        }
     }
 }
 

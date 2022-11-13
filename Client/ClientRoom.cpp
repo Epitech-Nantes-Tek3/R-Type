@@ -437,23 +437,49 @@ void ClientRoom::_initWritableTextures(GraphicsTextureResource &textureResource)
 
 void ClientRoom::_initPlayerTextures(GraphicsTextureResource &textureResource)
 {
-    // 2371 428
-    textureResource.addTexture(GraphicsTextureResource::PLAYER_STATIC_1, PLAYER_TEXTURE_PATH,
+    textureResource.addTexture(GraphicsTextureResource::BLUE_PLAYER_STATIC_1, BLUE_PLAYER_TEXTURE_PATH,
         sf::Vector2f(0, 0), sf::Vector2f(2371 / 5, 428));
-    textureResource.addTexture(GraphicsTextureResource::PLAYER_STATIC_2, PLAYER_TEXTURE_PATH,
+    textureResource.addTexture(GraphicsTextureResource::BLUE_PLAYER_STATIC_2, BLUE_PLAYER_TEXTURE_PATH,
         sf::Vector2f(2371 / 5, 0), sf::Vector2f(2371 / 5, 428));
-    textureResource.addTexture(GraphicsTextureResource::PLAYER_STATIC_3, PLAYER_TEXTURE_PATH,
+    textureResource.addTexture(GraphicsTextureResource::BLUE_PLAYER_STATIC_3, BLUE_PLAYER_TEXTURE_PATH,
         sf::Vector2f(2371 / 5 * 2, 0), sf::Vector2f(2371 / 5, 428));
-    textureResource.addTexture(GraphicsTextureResource::PLAYER_STATIC_4, PLAYER_TEXTURE_PATH,
+    textureResource.addTexture(GraphicsTextureResource::BLUE_PLAYER_STATIC_4, BLUE_PLAYER_TEXTURE_PATH,
         sf::Vector2f(2371 / 5 * 3, 0), sf::Vector2f(2371 / 5, 428));
-    textureResource.addTexture(GraphicsTextureResource::PLAYER_STATIC_5, PLAYER_TEXTURE_PATH,
+    textureResource.addTexture(GraphicsTextureResource::BLUE_PLAYER_STATIC_5, BLUE_PLAYER_TEXTURE_PATH,
         sf::Vector2f(2371 / 5 * 4, 0), sf::Vector2f(2371 / 5, 428));
-    // textureResource.addTexture(GraphicsTextureResource::PLAYER_STATIC_6, PLAYER_TEXTURE_PATH,
-    //     sf::Vector2f(534 / 16 * 13, 0), sf::Vector2f(534 / 16, 34));
-    // textureResource.addTexture(GraphicsTextureResource::PLAYER_STATIC_7, PLAYER_TEXTURE_PATH,
-    //     sf::Vector2f(534 / 16 * 14, 0), sf::Vector2f(534 / 16, 34));
-    // textureResource.addTexture(GraphicsTextureResource::PLAYER_STATIC_8, PLAYER_TEXTURE_PATH,
-    //     sf::Vector2f(534 / 16 * 15, 0), sf::Vector2f(534 / 16, 34));
+
+    textureResource.addTexture(GraphicsTextureResource::GREEN_PLAYER_STATIC_1, GREEN_PLAYER_TEXTURE_PATH,
+        sf::Vector2f(0, 0), sf::Vector2f(2371 / 5, 428));
+    textureResource.addTexture(GraphicsTextureResource::GREEN_PLAYER_STATIC_2, GREEN_PLAYER_TEXTURE_PATH,
+        sf::Vector2f(2371 / 5, 0), sf::Vector2f(2371 / 5, 428));
+    textureResource.addTexture(GraphicsTextureResource::GREEN_PLAYER_STATIC_3, GREEN_PLAYER_TEXTURE_PATH,
+        sf::Vector2f(2371 / 5 * 2, 0), sf::Vector2f(2371 / 5, 428));
+    textureResource.addTexture(GraphicsTextureResource::GREEN_PLAYER_STATIC_4, GREEN_PLAYER_TEXTURE_PATH,
+        sf::Vector2f(2371 / 5 * 3, 0), sf::Vector2f(2371 / 5, 428));
+    textureResource.addTexture(GraphicsTextureResource::GREEN_PLAYER_STATIC_5, GREEN_PLAYER_TEXTURE_PATH,
+        sf::Vector2f(2371 / 5 * 4, 0), sf::Vector2f(2371 / 5, 428));
+
+    textureResource.addTexture(GraphicsTextureResource::YELLOW_PLAYER_STATIC_1, YELLOW_PLAYER_TEXTURE_PATH,
+        sf::Vector2f(0, 0), sf::Vector2f(2371 / 5, 428));
+    textureResource.addTexture(GraphicsTextureResource::YELLOW_PLAYER_STATIC_2, YELLOW_PLAYER_TEXTURE_PATH,
+        sf::Vector2f(2371 / 5, 0), sf::Vector2f(2371 / 5, 428));
+    textureResource.addTexture(GraphicsTextureResource::YELLOW_PLAYER_STATIC_3, YELLOW_PLAYER_TEXTURE_PATH,
+        sf::Vector2f(2371 / 5 * 2, 0), sf::Vector2f(2371 / 5, 428));
+    textureResource.addTexture(GraphicsTextureResource::YELLOW_PLAYER_STATIC_4, YELLOW_PLAYER_TEXTURE_PATH,
+        sf::Vector2f(2371 / 5 * 3, 0), sf::Vector2f(2371 / 5, 428));
+    textureResource.addTexture(GraphicsTextureResource::YELLOW_PLAYER_STATIC_5, YELLOW_PLAYER_TEXTURE_PATH,
+        sf::Vector2f(2371 / 5 * 4, 0), sf::Vector2f(2371 / 5, 428));
+
+    textureResource.addTexture(GraphicsTextureResource::PINK_PLAYER_STATIC_1, PINK_PLAYER_TEXTURE_PATH,
+        sf::Vector2f(0, 0), sf::Vector2f(2371 / 5, 428));
+    textureResource.addTexture(GraphicsTextureResource::PINK_PLAYER_STATIC_2, PINK_PLAYER_TEXTURE_PATH,
+        sf::Vector2f(2371 / 5, 0), sf::Vector2f(2371 / 5, 428));
+    textureResource.addTexture(GraphicsTextureResource::PINK_PLAYER_STATIC_3, PINK_PLAYER_TEXTURE_PATH,
+        sf::Vector2f(2371 / 5 * 2, 0), sf::Vector2f(2371 / 5, 428));
+    textureResource.addTexture(GraphicsTextureResource::PINK_PLAYER_STATIC_4, PINK_PLAYER_TEXTURE_PATH,
+        sf::Vector2f(2371 / 5 * 3, 0), sf::Vector2f(2371 / 5, 428));
+    textureResource.addTexture(GraphicsTextureResource::PINK_PLAYER_STATIC_5, PINK_PLAYER_TEXTURE_PATH,
+        sf::Vector2f(2371 / 5 * 4, 0), sf::Vector2f(2371 / 5, 428));
 }
 
 void ClientRoom::_loadButtonActionMap()
