@@ -39,6 +39,13 @@ namespace ecs
         /// @brief State that the wave has changed because the mob generation has been launched
         inline void waveHasChanged() { this->_waveChanged = false; };
 
+        /// @brief Check if the music of the background should change
+        /// @return true if the music of the background should change, false otherwise
+        inline bool hasMusicChanged() const { return this->_musicChanged; };
+
+        /// @brief State that the music of the background has changed because the music modification
+        inline void musicHasChanged() { this->_musicChanged = false; };
+
         /// @brief Add new kills to the private value, increase the level if necessary
         /// @param newKills the number of new kills
         void addNewKills(unsigned int newKills = 1);
@@ -55,6 +62,9 @@ namespace ecs
 
         /// @brief Is true if the level has recently changed, otherwise false
         bool _hasLevelChanged;
+
+        /// @brief Is true if the music has recently changed, otherwise false
+        bool _musicChanged;
 
         /// @brief The number of kills in the room by all the players
         unsigned int _nbkills;
