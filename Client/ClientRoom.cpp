@@ -42,6 +42,7 @@
 #include "GraphicECS/SFML/Systems/RemoveChatSystem.hpp"
 #include "GraphicECS/SFML/Systems/SfObjectFollowEntitySystem.hpp"
 #include "GraphicECS/SFML/Systems/SoundManagement.hpp"
+#include "GraphicECS/SFML/Systems/UpdateBackgroundMusic.hpp"
 #include "GraphicECS/SFML/Systems/UpdateLifeText.hpp"
 #include "GraphicECS/SFML/Systems/UpdateParallaxSystem.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
@@ -751,6 +752,8 @@ void ClientRoom::_updateEcsSystems()
         _worldInstance->addSystem<UpdateParallax>();
     if (!_worldInstance->containsSystem<UpdateLifeTextSystem>())
         _worldInstance->addSystem<UpdateLifeTextSystem>();
+    if (!_worldInstance->containsSystem<UpdateBackgroundMusic>())
+        _worldInstance->addSystem<UpdateBackgroundMusic>();
     if (_worldInstance->containsResource<MenuStates>()
         && _worldInstance->getResource<MenuStates>().currentState == MenuStates::SOLO_GAME) {
         if (!_worldInstance->containsSystem<MobGeneration>())

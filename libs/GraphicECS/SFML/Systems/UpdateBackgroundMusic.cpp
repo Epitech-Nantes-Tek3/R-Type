@@ -18,7 +18,7 @@ static void updateMusic(const MusicResource::music_e music, std::shared_ptr<ecs:
 {
     std::lock_guard(*entityPtr.get());
     entityPtr->removeComponent<MusicComponent>();
-    entityPtr->addComponent<MusicComponent>(music, sf::SoundSource::Status::Playing)
+    entityPtr->addComponent<MusicComponent>(music, sf::SoundSource::Status::Playing);
 }
 
 void UpdateBackgroundMusic::run(World &world)
