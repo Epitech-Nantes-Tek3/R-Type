@@ -555,6 +555,14 @@ void ClientRoom::_updateEcsEntities()
     for (auto &it : entities) {
         _worldInstance->removeEntity(it->getId());
     }
+    entities = _worldInstance->joinEntities<MusicComponent>();
+    for (auto &it :entities) {
+        it->getComponent<MusicComponent>()._status = sf::Music::Stopped;
+    }
+    entities = _worldInstance->joinEntities<SoundComponent>();
+    for (auto &it : entities) {
+        it->getComponent<SoundComponent>()._status = sf::Sound::Stopped;
+    }
     if (_worldInstance
             ->joinEntities<MouseInputComponent, KeyboardInputComponent, ControllerButtonInputComponent,
                 ControllerJoystickInputComponent, ActionQueueComponent, AllowMouseAndKeyboardComponent,
