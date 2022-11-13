@@ -21,7 +21,7 @@ int main(int ac, char **av)
     try {
         clientInformation = argumentHandler.extractClientInformation();
     } catch (std::exception &exc) {
-        std::cerr << exc.what() <<std::endl;
+        std::cerr << exc.what() << std::endl;
         return 84;
     }
     ClientRoom client = ClientRoom(clientInformation.clientAddress, clientInformation.clientPort,
