@@ -34,6 +34,7 @@
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/GameStates.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/MenuStates.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateButton.hpp"
+#include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateText.cpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateWritable.hpp"
 #include "R-TypeLogic/Global/SharedResources/GameClock.hpp"
 #include "R-TypeLogic/Global/SharedResources/Random.hpp"
@@ -66,8 +67,7 @@ void UserConnection::_loadResourcesUserConnection()
         .addResource<MenuStates>(MenuStates::MAIN_MENU)
         .addResource<ButtonActionMap>(
             ButtonActionMap::WRITABLE_BUTTON, std::function<void(World &, Entity &)>(writableButtonAction))
-        .addResource<GraphicsTextureResource>(
-            GraphicsTextureResource::BUTTON, BUTTON_TEXTURE_PATH, sf::Vector2f(34, 0), sf::Vector2f(34, 34));
+        .addResource<GraphicsTextureResource>(GraphicsTextureResource::BUTTON, BUTTON_TEXTURE_PATH);
     _world->getResource<GraphicsTextureResource>().addTexture(
         GraphicsTextureResource::WRITABLE, WRITABLE_BUTTON_TEXTURE_PATH);
     _world->getResource<GraphicsTextureResource>().addTexture(
@@ -76,6 +76,8 @@ void UserConnection::_loadResourcesUserConnection()
         GraphicsTextureResource::WRITABLE_SELECTED, WRITABLE_SELECTED_TEXTURE_PATH);
     _world->getResource<ButtonActionMap>().addAction(
         ButtonActionMap::WRITABLE, std::function<void(World &, Entity &)>(selectAWritable));
+    _world->getResource<GraphicsTextureResource>().addTexture(
+        GraphicsTextureResource::BACKGROUND_LAYER, BASIC_BACKGROUND_PATH, sf::Vector2f(0, 0), sf::Vector2f(1920, 1080));
 }
 
 void UserConnection::_loadSystemsUserConnection()
@@ -120,36 +122,18 @@ void UserConnection::_loadEntitiesUserConnection(
         *(_world.get()), window.getSize().x / 2 - 100, window.getSize().y / 5 - 25, 200, 50, MenuStates::MAIN_MENU);
     buttonPasswordId = createNewWritable(
         *(_world.get()), window.getSize().x / 2 - 100, window.getSize().y / 5 * 2 - 25, 200, 50, MenuStates::MAIN_MENU);
-    buttonSendId = _world->addEntity()
-                       .addComponent<Button>()
-                       .addComponent<TextureName>(GraphicsTextureResource::BUTTON)
-                       .addComponent<GraphicsRectangleComponent>()
-                       .addComponent<GraphicsTextComponent>(_world->getResource<GraphicsFontResource>().font, "Send",
-                           window.getSize().x / 2 - 100, window.getSize().y / 5 * 4 - 25)
-                       .addComponent<Size>(200, 50)
-                       .addComponent<Position>(window.getSize().x / 2 - 100, window.getSize().y / 5 * 4 - 25)
-                       .addComponent<LayerLvL>(LayerLvL::WRITABLE)
-                       .addComponent<ActionName>(ButtonActionMap::WRITABLE)
-                       .addComponent<DisplayState>(MenuStates::MAIN_MENU)
-                       .getId();
+    createNewText(*(_world.get()), window.getSize().x / 2 - 100, window.getSize().y / 5 - 65, 16, LayerLvL::TEXT,
+        MenuStates::MAIN_MENU, "Enter your pseudo :");
+    createNewText(*(_world.get()), window.getSize().x / 2 - 100, window.getSize().y / 5 * 2 - 65, 16, LayerLvL::TEXT,
+        MenuStates::MAIN_MENU, "Enter your password :");
+    buttonSendId = createNewButton(*(_world.get()), window.getSize().x / 2 - 100, window.getSize().y / 5 * 4 - 25, 200,
+        50, ButtonActionMap::WRITABLE, LayerLvL::BUTTON, MenuStates::MAIN_MENU, "Connect to the game !");
     _world->addEntity()
-        .addComponent<Button>()
-        .addComponent<GraphicsTextComponent>(_world->getResource<GraphicsFontResource>().font, "Select password",
-            window.getSize().x / 2 - 100, window.getSize().y / 5 * 2 - 25)
-        .addComponent<Size>(200, 50)
-        .addComponent<Position>(window.getSize().x / 2 - 100, window.getSize().y / 5 * 2 - 25)
-        .addComponent<LayerLvL>(LayerLvL::WRITABLE)
-        .addComponent<ActionName>(ButtonActionMap::WRITABLE)
-        .addComponent<DisplayState>(MenuStates::MAIN_MENU);
-    _world->addEntity()
-        .addComponent<Button>()
-        .addComponent<GraphicsTextComponent>(_world->getResource<GraphicsFontResource>().font, "Select pseudo",
-            window.getSize().x / 2 - 100, window.getSize().y / 5 - 25)
-        .addComponent<Size>(200, 50)
-        .addComponent<Position>(window.getSize().x / 2 - 100, window.getSize().y / 5 - 25)
-        .addComponent<LayerLvL>(LayerLvL::WRITABLE)
-        .addComponent<ActionName>(ButtonActionMap::WRITABLE)
-        .addComponent<DisplayState>(MenuStates::MAIN_MENU);
+        .addComponent<GraphicsRectangleComponent>(0, 0, 1920, 1080)
+        .addComponent<Position>(0, 0)
+        .addComponent<LayerLvL>(LayerLvL::layer_e::DECORATION)
+        .addComponent<TextureName>(GraphicsTextureResource::BACKGROUND_LAYER)
+        .getId();
 }
 
 void UserConnection::_runSystemsUserConnection(std::size_t buttonSendId)

@@ -103,6 +103,7 @@ ArgumentHandler::RoomInformation ArgumentHandler::extractRoomInformations(void)
 {
     ArgumentHandler::RoomInformation roomInformations;
 
+    roomInformations.configs = new short[6];
     if (processHOptionVerification(ArgumentHandler::ROOM_EXECUTABLE))
         throw ArgumentError("Use of a -h option", "extractRoomInformations -> ArgumentHandler.cpp");
     if (_argumentsToParse.size() != 10) {

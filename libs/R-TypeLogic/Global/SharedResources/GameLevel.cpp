@@ -10,7 +10,7 @@
 using namespace ecs;
 
 GameLevel::GameLevel()
-    : _currLevel(GameLevel::LEVEL_ONE), _waveChanged(true), _hasLevelChanged(false), _musicChanged(false),
+    : _currLevel(GameLevel::LEVEL_ONE), _waveChanged(true), _hasLevelChanged(true), _musicChanged(false),
       _nbkills(0){};
 
 void GameLevel::addNewKills(unsigned int newKills)

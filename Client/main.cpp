@@ -12,22 +12,20 @@
 
 using namespace client_data;
 using namespace argument_handler;
+using namespace error_lib;
 
 int main(int ac, char **av)
 {
-    ArgumentHandler argumentHandler = ArgumentHandler(ac, av);
-    ArgumentHandler::ClientInformation clientInformation;
-
     try {
-        clientInformation = argumentHandler.extractClientInformation();
-    } catch (std::exception &exc) {
-        std::cerr << exc.what() << std::endl;
-        return 84;
-    }
-    ClientRoom client = ClientRoom(clientInformation.clientAddress, clientInformation.clientPort,
-        clientInformation.serverAddress, clientInformation.serverPort);
+        ArgumentHandler argumentHandler = ArgumentHandler(ac, av);
+        ArgumentHandler::ClientInformation clientInformation = argumentHandler.extractClientInformation();
+        ClientRoom client = ClientRoom(clientInformation.clientAddress, clientInformation.clientPort,
+            clientInformation.serverAddress, clientInformation.serverPort);
 
-    if (client.startGame() == 84)
-        return 84;
+        if (client.startGame() == 84)
+            return 84;
+    } catch (RTypeError &e) {
+        std::cerr << e.what() << " from " << e.getComponent() << std::endl;
+    }
     return (0);
 }

@@ -24,8 +24,8 @@ void SfObjectFollowEntitySystem::run(World &world)
     auto textMove = [](std::shared_ptr<Entity> entityPtr) {
         auto guard = std::lock_guard(*entityPtr.get());
         entityPtr.get()->getComponent<GraphicsTextComponent>().text.setPosition(
-            entityPtr.get()->getComponent<Position>().x + entityPtr->getComponent<Size>().x * 0.5,
-            entityPtr.get()->getComponent<Position>().y - entityPtr->getComponent<Size>().y * 0.1);
+            entityPtr.get()->getComponent<Position>().x + entityPtr->getComponent<Size>().x * 0.4,
+            entityPtr.get()->getComponent<Position>().y - entityPtr->getComponent<Size>().y * 0.5);
     };
 
     std::for_each(entities.begin(), entities.end(), rectangle);

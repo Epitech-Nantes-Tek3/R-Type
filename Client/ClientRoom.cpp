@@ -299,7 +299,7 @@ bool ClientRoom::_answerProtocols()
 
 void ClientRoom::_initSoloData(void)
 {
-    createNewPlayer(*_worldInstance.get(), 20, 500, 0, 0, 1, 102, 102, 100, 10, 4, true, 1, _pseudo);
+    createNewPlayer(*_worldInstance.get(), 20, 500, 0, 0, 1, 398 / 4, 223 / 4, 100, 10, 4, true, 1, _pseudo);
 }
 
 int ClientRoom::startGame()
@@ -399,15 +399,15 @@ void ClientRoom::_loadTextures()
     auto guard = std::lock_guard(textureResource);
 
     textureResource.addTexture(
-        GraphicsTextureResource::BUTTON, BUTTON_TEXTURE_PATH, sf::Vector2f(34, 0), sf::Vector2f(34, 34));
+        GraphicsTextureResource::BUTTON, BUTTON_TEXTURE_PATH, sf::Vector2f(34, 0), sf::Vector2f());
     textureResource.addTexture(
-        GraphicsTextureResource::BASIC_ENEMY, BASIC_ENEMY_TEXTURE_PATH, sf::Vector2f(0, 0), sf::Vector2f(34, 34));
+        GraphicsTextureResource::BASIC_ENEMY, BASIC_ENEMY_TEXTURE_PATH, sf::Vector2f(0, 0), sf::Vector2f());
     textureResource.addTexture(
-        GraphicsTextureResource::ELECTRIC_ENEMY, ELECTRIC_ENEMY_TEXTURE_PATH, sf::Vector2f(0, 0), sf::Vector2f(34, 34));
+        GraphicsTextureResource::ELECTRIC_ENEMY, ELECTRIC_ENEMY_TEXTURE_PATH, sf::Vector2f(0, 0), sf::Vector2f());
     textureResource.addTexture(
-        GraphicsTextureResource::FIRE_ENEMY, FIRE_ENEMY_TEXTURE_PATH, sf::Vector2f(0, 0), sf::Vector2f(34, 34));
+        GraphicsTextureResource::FIRE_ENEMY, FIRE_ENEMY_TEXTURE_PATH, sf::Vector2f(0, 0), sf::Vector2f());
     textureResource.addTexture(
-        GraphicsTextureResource::ICE_ENEMY, ICE_ENEMY_TEXTURE_PATH, sf::Vector2f(0, 0), sf::Vector2f(34, 34));
+        GraphicsTextureResource::ICE_ENEMY, ICE_ENEMY_TEXTURE_PATH, sf::Vector2f(0, 0), sf::Vector2f());
     _initWritableTextures(textureResource);
     _initPlayerTextures(textureResource);
     _initProjectilesTextures(textureResource);
@@ -417,57 +417,85 @@ void ClientRoom::_loadTextures()
 void ClientRoom::_initProjectilesTextures(GraphicsTextureResource &textureResource)
 {
     textureResource.addTexture(GraphicsTextureResource::PROJECTILE_ENEMY_BASIC, BASIC_ENEMY_PROJECTILE_TEXTURE_PATH,
-        sf::Vector2f(0, 0), sf::Vector2f(34, 34));
+        sf::Vector2f(0, 0), sf::Vector2f());
     textureResource.addTexture(GraphicsTextureResource::PROJECTILE_ENEMY_FIRE, FIRE_ENEMY_PROJECTILE_TEXTURE_PATH,
-        sf::Vector2f(0, 0), sf::Vector2f(34, 34));
+        sf::Vector2f(0, 0), sf::Vector2f());
     textureResource.addTexture(GraphicsTextureResource::PROJECTILE_ENEMY_ELECTRIC,
-        ELECTRIC_ENEMY_PROJECTILE_TEXTURE_PATH, sf::Vector2f(0, 0), sf::Vector2f(34, 34));
+        ELECTRIC_ENEMY_PROJECTILE_TEXTURE_PATH, sf::Vector2f(0, 0), sf::Vector2f());
     textureResource.addTexture(GraphicsTextureResource::PROJECTILE_ENEMY_ICE, ICE_ENEMY_PROJECTILE_TEXTURE_PATH,
-        sf::Vector2f(0, 0), sf::Vector2f(34, 34));
+        sf::Vector2f(0, 0), sf::Vector2f());
     textureResource.addTexture(GraphicsTextureResource::PROJECTILE_ALLY, BASIC_ALLIED_PROJECTILE_TEXTURE_PATH,
-        sf::Vector2f(0, 0), sf::Vector2f(20, 20));
-    textureResource.addTexture(
-        GraphicsTextureResource::BOSS, BOSS_TEXTURE_PATH, sf::Vector2f(0, 0), sf::Vector2f(50, 57));
+        sf::Vector2f(0, 0), sf::Vector2f());
+    textureResource.addTexture(GraphicsTextureResource::BOSS, BOSS_TEXTURE_PATH, sf::Vector2f(0, 0), sf::Vector2f());
 }
 
 void ClientRoom::_initBackgroundsTextures(GraphicsTextureResource &textureResource)
 {
-    textureResource.addTexture(GraphicsTextureResource::BACKGROUND_LAYER_3, BACK_BACKGROUND_TEXTURE_PATH,
+    textureResource.addTexture(GraphicsTextureResource::BACKGROUND_LAYER_3, BASIC_GROUND_TEXTURE_PATH,
         sf::Vector2f(0, 0), sf::Vector2f(1920, 1080));
-    textureResource.addTexture(GraphicsTextureResource::BACKGROUND_LAYER_2, FAR_BACKGROUND_TEXTURE_PATH,
+    textureResource.addTexture(GraphicsTextureResource::BACKGROUND_LAYER_2, BASIC_FORGROUND_TEXTURE_PATH,
         sf::Vector2f(0, 0), sf::Vector2f(1920, 1080));
-    textureResource.addTexture(GraphicsTextureResource::BACKGROUND_LAYER_1, MIDDLE_BACKGROUND_TEXTURE_PATH,
+    textureResource.addTexture(GraphicsTextureResource::BACKGROUND_LAYER_1, BASIC_BACKGROUND_TEXTURE_PATH,
         sf::Vector2f(0, 0), sf::Vector2f(1920, 1080));
+    textureResource.addTexture(
+        GraphicsTextureResource::BACKGROUND_LAYER, BASIC_BACKGROUND_PATH, sf::Vector2f(0, 0), sf::Vector2f(1920, 1080));
 }
 
 void ClientRoom::_initWritableTextures(GraphicsTextureResource &textureResource)
 {
     textureResource.addTexture(
-        GraphicsTextureResource::WRITABLE, WRITABLE_TEXTURE_PATH, sf::Vector2f(34, 0), sf::Vector2f(34, 34));
-    textureResource.addTexture(GraphicsTextureResource::WRITABLE_SELECTED, WRITABLE_SELECTED_TEXTURE_PATH,
-        sf::Vector2f(534 / 16 * 8, 0), sf::Vector2f(534 / 16, 34));
-    textureResource.addTexture(GraphicsTextureResource::WRITABLE_BUTTON, WRITABLE_BUTTON_TEXTURE_PATH,
-        sf::Vector2f(34, 0), sf::Vector2f(34, 34));
+        GraphicsTextureResource::WRITABLE, WRITABLE_TEXTURE_PATH, sf::Vector2f(0, 0), sf::Vector2f());
+    textureResource.addTexture(
+        GraphicsTextureResource::WRITABLE_SELECTED, WRITABLE_SELECTED_TEXTURE_PATH, sf::Vector2f(0, 0), sf::Vector2f());
+    textureResource.addTexture(
+        GraphicsTextureResource::WRITABLE_BUTTON, WRITABLE_BUTTON_TEXTURE_PATH, sf::Vector2f(0, 0), sf::Vector2f());
 }
 
 void ClientRoom::_initPlayerTextures(GraphicsTextureResource &textureResource)
 {
-    textureResource.addTexture(GraphicsTextureResource::PLAYER_STATIC_1, PLAYER_TEXTURE_PATH,
-        sf::Vector2f(534 / 16 * 8, 0), sf::Vector2f(534 / 16, 34));
-    textureResource.addTexture(GraphicsTextureResource::PLAYER_STATIC_2, PLAYER_TEXTURE_PATH,
-        sf::Vector2f(534 / 16 * 9, 0), sf::Vector2f(534 / 16, 34));
-    textureResource.addTexture(GraphicsTextureResource::PLAYER_STATIC_3, PLAYER_TEXTURE_PATH,
-        sf::Vector2f(534 / 16 * 10, 0), sf::Vector2f(534 / 16, 34));
-    textureResource.addTexture(GraphicsTextureResource::PLAYER_STATIC_4, PLAYER_TEXTURE_PATH,
-        sf::Vector2f(534 / 16 * 11, 0), sf::Vector2f(534 / 16, 34));
-    textureResource.addTexture(GraphicsTextureResource::PLAYER_STATIC_5, PLAYER_TEXTURE_PATH,
-        sf::Vector2f(534 / 16 * 12, 0), sf::Vector2f(534 / 16, 34));
-    textureResource.addTexture(GraphicsTextureResource::PLAYER_STATIC_6, PLAYER_TEXTURE_PATH,
-        sf::Vector2f(534 / 16 * 13, 0), sf::Vector2f(534 / 16, 34));
-    textureResource.addTexture(GraphicsTextureResource::PLAYER_STATIC_7, PLAYER_TEXTURE_PATH,
-        sf::Vector2f(534 / 16 * 14, 0), sf::Vector2f(534 / 16, 34));
-    textureResource.addTexture(GraphicsTextureResource::PLAYER_STATIC_8, PLAYER_TEXTURE_PATH,
-        sf::Vector2f(534 / 16 * 15, 0), sf::Vector2f(534 / 16, 34));
+    textureResource.addTexture(GraphicsTextureResource::BLUE_PLAYER_STATIC_1, BLUE_PLAYER_TEXTURE_PATH,
+        sf::Vector2f(0, 0), sf::Vector2f(2257 / 5, 223));
+    textureResource.addTexture(GraphicsTextureResource::BLUE_PLAYER_STATIC_2, BLUE_PLAYER_TEXTURE_PATH,
+        sf::Vector2f(2257 / 5, 0), sf::Vector2f(2257 / 5, 223));
+    textureResource.addTexture(GraphicsTextureResource::BLUE_PLAYER_STATIC_3, BLUE_PLAYER_TEXTURE_PATH,
+        sf::Vector2f(2257 / 5 * 2, 0), sf::Vector2f(2257 / 5, 223));
+    textureResource.addTexture(GraphicsTextureResource::BLUE_PLAYER_STATIC_4, BLUE_PLAYER_TEXTURE_PATH,
+        sf::Vector2f(2257 / 5 * 3, 0), sf::Vector2f(2257 / 5, 223));
+    textureResource.addTexture(GraphicsTextureResource::BLUE_PLAYER_STATIC_5, BLUE_PLAYER_TEXTURE_PATH,
+        sf::Vector2f(2257 / 5 * 4, 0), sf::Vector2f(2257 / 5, 223));
+
+    textureResource.addTexture(GraphicsTextureResource::GREEN_PLAYER_STATIC_1, GREEN_PLAYER_TEXTURE_PATH,
+        sf::Vector2f(0, 0), sf::Vector2f(2257 / 5, 223));
+    textureResource.addTexture(GraphicsTextureResource::GREEN_PLAYER_STATIC_2, GREEN_PLAYER_TEXTURE_PATH,
+        sf::Vector2f(2257 / 5, 0), sf::Vector2f(2257 / 5, 223));
+    textureResource.addTexture(GraphicsTextureResource::GREEN_PLAYER_STATIC_3, GREEN_PLAYER_TEXTURE_PATH,
+        sf::Vector2f(2257 / 5 * 2, 0), sf::Vector2f(2257 / 5, 223));
+    textureResource.addTexture(GraphicsTextureResource::GREEN_PLAYER_STATIC_4, GREEN_PLAYER_TEXTURE_PATH,
+        sf::Vector2f(2257 / 5 * 3, 0), sf::Vector2f(2257 / 5, 223));
+    textureResource.addTexture(GraphicsTextureResource::GREEN_PLAYER_STATIC_5, GREEN_PLAYER_TEXTURE_PATH,
+        sf::Vector2f(2257 / 5 * 4, 0), sf::Vector2f(2257 / 5, 223));
+
+    textureResource.addTexture(GraphicsTextureResource::YELLOW_PLAYER_STATIC_1, YELLOW_PLAYER_TEXTURE_PATH,
+        sf::Vector2f(0, 0), sf::Vector2f(2257 / 5, 223));
+    textureResource.addTexture(GraphicsTextureResource::YELLOW_PLAYER_STATIC_2, YELLOW_PLAYER_TEXTURE_PATH,
+        sf::Vector2f(2257 / 5, 0), sf::Vector2f(2257 / 5, 223));
+    textureResource.addTexture(GraphicsTextureResource::YELLOW_PLAYER_STATIC_3, YELLOW_PLAYER_TEXTURE_PATH,
+        sf::Vector2f(2257 / 5 * 2, 0), sf::Vector2f(2257 / 5, 223));
+    textureResource.addTexture(GraphicsTextureResource::YELLOW_PLAYER_STATIC_4, YELLOW_PLAYER_TEXTURE_PATH,
+        sf::Vector2f(2257 / 5 * 3, 0), sf::Vector2f(2257 / 5, 223));
+    textureResource.addTexture(GraphicsTextureResource::YELLOW_PLAYER_STATIC_5, YELLOW_PLAYER_TEXTURE_PATH,
+        sf::Vector2f(2257 / 5 * 4, 0), sf::Vector2f(2257 / 5, 223));
+
+    textureResource.addTexture(GraphicsTextureResource::PINK_PLAYER_STATIC_1, PINK_PLAYER_TEXTURE_PATH,
+        sf::Vector2f(0, 0), sf::Vector2f(2257 / 5, 223));
+    textureResource.addTexture(GraphicsTextureResource::PINK_PLAYER_STATIC_2, PINK_PLAYER_TEXTURE_PATH,
+        sf::Vector2f(2257 / 5, 0), sf::Vector2f(2257 / 5, 223));
+    textureResource.addTexture(GraphicsTextureResource::PINK_PLAYER_STATIC_3, PINK_PLAYER_TEXTURE_PATH,
+        sf::Vector2f(2257 / 5 * 2, 0), sf::Vector2f(2257 / 5, 223));
+    textureResource.addTexture(GraphicsTextureResource::PINK_PLAYER_STATIC_4, PINK_PLAYER_TEXTURE_PATH,
+        sf::Vector2f(2257 / 5 * 3, 0), sf::Vector2f(2257 / 5, 223));
+    textureResource.addTexture(GraphicsTextureResource::PINK_PLAYER_STATIC_5, PINK_PLAYER_TEXTURE_PATH,
+        sf::Vector2f(2257 / 5 * 4, 0), sf::Vector2f(2257 / 5, 223));
 }
 
 void ClientRoom::_loadButtonActionMap()
@@ -509,6 +537,8 @@ void ClientRoom::_initLobbyButtons()
 
     std::size_t id = createNewWritableButton(*(_worldInstance.get()), windowSize.x - 300, 500, 200, 50,
         std::function<void(World &, Entity &, std::string &)>(createARoom), MenuStates::LOBBY, roomNameId);
+    createNewText(
+        *(_worldInstance.get()), windowSize.x - 290, 510, 22, LayerLvL::TEXT, MenuStates::LOBBY, "Create a room");
     _worldInstance->getEntity(id).getComponent<graphicECS::SFML::Components::AssociatedId>().idList.push_back(
         playerNumberId);
     _worldInstance->getEntity(id).getComponent<graphicECS::SFML::Components::AssociatedId>().idList.push_back(
@@ -517,6 +547,12 @@ void ClientRoom::_initLobbyButtons()
         enemyVelocityId);
     createNewButton(*(_worldInstance.get()), 100, 100, 200, 50, ButtonActionMap::GO_MAIN_MENU, LayerLvL::BUTTON,
         MenuStates::LOBBY, "Back");
+    _worldInstance->addEntity()
+        .addComponent<GraphicsRectangleComponent>(0, 0, 1920, 1080)
+        .addComponent<Position>(0, 0)
+        .addComponent<LayerLvL>(LayerLvL::layer_e::DECORATION)
+        .addComponent<TextureName>(GraphicsTextureResource::BACKGROUND_LAYER)
+        .getId();
 }
 
 void ClientRoom::askForRooms()
@@ -622,9 +658,6 @@ void ClientRoom::_updateEcsEntities()
                 _initInGameButtons();
                 break;
             case MenuStates::MULTI_GAME:
-                if (_oldMenuStates == MenuStates::LOBBY) {
-                    _disconectionProcess();
-                }
                 _worldInstance->getResource<GameStates>().currentState = GameStates::IN_GAME;
                 _initInGameButtons();
                 _initInGameWritables();
@@ -690,9 +723,9 @@ void ClientRoom::_initInGameButtons()
 
     if (_worldInstance->containsResource<RenderWindowResource>())
         windowSize = _worldInstance->getResource<RenderWindowResource>().window.getSize();
-    createNewButton(*(_worldInstance.get()), 0, 0, 68, 68, ButtonActionMap::PAUSE, LayerLvL::BUTTON,
+    createNewButton(*(_worldInstance.get()), 0, 0, 200, 50, ButtonActionMap::PAUSE, LayerLvL::BUTTON,
         MenuStates::SOLO_GAME, "Pause");
-    createNewButton(*(_worldInstance.get()), 0, 0, 68, 68, ButtonActionMap::PAUSE, LayerLvL::BUTTON,
+    createNewButton(*(_worldInstance.get()), 0, 0, 200, 50, ButtonActionMap::PAUSE, LayerLvL::BUTTON,
         MenuStates::MULTI_GAME, "Pause");
 }
 
@@ -716,6 +749,12 @@ void ClientRoom::_initMainMenuButtons()
         ButtonActionMap::GO_OPTION, LayerLvL::BUTTON, MenuStates::MAIN_MENU, "Option");
     createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 5 * 4 - 25, 200, 50,
         ButtonActionMap::QUIT, LayerLvL::BUTTON, MenuStates::MAIN_MENU, "Quit");
+    _worldInstance->addEntity()
+        .addComponent<GraphicsRectangleComponent>(0, 0, 1920, 1080)
+        .addComponent<Position>(0, 0)
+        .addComponent<LayerLvL>(LayerLvL::layer_e::DECORATION)
+        .addComponent<TextureName>(GraphicsTextureResource::BACKGROUND_LAYER)
+        .getId();
 }
 
 void ClientRoom::_initInGameWritables()
@@ -829,6 +868,13 @@ void ClientRoom::_updateEcsData()
 
 void ClientRoom::_initInGameBackgrounds()
 {
+    auto joined = _worldInstance->joinEntities<LayerLvL>();
+
+    for (auto it : joined) {
+        if (it->getComponent<LayerLvL>().layer == LayerLvL::layer_e::DECORATION)
+            _worldInstance->removeEntity(it->getId());
+    }
+
     size_t firstID =
         _worldInstance->addEntity()
             .addComponent<ParallaxBackground>()
