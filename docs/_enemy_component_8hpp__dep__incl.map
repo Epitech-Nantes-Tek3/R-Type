@@ -1,23 +1,24 @@
 <map id="libs/R&#45;TypeLogic/Global/Components/EnemyComponent.hpp" name="libs/R&#45;TypeLogic/Global/Components/EnemyComponent.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="2138,5,2398,47"/>
-<area shape="rect" id="node2" href="$_create_enemy_8hpp.html" title=" " alt="" coords="588,102,887,143"/>
-<area shape="rect" id="node4" href="$_death_system_8hpp.html" title=" " alt="" coords="5,206,208,247"/>
-<area shape="rect" id="node5" href="$_client_room_8cpp.html" title=" " alt="" coords="911,303,1078,329"/>
-<area shape="rect" id="node7" href="$_enemy_shoot_system_8cpp.html" title=" " alt="" coords="1139,206,1383,247"/>
-<area shape="rect" id="node10" href="$_enemy_projectile_type_8hpp.html" title=" " alt="" coords="1453,102,1729,143"/>
-<area shape="rect" id="node13" href="$_global_score_8cpp.html" title=" " alt="" coords="1753,102,1999,143"/>
-<area shape="rect" id="node14" href="$_electric_invisible_enemy_system_8cpp.html" title=" " alt="" coords="2023,95,2257,151"/>
-<area shape="rect" id="node15" href="$_movement_system_8cpp.html" title=" " alt="" coords="2281,102,2513,143"/>
-<area shape="rect" id="node16" href="$_collidable_system_8cpp.html" title=" " alt="" coords="2537,102,2764,143"/>
-<area shape="rect" id="node17" href="$_enemies_patterns_8cpp.html" title=" " alt="" coords="2690,206,2913,247"/>
-<area shape="rect" id="node18" href="$_enemies_patterns_8hpp.html" title=" " alt="" coords="2838,102,3061,143"/>
-<area shape="rect" id="node19" href="$_send_newly_created_to_server_8cpp.html" title=" " alt="" coords="3085,95,3317,151"/>
-<area shape="rect" id="node20" href="$_send_newly_created_to_clients_8cpp.html" title=" " alt="" coords="3342,95,3578,151"/>
-<area shape="rect" id="node21" href="$_button_action_8cpp.html" title=" " alt="" coords="3602,109,3777,136"/>
-<area shape="rect" id="node3" href="$_create_enemy_8cpp.html" title=" " alt="" coords="233,206,530,247"/>
-<area shape="rect" id="node8" href="$_mob_generation_system_8cpp.html" title=" " alt="" coords="606,206,869,247"/>
-<area shape="rect" id="node9" href="$_transisthor_8cpp.html" title=" " alt="" coords="893,213,1115,240"/>
-<area shape="rect" id="node6" href="$_user_connection_8cpp.html" title=" " alt="" coords="9,303,204,329"/>
-<area shape="rect" id="node11" href="$_draw_components_8cpp.html" title=" " alt="" coords="1471,206,1700,247"/>
-<area shape="rect" id="node12" href="$_create_enemy_projectile_8cpp.html" title=" " alt="" coords="1724,199,1996,255"/>
+<area shape="rect" id="node1" title=" " alt="" coords="1993,5,2253,47"/>
+<area shape="rect" id="node2" href="$_update_background_music_8cpp.html" title=" " alt="" coords="372,102,647,143"/>
+<area shape="rect" id="node3" href="$_create_enemy_8hpp.html" title=" " alt="" coords="721,102,1020,143"/>
+<area shape="rect" id="node5" href="$_death_system_8hpp.html" title=" " alt="" coords="5,206,208,247"/>
+<area shape="rect" id="node6" href="$_client_room_8cpp.html" title=" " alt="" coords="911,303,1078,329"/>
+<area shape="rect" id="node8" href="$_enemy_shoot_system_8cpp.html" title=" " alt="" coords="1139,206,1383,247"/>
+<area shape="rect" id="node11" href="$_enemy_projectile_type_8hpp.html" title=" " alt="" coords="1435,102,1711,143"/>
+<area shape="rect" id="node14" href="$_global_score_8cpp.html" title=" " alt="" coords="1735,102,1982,143"/>
+<area shape="rect" id="node15" href="$_electric_invisible_enemy_system_8cpp.html" title=" " alt="" coords="2005,95,2240,151"/>
+<area shape="rect" id="node16" href="$_movement_system_8cpp.html" title=" " alt="" coords="2264,102,2496,143"/>
+<area shape="rect" id="node17" href="$_collidable_system_8cpp.html" title=" " alt="" coords="2520,102,2747,143"/>
+<area shape="rect" id="node18" href="$_enemies_patterns_8cpp.html" title=" " alt="" coords="2673,206,2895,247"/>
+<area shape="rect" id="node19" href="$_enemies_patterns_8hpp.html" title=" " alt="" coords="2821,102,3043,143"/>
+<area shape="rect" id="node20" href="$_send_newly_created_to_server_8cpp.html" title=" " alt="" coords="3068,95,3300,151"/>
+<area shape="rect" id="node21" href="$_send_newly_created_to_clients_8cpp.html" title=" " alt="" coords="3325,95,3561,151"/>
+<area shape="rect" id="node22" href="$_button_action_8cpp.html" title=" " alt="" coords="3585,109,3759,136"/>
+<area shape="rect" id="node4" href="$_create_enemy_8cpp.html" title=" " alt="" coords="233,206,530,247"/>
+<area shape="rect" id="node9" href="$_mob_generation_system_8cpp.html" title=" " alt="" coords="606,206,869,247"/>
+<area shape="rect" id="node10" href="$_transisthor_8cpp.html" title=" " alt="" coords="893,213,1115,240"/>
+<area shape="rect" id="node7" href="$_user_connection_8cpp.html" title=" " alt="" coords="9,303,204,329"/>
+<area shape="rect" id="node12" href="$_draw_components_8cpp.html" title=" " alt="" coords="1459,206,1688,247"/>
+<area shape="rect" id="node13" href="$_create_enemy_projectile_8cpp.html" title=" " alt="" coords="1712,199,1984,255"/>
 </map>

@@ -36,6 +36,10 @@ var dir_cbf7d74840da66ee0c9a24bf60bc6994 =
     [ "SoundManagement.hpp", "_sound_management_8hpp.html", [
       [ "SoundManagement", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sound_management.html", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sound_management" ]
     ] ],
+    [ "UpdateBackgroundMusic.cpp", "_update_background_music_8cpp.html", null ],
+    [ "UpdateBackgroundMusic.hpp", "_update_background_music_8hpp.html", [
+      [ "UpdateBackgroundMusic", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_update_background_music.html", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_update_background_music" ]
+    ] ],
     [ "UpdateLifeText.cpp", "_update_life_text_8cpp.html", null ],
     [ "UpdateLifeText.hpp", "_update_life_text_8hpp.html", [
       [ "UpdateLifeTextSystem", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_update_life_text_system.html", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_update_life_text_system" ]

@@ -151,6 +151,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aef36b076db2008f57e75f408d509bda8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_game_level.html#aef36b076db2008f57e75f408d509bda8">waveHasChanged</a> ()</td></tr>
 <tr class="memdesc:aef36b076db2008f57e75f408d509bda8"><td class="mdescLeft">&#160;</td><td class="mdescRight">State that the wave has changed because the mob generation has been launched.  <a href="classecs_1_1_game_level.html#aef36b076db2008f57e75f408d509bda8">More...</a><br /></td></tr>
 <tr class="separator:aef36b076db2008f57e75f408d509bda8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0414fea0fdc00dff9a8ba843d9b0f79c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_game_level.html#a0414fea0fdc00dff9a8ba843d9b0f79c">hasMusicChanged</a> () const</td></tr>
+<tr class="memdesc:a0414fea0fdc00dff9a8ba843d9b0f79c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the music of the background should change.  <a href="classecs_1_1_game_level.html#a0414fea0fdc00dff9a8ba843d9b0f79c">More...</a><br /></td></tr>
+<tr class="separator:a0414fea0fdc00dff9a8ba843d9b0f79c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa74681745c93652f27ccbd41cb8efd1c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_game_level.html#aa74681745c93652f27ccbd41cb8efd1c">musicHasChanged</a> ()</td></tr>
+<tr class="memdesc:aa74681745c93652f27ccbd41cb8efd1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">State that the music of the background has changed because the music modification.  <a href="classecs_1_1_game_level.html#aa74681745c93652f27ccbd41cb8efd1c">More...</a><br /></td></tr>
+<tr class="separator:aa74681745c93652f27ccbd41cb8efd1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29622973cbf9f33e4116e7543e2e8fbe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_game_level.html#a29622973cbf9f33e4116e7543e2e8fbe">addNewKills</a> (unsigned int newKills=1)</td></tr>
 <tr class="memdesc:a29622973cbf9f33e4116e7543e2e8fbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add new kills to the private value, increase the level if necessary.  <a href="classecs_1_1_game_level.html#a29622973cbf9f33e4116e7543e2e8fbe">More...</a><br /></td></tr>
 <tr class="separator:a29622973cbf9f33e4116e7543e2e8fbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -328,6 +334,34 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="a0414fea0fdc00dff9a8ba843d9b0f79c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0414fea0fdc00dff9a8ba843d9b0f79c">&#9670;&nbsp;</a></span>hasMusicChanged()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ecs::GameLevel::hasMusicChanged </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if the music of the background should change. </p>
+<dl class="section return"><dt>Returns</dt><dd>true if the music of the background should change, false otherwise </dd></dl>
+
+</div>
+</div>
 <a id="acd42d3a1ff7070fcb0e4b81e215a6d8c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acd42d3a1ff7070fcb0e4b81e215a6d8c">&#9670;&nbsp;</a></span>hasWaveChanged()</h2>
 
@@ -380,6 +414,33 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>State that the background has changed because the background modification. </p>
+
+</div>
+</div>
+<a id="aa74681745c93652f27ccbd41cb8efd1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa74681745c93652f27ccbd41cb8efd1c">&#9670;&nbsp;</a></span>musicHasChanged()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ecs::GameLevel::musicHasChanged </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>State that the music of the background has changed because the music modification. </p>
 
 </div>
 </div>
