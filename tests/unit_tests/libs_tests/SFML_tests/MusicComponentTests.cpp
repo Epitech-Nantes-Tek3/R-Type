@@ -22,7 +22,7 @@ Test(MusicComponent, create_music_undefined)
 
 Test(MusicComponent, create_music_shoot)
 {
-    MusicComponent music(MusicResource::FIGHTTHEME);
+    MusicComponent music(MusicResource::LEVEL_ONE_THEME);
 
-    cr_assert_eq(MusicResource::FIGHTTHEME, music.music_e);
+    cr_assert_eq(MusicResource::LEVEL_ONE_THEME, music.music_e);
 }
