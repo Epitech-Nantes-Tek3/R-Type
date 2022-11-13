@@ -27,6 +27,12 @@
 #define WRITABLE_SELECTED_TEXTURE_PATH         "assets/EpiSprite/BasicPlayerSpriteSheet.gif"
 #define WRITABLE_BUTTON_TEXTURE_PATH           "assets/EpiSprite/r-typesheet11.gif"
 #define PLAYER_TEXTURE_PATH                    "assets/EpiSprite/BasicPlayerSpriteSheet.gif"
-#define BACKGROUND_MUSIC                       "assets/Musics/music_background.wav"
+#define BACKGROUND_MUSIC_1                     "assets/Musics/level1Background.wav"
+#define BACKGROUND_MUSIC_2                     "assets/Musics/level2Background.wav"
+#define BACKGROUND_MUSIC_3                     "assets/Musics/level3Background.wav"
+#define BACKGROUND_MUSIC_4                     "assets/Musics/level4Background.wav"
+#define BACKGROUND_MUSIC_BOSS                  "assets/Musics/bossmusicBackground.wav"
+#define BACKGROUND_MUSIC_INFINITE              "assets/Musics/infinitelevelBackground.wav"
+#define BUTTON_SOUND_PATH                      "assets/Sounds/button_clicked.wav"
 
 #endif /* !MACCRO_H_ */

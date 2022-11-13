@@ -23,5 +23,7 @@ set(SRC_GRAPHIC_SYSTEM
     ${GRAPHIC_SRC_SYSTEM_ROOT}/ApplyInputDelay.hpp
     ${GRAPHIC_SRC_SYSTEM_ROOT}/UpdateLifeText.cpp
     ${GRAPHIC_SRC_SYSTEM_ROOT}/UpdateLifeText.hpp
+    ${GRAPHIC_SRC_SYSTEM_ROOT}/UpdateBackgroundMusic.cpp
+    ${GRAPHIC_SRC_SYSTEM_ROOT}/UpdateBackgroundMusic.hpp
     PARENT_SCOPE
 )

@@ -42,6 +42,7 @@
 #include "GraphicECS/SFML/Systems/RemoveChatSystem.hpp"
 #include "GraphicECS/SFML/Systems/SfObjectFollowEntitySystem.hpp"
 #include "GraphicECS/SFML/Systems/SoundManagement.hpp"
+#include "GraphicECS/SFML/Systems/UpdateBackgroundMusic.hpp"
 #include "GraphicECS/SFML/Systems/UpdateLifeText.hpp"
 #include "GraphicECS/SFML/Systems/UpdateParallaxSystem.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
@@ -374,7 +375,21 @@ void ClientRoom::_updateEcsResources()
         _loadButtonActionMap();
     if (_worldInstance->containsResource<MusicResource>()) {
         _worldInstance->getResource<MusicResource>().addMusic(
-            graphicECS::SFML::Resources::MusicResource::BACKGROUNDTHEME, "assets/Musics/music_background.wav");
+            graphicECS::SFML::Resources::MusicResource::LEVEL_ONE_THEME, BACKGROUND_MUSIC_1);
+        _worldInstance->getResource<MusicResource>().addMusic(
+            graphicECS::SFML::Resources::MusicResource::LEVEL_TWO_THEME, BACKGROUND_MUSIC_2);
+        _worldInstance->getResource<MusicResource>().addMusic(
+            graphicECS::SFML::Resources::MusicResource::LEVEL_THREE_THEME, BACKGROUND_MUSIC_3);
+        _worldInstance->getResource<MusicResource>().addMusic(
+            graphicECS::SFML::Resources::MusicResource::LEVEL_FOUR_THEME, BACKGROUND_MUSIC_4);
+        _worldInstance->getResource<MusicResource>().addMusic(
+            graphicECS::SFML::Resources::MusicResource::BOSS_FIGHTTHEME, BACKGROUND_MUSIC_BOSS);
+        _worldInstance->getResource<MusicResource>().addMusic(
+            graphicECS::SFML::Resources::MusicResource::INFINITE_THEME, BACKGROUND_MUSIC_INFINITE);
+    }
+    if (_worldInstance->containsResource<SoundResource>()) {
+        _worldInstance->getResource<SoundResource>().addSound(
+            graphicECS::SFML::Resources::SoundResource::BUTTON, BUTTON_SOUND_PATH);
     }
 }
 
@@ -555,6 +570,14 @@ void ClientRoom::_updateEcsEntities()
     for (auto &it : entities) {
         _worldInstance->removeEntity(it->getId());
     }
+    entities = _worldInstance->joinEntities<MusicComponent>();
+    for (auto &it : entities) {
+        it->getComponent<MusicComponent>()._status = sf::Music::Stopped;
+    }
+    entities = _worldInstance->joinEntities<SoundComponent>();
+    for (auto &it : entities) {
+        it->getComponent<SoundComponent>()._status = sf::Sound::Stopped;
+    }
     if (_worldInstance
             ->joinEntities<MouseInputComponent, KeyboardInputComponent, ControllerButtonInputComponent,
                 ControllerJoystickInputComponent, ActionQueueComponent, AllowMouseAndKeyboardComponent,
@@ -586,6 +609,10 @@ void ClientRoom::_updateEcsEntities()
                 _initLobbyButtons();
                 break;
             case MenuStates::SOLO_GAME:
+                entities = _worldInstance->joinEntities<MusicComponent>();
+                for (auto &it : entities) {
+                    it->getComponent<MusicComponent>()._status = sf::Music::Playing;
+                }
                 if (_oldMenuStates != MenuStates::PAUSED) {
                     _initInGameWritables();
                     _initInGameBackgrounds();
@@ -596,7 +623,7 @@ void ClientRoom::_updateEcsEntities()
                 break;
             case MenuStates::MULTI_GAME:
                 if (_oldMenuStates == MenuStates::LOBBY) {
-                    // _disconectionProcess();
+                    _disconectionProcess();
                 }
                 _worldInstance->getResource<GameStates>().currentState = GameStates::IN_GAME;
                 _initInGameButtons();
@@ -604,6 +631,9 @@ void ClientRoom::_updateEcsEntities()
                 if (_worldInstance->joinEntities<ParallaxBackground>().empty()) {
                     _initInGameText();
                     _initInGameBackgrounds();
+                }
+                for (auto &it : entities) {
+                    it->getComponent<MusicComponent>()._status = sf::Music::Playing;
                 }
                 break;
             case MenuStates::PAUSED: _initPausedButton(); break;
@@ -730,6 +760,8 @@ void ClientRoom::_updateEcsSystems()
         _worldInstance->addSystem<UpdateParallax>();
     if (!_worldInstance->containsSystem<UpdateLifeTextSystem>())
         _worldInstance->addSystem<UpdateLifeTextSystem>();
+    if (!_worldInstance->containsSystem<UpdateBackgroundMusic>())
+        _worldInstance->addSystem<UpdateBackgroundMusic>();
     if (_worldInstance->containsResource<MenuStates>()
         && _worldInstance->getResource<MenuStates>().currentState == MenuStates::SOLO_GAME) {
         if (!_worldInstance->containsSystem<MobGeneration>())
@@ -805,7 +837,7 @@ void ClientRoom::_initInGameBackgrounds()
             .addComponent<Velocity>(-300, 0)
             .addComponent<LayerLvL>(LayerLvL::layer_e::DECORATION)
             .addComponent<TextureName>(GraphicsTextureResource::BACKGROUND_LAYER_1)
-            .addComponent<MusicComponent>(MusicResource::music_e::BACKGROUNDTHEME, sf::SoundSource::Status::Playing)
+            .addComponent<MusicComponent>(MusicResource::music_e::LEVEL_ONE_THEME, sf::SoundSource::Status::Playing)
             .addComponent<SoundComponent>(SoundResource::sound_e::SHOOT, sf::SoundSource::Status::Playing)
             .getId();
 
