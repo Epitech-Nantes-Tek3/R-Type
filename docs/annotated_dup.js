@@ -142,6 +142,7 @@ var annotated_dup =
           [ "RemoveChatSystem", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_remove_chat_system.html", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_remove_chat_system" ],
           [ "SfObjectFollowEntitySystem", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sf_object_follow_entity_system.html", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sf_object_follow_entity_system" ],
           [ "SoundManagement", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sound_management.html", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sound_management" ],
+          [ "UpdateLifeTextSystem", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_update_life_text_system.html", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_update_life_text_system" ],
           [ "UpdateParallax", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_update_parallax.html", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_update_parallax" ]
         ] ]
       ] ]

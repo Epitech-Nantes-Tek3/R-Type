@@ -6,7 +6,7 @@ var classserver__data_1_1_room_instance =
       [ "IN_GAME", "classserver__data_1_1_room_instance.html#a19df4a1bc605ac8472873a2ca4814efea950718724ddb6671306a916221c4fba6", null ],
       [ "ENDED", "classserver__data_1_1_room_instance.html#a19df4a1bc605ac8472873a2ca4814efea6797e58251941b251adcf9434e56663c", null ]
     ] ],
-    [ "RoomInstance", "classserver__data_1_1_room_instance.html#a95b0b066dbb6127262f791b9b9ba7287", null ],
+    [ "RoomInstance", "classserver__data_1_1_room_instance.html#ad9c2ad7b34ef91b5db2b4986e30df766", null ],
     [ "~RoomInstance", "classserver__data_1_1_room_instance.html#aab8d746c7d2e8e7d7dc4082505942fe1", null ],
     [ "getId", "classserver__data_1_1_room_instance.html#a573021b5d21ffdeb4686bc2de28afb1f", null ],
     [ "getInputStream", "classserver__data_1_1_room_instance.html#a8485b98aa8461602ae0ba6abc82656af", null ],

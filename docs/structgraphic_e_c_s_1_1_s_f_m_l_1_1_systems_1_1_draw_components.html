@@ -138,6 +138,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a8138caa8e75e14d6f4de518f613e82ca"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_draw_components.html#a8138caa8e75e14d6f4de518f613e82ca">addChatMessageText</a> (std::shared_ptr&lt; <a class="el" href="classecs_1_1_entity.html">Entity</a> &gt; chatMessagePtr, const sf::Font &amp;newFont)</td></tr>
 <tr class="memdesc:a8138caa8e75e14d6f4de518f613e82ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add corresponding texts to the chat message thanks to its chatMessage component.  <a href="structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_draw_components.html#a8138caa8e75e14d6f4de518f613e82ca">More...</a><br /></td></tr>
 <tr class="separator:a8138caa8e75e14d6f4de518f613e82ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5d67c898a5b12b585068caa9cb0ed02"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_draw_components.html#af5d67c898a5b12b585068caa9cb0ed02">addText</a> (std::shared_ptr&lt; <a class="el" href="classecs_1_1_entity.html">Entity</a> &gt; textPtr, const sf::Font &amp;newFont)</td></tr>
+<tr class="memdesc:af5d67c898a5b12b585068caa9cb0ed02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a text to the screen.  <a href="structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_draw_components.html#af5d67c898a5b12b585068caa9cb0ed02">More...</a><br /></td></tr>
+<tr class="separator:af5d67c898a5b12b585068caa9cb0ed02"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class draw GraphicsComponents on window. </p>
@@ -180,6 +183,7 @@ Static Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">buttonPtr</td><td>A Button Entity </td></tr>
+    <tr><td class="paramname">newFont</td><td>the font to use </td></tr>
   </table>
   </dd>
 </dl>
@@ -224,6 +228,52 @@ Static Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">chatMessagePtr</td><td>A ChatMessage Entity </td></tr>
+    <tr><td class="paramname">newFont</td><td>the font to use </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af5d67c898a5b12b585068caa9cb0ed02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5d67c898a5b12b585068caa9cb0ed02">&#9670;&nbsp;</a></span>addText()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DrawComponents::addText </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classecs_1_1_entity.html">Entity</a> &gt;&#160;</td>
+          <td class="paramname"><em>textPtr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const sf::Font &amp;&#160;</td>
+          <td class="paramname"><em>newFont</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Add a text to the screen. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">textPtr</td><td>A Text Entity </td></tr>
+    <tr><td class="paramname">newFont</td><td>the font to use </td></tr>
   </table>
   </dd>
 </dl>
@@ -268,6 +318,7 @@ Static Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">writablePtr</td><td>A Writable Entity </td></tr>
+    <tr><td class="paramname">newFont</td><td>the font to use </td></tr>
   </table>
   </dd>
 </dl>

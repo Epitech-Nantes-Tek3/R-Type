@@ -99,14 +99,9 @@ $(document).ready(function(){initNavTree('classclient__data_1_1_client_room.html
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a8e238231449feaa8357997ae01f9f2ce"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classclient__data_1_1_client_room.html#a8e238231449feaa8357997ae01f9f2ce">ClientState</a> { <br />
-&#160;&#160;<a class="el" href="classclient__data_1_1_client_room.html#a8e238231449feaa8357997ae01f9f2cea872ef4ab18181608d6a2db102ed5c884">UNDEFINED</a>
-, <a class="el" href="classclient__data_1_1_client_room.html#a8e238231449feaa8357997ae01f9f2cea70aa0c69e02935c7a21a14e303c233af">MAIN_MENU</a>
-, <a class="el" href="classclient__data_1_1_client_room.html#a8e238231449feaa8357997ae01f9f2cea6c6995de0aa9815941c2188d56b0732a">LOBBY</a>
-, <a class="el" href="classclient__data_1_1_client_room.html#a8e238231449feaa8357997ae01f9f2ceaa210ef889c87133bb60b6cfd938f14d8">IN_GAME</a>
-, <br />
-&#160;&#160;<a class="el" href="classclient__data_1_1_client_room.html#a8e238231449feaa8357997ae01f9f2cea813cb4e5ad16ad700c47ba48bd3e23e5">ENDED</a>
-<br />
+<tr class="memitem:a8e238231449feaa8357997ae01f9f2ce"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classclient__data_1_1_client_room.html#a8e238231449feaa8357997ae01f9f2ce">ClientState</a> { <a class="el" href="classclient__data_1_1_client_room.html#a8e238231449feaa8357997ae01f9f2cea872ef4ab18181608d6a2db102ed5c884">UNDEFINED</a>
+, <a class="el" href="classclient__data_1_1_client_room.html#a8e238231449feaa8357997ae01f9f2ceaa705807e03cc30c1891f03f5af9069a2">RUN</a>
+, <a class="el" href="classclient__data_1_1_client_room.html#a8e238231449feaa8357997ae01f9f2cea813cb4e5ad16ad700c47ba48bd3e23e5">ENDED</a>
  }</td></tr>
 <tr class="memdesc:a8e238231449feaa8357997ae01f9f2ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">All the possible state of a client.  <a href="classclient__data_1_1_client_room.html#a8e238231449feaa8357997ae01f9f2ce">More...</a><br /></td></tr>
 <tr class="separator:a8e238231449feaa8357997ae01f9f2ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -122,11 +117,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af6b8ea1652d5151256486f98daf36286"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classclient__data_1_1_client_room.html#af6b8ea1652d5151256486f98daf36286">~ClientRoom</a> ()=default</td></tr>
 <tr class="memdesc:af6b8ea1652d5151256486f98daf36286"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy the <a class="el" href="classclient__data_1_1_client_room.html" title="Place where the game run (Like a lobby). Hold all libraries instance,.">ClientRoom</a> object.  <a href="classclient__data_1_1_client_room.html#af6b8ea1652d5151256486f98daf36286">More...</a><br /></td></tr>
 <tr class="separator:af6b8ea1652d5151256486f98daf36286"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e5aeff109b0a4142edaac1961ecd97d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classclient__data_1_1_client_room.html#a3e5aeff109b0a4142edaac1961ecd97d">startLobbyLoop</a> (const std::string &amp;pseudo, const std::string &amp;password, bool isSolo)</td></tr>
-<tr class="memdesc:a3e5aeff109b0a4142edaac1961ecd97d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Launch the lobby global loop for a multiplayer game.  <a href="classclient__data_1_1_client_room.html#a3e5aeff109b0a4142edaac1961ecd97d">More...</a><br /></td></tr>
-<tr class="separator:a3e5aeff109b0a4142edaac1961ecd97d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad94bbeaad0b30d8d82a073c8c8ad7687"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classclient__data_1_1_client_room.html#ad94bbeaad0b30d8d82a073c8c8ad7687">startGame</a> ()</td></tr>
-<tr class="memdesc:ad94bbeaad0b30d8d82a073c8c8ad7687"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function start the game for the player to choose if the player is in Solo or Multiplayer mod.  <a href="classclient__data_1_1_client_room.html#ad94bbeaad0b30d8d82a073c8c8ad7687">More...</a><br /></td></tr>
+<tr class="memdesc:ad94bbeaad0b30d8d82a073c8c8ad7687"><td class="mdescLeft">&#160;</td><td class="mdescRight">It creates a <a class="el" href="classclient__data_1_1_user_connection.html" title="This class is used to get a pseudo and a password in a GUI to log in a client.">UserConnection</a> object, which is a class that handles the connection with the server, and then it calls the startLoop function.  <a href="classclient__data_1_1_client_room.html#ad94bbeaad0b30d8d82a073c8c8ad7687">More...</a><br /></td></tr>
 <tr class="separator:ad94bbeaad0b30d8d82a073c8c8ad7687"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -147,9 +139,7 @@ Public Member Functions</h2></td></tr>
 <p>All the possible state of a client. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a8e238231449feaa8357997ae01f9f2cea872ef4ab18181608d6a2db102ed5c884"></a>UNDEFINED&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a8e238231449feaa8357997ae01f9f2cea70aa0c69e02935c7a21a14e303c233af"></a>MAIN_MENU&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a8e238231449feaa8357997ae01f9f2cea6c6995de0aa9815941c2188d56b0732a"></a>LOBBY&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a8e238231449feaa8357997ae01f9f2ceaa210ef889c87133bb60b6cfd938f14d8"></a>IN_GAME&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a8e238231449feaa8357997ae01f9f2ceaa705807e03cc30c1891f03f5af9069a2"></a>RUN&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a8e238231449feaa8357997ae01f9f2cea813cb4e5ad16ad700c47ba48bd3e23e5"></a>ENDED&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
@@ -269,51 +259,8 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>This function start the game for the player to choose if the player is in Solo or Multiplayer mod. </p>
-
-</div>
-</div>
-<a id="a3e5aeff109b0a4142edaac1961ecd97d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3e5aeff109b0a4142edaac1961ecd97d">&#9670;&nbsp;</a></span>startLobbyLoop()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ClientRoom::startLobbyLoop </td>
-          <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>pseudo</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>password</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>isSolo</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Launch the lobby global loop for a multiplayer game. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">pseudo</td><td>The pseudo of the user </td></tr>
-    <tr><td class="paramname">password</td><td>The password of the user </td></tr>
-  </table>
-  </dd>
-</dl>
-<p>WILL BE IMPROVED IN PART TWO (THREAD + CLOCK)</p>
+<p>It creates a <a class="el" href="classclient__data_1_1_user_connection.html" title="This class is used to get a pseudo and a password in a GUI to log in a client.">UserConnection</a> object, which is a class that handles the connection with the server, and then it calls the startLoop function. </p>
+<dl class="section return"><dt>Returns</dt><dd>The return value of the function. </dd></dl>
 
 </div>
 </div>

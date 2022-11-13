@@ -86,6 +86,7 @@ var namespaceecs =
     [ "createNewObstacle", "namespaceecs.html#ab15d2c7f57a273e31cc406a0c1f1c2cb", null ],
     [ "createNewPlayer", "namespaceecs.html#a132d73ab656eacd7c230e1d48ac8992a", null ],
     [ "createNewProjectile", "namespaceecs.html#a1f596f4becfe96c2acf522eb0e168eb8", null ],
+    [ "createNewText", "namespaceecs.html#a57828dc5543f322c221ee719d73005a6", null ],
     [ "createNewWritable", "namespaceecs.html#ac03f7dc7f534fd1a768d747f7551d5c7", null ],
     [ "createNewWritableButton", "namespaceecs.html#a55e49d1c9612050d392f74bac140252a", null ],
     [ "operator!=", "namespaceecs.html#aabf6f9698af5a96f1c4d0c59abcba27a", null ],

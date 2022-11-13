@@ -109,9 +109,9 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a95b0b066dbb6127262f791b9b9ba7287"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classserver__data_1_1_room_instance.html#a95b0b066dbb6127262f791b9b9ba7287">RoomInstance</a> (<a class="el" href="classserver__data_1_1_server.html">Server</a> *server, unsigned short id, std::string name, std::string address, unsigned short port)</td></tr>
-<tr class="memdesc:a95b0b066dbb6127262f791b9b9ba7287"><td class="mdescLeft">&#160;</td><td class="mdescRight">It creates a new room instance.  <a href="classserver__data_1_1_room_instance.html#a95b0b066dbb6127262f791b9b9ba7287">More...</a><br /></td></tr>
-<tr class="separator:a95b0b066dbb6127262f791b9b9ba7287"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9c2ad7b34ef91b5db2b4986e30df766"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classserver__data_1_1_room_instance.html#ad9c2ad7b34ef91b5db2b4986e30df766">RoomInstance</a> (<a class="el" href="classserver__data_1_1_server.html">Server</a> *server, unsigned short id, std::string name, std::string address, unsigned short port, short *configs)</td></tr>
+<tr class="memdesc:ad9c2ad7b34ef91b5db2b4986e30df766"><td class="mdescLeft">&#160;</td><td class="mdescRight">It creates a new room instance.  <a href="classserver__data_1_1_room_instance.html#ad9c2ad7b34ef91b5db2b4986e30df766">More...</a><br /></td></tr>
+<tr class="separator:ad9c2ad7b34ef91b5db2b4986e30df766"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aab8d746c7d2e8e7d7dc4082505942fe1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classserver__data_1_1_room_instance.html#aab8d746c7d2e8e7d7dc4082505942fe1">~RoomInstance</a> ()</td></tr>
 <tr class="memdesc:aab8d746c7d2e8e7d7dc4082505942fe1"><td class="mdescLeft">&#160;</td><td class="mdescRight">The destructor for the <a class="el" href="classserver__data_1_1_room_instance.html" title="A class that represents a room instance.">RoomInstance</a> class It waits that the process is stoped.  <a href="classserver__data_1_1_room_instance.html#aab8d746c7d2e8e7d7dc4082505942fe1">More...</a><br /></td></tr>
 <tr class="separator:aab8d746c7d2e8e7d7dc4082505942fe1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -163,8 +163,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a95b0b066dbb6127262f791b9b9ba7287"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a95b0b066dbb6127262f791b9b9ba7287">&#9670;&nbsp;</a></span>RoomInstance()</h2>
+<a id="ad9c2ad7b34ef91b5db2b4986e30df766"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9c2ad7b34ef91b5db2b4986e30df766">&#9670;&nbsp;</a></span>RoomInstance()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -197,7 +197,13 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">unsigned short&#160;</td>
-          <td class="paramname"><em>port</em>&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">short *&#160;</td>
+          <td class="paramname"><em>configs</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -214,6 +220,7 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramname">name</td><td>The name of the room. </td></tr>
     <tr><td class="paramname">address</td><td>The address of the server. </td></tr>
     <tr><td class="paramname">port</td><td>the port on which the room will listen to </td></tr>
+    <tr><td class="paramname">configs</td><td>Configuration for a room </td></tr>
   </table>
   </dd>
 </dl>

@@ -18,6 +18,7 @@ var classecs_1_1_world =
     [ "joinEntities", "classecs_1_1_world.html#adcbfd0e32647d24f15d124f92dc3fe73", null ],
     [ "removeEntity", "classecs_1_1_world.html#a593e838ce09a7924c81ff86f1a1e61c0", null ],
     [ "removeResource", "classecs_1_1_world.html#a4b2230f7925af348e7645b0a6c3a95d2", null ],
+    [ "removeSystem", "classecs_1_1_world.html#aa2caef177ebef799160c5e03f53dca3a", null ],
     [ "runSystems", "classecs_1_1_world.html#a8ced482c3db57a0932fc691aeef01935", null ],
     [ "setTransisthorBridge", "classecs_1_1_world.html#a825c59d02e9091eb65dacda56fb5c5b0", null ],
     [ "updateComponentOfAnEntityFromGivenDistinctiveComponent", "classecs_1_1_world.html#a252fa9305ad3ed574bb68405efd7f738", null ]

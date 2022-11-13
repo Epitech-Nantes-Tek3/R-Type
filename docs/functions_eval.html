@@ -128,6 +128,9 @@ $(document).ready(function(){initNavTree('functions_eval.html',''); initResizabl
 <li>CLIENT_EXECUTABLE
 : <a class="el" href="classargument__handler_1_1_argument_handler.html#ade7b92c1c2885408ad21f61d3d8faa05a7ed04c353f6be8ce211022b92d42d8b1">argument_handler::ArgumentHandler</a>
 </li>
+<li>CONNECT_TO_ROOM
+: <a class="el" href="classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90a216df5a914eb8c86b5de2a00e0b44190">ecs::ButtonActionMap</a>
+</li>
 <li>CREATE_A_ROOM
 : <a class="el" href="classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90acea1ba1e7c059fa3a98ce0b17bab6bb6">ecs::ButtonActionMap</a>
 </li>
@@ -165,9 +168,6 @@ $(document).ready(function(){initNavTree('functions_eval.html',''); initResizabl
 <li>ENEMY_UP
 : <a class="el" href="classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html#aa8d3b383da5ddc1c6dd86c2c5efc035da260e573dee2bbc6a0e89fb185756b186">graphicECS::SFML::Resources::GraphicsTextureResource</a>
 </li>
-<li>EXIT
-: <a class="el" href="classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90a256599fa01466c76e6c68e182aa7f02e">ecs::ButtonActionMap</a>
-</li>
 <li>EXPLOSION
 : <a class="el" href="classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_sound_resource.html#a66c5c45700b991570d534c94587fad88a00ed14c16c66f22cb4bfebf85fad87a7">graphicECS::SFML::Resources::SoundResource</a>
 </li>
@@ -188,8 +188,20 @@ $(document).ready(function(){initNavTree('functions_eval.html',''); initResizabl
 
 
 <h3><a id="index_g"></a>- g -</h3><ul>
-<li>GAME_PAUSED
-: <a class="el" href="classecs_1_1_menu_states.html#a0d4dd57d2a1f5290f65d1288712f922aa779cba45e853e00f90eb4873bf2dff26">ecs::MenuStates</a>
+<li>GO_LOBBY
+: <a class="el" href="classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90af1ed606ab984215fb5f9c70e476a6fa2">ecs::ButtonActionMap</a>
+</li>
+<li>GO_MAIN_MENU
+: <a class="el" href="classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90a971b6d237844f26b0a74fed4178a750a">ecs::ButtonActionMap</a>
+</li>
+<li>GO_MULTI_GAME
+: <a class="el" href="classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90a07f88e6ace44a6ba3ca54667543515ad">ecs::ButtonActionMap</a>
+</li>
+<li>GO_OPTION
+: <a class="el" href="classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90a5d2af530fc989251b1ff22cd09aa1caf">ecs::ButtonActionMap</a>
+</li>
+<li>GO_SOLO_GAME
+: <a class="el" href="classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90a76346aa4c6ece685df813686bd4cd393">ecs::ButtonActionMap</a>
 </li>
 </ul>
 
@@ -209,10 +221,7 @@ $(document).ready(function(){initNavTree('functions_eval.html',''); initResizabl
 : <a class="el" href="classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html#aa8d3b383da5ddc1c6dd86c2c5efc035dac0522b70b34cc4b571922bb4c5c2f7a4">graphicECS::SFML::Resources::GraphicsTextureResource</a>
 </li>
 <li>IN_GAME
-: <a class="el" href="classclient__data_1_1_client_room.html#a8e238231449feaa8357997ae01f9f2ceaa210ef889c87133bb60b6cfd938f14d8">client_data::ClientRoom</a>
-, <a class="el" href="classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90afbabe33658ff72507334fd175098f6c0">ecs::ButtonActionMap</a>
-, <a class="el" href="classecs_1_1_game_states.html#af6a30d3931a9627bfb6f7dfc6b48d243a736bf221e09b2ff5a8f5d2058cf60b56">ecs::GameStates</a>
-, <a class="el" href="classecs_1_1_menu_states.html#a0d4dd57d2a1f5290f65d1288712f922aaab27d9217d9cad1c7d8df325764c196c">ecs::MenuStates</a>
+: <a class="el" href="classecs_1_1_game_states.html#af6a30d3931a9627bfb6f7dfc6b48d243a736bf221e09b2ff5a8f5d2058cf60b56">ecs::GameStates</a>
 , <a class="el" href="classserver__data_1_1_room_instance.html#a19df4a1bc605ac8472873a2ca4814efea950718724ddb6671306a916221c4fba6">server_data::RoomInstance</a>
 </li>
 <li>IN_PAUSED
@@ -244,9 +253,7 @@ $(document).ready(function(){initNavTree('functions_eval.html',''); initResizabl
 : <a class="el" href="classecs_1_1_game_level.html#a123c21abdf60829ee2fc1bf9fae51fe3a8837ee38493a6b25fbb7fe4c6baa6819">ecs::GameLevel</a>
 </li>
 <li>LOBBY
-: <a class="el" href="classclient__data_1_1_client_room.html#a8e238231449feaa8357997ae01f9f2cea6c6995de0aa9815941c2188d56b0732a">client_data::ClientRoom</a>
-, <a class="el" href="classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90a2a042afbe1e44c8b1a611afcaffeadc1">ecs::ButtonActionMap</a>
-, <a class="el" href="classecs_1_1_menu_states.html#a0d4dd57d2a1f5290f65d1288712f922aad038c120be00a0ca4967fcaa7565b74b">ecs::MenuStates</a>
+: <a class="el" href="classecs_1_1_menu_states.html#a0d4dd57d2a1f5290f65d1288712f922aad038c120be00a0ca4967fcaa7565b74b">ecs::MenuStates</a>
 , <a class="el" href="classserver__data_1_1_room_instance.html#a19df4a1bc605ac8472873a2ca4814efea09e2505b2929b9a0a9e8b82383c89f50">server_data::RoomInstance</a>
 </li>
 </ul>
@@ -254,9 +261,10 @@ $(document).ready(function(){initNavTree('functions_eval.html',''); initResizabl
 
 <h3><a id="index_m"></a>- m -</h3><ul>
 <li>MAIN_MENU
-: <a class="el" href="classclient__data_1_1_client_room.html#a8e238231449feaa8357997ae01f9f2cea70aa0c69e02935c7a21a14e303c233af">client_data::ClientRoom</a>
-, <a class="el" href="classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90a4a5bb7bb205894db6519cd8f5e253abc">ecs::ButtonActionMap</a>
-, <a class="el" href="classecs_1_1_menu_states.html#a0d4dd57d2a1f5290f65d1288712f922aadaad09ca2259954981e97e432d747408">ecs::MenuStates</a>
+: <a class="el" href="classecs_1_1_menu_states.html#a0d4dd57d2a1f5290f65d1288712f922aadaad09ca2259954981e97e432d747408">ecs::MenuStates</a>
+</li>
+<li>MATCHMAKED_ROOM
+: <a class="el" href="classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90a77489ca15b36bebf7b502d30a1972fea">ecs::ButtonActionMap</a>
 </li>
 <li>MAX_ACTION
 : <a class="el" href="classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_action_queue_component.html#a37c8ac86f28a69717505c3b2c1bc6445a0c3dd240aace6ef1aefb9b696fdb7f36">graphicECS::SFML::Components::ActionQueueComponent</a>
@@ -272,6 +280,9 @@ $(document).ready(function(){initNavTree('functions_eval.html',''); initResizabl
 </li>
 <li>MOVEY
 : <a class="el" href="classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_action_queue_component.html#a37c8ac86f28a69717505c3b2c1bc6445a0f7191f22d2091f8fcb0eb2b106c4993">graphicECS::SFML::Components::ActionQueueComponent</a>
+</li>
+<li>MULTI_GAME
+: <a class="el" href="classecs_1_1_menu_states.html#a0d4dd57d2a1f5290f65d1288712f922aa89b9ca281f552c1588e42628c7ce8ddc">ecs::MenuStates</a>
 </li>
 </ul>
 
@@ -296,12 +307,18 @@ $(document).ready(function(){initNavTree('functions_eval.html',''); initResizabl
 <li>OBSTACLE_3
 : <a class="el" href="classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html#aa8d3b383da5ddc1c6dd86c2c5efc035da657814b81c6d4b38fa7ff2250cad5295">graphicECS::SFML::Resources::GraphicsTextureResource</a>
 </li>
+<li>OPTION
+: <a class="el" href="classecs_1_1_menu_states.html#a0d4dd57d2a1f5290f65d1288712f922aa4fc535fb9f3fbf2a8f49396fa8d9e75e">ecs::MenuStates</a>
+</li>
 </ul>
 
 
 <h3><a id="index_p"></a>- p -</h3><ul>
 <li>PAUSE
 : <a class="el" href="classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90ac1e13cff8cd3c0953c57dba2339893c2">ecs::ButtonActionMap</a>
+</li>
+<li>PAUSED
+: <a class="el" href="classecs_1_1_menu_states.html#a0d4dd57d2a1f5290f65d1288712f922aa7a40d8707ae5e08860a0e8f7ea3f12f9">ecs::MenuStates</a>
 </li>
 <li>PLAYER
 : <a class="el" href="classecs_1_1_layer_lv_l.html#a3d249124964fcfd2525e3ccc99313799a44419a19202de3a25c455f6c91fdd20f">ecs::LayerLvL</a>
@@ -357,15 +374,22 @@ $(document).ready(function(){initNavTree('functions_eval.html',''); initResizabl
 </ul>
 
 
+<h3><a id="index_q"></a>- q -</h3><ul>
+<li>QUIT
+: <a class="el" href="classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90a74ee89b70766f98f9093a24b00ceffd8">ecs::ButtonActionMap</a>
+</li>
+</ul>
+
+
 <h3><a id="index_r"></a>- r -</h3><ul>
 <li>RESUME
 : <a class="el" href="classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90a50879d659e86395e4add9c119f03905d">ecs::ButtonActionMap</a>
 </li>
-<li>ROOM_CONNECTION
-: <a class="el" href="classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90ab6a692a57e5d588cc172708ed00ec206">ecs::ButtonActionMap</a>
-</li>
 <li>ROOM_EXECUTABLE
 : <a class="el" href="classargument__handler_1_1_argument_handler.html#ade7b92c1c2885408ad21f61d3d8faa05aca4b50f6212542beb5451a17b54855e8">argument_handler::ArgumentHandler</a>
+</li>
+<li>RUN
+: <a class="el" href="classclient__data_1_1_client_room.html#a8e238231449feaa8357997ae01f9f2ceaa705807e03cc30c1891f03f5af9069a2">client_data::ClientRoom</a>
 </li>
 </ul>
 
@@ -377,6 +401,22 @@ $(document).ready(function(){initNavTree('functions_eval.html',''); initResizabl
 <li>SHOOT
 : <a class="el" href="classgraphic_e_c_s_1_1_s_f_m_l_1_1_components_1_1_action_queue_component.html#a37c8ac86f28a69717505c3b2c1bc6445af66b48348af06704d998a797ca9b2d46">graphicECS::SFML::Components::ActionQueueComponent</a>
 , <a class="el" href="classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_sound_resource.html#a66c5c45700b991570d534c94587fad88a9e1fbe9a5cd817160990675727e1fbf0">graphicECS::SFML::Resources::SoundResource</a>
+</li>
+<li>SOLO_GAME
+: <a class="el" href="classecs_1_1_menu_states.html#a0d4dd57d2a1f5290f65d1288712f922aac8b9e0bba4542ff4a24d59d88c10a8b8">ecs::MenuStates</a>
+</li>
+<li>SWITCH_MUSIC
+: <a class="el" href="classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90aa191cff76fa016bced6ce1d03b059e8e">ecs::ButtonActionMap</a>
+</li>
+<li>SWITCH_SOUND
+: <a class="el" href="classecs_1_1_button_action_map.html#a2adfe584fc3bdee70cf682983ce78b90a82cf1ecc1031444ff991d387a491e06a">ecs::ButtonActionMap</a>
+</li>
+</ul>
+
+
+<h3><a id="index_t"></a>- t -</h3><ul>
+<li>TEXT
+: <a class="el" href="classecs_1_1_layer_lv_l.html#a3d249124964fcfd2525e3ccc99313799a87e2c753eff0f54c20dc87ac69491010">ecs::LayerLvL</a>
 </li>
 </ul>
 

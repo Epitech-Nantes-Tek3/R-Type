@@ -359,6 +359,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a1f596f4becfe96c2acf522eb0e168eb8"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceecs.html#a1f596f4becfe96c2acf522eb0e168eb8">createNewProjectile</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, const int posX, const int posY, const double multiplierAbscissa, const double multiplierOrdinate, const unsigned short damage, const std::string uuid=&quot;&quot;, unsigned short networkId=0)</td></tr>
 <tr class="memdesc:a1f596f4becfe96c2acf522eb0e168eb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function can create a new <a class="el" href="classecs_1_1_projectile.html" title="This Component specifies if an entity is a Projectile. This component specifies whether an entity is ...">Projectile</a> <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components The std::mutex inheritance is in...">Entity</a> in the world passed as params.  <a href="namespaceecs.html#a1f596f4becfe96c2acf522eb0e168eb8">More...</a><br /></td></tr>
 <tr class="separator:a1f596f4becfe96c2acf522eb0e168eb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57828dc5543f322c221ee719d73005a6"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceecs.html#a57828dc5543f322c221ee719d73005a6">createNewText</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, const int posX, const int posY, const int size, <a class="el" href="classecs_1_1_layer_lv_l.html#a3d249124964fcfd2525e3ccc99313799">LayerLvL::layer_e</a> layerLvl, <a class="el" href="classecs_1_1_menu_states.html#a0d4dd57d2a1f5290f65d1288712f922a">MenuStates::menuState_e</a> state, const std::string &amp;text)</td></tr>
+<tr class="memdesc:a57828dc5543f322c221ee719d73005a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function creates a new Text <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components The std::mutex inheritance is in...">Entity</a> with these parameters.  <a href="namespaceecs.html#a57828dc5543f322c221ee719d73005a6">More...</a><br /></td></tr>
+<tr class="separator:a57828dc5543f322c221ee719d73005a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac03f7dc7f534fd1a768d747f7551d5c7"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceecs.html#ac03f7dc7f534fd1a768d747f7551d5c7">createNewWritable</a> (<a class="el" href="classecs_1_1_world.html">World</a> &amp;world, const int posX, const int posY, const int sizeX, const int sizeY, <a class="el" href="classecs_1_1_menu_states.html#a0d4dd57d2a1f5290f65d1288712f922a">MenuStates::menuState_e</a> state)</td></tr>
 <tr class="memdesc:ac03f7dc7f534fd1a768d747f7551d5c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function creates a new Writable <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components The std::mutex inheritance is in...">Entity</a> with these parameters.  <a href="namespaceecs.html#ac03f7dc7f534fd1a768d747f7551d5c7">More...</a><br /></td></tr>
 <tr class="separator:ac03f7dc7f534fd1a768d747f7551d5c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1502,6 +1505,79 @@ template&lt;std::derived_from&lt; Component &gt; C&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Id of the new <a class="el" href="classecs_1_1_projectile.html" title="This Component specifies if an entity is a Projectile. This component specifies whether an entity is ...">Projectile</a> in std::size_t </dd></dl>
+
+</div>
+</div>
+<a id="a57828dc5543f322c221ee719d73005a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57828dc5543f322c221ee719d73005a6">&#9670;&nbsp;</a></span>createNewText()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::size_t ecs::createNewText </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classecs_1_1_world.html">World</a> &amp;&#160;</td>
+          <td class="paramname"><em>world</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>posX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>posY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classecs_1_1_layer_lv_l.html#a3d249124964fcfd2525e3ccc99313799">LayerLvL::layer_e</a>&#160;</td>
+          <td class="paramname"><em>layerLvl</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classecs_1_1_menu_states.html#a0d4dd57d2a1f5290f65d1288712f922a">MenuStates::menuState_e</a>&#160;</td>
+          <td class="paramname"><em>state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>text</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function creates a new Text <a class="el" href="classecs_1_1_entity.html" title="This is the Entity Class for E.C.S. It stores the related Components The std::mutex inheritance is in...">Entity</a> with these parameters. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">world</td><td>The world in which the Text must be created </td></tr>
+    <tr><td class="paramname">posX</td><td><a class="el" href="classecs_1_1_position.html" title="The Position component, almost used for every entities It&#39;s a networkable component.">Position</a> x of the Text </td></tr>
+    <tr><td class="paramname">posY</td><td><a class="el" href="classecs_1_1_position.html" title="The Position component, almost used for every entities It&#39;s a networkable component.">Position</a> y of the Text </td></tr>
+    <tr><td class="paramname">size</td><td><a class="el" href="classecs_1_1_size.html" title="The Size component, almost used for everything.">Size</a> of the text </td></tr>
+    <tr><td class="paramname">layerLvl</td><td>The button layer level, useful for graphical part </td></tr>
+    <tr><td class="paramname">state</td><td>The associated state to decide when the button will be displayed </td></tr>
+    <tr><td class="paramname">text</td><td>The text to be set. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Id of the new Text in std::size_t </dd></dl>
 
 </div>
 </div>

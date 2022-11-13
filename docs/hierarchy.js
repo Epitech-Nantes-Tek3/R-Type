@@ -139,6 +139,7 @@ var hierarchy =
       [ "graphicECS::SFML::Systems::RemoveChatSystem", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_remove_chat_system.html", null ],
       [ "graphicECS::SFML::Systems::SfObjectFollowEntitySystem", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sf_object_follow_entity_system.html", null ],
       [ "graphicECS::SFML::Systems::SoundManagement", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_sound_management.html", null ],
+      [ "graphicECS::SFML::Systems::UpdateLifeTextSystem", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_update_life_text_system.html", null ],
       [ "graphicECS::SFML::Systems::UpdateParallax", "structgraphic_e_c_s_1_1_s_f_m_l_1_1_systems_1_1_update_parallax.html", null ]
     ] ],
     [ "transisthor_lib::Transisthor", "classtransisthor__lib_1_1_transisthor.html", null ],

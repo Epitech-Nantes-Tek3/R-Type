@@ -8,7 +8,7 @@ var classserver__data_1_1_server =
     [ "Server", "classserver__data_1_1_server.html#a4198b176b5d91ee5211ff53fe78483f2", null ],
     [ "Server", "classserver__data_1_1_server.html#ad5ec9462b520e59f7ea831e157ee5e59", null ],
     [ "~Server", "classserver__data_1_1_server.html#aaf4c1749ab9802025359c962b33aead0", null ],
-    [ "createANewRoom", "classserver__data_1_1_server.html#a4c81e92e4c1e19f42777bd6425c8342c", null ],
+    [ "createANewRoom", "classserver__data_1_1_server.html#a5ca905f76de4f5ba8cada7cefb8c6fbf", null ],
     [ "deleteARoom", "classserver__data_1_1_server.html#a5a3985c96088955a55f3ebfd7fad7b23", null ],
     [ "startHubLoop", "classserver__data_1_1_server.html#a5471d756c8a7406fa6918f96624623e5", null ]
 ];

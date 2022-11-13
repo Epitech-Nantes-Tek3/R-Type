@@ -1,5 +1,5 @@
 <map id="libs/R&#45;TypeLogic/Global/Components/EnemyComponent.hpp" name="libs/R&#45;TypeLogic/Global/Components/EnemyComponent.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="2010,5,2270,47"/>
+<area shape="rect" id="node1" title=" " alt="" coords="2138,5,2398,47"/>
 <area shape="rect" id="node2" href="$_create_enemy_8hpp.html" title=" " alt="" coords="588,102,887,143"/>
 <area shape="rect" id="node4" href="$_death_system_8hpp.html" title=" " alt="" coords="5,206,208,247"/>
 <area shape="rect" id="node5" href="$_client_room_8cpp.html" title=" " alt="" coords="911,303,1078,329"/>
@@ -13,6 +13,7 @@
 <area shape="rect" id="node18" href="$_enemies_patterns_8hpp.html" title=" " alt="" coords="2838,102,3061,143"/>
 <area shape="rect" id="node19" href="$_send_newly_created_to_server_8cpp.html" title=" " alt="" coords="3085,95,3317,151"/>
 <area shape="rect" id="node20" href="$_send_newly_created_to_clients_8cpp.html" title=" " alt="" coords="3342,95,3578,151"/>
+<area shape="rect" id="node21" href="$_button_action_8cpp.html" title=" " alt="" coords="3602,109,3777,136"/>
 <area shape="rect" id="node3" href="$_create_enemy_8cpp.html" title=" " alt="" coords="233,206,530,247"/>
 <area shape="rect" id="node8" href="$_mob_generation_system_8cpp.html" title=" " alt="" coords="606,206,869,247"/>
 <area shape="rect" id="node9" href="$_transisthor_8cpp.html" title=" " alt="" coords="893,213,1115,240"/>

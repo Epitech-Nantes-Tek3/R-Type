@@ -117,9 +117,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aaf4c1749ab9802025359c962b33aead0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classserver__data_1_1_server.html#aaf4c1749ab9802025359c962b33aead0">~Server</a> ()=default</td></tr>
 <tr class="memdesc:aaf4c1749ab9802025359c962b33aead0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy the <a class="el" href="classserver__data_1_1_server.html" title="Main class of the server part. Hold room process.">Server</a> object.  <a href="classserver__data_1_1_server.html#aaf4c1749ab9802025359c962b33aead0">More...</a><br /></td></tr>
 <tr class="separator:aaf4c1749ab9802025359c962b33aead0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c81e92e4c1e19f42777bd6425c8342c"><td class="memItemLeft" align="right" valign="top">unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classserver__data_1_1_server.html#a4c81e92e4c1e19f42777bd6425c8342c">createANewRoom</a> (std::string name)</td></tr>
-<tr class="memdesc:a4c81e92e4c1e19f42777bd6425c8342c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create and add a new Room inside the room list.  <a href="classserver__data_1_1_server.html#a4c81e92e4c1e19f42777bd6425c8342c">More...</a><br /></td></tr>
-<tr class="separator:a4c81e92e4c1e19f42777bd6425c8342c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ca905f76de4f5ba8cada7cefb8c6fbf"><td class="memItemLeft" align="right" valign="top">unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classserver__data_1_1_server.html#a5ca905f76de4f5ba8cada7cefb8c6fbf">createANewRoom</a> (std::string name, short *configs)</td></tr>
+<tr class="memdesc:a5ca905f76de4f5ba8cada7cefb8c6fbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create and add a new Room inside the room list.  <a href="classserver__data_1_1_server.html#a5ca905f76de4f5ba8cada7cefb8c6fbf">More...</a><br /></td></tr>
+<tr class="separator:a5ca905f76de4f5ba8cada7cefb8c6fbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5471d756c8a7406fa6918f96624623e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classserver__data_1_1_server.html#a5471d756c8a7406fa6918f96624623e5">startHubLoop</a> ()</td></tr>
 <tr class="memdesc:a5471d756c8a7406fa6918f96624623e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start the hub global loop.  <a href="classserver__data_1_1_server.html#a5471d756c8a7406fa6918f96624623e5">More...</a><br /></td></tr>
 <tr class="separator:a5471d756c8a7406fa6918f96624623e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -236,8 +236,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a4c81e92e4c1e19f42777bd6425c8342c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4c81e92e4c1e19f42777bd6425c8342c">&#9670;&nbsp;</a></span>createANewRoom()</h2>
+<a id="a5ca905f76de4f5ba8cada7cefb8c6fbf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ca905f76de4f5ba8cada7cefb8c6fbf">&#9670;&nbsp;</a></span>createANewRoom()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -246,8 +246,18 @@ Public Member Functions</h2></td></tr>
           <td class="memname">unsigned short Server::createANewRoom </td>
           <td>(</td>
           <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>name</em></td><td>)</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">short *&#160;</td>
+          <td class="paramname"><em>configs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -256,6 +266,7 @@ Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td>of the room </td></tr>
+    <tr><td class="paramname">configs</td><td>room configuration </td></tr>
   </table>
   </dd>
 </dl>

@@ -2,7 +2,7 @@ var classcommunicator__lib_1_1_receiver =
 [
     [ "Receiver", "classcommunicator__lib_1_1_receiver.html#ab05f062ad8bc9105e7708c9567552908", null ],
     [ "Receiver", "classcommunicator__lib_1_1_receiver.html#a8037668132cd0ce68679eb0a64205fc4", null ],
-    [ "~Receiver", "classcommunicator__lib_1_1_receiver.html#a4ac4a645965e64591fc9bda1c0866a9f", null ],
+    [ "~Receiver", "classcommunicator__lib_1_1_receiver.html#a5840d7fa182b8a5f820e848a16f3d3fa", null ],
     [ "addMessage", "classcommunicator__lib_1_1_receiver.html#a921a1626a4b94539b60dbc2a5a76a105", null ],
     [ "getLastMessage", "classcommunicator__lib_1_1_receiver.html#a47ec5cd2a2d3967958f8c9f6d0050ce5", null ],
     [ "getLastMessageFromClient", "classcommunicator__lib_1_1_receiver.html#a174e735ed802f2423b428d536553f143", null ],

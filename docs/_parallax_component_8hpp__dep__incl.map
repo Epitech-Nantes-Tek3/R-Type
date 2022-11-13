@@ -1,5 +1,6 @@
 <map id="libs/GraphicECS/SFML/Components/ParallaxComponent.hpp" name="libs/GraphicECS/SFML/Components/ParallaxComponent.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="86,5,353,47"/>
+<area shape="rect" id="node1" title=" " alt="" coords="198,5,465,47"/>
 <area shape="rect" id="node2" href="$_parallax_system_8cpp.html" title=" " alt="" coords="5,95,220,136"/>
-<area shape="rect" id="node3" href="$_client_room_8cpp.html" title=" " alt="" coords="244,102,411,129"/>
+<area shape="rect" id="node3" href="$_button_action_8cpp.html" title=" " alt="" coords="244,102,419,129"/>
+<area shape="rect" id="node4" href="$_client_room_8cpp.html" title=" " alt="" coords="443,102,609,129"/>
 </map>

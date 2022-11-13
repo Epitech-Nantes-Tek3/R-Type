@@ -158,6 +158,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aab0537eccec241d5b749a47937d091c5"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classecs_1_1_world.html">World</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classecs_1_1_world.html#aab0537eccec241d5b749a47937d091c5">addSystem</a> ()</td></tr>
 <tr class="memdesc:aab0537eccec241d5b749a47937d091c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function can add a <a class="el" href="classecs_1_1_system.html">System</a> to the <a class="el" href="classecs_1_1_world.html">World</a>.  <a href="classecs_1_1_world.html#aab0537eccec241d5b749a47937d091c5">More...</a><br /></td></tr>
 <tr class="separator:aab0537eccec241d5b749a47937d091c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2caef177ebef799160c5e03f53dca3a"><td class="memTemplParams" colspan="2">template&lt;std::derived_from&lt; System &gt; S&gt; </td></tr>
+<tr class="memitem:aa2caef177ebef799160c5e03f53dca3a"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classecs_1_1_world.html#aa2caef177ebef799160c5e03f53dca3a">removeSystem</a> ()</td></tr>
+<tr class="memdesc:aa2caef177ebef799160c5e03f53dca3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove a <a class="el" href="classecs_1_1_system.html">System</a> of the world.  <a href="classecs_1_1_world.html#aa2caef177ebef799160c5e03f53dca3a">More...</a><br /></td></tr>
+<tr class="separator:aa2caef177ebef799160c5e03f53dca3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a825c59d02e9091eb65dacda56fb5c5b0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1_world.html#a825c59d02e9091eb65dacda56fb5c5b0">setTransisthorBridge</a> (std::shared_ptr&lt; <a class="el" href="classtransisthor__lib_1_1_transisthor.html">Transisthor</a> &gt; transisthorBridge)</td></tr>
 <tr class="memdesc:a825c59d02e9091eb65dacda56fb5c5b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the bridge destination to a new transisthor.  <a href="classecs_1_1_world.html#a825c59d02e9091eb65dacda56fb5c5b0">More...</a><br /></td></tr>
 <tr class="separator:a825c59d02e9091eb65dacda56fb5c5b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -725,6 +729,47 @@ template&lt;std::derived_from&lt; Resource &gt; R&gt; </div>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
     <tr><td class="paramname">std::logic_error</td><td>Throw an error if the <a class="el" href="classecs_1_1_resource.html" title="This is the Resource Class for ECS The base Resource type, all Resources must inherit from Resource....">Resource</a> does not exist </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa2caef177ebef799160c5e03f53dca3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2caef177ebef799160c5e03f53dca3a">&#9670;&nbsp;</a></span>removeSystem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;std::derived_from&lt; System &gt; S&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ecs::World::removeSystem </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Remove a <a class="el" href="classecs_1_1_system.html">System</a> of the world. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">S</td><td>The choosen <a class="el" href="classecs_1_1_system.html">System</a> to remove </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::logic_error</td><td>Throw an error if the <a class="el" href="classecs_1_1_system.html">System</a> does not exist </td></tr>
   </table>
   </dd>
 </dl>

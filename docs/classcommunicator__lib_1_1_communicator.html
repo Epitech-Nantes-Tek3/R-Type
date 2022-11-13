@@ -161,6 +161,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aac7cb13633de2d0207ead3d168766959"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcommunicator__lib_1_1_communicator.html#aac7cb13633de2d0207ead3d168766959">utilitarySetADatabaseValue</a> (std::string pseudo, unsigned short key, std::string value, std::vector&lt; unsigned short &gt; destination)</td></tr>
 <tr class="memdesc:aac7cb13633de2d0207ead3d168766959"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utilitary function used to set a value inside the database with a protocol 42.  <a href="classcommunicator__lib_1_1_communicator.html#aac7cb13633de2d0207ead3d168766959">More...</a><br /></td></tr>
 <tr class="separator:aac7cb13633de2d0207ead3d168766959"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade1c6ff9b6493476e4cbfbdc517eccca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcommunicator__lib_1_1_communicator.html#ade1c6ff9b6493476e4cbfbdc517eccca">utilitaryAskForALeaderboard</a> (std::string key, std::vector&lt; unsigned short &gt; destination)</td></tr>
+<tr class="memdesc:ade1c6ff9b6493476e4cbfbdc517eccca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utilitary function used to get a scoreboard sorted by a key.  <a href="classcommunicator__lib_1_1_communicator.html#ade1c6ff9b6493476e4cbfbdc517eccca">More...</a><br /></td></tr>
+<tr class="separator:ade1c6ff9b6493476e4cbfbdc517eccca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69bf0c7f4bf036dedd992fe9db031dd6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcommunicator__lib_1_1_communicator.html#a69bf0c7f4bf036dedd992fe9db031dd6">utilitarySendALeaderboard</a> (std::map&lt; std::string, int &gt; scoreboardContent, std::vector&lt; unsigned short &gt; destination)</td></tr>
+<tr class="memdesc:a69bf0c7f4bf036dedd992fe9db031dd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utilitary function used to send a scoreboard sorted by a key.  <a href="classcommunicator__lib_1_1_communicator.html#a69bf0c7f4bf036dedd992fe9db031dd6">More...</a><br /></td></tr>
+<tr class="separator:a69bf0c7f4bf036dedd992fe9db031dd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab00365fedf51638bed645d5337d1c348"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcommunicator__lib_1_1_communicator.html#ab00365fedf51638bed645d5337d1c348">utilitaryReceiveChatMessage</a> (<a class="el" href="structcommunicator__lib_1_1_communicator_message.html">CommunicatorMessage</a> cryptedMessage)</td></tr>
 <tr class="memdesc:ab00365fedf51638bed645d5337d1c348"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utilitary function used to extract a message received by a protocol 50.  <a href="classcommunicator__lib_1_1_communicator.html#ab00365fedf51638bed645d5337d1c348">More...</a><br /></td></tr>
 <tr class="separator:ab00365fedf51638bed645d5337d1c348"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -173,12 +179,21 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aabdf47a9cf540176cfbe878f4c4c282f"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcommunicator__lib_1_1_communicator.html#aabdf47a9cf540176cfbe878f4c4c282f">utilitaryReceiveSetDatabaseValue</a> (<a class="el" href="structcommunicator__lib_1_1_communicator_message.html">CommunicatorMessage</a> cryptedMessage)</td></tr>
 <tr class="memdesc:aabdf47a9cf540176cfbe878f4c4c282f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utilitary function used to extract the set request received by a protocol 42.  <a href="classcommunicator__lib_1_1_communicator.html#aabdf47a9cf540176cfbe878f4c4c282f">More...</a><br /></td></tr>
 <tr class="separator:aabdf47a9cf540176cfbe878f4c4c282f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2daf44424610f6e027263efe7ab552e1"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcommunicator__lib_1_1_communicator.html#a2daf44424610f6e027263efe7ab552e1">utilitaryReceiveScoreboardAsking</a> (<a class="el" href="structcommunicator__lib_1_1_communicator_message.html">CommunicatorMessage</a> cryptedMessage)</td></tr>
+<tr class="memdesc:a2daf44424610f6e027263efe7ab552e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utilitary function used to extract the scoreboard request received by a protocol 44.  <a href="classcommunicator__lib_1_1_communicator.html#a2daf44424610f6e027263efe7ab552e1">More...</a><br /></td></tr>
+<tr class="separator:a2daf44424610f6e027263efe7ab552e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1359b940ddd6648948c4d2ba8101865"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcommunicator__lib_1_1_communicator.html#aa1359b940ddd6648948c4d2ba8101865">utilitaryReceiveScoreboard</a> (<a class="el" href="structcommunicator__lib_1_1_communicator_message.html">CommunicatorMessage</a> cryptedMessage)</td></tr>
+<tr class="memdesc:aa1359b940ddd6648948c4d2ba8101865"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utilitary function used to extract the scoreboard content received by a protocol 45.  <a href="classcommunicator__lib_1_1_communicator.html#aa1359b940ddd6648948c4d2ba8101865">More...</a><br /></td></tr>
+<tr class="separator:aa1359b940ddd6648948c4d2ba8101865"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a79af1fddb0ff4747e40bf998945d7dd5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcommunicator__lib_1_1_communicator.html#a79af1fddb0ff4747e40bf998945d7dd5">utilitarySendRoomConfiguration</a> (std::string roomName, short *configs, <a class="el" href="classcommunicator__lib_1_1_client.html">Client</a> newEndpoint)</td></tr>
 <tr class="memdesc:a79af1fddb0ff4747e40bf998945d7dd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utilitary function used to send a message with a protocol 17.  <a href="classcommunicator__lib_1_1_communicator.html#a79af1fddb0ff4747e40bf998945d7dd5">More...</a><br /></td></tr>
 <tr class="separator:a79af1fddb0ff4747e40bf998945d7dd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8a57e9dfcd8e168df0fd76694c9f6110"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcommunicator__lib_1_1_room_configuration.html">RoomConfiguration</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcommunicator__lib_1_1_communicator.html#a8a57e9dfcd8e168df0fd76694c9f6110">utilitaryReceiveRoomConfiguration</a> (<a class="el" href="structcommunicator__lib_1_1_communicator_message.html">CommunicatorMessage</a> cryptedMessage)</td></tr>
 <tr class="memdesc:a8a57e9dfcd8e168df0fd76694c9f6110"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utilitary function used to extract a message received by a protocol 17.  <a href="classcommunicator__lib_1_1_communicator.html#a8a57e9dfcd8e168df0fd76694c9f6110">More...</a><br /></td></tr>
 <tr class="separator:a8a57e9dfcd8e168df0fd76694c9f6110"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53e6b348cd6b4b38d6e52de9d174e196"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcommunicator__lib_1_1_communicator.html#a53e6b348cd6b4b38d6e52de9d174e196">replaceClientByAnother</a> (<a class="el" href="classcommunicator__lib_1_1_client.html">Client</a> oldClient, <a class="el" href="classcommunicator__lib_1_1_client.html">Client</a> newClient)</td></tr>
+<tr class="memdesc:a53e6b348cd6b4b38d6e52de9d174e196"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replace a client in the memory by another.  <a href="classcommunicator__lib_1_1_communicator.html#a53e6b348cd6b4b38d6e52de9d174e196">More...</a><br /></td></tr>
+<tr class="separator:a53e6b348cd6b4b38d6e52de9d174e196"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Network gestionner. </p>
@@ -602,6 +617,43 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a53e6b348cd6b4b38d6e52de9d174e196"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53e6b348cd6b4b38d6e52de9d174e196">&#9670;&nbsp;</a></span>replaceClientByAnother()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Communicator::replaceClientByAnother </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classcommunicator__lib_1_1_client.html">Client</a>&#160;</td>
+          <td class="paramname"><em>oldClient</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classcommunicator__lib_1_1_client.html">Client</a>&#160;</td>
+          <td class="paramname"><em>newClient</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Replace a client in the memory by another. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">oldClient</td><td>The oldest client to replace </td></tr>
+    <tr><td class="paramname">newClient</td><td>to replace with </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="aae9c840367165a903e7dd0cc1fdafde2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aae9c840367165a903e7dd0cc1fdafde2">&#9670;&nbsp;</a></span>sendDataToAClient()</h2>
 
@@ -767,6 +819,43 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="ade1c6ff9b6493476e4cbfbdc517eccca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade1c6ff9b6493476e4cbfbdc517eccca">&#9670;&nbsp;</a></span>utilitaryAskForALeaderboard()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Communicator::utilitaryAskForALeaderboard </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; unsigned short &gt;&#160;</td>
+          <td class="paramname"><em>destination</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Utilitary function used to get a scoreboard sorted by a key. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>The given key </td></tr>
+    <tr><td class="paramname">destination</td><td>of the message </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a2cda97706373756706a0b30b9f18010d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2cda97706373756706a0b30b9f18010d">&#9670;&nbsp;</a></span>utilitaryReceiveAskingForDatabaseValue()</h2>
 
@@ -875,6 +964,60 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="aa1359b940ddd6648948c4d2ba8101865"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1359b940ddd6648948c4d2ba8101865">&#9670;&nbsp;</a></span>utilitaryReceiveScoreboard()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt; std::string, int &gt; Communicator::utilitaryReceiveScoreboard </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcommunicator__lib_1_1_communicator_message.html">CommunicatorMessage</a>&#160;</td>
+          <td class="paramname"><em>cryptedMessage</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Utilitary function used to extract the scoreboard content received by a protocol 45. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cryptedMessage</td><td>the crypted message </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>std::map&lt;std::string, int&gt; the scoreboard content </dd></dl>
+
+</div>
+</div>
+<a id="a2daf44424610f6e027263efe7ab552e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2daf44424610f6e027263efe7ab552e1">&#9670;&nbsp;</a></span>utilitaryReceiveScoreboardAsking()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Communicator::utilitaryReceiveScoreboardAsking </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcommunicator__lib_1_1_communicator_message.html">CommunicatorMessage</a>&#160;</td>
+          <td class="paramname"><em>cryptedMessage</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Utilitary function used to extract the scoreboard request received by a protocol 44. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cryptedMessage</td><td>the crypted message </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>std::string the wanted key </dd></dl>
+
+</div>
+</div>
 <a id="aabdf47a9cf540176cfbe878f4c4c282f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aabdf47a9cf540176cfbe878f4c4c282f">&#9670;&nbsp;</a></span>utilitaryReceiveSetDatabaseValue()</h2>
 
@@ -899,6 +1042,43 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>std::vector&lt;std::string&gt; the decrypted pseudo + type + value </dd></dl>
+
+</div>
+</div>
+<a id="a69bf0c7f4bf036dedd992fe9db031dd6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69bf0c7f4bf036dedd992fe9db031dd6">&#9670;&nbsp;</a></span>utilitarySendALeaderboard()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Communicator::utilitarySendALeaderboard </td>
+          <td>(</td>
+          <td class="paramtype">std::map&lt; std::string, int &gt;&#160;</td>
+          <td class="paramname"><em>scoreboardContent</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; unsigned short &gt;&#160;</td>
+          <td class="paramname"><em>destination</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Utilitary function used to send a scoreboard sorted by a key. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">scoreboardContent</td><td>The scoreboard content </td></tr>
+    <tr><td class="paramname">destination</td><td>of the message </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
