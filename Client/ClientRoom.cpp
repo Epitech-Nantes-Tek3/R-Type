@@ -376,6 +376,10 @@ void ClientRoom::_updateEcsResources()
         _worldInstance->getResource<MusicResource>().addMusic(
             graphicECS::SFML::Resources::MusicResource::BACKGROUNDTHEME, "assets/Musics/music_background.wav");
     }
+    if (_worldInstance->containsResource<SoundResource>()) {
+        _worldInstance->getResource<SoundResource>().addSound(
+            graphicECS::SFML::Resources::SoundResource::BUTTON, BUTTON_SOUND_PATH);
+    }
 }
 
 void ClientRoom::_loadTextures()
@@ -556,7 +560,7 @@ void ClientRoom::_updateEcsEntities()
         _worldInstance->removeEntity(it->getId());
     }
     entities = _worldInstance->joinEntities<MusicComponent>();
-    for (auto &it :entities) {
+    for (auto &it : entities) {
         it->getComponent<MusicComponent>()._status = sf::Music::Stopped;
     }
     entities = _worldInstance->joinEntities<SoundComponent>();

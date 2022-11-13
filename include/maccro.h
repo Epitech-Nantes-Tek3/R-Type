@@ -28,5 +28,6 @@
 #define WRITABLE_BUTTON_TEXTURE_PATH           "assets/EpiSprite/r-typesheet11.gif"
 #define PLAYER_TEXTURE_PATH                    "assets/EpiSprite/BasicPlayerSpriteSheet.gif"
 #define BACKGROUND_MUSIC                       "assets/Musics/music_background.wav"
+#define BUTTON_SOUND_PATH                      "assets/Sounds/button_clicked.wav"
 
 #endif /* !MACCRO_H_ */
