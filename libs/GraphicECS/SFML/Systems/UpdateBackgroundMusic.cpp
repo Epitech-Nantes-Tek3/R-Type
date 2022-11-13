@@ -23,7 +23,7 @@ static void updateMusic(const MusicResource::music_e music, std::shared_ptr<ecs:
 
 void UpdateBackgroundMusic::run(World &world)
 {
-    if (!world.containsResource<GameLevel>())
+    if (!world.containsResource<GameLevel>() || !world.containsResource<MusicResource>())
         return;
     GameLevel &gameLvl = world.getResource<GameLevel>();
 
@@ -32,9 +32,6 @@ void UpdateBackgroundMusic::run(World &world)
     bool hasMusicChanged = gameLvl.hasMusicChanged();
     gameLvl.unlock();
 
-    if (!hasMusicChanged)
-        return;
-    std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<MusicComponent>();
     std::vector<std::shared_ptr<ecs::Entity>> enemies = world.joinEntities<Enemy>();
     bool bossFight = false;
 
@@ -48,7 +45,13 @@ void UpdateBackgroundMusic::run(World &world)
         }
     }
 
+    if (!hasMusicChanged && !bossFight)
+        return;
+    std::vector<std::shared_ptr<ecs::Entity>> joined = world.joinEntities<MusicComponent>();
+    MusicResource &musicBank = world.getResource<MusicResource>();
+
     for (auto &it : joined) {
+        musicBank._musicsList.at(it->getComponent<MusicComponent>().music_e).get()->stop();
         switch (currLvl) {
             case GameLevel::LEVEL_TWO: updateMusic(MusicResource::music_e::LEVEL_TWO_THEME, it); break;
             case GameLevel::LEVEL_THREE: updateMusic(MusicResource::music_e::LEVEL_THREE_THEME, it); break;
@@ -58,7 +61,8 @@ void UpdateBackgroundMusic::run(World &world)
                     updateMusic(MusicResource::music_e::BOSS_FIGHTTHEME, it);
                 } else {
                     updateMusic(MusicResource::music_e::INFINITE_THEME, it);
-                } break;
+                }
+                break;
             default: break;
         }
     };

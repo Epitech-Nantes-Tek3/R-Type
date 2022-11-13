@@ -618,7 +618,7 @@ void ClientRoom::_updateEcsEntities()
                 break;
             case MenuStates::MULTI_GAME:
                 if (_oldMenuStates == MenuStates::LOBBY) {
-                    // _disconectionProcess();
+                    _disconectionProcess();
                 }
                 _worldInstance->getResource<GameStates>().currentState = GameStates::IN_GAME;
                 _initInGameButtons();
