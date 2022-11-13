@@ -86,8 +86,8 @@ var NAVTREEINDEX =
 "_equipment_component_8hpp.html",
 "classcommunicator__lib_1_1_communicator.html#a1ddf526a986ef4464e3da4ad3ee9fc9c",
 "classecs_1_1_life.html",
-"classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html#aa8d3b383da5ddc1c6dd86c2c5efc035da2d06d4dce066315d23541b2a2a5caa4e",
-"namespaceecs.html#a132d73ab656eacd7c230e1d48ac8992a"
+"classgraphic_e_c_s_1_1_s_f_m_l_1_1_resources_1_1_graphics_texture_resource.html#aa8d3b383da5ddc1c6dd86c2c5efc035da260e573dee2bbc6a0e89fb185756b186",
+"namespacecommunicator__lib.html#a09b5d088e66a5c9af9461003c1781016"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
