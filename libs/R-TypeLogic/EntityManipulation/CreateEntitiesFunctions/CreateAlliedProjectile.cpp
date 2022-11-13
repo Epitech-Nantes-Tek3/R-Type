@@ -18,7 +18,7 @@ namespace ecs
 
         Entity &entity = world.addEntity();
         auto guard = std::lock_guard(entity);
-        entity.addComponent<Position>(pos.x + 102, pos.y + 45)
+        entity.addComponent<Position>(pos.x + 102, pos.y + 5)
             .addComponent<Velocity>(300, 0)
             .addComponent<Weight>(1)
             .addComponent<Size>(40, 40)

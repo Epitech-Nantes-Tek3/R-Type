@@ -27,14 +27,14 @@ Test(AnimationSystem, create_basic_animation)
     world.addResource<GameClock>();
     auto animation = world.joinEntities<AnimationComponent>();
     for (auto &it : animation) {
-        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_1);
-        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_2);
-        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_3);
-        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_4);
-        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_5);
-        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_6);
-        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_7);
-        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_8);
+        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::BLUE_PLAYER_STATIC_1);
+        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::BLUE_PLAYER_STATIC_2);
+        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::BLUE_PLAYER_STATIC_3);
+        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::BLUE_PLAYER_STATIC_4);
+        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::BLUE_PLAYER_STATIC_5);
+        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::BLUE_PLAYER_STATIC_1);
+        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::BLUE_PLAYER_STATIC_2);
+        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::BLUE_PLAYER_STATIC_3);
     }
     world.addSystem<AnimationSystem>();
     world.runSystems();
@@ -49,14 +49,14 @@ Test(AnimationSystem, use_basic_animation_and_wait_one_second)
     world.addResource<GameClock>();
     auto animation = world.joinEntities<AnimationComponent>();
     for (auto &it : animation) {
-        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_1);
-        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_2);
-        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_3);
-        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_4);
-        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_5);
-        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_6);
-        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_7);
-        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_8);
+        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::BLUE_PLAYER_STATIC_1);
+        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::BLUE_PLAYER_STATIC_2);
+        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::BLUE_PLAYER_STATIC_3);
+        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::BLUE_PLAYER_STATIC_4);
+        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::BLUE_PLAYER_STATIC_5);
+        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::BLUE_PLAYER_STATIC_1);
+        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::BLUE_PLAYER_STATIC_2);
+        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::BLUE_PLAYER_STATIC_3);
     }
     world.addSystem<AnimationSystem>();
     world.addSystem<UpdateClock>();
@@ -72,14 +72,14 @@ Test(AnimationSystem, missing_resource)
     auto &entity = world.addEntity().addComponent<AnimationComponent>().addComponent<AnimationFrequencyComponent>();
     auto animation = world.joinEntities<AnimationComponent>();
     for (auto &it : animation) {
-        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_1);
-        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_2);
-        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_3);
-        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_4);
-        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_5);
-        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_6);
-        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_7);
-        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_8);
+        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::BLUE_PLAYER_STATIC_1);
+        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::BLUE_PLAYER_STATIC_2);
+        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::BLUE_PLAYER_STATIC_3);
+        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::BLUE_PLAYER_STATIC_4);
+        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::BLUE_PLAYER_STATIC_5);
+        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::BLUE_PLAYER_STATIC_1);
+        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::BLUE_PLAYER_STATIC_2);
+        it->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::BLUE_PLAYER_STATIC_3);
     }
     world.addSystem<AnimationSystem>();
     world.runSystems();
