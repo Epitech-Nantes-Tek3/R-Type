@@ -94,6 +94,8 @@ void DrawComponents::_updatePlayer(LayerLvL &layerType, std::shared_ptr<ecs::Ent
         entityPtr->addComponent<AnimationComponent>();
         entityPtr->addComponent<AnimationFrequencyComponent>(0.05);
         entityPtr->getComponent<AnimationComponent>().currentTexturePos = 0;
+        entityPtr->addComponent<GraphicsTextComponent>(
+            newFont, entityPtr->getComponent<Player>().name, pos.x + size.x * 0.4, pos.y - 20, size.x * 0.2);
         switch (entityPtr->getComponent<Player>().playerIdentifier % 4) {
             case 0:
                 entityPtr->getComponent<AnimationComponent>().textures.push_back(

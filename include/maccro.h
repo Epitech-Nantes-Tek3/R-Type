@@ -29,6 +29,7 @@
 #define YELLOW_PLAYER_TEXTURE_PATH             "assets/player/yellow_player.png"
 #define BACKGROUND_MUSIC                       "assets/Musics/music_background.wav"
 
+#define BASIC_BACKGROUND_PATH            "assets/Backgrounds/basic_background.png"
 #define BASIC_GROUND_TEXTURE_PATH        "assets/Backgrounds/basic_ground.png"
 #define BASIC_FORGROUND_TEXTURE_PATH     "assets/Backgrounds/basic_forground.png"
 #define BASIC_BACKGROUND_TEXTURE_PATH    "assets/Backgrounds/basic_background.png"

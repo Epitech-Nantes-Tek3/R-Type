@@ -51,6 +51,7 @@ namespace graphicECS::SFML::Resources
             BOSS,
             ENEMY_UP,
             ENEMY_DOWN,
+            BACKGROUND_LAYER,
             BACKGROUND_LAYER_1,
             BACKGROUND_LAYER_2,
             BACKGROUND_LAYER_3,

@@ -422,6 +422,8 @@ void ClientRoom::_initBackgroundsTextures(GraphicsTextureResource &textureResour
         sf::Vector2f(0, 0), sf::Vector2f(1920, 1080));
     textureResource.addTexture(GraphicsTextureResource::BACKGROUND_LAYER_1, BASIC_BACKGROUND_TEXTURE_PATH,
         sf::Vector2f(0, 0), sf::Vector2f(1920, 1080));
+    textureResource.addTexture(
+        GraphicsTextureResource::BACKGROUND_LAYER, BASIC_BACKGROUND_PATH, sf::Vector2f(0, 0), sf::Vector2f(1920, 1080));
 }
 
 void ClientRoom::_initWritableTextures(GraphicsTextureResource &textureResource)
@@ -520,6 +522,8 @@ void ClientRoom::_initLobbyButtons()
 
     std::size_t id = createNewWritableButton(*(_worldInstance.get()), windowSize.x - 300, 500, 200, 50,
         std::function<void(World &, Entity &, std::string &)>(createARoom), MenuStates::LOBBY, roomNameId);
+    createNewText(
+        *(_worldInstance.get()), windowSize.x - 290, 510, 22, LayerLvL::TEXT, MenuStates::LOBBY, "Create a room");
     _worldInstance->getEntity(id).getComponent<graphicECS::SFML::Components::AssociatedId>().idList.push_back(
         playerNumberId);
     _worldInstance->getEntity(id).getComponent<graphicECS::SFML::Components::AssociatedId>().idList.push_back(
@@ -528,6 +532,12 @@ void ClientRoom::_initLobbyButtons()
         enemyVelocityId);
     createNewButton(*(_worldInstance.get()), 100, 100, 200, 50, ButtonActionMap::GO_MAIN_MENU, LayerLvL::BUTTON,
         MenuStates::LOBBY, "Back");
+    _worldInstance->addEntity()
+        .addComponent<GraphicsRectangleComponent>(0, 0, 1920, 1080)
+        .addComponent<Position>(0, 0)
+        .addComponent<LayerLvL>(LayerLvL::layer_e::DECORATION)
+        .addComponent<TextureName>(GraphicsTextureResource::BACKGROUND_LAYER)
+        .getId();
 }
 
 void ClientRoom::askForRooms()
@@ -620,7 +630,6 @@ void ClientRoom::_updateEcsEntities()
                 _initInGameText();
                 break;
             case MenuStates::MULTI_GAME:
-                if (_oldMenuStates == MenuStates::LOBBY) {}
                 _worldInstance->getResource<GameStates>().currentState = GameStates::IN_GAME;
                 _initInGameButtons();
                 _initInGameWritables();
@@ -709,6 +718,12 @@ void ClientRoom::_initMainMenuButtons()
         ButtonActionMap::GO_OPTION, LayerLvL::BUTTON, MenuStates::MAIN_MENU, "Option");
     createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 5 * 4 - 25, 200, 50,
         ButtonActionMap::QUIT, LayerLvL::BUTTON, MenuStates::MAIN_MENU, "Quit");
+    _worldInstance->addEntity()
+        .addComponent<GraphicsRectangleComponent>(0, 0, 1920, 1080)
+        .addComponent<Position>(0, 0)
+        .addComponent<LayerLvL>(LayerLvL::layer_e::DECORATION)
+        .addComponent<TextureName>(GraphicsTextureResource::BACKGROUND_LAYER)
+        .getId();
 }
 
 void ClientRoom::_initInGameWritables()
@@ -820,6 +835,13 @@ void ClientRoom::_updateEcsData()
 
 void ClientRoom::_initInGameBackgrounds()
 {
+    auto joined = _worldInstance->joinEntities<LayerLvL>();
+
+    for (auto it : joined) {
+        if (it->getComponent<LayerLvL>().layer == LayerLvL::layer_e::DECORATION)
+            _worldInstance->removeEntity(it->getId());
+    }
+
     size_t firstID =
         _worldInstance->addEntity()
             .addComponent<ParallaxBackground>()

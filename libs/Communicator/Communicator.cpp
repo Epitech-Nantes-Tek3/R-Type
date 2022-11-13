@@ -9,6 +9,7 @@
 
 #include "Communicator.hpp"
 #include <algorithm>
+#include <boost/thread/thread.hpp>
 #include <iostream>
 #include "Error/Error.hpp"
 
@@ -130,6 +131,9 @@ void Communicator::receiveProtocol2X(Message lastMessage)
     if (lastMessage.type == 20) {
         replaceClientByAnother(_receiverModule.getLastMessage().clientInfo, lastMessage.clientInfo);
         std::cerr << "You have been asked to switch to a new communicator." << std::endl;
+        boost::system_time time = boost::get_system_time();
+        time += boost::posix_time::seconds(1);
+        boost::thread::sleep(time);
         _senderModule.sendDataToAClient(lastMessage.clientInfo, nullptr, 0, 21);
     }
 }
