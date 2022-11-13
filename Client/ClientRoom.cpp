@@ -411,8 +411,7 @@ void ClientRoom::_initProjectilesTextures(GraphicsTextureResource &textureResour
         sf::Vector2f(0, 0), sf::Vector2f());
     textureResource.addTexture(GraphicsTextureResource::PROJECTILE_ALLY, BASIC_ALLIED_PROJECTILE_TEXTURE_PATH,
         sf::Vector2f(0, 0), sf::Vector2f());
-    textureResource.addTexture(
-        GraphicsTextureResource::BOSS, BOSS_TEXTURE_PATH, sf::Vector2f(0, 0), sf::Vector2f());
+    textureResource.addTexture(GraphicsTextureResource::BOSS, BOSS_TEXTURE_PATH, sf::Vector2f(0, 0), sf::Vector2f());
 }
 
 void ClientRoom::_initBackgroundsTextures(GraphicsTextureResource &textureResource)
@@ -429,10 +428,10 @@ void ClientRoom::_initWritableTextures(GraphicsTextureResource &textureResource)
 {
     textureResource.addTexture(
         GraphicsTextureResource::WRITABLE, WRITABLE_TEXTURE_PATH, sf::Vector2f(0, 0), sf::Vector2f());
-    textureResource.addTexture(GraphicsTextureResource::WRITABLE_SELECTED, WRITABLE_SELECTED_TEXTURE_PATH,
-        sf::Vector2f(0, 0), sf::Vector2f());
-    textureResource.addTexture(GraphicsTextureResource::WRITABLE_BUTTON, WRITABLE_BUTTON_TEXTURE_PATH,
-        sf::Vector2f(0, 0), sf::Vector2f());
+    textureResource.addTexture(
+        GraphicsTextureResource::WRITABLE_SELECTED, WRITABLE_SELECTED_TEXTURE_PATH, sf::Vector2f(0, 0), sf::Vector2f());
+    textureResource.addTexture(
+        GraphicsTextureResource::WRITABLE_BUTTON, WRITABLE_BUTTON_TEXTURE_PATH, sf::Vector2f(0, 0), sf::Vector2f());
 }
 
 void ClientRoom::_initPlayerTextures(GraphicsTextureResource &textureResource)
