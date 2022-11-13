@@ -33,8 +33,9 @@ void ArgumentHandler::bindAllHOptionText(void)
 {
     _hTextList[ArgumentHandler::SERVER_EXECUTABLE] = "./r-type_server <IP_ADDRESS> <PORT>";
     _hTextList[ArgumentHandler::CLIENT_EXECUTABLE] =
-        "./r-type_server <CLIENT_IP_ADDRESS> <CLIENT_PORT> <SERVER_IP_ADDRESS> <SERVER_PORT + 1000>";
+        "./r-type_client <CLIENT_IP_ADDRESS> <CLIENT_PORT> <SERVER_IP_ADDRESS> <SERVER_PORT>";
     _hTextList[ArgumentHandler::ROOM_EXECUTABLE] = "./r-type_room <ID> <NAME> <IP_ADDRESS> <PORT>";
+    _hTextList[ArgumentHandler::ADMIN_PANEL_EXECUTABLE] = "./r-type_admin_panel <IP_ADDRESS> <PORT>";
 }
 
 bool ArgumentHandler::processHOptionVerification(ArgumentHandler::ArgumentFunctionType functionType)
