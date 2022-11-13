@@ -410,9 +410,9 @@ void ClientRoom::_initProjectilesTextures(GraphicsTextureResource &textureResour
     textureResource.addTexture(GraphicsTextureResource::PROJECTILE_ENEMY_ICE, ICE_ENEMY_PROJECTILE_TEXTURE_PATH,
         sf::Vector2f(0, 0), sf::Vector2f());
     textureResource.addTexture(GraphicsTextureResource::PROJECTILE_ALLY, BASIC_ALLIED_PROJECTILE_TEXTURE_PATH,
-        sf::Vector2f(0, 0), sf::Vector2f(20, 20));
+        sf::Vector2f(0, 0), sf::Vector2f());
     textureResource.addTexture(
-        GraphicsTextureResource::BOSS, BOSS_TEXTURE_PATH, sf::Vector2f(0, 0), sf::Vector2f(50, 57));
+        GraphicsTextureResource::BOSS, BOSS_TEXTURE_PATH, sf::Vector2f(0, 0), sf::Vector2f());
 }
 
 void ClientRoom::_initBackgroundsTextures(GraphicsTextureResource &textureResource)
@@ -428,31 +428,32 @@ void ClientRoom::_initBackgroundsTextures(GraphicsTextureResource &textureResour
 void ClientRoom::_initWritableTextures(GraphicsTextureResource &textureResource)
 {
     textureResource.addTexture(
-        GraphicsTextureResource::WRITABLE, WRITABLE_TEXTURE_PATH, sf::Vector2f(34, 0), sf::Vector2f(34, 34));
+        GraphicsTextureResource::WRITABLE, WRITABLE_TEXTURE_PATH, sf::Vector2f(0, 0), sf::Vector2f());
     textureResource.addTexture(GraphicsTextureResource::WRITABLE_SELECTED, WRITABLE_SELECTED_TEXTURE_PATH,
-        sf::Vector2f(534 / 16 * 8, 0), sf::Vector2f(534 / 16, 34));
+        sf::Vector2f(0, 0), sf::Vector2f());
     textureResource.addTexture(GraphicsTextureResource::WRITABLE_BUTTON, WRITABLE_BUTTON_TEXTURE_PATH,
-        sf::Vector2f(34, 0), sf::Vector2f(34, 34));
+        sf::Vector2f(0, 0), sf::Vector2f());
 }
 
 void ClientRoom::_initPlayerTextures(GraphicsTextureResource &textureResource)
 {
+    // 2371 428
     textureResource.addTexture(GraphicsTextureResource::PLAYER_STATIC_1, PLAYER_TEXTURE_PATH,
-        sf::Vector2f(534 / 16 * 8, 0), sf::Vector2f(534 / 16, 34));
+        sf::Vector2f(0, 0), sf::Vector2f(2371 / 5, 428));
     textureResource.addTexture(GraphicsTextureResource::PLAYER_STATIC_2, PLAYER_TEXTURE_PATH,
-        sf::Vector2f(534 / 16 * 9, 0), sf::Vector2f(534 / 16, 34));
+        sf::Vector2f(2371 / 5, 0), sf::Vector2f(2371 / 5, 428));
     textureResource.addTexture(GraphicsTextureResource::PLAYER_STATIC_3, PLAYER_TEXTURE_PATH,
-        sf::Vector2f(534 / 16 * 10, 0), sf::Vector2f(534 / 16, 34));
+        sf::Vector2f(2371 / 5 * 2, 0), sf::Vector2f(2371 / 5, 428));
     textureResource.addTexture(GraphicsTextureResource::PLAYER_STATIC_4, PLAYER_TEXTURE_PATH,
-        sf::Vector2f(534 / 16 * 11, 0), sf::Vector2f(534 / 16, 34));
+        sf::Vector2f(2371 / 5 * 3, 0), sf::Vector2f(2371 / 5, 428));
     textureResource.addTexture(GraphicsTextureResource::PLAYER_STATIC_5, PLAYER_TEXTURE_PATH,
-        sf::Vector2f(534 / 16 * 12, 0), sf::Vector2f(534 / 16, 34));
-    textureResource.addTexture(GraphicsTextureResource::PLAYER_STATIC_6, PLAYER_TEXTURE_PATH,
-        sf::Vector2f(534 / 16 * 13, 0), sf::Vector2f(534 / 16, 34));
-    textureResource.addTexture(GraphicsTextureResource::PLAYER_STATIC_7, PLAYER_TEXTURE_PATH,
-        sf::Vector2f(534 / 16 * 14, 0), sf::Vector2f(534 / 16, 34));
-    textureResource.addTexture(GraphicsTextureResource::PLAYER_STATIC_8, PLAYER_TEXTURE_PATH,
-        sf::Vector2f(534 / 16 * 15, 0), sf::Vector2f(534 / 16, 34));
+        sf::Vector2f(2371 / 5 * 4, 0), sf::Vector2f(2371 / 5, 428));
+    // textureResource.addTexture(GraphicsTextureResource::PLAYER_STATIC_6, PLAYER_TEXTURE_PATH,
+    //     sf::Vector2f(534 / 16 * 13, 0), sf::Vector2f(534 / 16, 34));
+    // textureResource.addTexture(GraphicsTextureResource::PLAYER_STATIC_7, PLAYER_TEXTURE_PATH,
+    //     sf::Vector2f(534 / 16 * 14, 0), sf::Vector2f(534 / 16, 34));
+    // textureResource.addTexture(GraphicsTextureResource::PLAYER_STATIC_8, PLAYER_TEXTURE_PATH,
+    //     sf::Vector2f(534 / 16 * 15, 0), sf::Vector2f(534 / 16, 34));
 }
 
 void ClientRoom::_loadButtonActionMap()
@@ -659,9 +660,9 @@ void ClientRoom::_initInGameButtons()
 
     if (_worldInstance->containsResource<RenderWindowResource>())
         windowSize = _worldInstance->getResource<RenderWindowResource>().window.getSize();
-    createNewButton(*(_worldInstance.get()), 0, 0, 68, 68, ButtonActionMap::PAUSE, LayerLvL::BUTTON,
+    createNewButton(*(_worldInstance.get()), 0, 0, 200, 50, ButtonActionMap::PAUSE, LayerLvL::BUTTON,
         MenuStates::SOLO_GAME, "Pause");
-    createNewButton(*(_worldInstance.get()), 0, 0, 68, 68, ButtonActionMap::PAUSE, LayerLvL::BUTTON,
+    createNewButton(*(_worldInstance.get()), 0, 0, 200, 50, ButtonActionMap::PAUSE, LayerLvL::BUTTON,
         MenuStates::MULTI_GAME, "Pause");
 }
 

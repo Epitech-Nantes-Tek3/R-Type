@@ -45,7 +45,7 @@ void DrawComponents::addButtonText(std::shared_ptr<Entity> buttonPtr, const sf::
 
     if (buttonPtr->contains<GraphicsTextComponent>())
         return;
-    buttonPtr->addComponent<GraphicsTextComponent>(newFont, text, pos.x, pos.y + size.y * 0.5);
+    buttonPtr->addComponent<GraphicsTextComponent>(newFont, text, pos.x + 10, pos.y + size.y * 0.3);
 }
 
 void DrawComponents::addWritableText(std::shared_ptr<Entity> writablePtr, const sf::Font &newFont)
@@ -97,9 +97,9 @@ void DrawComponents::_updatePlayer(LayerLvL &layerType, std::shared_ptr<ecs::Ent
         entityPtr->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_3);
         entityPtr->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_4);
         entityPtr->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_5);
-        entityPtr->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_6);
-        entityPtr->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_7);
-        entityPtr->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_8);
+        // entityPtr->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_6);
+        // entityPtr->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_7);
+        // entityPtr->getComponent<AnimationComponent>().textures.push_back(GraphicsTextureResource::PLAYER_STATIC_8);
         if (entityPtr->contains<Player>())
             entityPtr->addComponent<GraphicsTextComponent>(
                 newFont, entityPtr->getComponent<Player>().name, pos.x + size.x * 0.5, pos.y, size.x * 0.2);
