@@ -374,7 +374,17 @@ void ClientRoom::_updateEcsResources()
         _loadButtonActionMap();
     if (_worldInstance->containsResource<MusicResource>()) {
         _worldInstance->getResource<MusicResource>().addMusic(
-            graphicECS::SFML::Resources::MusicResource::BACKGROUNDTHEME, BACKGROUND_MUSIC_1);
+            graphicECS::SFML::Resources::MusicResource::LEVEL_ONE_THEME, BACKGROUND_MUSIC_1);
+        _worldInstance->getResource<MusicResource>().addMusic(
+            graphicECS::SFML::Resources::MusicResource::LEVEL_TWO_THEME, BACKGROUND_MUSIC_2);
+        _worldInstance->getResource<MusicResource>().addMusic(
+            graphicECS::SFML::Resources::MusicResource::LEVEL_THREE_THEME, BACKGROUND_MUSIC_3);
+        _worldInstance->getResource<MusicResource>().addMusic(
+            graphicECS::SFML::Resources::MusicResource::LEVEL_FOUR_THEME, BACKGROUND_MUSIC_4);
+        _worldInstance->getResource<MusicResource>().addMusic(
+            graphicECS::SFML::Resources::MusicResource::BOSS_FIGHTTHEME, BACKGROUND_MUSIC_BOSS);
+        _worldInstance->getResource<MusicResource>().addMusic(
+            graphicECS::SFML::Resources::MusicResource::INFINITE_THEME, BACKGROUND_MUSIC_INFINITE);
     }
     if (_worldInstance->containsResource<SoundResource>()) {
         _worldInstance->getResource<SoundResource>().addSound(
@@ -816,7 +826,7 @@ void ClientRoom::_initInGameBackgrounds()
             .addComponent<Velocity>(-300, 0)
             .addComponent<LayerLvL>(LayerLvL::layer_e::DECORATION)
             .addComponent<TextureName>(GraphicsTextureResource::BACKGROUND_LAYER_1)
-            .addComponent<MusicComponent>(MusicResource::music_e::BACKGROUNDTHEME, sf::SoundSource::Status::Playing)
+            .addComponent<MusicComponent>(MusicResource::music_e::LEVEL_ONE_THEME, sf::SoundSource::Status::Playing)
             .addComponent<SoundComponent>(SoundResource::sound_e::SHOOT, sf::SoundSource::Status::Playing)
             .getId();
 
