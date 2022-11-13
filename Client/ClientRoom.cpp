@@ -16,6 +16,7 @@
 #include "GraphicECS/SFML/Components/ActionQueueComponent.hpp"
 #include "GraphicECS/SFML/Components/AllowControllerComponent.hpp"
 #include "GraphicECS/SFML/Components/AllowMouseAndKeyboardComponent.hpp"
+#include "GraphicECS/SFML/Components/AssociatedIdComponent.hpp"
 #include "GraphicECS/SFML/Components/ChatMessageComponent.hpp"
 #include "GraphicECS/SFML/Components/ControllerButtonInputComponent.hpp"
 #include "GraphicECS/SFML/Components/ControllerJoystickInputComponent.hpp"
@@ -41,6 +42,7 @@
 #include "GraphicECS/SFML/Systems/RemoveChatSystem.hpp"
 #include "GraphicECS/SFML/Systems/SfObjectFollowEntitySystem.hpp"
 #include "GraphicECS/SFML/Systems/SoundManagement.hpp"
+#include "GraphicECS/SFML/Systems/UpdateLifeText.hpp"
 #include "GraphicECS/SFML/Systems/UpdateParallaxSystem.hpp"
 #include "Transisthor/TransisthorECSLogic/Both/Components/Networkable.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Components/NetworkServer.hpp"
@@ -49,11 +51,11 @@
 #include "UserConnection.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/ButtonActionMap.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/GameStates.hpp"
-#include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/MenuStates.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateButton.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateChatMessage.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateEnemy.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreatePlayer.hpp"
+#include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateText.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateWritable.hpp"
 #include "R-TypeLogic/EntityManipulation/CreateEntitiesFunctions/CreateWritableButton.hpp"
 #include "R-TypeLogic/Global/Components/AlliedProjectileComponent.hpp"
@@ -110,6 +112,7 @@ ClientRoom::ClientRoom()
     _networkInformations = Client();
     _serverEndpoint = Client();
     _highInstanceEndpoint = Client();
+    _highInstanceEndpoint.setId(0);
     _communicatorInstance = std::make_shared<Communicator>(_networkInformations);
     _worldInstance = std::make_shared<World>(1);
     _transisthorInstance = std::make_shared<Transisthor>(*(_communicatorInstance.get()), *(_worldInstance.get()));
@@ -126,6 +129,7 @@ ClientRoom::ClientRoom(std::string address, unsigned short port, std::string ser
     _networkInformations = Client(address, port);
     _serverEndpoint = Client(serverAddress, serverPort);
     _highInstanceEndpoint = Client(serverAddress, serverPort);
+    _highInstanceEndpoint.setId(0);
     _communicatorInstance = std::make_shared<Communicator>(_networkInformations);
     _worldInstance = std::make_shared<World>(1);
     _transisthorInstance = std::make_shared<Transisthor>(*(_communicatorInstance.get()), *(_worldInstance.get()));
@@ -137,11 +141,32 @@ ClientRoom::ClientRoom(std::string address, unsigned short port, std::string ser
     _password = "";
 }
 
-void ClientRoom::_startConnexionProtocol(void)
+void ClientRoom::_connectToARoom()
+{
+    unsigned short pseudoSize = _pseudo.size();
+    void *networkData = std::malloc(sizeof(char) * pseudoSize + sizeof(unsigned short));
+    unsigned short offset = 0;
+
+    if (networkData == nullptr)
+        throw MallocError("Malloc failed.");
+    std::memcpy(networkData, &pseudoSize, sizeof(unsigned short));
+    offset += sizeof(unsigned short);
+    std::memcpy((void *)((char *)networkData + offset), _pseudo.c_str(), sizeof(char) * pseudoSize);
+    offset += sizeof(char) * pseudoSize;
+    _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, networkData, offset, 10);
+    std::free(networkData);
+}
+
+void ClientRoom::_disconectionProcess()
+{
+    _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, nullptr, 0, 13);
+}
+
+void ClientRoom::_startConnexionProtocol()
 {
     unsigned short pseudoSize = _pseudo.size();
     unsigned short passwordSize = _password.size();
-    void *networkData = std::malloc(sizeof(char) * (pseudoSize + passwordSize));
+    void *networkData = std::malloc(sizeof(char) * (pseudoSize + passwordSize) + sizeof(unsigned short) * 2);
     unsigned short offset = 0;
 
     if (networkData == nullptr)
@@ -155,9 +180,9 @@ void ClientRoom::_startConnexionProtocol(void)
     std::memcpy((void *)((char *)networkData + offset), _password.c_str(), sizeof(char) * passwordSize);
     offset += sizeof(char) * passwordSize;
     _communicatorInstance.get()->startReceiverListening();
-    _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, networkData, offset, 14);
     std::free(networkData);
 }
+
 void ClientRoom::_protocol12Answer(CommunicatorMessage connexionResponse)
 {
     _worldInstance.get()->addEntity().addComponent<NetworkServer>(connexionResponse.message.clientInfo.getId());
@@ -185,6 +210,32 @@ void ClientRoom::_holdAChatRequest(CommunicatorMessage chatRequest)
         *(_worldInstance.get()), 1470, 840, 310, 45, 5.0, chatInformation.at(0), chatInformation.at(1));
 }
 
+void ClientRoom::_holdADisconnectionRequest()
+{
+    std::vector<std::shared_ptr<Entity>> entity = _worldInstance->joinEntities<Enemy>();
+    for (auto &it : entity) {
+        _worldInstance->removeEntity(it->getId());
+    }
+    entity = _worldInstance->joinEntities<EnemyProjectile>();
+    for (auto &it : entity) {
+        _worldInstance->removeEntity(it->getId());
+    }
+    entity = _worldInstance->joinEntities<ParallaxBackground>();
+    for (auto &it : entity) {
+        _worldInstance->removeEntity(it->getId());
+    }
+    entity = _worldInstance->joinEntities<Player>();
+    for (auto &it : entity) {
+        _worldInstance->removeEntity(it->getId());
+    }
+    entity = _worldInstance->joinEntities<AlliedProjectile>();
+    for (auto &it : entity) {
+        _worldInstance->removeEntity(it->getId());
+    }
+    _disconectionProcess();
+    _worldInstance->getResource<MenuStates>().currentState = MenuStates::MAIN_MENU;
+}
+
 void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
 {
     unsigned short roomNumber = 0;
@@ -192,11 +243,6 @@ void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
     sf::Vector2u windowSize = _worldInstance->getResource<RenderWindowResource>().window.getSize();
 
     std::memcpy(&roomNumber, connectionResponse.message.data, sizeof(unsigned short));
-    std::size_t id = createNewWritable(*(_worldInstance.get()), windowSize.x - 300, 100, 200, 50, MenuStates::LOBBY);
-    createNewWritableButton(*(_worldInstance.get()), windowSize.x - 300, 200, 200, 50,
-        std::function<void(World &, Entity &, std::string &)>(createARoom), MenuStates::LOBBY, id);
-    createNewButton(*(_worldInstance.get()), 100, 100, 200, 50, ButtonActionMap::MAIN_MENU, LayerLvL::BUTTON,
-        MenuStates::LOBBY, "Back");
     for (int i = 0; i < roomNumber; i++) {
         unsigned short roomId = 0;
         unsigned short nameSize = 0;
@@ -210,15 +256,44 @@ void ClientRoom::_protocol15Answer(CommunicatorMessage connectionResponse)
         roomName.append(tempRoomName, nameSize);
         offset += sizeof(char) * nameSize;
         createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, i * 60, 200, 50,
-            ButtonActionMap::ROOM_CONNECTION, LayerLvL::BUTTON, MenuStates::LOBBY, roomName);
+            ButtonActionMap::CONNECT_TO_ROOM, LayerLvL::BUTTON, MenuStates::LOBBY, roomName);
     }
+    if (roomNumber != 0)
+        createNewButton(*(_worldInstance.get()), 100, 200, 200, 50, ButtonActionMap::MATCHMAKED_ROOM, LayerLvL::BUTTON,
+            MenuStates::LOBBY, "Matchmaked Join");
 }
 
-void ClientRoom::_signalSoloCallbackHandler(int signum)
+bool ClientRoom::_answerProtocols()
 {
-    (void)signum;
-    std::cerr << "Room ask to be closed." << std::endl;
-    _state = ClientState::ENDED;
+    CommunicatorMessage connectionOperation;
+
+    try {
+        connectionOperation = _communicatorInstance.get()->getLastMessage();
+        if (connectionOperation.message.type == 11) {
+            std::cerr << "No places left inside the hub. Please retry later" << std::endl;
+            goToMainMenu(*(_worldInstance.get()), *(_worldInstance->joinEntities<Button>().at(0).get()));
+        }
+        if (connectionOperation.message.type == 13) {
+            _holdADisconnectionRequest();
+        }
+        if (connectionOperation.message.type == 20) {
+            _serverEndpoint = _communicatorInstance->getClientByHisId(_communicatorInstance->getServerEndpointId());
+            _connectToARoom();
+        }
+        if (connectionOperation.message.type == 15) {
+            _protocol15Answer(connectionOperation);
+        }
+        if (connectionOperation.message.type == 12) {
+            _protocol12Answer(connectionOperation);
+            _updateEcsData();
+        }
+        if (connectionOperation.message.type == 50) {
+            if (_state == ClientState::RUN)
+                _holdAChatRequest(connectionOperation);
+        }
+    } catch (NetworkError &error) {
+    }
+    return true;
 }
 
 void ClientRoom::_initSoloData(void)
@@ -226,28 +301,9 @@ void ClientRoom::_initSoloData(void)
     createNewPlayer(*_worldInstance.get(), 20, 500, 0, 0, 1, 102, 102, 100, 10, 4, true, 1, _pseudo);
 }
 
-void ClientRoom::_startSoloLoop()
-{
-    std::signal(SIGINT, signalCallbackHandler);
-    _initSoloData();
-    _state = ClientState::MAIN_MENU;
-    _updateEcsData(true);
-    while (_state != ClientState::ENDED && _state != ClientState::UNDEFINED) {
-        if (_worldInstance->containsResource<MenuStates>()
-            && _worldInstance->getResource<MenuStates>().currentState == MenuStates::LOBBY) {
-            _worldInstance->getResource<MenuStates>().currentState = MenuStates::IN_GAME;
-            _state = ClientState::IN_GAME;
-            _updateEcsData(true);
-        }
-        _worldInstance.get()->runSystems();
-    }
-}
-
-int ClientRoom::_choosePlayerInfosForServer()
+int ClientRoom::startGame()
 {
     UserConnection connection;
-    std::string pseudo;
-    std::string password;
 
     try {
         connection.userConnection();
@@ -255,73 +311,40 @@ int ClientRoom::_choosePlayerInfosForServer()
         std::cerr << e.what() << std::endl;
         return (84);
     }
-    pseudo = connection.getPseudo();
-    password = connection.getPassword();
+    _pseudo = connection.getPseudo();
+    _password = connection.getPassword();
     connection.~UserConnection();
-    startLobbyLoop(pseudo, password, false);
-    return 0;
+    _startLoop();
+    return (0);
 }
 
-void ClientRoom::_getClientPseudoAndPassword()
+void ClientRoom::_startLoop()
 {
-    std::string pseudo;
+    std::signal(SIGINT, signalCallbackHandler);
+    MenuStates::menuState_e currentMenuStates = MenuStates::UNDEFINED;
 
-    std::cerr << "Welcome to the R-Type game !" << std::endl;
-    std::cerr << "You are in Solo mode ! Please enter your Pseudo" << std::endl;
-    std::cerr << "Please refer your pseudonyme (5 characters): ";
-    std::cin >> pseudo;
-    if (pseudo.size() != 5) {
-        std::cerr << "Nop ! Please enter a 5 characters pseudonyme.";
-        _state = ClientState::ENDED;
-        return;
+    _oldMenuStates = MenuStates::UNDEFINED;
+    isMenuUpdated = true;
+    _startConnexionProtocol();
+    _state = ClientRoom::RUN;
+    while (_state != ClientState::ENDED) {
+        if (isMenuUpdated)
+            _updateEcsData();
+        currentMenuStates = _worldInstance->getResource<MenuStates>().currentState;
+        _oldMenuStates = currentMenuStates;
+        if (currentMenuStates != MenuStates::MAIN_MENU && currentMenuStates != MenuStates::SOLO_GAME
+            && (currentMenuStates != MenuStates::SOLO_GAME && getPreviousMenu() != MenuStates::SOLO_GAME)) {
+            if (!_answerProtocols())
+                return;
+        }
+        _worldInstance->runSystems();
+        if (_oldMenuStates != _worldInstance->getResource<MenuStates>().currentState)
+            isMenuUpdated = true;
     }
-    _pseudo = pseudo;
+    _disconectionProcess();
 }
 
-int ClientRoom::startGame()
-{
-    std::cerr << "If you want to play in Solo Mode, please refer S. Otherwise if you want to play in multiplayer use M "
-                 "and be sure that a server is running : ";
-    char choosedMode = '\0';
-
-    std::cin >> choosedMode;
-    if (choosedMode == 'S') {
-        _getClientPseudoAndPassword();
-        _startSoloLoop();
-    } else if (choosedMode == 'M') {
-        if (_choosePlayerInfosForServer() == 84)
-            return 84;
-    } else {
-        std::cerr << "Not a valid option ;)" << std::endl;
-        _state = ClientState::ENDED;
-    }
-    return 0;
-}
-
-void ClientRoom::_connectToARoom()
-{
-    unsigned short pseudoSize = _pseudo.size();
-    void *networkData = std::malloc(sizeof(char) * pseudoSize);
-    unsigned short offset = 0;
-
-    if (networkData == nullptr)
-        throw MallocError("Malloc failed.");
-    std::memcpy(networkData, &pseudoSize, sizeof(unsigned short));
-    offset += sizeof(unsigned short);
-    std::memcpy((void *)((char *)networkData + offset), _pseudo.c_str(), sizeof(char) * pseudoSize);
-    offset += sizeof(char) * pseudoSize;
-    _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, networkData, offset, 10);
-    std::free(networkData);
-}
-
-void ClientRoom::_disconectionProcess()
-{
-    _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, nullptr, 0, 13);
-}
-
-void ClientRoom::_holdADisconnectionRequest() { _state = ClientState::ENDED; }
-
-void ClientRoom::_updateEcsResources(bool isSolo)
+void ClientRoom::_updateEcsResources()
 {
     if (!_worldInstance->containsResource<RandomDevice>())
         _worldInstance->addResource<RandomDevice>();
@@ -348,7 +371,11 @@ void ClientRoom::_updateEcsResources(bool isSolo)
     if (_worldInstance->containsResource<GraphicsTextureResource>())
         _loadTextures();
     if (_worldInstance->containsResource<ButtonActionMap>())
-        _loadButtonActionMap(isSolo);
+        _loadButtonActionMap();
+    if (_worldInstance->containsResource<MusicResource>()) {
+        _worldInstance->getResource<MusicResource>().addMusic(
+            graphicECS::SFML::Resources::MusicResource::BACKGROUNDTHEME, "assets/Musics/music_background.wav");
+    }
 }
 
 void ClientRoom::_loadTextures()
@@ -428,41 +455,160 @@ void ClientRoom::_initPlayerTextures(GraphicsTextureResource &textureResource)
         sf::Vector2f(534 / 16 * 15, 0), sf::Vector2f(534 / 16, 34));
 }
 
-void ClientRoom::_loadButtonActionMap(bool isSolo)
+void ClientRoom::_loadButtonActionMap()
 {
     ButtonActionMap &actionsList = _worldInstance->getResource<ButtonActionMap>();
 
     actionsList.addAction(ButtonActionMap::PAUSE, std::function<void(World &, Entity &)>(pauseGame));
     actionsList.addAction(ButtonActionMap::RESUME, std::function<void(World &, Entity &)>(resumeGame));
-    actionsList.addAction(ButtonActionMap::EXIT, std::function<void(World &, Entity &)>(exitWindow));
+    actionsList.addAction(ButtonActionMap::QUIT, std::function<void(World &, Entity &)>(exitWindow));
     actionsList.addAction(ButtonActionMap::WRITABLE, std::function<void(World &, Entity &)>(selectAWritable));
     actionsList.addAction(
         ButtonActionMap::WRITABLE_BUTTON, std::function<void(World &, Entity &)>(writableButtonAction));
-    if (isSolo) {
-        actionsList.addAction(ButtonActionMap::LOBBY, std::function<void(World &, Entity &)>(launchSoloGame));
-    } else {
-        actionsList.addAction(ButtonActionMap::MAIN_MENU, std::function<void(World &, Entity &)>(goToMainMenu));
-        actionsList.addAction(ButtonActionMap::LOBBY, std::function<void(World &, Entity &)>(goToLobby));
-        actionsList.addAction(ButtonActionMap::ROOM_CONNECTION, std::function<void(World &, Entity &)>(connectToARoom));
-    }
+    actionsList.addAction(ButtonActionMap::GO_MAIN_MENU, std::function<void(World &, Entity &)>(goToMainMenu));
+    actionsList.addAction(ButtonActionMap::GO_LOBBY, std::function<void(World &, Entity &)>(goToLobby));
+    actionsList.addAction(ButtonActionMap::CONNECT_TO_ROOM, std::function<void(World &, Entity &)>(connectToARoom));
+    actionsList.addAction(ButtonActionMap::MATCHMAKED_ROOM, std::function<void(World &, Entity &)>(connectMatchmaked));
+    actionsList.addAction(ButtonActionMap::GO_SOLO_GAME, std::function<void(World &, Entity &)>(launchSoloGame));
+    actionsList.addAction(ButtonActionMap::SWITCH_MUSIC, std::function<void(World &, Entity &)>(switchMusic));
+    actionsList.addAction(ButtonActionMap::SWITCH_SOUND, std::function<void(World &, Entity &)>(switchSound));
+    actionsList.addAction(ButtonActionMap::GO_OPTION, std::function<void(World & world, Entity &)>(goOption));
+}
+
+void ClientRoom::_initLobbyButtons()
+{
+    sf::Vector2u windowSize = _worldInstance->getResource<RenderWindowResource>().window.getSize();
+
+    std::size_t roomNameId =
+        createNewWritable(*(_worldInstance.get()), windowSize.x - 300, 100, 200, 50, MenuStates::LOBBY);
+    _worldInstance->getEntity(roomNameId).getComponent<WritableContent>().content = "Room Name";
+    std::size_t playerNumberId =
+        createNewWritable(*(_worldInstance.get()), windowSize.x - 300, 200, 200, 50, MenuStates::LOBBY);
+    _worldInstance->getEntity(playerNumberId).getComponent<WritableContent>().content = "Player Number";
+    std::size_t playerVelocityId =
+        createNewWritable(*(_worldInstance.get()), windowSize.x - 300, 300, 200, 50, MenuStates::LOBBY);
+    _worldInstance->getEntity(playerVelocityId).getComponent<WritableContent>().content = "Player Velocity";
+    std::size_t enemyVelocityId =
+        createNewWritable(*(_worldInstance.get()), windowSize.x - 300, 400, 200, 50, MenuStates::LOBBY);
+    _worldInstance->getEntity(enemyVelocityId).getComponent<WritableContent>().content = "Enemy Velocity";
+
+    std::size_t id = createNewWritableButton(*(_worldInstance.get()), windowSize.x - 300, 500, 200, 50,
+        std::function<void(World &, Entity &, std::string &)>(createARoom), MenuStates::LOBBY, roomNameId);
+    _worldInstance->getEntity(id).getComponent<graphicECS::SFML::Components::AssociatedId>().idList.push_back(
+        playerNumberId);
+    _worldInstance->getEntity(id).getComponent<graphicECS::SFML::Components::AssociatedId>().idList.push_back(
+        playerVelocityId);
+    _worldInstance->getEntity(id).getComponent<graphicECS::SFML::Components::AssociatedId>().idList.push_back(
+        enemyVelocityId);
+    createNewButton(*(_worldInstance.get()), 100, 100, 200, 50, ButtonActionMap::GO_MAIN_MENU, LayerLvL::BUTTON,
+        MenuStates::LOBBY, "Back");
+}
+
+void ClientRoom::askForRooms()
+{
+    unsigned short pseudoSize = _pseudo.size();
+    unsigned short passwordSize = _password.size();
+    void *networkData = std::malloc(sizeof(char) * (pseudoSize + passwordSize) + sizeof(unsigned short) * 2);
+    unsigned short offset = 0;
+
+    if (networkData == nullptr)
+        throw MallocError("Malloc failed.");
+    std::memcpy(networkData, &pseudoSize, sizeof(unsigned short));
+    offset += sizeof(unsigned short);
+    std::memcpy((void *)((char *)networkData + offset), _pseudo.c_str(), sizeof(char) * pseudoSize);
+    offset += sizeof(char) * pseudoSize;
+    std::memcpy((void *)((char *)networkData + offset), &passwordSize, sizeof(unsigned short));
+    offset += sizeof(unsigned short);
+    std::memcpy((void *)((char *)networkData + offset), _password.c_str(), sizeof(char) * passwordSize);
+    offset += sizeof(char) * passwordSize;
+    _communicatorInstance.get()->sendDataToAClient(_serverEndpoint, networkData, offset, 14);
+    std::free(networkData);
+}
+
+void ClientRoom::_initPausedButton()
+{
+    sf::Vector2u windowSize = _worldInstance->getResource<RenderWindowResource>().window.getSize();
+
+    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 4 - 25, 200, 50,
+        ButtonActionMap::RESUME, LayerLvL::BUTTON, MenuStates::PAUSED, "Resume");
+    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 4 * 2 - 25, 200, 50,
+        ButtonActionMap::GO_MAIN_MENU, LayerLvL::BUTTON, MenuStates::PAUSED, "Main menu");
+    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 4 * 3 - 25, 200, 50,
+        ButtonActionMap::QUIT, LayerLvL::BUTTON, MenuStates::PAUSED, "Exit");
+}
+
+void ClientRoom::_initOptionButton()
+{
+    sf::Vector2u windowSize = _worldInstance->getResource<RenderWindowResource>().window.getSize();
+
+    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 4 - 25, 200, 50,
+        ButtonActionMap::SWITCH_SOUND, LayerLvL::BUTTON, MenuStates::OPTION, "SOUND");
+    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 4 * 2 - 25, 200, 50,
+        ButtonActionMap::SWITCH_MUSIC, LayerLvL::BUTTON, MenuStates::OPTION, "MUSIC");
+    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 4 * 3 - 25, 200, 50,
+        ButtonActionMap::GO_MAIN_MENU, LayerLvL::BUTTON, MenuStates::OPTION, "BACK");
 }
 
 void ClientRoom::_updateEcsEntities()
 {
+    auto entities = _worldInstance->joinEntities<Button>();
+    for (auto &it : entities) {
+        _worldInstance->removeEntity(it->getId());
+    }
     if (_worldInstance
             ->joinEntities<MouseInputComponent, KeyboardInputComponent, ControllerButtonInputComponent,
                 ControllerJoystickInputComponent, ActionQueueComponent, AllowMouseAndKeyboardComponent,
                 AllowControllerComponent>()
             .empty())
         _initInputsEntity();
-    if (_state == ClientState::MAIN_MENU) {
-        _initMainMenuButtons();
-    }
-    if (_state == ClientState::LOBBY) {}
-    if (_state == ClientState::IN_GAME) {
-        _initInGameButtons();
-        _initInGameWritables();
-        _initInGameBackgrounds();
+    if (_worldInstance->containsResource<MenuStates>()) {
+        switch (_worldInstance->getResource<MenuStates>().currentState) {
+            case MenuStates::MAIN_MENU:
+                if (_oldMenuStates == MenuStates::PAUSED || _oldMenuStates == MenuStates::MULTI_GAME) {
+                    try {
+                        _communicatorInstance->replaceClientByAnother(_serverEndpoint, _highInstanceEndpoint);
+                        _serverEndpoint = _highInstanceEndpoint;
+                    } catch (NetworkError &e) {
+                        std::cerr << "Network error: " << e.what() << std::endl;
+                    }
+                    _removeMultiSystems();
+                    _removeSoloSystems();
+                }
+                if (_oldMenuStates == MenuStates::MULTI_GAME || _oldMenuStates == MenuStates::LOBBY) {
+                    _removeMultiSystems();
+                } else if (_oldMenuStates == MenuStates::SOLO_GAME) {
+                    _removeSoloSystems();
+                }
+                _initMainMenuButtons();
+                break;
+            case MenuStates::LOBBY:
+                askForRooms();
+                _initLobbyButtons();
+                break;
+            case MenuStates::SOLO_GAME:
+                if (_oldMenuStates != MenuStates::PAUSED)
+                    _initSoloData();
+                _initInGameButtons();
+                _initInGameWritables();
+                _initInGameBackgrounds();
+                _initInGameText();
+                break;
+            case MenuStates::MULTI_GAME:
+                if (_oldMenuStates == MenuStates::LOBBY) {
+                    // _disconectionProcess();
+                }
+                _worldInstance->getResource<GameStates>().currentState = GameStates::IN_GAME;
+                _initInGameButtons();
+                _initInGameWritables();
+                if (_worldInstance->joinEntities<ParallaxBackground>().empty()) {
+                    _initInGameText();
+                    _initInGameBackgrounds();
+                }
+                break;
+            case MenuStates::PAUSED: _initPausedButton(); break;
+            case MenuStates::OPTION: _initOptionButton(); break;
+            default: break;
+        }
     }
 }
 
@@ -495,6 +641,12 @@ void ClientRoom::_initInputsEntity()
     entity.getComponent<ControllerJoystickInputComponent>().controllerJoystickMapActions.emplace(
         std::make_pair<unsigned int, std::pair<ActionQueueComponent::inputAction_e, float>>(
             1, std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEY, 0)));
+    entity.getComponent<ControllerJoystickInputComponent>().controllerJoystickMapActions.emplace(
+        std::make_pair<unsigned int, std::pair<ActionQueueComponent::inputAction_e, float>>(
+            0, std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::MOVEX, 0)));
+    entity.getComponent<ControllerButtonInputComponent>().controllerButtonMapActions.emplace(
+        std::make_pair<unsigned int, std::pair<ActionQueueComponent::inputAction_e, float>>(
+            0, std::make_pair<ActionQueueComponent::inputAction_e, float>(ActionQueueComponent::SHOOT, 10)));
     entity.getComponent<MouseInputComponent>().MouseMapActions.emplace(
         std::make_pair<sf::Mouse::Button, std::pair<ActionQueueComponent::inputAction_e, float>>(
             sf::Mouse::Button::Left,
@@ -503,12 +655,20 @@ void ClientRoom::_initInputsEntity()
 
 void ClientRoom::_initInGameButtons()
 {
-    createNewButton(
-        *(_worldInstance.get()), 0, 0, 68, 68, ButtonActionMap::PAUSE, LayerLvL::BUTTON, MenuStates::IN_GAME, "Pause");
-    createNewButton(*(_worldInstance.get()), 909, 200, 102, 102, ButtonActionMap::RESUME, LayerLvL::BUTTON,
-        MenuStates::GAME_PAUSED, "Resume");
-    createNewButton(*(_worldInstance.get()), 909, 500, 102, 102, ButtonActionMap::EXIT, LayerLvL::BUTTON,
-        MenuStates::GAME_PAUSED, "Exit");
+    sf::Vector2u windowSize(0, 0);
+
+    if (_worldInstance->containsResource<RenderWindowResource>())
+        windowSize = _worldInstance->getResource<RenderWindowResource>().window.getSize();
+    createNewButton(*(_worldInstance.get()), 0, 0, 68, 68, ButtonActionMap::PAUSE, LayerLvL::BUTTON,
+        MenuStates::SOLO_GAME, "Pause");
+    createNewButton(*(_worldInstance.get()), 0, 0, 68, 68, ButtonActionMap::PAUSE, LayerLvL::BUTTON,
+        MenuStates::MULTI_GAME, "Pause");
+}
+
+void ClientRoom::_initInGameText()
+{
+    createNewText(*(_worldInstance.get()), 1700, 20, 16, LayerLvL::TEXT, MenuStates::MULTI_GAME, "Remaining Life : 0");
+    createNewText(*(_worldInstance.get()), 1700, 20, 16, LayerLvL::TEXT, MenuStates::SOLO_GAME, "Remaining Life : 0");
 }
 
 void ClientRoom::_initMainMenuButtons()
@@ -517,21 +677,27 @@ void ClientRoom::_initMainMenuButtons()
 
     if (_worldInstance->containsResource<RenderWindowResource>())
         windowSize = _worldInstance->getResource<RenderWindowResource>().window.getSize();
-    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 3 - 25, 200, 50,
-        ButtonActionMap::LOBBY, LayerLvL::BUTTON, MenuStates::MAIN_MENU, "Lobby");
-    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 3 * 2 - 25, 200, 50,
-        ButtonActionMap::EXIT, LayerLvL::BUTTON, MenuStates::MAIN_MENU, "Quit");
+    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 5 - 25, 200, 50,
+        ButtonActionMap::GO_SOLO_GAME, LayerLvL::BUTTON, MenuStates::MAIN_MENU, "Solo");
+    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 5 * 2 - 25, 200, 50,
+        ButtonActionMap::GO_LOBBY, LayerLvL::BUTTON, MenuStates::MAIN_MENU, "Lobby");
+    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 5 * 3 - 25, 200, 50,
+        ButtonActionMap::GO_OPTION, LayerLvL::BUTTON, MenuStates::MAIN_MENU, "Option");
+    createNewButton(*(_worldInstance.get()), windowSize.x / 2 - 100, windowSize.y / 5 * 4 - 25, 200, 50,
+        ButtonActionMap::QUIT, LayerLvL::BUTTON, MenuStates::MAIN_MENU, "Quit");
 }
 
 void ClientRoom::_initInGameWritables()
 {
-    std::size_t writableId = createNewWritable(*(_worldInstance.get()), 1450, 900, 350, 50, MenuStates::IN_GAME);
+    std::size_t writableIdMulti =
+        createNewWritable(*(_worldInstance.get()), 1450, 900, 350, 50, MenuStates::MULTI_GAME);
 
     createNewWritableButton(*(_worldInstance.get()), 1820, 900, 80, 50,
-        std::function<void(World &, Entity &, std::string &)>(publishNewChatMessage), MenuStates::IN_GAME, writableId);
+        std::function<void(World &, Entity &, std::string &)>(publishNewChatMessage), MenuStates::MULTI_GAME,
+        writableIdMulti);
 }
 
-void ClientRoom::_updateEcsSystems(bool isSolo)
+void ClientRoom::_updateEcsSystems()
 {
     if (!_worldInstance->containsSystem<UpdateClock>())
         _worldInstance->addSystem<UpdateClock>();
@@ -561,8 +727,11 @@ void ClientRoom::_updateEcsSystems(bool isSolo)
         _worldInstance->addSystem<ElectricInvisibleEnemy>();
     if (!_worldInstance->containsSystem<UpdateParallax>())
         _worldInstance->addSystem<UpdateParallax>();
-    if (isSolo) {
-        if (!_worldInstance->containsSystem<MobGeneration>() && _state == ClientState::IN_GAME)
+    if (!_worldInstance->containsSystem<UpdateLifeTextSystem>())
+        _worldInstance->addSystem<UpdateLifeTextSystem>();
+    if (_worldInstance->containsResource<MenuStates>()
+        && _worldInstance->getResource<MenuStates>().currentState == MenuStates::SOLO_GAME) {
+        if (!_worldInstance->containsSystem<MobGeneration>())
             _worldInstance->addSystem<MobGeneration>();
         if (!_worldInstance->containsSystem<EnemiesPatterns>())
             _worldInstance->addSystem<EnemiesPatterns>();
@@ -578,7 +747,8 @@ void ClientRoom::_updateEcsSystems(bool isSolo)
             _worldInstance->addSystem<DecreaseLifeTime>();
         if (!_worldInstance->containsSystem<ApplyInputDelay>())
             _worldInstance->addSystem<ApplyInputDelay>();
-    } else {
+    } else if (_worldInstance->containsResource<MenuStates>()
+        && _worldInstance->getResource<MenuStates>().currentState == MenuStates::LOBBY) {
         if (!_worldInstance->containsSystem<SendToServer>())
             _worldInstance->addSystem<SendToServer>();
         if (!_worldInstance->containsSystem<SendNewlyCreatedToServer>())
@@ -586,74 +756,42 @@ void ClientRoom::_updateEcsSystems(bool isSolo)
     }
 }
 
-void ClientRoom::_updateEcsData(bool isSolo)
+void ClientRoom::_removeMultiSystems()
 {
-    _updateEcsResources(isSolo);
+    if (_worldInstance->containsSystem<SendToServer>())
+        _worldInstance->removeSystem<SendToServer>();
+    if (_worldInstance->containsSystem<SendNewlyCreatedToServer>())
+        _worldInstance->removeSystem<SendNewlyCreatedToServer>();
+}
+
+void ClientRoom::_removeSoloSystems()
+{
+    if (_worldInstance->containsSystem<MobGeneration>())
+        _worldInstance->removeSystem<MobGeneration>();
+    if (_worldInstance->containsSystem<EnemiesPatterns>())
+        _worldInstance->removeSystem<EnemiesPatterns>();
+    if (_worldInstance->containsSystem<EnemyShootSystem>())
+        _worldInstance->removeSystem<EnemyShootSystem>();
+    if (_worldInstance->containsSystem<Collide>())
+        _worldInstance->removeSystem<Collide>();
+    if (_worldInstance->containsSystem<DeathLife>())
+        _worldInstance->removeSystem<DeathLife>();
+    if (_worldInstance->containsSystem<LifeTimeDeath>())
+        _worldInstance->removeSystem<LifeTimeDeath>();
+    if (_worldInstance->containsSystem<DecreaseLifeTime>())
+        _worldInstance->removeSystem<DecreaseLifeTime>();
+    if (_worldInstance->containsSystem<ApplyInputDelay>())
+        _worldInstance->removeSystem<ApplyInputDelay>();
+    if (_worldInstance->containsResource<GameLevel>())
+        _worldInstance->removeResource<GameLevel>();
+}
+
+void ClientRoom::_updateEcsData()
+{
+    _updateEcsResources();
     _updateEcsEntities();
-    _updateEcsSystems(isSolo);
-}
-
-bool ClientRoom::_answerProtocols()
-{
-    CommunicatorMessage connectionOperation;
-
-    try {
-        connectionOperation = _communicatorInstance.get()->getLastMessage();
-        if (connectionOperation.message.type == 11) {
-            std::cerr << "No places left inside the hub. Please retry later" << std::endl;
-            return false;
-        }
-        if (connectionOperation.message.type == 13) {
-            _holdADisconnectionRequest();
-        }
-        if (connectionOperation.message.type == 20) {
-            _serverEndpoint = _communicatorInstance->getClientByHisId(_communicatorInstance->getServerEndpointId());
-            _connectToARoom();
-        }
-        if (connectionOperation.message.type == 15) {
-            _protocol15Answer(connectionOperation);
-        }
-        if (connectionOperation.message.type == 12) {
-            _protocol12Answer(connectionOperation);
-        }
-        if (connectionOperation.message.type == 50) {
-            if (_state == ClientState::IN_GAME)
-                _holdAChatRequest(connectionOperation);
-        }
-    } catch (NetworkError &error) {
-    }
-    return true;
-}
-
-void ClientRoom::startLobbyLoop(const std::string &pseudo, const std::string &password, bool isSolo)
-{
-    _pseudo = pseudo;
-    _password = password;
-    std::signal(SIGINT, signalCallbackHandler);
-    if (_state != ClientState::ENDED)
-        _startConnexionProtocol();
-    _state = ClientState::MAIN_MENU;
-    _updateEcsData(isSolo);
-    while (_state != ClientState::ENDED) {
-        if (!_answerProtocols())
-            return;
-        if (_worldInstance->containsResource<MenuStates>()) {
-            if (_state != ClientState::ENDED
-                && _worldInstance->getResource<MenuStates>().currentState == MenuStates::LOBBY
-                && _state != ClientRoom::LOBBY) {
-                _state = ClientState::LOBBY;
-                _updateEcsData(false);
-            }
-            if (_state != ClientState::ENDED
-                && _worldInstance->getResource<MenuStates>().currentState == MenuStates::IN_GAME
-                && _state != ClientRoom::IN_GAME) {
-                _state = ClientState::IN_GAME;
-                _updateEcsData(false);
-            }
-        }
-        _worldInstance.get()->runSystems(); /// WILL BE IMPROVED IN PART TWO (THREAD + CLOCK)
-    }
-    _disconectionProcess();
+    _updateEcsSystems();
+    isMenuUpdated = false;
 }
 
 void ClientRoom::_initInGameBackgrounds()

@@ -19,13 +19,13 @@ namespace graphicECS::SFML::Resources
     class MusicResource : public ecs::Resource {
       public:
         /// @brief Enumeration of all available Musics
-        enum music_e { UNDEFINED, MENUTHEME, FIGHTTHEME, BACKGROUNDTHEME};
+        enum music_e { UNDEFINED, MENUTHEME, FIGHTTHEME, BACKGROUNDTHEME };
 
         /// @brief Name of map which contains Musics.
         using MusicsList = std::unordered_map<music_e, std::shared_ptr<sf::Music>>;
 
-        /// @brief Default Constructor of MusicResource.
-        MusicResource() = default;
+        /// @brief Constructor of MusicResource.
+        MusicResource() : playMusic(true){};
 
         /// @brief Constructor to add a Music from its Music Path passed as parameter
         /// @param music_e Enum of the Music
@@ -45,6 +45,9 @@ namespace graphicECS::SFML::Resources
 
         /// @brief The Map which countains Musics
         MusicsList _musicsList;
+
+        /// @brief A boolean which is used to know if the music is playing or not.
+        bool playMusic;
     };
 } // namespace graphicECS::SFML::Resources
 

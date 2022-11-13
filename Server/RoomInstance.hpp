@@ -27,7 +27,9 @@ namespace server_data
         /// @param name The name of the room.
         /// @param address The address of the server.
         /// @param port the port on which the room will listen to
-        RoomInstance(Server *server, unsigned short id, std::string name, std::string address, unsigned short port);
+        /// @param configs Configuration for a room
+        RoomInstance(Server *server, unsigned short id, std::string name, std::string address, unsigned short port,
+            short *configs);
 
         /// @brief The destructor for the RoomInstance class
         /// It waits that the process is stoped

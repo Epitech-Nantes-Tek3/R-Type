@@ -22,4 +22,4 @@ void GameClock::resetClock()
     std::chrono::duration<double> tmp = steady_clock::now() - _lastResetTime;
     _lastElapsedTime = tmp.count();
     _lastResetTime = std::chrono::steady_clock::now();
-};
+}

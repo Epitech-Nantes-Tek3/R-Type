@@ -58,41 +58,8 @@ jobs:
         path: |
           ${{ github.workspace }}/build/R-Type-*-Linux.tar.gz
 
-  build-windows:
-    needs: lint-format
-    runs-on: windows-latest
-    steps:
-    - name: Cache Conan packages
-      id: cache_windows
-      uses: actions/cache@v3
-      with:
-        path: |
-         ~/.conan
-         C:\.conan
-        key: ${{ runner.os }}-${{ hashFiles('**/conanfile.txt') }}
-
-    - name: Install Conan
-      id: conan
-      uses: turtlebrowser/get-conan@main
-    - name: Checkout repository
-      uses: actions/checkout@v3
-
-    - name: Launch build script
-      run: ./build.bat
-
-    - name: Package
-      run: |
-        cd build/
-        cpack -G WIX -C Debug
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: Windows
-        path: |
-          ${{ github.workspace }}/build/R-Type-*-win64.msi
-
   create-release:
-    needs: [build-linux, build-windows]
+    needs: [build-linux]
     permissions:
       contents: write
     environment:
@@ -110,4 +77,3 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           files: |
             ${{ github.workspace }}/Linux/*.tar.gz
-            ${{ github.workspace }}/Windows/*.msi

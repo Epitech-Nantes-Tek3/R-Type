@@ -27,23 +27,26 @@ void Movement::run(World &world)
         double elapsedTimeInSeconds = clock.getElapsedTime();
         Position &pos = entityPtr.get()->getComponent<Position>();
         Velocity &vel = entityPtr.get()->getComponent<Velocity>();
+        if (vel.modifier == 0)
+            vel.modifier = 1;
+        double modifier = (vel.modifier != 1) ? (double)vel.modifier / 100.0 : (double)vel.modifier;
 
-        if (vel.multiplierAbscissa == 0 && vel.multiplierOrdinate == 0)
+        if (vel.multiplierAbscissa * modifier == 0 && vel.multiplierOrdinate * modifier == 0)
             return;
         if (entityPtr->contains<Player>() == true) {
-            if ((pos.x <= 4 && vel.multiplierAbscissa < 0))
+            if ((pos.x <= 4 && vel.multiplierAbscissa * modifier < 0))
                 return;
-            if ((pos.x >= 1817 && vel.multiplierAbscissa > 0))
+            if ((pos.x >= 1817 && vel.multiplierAbscissa * modifier > 0))
                 return;
-            if ((pos.y <= 4 && vel.multiplierOrdinate < 0))
+            if ((pos.y <= 4 && vel.multiplierOrdinate * modifier < 0))
                 return;
-            if ((pos.y >= 975 && vel.multiplierOrdinate > 0))
+            if ((pos.y >= 975 && vel.multiplierOrdinate * modifier > 0))
                 return;
         }
         if (elapsedTimeInSeconds >= 1)
             return;
-        pos.x += (vel.multiplierAbscissa * (((double((int)(elapsedTimeInSeconds * 100000000)))) / 100000000));
-        pos.y += (vel.multiplierOrdinate * (((double((int)(elapsedTimeInSeconds * 100000000)))) / 100000000));
+        pos.x += (vel.multiplierAbscissa * modifier * (((double((int)(elapsedTimeInSeconds * 100000000)))) / 100000000));
+        pos.y += (vel.multiplierOrdinate * modifier * (((double((int)(elapsedTimeInSeconds * 100000000)))) / 100000000));
     };
     std::for_each(joined.begin(), joined.end(), move);
 }

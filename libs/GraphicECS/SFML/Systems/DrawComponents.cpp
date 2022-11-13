@@ -72,6 +72,17 @@ void DrawComponents::addChatMessageText(std::shared_ptr<Entity> chatMessagePtr, 
         pos.x + size.x * 0.05, pos.y + size.y * 0.2, size.y * 0.4);
 }
 
+void DrawComponents::addText(std::shared_ptr<Entity> textPtr, const sf::Font &newFont)
+{
+    Position &pos = textPtr->getComponent<Position>();
+    Size &size = textPtr->getComponent<Size>();
+
+    if (textPtr->contains<GraphicsTextComponent>())
+        return;
+    textPtr->addComponent<GraphicsTextComponent>(
+        newFont, textPtr->getComponent<TextComponent>().text, pos.x, pos.y, size.x);
+}
+
 void DrawComponents::_updatePlayer(LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr, const sf::Font &newFont)
 {
     if (layerType.layer == LayerLvL::layer_e::PLAYER) {
@@ -148,9 +159,17 @@ void DrawComponents::_updateWritable(World &world, LayerLvL &layerType, std::sha
         entityPtr->addComponent<TextureName>(GraphicsTextureResource::WRITABLE);
         addWritableText(entityPtr, world.getResource<GraphicsFontResource>().font);
     }
+}
+
+void DrawComponents::_updateText(World &world, LayerLvL &layerType, std::shared_ptr<ecs::Entity> entityPtr)
+{
     if (layerType.layer == LayerLvL::CHAT_MESSAGE) {
         entityPtr->removeComponent<GraphicsRectangleComponent>();
         addChatMessageText(entityPtr, world.getResource<GraphicsFontResource>().font);
+    }
+    if (layerType.layer == LayerLvL::TEXT) {
+        entityPtr->removeComponent<GraphicsRectangleComponent>();
+        addText(entityPtr, world.getResource<GraphicsFontResource>().font);
     }
 }
 
@@ -160,7 +179,8 @@ void DrawComponents::_updateEntities(World &world, std::shared_ptr<ecs::Entity> 
     if (layerType.layer == LayerLvL::layer_e::OBSTACLE || layerType.layer == LayerLvL::layer_e::ENEMY
         || layerType.layer == LayerLvL::layer_e::PLAYER || layerType.layer == LayerLvL::layer_e::PROJECTILE
         || layerType.layer == LayerLvL::BUTTON || layerType.layer == LayerLvL::WRITABLE
-        || layerType.layer == LayerLvL::WRITABLE_BUTTON || layerType.layer == LayerLvL::CHAT_MESSAGE) {
+        || layerType.layer == LayerLvL::WRITABLE_BUTTON || layerType.layer == LayerLvL::CHAT_MESSAGE
+        || layerType.layer == LayerLvL::TEXT) {
         auto entityPos = entityPtr->getComponent<Position>();
         auto entitySize = entityPtr->getComponent<Size>();
 
@@ -170,6 +190,7 @@ void DrawComponents::_updateEntities(World &world, std::shared_ptr<ecs::Entity> 
         _udpateProjectile(layerType, entityPtr);
         _updateButton(world, layerType, entityPtr);
         _updateWritable(world, layerType, entityPtr);
+        _updateText(world, layerType, entityPtr);
     }
 }
 

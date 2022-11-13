@@ -22,8 +22,10 @@ void SendToServer::runSystem(ecs::World &world)
 
     auto update = [this, &world, &serverIdList](std::shared_ptr<ecs::Entity> entityPtr) {
         auto guard = std::lock_guard(*entityPtr.get());
-        unsigned short networkId = entityPtr->getComponent<ecs::Networkable>().id;
-        sendToServer<ecs::Velocity, ecs::Position>(world, networkId, entityPtr, serverIdList);
+        if (entityPtr->contains<ecs::Networkable>()) {
+            unsigned short networkId = entityPtr->getComponent<ecs::Networkable>().id;
+            sendToServer<ecs::Velocity, ecs::Position>(world, networkId, entityPtr, serverIdList);
+        }
         return;
     };
 

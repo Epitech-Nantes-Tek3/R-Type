@@ -21,3 +21,5 @@ target_link_libraries(${TARGET_ROOM}
     ${PROJECT_NAME}_communicator
     ${PROJECT_NAME}_argumentHandler
 )
+
+install(TARGETS ${TARGET} DESTINATION bin)

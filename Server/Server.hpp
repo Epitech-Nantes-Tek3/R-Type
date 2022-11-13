@@ -40,8 +40,9 @@ namespace server_data
 
         /// @brief Create and add a new Room inside the room list
         /// @param name of the room
+        /// @param configs room configuration
         /// @return Id of the newly created room
-        unsigned short createANewRoom(std::string name);
+        unsigned short createANewRoom(std::string name, short *configs);
 
         /// @brief Start the hub global loop
         void startHubLoop();
@@ -90,6 +91,10 @@ namespace server_data
         /// @param joinDemand actual message data
         void _holdAJoinRoomRequest(CommunicatorMessage joinDemand);
 
+        /// @brief Handle a matchmaked room request. Select a room and send a protocol 20
+        /// @param joinDemand actual message data
+        void _holdAMatchmakedRequest(CommunicatorMessage joinDemand);
+
         /// @brief Handle a create room request. Check if the room already exist, otherwise launch it and send a
         /// protocol 20
         /// @param createDemand actual message data
@@ -102,6 +107,10 @@ namespace server_data
         /// @brief Trait a set value request. Change inside the database the value.
         /// @param databaseRequest actual request data
         void _holdADatabaseSetRequest(CommunicatorMessage databaseRequest);
+
+        /// @brief Trait a scoreboard request.
+        /// @param databaseRequest actual request data
+        void _holdAScoreboardRequest(CommunicatorMessage databaseRequest);
 
         /// @brief Send to all clients the disconnection signal
         void _disconnectionProcess();

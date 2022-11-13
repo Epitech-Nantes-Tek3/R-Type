@@ -8,11 +8,15 @@
 /// @file Server/Server.cpp
 
 #include "Server.hpp"
+#include <csignal>
+#include <random>
 #include "Error/Error.hpp"
 
 using namespace server_data;
 using namespace error_lib;
 using namespace communicator_lib;
+
+void signalCallbackHandler(int signum) { (void)signum; }
 
 Server::Server(std::string address, unsigned short port)
 {
@@ -52,10 +56,10 @@ unsigned short Server::_getAFreePort(unsigned short actual)
     }
 }
 
-unsigned short Server::createANewRoom(std::string name)
+unsigned short Server::createANewRoom(std::string name, short *configs)
 {
     std::shared_ptr<RoomInstance> ptr = std::make_shared<RoomInstance>(this, _nextRoomId, name,
-        _networkInformations.getAddress(), _getAFreePort(_networkInformations.getPort() + 101));
+        _networkInformations.getAddress(), _getAFreePort(_networkInformations.getPort() + 101), configs);
     _activeRoomList.push_back(ptr);
     _nextRoomId++;
     return (_nextRoomId - 1);
@@ -71,6 +75,7 @@ void Server::startHubLoop()
 {
     CommunicatorMessage connectionOperation;
 
+    std::signal(SIGSEGV, signalCallbackHandler);
     _startConnexionProtocol();
     while (_state != HubState::UNDEFINED && _state != HubState::ENDED) {
         try {
@@ -83,10 +88,14 @@ void Server::startHubLoop()
                 _holdAJoinRoomRequest(connectionOperation);
             if (connectionOperation.message.type == 17)
                 _holdACreateRoomRequest(connectionOperation);
+            if (connectionOperation.message.type == 18)
+                _holdAMatchmakedRequest(connectionOperation);
             if (connectionOperation.message.type == 40)
                 _holdADatabaseValueRequest(connectionOperation);
             if (connectionOperation.message.type == 42)
                 _holdADatabaseSetRequest(connectionOperation);
+            if (connectionOperation.message.type == 44)
+                _holdAScoreboardRequest(connectionOperation);
         } catch (NetworkError &error) {
         }
     }
@@ -104,6 +113,22 @@ void Server::_holdADatabaseValueRequest(CommunicatorMessage databaseRequest)
     }
     _communicatorInstance->utilitarySendDatabaseValue(
         apiAnswer.at(0)[requestContent.at(1)], databaseRequest.message.clientInfo);
+}
+
+void Server::_holdAScoreboardRequest(CommunicatorMessage databaseRequest)
+{
+    std::string key = _communicatorInstance->utilitaryReceiveScoreboardAsking(databaseRequest);
+    std::map<std::string, int> scoreboard;
+    std::size_t count = 0;
+    std::vector<database::Row> apiAnswer = _databaseApi.selectUsers("Banned = 0 ORDER BY " + key + " DESC");
+
+    for (auto it : apiAnswer) {
+        if (count > 4)
+            break;
+        scoreboard[it["UserName"]] = std::atoi(it[key].c_str());
+        count++;
+    }
+    _communicatorInstance->utilitarySendALeaderboard(scoreboard, {databaseRequest.message.clientInfo.getId()});
 }
 
 void Server::_holdADatabaseSetRequest(CommunicatorMessage databaseRequest)
@@ -151,6 +176,17 @@ void Server::_holdAJoinRoomRequest(CommunicatorMessage joinDemand)
     _communicatorInstance.get()->sendDataToAClient(joinDemand.message.clientInfo, nullptr, 0, 11);
 }
 
+void Server::_holdAMatchmakedRequest(CommunicatorMessage joinDemand)
+{
+    std::random_device dev;
+    std::mt19937 rng(dev());
+    std::uniform_int_distribution<std::mt19937::result_type> dist6(0, _activeRoomList.size() - 1);
+    int choosenRoom = dist6(rng);
+
+    _communicatorInstance.get()->kickAClient(
+        joinDemand.message.clientInfo, _activeRoomList.at(choosenRoom)->getNetworkInfos());
+}
+
 void Server::_holdACreateRoomRequest(CommunicatorMessage createDemand)
 {
     RoomConfiguration room = _communicatorInstance->utilitaryReceiveRoomConfiguration(createDemand);
@@ -162,7 +198,7 @@ void Server::_holdACreateRoomRequest(CommunicatorMessage createDemand)
         }
     }
 
-    unsigned short roomId = createANewRoom(room.roomName);
+    unsigned short roomId = createANewRoom(room.roomName, room.configs);
     for (auto &it : _activeRoomList) {
         if (it->getId() == roomId) {
             _communicatorInstance->kickAClient(createDemand.message.clientInfo, it->getNetworkInfos());
@@ -202,7 +238,7 @@ void Server::_holdANewConnectionRequest(CommunicatorMessage connectionDemand)
         }
     }
     void *networkData =
-        std::malloc(sizeof(unsigned short) + _activeRoomList.size() * (sizeof(unsigned short) + sizeof(char) * 10));
+        std::malloc(sizeof(unsigned short) + _activeRoomList.size() * (sizeof(unsigned short) * 2 + sizeof(char) * 10));
     offset = 0;
     unsigned short roomListSize = _activeRoomList.size();
 

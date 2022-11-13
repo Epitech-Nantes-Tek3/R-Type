@@ -11,6 +11,7 @@
 #include "R-TypeLogic/Global/Components/AlliedProjectileComponent.hpp"
 #include "R-TypeLogic/Global/Components/CollidableComponent.hpp"
 #include "R-TypeLogic/Global/Components/DamageComponent.hpp"
+#include "R-TypeLogic/Global/Components/DeathComponent.hpp"
 #include "R-TypeLogic/Global/Components/EnemyComponent.hpp"
 #include "R-TypeLogic/Global/Components/EnemyProjectileComponent.hpp"
 #include "R-TypeLogic/Global/Components/ObstacleComponent.hpp"
@@ -92,11 +93,15 @@ void Collide::collide(World &world, std::vector<std::shared_ptr<ecs::Entity>> &f
         Position &fstPos = fstEntity->getComponent<Position>();
         Size &fstSize = fstEntity->getComponent<Size>();
 
+        if (fstEntity->contains<Death>())
+            continue;
         for (std::shared_ptr<ecs::Entity> sndEntity : sndEntities) {
             auto sndGuard = std::lock_guard(*sndEntity.get());
             Position &sndPos = sndEntity->getComponent<Position>();
             Size &sndSize = sndEntity->getComponent<Size>();
 
+            if (sndEntity->contains<Death>())
+                continue;
             if (isSameHeight(fstPos, sndPos, fstSize, sndSize) && isSameWidth(fstPos, sndPos, fstSize, sndSize)) {
                 Damage &fstDamage = fstEntity->getComponent<Damage>();
                 Damage &sndDamage = sndEntity->getComponent<Damage>();

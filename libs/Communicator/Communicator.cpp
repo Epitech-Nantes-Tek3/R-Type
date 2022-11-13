@@ -108,14 +108,14 @@ void Communicator::kickAClient(Client client, Client newEndpoint)
 
 void Communicator::sendProtocol20(Client client, Client newEndpoint)
 {
-    void *dataContent = std::malloc(sizeof(void *) * (sizeof(unsigned short) + newEndpoint.getAddress().size()));
+    void *dataContent = std::malloc(sizeof(unsigned short) + newEndpoint.getAddress().size() * sizeof(char));
     unsigned short endpointPort = newEndpoint.getPort();
 
     if (dataContent == nullptr)
         throw error_lib::MallocError("Malloc failed.");
     std::memcpy(dataContent, &endpointPort, sizeof(unsigned short));
-    std::memcpy((void *)((char *)dataContent + sizeof(unsigned short)), newEndpoint.getAddress().data(),
-        newEndpoint.getAddress().size());
+    std::memcpy((void *)((char *)dataContent + sizeof(unsigned short)), newEndpoint.getAddress().c_str(),
+        newEndpoint.getAddress().size() * sizeof(char));
     _senderModule.sendDataToAClient(
         client, dataContent, sizeof(unsigned short) + newEndpoint.getAddress().size() * sizeof(char), 20);
 }
@@ -261,7 +261,7 @@ void Communicator::utilitaryAskForADatabaseValue(
 {
     Client temporaryClient;
     unsigned short pseudoSize = pseudo.size();
-    void *networkObject = std::malloc(sizeof(char) * (pseudoSize + key.size()));
+    void *networkObject = std::malloc(sizeof(char) * (pseudoSize + key.size()) + sizeof(unsigned short));
     unsigned short offset = 0;
 
     if (networkObject == nullptr)
@@ -302,6 +302,83 @@ std::vector<std::string> Communicator::utilitaryReceiveAskingForDatabaseValue(Co
     return {pseudoStr, keyContentStr};
 }
 
+void Communicator::utilitaryAskForALeaderboard(std::string key, std::vector<unsigned short> destination)
+{
+    Client temporaryClient;
+    void *networkObject = std::malloc(sizeof(char) * key.size());
+
+    if (networkObject == nullptr)
+        throw MallocError("Malloc failed.");
+    std::memcpy(networkObject, key.c_str(), sizeof(char) * key.size());
+    for (auto it : destination) {
+        temporaryClient = getClientByHisId(it);
+        sendDataToAClient(temporaryClient, networkObject, sizeof(char) * key.size(), 44);
+    }
+}
+
+std::string Communicator::utilitaryReceiveScoreboardAsking(CommunicatorMessage cryptedMessage)
+{
+    char *key = (char *)cryptedMessage.message.data;
+    std::string keyStr;
+
+    keyStr.append(key, cryptedMessage.message.size);
+    return keyStr;
+}
+
+void Communicator::utilitarySendALeaderboard(
+    std::map<std::string, int> scoreboardContent, std::vector<unsigned short> destination)
+{
+    Client temporaryClient;
+    unsigned short offset = 0;
+    unsigned short scoreboardSize = scoreboardContent.size();
+    void *networkObject = std::malloc(
+        (sizeof(char) * 10 + sizeof(unsigned short) + sizeof(int)) * scoreboardSize + sizeof(unsigned short));
+
+    if (networkObject == nullptr)
+        throw MallocError("Malloc failed.");
+    std::memcpy(networkObject, &scoreboardSize, sizeof(unsigned short));
+    offset += sizeof(unsigned short);
+    for (auto it : scoreboardContent) {
+        unsigned short tempSize = it.first.size();
+        int value = it.second;
+        std::memcpy((void *)((char *)networkObject + offset), &tempSize, sizeof(unsigned short));
+        offset += sizeof(unsigned short);
+        std::memcpy((void *)((char *)networkObject + offset), it.first.c_str(), sizeof(char) * tempSize);
+        offset += sizeof(char) * tempSize;
+        std::memcpy((void *)((char *)networkObject + offset), &value, sizeof(int));
+        offset += sizeof(int);
+    }
+    for (auto it : destination) {
+        temporaryClient = getClientByHisId(it);
+        sendDataToAClient(temporaryClient, networkObject, offset, 45);
+    }
+}
+
+std::map<std::string, int> Communicator::utilitaryReceiveScoreboard(CommunicatorMessage cryptedMessage)
+{
+    unsigned short scoreboardSize = 0;
+    unsigned short offset = 0;
+    std::map<std::string, int> scoreboard;
+
+    std::memcpy(&scoreboardSize, cryptedMessage.message.data, sizeof(unsigned short));
+    offset += sizeof(unsigned short);
+    for (int i = 0; i < scoreboardSize; i++) {
+        unsigned short pseudoSize = 0;
+        std::string pseudoStr;
+        int value = 0;
+
+        std::memcpy(&pseudoSize, (void *)((char *)cryptedMessage.message.data + offset), sizeof(unsigned short));
+        offset += sizeof(unsigned short);
+        char *pseudo = (char *)cryptedMessage.message.data + offset;
+        pseudoStr.append(pseudo, pseudoSize);
+        offset += sizeof(char) * pseudoSize;
+        std::memcpy(&value, (void *)((char *)cryptedMessage.message.data + offset), sizeof(int));
+        offset += sizeof(int);
+        scoreboard[pseudoStr] = value;
+    }
+    return scoreboard;
+}
+
 void Communicator::utilitarySendDatabaseValue(std::string value, Client &destination)
 {
     void *networkObject = std::malloc(sizeof(char) * (value.size()));
@@ -319,7 +396,7 @@ void Communicator::utilitarySetADatabaseValue(
     Client temporaryClient;
     unsigned short pseudoSize = pseudo.size();
     unsigned short offset = 0;
-    void *networkObject = std::malloc(sizeof(char) * (pseudoSize + value.size()) + sizeof(unsigned short));
+    void *networkObject = std::malloc(sizeof(char) * (pseudoSize + value.size()) + sizeof(unsigned short) * 2);
 
     if (networkObject == nullptr)
         throw MallocError("Malloc failed.");
@@ -377,4 +454,3 @@ std::string Communicator::utilitaryReceiveDatabaseValue(CommunicatorMessage cryp
     valueContent = (char *)cryptedMessage.message.data;
     return std::string(valueContent);
 }
-

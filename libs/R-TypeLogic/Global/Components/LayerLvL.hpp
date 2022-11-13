@@ -23,13 +23,14 @@ namespace ecs
             MIDDLE,
             DECORATION,
             OBSTACLE,
+            ENEMY,
+            PLAYER,
+            PROJECTILE,
             BUTTON,
             WRITABLE,
             WRITABLE_BUTTON,
             CHAT_MESSAGE,
-            ENEMY,
-            PLAYER,
-            PROJECTILE,
+            TEXT,
             LAYER_NUMBER
         };
 

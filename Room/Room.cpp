@@ -74,7 +74,7 @@ Room::Room() : _inputHandler(&Room::_manageInterprocessCommunication, this)
     _name = std::string(10, '\0');
 }
 
-Room::Room(unsigned short id, std::string name, Client networkInformations)
+Room::Room(unsigned short id, std::string name, Client networkInformations, short *configs)
     : _inputHandler(&Room::_manageInterprocessCommunication, this)
 {
     _id = id;
@@ -85,7 +85,10 @@ Room::Room(unsigned short id, std::string name, Client networkInformations)
     _communicatorInstance.get()->setTransisthorBridge(_transisthorInstance);
     _worldInstance.get()->setTransisthorBridge(_communicatorInstance.get()->getTransisthorBridge());
     _state = RoomState::UNDEFINED;
-    _remainingPlaces = 4;
+    _remainingPlaces = configs[0];
+    for (int i = 0; i < 6; i++) {
+        _configs[i] = configs[i];
+    }
     _name = name;
 }
 
@@ -136,7 +139,11 @@ void Room::startLobbyLoop(void)
         }
         if (_state == RoomState::IN_GAME) {
             _worldInstance.get()->runSystems();
-        } /// WILL BE IMPROVED IN PART TWO (THREAD + CLOCK)
+            std::vector<std::shared_ptr<ecs::Entity>> enemy = _worldInstance->joinEntities<ecs::Enemy>();
+            for (auto &it : enemy) {
+                it->getComponent<Velocity>().modifier = _configs[roomConfiguration_e::ENNEMI_VELOCITY];
+            }
+        }
         _activePlayerGestion();
     }
     _disconectionProcess();
@@ -261,6 +268,8 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
     std::string playerNameStr = _getPlayerName(connexionDemand);
     std::size_t playerId = createNewPlayer(*_worldInstance.get(), 20, 500, 0, 0, 1, 102, 102, 100, 10, 4, false,
         _remainingPlaces + 1, playerNameStr, "", generator.generateNewNetworkableId());
+    _worldInstance->getEntity(playerId).getComponent<Velocity>().modifier =
+        _configs[roomConfiguration_e::PLAYER_VELOCITY];
     std::vector<std::shared_ptr<ecs::Entity>> clients = _worldInstance.get()->joinEntities<ecs::NetworkClient>();
     std::vector<unsigned short> clientIdList;
     auto addToClientList = [&clientIdList](std::shared_ptr<ecs::Entity> entityPtr) {
@@ -284,6 +293,7 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
         Velocity &vel = entityPtr->getComponent<Velocity>();
         Size &size = entityPtr->getComponent<Size>();
 
+        vel.modified = true;
         if (playerId != entityPtr->getId()) {
             std::free(_worldInstance.get()->getTransisthorBridge()->transitEcsDataToNetworkDataEntityPlayer(
                 entityPtr->getComponent<Networkable>().id, pos.x, pos.y, vel.multiplierAbscissa, vel.multiplierOrdinate,
@@ -313,6 +323,7 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
         Velocity &vel = entityPtr->getComponent<Velocity>();
         Size &size = entityPtr->getComponent<Size>();
 
+        vel.modified = true;
         std::free(_worldInstance.get()->getTransisthorBridge()->transitEcsDataToNetworkDataEntityEnemy(
             entityPtr->getComponent<Networkable>().id, pos.x, pos.y, vel.multiplierAbscissa, vel.multiplierOrdinate,
             entityPtr->getComponent<Weight>().weight, size.x, size.y, entityPtr->getComponent<Life>().lifePoint,
@@ -358,6 +369,7 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
         clock.resetClock();
         clock.resetClock();
     }
+    _worldInstance->getEntity(playerId).getComponent<Velocity>().modified = true;
 }
 
 void Room::_manageInterprocessCommunication()
