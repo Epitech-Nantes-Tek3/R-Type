@@ -19,4 +19,4 @@ target_link_libraries(${TARGET}
     ${PROJECT_NAME}_RTypeLogicCreateEntitiesFunctions
 )
 
-install(TARGETS ${TARGET} DESTINATION lib)
+install(TARGETS ${TARGET} DESTINATION bin)
