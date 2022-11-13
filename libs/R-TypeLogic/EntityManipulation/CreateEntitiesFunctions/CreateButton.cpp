@@ -7,7 +7,6 @@
 
 #include "CreateButton.hpp"
 #include <mutex>
-#include "GraphicECS/SFML/Components/SoundComponent.hpp"
 #include "R-TypeLogic/Global/Components/PositionComponent.hpp"
 #include "R-TypeLogic/Global/Components/SizeComponent.hpp"
 #include "R-TypeLogic/Global/Components/TextComponent.hpp"
@@ -26,9 +25,7 @@ namespace ecs
             .addComponent<LayerLvL>(layerLvl)
             .addComponent<ActionName>(actionName)
             .addComponent<DisplayState>(state)
-            .addComponent<TextComponent>(text)
-            .addComponent<graphicECS::SFML::Components::SoundComponent>(
-                graphicECS::SFML::Resources::SoundResource::BUTTON);
+            .addComponent<TextComponent>(text);
         return entity.getId();
     }
 } // namespace ecs
