@@ -7,7 +7,8 @@ var classargument__handler_1_1_argument_handler =
       [ "UNDEFINED", "classargument__handler_1_1_argument_handler.html#ade7b92c1c2885408ad21f61d3d8faa05a638271303e33d8e2a9118bdb3740c653", null ],
       [ "SERVER_EXECUTABLE", "classargument__handler_1_1_argument_handler.html#ade7b92c1c2885408ad21f61d3d8faa05a815f04046e358caf924b54930a07d4ea", null ],
       [ "CLIENT_EXECUTABLE", "classargument__handler_1_1_argument_handler.html#ade7b92c1c2885408ad21f61d3d8faa05a7ed04c353f6be8ce211022b92d42d8b1", null ],
-      [ "ROOM_EXECUTABLE", "classargument__handler_1_1_argument_handler.html#ade7b92c1c2885408ad21f61d3d8faa05aca4b50f6212542beb5451a17b54855e8", null ]
+      [ "ROOM_EXECUTABLE", "classargument__handler_1_1_argument_handler.html#ade7b92c1c2885408ad21f61d3d8faa05aca4b50f6212542beb5451a17b54855e8", null ],
+      [ "ADMIN_PANEL_EXECUTABLE", "classargument__handler_1_1_argument_handler.html#ade7b92c1c2885408ad21f61d3d8faa05aa1de75199f3b39793b79c191ebcc9cc2", null ]
     ] ],
     [ "ArgumentHandler", "classargument__handler_1_1_argument_handler.html#a557d671c8941fc6c612b7848e9612629", null ],
     [ "ArgumentHandler", "classargument__handler_1_1_argument_handler.html#ac2273c25a5d835cd891e47254ea512b8", null ],

@@ -217,6 +217,7 @@ var NAVTREEINDEX1 =
 "classargument__handler_1_1_argument_handler.html#ade7b92c1c2885408ad21f61d3d8faa05a638271303e33d8e2a9118bdb3740c653":[3,0,0,0,3,0],
 "classargument__handler_1_1_argument_handler.html#ade7b92c1c2885408ad21f61d3d8faa05a7ed04c353f6be8ce211022b92d42d8b1":[3,0,0,0,3,2],
 "classargument__handler_1_1_argument_handler.html#ade7b92c1c2885408ad21f61d3d8faa05a815f04046e358caf924b54930a07d4ea":[3,0,0,0,3,1],
+"classargument__handler_1_1_argument_handler.html#ade7b92c1c2885408ad21f61d3d8faa05aa1de75199f3b39793b79c191ebcc9cc2":[3,0,0,0,3,4],
 "classargument__handler_1_1_argument_handler.html#ade7b92c1c2885408ad21f61d3d8faa05aca4b50f6212542beb5451a17b54855e8":[3,0,0,0,3,3],
 "classargument__handler_1_1_argument_handler.html#af5ffd4e71843e1e36a27bc64b2fb0321":[3,0,0,0,11],
 "classclient__data_1_1_client_room.html":[3,0,1,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX1 =
 "classcommunicator__lib_1_1_communicator.html#a179a2200be882666b909db1de7dbee3b":[3,0,2,3,29],
 "classcommunicator__lib_1_1_communicator.html#a1ddf526a986ef4464e3da4ad3ee9fc9c":[3,0,2,3,1],
 "classcommunicator__lib_1_1_communicator.html#a2cda97706373756706a0b30b9f18010d":[3,0,2,3,20],
-"classcommunicator__lib_1_1_communicator.html#a2daf44424610f6e027263efe7ab552e1":[3,0,2,3,25],
-"classcommunicator__lib_1_1_communicator.html#a43ee14303a99eff5a28cc17881e4e259":[3,0,2,3,3]
+"classcommunicator__lib_1_1_communicator.html#a2daf44424610f6e027263efe7ab552e1":[3,0,2,3,25]
 };
