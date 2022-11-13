@@ -180,6 +180,17 @@ namespace ecs
             return *this;
         }
 
+        /// @brief Remove a System of the world
+        /// @tparam S The choosen System to remove
+        /// @throw std::logic_error Throw an error if the System does not exist
+        template <std::derived_from<System> S> void removeSystem()
+        {
+            SystemsList::iterator it = _systemsList.find(typeid(S));
+            if (it == _systemsList.end())
+                throw std::logic_error("attempted to remove a non-existent System");
+            _systemsList.erase(it);
+        }
+
         /// @brief Set the bridge destination to a new transisthor
         /// @param transisthorBridge New bridge destination
         inline void setTransisthorBridge(std::shared_ptr<Transisthor> transisthorBridge)

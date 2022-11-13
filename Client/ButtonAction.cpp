@@ -7,17 +7,23 @@
 
 #include "ButtonAction.hpp"
 #include <csignal>
+#include "Error/Error.hpp"
 #include "GraphicECS/SFML/Components/AssociatedIdComponent.hpp"
 #include "GraphicECS/SFML/Components/GraphicsTextComponent.hpp"
+#include "GraphicECS/SFML/Components/ParallaxComponent.hpp"
 #include "GraphicECS/SFML/Components/SelectedComponent.hpp"
 #include "GraphicECS/SFML/Components/WritableButtonActionComponent.hpp"
 #include "GraphicECS/SFML/Components/WritableContentComponent.hpp"
+#include "GraphicECS/SFML/Resources/MusicResource.hpp"
 #include "GraphicECS/SFML/Resources/RenderWindowResource.hpp"
+#include "GraphicECS/SFML/Resources/SoundResource.hpp"
 #include "TextureName.hpp"
 #include "Transisthor/TransisthorECSLogic/Client/Components/NetworkServer.hpp"
 #include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/GameStates.hpp"
-#include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/MenuStates.hpp"
+#include "R-TypeLogic/Global/Components/AlliedProjectileComponent.hpp"
 #include "R-TypeLogic/Global/Components/ControlableComponent.hpp"
+#include "R-TypeLogic/Global/Components/EnemyComponent.hpp"
+#include "R-TypeLogic/Global/Components/EnemyProjectileComponent.hpp"
 #include "R-TypeLogic/Global/Components/PlayerComponent.hpp"
 #include "R-TypeLogic/Global/Components/TextComponent.hpp"
 
@@ -36,11 +42,14 @@ void exitWindow(World &world, Entity &entityPtr)
 #endif
 }
 
+static MenuStates::menuState_e oldMenuState = MenuStates::UNDEFINED;
+
 void pauseGame(World &world, Entity &entityPtr)
 {
     auto &state = world.getResource<MenuStates>();
     auto guard = std::lock_guard(state);
-    state.currentState = MenuStates::GAME_PAUSED;
+    oldMenuState = state.currentState;
+    state.currentState = MenuStates::PAUSED;
     auto &gameState = world.getResource<GameStates>();
     auto gameGuard = std::lock_guard(gameState);
     gameState.currentState = GameStates::IN_PAUSED;
@@ -51,7 +60,7 @@ void resumeGame(World &world, Entity &entityPtr)
 {
     auto &state = world.getResource<MenuStates>();
     auto guard = std::lock_guard(state);
-    state.currentState = MenuStates::IN_GAME;
+    state.currentState = oldMenuState;
     auto &gameState = world.getResource<GameStates>();
     auto gameGuard = std::lock_guard(gameState);
     gameState.currentState = GameStates::IN_GAME;
@@ -98,14 +107,16 @@ void writableButtonAction(World &world, Entity &entityPtr)
     auto &idList = entityPtr.getComponent<AssociatedId>().idList;
     if (idList.empty())
         return;
-    auto &entity = world.getEntity(idList.at(0));
-    std::string writableContent = entity.getComponent<WritableContent>().content;
+    std::string writableContent;
+    for (auto id : idList) {
+        auto &entity = world.getEntity(id);
+        writableContent.append(entity.getComponent<WritableContent>().content);
+        writableContent.append("\n");
+        entity.getComponent<WritableContent>().content = "";
+        entity.getComponent<GraphicsTextComponent>().text.setString("");
+    }
     if (!writableContent.size())
         return;
-    auto guard = std::lock_guard(entity);
-    auto &writableContentComponent = entity.getComponent<WritableContent>();
-    writableContentComponent.content = "";
-    entity.getComponent<GraphicsTextComponent>().text.setString("");
     entityPtr.getComponent<WritableButtonAction>().actionToExecute(world, entityPtr, writableContent);
 }
 
@@ -124,17 +135,47 @@ void publishNewChatMessage(World &world, Entity &entityPtr, std::string &message
 
 void createARoom(World &world, Entity &entityPtr, std::string &message)
 {
+    std::vector<std::string> vmessage;
+
     (void)entityPtr;
-    if (!world.containsResource<MenuStates>() || message.size() < 4 || message.size() > 10)
+    try {
+        world.getTransisthorBridge()->getCommunicatorInstance().getServerEndpointId();
+    } catch (error_lib::NetworkError &error) {
+        world.getResource<MenuStates>().currentState = MenuStates::MAIN_MENU;
+        std::cerr << "No server currently running" << std::endl;
         return;
-    short configs[6] = {120, 121, 122, 123, 124, 125};
+    }
+    while (message.size()) {
+        vmessage.push_back(message.substr(0, message.find("\n")));
+        message = message.substr(message.find("\n") + 1);
+    }
+    if (!world.containsResource<MenuStates>() || vmessage[0].size() < 4 || vmessage[0].size() > 10)
+        return;
+    short configs[6] = {4, 1, 1, 1, 1, 1};
+    configs[PLAYER_NUMBER] = std::atoi(vmessage[1].c_str());
+    if (configs[PLAYER_NUMBER] <= 0)
+        configs[PLAYER_NUMBER] = 4;
+    configs[PLAYER_VELOCITY] = std::atoi(vmessage[2].c_str());
+    configs[ENNEMI_VELOCITY] = std::atoi(vmessage[3].c_str());
     world.getTransisthorBridge()->getCommunicatorInstance().utilitarySendRoomConfiguration(
-        message, configs, world.getTransisthorBridge()->getCommunicatorInstance().getClientByHisId(0));
+        vmessage[0], configs, world.getTransisthorBridge()->getCommunicatorInstance().getClientByHisId(0));
     std::vector<std::shared_ptr<Entity>> joined = world.joinEntities<Selected>();
     for (auto &it : joined) {
         it->removeComponent<Selected>();
     }
-    world.getResource<MenuStates>().currentState = MenuStates::IN_GAME;
+    world.getResource<MenuStates>().currentState = MenuStates::MULTI_GAME;
+}
+
+void connectMatchmaked(World &world, Entity &entityPtr)
+{
+    (void)entityPtr;
+    if (!world.containsResource<MenuStates>())
+        return;
+
+    communicator_lib::Client _serverEndPoint =
+        world.getTransisthorBridge()->getCommunicatorInstance().getClientByHisId(0);
+    world.getTransisthorBridge()->getCommunicatorInstance().sendDataToAClient(_serverEndPoint, nullptr, 0, 18);
+    world.getResource<MenuStates>().currentState = MenuStates::MULTI_GAME;
 }
 
 void connectToARoom(World &world, Entity &entityPtr)
@@ -156,23 +197,76 @@ void connectToARoom(World &world, Entity &entityPtr)
         world.getTransisthorBridge()->getCommunicatorInstance().getClientByHisId(0);
     world.getTransisthorBridge()->getCommunicatorInstance().sendDataToAClient(
         _serverEndPoint, networkData, sizeof(unsigned short), 16);
-    world.getResource<MenuStates>().currentState = MenuStates::IN_GAME;
+    world.getResource<MenuStates>().currentState = MenuStates::MULTI_GAME;
 }
 
 void launchSoloGame(World &world, Entity &entityPtr)
 {
     (void)entityPtr;
-    world.getResource<MenuStates>().currentState = MenuStates::LOBBY;
+    world.getResource<MenuStates>().currentState = MenuStates::SOLO_GAME;
+    oldMenuState = MenuStates::SOLO_GAME;
 }
 
 void goToLobby(World &world, Entity &entityPtr)
 {
     (void)entityPtr;
     world.getResource<MenuStates>().currentState = MenuStates::LOBBY;
+    oldMenuState = MenuStates::LOBBY;
 }
 
 void goToMainMenu(World &world, Entity &entityPtr)
 {
     (void)entityPtr;
+    if (world.getResource<MenuStates>().currentState == MenuStates::PAUSED && oldMenuState != MenuStates::SOLO_GAME) {
+        communicator_lib::Client _serverEndPoint =
+            world.getTransisthorBridge()->getCommunicatorInstance().getClientByHisId(0);
+        world.getTransisthorBridge()->getCommunicatorInstance().sendDataToAClient(_serverEndPoint, nullptr, 0, 13);
+    }
+    std::vector<std::shared_ptr<Entity>> entity = world.joinEntities<Enemy>();
+    for (auto &it : entity) {
+        world.removeEntity(it->getId());
+    }
+    entity = world.joinEntities<EnemyProjectile>();
+    for (auto &it : entity) {
+        world.removeEntity(it->getId());
+    }
+    entity = world.joinEntities<ParallaxBackground>();
+    for (auto &it : entity) {
+        world.removeEntity(it->getId());
+    }
+    entity = world.joinEntities<Player>();
+    for (auto &it : entity) {
+        world.removeEntity(it->getId());
+    }
+    entity = world.joinEntities<AlliedProjectile>();
+    for (auto &it : entity) {
+        world.removeEntity(it->getId());
+    }
+    entity = world.joinEntities<GraphicsTextComponent>();
+    for (auto &it : entity) {
+        world.removeEntity(it->getId());
+    }
     world.getResource<MenuStates>().currentState = MenuStates::MAIN_MENU;
+}
+
+MenuStates::menuState_e getPreviousMenu() { return (oldMenuState); }
+
+void switchMusic(World &world, Entity &entityPtr)
+{
+    (void)entityPtr;
+    bool &play = world.getResource<MusicResource>().playMusic;
+    play = (play) ? false : true;
+}
+
+void switchSound(World &world, Entity &entityPtr)
+{
+    (void)entityPtr;
+    bool &play = world.getResource<SoundResource>().playSound;
+    play = (play) ? false : true;
+}
+
+void goOption(World &world, Entity &entityPtr)
+{
+    (void)entityPtr;
+    world.getResource<MenuStates>().currentState = MenuStates::OPTION;
 }

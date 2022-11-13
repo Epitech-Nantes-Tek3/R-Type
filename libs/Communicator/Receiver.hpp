@@ -41,7 +41,7 @@ namespace communicator_lib
         Receiver(Client networkData);
 
         /// @brief Destroy the Receiver object
-        ~Receiver();
+        ~Receiver() = default;
 
         /// @brief Get the message list vector
         /// @return The message list vector
@@ -134,6 +134,10 @@ namespace communicator_lib
         /// @param dataContent The transfered data (Client + Data)
         void dataTraitmentType17(Message dataContent);
 
+        /// @brief The function will process the data according to the protocol 18
+        /// @param dataContent The transfered data (Client + Data)
+        void dataTraitmentType18(Message dataContent);
+
         /// @brief The function will process the data according to the protocol 20
         /// @param dataContent The transfered data (Client + Data)
         void dataTraitmentType20(Message dataContent);
@@ -165,6 +169,14 @@ namespace communicator_lib
         /// @brief The function will process the data according to the protocol 43
         /// @param dataContent The transfered data (Client + Data)
         void dataTraitmentType43(Message dataContent);
+
+        /// @brief The function will process the data according to the protocol 44
+        /// @param dataContent The transfered data (Client + Data)
+        void dataTraitmentType44(Message dataContent);
+
+        /// @brief The function will process the data according to the protocol 45
+        /// @param dataContent The transfered data (Client + Data)
+        void dataTraitmentType45(Message dataContent);
 
         /// @brief The function will process the data according to the protocol 50
         /// @param dataContent The transfered data (Client + Data)

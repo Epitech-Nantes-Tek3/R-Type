@@ -17,6 +17,7 @@
 #include "Transisthor/Transisthor.hpp"
 #include "World/World.hpp"
 #include "maccro.h"
+#include "R-TypeLogic/EntityManipulation/ButtonManipulation/SharedResources/MenuStates.hpp"
 
 using namespace communicator_lib;
 using namespace ecs;
@@ -28,7 +29,7 @@ namespace client_data
     class ClientRoom {
       public:
         /// @brief All the possible state of a client
-        enum ClientState { UNDEFINED, MAIN_MENU, LOBBY, IN_GAME, ENDED };
+        enum ClientState { UNDEFINED, RUN, ENDED };
 
         /// @brief Construct a new ClientRoom with default value
         ClientRoom();
@@ -43,16 +44,35 @@ namespace client_data
         /// @brief Destroy the ClientRoom object
         ~ClientRoom() = default;
 
-        /// @brief Launch the lobby global loop for a multiplayer game
-        /// @param pseudo The pseudo of the user
-        /// @param password The password of the user
-        void startLobbyLoop(const std::string &pseudo, const std::string &password, bool isSolo);
-
-        /// @brief This function start the game for the player to choose
-        /// if the player is in Solo or Multiplayer mod
+        /// @brief It creates a UserConnection object, which is a class that handles the
+        /// connection with the server, and then it calls the startLoop function
+        /// @return The return value of the function.
         int startGame();
 
       private:
+        /// It creates three buttons, one for sound, one for music, and one to go back to
+        /// the main menu
+        void _initOptionButton();
+
+        /// @brief It creates three buttons, one for resuming the game, one for going back to the
+        /// main menu, and one for quitting the game
+        void _initPausedButton();
+
+        /// @brief It removes the systems that are used to send data to the server
+        void _removeMultiSystems();
+
+        /// @brief It removes all the systems that are not needed in a multiplayer game
+        void _removeSoloSystems();
+
+        /// @brief It creates a bunch of buttons and text fields
+        void _initLobbyButtons();
+
+        /// @brief It sends a request to the server to get the list of rooms
+        void askForRooms();
+
+        /// @brief Launch the lobby global loop for a multiplayer game
+        void _startLoop();
+
         /// @brief It sends the pseudo of the client to the server
         void _connectToARoom();
 
@@ -65,8 +85,7 @@ namespace client_data
         void _initInGameBackgrounds();
 
         /// @brief It loads the button actions into the button action map
-        /// @param isSolo true if it's a solo game, false otherwise
-        void _loadButtonActionMap(bool isSolo);
+        void _loadButtonActionMap();
 
         /// @brief It creates an entity with all the input components and sets the
         /// keyboard and mouse inputs to the entity
@@ -76,19 +95,16 @@ namespace client_data
         void _loadTextures();
 
         /// @brief It updates the ECS data
-        /// @param isSolo If true, the client will be the only player in the room.
-        void _updateEcsData(bool isSolo);
+        void _updateEcsData();
 
         /// @brief It checks if the ECS resources are loaded, and if not, it loads them
-        /// @param isSolo If true, the client will be the only player in the room.
-        void _updateEcsResources(bool isSolo);
+        void _updateEcsResources();
 
         /// @brief It initializes the entities that are needed for the current state of the game
         void _updateEcsEntities();
 
         /// @brief It adds all the systems needed for the game to work
-        /// @param isSolo if the game is in solo mode or not
-        void _updateEcsSystems(bool isSolo);
+        void _updateEcsSystems();
 
         /// @brief It's a big switch case that handles all the messages that the client can
         /// receive from the server
@@ -135,6 +151,9 @@ namespace client_data
 
         /// @brief Init all the Buttons and the linked actions
         void _initInGameButtons();
+
+        /// @brief Init all the Text
+        void _initInGameText();
 
         /// @brief Init all the Writable and the linked actions
         void _initInGameWritables();
@@ -188,6 +207,12 @@ namespace client_data
 
         /// @brief Instance of the ECS library
         std::shared_ptr<World> _worldInstance;
+
+        /// @brief It's a boolean that tells if the menu has been updated or not.
+        bool isMenuUpdated;
+
+        /// @brief It's a variable that holds the previous state of the menu.
+        MenuStates::menuState_e _oldMenuStates;
 
         /// @brief Start the connexion protocol and ask the server for a place inside the room
         void _startConnexionProtocol(void);

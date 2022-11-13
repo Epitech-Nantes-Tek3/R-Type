@@ -127,6 +127,53 @@ namespace graphicECS::SFML::Systems
         }
     }
 
+    void InputManagement::_controllerEvents(sf::Event &event, std::vector<std::shared_ptr<Entity>> &Inputs)
+    {
+        if (event.type == sf::Event::JoystickMoved) {
+            for (auto entityPtr : Inputs) {
+                if (entityPtr->getComponent<ControllerJoystickInputComponent>().controllerJoystickMapActions.contains(
+                        event.joystickMove.axis)
+                    && entityPtr->contains<AllowControllerComponent>()) {
+                    auto guard = std::lock_guard(*entityPtr.get());
+                    entityPtr->getComponent<ControllerJoystickInputComponent>()
+                        .controllerJoystickMapActions[event.joystickMove.axis]
+                        .second = event.joystickMove.position * 2;
+                    entityPtr->getComponent<ActionQueueComponent>().actions.push(
+                        entityPtr->getComponent<ControllerJoystickInputComponent>()
+                            .controllerJoystickMapActions[event.joystickMove.axis]);
+                }
+            }
+        }
+        if (event.type == sf::Event::JoystickButtonPressed) {
+            for (auto entityPtr : Inputs) {
+                if (entityPtr->getComponent<ControllerButtonInputComponent>().controllerButtonMapActions.contains(
+                        event.joystickMove.axis)
+                    && entityPtr->contains<AllowControllerComponent>()) {
+                    auto guard = std::lock_guard(*entityPtr.get());
+                    entityPtr->getComponent<ActionQueueComponent>().actions.push(
+                        entityPtr->getComponent<ControllerButtonInputComponent>()
+                            .controllerButtonMapActions[event.joystickButton.button]);
+                }
+            }
+        }
+        if (event.type == sf::Event::JoystickButtonReleased) {
+            for (auto entityPtr : Inputs) {
+                if (entityPtr->getComponent<ControllerButtonInputComponent>().controllerButtonMapActions.contains(
+                        event.joystickMove.axis)
+                    && entityPtr->contains<AllowControllerComponent>()) {
+                    auto guard = std::lock_guard(*entityPtr.get());
+                    entityPtr->getComponent<ActionQueueComponent>().actions.push(
+                        std::make_pair<ActionQueueComponent::inputAction_e, float>(
+                            ActionQueueComponent::inputAction_e(
+                                entityPtr->getComponent<ControllerButtonInputComponent>()
+                                    .controllerButtonMapActions[event.key.code]
+                                    .first),
+                            0));
+                }
+            }
+        }
+    }
+
     void InputManagement::run(World &world)
     {
         sf::Event event;
@@ -147,6 +194,7 @@ namespace graphicECS::SFML::Systems
             if (joined.empty()) {
                 _keyPressedEvents(event, Inputs);
                 _keyReleasedEvents(event, Inputs);
+                _controllerEvents(event, Inputs);
             } else {
                 _textEnteredEvents(event, joined);
             }
@@ -161,7 +209,7 @@ namespace graphicECS::SFML::Systems
                 MenuStates &menuState = world.getResource<MenuStates>();
                 MenuStates::menuState_e currState = menuState.currentState;
 
-                if (currState == MenuStates::IN_GAME) {
+                if (currState == MenuStates::SOLO_GAME || currState == MenuStates::MULTI_GAME) {
                     if (actions.front().first == ActionQueueComponent::MOVEY)
                         movePlayerY(world, actions.front().second);
                     if (actions.front().first == ActionQueueComponent::MOVEX)

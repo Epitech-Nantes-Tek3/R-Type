@@ -14,9 +14,9 @@
 #include <memory>
 #include "Communicator/Client.hpp"
 #include "Communicator/Communicator.hpp"
+#include "Database/Database.hpp"
 #include "Transisthor/Transisthor.hpp"
 #include "World/World.hpp"
-#include "Database/Database.hpp"
 
 using namespace communicator_lib;
 using namespace ecs;
@@ -38,7 +38,8 @@ namespace server_data
         /// @param id Id of the room
         /// @param name of the room
         /// @param networkInformation Network informations of the room
-        Room(unsigned short id, std::string name, Client networkInformations);
+        /// @param configs Room configurations
+        Room(unsigned short id, std::string name, Client networkInformations, short *configs);
 
         /// @brief Destroy the Room object
         inline ~Room() { _inputHandler.join(); };
@@ -61,6 +62,9 @@ namespace server_data
       private:
         /// @brief Id of the room. (Used by the server)
         unsigned short _id;
+
+        /// @brief It's the configuration of the room.
+        short _configs[6];
 
         /// @brief Name of the room.
         std::string _name;

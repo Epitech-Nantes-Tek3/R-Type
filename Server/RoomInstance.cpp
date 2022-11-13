@@ -11,7 +11,7 @@
 namespace server_data
 {
     RoomInstance::RoomInstance(
-        Server *server, unsigned short id, std::string name, std::string address, unsigned short port)
+        Server *server, unsigned short id, std::string name, std::string address, unsigned short port, short *configs)
     {
         _id = id;
         if (name == "")
@@ -33,6 +33,8 @@ namespace server_data
 
             _child = new boost::process::child(executableName, std::to_string(_id), _name,
                 _networkInformations.getAddress(), std::to_string(_networkInformations.getPort()),
+                std::to_string(configs[0]), std::to_string(configs[1]), std::to_string(configs[2]),
+                std::to_string(configs[3]), std::to_string(configs[4]), std::to_string(configs[5]),
                 boost::process::std_in<(*_input), boost::process::std_out>(*_output));
         } catch (const std::system_error &error) {
             std::cerr << "ERROR while launching a new room: " << std::to_string(error.code().value()) << " : "
