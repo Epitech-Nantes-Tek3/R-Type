@@ -609,12 +609,13 @@ void ClientRoom::_updateEcsEntities()
                 _initLobbyButtons();
                 break;
             case MenuStates::SOLO_GAME:
-                if (_oldMenuStates != MenuStates::PAUSED)
+                if (_oldMenuStates != MenuStates::PAUSED) {
+                    _initInGameWritables();
+                    _initInGameBackgrounds();
+                    _initInGameText();
                     _initSoloData();
+                }
                 _initInGameButtons();
-                _initInGameWritables();
-                _initInGameBackgrounds();
-                _initInGameText();
                 break;
             case MenuStates::MULTI_GAME:
                 if (_oldMenuStates == MenuStates::LOBBY) {

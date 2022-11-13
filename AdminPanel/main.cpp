@@ -15,7 +15,14 @@ using namespace admin_panel;
 int main(int ac, char **av)
 {
     ArgumentHandler argumentHandler = ArgumentHandler(ac, av);
-    ArgumentHandler::ClientInformation clientInformation = argumentHandler.extractClientInformation();
+    ArgumentHandler::ClientInformation clientInformation;
+
+    try {
+        clientInformation = argumentHandler.extractClientInformation();
+    } catch (std::exception &exc) {
+        std::cerr << exc.what() << std::endl;
+        return 84;
+    }
     AdminPanel adminPanel = AdminPanel(clientInformation.clientAddress, clientInformation.clientPort,
         clientInformation.serverAddress, clientInformation.serverPort);
 
