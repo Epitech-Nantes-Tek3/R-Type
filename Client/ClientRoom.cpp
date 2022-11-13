@@ -609,6 +609,10 @@ void ClientRoom::_updateEcsEntities()
                 _initLobbyButtons();
                 break;
             case MenuStates::SOLO_GAME:
+                entities = _worldInstance->joinEntities<MusicComponent>();
+                for (auto &it : entities) {
+                    it->getComponent<MusicComponent>()._status = sf::Music::Playing;
+                }
                 if (_oldMenuStates != MenuStates::PAUSED) {
                     _initInGameWritables();
                     _initInGameBackgrounds();
@@ -627,6 +631,9 @@ void ClientRoom::_updateEcsEntities()
                 if (_worldInstance->joinEntities<ParallaxBackground>().empty()) {
                     _initInGameText();
                     _initInGameBackgrounds();
+                }
+                for (auto &it : entities) {
+                    it->getComponent<MusicComponent>()._status = sf::Music::Playing;
                 }
                 break;
             case MenuStates::PAUSED: _initPausedButton(); break;
