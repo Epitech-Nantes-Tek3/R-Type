@@ -17,6 +17,7 @@ int main(int ac, char **av)
 {
     ArgumentHandler argumentHandler = ArgumentHandler(ac, av);
     ArgumentHandler::ClientInformation clientInformation;
+
     try {
         clientInformation = argumentHandler.extractClientInformation();
     } catch (std::exception &exc) {
