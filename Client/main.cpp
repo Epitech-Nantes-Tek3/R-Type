@@ -16,7 +16,13 @@ using namespace argument_handler;
 int main(int ac, char **av)
 {
     ArgumentHandler argumentHandler = ArgumentHandler(ac, av);
-    ArgumentHandler::ClientInformation clientInformation = argumentHandler.extractClientInformation();
+    ArgumentHandler::ClientInformation clientInformation;
+    try {
+        clientInformation = argumentHandler.extractClientInformation();
+    } catch (std::exception &exc) {
+        std::cerr << exc.what() <<std::endl;
+        return 84;
+    }
     ClientRoom client = ClientRoom(clientInformation.clientAddress, clientInformation.clientPort,
         clientInformation.serverAddress, clientInformation.serverPort);
 
