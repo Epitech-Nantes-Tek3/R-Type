@@ -374,7 +374,7 @@ void ClientRoom::_updateEcsResources()
         _loadButtonActionMap();
     if (_worldInstance->containsResource<MusicResource>()) {
         _worldInstance->getResource<MusicResource>().addMusic(
-            graphicECS::SFML::Resources::MusicResource::BACKGROUNDTHEME, "assets/Musics/music_background.wav");
+            graphicECS::SFML::Resources::MusicResource::BACKGROUNDTHEME, BACKGROUND_MUSIC_1);
     }
 }
 

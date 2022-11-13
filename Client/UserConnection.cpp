@@ -62,7 +62,7 @@ void UserConnection::_loadResourcesUserConnection()
         .addResource<GameStates>()
         .addResource<RenderWindowResource>("Login", sf::VideoMode(360, 640, 32))
         .addResource<GraphicsFontResource>(FONT_PATH)
-        .addResource<MusicResource>(MusicResource::music_e::BACKGROUNDTHEME, BACKGROUND_MUSIC)
+        .addResource<MusicResource>(MusicResource::music_e::BACKGROUNDTHEME, BACKGROUND_MUSIC_1)
         .addResource<MenuStates>(MenuStates::MAIN_MENU)
         .addResource<ButtonActionMap>(
             ButtonActionMap::WRITABLE_BUTTON, std::function<void(World &, Entity &)>(writableButtonAction))

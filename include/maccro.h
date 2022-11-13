@@ -27,6 +27,6 @@
 #define WRITABLE_SELECTED_TEXTURE_PATH         "assets/EpiSprite/BasicPlayerSpriteSheet.gif"
 #define WRITABLE_BUTTON_TEXTURE_PATH           "assets/EpiSprite/r-typesheet11.gif"
 #define PLAYER_TEXTURE_PATH                    "assets/EpiSprite/BasicPlayerSpriteSheet.gif"
-#define BACKGROUND_MUSIC                       "assets/Musics/music_background.wav"
+#define BACKGROUND_MUSIC_1                     "assets/Musics/level1Background.wav"
 
 #endif /* !MACCRO_H_ */
