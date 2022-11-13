@@ -266,7 +266,7 @@ void Room::holdANewConnexionRequest(CommunicatorMessage connexionDemand)
     NetworkableIdGenerator &generator = _worldInstance->getResource<NetworkableIdGenerator>();
     auto guard = std::lock_guard(generator);
     std::string playerNameStr = _getPlayerName(connexionDemand);
-    std::size_t playerId = createNewPlayer(*_worldInstance.get(), 20, 500, 0, 0, 1, 102, 102, 100, 10, 4, false,
+    std::size_t playerId = createNewPlayer(*_worldInstance.get(), 20, 500, 0, 0, 1, 398 / 4, 223 / 4, 100, 10, 4, false,
         _remainingPlaces + 1, playerNameStr, "", generator.generateNewNetworkableId());
     _worldInstance->getEntity(playerId).getComponent<Velocity>().modifier =
         _configs[roomConfiguration_e::PLAYER_VELOCITY];

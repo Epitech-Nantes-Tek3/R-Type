@@ -109,18 +109,6 @@ void DrawComponents::_updatePlayer(LayerLvL &layerType, std::shared_ptr<ecs::Ent
                 break;
             case 1:
                 entityPtr->getComponent<AnimationComponent>().textures.push_back(
-                    GraphicsTextureResource::PINK_PLAYER_STATIC_1);
-                entityPtr->getComponent<AnimationComponent>().textures.push_back(
-                    GraphicsTextureResource::PINK_PLAYER_STATIC_2);
-                entityPtr->getComponent<AnimationComponent>().textures.push_back(
-                    GraphicsTextureResource::PINK_PLAYER_STATIC_3);
-                entityPtr->getComponent<AnimationComponent>().textures.push_back(
-                    GraphicsTextureResource::PINK_PLAYER_STATIC_4);
-                entityPtr->getComponent<AnimationComponent>().textures.push_back(
-                    GraphicsTextureResource::PINK_PLAYER_STATIC_5);
-                break;
-            case 2:
-                entityPtr->getComponent<AnimationComponent>().textures.push_back(
                     GraphicsTextureResource::GREEN_PLAYER_STATIC_1);
                 entityPtr->getComponent<AnimationComponent>().textures.push_back(
                     GraphicsTextureResource::GREEN_PLAYER_STATIC_2);
@@ -130,6 +118,18 @@ void DrawComponents::_updatePlayer(LayerLvL &layerType, std::shared_ptr<ecs::Ent
                     GraphicsTextureResource::GREEN_PLAYER_STATIC_4);
                 entityPtr->getComponent<AnimationComponent>().textures.push_back(
                     GraphicsTextureResource::GREEN_PLAYER_STATIC_5);
+                break;
+            case 2:
+                entityPtr->getComponent<AnimationComponent>().textures.push_back(
+                    GraphicsTextureResource::PINK_PLAYER_STATIC_1);
+                entityPtr->getComponent<AnimationComponent>().textures.push_back(
+                    GraphicsTextureResource::PINK_PLAYER_STATIC_2);
+                entityPtr->getComponent<AnimationComponent>().textures.push_back(
+                    GraphicsTextureResource::PINK_PLAYER_STATIC_3);
+                entityPtr->getComponent<AnimationComponent>().textures.push_back(
+                    GraphicsTextureResource::PINK_PLAYER_STATIC_4);
+                entityPtr->getComponent<AnimationComponent>().textures.push_back(
+                    GraphicsTextureResource::PINK_PLAYER_STATIC_5);
                 break;
             case 3:
                 entityPtr->getComponent<AnimationComponent>().textures.push_back(
