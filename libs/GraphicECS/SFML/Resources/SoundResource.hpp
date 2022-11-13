@@ -19,7 +19,7 @@ namespace graphicECS::SFML::Resources
     class SoundResource : public ecs::Resource {
       public:
         /// @brief Enumeration of all available Sounds
-        enum sound_e { UNDEFINED, SHOOT, DEATH, EXPLOSION };
+        enum sound_e { UNDEFINED, BUTTON, SHOOT, DEATH, EXPLOSION };
 
         /// @brief Name of map which contains Sounds.
         using SoundsList = std::unordered_map<sound_e, std::shared_ptr<sf::SoundBuffer>>;
